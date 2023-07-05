@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotosProductCollectionViewCell" id="gTV-IL-0wX" customClass="PhotosProductCollectionViewCell" customModule="Costumes_TG" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="282"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="170" height="282"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHb-nU-mY8">
+                        <rect key="frame" x="0.0" y="0.0" width="170" height="282"/>
+                        <subviews>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UTW-6T-XHY">
+                                <rect key="frame" x="0.0" y="183" width="170" height="94"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Sunburn Reload NYE - toronto" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLn-8O-Qzm">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frontline  |  Trini Revellers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ktt-kv-9A3">
+                                        <rect key="frame" x="0.0" y="47" width="170" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$250-$500" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzE-NR-8Po">
+                                        <rect key="frame" x="0.0" y="73.5" width="170" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_ip" translatesAutoresizingMaskIntoConstraints="NO" id="Dxe-bm-d8p">
+                                <rect key="frame" x="1.5" y="8" width="167" height="167"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="Ioi-uI-7e3"/>
+                                    <constraint firstAttribute="height" constant="167" id="XhU-Mh-ktf"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="UTW-6T-XHY" secondAttribute="bottom" constant="5" id="HSu-Rt-59B"/>
+                            <constraint firstAttribute="trailing" secondItem="Dxe-bm-d8p" secondAttribute="trailing" constant="1.5" id="HT2-2l-zlW"/>
+                            <constraint firstAttribute="trailing" secondItem="UTW-6T-XHY" secondAttribute="trailing" id="Tc2-CA-7lA"/>
+                            <constraint firstItem="Dxe-bm-d8p" firstAttribute="leading" secondItem="qHb-nU-mY8" secondAttribute="leading" constant="1.5" id="XS2-i4-HW7"/>
+                            <constraint firstItem="UTW-6T-XHY" firstAttribute="leading" secondItem="qHb-nU-mY8" secondAttribute="leading" id="bLi-7W-x4s"/>
+                            <constraint firstItem="Dxe-bm-d8p" firstAttribute="centerX" secondItem="qHb-nU-mY8" secondAttribute="centerX" id="cq9-7a-hVf"/>
+                            <constraint firstItem="UTW-6T-XHY" firstAttribute="top" secondItem="Dxe-bm-d8p" secondAttribute="bottom" constant="8" id="d9T-iF-jwR"/>
+                            <constraint firstItem="Dxe-bm-d8p" firstAttribute="top" secondItem="qHb-nU-mY8" secondAttribute="top" constant="8" id="mx7-ck-QQs"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="qHb-nU-mY8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6m6-jQ-e52"/>
+                <constraint firstAttribute="trailing" secondItem="qHb-nU-mY8" secondAttribute="trailing" id="8yh-8f-s5T"/>
+                <constraint firstAttribute="bottom" secondItem="qHb-nU-mY8" secondAttribute="bottom" id="j7R-d6-bhu"/>
+                <constraint firstItem="qHb-nU-mY8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vgt-Ox-l1h"/>
+            </constraints>
+            <size key="customSize" width="154" height="196"/>
+            <connections>
+                <outlet property="imgImage" destination="Dxe-bm-d8p" id="byk-8l-omt"/>
+                <outlet property="lblFrontLine" destination="Ktt-kv-9A3" id="CKO-px-05N"/>
+                <outlet property="lblPrice" destination="AzE-NR-8Po" id="0xI-CY-Ugw"/>
+                <outlet property="lblSunburnReload" destination="YLn-8O-Qzm" id="DcN-Hy-uyT"/>
+                <outlet property="stackView" destination="UTW-6T-XHY" id="XBD-b3-gcu"/>
+            </connections>
+            <point key="canvasLocation" x="194.20289855072465" y="133.92857142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="photo_ip" width="167" height="167"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderTableViewCell" rowHeight="100" id="KGk-i7-Jjw" customClass="OrderTableViewCell" customModule="TicketGateway" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="350" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COL-dO-GFF">
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="100"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="costumeOrder_ip" translatesAutoresizingMaskIntoConstraints="NO" id="3Xs-bF-ijr">
+                                <rect key="frame" x="16" y="24" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="IHq-gm-t7C"/>
+                                    <constraint firstAttribute="height" constant="60" id="grR-de-MsV"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="p79-AD-x6a">
+                                <rect key="frame" x="92" y="24" width="242" height="60"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="27j-af-GTN">
+                                        <rect key="frame" x="0.0" y="7" width="202.5" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picked up on Mar 12, 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jh-iN-K6W">
+                                                <rect key="frame" x="0.0" y="0.0" width="202.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jouvert Republic 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzA-ad-HMM">
+                                                <rect key="frame" x="0.0" y="25.5" width="202.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron-right_ip" translatesAutoresizingMaskIntoConstraints="NO" id="92K-lw-Nb4">
+                                        <rect key="frame" x="218" y="18" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="2gC-UI-T8q"/>
+                                            <constraint firstAttribute="height" constant="24" id="iMs-dG-9jH"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2k-3N-HG5">
+                                <rect key="frame" x="0.0" y="99" width="350" height="1"/>
+                                <color key="backgroundColor" name="BorderLineColour"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="lFN-Kq-Inx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="p79-AD-x6a" firstAttribute="leading" secondItem="3Xs-bF-ijr" secondAttribute="trailing" constant="16" id="E5T-qs-2pg"/>
+                            <constraint firstItem="p79-AD-x6a" firstAttribute="centerY" secondItem="3Xs-bF-ijr" secondAttribute="centerY" id="JWU-K3-zXJ"/>
+                            <constraint firstItem="p79-AD-x6a" firstAttribute="top" secondItem="3Xs-bF-ijr" secondAttribute="top" id="TAm-om-tC4"/>
+                            <constraint firstItem="3Xs-bF-ijr" firstAttribute="leading" secondItem="COL-dO-GFF" secondAttribute="leading" constant="16" id="XXn-db-BAd"/>
+                            <constraint firstAttribute="bottom" secondItem="K2k-3N-HG5" secondAttribute="bottom" id="ZcU-KO-Dwg"/>
+                            <constraint firstAttribute="trailing" secondItem="K2k-3N-HG5" secondAttribute="trailing" id="eGy-Dh-hs3"/>
+                            <constraint firstItem="3Xs-bF-ijr" firstAttribute="top" secondItem="COL-dO-GFF" secondAttribute="top" constant="24" id="lof-zE-Gr9"/>
+                            <constraint firstItem="3Xs-bF-ijr" firstAttribute="centerY" secondItem="p79-AD-x6a" secondAttribute="centerY" id="neq-s6-AWP"/>
+                            <constraint firstAttribute="trailing" secondItem="p79-AD-x6a" secondAttribute="trailing" constant="16" id="rN5-Cv-09Z"/>
+                            <constraint firstItem="K2k-3N-HG5" firstAttribute="leading" secondItem="COL-dO-GFF" secondAttribute="leading" id="xPm-km-WtV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="COL-dO-GFF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fzK-k2-ovV"/>
+                    <constraint firstAttribute="trailing" secondItem="COL-dO-GFF" secondAttribute="trailing" id="gEb-9Z-XsE"/>
+                    <constraint firstAttribute="bottom" secondItem="COL-dO-GFF" secondAttribute="bottom" id="wcE-LN-HSW"/>
+                    <constraint firstItem="COL-dO-GFF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xy5-jp-tot"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnChevron" destination="92K-lw-Nb4" id="24l-vx-Noz"/>
+                <outlet property="imgImage" destination="3Xs-bF-ijr" id="KU4-LT-kvX"/>
+                <outlet property="lblJouverRepublic" destination="NzA-ad-HMM" id="4O0-KE-c8L"/>
+                <outlet property="lblPickedUp" destination="8jh-iN-K6W" id="ydb-n2-THZ"/>
+            </connections>
+            <point key="canvasLocation" x="150.72463768115944" y="62.276785714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron-right_ip" width="24" height="24"/>
+        <image name="costumeOrder_ip" width="60" height="60"/>
+        <namedColor name="BorderLineColour">
+            <color red="0.90200001001358032" green="0.9100000262260437" blue="0.92500001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

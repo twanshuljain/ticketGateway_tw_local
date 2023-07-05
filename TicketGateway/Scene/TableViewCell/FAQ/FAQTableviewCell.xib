@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FAQTableviewCell" rowHeight="97" id="KGk-i7-Jjw" customClass="FAQTableviewCell" customModule="TicketGateway" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="137"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="333" height="137"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gn4-Ei-kfb">
+                        <rect key="frame" x="5" y="5" width="323" height="127"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PVu-xB-WeS">
+                                <rect key="frame" x="16" y="16" width="291" height="101"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7wj-07-Thp">
+                                        <rect key="frame" x="0.0" y="0.0" width="291" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What’s needed to get started on TicketGetway?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qK-Wj-p3N">
+                                                <rect key="frame" x="0.0" y="0.0" width="259" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWk-sg-6wW">
+                                                <rect key="frame" x="267" y="0.0" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="4KX-AC-nOq"/>
+                                                    <constraint firstAttribute="width" constant="24" id="tAq-9z-3xR"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="chevron-upGD_ip"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBH-c0-dIK">
+                                        <rect key="frame" x="0.0" y="29" width="291" height="72"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="ZA2-Fe-MWK"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit amet consectetur. Egestas sit fringilla faucibus cursus nunc. Ut sit dis proin nullam mi viverra vel euismod. Ultrices nunc nec porttitor amet velit turpis facilisis nunc. Pellentesque sed vitae ut purus semper cras eu mauris integer. Faucibus enim vitae interdum est tortor purus eu porta. Nunc aliquet eu purus gravida aliquet lacinia enim nec hendrerit. Eget tortor non sed ullamcorper eleifend lorem nulla velit quisque. Viverra sed non et tellus placerat. Vitae ornare et mattis et.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="PVu-xB-WeS" secondAttribute="bottom" constant="10" id="19R-Zg-BdP"/>
+                            <constraint firstAttribute="trailing" secondItem="PVu-xB-WeS" secondAttribute="trailing" constant="16" id="7pS-xy-mDw"/>
+                            <constraint firstItem="PVu-xB-WeS" firstAttribute="leading" secondItem="Gn4-Ei-kfb" secondAttribute="leading" constant="16" id="W6A-Ie-Wb1"/>
+                            <constraint firstItem="PVu-xB-WeS" firstAttribute="top" secondItem="Gn4-Ei-kfb" secondAttribute="top" constant="16" id="aXQ-EE-m0u"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Gn4-Ei-kfb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="0gI-Fp-2Qw"/>
+                    <constraint firstItem="Gn4-Ei-kfb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="5im-Hd-lr8"/>
+                    <constraint firstAttribute="trailing" secondItem="Gn4-Ei-kfb" secondAttribute="trailing" constant="5" id="N4K-f2-3kG"/>
+                    <constraint firstAttribute="bottom" secondItem="Gn4-Ei-kfb" secondAttribute="bottom" constant="5" id="mlx-R1-Ohf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <connections>
+                <outlet property="bgView" destination="Gn4-Ei-kfb" id="ycg-Ug-VHf"/>
+                <outlet property="btnUp" destination="tWk-sg-6wW" id="gGh-eS-HQG"/>
+                <outlet property="lblAnswer" destination="XBH-c0-dIK" id="jzu-oI-OXQ"/>
+                <outlet property="lblQuestion" destination="8qK-Wj-p3N" id="hSG-NV-GZZ"/>
+            </connections>
+            <point key="canvasLocation" x="145.6521739130435" y="109.48660714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron-upGD_ip" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CostumeTypeCollectionViewCell" id="gTV-IL-0wX" customClass="CostumeTypeCollectionViewCell" customModule="TicketGateway" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="56"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="56"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOq-TO-xLm">
+                        <rect key="frame" x="16" y="8" width="144" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUy-uY-kjv">
+                                <rect key="frame" x="10" y="0.0" width="41.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HDZ-sG-Btx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dUy-uY-kjv" secondAttribute="trailing" constant="10" id="7P9-wK-ydQ"/>
+                            <constraint firstItem="dUy-uY-kjv" firstAttribute="top" secondItem="LOq-TO-xLm" secondAttribute="top" id="d6h-fB-LWa"/>
+                            <constraint firstItem="dUy-uY-kjv" firstAttribute="leading" secondItem="LOq-TO-xLm" secondAttribute="leading" constant="10" id="hOU-en-4mn"/>
+                            <constraint firstAttribute="bottom" secondItem="dUy-uY-kjv" secondAttribute="bottom" id="hxQ-4P-BeY"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" name="lblTextPara"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="LOq-TO-xLm" secondAttribute="bottom" constant="8" id="4Rv-Sj-Ikz"/>
+                <constraint firstItem="LOq-TO-xLm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="5Ky-Jp-ui8"/>
+                <constraint firstItem="LOq-TO-xLm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="aMT-Zg-Uph"/>
+                <constraint firstAttribute="trailing" secondItem="LOq-TO-xLm" secondAttribute="trailing" id="nu3-mJ-VeM"/>
+            </constraints>
+            <size key="customSize" width="243" height="51"/>
+            <connections>
+                <outlet property="bgView" destination="LOq-TO-xLm" id="1N9-jk-tTF"/>
+                <outlet property="lblCostumeType" destination="dUy-uY-kjv" id="BnL-Kx-Bl9"/>
+            </connections>
+            <point key="canvasLocation" x="271.01449275362319" y="85.714285714285708"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="lblTextPara">
+            <color red="0.3529999852180481" green="0.40799999237060547" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

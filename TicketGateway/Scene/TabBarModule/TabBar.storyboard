@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RNi-AN-K4a">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home-->
+        <scene sceneID="hAO-mt-c79">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Home" storyboardName="Home" id="sMW-U3-sPy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="90T-3p-I9g"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yo2-ih-q59" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111" y="-196"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="svJ-vy-5AK">
+            <objects>
+                <navigationController storyboardIdentifier="tabBarNav" navigationBarHidden="YES" id="RNi-AN-K4a" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8e-xO-RKC">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aJX-zx-yuL" kind="relationship" relationship="rootViewController" id="Pn0-Oc-nEl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NGJ-cj-g9R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-302" y="-56"/>
+        </scene>
+        <!--Tab BarVC-->
+        <scene sceneID="252-z9-A0F">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBar_VC" id="aJX-zx-yuL" customClass="TabBar_VC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="OaP-lK-ePc"/>
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lcu-No-Bh8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemMintColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="sMW-U3-sPy" kind="relationship" relationship="viewControllers" id="fCD-ej-pHC"/>
+                        <segue destination="zbz-9Z-TEW" kind="relationship" relationship="viewControllers" id="Xgh-dE-S0V"/>
+                        <segue destination="n6F-8J-9yP" kind="relationship" relationship="viewControllers" id="2bp-qh-6m0"/>
+                        <segue destination="NYC-gs-WRM" kind="relationship" relationship="viewControllers" id="N9c-PY-sOz"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K09-av-Pv4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="469" y="-55"/>
+        </scene>
+        <!--Order-->
+        <scene sceneID="pAi-FF-tfP">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Order" storyboardName="Order" id="zbz-9Z-TEW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="8ll-gO-iYg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4hy-od-LAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111" y="-126"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="Xop-nU-XnK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favorites" id="n6F-8J-9yP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ZCZ-gZ-Wcs"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ehv-fq-4kr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1110" y="-56"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="hJJ-cq-0qN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="NYC-gs-WRM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="Image" id="uQx-JA-Lcr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NJu-tz-Tkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1104" y="38"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Image" width="25" height="24"/>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

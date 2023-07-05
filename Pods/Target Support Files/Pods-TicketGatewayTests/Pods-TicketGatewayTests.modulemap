@@ -1,0 +1,6 @@
+framework module Pods_TicketGatewayTests {
+  umbrella header "Pods-TicketGatewayTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

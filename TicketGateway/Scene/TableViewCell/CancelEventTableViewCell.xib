@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CancelEventTableViewCell" rowHeight="66" id="1vf-45-8k9" customClass="CancelEventTableViewCell" customModule="TicketGateway" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="344" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1vf-45-8k9" id="nGT-jK-AbY">
+                <rect key="frame" x="0.0" y="0.0" width="344" height="66"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2e-fy-Q0T">
+                        <rect key="frame" x="0.0" y="0.0" width="344" height="66"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="lGb-75-jk2">
+                                <rect key="frame" x="16" y="16" width="312" height="24"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgv-uW-geW">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="6sG-RM-OuP"/>
+                                            <constraint firstAttribute="width" constant="24" id="7Es-Lb-lfw"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="filter_radio_inactive"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The product is too difficult to use " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNt-t2-r38">
+                                        <rect key="frame" x="39" y="0.0" width="273" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lGb-75-jk2" secondAttribute="bottom" constant="8" id="EGU-GT-wb8"/>
+                            <constraint firstItem="lGb-75-jk2" firstAttribute="leading" secondItem="a2e-fy-Q0T" secondAttribute="leading" constant="16" id="M9I-En-EAh"/>
+                            <constraint firstItem="lGb-75-jk2" firstAttribute="top" secondItem="a2e-fy-Q0T" secondAttribute="top" constant="16" id="Viq-TU-jtl"/>
+                            <constraint firstAttribute="trailing" secondItem="lGb-75-jk2" secondAttribute="trailing" constant="16" id="n4j-BN-lcP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="a2e-fy-Q0T" firstAttribute="leading" secondItem="nGT-jK-AbY" secondAttribute="leading" id="C4g-Tx-s1H"/>
+                    <constraint firstAttribute="trailing" secondItem="a2e-fy-Q0T" secondAttribute="trailing" id="EXj-4O-8OB"/>
+                    <constraint firstItem="a2e-fy-Q0T" firstAttribute="top" secondItem="nGT-jK-AbY" secondAttribute="top" id="Q0F-FW-V7y"/>
+                    <constraint firstAttribute="bottom" secondItem="a2e-fy-Q0T" secondAttribute="bottom" id="Skb-oj-wyM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="AVj-lH-JUV"/>
+            <connections>
+                <outlet property="btnSelect" destination="Fgv-uW-geW" id="jCk-MG-1B1"/>
+                <outlet property="lblTitle" destination="oNt-t2-r38" id="IXN-Z9-j8b"/>
+            </connections>
+            <point key="canvasLocation" x="61.068702290076331" y="6.3380281690140849"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="filter_radio_inactive" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

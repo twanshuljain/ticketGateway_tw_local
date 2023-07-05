@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TransferTicketHeaderView" customModule="TicketGateway" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="576" height="46"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uoA-EH-ZZJ">
+                    <rect key="frame" x="0.0" y="0.0" width="576" height="46"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fQa-pu-Ifp">
+                            <rect key="frame" x="16" y="2" width="544" height="24"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Early bird 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8h-1n-EYT">
+                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="EcJ-Xm-ys3">
+                                    <rect key="frame" x="441.5" y="0.0" width="102.5" height="24"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$100.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLp-eR-qTW">
+                                            <rect key="frame" x="0.0" y="0.0" width="62.5" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nt-5H-nCH">
+                                            <rect key="frame" x="78.5" y="0.0" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="O7D-pM-W74"/>
+                                                <constraint firstAttribute="height" constant="24" id="yQm-wg-UDw"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circlechevronUp_ip"/>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCY-5A-qb7">
+                            <rect key="frame" x="16" y="42" width="544" height="1"/>
+                            <color key="backgroundColor" name="BorderLineColour"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="DfA-OL-73L"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="fQa-pu-Ifp" secondAttribute="trailing" constant="16" id="5e3-SQ-aB7"/>
+                        <constraint firstAttribute="bottom" secondItem="dCY-5A-qb7" secondAttribute="bottom" constant="3" id="6AY-my-pi1"/>
+                        <constraint firstItem="fQa-pu-Ifp" firstAttribute="leading" secondItem="uoA-EH-ZZJ" secondAttribute="leading" constant="16" id="LhC-BQ-1G6"/>
+                        <constraint firstItem="fQa-pu-Ifp" firstAttribute="top" secondItem="uoA-EH-ZZJ" secondAttribute="top" constant="2" id="OPo-rx-QIN"/>
+                        <constraint firstItem="dCY-5A-qb7" firstAttribute="top" secondItem="fQa-pu-Ifp" secondAttribute="bottom" constant="16" id="oV5-7m-Ae3"/>
+                        <constraint firstAttribute="trailing" secondItem="dCY-5A-qb7" secondAttribute="trailing" constant="16" id="ox4-EY-sMP"/>
+                        <constraint firstItem="dCY-5A-qb7" firstAttribute="leading" secondItem="uoA-EH-ZZJ" secondAttribute="leading" constant="16" id="r4Y-S7-nyJ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uoA-EH-ZZJ" secondAttribute="trailing" id="PC5-3g-XUu"/>
+                <constraint firstItem="uoA-EH-ZZJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UtF-eK-XQo"/>
+                <constraint firstItem="uoA-EH-ZZJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="d59-JT-vSR"/>
+                <constraint firstAttribute="bottom" secondItem="uoA-EH-ZZJ" secondAttribute="bottom" id="hzn-BH-OVx"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnUp" destination="2Nt-5H-nCH" id="QNo-rY-8Mi"/>
+                <outlet property="headerBottomLine" destination="dCY-5A-qb7" id="VyN-5G-MWh"/>
+                <outlet property="lblPrice" destination="JLp-eR-qTW" id="d0s-dF-iaE"/>
+                <outlet property="lblTicketTitle" destination="S8h-1n-EYT" id="E3N-a2-4m6"/>
+            </connections>
+            <point key="canvasLocation" x="186.95652173913044" y="375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="circlechevronUp_ip" width="24" height="24"/>
+        <namedColor name="BorderLineColour">
+            <color red="0.90200001001358032" green="0.9100000262260437" blue="0.92500001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

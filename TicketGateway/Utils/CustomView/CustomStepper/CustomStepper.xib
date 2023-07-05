@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomStepper" customModule="TicketGateway" customModuleProvider="target">
+            <connections>
+                <outlet property="btnMinus" destination="EMF-5Y-CHc" id="y4y-AL-C3d"/>
+                <outlet property="btnPlus" destination="uKK-JK-C2u" id="S7b-Kd-8wF"/>
+                <outlet property="lblCount" destination="tKd-bn-cmE" id="EiU-Au-VJU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="43h-GN-w6b">
+            <rect key="frame" x="0.0" y="0.0" width="595" height="133"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLE-3J-mog">
+                    <rect key="frame" x="5" y="5" width="585" height="123"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKK-JK-C2u">
+                            <rect key="frame" x="535" y="36.666666666666664" width="50" height="49.999999999999993"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="D5e-UA-80J"/>
+                                <constraint firstAttribute="width" constant="50" id="tZP-g7-ANm"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="plusStepper"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMF-5Y-CHc">
+                            <rect key="frame" x="0.0" y="36.666666666666664" width="50" height="49.999999999999993"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="5Ty-qE-fef"/>
+                                <constraint firstAttribute="width" constant="50" id="sa0-rN-bpu"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="minus"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKd-bn-cmE">
+                            <rect key="frame" x="271" y="36" width="42" height="21"/>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="EMF-5Y-CHc" firstAttribute="leading" secondItem="kLE-3J-mog" secondAttribute="leading" id="8vR-WQ-zaL"/>
+                        <constraint firstItem="uKK-JK-C2u" firstAttribute="centerY" secondItem="kLE-3J-mog" secondAttribute="centerY" id="NqB-Dy-j1L"/>
+                        <constraint firstItem="tKd-bn-cmE" firstAttribute="centerX" secondItem="kLE-3J-mog" secondAttribute="centerX" id="Sde-Yp-Pel"/>
+                        <constraint firstItem="tKd-bn-cmE" firstAttribute="centerY" secondItem="kLE-3J-mog" secondAttribute="centerY" id="WJk-cG-BcV"/>
+                        <constraint firstItem="EMF-5Y-CHc" firstAttribute="centerY" secondItem="kLE-3J-mog" secondAttribute="centerY" id="d5X-qj-8fm"/>
+                        <constraint firstAttribute="trailing" secondItem="uKK-JK-C2u" secondAttribute="trailing" id="qhQ-zf-dPI"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" name="BorderLineColour"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="8iT-ye-dVp"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="8iT-ye-dVp" firstAttribute="trailing" secondItem="kLE-3J-mog" secondAttribute="trailing" constant="5" id="JWp-0F-zTS"/>
+                <constraint firstAttribute="bottom" secondItem="kLE-3J-mog" secondAttribute="bottom" constant="5" id="bUU-Qg-XGH"/>
+                <constraint firstItem="kLE-3J-mog" firstAttribute="leading" secondItem="8iT-ye-dVp" secondAttribute="leading" constant="5" id="fpx-RG-ESp"/>
+                <constraint firstItem="kLE-3J-mog" firstAttribute="top" secondItem="43h-GN-w6b" secondAttribute="top" constant="5" id="yAh-IR-WRt"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="371.73913043478262" y="363.95089285714283"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="minus" width="24" height="24"/>
+        <image name="plusStepper" width="24" height="24"/>
+        <namedColor name="BorderLineColour">
+            <color red="0.90200001001358032" green="0.9100000262260437" blue="0.92500001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

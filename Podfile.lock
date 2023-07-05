@@ -1,0 +1,38 @@
+PODS:
+  - AdvancedPageControl (0.9.0)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
+  - Cosmos (23.0.0)
+  - iOSDropDown (0.4.0)
+  - SideMenu (6.5.0)
+  - SwiftAlgorithms (1.0.0)
+
+DEPENDENCIES:
+  - AdvancedPageControl
+  - Charts
+  - Cosmos
+  - iOSDropDown
+  - SideMenu
+
+SPEC REPOS:
+  trunk:
+    - AdvancedPageControl
+    - Charts
+    - Cosmos
+    - iOSDropDown
+    - SideMenu
+    - SwiftAlgorithms
+
+SPEC CHECKSUMS:
+  AdvancedPageControl: 39e3b32b00b2d324c534f8e17cc6c5be9abe84b7
+  Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  iOSDropDown: ce9daa584eaa5567cafc1b633e3cc7eb6d9cea42
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
+
+PODFILE CHECKSUM: 29d61bc8623733cb795f30ebde6dd7aa396536a3
+
+COCOAPODS: 1.12.1

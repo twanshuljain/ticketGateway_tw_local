@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RatingCustomFooterView" customModule="TicketGateway" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="709" height="382"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZF7-pp-1xk">
+                    <rect key="frame" x="2" y="67" width="705" height="273"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggestions for Improvement:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAa-1u-Wco">
+                            <rect key="frame" x="0.0" y="5" width="705" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="fcz-2h-EJp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" name="lblTextPara"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Eer-jC-kOt" customClass="PlaceholderTextView" customModule="TicketGateway" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="30" width="705" height="172"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="textColor" name="lblTextPara"/>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="BorderColor"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="  Enter Suggestions"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" name="BorderColor"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yqb-Cp-Cy6" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="218" width="705" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Tf6-oj-fpT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Send feedback">
+                                <color key="titleColor" name="btnDarkBlue"/>
+                            </state>
+                            <connections>
+                                <action selector="btnFeedbackPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="hiw-Tz-jQp"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="TAa-1u-Wco" firstAttribute="top" secondItem="ZF7-pp-1xk" secondAttribute="top" constant="5" id="498-4P-XjI"/>
+                        <constraint firstItem="Yqb-Cp-Cy6" firstAttribute="top" secondItem="Eer-jC-kOt" secondAttribute="bottom" constant="16" id="B3j-ye-tfd"/>
+                        <constraint firstItem="Eer-jC-kOt" firstAttribute="trailing" secondItem="TAa-1u-Wco" secondAttribute="trailing" id="KRA-yf-Xbv"/>
+                        <constraint firstItem="TAa-1u-Wco" firstAttribute="leading" secondItem="ZF7-pp-1xk" secondAttribute="leading" id="Vrb-GH-Vw7"/>
+                        <constraint firstAttribute="bottom" secondItem="Yqb-Cp-Cy6" secondAttribute="bottom" constant="5" id="Woi-Z6-k88"/>
+                        <constraint firstAttribute="trailing" secondItem="TAa-1u-Wco" secondAttribute="trailing" id="axa-JX-2wq"/>
+                        <constraint firstItem="Yqb-Cp-Cy6" firstAttribute="trailing" secondItem="Eer-jC-kOt" secondAttribute="trailing" id="k7b-Hf-rQB"/>
+                        <constraint firstItem="Eer-jC-kOt" firstAttribute="top" secondItem="TAa-1u-Wco" secondAttribute="bottom" constant="5" id="sHX-aP-Ax0"/>
+                        <constraint firstItem="Eer-jC-kOt" firstAttribute="leading" secondItem="TAa-1u-Wco" secondAttribute="leading" id="vfW-GE-WQw"/>
+                        <constraint firstItem="Yqb-Cp-Cy6" firstAttribute="leading" secondItem="Eer-jC-kOt" secondAttribute="leading" id="zwZ-gA-utF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ZF7-pp-1xk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="TZv-AU-A9M"/>
+                <constraint firstItem="ZF7-pp-1xk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="2" id="YkK-7b-MlA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ZF7-pp-1xk" secondAttribute="bottom" constant="8" id="nf4-CK-Oh2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZF7-pp-1xk" secondAttribute="trailing" constant="2" id="r6A-j4-eOz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnFeedback" destination="Yqb-Cp-Cy6" id="XkA-D1-GXJ"/>
+                <outlet property="lblFeedbackTextView" destination="Eer-jC-kOt" id="rE2-t7-HtW"/>
+                <outlet property="lblTitleSuggestion" destination="TAa-1u-Wco" id="Vb5-hG-kce"/>
+                <outlet property="txtView" destination="Eer-jC-kOt" id="fkG-KE-Kmu"/>
+            </connections>
+            <point key="canvasLocation" x="290.83969465648852" y="-166.90140845070422"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BorderColor">
+            <color red="0.7803921568627451" green="0.80000000000000004" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="btnDarkBlue">
+            <color red="0.043000001460313797" green="0.13699999451637268" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lblTextPara">
+            <color red="0.3529999852180481" green="0.40799999237060547" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
