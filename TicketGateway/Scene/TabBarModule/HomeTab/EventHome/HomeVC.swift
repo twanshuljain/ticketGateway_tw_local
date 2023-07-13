@@ -96,8 +96,6 @@ extension HomeVC {
         self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblSuggestedOrganised.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
         self.lblSuggestedOrganised.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.btnViewAllMoreForNearOrganisedEvent.setTitles(text: VIEW_MORE_EVENT, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnViewAllMoreForNearOrganisedEvent.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
         self.btnViewAllForSuggestedOrganised.setTitles(text: SEE_ALL, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
       }
     
