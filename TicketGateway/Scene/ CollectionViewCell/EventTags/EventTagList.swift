@@ -9,11 +9,17 @@ import UIKit
 
 class EventTagList: UICollectionView {
     
+    var eventDetail:EventDetail?
     
     func configure() {
         self.register(UINib(nibName: "EventTagCell", bundle: nil), forCellWithReuseIdentifier: "EventTagCell")
         self.delegate = self
         self.dataSource = self
+    }
+    
+    func setData(eventDetail:EventDetail?){
+        self.eventDetail = eventDetail
+        self.reloadData()
     }
 
 }
@@ -27,15 +33,14 @@ extension EventTagList : UICollectionViewDataSource ,UICollectionViewDelegate {
 
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 4
+         return self.eventDetail?.eventTagsObj?.eventTags?.count ?? 0
     }
 
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventTagCell", for: indexPath) as! EventTagCell
-         cell.lblName.text = "#Music"
-         
-        
-        // Configure the cell
+         let tagName = self.eventDetail?.eventTagsObj?.eventTags?[indexPath.row]
+         cell.setData(tagName: tagName)
+         //cell.lblName.text = "#Music"
          return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

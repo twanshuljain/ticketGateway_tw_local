@@ -1,21 +1,18 @@
 //
-//  EventBookingOrderSummaryVC.swift
-//  TicketGateway
+// EventBookingOrderSummaryVC.swift
+// TicketGateway
 //
-//  Created by Apple  on 16/05/23.
+// Created by Apple on 16/05/23.
 //
-
 import UIKit
-
 class EventBookingOrderSummaryVC: UIViewController {
-    
     //MARK: - IBOutlets
     @IBOutlet weak var vwDottedDIscount: UIView!
     @IBOutlet weak var vwDotteds: UIView!
     @IBOutlet weak var vwDotted: UIView!
     @IBOutlet weak var heightOfTickets: NSLayoutConstraint!
     @IBOutlet weak var heightOfAddOn: NSLayoutConstraint!
-    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnGoBack: UIButton!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblAddedTickets: TicketAddInOrderTableViewList!
@@ -31,28 +28,29 @@ class EventBookingOrderSummaryVC: UIViewController {
     @IBOutlet weak var lblTotalAmt: UILabel!
     @IBOutlet weak var lblTotalAmtValue: UILabel!
     @IBOutlet weak var lblContractOrganiser: UILabel!
-   @IBOutlet weak var lblRefundPolicy: UILabel!
+    @IBOutlet weak var lblRefundPolicy: UILabel!
     @IBOutlet weak var lblRefundDisc: UILabel!
-    
+    @IBOutlet weak var lblDiscouted: UILabel!
+    @IBOutlet weak var lblDiscoutedValue: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setUi()
     }
-  
 }
-
 //MARK: - Functions
 extension EventBookingOrderSummaryVC {
     private func setup() {
         self.tblAddedTickets.configure()
         self.tblAddOnEtcThings.configure()
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Order Summary"
+        self.navigationView.lblTitle.text = ORDER_SUMMARY
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.btnBack.isHidden = false
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
-        btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
+        btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
+        btnGoBack.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+        btnGoBack.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         [self.btnContinue].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
@@ -61,54 +59,54 @@ extension EventBookingOrderSummaryVC {
         self.tblAddOnEtcThings.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.heightOfAddOn.constant = self.tblAddOnEtcThings.contentSize.height
     }
-    
-    
     func setUi(){
         [self.lblSubTotal,lblSubTotalValue,self.lblfacilityFee,self.lblfacilityFeeValue,self.lblSavingCharge,self.lblSavingChargeValue,self.lblProcessingFee,self.lblProcessingFeeValue].forEach {
-            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
+            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         }
+        [self.lblDiscouted,self.lblDiscoutedValue].forEach {
+            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+            $0?.textColor = UIColor.setColor(colorType: .TGGreen)
+        }
         self.lblTotalAmt.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        self.lblTotalAmt.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTotalAmtValue.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblTotalAmtValue.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .thirteen)
-        self.lblRefundPolicy.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.lblRefundPolicy.font = UIFont.setFont(fontType: .regular, fontSize: .thirteen)
+        self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .twelve)
         self.lblRefundPolicy.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblContractOrganiser.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
+        self.lblContractOrganiser.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblRefundDisc.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        self.lblRefundDisc.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblContractOrganiser.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblContractOrganiser.textColor = UIColor.setColor(colorType: .TGBlue)
         vwDotted.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDotteds.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDottedDIscount.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
-        
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height
         self.heightOfAddOn.constant = tblAddOnEtcThings.contentSize.height
     }
 }
-
 //MARK: - Actions
 extension EventBookingOrderSummaryVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnContinue:
             self.btnContinueAction()
-       
         default:
             break
         }
     }
-   func btnContinueAction() {
-       let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
-       self.navigationController?.pushViewController(view!, animated: true)
+    func btnContinueAction() {
+        let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
+        self.navigationController?.pushViewController(view!, animated: true)
     }
-   
 }
-
-
 //MARK: - NavigationBarViewDelegate
 extension EventBookingOrderSummaryVC : NavigationBarViewDelegate {
     func navigationBackAction() {
-    self.navigationController?.popViewController(animated: true)
-  }
+        self.navigationController?.popViewController(animated: true)
+    }
 }

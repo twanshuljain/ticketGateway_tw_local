@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class suggestedOrganizerCell: UICollectionViewCell {
     
@@ -20,6 +21,31 @@ class suggestedOrganizerCell: UICollectionViewCell {
         super.awakeFromNib()
         self.setUi()
         // Initialization code
+    }
+    
+    func setData(organizerDetail:Organizers){
+        self.lblName.text = organizerDetail.name ?? ""
+        self.lblFollowers.text = "\(organizerDetail.followers ?? 0) followers "
+        
+        if let imageUrl = organizerDetail.profileImage{
+            if imageUrl.contains(APIHandler.shared.baseURL){
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.baseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                    self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                }else{
+                    self.imgProfile.image = UIImage(named: "homeDas")
+                }
+            }else{
+                if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                    self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                }else{
+                    self.imgProfile.image = UIImage(named: "homeDas")
+                }
+            }
+            
+        } else {
+            self.imgProfile.image = UIImage(named: "homeDas")
+        }
     }
     
     func setUi(){

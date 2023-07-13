@@ -35,7 +35,7 @@ class EventSearchHomeVC: UIViewController, UITextFieldDelegate {
         self.vwSearchBar.delegate = self
         self.vwSearchBar.vwLocation.isHidden = true
         self.collVwEvent.configure()
-        self.tblEvents.configure()
+        self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.EventSearch)
         self.collVwEvent.isFromCategory = true
         self.collVwEventSubCategory.configure()
         self.collVwEventSubCategory.isFromCategory = false
