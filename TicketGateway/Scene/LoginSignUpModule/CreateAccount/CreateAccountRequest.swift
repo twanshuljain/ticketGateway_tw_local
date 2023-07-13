@@ -8,7 +8,8 @@
 import Foundation
 
 struct CreateAccountRequest: Codable {
-  let fullName: String
+  let firstName: String
+  let lastName: String
   let mobileNumber: String
   let emailAddress: String
   let password: String
@@ -16,7 +17,8 @@ struct CreateAccountRequest: Codable {
   let role: String
   let isVerify: Bool
   enum CodingKeys: String, CodingKey {
-    case fullName = "full_name"
+    case firstName = "first_name"
+    case lastName = "last_name"
     case emailAddress = "email"
     case mobileNumber = "cell_phone"
     case password = "password"

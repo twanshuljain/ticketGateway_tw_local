@@ -30,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunburn Reload NYE - Toronto " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfL-Ch-Kde">
-                        <rect key="frame" x="20" y="260.5" width="273.5" height="25.5"/>
+                        <rect key="frame" x="20" y="260.5" width="451" height="25.5"/>
                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                         <color key="textColor" name="TiitleColourDarkBlue"/>
                         <nil key="highlightedColor"/>
@@ -54,13 +54,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="221" height="20"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal_ip" translatesAutoresizingMaskIntoConstraints="NO" id="WMG-Tg-VxD">
-                                                <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="18" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="15" id="ypr-Sg-STg"/>
+                                                    <constraint firstAttribute="width" constant="18" id="ypr-Sg-STg"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 19 to Feb 19, 2023" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paI-oJ-FUD">
-                                                <rect key="frame" x="23" y="0.0" width="189" height="20"/>
+                                                <rect key="frame" x="26" y="0.0" width="186" height="20"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
                                                 <color key="textColor" name="Headinglbl"/>
                                                 <nil key="highlightedColor"/>
@@ -137,13 +137,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XY8-mf-EXS">
-                        <rect key="frame" x="20" y="296" width="154.5" height="19"/>
+                        <rect key="frame" x="20" y="296" width="451" height="19"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_ip" translatesAutoresizingMaskIntoConstraints="NO" id="Bwy-Li-V3n">
-                                <rect key="frame" x="0.0" y="0.0" width="16" height="19"/>
+                                <rect key="frame" x="0.0" y="0.0" width="18" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="p4Z-zP-VkN"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRT Lakefront: Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6SV-Oi-BHW">
-                                <rect key="frame" x="24" y="0.0" width="130.5" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRT Lakefront: Toronto" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6SV-Oi-BHW">
+                                <rect key="frame" x="26" y="0.0" width="425" height="19"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                 <color key="textColor" name="Headinglbl"/>
                                 <nil key="highlightedColor"/>
@@ -159,6 +162,7 @@
                     <constraint firstAttribute="trailing" secondItem="cWN-b5-e2L" secondAttribute="trailing" constant="20" id="2sD-IJ-nDz"/>
                     <constraint firstItem="srN-ko-Zbh" firstAttribute="top" secondItem="XY8-mf-EXS" secondAttribute="bottom" constant="10" id="B3p-RN-pKy"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="duQ-Ep-6qF" secondAttribute="bottom" constant="10" id="EEi-SH-k6B"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rfL-Ch-Kde" secondAttribute="trailing" constant="20" id="FLi-4M-69v"/>
                     <constraint firstItem="XY8-mf-EXS" firstAttribute="top" secondItem="rfL-Ch-Kde" secondAttribute="bottom" constant="10" id="G8B-NH-QJc"/>
                     <constraint firstAttribute="trailingMargin" secondItem="MkH-wX-PA6" secondAttribute="trailing" constant="5" id="Hb3-BG-K48"/>
                     <constraint firstItem="MkH-wX-PA6" firstAttribute="centerY" secondItem="duQ-Ep-6qF" secondAttribute="centerY" id="OTI-hq-wvL"/>
@@ -169,6 +173,7 @@
                     <constraint firstItem="duQ-Ep-6qF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="fua-oC-MIO"/>
                     <constraint firstItem="rfL-Ch-Kde" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gSI-sf-7FX"/>
                     <constraint firstItem="srN-ko-Zbh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="npD-wK-1BC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="XY8-mf-EXS" secondAttribute="trailing" constant="20" id="obE-x2-lN7"/>
                     <constraint firstAttribute="trailing" secondItem="9wi-79-tSi" secondAttribute="trailing" constant="15" id="rep-IT-a5i"/>
                     <constraint firstItem="XY8-mf-EXS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sEf-Ma-jVH"/>
                     <constraint firstItem="rfL-Ch-Kde" firstAttribute="top" secondItem="9wi-79-tSi" secondAttribute="bottom" constant="10" id="tFv-FI-HQk"/>

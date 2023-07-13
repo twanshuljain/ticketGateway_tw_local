@@ -8,18 +8,70 @@
 import UIKit
 
 // MARK: - GetEventModel
-struct GetEventModel: Codable {
+struct GetEvent: Codable {
+    var items: [GetEventModel]?
+    var itemsWeekend: [GetEventModel]?
+    var itemsVirtual: [GetEventModel]?
+    var itemsPopular: [GetEventModel]?
+    var itemsFree: [GetEventModel]?
+    var itemsUpcoming: [GetEventModel]?
+    var total, page, size: Int?
+    
+    init(){
+        
+    }
+    
+    init(itemsWeekend: [GetEventModel]) {
+        self.itemsWeekend = itemsWeekend
+    }
+    
+    init(itemsVirtual: [GetEventModel]) {
+        self.itemsVirtual = itemsVirtual
+    }
+    
+    init(itemsPopular: [GetEventModel]) {
+        self.itemsPopular = itemsPopular
+    }
+    
+    init(itemsFree: [GetEventModel]) {
+        self.itemsFree = itemsFree
+    }
+    
+    init(itemsUpcoming: [GetEventModel]) {
+        self.itemsUpcoming = itemsUpcoming
+    }
+}
+
+// MARK: - GetEventModel
+struct GetEventModel: Codable,Equatable {
     var event: Event?
+    var locationType: String?
     var coverImage: CoverImage?
     var location: Location?
     var date: DateClass?
+    var likeCountData: LikeCountData?
 
     enum CodingKeys: String, CodingKey {
         case event
+        case locationType = "location_type"
         case coverImage = "cover_image"
         case location, date
+        case likeCountData = "like_count_data"
     }
+    
+    static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {
+        return lhs.event?.id == rhs.event?.id
+    }
+    
 }
+
+//struct GetEventCategory:Codable{
+//    var eventCategory:[String]?
+//
+//    init(eventCategory:[String]?) {
+//        self.eventCategory = eventCategory
+//    }
+//}
 
 // MARK: - CoverImage
 struct CoverImage: Codable {
@@ -77,7 +129,7 @@ enum DateOccurrence: String, Codable {
 }
 
 // MARK: - Event
-struct Event: Codable {
+struct Event: Codable, Hashable, Equatable {
     var id: Int?
     var customizeWebLink: String?
     var isShowRemainingTickets: Bool?
@@ -85,10 +137,10 @@ struct Event: Codable {
     var isFacilityFee: Bool?
     var title: String?
     var isPublishNow: Bool?
-    var eventPublishType: EventPublishType?
+    var eventPublishType: String?
     var createdAt: String?
     var visitorCount: Int?
-   // var eventDescription: JSONNull?
+    var eventDescription: String?
     var scheduleEventDate: String?
   //  var eventAdditionalImageID: JSONNull?
     var updatedAt: String?
@@ -107,6 +159,10 @@ struct Event: Codable {
     var eventSubCategoryID: Int?
     var isActive, isPublic: Bool?
     var refundPolicyID: Int?
+    
+    static func ==(left:Event, right:Event) -> Bool {
+        return left.id == right.id
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -119,7 +175,7 @@ struct Event: Codable {
         case eventPublishType = "event_publish_type"
         case createdAt = "created_at"
         case visitorCount = "visitor_count"
-       // case eventDescription = "event_description"
+        case eventDescription = "event_description"
         case scheduleEventDate = "schedule_event_date"
        // case eventAdditionalImageID = "event_additional_image_id"
         case updatedAt = "updated_at"
@@ -145,9 +201,9 @@ struct Event: Codable {
     }
 }
 
-enum EventPublishType: String, Codable {
-    case live = "LIVE"
-}
+//enum EventPublishType: String, Codable {
+//    case live = "LIVE"
+//}
 
 // MARK: - Location
 struct Location: Codable {
@@ -200,6 +256,44 @@ struct Location: Codable {
     //    case virtualLinkTitle = "virtual_link_title"
     }
 }
+
+// MARK: - LikeCountData
+struct LikeCountData: Codable {
+    var isLiked: Bool?
+    var likeCount: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case isLiked = "is_liked"
+        case likeCount = "like_count"
+    }
+}
+
+
+// MARK: - Organizers
+struct Organizers: Codable {
+    var isActive: Bool?
+    var createdAt, updatedAt, name, profileImage: String?
+    var userID, followers: Int?
+    var isFollow: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case isActive = "is_active"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case name
+        case profileImage = "profile_image"
+        case userID = "user_id"
+        case followers
+        case isFollow = "is_follow"
+    }
+}
+
+
+
+
+
+
+
 
 // MARK: - Encode/decode helpers
 

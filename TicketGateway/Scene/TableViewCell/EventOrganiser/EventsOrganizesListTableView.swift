@@ -7,12 +7,37 @@
 
 import UIKit
 
+enum IsComingFromForEventsOrganizesListTableView{
+    case Home
+    case EventDetail
+    case Venue
+    case EventSearch
+}
+
+protocol EventsOrganizesListTableViewProtocol{
+    func tapActionOfViewMoreEvents(index:Int)
+}
+
 class EventsOrganizesListTableView: UITableView {
     var arrData = [GetEventModel]()
-    var tableDidSelectAtIndex: ((Int) -> Void)?
+    var arrDataa = [GetEventModel]()
+    
+    
+    var arrDataaWeekend = [GetEventModel]()
+    var arrDataaVirtual = [GetEventModel]()
+    var arrDataaPopular = [GetEventModel]()
+    var arrDataaFree = [GetEventModel]()
+    var arrDataaUpcoming = [GetEventModel]()
+    
+    
+    var tableDidSelectAtIndex: ((IndexPath) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
-    func configure() {
+    var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .Home
+    var delegateViewMore:EventsOrganizesListTableViewProtocol?
+    
+    func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
+        self.isComingFrom = isComingFrom
         self.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         self.delegate = self
         self.dataSource = self
@@ -21,39 +46,185 @@ class EventsOrganizesListTableView: UITableView {
 
 // MARK: - TableView Delegate
 extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.arrData.count == 0{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if self.isComingFrom == .Home{
             return 5
         }else{
-            return self.arrData.count
+            return 1
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.isComingFrom == .Home{
+            switch section {
+            case 0: return self.arrDataaWeekend.count
+            case 1: return self.arrDataaVirtual.count
+            case 2: return self.arrDataaPopular.count
+            case 3: return self.arrDataaFree.count
+            case 4: return self.arrDataaUpcoming.count
+            default:
+                return 0
+            }
+//            if self.arrDataa.count == 0{
+//                return 5
+//            }else{
+//                return self.arrDataa.count
+//            }
+        }else if self.isComingFrom == .EventDetail{
+            if self.arrData.count == 0{
+                return 5
+            }else{
+                return self.arrData.count
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-            if arrData.indices.contains(indexPath.row){
-                cell.getEvent = self.arrData[indexPath.row]
+            if self.isComingFrom == .Home{
+                
+                switch indexPath.section {
+                case 0:
+                    if arrDataaWeekend.indices.contains(indexPath.row){
+                        cell.getEvent = self.arrDataaWeekend[indexPath.row]
+                    }
+                case 1:
+                    if arrDataaVirtual.indices.contains(indexPath.row){
+                        cell.getEvent = self.arrDataaVirtual[indexPath.row]
+                    }
+                case 2:
+                    if arrDataaPopular.indices.contains(indexPath.row){
+                        cell.getEvent = self.arrDataaPopular[indexPath.row]
+                    }
+                case 3:
+                    if arrDataaFree.indices.contains(indexPath.row){
+                        cell.getEvent = self.arrDataaFree[indexPath.row]
+                    }
+                case 4:
+                    if arrDataaUpcoming.indices.contains(indexPath.row){
+                        cell.getEvent = self.arrDataaUpcoming[indexPath.row]
+                    }
+                default:
+                    if arrDataa.indices.contains(indexPath.row){
+                        cell.getEvent = self.arrDataa[indexPath.row]
+                    }
+                }
+            }else{
+                if arrData.indices.contains(indexPath.row){
+                    cell.getEvent = self.arrData[indexPath.row]
+                }
             }
+            
+            
             cell.cellConfiguration()
             return cell
         } else {
             return UITableViewCell.init()
         }
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if self.isComingFrom == .Home{
+            let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+            let label = UILabel()
+            label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
+            label.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
+            label.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            
+            headerView.addSubview(label)
+            switch section {
+            case 0: label.text = "This Weekend"
+            case 1: label.text = "Online Events"
+            case 2: label.text = "Popular Events"
+            case 3: label.text = "Free Events"
+            case 4: label.text = "Upcoming Events"
+            default:
+               label.text = "Events near Toronto"
+            }
+            return headerView
+        }
+        return nil
+    }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-             self.tableDidSelectAtIndex?(indexPath.row)
+             switch indexPath.section {
+             case 0: self.tableDidSelectAtIndex?(indexPath)
+             case 1: self.tableDidSelectAtIndex?(indexPath)
+             case 2: self.tableDidSelectAtIndex?(indexPath)
+             case 3: self.tableDidSelectAtIndex?(indexPath)
+             case 4: self.tableDidSelectAtIndex?(indexPath)
+             default:
+                 break;
+             }
              self.reloadData()
          }
+    }
+    
+    // set view for footer
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if self.isComingFrom == .Home{
+            let footerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+            let button = CustomButtonNormal()
+            button.frame = CGRect.init(x: 16, y: 0, width: footerView.frame.width, height: footerView.frame.height)
+            footerView.addSubview(button)
+            button.setTitles(text: "View more events", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+            button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
+            button.addRightIcon(image: UIImage(named: "ri8Blue"))
+            button.tag = section
+            
+            let separatorView = UIView(frame: CGRect.init(x: 25, y: 45, width: tableView.frame.width - 50, height: 1))
+            footerView.addSubview(separatorView)
+            separatorView.backgroundColor = UIColor.setColor(colorType: .PlaceHolder)
+            
+            return footerView
+        }
+        return nil
+    }
+
+    // set height for footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if self.isComingFrom == .Home{
+            return 40
+        }else{
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
     
-    @objc func buttonPressed(_ sender: UIButton) {
-        
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.isComingFrom == .Home{
+            return 50
+        }else{
+            return 0
+        }
+    }
+    
+    @objc func buttonPressed(sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+            print(sender.tag)
+        case 1:
+            print(sender.tag)
+            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+        case 2:
+            print(sender.tag)
+            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+        case 3:
+            print(sender.tag)
+            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+        case 4:
+            print(sender.tag)
+            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+        default:
+            break;
+        }
     }
     
 }

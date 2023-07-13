@@ -222,6 +222,8 @@
 		18B2B22E2A04F2D1001DF3E5 /* EventCalenderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B22D2A04F2D1001DF3E5 /* EventCalenderList.swift */; };
 		18B339B42A555C7500340E3E /* ManageEventSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B339B22A555C7500340E3E /* ManageEventSettingTableViewCell.swift */; };
 		18B339B52A555C7500340E3E /* ManageEventSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B339B32A555C7500340E3E /* ManageEventSettingTableViewCell.xib */; };
+		18B384962A5BE55100B47D9D /* GetEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B384952A5BE55100B47D9D /* GetEventRequest.swift */; };
+		18B384982A5C2FF300B47D9D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B384972A5C2FF300B47D9D /* Array+Extension.swift */; };
 		18B521A02A4B02DA00719C4A /* FilterSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5219E2A4B02DA00719C4A /* FilterSectionTableViewCell.swift */; };
 		18B521A12A4B02DA00719C4A /* FilterSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B5219F2A4B02DA00719C4A /* FilterSectionTableViewCell.xib */; };
 		18B521A42A4B125400719C4A /* FilterSelectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B521A22A4B125400719C4A /* FilterSelectedTableViewCell.swift */; };
@@ -233,11 +235,14 @@
 		18B636B129F7D38B00DC14B8 /* NumberVerifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B636B029F7D38B00DC14B8 /* NumberVerifyViewModel.swift */; };
 		18BC2EE52A52978500FB427E /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */; };
 		18BC9F9B2A53EE5900863CD5 /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */; };
+		18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */; };
 		18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA75302A4AFD5700113541 /* FilterViewController.swift */; };
 		18DF185A2A3CA0CA00E89AB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DF18592A3CA0CA00E89AB5 /* Main.storyboard */; };
 		18E8442729E4194300F6525A /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E8442629E4194300F6525A /* APIHandler.swift */; };
 		18E8442B29E419F800F6525A /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E8442A29E419F800F6525A /* FileUploader.swift */; };
 		18F0FBCF2A4040CA00F9768E /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */; };
+		18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354512A56CB66003597A6 /* EventDetailViewModel.swift */; };
+		18F354542A56D001003597A6 /* EventDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354532A56D001003597A6 /* EventDetailModel.swift */; };
 		18F5A4B72A4EA55900CA18F7 /* ScanEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F5A49D2A4EA55900CA18F7 /* ScanEvents.storyboard */; };
 		18F5A4B82A4EA55900CA18F7 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F5A49E2A4EA55900CA18F7 /* SearchTableViewCell.xib */; };
 		18F5A4B92A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A49F2A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift */; };
@@ -609,6 +614,8 @@
 		18B2B22D2A04F2D1001DF3E5 /* EventCalenderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalenderList.swift; sourceTree = "<group>"; };
 		18B339B22A555C7500340E3E /* ManageEventSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageEventSettingTableViewCell.swift; sourceTree = "<group>"; };
 		18B339B32A555C7500340E3E /* ManageEventSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageEventSettingTableViewCell.xib; sourceTree = "<group>"; };
+		18B384952A5BE55100B47D9D /* GetEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventRequest.swift; sourceTree = "<group>"; };
+		18B384972A5C2FF300B47D9D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		18B5219E2A4B02DA00719C4A /* FilterSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionTableViewCell.swift; sourceTree = "<group>"; };
 		18B5219F2A4B02DA00719C4A /* FilterSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterSectionTableViewCell.xib; sourceTree = "<group>"; };
 		18B521A22A4B125400719C4A /* FilterSelectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectedTableViewCell.swift; sourceTree = "<group>"; };
@@ -620,11 +627,14 @@
 		18B636B029F7D38B00DC14B8 /* NumberVerifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVerifyViewModel.swift; sourceTree = "<group>"; };
 		18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
+		18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsVC.swift; sourceTree = "<group>"; };
 		18DA75302A4AFD5700113541 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		18DF18592A3CA0CA00E89AB5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		18E8442629E4194300F6525A /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		18E8442A29E419F800F6525A /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
 		18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		18F354512A56CB66003597A6 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
+		18F354532A56D001003597A6 /* EventDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailModel.swift; sourceTree = "<group>"; };
 		18F5A49D2A4EA55900CA18F7 /* ScanEvents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScanEvents.storyboard; sourceTree = "<group>"; };
 		18F5A49E2A4EA55900CA18F7 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		18F5A49F2A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeTableviewCell.swift; sourceTree = "<group>"; };
@@ -1103,6 +1113,7 @@
 				183A26412A43390300DC97E3 /* EventSearch */,
 				183A26402A43384200DC97E3 /* EventDetails */,
 				183A263F2A43382E00DC97E3 /* EventHome */,
+				18CBE7A22A5EDC2A003CCC11 /* ViewMoreEvents */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -1133,6 +1144,7 @@
 				18F88C382A25D61F005E7457 /* GetEventListViewModel.swift */,
 				18FDDEDA2A2F016A008BEEF0 /* GetEventModel.swift */,
 				180A07FA29ED83FB0088C03A /* HomeVC.swift */,
+				18B384952A5BE55100B47D9D /* GetEventRequest.swift */,
 			);
 			path = EventHome;
 			sourceTree = "<group>";
@@ -1141,6 +1153,8 @@
 			isa = PBXGroup;
 			children = (
 				18B2B21E2A04D21B001DF3E5 /* EventDetailVC.swift */,
+				18F354512A56CB66003597A6 /* EventDetailViewModel.swift */,
+				18F354532A56D001003597A6 /* EventDetailModel.swift */,
 			);
 			path = EventDetails;
 			sourceTree = "<group>";
@@ -1377,6 +1391,7 @@
 				1830586D2A41D917007A3931 /* UIImageView+Extension.swift */,
 				1861A2E62A447D7100E13A5D /* UIImage+Extension.swift */,
 				1861A2E82A447DB300E13A5D /* UITabBarController+Extension.swift */,
+				18B384972A5C2FF300B47D9D /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2070,6 +2085,14 @@
 				18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */,
 			);
 			path = PhoneVerify;
+			sourceTree = "<group>";
+		};
+		18CBE7A22A5EDC2A003CCC11 /* ViewMoreEvents */ = {
+			isa = PBXGroup;
+			children = (
+				18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */,
+			);
+			path = ViewMoreEvents;
 			sourceTree = "<group>";
 		};
 		18DA752F2A4AFD3700113541 /* Filter */ = {
@@ -2950,6 +2973,7 @@
 				18FBC1092A309239002CF129 /* SideMenuViewControllers.swift in Sources */,
 				18717F8B2A2A1BE9002F36BC /* ExchangeTableViewCell.swift in Sources */,
 				189DD61729FBABAC000804EB /* uiColour+Extensions.swift in Sources */,
+				18B384982A5C2FF300B47D9D /* Array+Extension.swift in Sources */,
 				18AF9B9629E3E65800E4C70E /* ViewController.swift in Sources */,
 				1830586E2A41D917007A3931 /* UIImageView+Extension.swift in Sources */,
 				18FBC1032A309239002CF129 /* DeviceSettingVC.swift in Sources */,
@@ -2975,6 +2999,7 @@
 				18FBC0FB2A309239002CF129 /* CostumeDetailViewController.swift in Sources */,
 				18BC9F9B2A53EE5900863CD5 /* PhoneVerificationViewController.swift in Sources */,
 				18A6D0DF29E920D400D6210E /* ValidationConstantStrings.swift in Sources */,
+				18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */,
 				18F5A4BA2A4EA55900CA18F7 /* ScanSummaryTableViewCell.swift in Sources */,
 				18717F972A2A1BE9002F36BC /* TransferTicketVC.swift in Sources */,
 				187E22902A4075B1003236EC /* EmailVerifyRequest.swift in Sources */,
@@ -2994,11 +3019,13 @@
 				18F5A4C82A4EA55900CA18F7 /* ScannerVC.swift in Sources */,
 				18B2B22E2A04F2D1001DF3E5 /* EventCalenderList.swift in Sources */,
 				18AF9B9229E3E65800E4C70E /* AppDelegate.swift in Sources */,
+				18F354542A56D001003597A6 /* EventDetailModel.swift in Sources */,
 				18F6F74929E9832C007B9513 /* ForgotPasswordVC.swift in Sources */,
 				1850627F2A553DB200BC3EC5 /* SoldOutTicketVC.swift in Sources */,
 				18B636AB29F7B70000DC14B8 /* LoginNmberWithEmailViewModel.swift in Sources */,
 				18A6D0DD29E91CE700D6210E /* Validation.swift in Sources */,
 				18FBC0B02A309239002CF129 /* MyRefundTransactionCell.swift in Sources */,
+				18B384962A5BE55100B47D9D /* GetEventRequest.swift in Sources */,
 				18FBC0F72A309239002CF129 /* InstallmentHeaderView.swift in Sources */,
 				18FBC0CA2A309239002CF129 /* ManageSellTicketVC.swift in Sources */,
 				188A68042A0CF6EE00987BAD /* CustomStepper.swift in Sources */,
@@ -3116,6 +3143,7 @@
 				18717F932A2A1BE9002F36BC /* ChangeNameVC.swift in Sources */,
 				18A73E0229EFB81C007365CB /* SignUpAuth_VerifyModel.swift in Sources */,
 				18FBC0C12A309239002CF129 /* ManageEventSettingVC.swift in Sources */,
+				18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */,
 				188CE1BE2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift in Sources */,
 				18A338CD2A4D56B400D7C194 /* BandLeaderProfileViewController.swift in Sources */,
 				18FBC1042A309239002CF129 /* Organizers_Artists_ListVC.swift in Sources */,

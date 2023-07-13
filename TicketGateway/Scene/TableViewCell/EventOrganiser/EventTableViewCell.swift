@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class EventTableViewCell: UITableViewCell {
    
@@ -23,6 +24,25 @@ class EventTableViewCell: UITableViewCell {
             self.lblAddress.text = getEvent?.location?.eventAddress ?? ""
             self.lblDate.text = "\(getEvent?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getEvent?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
             self.lblTime.text = "\(getEvent?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getEvent?.date?.eventEndTime?.getFormattedTime() ?? "")"
+            if let imageUrl = getEvent?.coverImage?.eventCoverImage{
+                if imageUrl.contains(APIHandler.shared.baseURL){
+                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.baseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                    if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                        self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    }else{
+                        self.imgImages.image = UIImage(named: "homeDas")
+                    }
+                }else{
+                    if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                        self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    }else{
+                        self.imgImages.image = UIImage(named: "homeDas")
+                    }
+                }
+  
+            } else {
+                self.imgImages.image = UIImage(named: "homeDas")
+            }
         }
     }
     
