@@ -1,3 +1,4 @@
+
 //
 //  WelocomeLoginSignup.swift
 //  TicketGateway
@@ -13,21 +14,26 @@ class WelcomeLoginSignupVC: UIViewController {
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var btnSignIn: UIButton!
+    @IBOutlet weak var lblTicketgatewayCom: UILabel!
+    @IBOutlet weak var lblJoinTheMillon: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        self.setUI()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUI() {
+        lblTicketgatewayCom.text = WELCOME_TITLE
+        lblJoinTheMillon.text = WELCOME_DESCRIPTION
+        btnSkip.titleLabel?.text = SKIP
+        btnSignIn.titleLabel?.text = SIGN_IN
+        btnSignUp.titleLabel?.text = NEW_HERE
     }
-    */
+    
+  
 
 }
 
@@ -65,13 +71,15 @@ extension WelcomeLoginSignupVC {
     }
     
     func btnSkipAction() {
-        objSceneDelegate.showTabBar()
+      UserDefaultManager.share.guestUserLogin(value: true, key: .isGuestLogin)
+      objSceneDelegate.showTabBar()
     }
     
     func btnSignAction() {
         let view = self.createView(storyboard: .main, storyboardID: .SignUpVC)
         let viewC = view as? SignUpVC
         viewC?.viewModel.isFromWelcomeScreen = true
+        UserDefaultManager.share.guestUserLogin(value: false, key: .isGuestLogin)
         self.navigationController?.pushViewController(view, animated: true)
     }
 }

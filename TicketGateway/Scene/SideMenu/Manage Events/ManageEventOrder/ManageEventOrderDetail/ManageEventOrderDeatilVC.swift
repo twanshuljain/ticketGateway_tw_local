@@ -60,6 +60,18 @@ extension ManageEventOrderDeatilVC {
     }
     
     func setFont() {
+        self.lblorderNo.text = ORDER_NO
+        self.lblSale.text = SALE
+        self.lblDate.text = DATE
+        self.lblTime.text = TIME
+        self.lblDeliveryMethode.text = DELIVERY_METHOD
+        self.lblTickets.text = TICKETS
+        self.lbl1xGeneralAdmission.text = GENRAL_ADMISSION
+        self.lblTotal.text = TOTAL
+        self.lblComplementry.text = COMPLIMENTRY
+        self.lblNotes.text = NOTES
+        lblAttendee.text = ATTEENDE
+        
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TGBlack)
        
@@ -80,7 +92,7 @@ extension ManageEventOrderDeatilVC {
         
         self.btnRefund.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnRefund.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
-        self.btnRefund.addLeftIcon(image: UIImage(named: "Refund_ip"))
+        self.btnRefund.addLeftIcon(image: UIImage(named: REFUND_ICON))
         
         let lbls = [lblTickets, lblAttendee, lblGeneralAddmission]
         for lbl in lbls {

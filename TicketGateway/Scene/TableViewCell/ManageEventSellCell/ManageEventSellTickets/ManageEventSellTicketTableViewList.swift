@@ -8,10 +8,13 @@
 import UIKit
 
 class ManageEventSellTicketTableViewList: UITableView {
+    
+//MARK: - Variables
     var isFromSellTab = false
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
+   
     func configure() {
         self.register(UINib(nibName: "ManageEventSellTicketCell", bundle: nil), forCellReuseIdentifier: "ManageEventSellTicketCell")
         self.delegate = self
@@ -80,8 +83,5 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
             cell.vwStepper.lblCount.text = "0"
         }
     }
-    
-    
-    
-    
+  
 }

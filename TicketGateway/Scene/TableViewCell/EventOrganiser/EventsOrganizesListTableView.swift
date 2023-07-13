@@ -8,10 +8,13 @@
 import UIKit
 
 class EventsOrganizesListTableView: UITableView {
+    
+//MARK: - VARIABLES
     var arrData = [GetEventModel]()
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
+   
     func configure() {
         self.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         self.delegate = self

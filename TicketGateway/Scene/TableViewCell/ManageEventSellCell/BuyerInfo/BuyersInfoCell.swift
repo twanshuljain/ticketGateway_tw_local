@@ -9,9 +9,9 @@ import UIKit
 
 class BuyersInfoCell: UITableViewCell {
 
+//MARK: - Outlets
     @IBOutlet weak var vwPopUp: customSocialLoginView!
     @IBOutlet weak var lblFristAndLastName: UILabel!
-    
     @IBOutlet weak var imgBg: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblNumber: UILabel!
@@ -19,10 +19,11 @@ class BuyersInfoCell: UITableViewCell {
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnMenuMore: UIButton!
+    
     override func awakeFromNib() {
-        super.awakeFromNib()
-        setUi()
-        // Initialization code
+    super.awakeFromNib()
+        self.setUi()
+        //  code
     }
     
     func setUi(){
@@ -39,7 +40,6 @@ class BuyersInfoCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }

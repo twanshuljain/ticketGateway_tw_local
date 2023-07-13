@@ -39,17 +39,17 @@ extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDel
         // Configure the cell
          if indexPath.row == 0
          {
-             cell.imgPeople.image = UIImage(named: "photo_ip")
+             cell.imgPeople.image = UIImage(named: PHOTO_ICON)
          } else if indexPath.row == 1{
              
              cell.imgPeople.image = UIImage(named: PROFILE_ICON)
          } else if indexPath.row == 2{
              
              cell.imgPeople.backgroundColor = .black
-             cell.imgPeople.image = UIImage(named: "user")
+             cell.imgPeople.image = UIImage(named: USER_ICON)
          }else if indexPath.row == 3{
     
-             cell.imgPeople.image = UIImage(named: "photo_ip")
+             cell.imgPeople.image = UIImage(named: PHOTO_ICON)
          }
          
          if indexPath.row == 3{

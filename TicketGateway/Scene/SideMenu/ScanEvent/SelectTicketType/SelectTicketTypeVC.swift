@@ -39,7 +39,7 @@ extension SelectTicketTypeVC {
     func setNavigationview() {
         self.vwNavigationView.delegateBarAction = self
          self.vwNavigationView.btnBack.isHidden = false
-         self.vwNavigationView.lblTitle.text = "Select ticket Type"
+         self.vwNavigationView.lblTitle.text = SELECT_TICKET_TYPE
          self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
          self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.vwNavigationView.vwBorder.isHidden = false

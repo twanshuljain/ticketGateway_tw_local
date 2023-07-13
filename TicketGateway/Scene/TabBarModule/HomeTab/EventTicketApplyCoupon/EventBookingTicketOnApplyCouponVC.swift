@@ -50,9 +50,9 @@ extension EventBookingTicketOnApplyCouponVC {
         self.setUi()
         self.tblEventTicketTypes.configure()
         self.navigationView.delegateBarAction = self
-          self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
+          self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.isHidden = false
-        self.navigationView.lblDiscripation.text = "Saturday, March 18 • 6:00 AM"
+        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
           self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
           self.navigationView.delegateBarAction = self
@@ -80,8 +80,8 @@ extension EventBookingTicketOnApplyCouponVC {
         self.lblAppliedAccessCodeDIs.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        btnAppliedCode.setTitles(text: "Applied", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        self.btnCheckTermCondition.setImage(UIImage(named: "unactiveTerm"), for: .normal)
+        btnAppliedCode.setTitles(text: APPLIED, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+        self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         
      }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -117,11 +117,11 @@ extension EventBookingTicketOnApplyCouponVC {
         if isCheckedTerm_COndition == false
         {
             isCheckedTerm_COndition = true
-            self.btnCheckTermCondition.setImage(UIImage(named: "activeTerm"), for: .normal)
+            self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         }
         else {
             isCheckedTerm_COndition = false
-            self.btnCheckTermCondition.setImage(UIImage(named: "unactiveTerm"), for: .normal)
+            self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         
     }

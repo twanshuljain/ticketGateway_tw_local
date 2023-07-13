@@ -9,11 +9,11 @@ import UIKit
 
 class OrderTableViewCell: UITableViewCell {
 
-    
+//MARK: - OUTLETS
     @IBOutlet weak var imgImage: UIImageView!
-    @IBOutlet weak var lblPickedUp: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblJouverRepublic: UILabel!
-    @IBOutlet weak var btnChevron: UIImageView!
+    @IBOutlet weak var btnSeeCostumes: UIButton!
    
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,10 +26,12 @@ class OrderTableViewCell: UITableViewCell {
     }
     
     func setFont() {
-        self.lblPickedUp.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblPickedUp.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.lblJouverRepublic.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblJouverRepublic.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblJouverRepublic.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.lblJouverRepublic.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.btnSeeCostumes.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.btnSeeCostumes.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
     }
     
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class CostumeListTableView: UITableView {
 
+//MARK: - Variables
     var costumeTbleItem = ["costume_ip", "costume_ip", "costume_ip", "costume_ip"]
     var tableDidSelectAtIndex:((Int) ->())?
     var isForDetailVC: String?

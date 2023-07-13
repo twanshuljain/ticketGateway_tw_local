@@ -26,8 +26,8 @@ extension MyRefundVC {
         self.tblTransaction.configure()
         self.navigationView.delegateBarAction = self
         self.tblTransaction.isFrom = "MyRefund"
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
-          self.navigationView.lblTitle.text = "My Refunds"
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
+          self.navigationView.lblTitle.text = MY_REFUNDS
           self.navigationView.btnBack.isHidden = false
           self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false

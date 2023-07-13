@@ -8,7 +8,8 @@
 import UIKit
 
 class OrderDetailTableViewCell: UITableViewCell {
-
+ 
+//MARK: - Outlets
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblOrderDetails: UILabel!
     @IBOutlet weak var lblItemsAdd: UILabel!
@@ -18,7 +19,7 @@ class OrderDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDiscounted: UILabel!
     @IBOutlet weak var lblTitleServiceCharge: UILabel!
     @IBOutlet weak var lblServiceCharge: UILabel!
-   
+    
     @IBOutlet weak var dottedLineServiceCharge: UIView!
     @IBOutlet weak var dottedDiscounted: UIView!
     @IBOutlet weak var lblTitleTotalAmount: UILabel!
@@ -31,56 +32,56 @@ class OrderDetailTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    setFont()
+        self.setFont()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     
     func setFont() {
-        lblDescription.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblDescription.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        self.lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
         
-        lblOrderDetails.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        lblOrderDetails.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblOrderDetails.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+        self.lblOrderDetails.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
-        lblItemsAdd.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblItemsAdd.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblItemsAdd.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.lblItemsAdd.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
-        lblTitleCostumePrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        lblTitleCostumePrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        lblCostumePrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        lblCostumePrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitleCostumePrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblTitleCostumePrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblCostumePrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblCostumePrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
-        lblTitleDiscounted.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-      //  lblTitleDiscounted.textColor = UIColor.setColor(colorType: .txtGreen)
-        lblDiscounted.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-     //   lblDiscounted.textColor = UIColor.setColor(colorType: .txtGreen )
+        self.lblTitleDiscounted.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblTitleDiscounted.textColor = UIColor.setColor(colorType: .TGGreen)
+        self.lblDiscounted.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblDiscounted.textColor = UIColor.setColor(colorType: .TGGreen )
         
-        lblTitleServiceCharge.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        lblTitleServiceCharge.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        lblServiceCharge.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        lblServiceCharge.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitleServiceCharge.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblTitleServiceCharge.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblServiceCharge.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblServiceCharge.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
-        lblTitleTotalAmount.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        lblTitleTotalAmount.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        lblTotalAmount.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        lblTotalAmount.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitleTotalAmount.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
+        self.lblTitleTotalAmount.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTotalAmount.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
+        self.lblTotalAmount.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
-        lblCA109.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        lblCA109.textColor = UIColor.setColor(colorType: .lightBlack)
+        self.lblCA109.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+        self.lblCA109.textColor = UIColor.setColor(colorType: .lightBlack)
         
-        lblCA800.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        lblCA800.textColor = UIColor.setColor(colorType: .lblTextPara)
-        btnContinue.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        btnContinue.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
+        self.lblCA800.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        self.lblCA800.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.btnContinue.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.btnContinue.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
-        dottedDiscounted.createDottedLine(width: 1, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [3,5])
-        dottedLineServiceCharge.createDottedLine(width: 1, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [3,5])
-     
-
+        self.dottedDiscounted.createDottedLine(width: 1, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [3,5])
+        self.dottedLineServiceCharge.createDottedLine(width: 1, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [3,5])
+        
+        
     }
     
     

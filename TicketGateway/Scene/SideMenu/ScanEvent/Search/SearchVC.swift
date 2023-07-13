@@ -6,6 +6,7 @@
 //
 import UIKit
 class SearchVC: UIViewController {
+
     //MARK: - Outlets
     @IBOutlet weak var tblSearchTableView: UITableView!
     @IBOutlet weak var lblScan: UILabel!
@@ -23,6 +24,7 @@ class SearchVC: UIViewController {
     //MARK: - Variables
     let viewModel = SearchViewModel()
     let textField = UITextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUI()
@@ -37,8 +39,6 @@ class SearchVC: UIViewController {
         txtSearch.locationView.isHidden = true
         txtSearch.btnMenu.isHidden = true
         txtSearch.btnFilter.isHidden = true
-//        txtSearch.bgView.layer.borderWidth = 1
-//        txtSearch.bgView.layer.borderColor = UIColor.setColor(colorType: .BorderLineColour).cgColor
         txtSearch.txtSearch.addTarget(self, action: #selector(actionTextField(_ :)), for: .allEditingEvents)
         textField.inputAccessoryView = txtSearch
         textField.becomeFirstResponder()
@@ -59,14 +59,14 @@ extension SearchVC {
     func setFont() {
         self.lblScan.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblScan.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.imgScan.image = UIImage(named: "ScanUnselect_ip")
+        self.imgScan.image = UIImage(named: SCAN_UNSELECTED_ICON)
         self.lblFindRfid.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblFindRfid.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.imgFindRfid.image = UIImage(named: "FindUnselect_ip")
+        self.imgFindRfid.image = UIImage(named: FIND_UNSELECT_ICON)
         self.lblSearch.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         let gradient = getGradientLayer(bounds: view.bounds)
         self.lblSearch.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
-        self.imgSearch.image = UIImage(named: "Searchselected_ip")
+        self.imgSearch.image = UIImage(named: SEARCH_SELECTED_ICON)
         self.lblSearchText.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblSearchText.textColor = UIColor.setColor(colorType: .TGBlack)
     }
@@ -118,20 +118,9 @@ extension SearchVC {
         self.navigationController?.pushViewController(vc, animated: false)
     }
     func btnSearchAction() {
+        
     }
     func btnBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
 }
-//
-//extension SearchVC {
-//  func hideKeyboardWhenTappedAround() {
-//    let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-//    tap.cancelsTouchesInView = false
-//    table.addGestureRecognizer(tap)
-//  }
-//
-//  @objc func dismissKeyboard() {
-//    view.endEditing(true)
-//  }
-//}

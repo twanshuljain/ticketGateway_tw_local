@@ -29,7 +29,6 @@ class ManageEventProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        // Do any additional setup after loading the view.
     }
 }
 
@@ -47,7 +46,7 @@ extension ManageEventProfileVC {
         }
         
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Profile"
+        self.navigationView.lblTitle.text = PROFILE
         self.navigationView.vwBorder.isHidden = false
         
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .twentyFive)
@@ -73,8 +72,8 @@ extension ManageEventProfileVC {
         self.lblAboutSinceDate.font = UIFont.setFont(fontType: .medium, fontSize: .fifteen)
         self.lblAboutSinceDate.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
        
-        self.btnEditProfile.setTitles(text: "Edit profile", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .lightBlack), textColour: UIColor.setColor(colorType: .lightBlack))
-        self.btnEditProfile.addLeftIcon(image: UIImage(named: "edit-2"))
+        self.btnEditProfile.setTitles(text: EDIT_PROFILE, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .lightBlack), textColour: UIColor.setColor(colorType: .lightBlack))
+        self.btnEditProfile.addLeftIcon(image: UIImage(named: EDIT_2_ICON))
         [self.btnEditProfile,self.btnSelectProfile].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }

@@ -8,10 +8,12 @@
 import UIKit
 
 class TicketTypeListTableView: UITableView {
-    
+
+//MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
+    
     func configure() {
         self.register(UINib(nibName: "TicketTypesCell", bundle: nil), forCellReuseIdentifier: "TicketTypesCell")
         self.delegate = self
@@ -96,8 +98,5 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
             cell.vwStepper.lblCount.text = "0"
         }
     }
-    
-    
-    
-    
+  
 }

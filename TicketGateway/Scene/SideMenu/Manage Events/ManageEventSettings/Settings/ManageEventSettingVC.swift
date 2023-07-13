@@ -61,8 +61,8 @@ extension ManageEventSettingVC {
         self.navigationView.imgBack.isHidden = true
         self.navigationView.lblDiscripation.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
-        self.navigationView.lblDiscripation.text = "Wed, Dec 7, 2023 at 05:00 PM"
+        self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.navigationView.vwBorder.isHidden = false
         //    self.tblList.isFromManageEvent = true
         //    self.tblList.isFromManageEventProfile = true

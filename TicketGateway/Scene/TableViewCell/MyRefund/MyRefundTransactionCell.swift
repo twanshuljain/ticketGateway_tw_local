@@ -9,7 +9,7 @@ import UIKit
 
 class MyRefundTransactionCell: UITableViewCell {
     
-    
+//MARK: - OUTLETS
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblStatusValue: UILabel!
     @IBOutlet weak var lblDate: UILabel!
@@ -23,15 +23,10 @@ class MyRefundTransactionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUi()
-        // Initialization code
+        self.setUi()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
     func setUi(){
         
         [self.lblDate,self.lblStatus,self.lblSpent,self.lblPoint].forEach {

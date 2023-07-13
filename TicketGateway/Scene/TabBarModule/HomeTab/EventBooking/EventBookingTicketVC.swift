@@ -37,14 +37,14 @@ extension EventBookingTicketVC {
         self.setUi()
         self.tblEventTicketTypes.configure()
         self.navigationView.delegateBarAction = self
-          self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
+          self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.isHidden = false
-        self.navigationView.lblDiscripation.text = "Saturday, March 18 • 6:00 AM"
+        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
           self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
           self.navigationView.delegateBarAction = self
         self.tblEventTicketTypes.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
-        self.btnCheckTermCondition.setImage(UIImage(named: "unactiveTerm"), for: .normal)
+        self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         self.tblHeight.constant = self.tblEventTicketTypes.contentSize.height
         [self.btnContinue,self.btnCheckTermCondition].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -86,11 +86,11 @@ extension EventBookingTicketVC {
         if isCheckedTerm_COndition == false
         {
             isCheckedTerm_COndition = true
-            self.btnCheckTermCondition.setImage(UIImage(named: "activeTerm"), for: .normal)
+            self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         }
         else {
             isCheckedTerm_COndition = false
-            self.btnCheckTermCondition.setImage(UIImage(named: "unactiveTerm"), for: .normal)
+            self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         
     }

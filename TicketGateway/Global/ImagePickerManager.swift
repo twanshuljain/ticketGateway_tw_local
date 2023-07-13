@@ -20,11 +20,11 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         super.init()
         let cameraAction = UIAlertAction(title: "Camera", style: .default){
             UIAlertAction in
-            self.openCamera()
+            self.openCamera(viewController: self.viewController)
         }
         let galleryAction = UIAlertAction(title: "Gallery", style: .default){
             UIAlertAction in
-            self.openGallery()
+            self.openGallery(viewController: self.viewController)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
             UIAlertAction in
@@ -36,6 +36,11 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         alert.addAction(galleryAction)
         alert.addAction(cancelAction)
     }
+    
+    
+//    init(viewController: UIViewController?) {
+//        self.viewController = viewController
+//    }
 
     func pickImage(_ viewController: UIViewController, _ callback: @escaping ((UIImage) -> ())) {
         pickImageCallback = callback;
@@ -45,7 +50,8 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
 
         viewController.present(alert, animated: true, completion: nil)
     }
-    func openCamera(){
+    func openCamera(viewController:UIViewController?){
+        self.viewController = viewController
         alert.dismiss(animated: true, completion: nil)
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){
             picker.sourceType = .camera
@@ -60,7 +66,8 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
             viewController?.present(alertController, animated: true)
         }
     }
-    func openGallery(){
+    func openGallery(viewController:UIViewController?){
+        self.viewController = viewController
         alert.dismiss(animated: true, completion: nil)
         picker.sourceType = .photoLibrary
         self.viewController!.present(picker, animated: true, completion: nil)

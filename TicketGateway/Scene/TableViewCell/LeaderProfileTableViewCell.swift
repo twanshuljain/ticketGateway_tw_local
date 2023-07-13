@@ -8,7 +8,9 @@
 import UIKit
 
 class LeaderProfileTableViewCell: UITableViewCell {
-    
+
+    //MARK: - OUTLETS
+
     @IBOutlet weak var lblTitle:UILabel!
     @IBOutlet weak var lblTitleValue:UILabel!
 
@@ -47,10 +49,6 @@ class LeaderProfileTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+   
     
 }

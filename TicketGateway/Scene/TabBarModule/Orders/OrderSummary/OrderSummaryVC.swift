@@ -55,7 +55,7 @@ extension OrderSummaryVC {
     func setNavigationView() {
         self.vwNavigationView.imgBack.isHidden = true
         self.vwNavigationView.btnRight.isHidden = false
-        self.vwNavigationView.btnRight.setImage(UIImage(named: "x_ip"), for: .normal)
+        self.vwNavigationView.btnRight.setImage(UIImage(named: CANCEL_ICON), for: .normal)
         self.vwNavigationView.btnRight.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
     }
     
@@ -92,8 +92,8 @@ extension OrderSummaryVC {
         
         self.vwTotalDashedLine.createDottedLine(width: 1, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [3,5])
         
-        self.btnContinue.setTitles(text: "Continue CA$9.90", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
-        self.btnContinue.addRightIcon(image: UIImage(named: "LeftArrow_ip"))
+        self.btnContinue.setTitles(text: BUTTON_CONTINUE, font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
        
     }
     
@@ -115,7 +115,6 @@ extension OrderSummaryVC{
         switch sender {
         case btnContinue:
             self.btnContinueAction()
-        
         default:
             break
         }

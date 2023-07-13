@@ -31,18 +31,30 @@ class SignUpVC: UIViewController{
         super.viewDidLoad()
         self.viewModel = SignUpViewModel(vc: self)
         self.setup()
+        self.setText()
     }
 }
 
 // MARK: - Functions
 extension SignUpVC {
+    
+    func setText() {
+        self.lblSignUp.text = SIGN_UP
+        self.lblSignUnWith.text = OR_SIGN_UP_WITH
+        self.lblVerifyYourEmail.text = VERIFY_YOUR_EMAIL
+        self.lblAlreadHaveAccount.text = ALREADY_HAVE_AN_ACCOUNT
+    }
+    
+    
+    
+    
     private func setup() {
         [ self.btnLogin, self.btnSignUp, self.btnApple,self.btnGmail,self.btnFaceBook,self.btnSkip,self.btnApple,self.btnGmail,self.btnFaceBook].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.txtEmail.delegate = self
         self.btnSignUp.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
-        self.btnSignUp.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
+        self.btnSignUp.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         self.setUI()
       }
        private func setUI(){
@@ -55,7 +67,7 @@ extension SignUpVC {
             self.btnLogin.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
            self.txtEmail.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
          //  self.txtEmail.placeholder. = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-           self.btnLogin.setTitleColor(UIColor.setColor(colorType: .btnDarkBlue), for: .normal)
+           self.btnLogin.setTitleColor(UIColor.setColor(colorType: .TGBlue), for: .normal)
           
            self.btnSignUp.tintColor = UIColor.setColor(colorType: .btnDarkBlue)
            self.lblSignUp.tintColor = UIColor.setColor(colorType: .btnDarkBlue)

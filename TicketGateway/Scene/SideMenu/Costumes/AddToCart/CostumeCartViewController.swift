@@ -60,7 +60,7 @@ class CostumeCartViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         configure()
-        vwNavigationBar.lblTitle.text = "The band - trini revellars"
+        vwNavigationBar.lblTitle.text = THE_BAND_TRINI_REVELLARS
         vwNavigationBar.delegateBarAction = self
         vwNavigationBar.btnBack.isHidden = false
         vwNavigationBar.vwBorder.isHidden = false
@@ -98,12 +98,16 @@ extension CostumeCartViewController{
         lblTax.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         lblSize.textColor = UIColor.setColor(colorType: .lightBlack)
+        lblFirstName.text = FIRST_NAME
         lblFirstName.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         lblFirstName.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblLastName.text = LAST_NAME
         lblLastName.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         lblLastName.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblNotes.text = NOTES
         lblNotes.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         lblNotes.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblChoosePaymentMode.text = Choose_Payment_Mode
         lblChoosePaymentMode.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         lblChoosePaymentMode.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
@@ -245,12 +249,12 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
         
         let obj = arrData[section]
         if obj.isExpanded == true {
-             headerView.btnSelected.setImage(UIImage(named: "radio selection_ip"), for: .normal)
-            headerView.btnAdd.setImage(UIImage(named: "Remov_ip"), for: .normal)
+             headerView.btnSelected.setImage(UIImage(named: RADIO_SELECTION_ICON), for: .normal)
+            headerView.btnAdd.setImage(UIImage(named: REMOVE_ICON), for: .normal)
             headerView.bgView.borderColor = UIColor.setColor(colorType: .TGBlue)
         } else {
-            headerView.btnSelected.setImage(UIImage(named: "Unselected_ip"), for: .normal)
-            headerView.btnAdd.setImage(UIImage(named: "Add_ip"), for: .normal)//Remov_ip
+            headerView.btnSelected.setImage(UIImage(named: UNSELECTED_ICON), for: .normal)
+            headerView.btnAdd.setImage(UIImage(named: ADD_ICON), for: .normal)//Remov_ip
             headerView.bgView.borderColor = UIColor.setColor(colorType: .BorderLineColour)
 
         }

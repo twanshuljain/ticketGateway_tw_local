@@ -9,6 +9,7 @@ import UIKit
 import SVProgressHUD
 
 class LoginNmberWithEmailVC: UIViewController, NavigationBarViewDelegate {
+   
     // MARK: - Outlets
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var imgCountryCode: UIImageView!
@@ -45,11 +46,13 @@ extension LoginNmberWithEmailVC {
         self.tblEmailList.delegate = self
         self.tblEmailList.reloadData()
         self.btnContinue.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
-        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         navigationView.lblTitle.text = TITLE_LOGIN
         navigationView.btnBack.isHidden = false
         navigationView.delegateBarAction = self
         self.viewModel?.strSelectedEmail =  self.viewModel?.arrMail.first?.email ?? "test1@gmail.com"
+        self.lblMobileNumber.text = MOBILE_NUMBER
+        self.lblSelectEmail.text =  SELECT_THE_EMAIL_ACCOUNT
     }
 }
 
@@ -105,9 +108,9 @@ extension LoginNmberWithEmailVC : UITableViewDelegate,UITableViewDataSource {
         cell.lblShortName.text = self.viewModel?.funcpersonNameComponents(strValue: obj?.name ?? "")
          
         if self.viewModel?.strSelectedEmail == obj?.email {
-            cell.imageView?.image =  UIImage(named: "active")
+            cell.imageView?.image =  UIImage(named: ACTIVE_ICON)
         } else {
-            cell.imageView?.image =  UIImage(named: "unActive")
+            cell.imageView?.image =  UIImage(named: UNACTIVE_ICON)
         }
         return cell
     }

@@ -17,6 +17,8 @@ class EventCalenderList: UICollectionView {
     }
 
 }
+
+//MARK: - UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout
 extension EventCalenderList : UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout {
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {

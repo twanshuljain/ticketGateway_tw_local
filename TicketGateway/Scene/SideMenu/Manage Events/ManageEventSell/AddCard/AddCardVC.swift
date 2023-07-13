@@ -25,11 +25,9 @@ class AddCardVC: UIViewController {
     @IBOutlet weak var txtExpiryDate: UITextField!
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
+   
+//MARK: - VARIABLES
     var viewModel = AddCardViewModel()
-    
-    
-   
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +52,11 @@ extension AddCardVC {
         self.navigationView.btnBack.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
-        self.navigationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
+        self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.navigationView.vwBorder.isHidden = false
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
-        self.btnContinue.setTitles(text: "Place Order", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
+        self.btnContinue.setTitles(text: PLACE_ORDER, font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
         [self.btnContinue].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }

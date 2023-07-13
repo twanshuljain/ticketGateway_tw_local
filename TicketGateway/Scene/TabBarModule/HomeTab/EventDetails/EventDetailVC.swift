@@ -74,18 +74,18 @@ extension EventDetailVC {
         self.navigationView.btnSecRight.isHidden = false
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
-        btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
-        btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
+        btnAddToCalender.setTitles(text: ADD_TO_CALENDAR, textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
+        btnShowMap.setTitles(text: SHOW_MAP, textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
+        btnReadMore.setTitles(text: READ_MORE, textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
       
-        navigationView.lblTitle.text = "Event"
+        navigationView.lblTitle.text = EVENT
         navigationView.btnBack.isHidden = false
-        navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
-        navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .normal)
+        navigationView.btnRight.setImage(UIImage(named: UPLOAD_ICON), for: .normal)
+        navigationView.btnSecRight.setImage(UIImage(named: FAV_SELECT_ICON), for: .normal)
         navigationView.delegateBarAction = self
-        btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-        btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .TiitleColourDarkBlue))
-        btnBookTickets.addLeftIcon(image: UIImage(named: "ticketBlack"))
+        btnFollowing.setTitles(text: FOLLOWING, font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
+        btnBookTickets.setTitles(text: TICKETS, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .TiitleColourDarkBlue))
+        btnBookTickets.addLeftIcon(image: UIImage(named: TICKET_BLACK))
         [self.btnFollowing,self.btnReadMore,self.btnAddToCalender,self.btnBookTickets,btnSelectDate,btnSelectLocationAccordingToDate].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }

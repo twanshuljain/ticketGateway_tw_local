@@ -38,6 +38,8 @@ class EventBookingPaymentMethodVC: UIViewController {
     @IBOutlet weak var txtZipcode: UITextField!
     @IBOutlet weak var txtCVV: UITextField!
     @IBOutlet weak var txtExpiryDate: UITextField!
+    @IBOutlet weak var btnRightArrow: UIButton!
+    
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
        
@@ -83,11 +85,11 @@ extension EventBookingPaymentMethodVC {
         self.loadDefaultsParameters()
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Select a Payment Method"
+        self.navigationView.lblTitle.text = SELECT_PAYMENT_METHOD
         self.navigationView.vwBorder.isHidden = false
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-        [self.btnContinue,self.btnCard,btnWallet].forEach {
+        [self.btnContinue,self.btnCard,btnWallet,btnRightArrow].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.funcDefoultSet()
@@ -101,14 +103,14 @@ extension EventBookingPaymentMethodVC {
         }
         
         [self.lblPayWithCard,lblPayWithDigitalWAllet].forEach {
-            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .seventeen)
+            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .TGBlack)
         }
         [self.lblTittleBalance,lblMoreWayToPay].forEach {
-            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        self.lblAddAmount.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
+        self.lblAddAmount.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblAddAmount.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     
@@ -117,12 +119,15 @@ extension EventBookingPaymentMethodVC {
         self.vwBgWallet.backgroundColor = .clear
         self.vwWallet.isHidden = true
         self.vwCard.isHidden = true
+        self.vwBgWallet.borderColor = UIColor.setColor(colorType: .BorderColor)
+        self.vwBgCard.borderColor = UIColor.setColor(colorType: .BorderColor)
+
         self.vwWalletTop.isHidden = true
         self.vwCardTop.isHidden = true
-        self.imgCard.image = UIImage(named: "unActive")
-        self.imgWallet.image = UIImage(named: "unActive")
-        self.btnCard.setImage(UIImage(named: "arrow-up"), for: .normal)
-        self.btnWallet.setImage(UIImage(named: "arrow-up"), for: .normal)
+        self.imgCard.image = UIImage(named: UNACTIVE_ICON)
+        self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
+        self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
+        self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
         self.setGradientBackground(viewadd: UIView())
     }
     
@@ -138,7 +143,8 @@ extension EventBookingPaymentMethodVC {
             self.btnWalletAction()
         case btnCard:
             self.btnCardAction()
-       
+        case btnRightArrow:
+            self.btnRightArrowAction()
         default:
             break
         }
@@ -150,14 +156,15 @@ extension EventBookingPaymentMethodVC {
             self.setGradientBackground(viewadd: vwBgWallet)
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
+            self.vwBgWallet.borderColor = UIColor.setColor(colorType: .TGBlue)
             self.vwWallet.isHidden = false
             self.vwCard.isHidden = true
             self.vwWalletTop.isHidden = false
             self.vwCardTop.isHidden = true
-            self.imgWallet.image = UIImage(named: "active")
-            self.imgCard.image = UIImage(named: "unActive")
-            self.btnWallet.setImage(UIImage(named: "arrow-down"), for: .normal)
-            self.btnCard.setImage(UIImage(named: "arrow-up"), for: .normal)
+            self.imgWallet.image = UIImage(named: ACTIVE_ICON)
+            self.imgCard.image = UIImage(named: UNACTIVE_ICON)
+            self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+            self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
          } else {
             self.funcDefoultSet()
         }
@@ -168,14 +175,16 @@ extension EventBookingPaymentMethodVC {
             self.setGradientBackground(viewadd: vwBgCard)
             self.vwBgCard.backgroundColor = .white
             self.vwBgWallet.backgroundColor = .clear
+            self.vwBgCard.borderColor = UIColor.setColor(colorType: .TGBlue)
+
             self.vwWalletTop.isHidden = true
             self.vwCardTop.isHidden = false
             self.vwWallet.isHidden = true
             self.vwCard.isHidden = false
-            self.imgCard.image = UIImage(named: "active")
-            self.imgWallet.image = UIImage(named: "unActive")
-            self.btnCard.setImage(UIImage(named: "arrow-down"), for: .normal)
-            self.btnWallet.setImage(UIImage(named: "arrow-up"), for: .normal)
+            self.imgCard.image = UIImage(named: ACTIVE_ICON)
+            self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
+            self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+            self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
         } else {
             self.funcDefoultSet()
         }
@@ -274,6 +283,11 @@ extension EventBookingPaymentMethodVC {
     @IBAction func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
+    }
+    
+    func btnRightArrowAction() {
+        let vc = createView(storyboard: .wallet, storyboardID: .AddAmountWalletVC)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
    
 }

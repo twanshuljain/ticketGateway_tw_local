@@ -26,9 +26,9 @@ class EventSearchLocationVC: UIViewController {
         self.setUI()
         self.vwSearchBar.delegate = self
         self.vwSearchBar.vwLocation.isHidden = true
-        self.vwSearchBar.txtSearch.attributedPlaceholder = NSAttributedString(string:"Find events in...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .PlaceHolder)])
+        self.vwSearchBar.txtSearch.attributedPlaceholder = NSAttributedString(string: FIND_EVENT_IN, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .PlaceHolder)])
         self.vwSearchBar.txtSearch.delegate = self
-        self.vwSearchBar.btnMenu.setImage(UIImage(named: "backArrow"), for: .normal)
+        self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
     }
 }
 

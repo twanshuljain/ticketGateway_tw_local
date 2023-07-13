@@ -9,12 +9,10 @@ import UIKit
 
 class UpcomingTableViewCell: UITableViewCell {
     
+ //MARK: - OUTLETS
     @IBOutlet weak var imgImage: UIImageView!
-    
     @IBOutlet weak var lblTitle: UILabel!
-    
     @IBOutlet weak var lblTime: UILabel!
-  
     @IBOutlet weak var btnSeeTickets: UIButton!
     
     

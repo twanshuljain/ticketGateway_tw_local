@@ -71,7 +71,7 @@ extension BandLeaderProfileViewController{
     }
     
     func setNavigationBar() {
-        self.vwNavigationBar.lblTitle.text = "Band leader’s profile"
+        self.vwNavigationBar.lblTitle.text = BAND_LEADER_PROFILE
         self.vwNavigationBar.delegateBarAction = self
         self.vwNavigationBar.btnBack.isHidden = false
         self.vwNavigationBar.vwBorder.isHidden = false
@@ -180,13 +180,13 @@ extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSo
             
             switch section {
             case 0:
-                label.text = "Description"
+                label.text = DESCRIPTION
                 return headerView
             case 1:
-                label.text = "Section Leader"
+                label.text = SECTION_LEADER
                 return headerView
             case 2:
-                label.text = "Contact Details"
+                label.text = CONTACT_DETAILS
                 return headerView
             default:
                 label.text = ""

@@ -38,12 +38,12 @@ class ContinueToTransferVC: UIViewController {
     }
     
     @objc func showAlert (_ sender: UIButton) {
-        self.showAlert(title: "Transfer ticket", message: "Are you sure to transfer ticket to mangesh@ticketgateway.com.", complition: {_ in
+        self.showAlert(title: TRANSFER_TICKETS, message: "Are you sure to transfer ticket to mangesh@ticketgateway.com.", complition: {_ in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-            view?.strTittle = "Ticket Transferred"
+            view?.strTittle = TICKET_TRANSFERRED
             view?.strComplimentry = "1 Ticket(S) with amount $100.00"
             view?.strSummary = "Ticket for Order Id #32916222 has been successfully transferred to mangesh@ticketgateway.com"
-            view?.btnStr = "Okay"
+            view?.btnStr = OKAY
             self.navigationController?.pushViewController(view!, animated: true)
         })
       
@@ -57,7 +57,7 @@ extension ContinueToTransferVC{
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Transfer Tickets"
+        self.vwNavigationView.lblTitle.text = TRANSFER_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
@@ -83,16 +83,16 @@ extension ContinueToTransferVC{
         self.lblOnceTicketTransfer.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblOnceTicketTransfer.textColor = UIColor.setColor(colorType: .lblTextPara)
         
-        self.btnTransferTicket.addRightIcon(image: UIImage(named: "LeftArrow_ip"))
+        self.btnTransferTicket.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         self.btnTransferTicket.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnTransferTicket.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
         self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
-        self.lblEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Email Address ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
-        self.lblConfirmEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Confirm Email Address ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblConfirmEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: CONFIRM_EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
         
     }

@@ -10,6 +10,7 @@ import iOSDropDown
 
 class AddOnTableViewCell: UITableViewCell {
 
+//MARK: - Variables
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
@@ -30,24 +31,15 @@ class AddOnTableViewCell: UITableViewCell {
     }
     
     func setFont() {
-        lblTitle.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblTitle.textColor = UIColor.setColor(colorType: .lightBlack)
-        lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        toggle.onTintColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblTitle.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        self.lblTitle.textColor = UIColor.setColor(colorType: .lightBlack)
+        self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.toggle.onTintColor = UIColor.setColor(colorType: .TGBlue)
         self.txtSelect.font = UIFont.setFont(fontType: .regular, fontSize:   .fourteen)
         self.txtSelect.textColor = UIColor.setColor(colorType: .lblTextPara)
 
 
     }
-    
-//    @IBAction func actionSwitch(_ sender: UISwitch) {
-//        if sender.isOn {
-//            
-//            bgTextView.isHidden = false
-//            
-//        } else {
-//            bgTextView.isHidden = true
-//        }
-//    }
+  
 }

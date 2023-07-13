@@ -34,15 +34,15 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
-        setFont()
-        setCollectionView()
-        costumeTableView.configure(vc: self)
-        setButtonImage()
-        toSetPageControll()
-        setNavigaionBar()
-        costumeTableView.tableDidSelectAtIndex = didSelectedAtIndex
-        vwSearchBar.delegate = self
+        self.setUI()
+        self.setFont()
+        self.setCollectionView()
+        self.costumeTableView.configure(vc: self)
+        self.setButtonImage()
+        self.toSetPageControll()
+        self.setNavigaionBar()
+        self.costumeTableView.tableDidSelectAtIndex = didSelectedAtIndex
+        self.vwSearchBar.delegate = self
         
         self.setDropDownTxt()
         costumeTableView.reloadData()
@@ -59,15 +59,16 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
 //MARK: - Functions
 extension CostumeViewController{
     func setNavigaionBar() {
-        vwNavigationBar.lblTitle.text = "Costume"
+        vwNavigationBar.lblTitle.text = COSTUME
         vwNavigationBar.delegateBarAction = self
         vwNavigationBar.btnBack.isHidden = false
         vwNavigationBar.vwBorder.isHidden = false
     }
     
     func setFont() {
-        lblImageCollectionHeader.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblImageCollectionHeader.text = TRENDING_BAND_LEADERS
+        self.lblImageCollectionHeader.font =  UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        self.lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .TGBlack)
     }
     
     func setDropDownTxt() {
@@ -84,14 +85,14 @@ extension CostumeViewController{
     
     
     func setButtonImage() {
-        btnFilter.addRightIcon(image: UIImage(named: "chevron-down_ip")) //ic-filter
-        btnFilter.addLeftIcon(image: UIImage(named: "ic-Filter")) //ic-chevron
+        btnFilter.addRightIcon(image: UIImage(named: CHEVRON_DOWN)) //ic-filter
+        btnFilter.addLeftIcon(image: UIImage(named: FILTER)) //ic-chevron
         btnFilter.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .TGGrey)
         btnSortBy.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         btnSortBy.titleLabel?.textColor = UIColor.setColor(colorType: .TGGrey)
-        btnSortBy.addRightIcon(image: UIImage(named: "chevron-down_ip"))
-        btnSortBy.addLeftIcon(image: UIImage(named: "sort_ip"))
+        btnSortBy.addRightIcon(image: UIImage(named:  CHEVRON_DOWN))
+        btnSortBy.addLeftIcon(image: UIImage(named: SORT_ICON))
         
         
     }

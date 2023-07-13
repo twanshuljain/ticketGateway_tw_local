@@ -41,12 +41,12 @@ extension MyWalletVC {
         self.tblTransaction.isFrom = "MyWallet"
         self.navigationView.delegateBarAction = self
        
-            self.navigationView.lblTitle.text = "My Wallet"
+            self.navigationView.lblTitle.text = MY_WALLET
           self.navigationView.btnBack.isHidden = false
           self.navigationView.delegateBarAction = self
         
         self.txtmonths.optionArray = ["Jan", "Feb", "Mar","April"]
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.txtmonths.optionIds = [1,23,54,22]
         self.dropDown.didSelect{(selectedText , index ,id) in
         self.txtmonths.text = "\(selectedText)\(index)"
@@ -57,10 +57,15 @@ extension MyWalletVC {
     func setUi(){
         self.lblBalance.font = UIFont.setFont(fontType: .medium, fontSize: .twenty)
         self.lblBalance.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblTotalBalance.text = TOTAL_BALANCE
         self.lblTotalBalance.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         self.lblTotalBalance.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.lblAddAmountInTGWallet.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
+        self.lblAddAmountInTGWallet.text = ADD_AMOUNT_IN_TG_WALLET
+        self.lblAddAmountInTGWallet.font =  UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblAddAmountInTGWallet.textColor = UIColor.setColor(colorType: .lblTextPara)
+        
+        self.lblTRansaction.text = TRANSACTION
+
         self.lblTRansaction.font = UIFont.setFont(fontType: .medium, fontSize: .twentyTwo)
         self.lblTRansaction.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
        

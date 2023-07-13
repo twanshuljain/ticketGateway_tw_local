@@ -28,7 +28,6 @@ class RefundOptionsVC: UIViewController {
     @IBOutlet weak var lblBarcodeWillNoLongerValid: UILabel!
     @IBOutlet weak var swFullRefundSwitch: UISwitch!
     
-    
     @IBOutlet weak var partialrefundStackView: UIStackView!
     @IBOutlet weak var lblPartialRefund: UILabel!
     @IBOutlet weak var lblBarcodeWillRemainValid: UILabel!
@@ -55,7 +54,7 @@ extension RefundOptionsVC{
     func setNavigationView(){
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Refund Options"
+        self.vwNavigationView.lblTitle.text = REFUND_OPTIONS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
@@ -79,6 +78,15 @@ extension RefundOptionsVC{
     }
     
     func setFont() {
+        self.lblPaymentMethod.text = PAYMENT_METHOD
+        self.lblRefundToOriginal.text = REFUND_TO_ORIGINAL
+        self.lblTGWallet.text = TG_WALLET
+        self.lblGetAFullRefund.text = GET_FULL_REFUND
+        self.lblReasonForRefund.text = REASON_FOR_REFUND
+        self.lblFullRefund.text = FULL_REFUND
+        self.lblBarcodeWillNoLongerValid.text = BARCODE_WILL_NO_LONGER_VALID
+        self.lblPartialRefund.text = PARTIAL_REFUND
+        self.lblBarcodeWillRemainValid.text = BARCODE_WILL_REMAIN_VALID
         let boldlbls = [lblPaymentMethod, lblTGWallet, lblFullRefund, lblPartialRefund]
         for boldlbl in boldlbls {
             boldlbl?.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
@@ -101,7 +109,7 @@ extension RefundOptionsVC{
         self.swTGWalletSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
         self.swFullRefundSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
         self.swPartialRefundSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
-        self.lblSelectTicket.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Select Tickets ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblSelectTicket.attributedText = getAttributedTextAction(attributedText: "*", firstString: SELECT_TICKETS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
         self.txtReasonForRefund.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.txtReasonForRefund.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
@@ -111,6 +119,7 @@ extension RefundOptionsVC{
         
         self.btnNext.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnNext.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
+        self.btnNext.titleLabel?.text = NEXT
         
     }
 }

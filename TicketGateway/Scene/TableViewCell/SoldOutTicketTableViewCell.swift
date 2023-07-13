@@ -8,7 +8,9 @@
 import UIKit
 
 class SoldOutTicketTableViewCell: UITableViewCell {
-    
+  
+    //MARK: - OUTLETS
+
     @IBOutlet weak var lblGeneralAdmission: UILabel!
     @IBOutlet weak var lblTotalTicket: UILabel!
     @IBOutlet weak var btnRight: UIButton!

@@ -54,19 +54,19 @@ extension FindRFIDVC {
             imgConnect.isHidden = true
         } else {
             connectedStackView.isHidden = true
-            showToast(message: "something went wrong please try again")
+            showToast(message: SOMETHING_WENT_WRONG)
             
         }
         self.lblScan.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblScan.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.imgScan.image = UIImage(named: "ScanUnselect_ip")
+        self.imgScan.image = UIImage(named: SCAN_UNSELECTED_ICON)
         self.lblFindRfid.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         let gradient = getGradientLayer(bounds: view.bounds)
         self.lblFindRfid.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
-        self.imgFindRfid.image = UIImage(named: "RFIDselected_ip")
+        self.imgFindRfid.image = UIImage(named: FIND_SELECTED_ICON)
         self.lblSearch.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblSearch.textColor = UIColor.setColor(colorType: .lblTextPara)
-        imgSearch.image = UIImage(named: "SearchUnselect_ip")
+        imgSearch.image = UIImage(named: SEARCH_UNSELECT_ICON)
         self.lbl3Tix.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lbl3Tix.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblSunburnReload.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)

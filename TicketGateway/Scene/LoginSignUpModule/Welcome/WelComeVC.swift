@@ -13,6 +13,7 @@ class WelComeVC: UIViewController {
     // MARK: - @IBOutlets
     @IBOutlet var CvSlider: UICollectionView!
     
+    
     // MARK: - Variable
     var viewModel = WelcomeViewModel()
     
@@ -39,6 +40,8 @@ class WelComeVC: UIViewController {
     }
 }
 
+
+
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 extension WelComeVC : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
@@ -56,9 +59,9 @@ extension WelComeVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         cell.btnSkip.addTarget(self, action: #selector(skipBtn), for: .touchUpInside)
         cell.btnNext.addTarget(self, action: #selector(nextBtn), for: .touchUpInside)
         if self.viewModel.arrSliderImages.count-1 == indexPath.row{
-            cell.btnNext.setTitle("Finish", for: .normal)
+            cell.btnNext.setTitle(FINISH, for: .normal)
         } else {
-            cell.btnNext.setTitle("Next", for: .normal)
+            cell.btnNext.setTitle(NEXT, for: .normal)
         }
         if self.viewModel.arrSliderImages.count-1 == indexPath.row || indexPath.row == 0 {
             cell.btnSkip.isHidden = true

@@ -29,16 +29,14 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var btnSelectCountry: UIButton!
-    
-    
+   
   // MARK: - Variable
     let viewModel = CreateAccountViewModel()
-    
-    
+   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.setup()
-    // Do any additional setup after loading the view.
+ 
   }
 }
 // MARK: - Functions
@@ -54,16 +52,25 @@ extension CreateAccountVC {
     self.txtEmailAddress.delegate = self
     self.txtPassword.delegate = self
     self.txtConfirmPassword.delegate = self
-    btnContinue.setTitles(text: "Create Account", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-    navigationView.lblTitle.text = "Create Account"
+    btnContinue.setTitles(text: CREATE_ACCOUNT, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+    navigationView.lblTitle.text = CREATE_ACCOUNT
     navigationView.btnBack.isHidden = false
     navigationView.delegateBarAction = self
     self.txtEmailAddress.text =  objAppShareData.DicToHoldDataOnSignUpModule?.strEmail
     self.viewModel.emailAddress = objAppShareData.DicToHoldDataOnSignUpModule?.strEmail ?? ""
-    self.btnEyePassword.setImage(UIImage(named: "eyeClose"), for: .normal)
-    self.btnEyeCPassword.setImage(UIImage(named: "eyeClose"), for: .normal)
+    self.btnEyePassword.setImage(UIImage(named: EYE_CLOSE), for: .normal)
+    self.btnEyeCPassword.setImage(UIImage(named: EYE_CLOSE), for: .normal)
     self.txtPassword.isSecureTextEntry = true
     self.txtConfirmPassword.isSecureTextEntry = true
+      self.lblFullName.text = Full_Name
+      self.lblMobileNumber.text = MOBILE_NUMBER
+      self.lblEmailAddress.text = EMAIL_ADDRESS
+      self.lblPassword.text = PASSWORD
+      self.lblConfirmPassword.text = CONFIRM_PASSWORD
+      
+      
+      
+      
     self.setIntialUiDesign()
   }
 }
@@ -85,21 +92,21 @@ extension CreateAccountVC {
     
     func btnEyePasswordAction(){
         if self.txtPassword.isSecureTextEntry == false{
-            self.btnEyePassword.setImage(UIImage(named: "eyeClose"), for: .normal)
+            self.btnEyePassword.setImage(UIImage(named: EYE_CLOSE), for: .normal)
             self.txtPassword.isSecureTextEntry = true
         }
         else {
-            self.btnEyePassword.setImage(UIImage(named: "eyeOpen"), for: .normal)
+            self.btnEyePassword.setImage(UIImage(named: EYE_OPEN), for: .normal)
             self.txtPassword.isSecureTextEntry = false
         }
     }
     func btnEyeCPasswordAction(){
         if self.txtConfirmPassword.isSecureTextEntry == false{
-            self.btnEyeCPassword.setImage(UIImage(named: "eyeClose"), for: .normal)
+            self.btnEyeCPassword.setImage(UIImage(named: EYE_CLOSE), for: .normal)
             self.txtConfirmPassword.isSecureTextEntry = true
         }
         else {
-            self.btnEyeCPassword.setImage(UIImage(named: "eyeOpen"), for: .normal)
+            self.btnEyeCPassword.setImage(UIImage(named: EYE_OPEN), for: .normal)
             self.txtConfirmPassword.isSecureTextEntry = false
         }
     }
@@ -182,7 +189,7 @@ extension CreateAccountVC : NavigationBarViewDelegate {
 }
 
 // MARK: -  Country Code
-extension CreateAccountVC :  RSCountrySelectedDelegate  {
+extension CreateAccountVC :RSCountrySelectedDelegate  {
     func setIntialUiDesign()
     {
         //Defoult Country

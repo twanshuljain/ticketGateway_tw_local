@@ -9,6 +9,7 @@ import UIKit
 
 class FavouriteTableViewCell: UITableViewCell {
     
+    //MARK: - OUTLETS
     @IBOutlet weak var lblFavoriteDate: UILabel!
     @IBOutlet weak var imgImages: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
@@ -21,15 +22,13 @@ class FavouriteTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
-       
-      
-       
+        
     }
-
+    
     func setUi(){
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAddress.textColor = UIColor.setColor(colorType: .Headinglbl)
         
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
@@ -44,15 +43,5 @@ class FavouriteTableViewCell: UITableViewCell {
         
         
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-   }
-    
-    
    
-    
-    
-    
-
 }

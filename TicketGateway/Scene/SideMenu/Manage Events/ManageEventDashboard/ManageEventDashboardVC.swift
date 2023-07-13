@@ -37,13 +37,13 @@ class ManageEventDashboardVC: UIViewController {
     
     func setup(){
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
-        self.navigationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
+        self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.navigationView.btnBack.isHidden = false
         
         self.navigationView.btnRight.isHidden =  false
-        self.navigationView.btnRight.setImage(UIImage(named: "EventFilter_ip"), for: .normal)
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
+        self.navigationView.btnRight.setImage(UIImage(named: EVEN_FILTER_ICON), for: .normal)
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
         self.btnSeeMore.setTitles(text: "See More", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .TGBlue), textColour: UIColor.setColor(colorType: .TGBlue))
@@ -59,7 +59,7 @@ class ManageEventDashboardVC: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        self.navigationView.imgBack.image = UIImage(named: "backArrow")
+        self.navigationView.imgBack.image = UIImage(named: BACK_ARROW_ICON)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

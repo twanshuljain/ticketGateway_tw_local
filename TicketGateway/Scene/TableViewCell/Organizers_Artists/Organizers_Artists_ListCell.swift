@@ -9,23 +9,17 @@ import UIKit
 
 class Organizers_Artists_ListCell: UITableViewCell {
     
-    
+//MARK: - Outlets
     @IBOutlet weak var imgProfile: UIImageView!
-    
     @IBOutlet weak var btnfollow: CustomButtonGradiant!
     @IBOutlet weak var lblFollowers: UILabel!
     @IBOutlet weak var lblName: UILabel!
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
-        // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     func setUi(){
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)

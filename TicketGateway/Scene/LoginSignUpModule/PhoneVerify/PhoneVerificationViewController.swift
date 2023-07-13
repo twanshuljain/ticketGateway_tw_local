@@ -34,10 +34,10 @@ class PhoneVerificationViewController: UIViewController {
 // MARK: - Functions
 extension PhoneVerificationViewController {
     private func setup() {
-        navigationView.lblTitle.text = "Phone verification"
+        navigationView.lblTitle.text = PHONE_VERIFICATION
         navigationView.btnBack.isHidden = false
         navigationView.delegateBarAction = self
-        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
         self.viewModel.countries = self.jsonSerial()
         self.imgCountry.image = nil

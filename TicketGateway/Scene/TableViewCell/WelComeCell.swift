@@ -8,6 +8,8 @@
 import UIKit
 
 class WelComeCell: UICollectionViewCell {
+    
+//MARK: - OUTLETS
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var imgAdvertisement: UIImageView!

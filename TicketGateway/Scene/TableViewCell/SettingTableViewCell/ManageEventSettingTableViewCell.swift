@@ -9,7 +9,7 @@ import UIKit
 
 class ManageEventSettingTableViewCell: UITableViewCell {
     
-    
+//MARK: - Outlets
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTitleDescription: UILabel!
@@ -24,9 +24,9 @@ class ManageEventSettingTableViewCell: UITableViewCell {
     }
 
     func setFont() {
-        lblTitle.font = UIFont.setFont(fontType: .medium, fontSize:  .fourteen)
-        lblTitleDescription.font = UIFont.setFont(fontType: .regular, fontSize:  .twelve)
-        lblTitleDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize:  .fourteen)
+        self.lblTitleDescription.font = UIFont.setFont(fontType: .regular, fontSize:  .twelve)
+        self.lblTitleDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     
 }

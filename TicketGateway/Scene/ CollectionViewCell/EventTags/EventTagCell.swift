@@ -8,7 +8,8 @@
 import UIKit
 
 class EventTagCell: UICollectionViewCell {
-
+    
+//MARK: - Outlets
     @IBOutlet weak var lblName: UILabel!
     
     override func awakeFromNib() {

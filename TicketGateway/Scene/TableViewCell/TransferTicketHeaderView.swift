@@ -9,12 +9,12 @@ import UIKit
 
 class TransferTicketHeaderView: UITableViewHeaderFooterView {
 
-   
+//MARK: - OUTLETS
     @IBOutlet weak var lblTicketTitle: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnUp: UIButton!
-    
     @IBOutlet weak var headerBottomLine: UIView!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setFont()

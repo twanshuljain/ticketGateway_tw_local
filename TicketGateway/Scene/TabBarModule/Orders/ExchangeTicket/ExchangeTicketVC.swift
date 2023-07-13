@@ -31,11 +31,11 @@ extension ExchangeTicketVC{
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Exchange For"
+        self.vwNavigationView.lblTitle.text = EXCHANGE_FOR
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.vwNavigationView.lblDiscripation.isHidden = false
-        self.vwNavigationView.lblDiscripation.text = "#3246431341"
+        self.vwNavigationView.lblDiscripation.text = NUMBERS
         self.vwNavigationView.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.vwNavigationView.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
@@ -50,7 +50,7 @@ extension ExchangeTicketVC{
         btnExchange.addTarget(self, action: #selector(navigate(_:)), for: .touchUpInside)
         btnExchange.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnExchange.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        btnExchange.addRightIcon(image: UIImage(named: "Change_ip"))
+        btnExchange.addRightIcon(image: UIImage(named: CHANGE_ICON))
         
     }
 }
@@ -59,18 +59,25 @@ extension ExchangeTicketVC{
 extension ExchangeTicketVC{
     @objc func navigate(_ sender: UIButton) {
       //  self.showAlert(title: "Exchange ticket", message: "You need to pay CAD$9.90 to exchange your ticket. Do you want to continue?")
-        let alert = UIAlertController(title: "Exchange ticket", message: "You need to pay CAD$9.90 to exchange your ticket. Do you want to continue?", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
-          print("Handle Ok logic here")
-          }))
-
-        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { (action: UIAlertAction!) in
-          print("Handle Cancel Logic here")
+//        let alert = UIAlertController(title: "Exchange ticket", message: "You need to pay CAD$9.90 to exchange your ticket. Do you want to continue?", preferredStyle: .alert)
+//
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
+//          print("Handle Ok logic here")
+//          }))
+//
+//        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { (action: UIAlertAction!) in
+//          print("Handle Cancel Logic here")
+//            let vc = self.createView(storyboard: .order, storyboardID: .OrderSummaryVC)
+//            self.navigationController?.pushViewController(vc, animated: true)
+//          }))
+//        present(alert, animated: true, completion: nil)
+        
+        self.showAlert(title: EXCHANGE_TICKETS, message: "You need to pay CAD$9.90 to exchange your ticket. Do you want to continue?", complition: {_ in
             let vc = self.createView(storyboard: .order, storyboardID: .OrderSummaryVC)
             self.navigationController?.pushViewController(vc, animated: true)
-          }))
-        present(alert, animated: true, completion: nil)
+        })
+
+        
     }
 }
 

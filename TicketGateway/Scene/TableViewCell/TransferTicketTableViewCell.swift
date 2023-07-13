@@ -9,7 +9,7 @@ import UIKit
 
 class TransferTicketTableViewCell: UITableViewCell {
 
-   
+ //MARK: - Outlet
     @IBOutlet weak var lblTicketId: UILabel!
     @IBOutlet weak var lblTicketIdValue: UILabel!
     @IBOutlet weak var lblNameOnTicket: UILabel!
@@ -51,7 +51,7 @@ class TransferTicketTableViewCell: UITableViewCell {
         
         self.btnContinueToTransfer.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnContinueToTransfer.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.btnContinueToTransfer.addRightIcon(image: UIImage(named: "LeftArrow_ip"))
+        self.btnContinueToTransfer.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
     }
     
 }

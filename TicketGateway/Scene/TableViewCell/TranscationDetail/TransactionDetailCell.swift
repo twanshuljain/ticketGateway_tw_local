@@ -8,7 +8,8 @@
 import UIKit
 
 class TransactionDetailCell: UITableViewCell {
-    
+
+//MARK: - Outlets
     @IBOutlet weak var lblTicketID: UILabel!
     @IBOutlet weak var lblTicketName: UILabel!
     @IBOutlet weak var lblDate: UILabel!
@@ -20,8 +21,7 @@ class TransactionDetailCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUi()
-        // Initialization code
+        self.setUi()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

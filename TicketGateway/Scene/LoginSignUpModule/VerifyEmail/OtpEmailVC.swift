@@ -30,7 +30,7 @@ class OtpEmailVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.setup()
-    // Do any additional setup after loading the view.
+    
   }
 }
 
@@ -43,9 +43,9 @@ extension OtpEmailVC {
         [self.txtOtp1,self.txtOtp2,self.txtOtp3,self.txtOtp4].forEach{$0?.delegate = self}
         [self.txtOtp1,self.txtOtp2,self.txtOtp3,self.txtOtp4].forEach{$0?.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)}
         navigationView.delegateBarAction = self
-        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        navigationView.lblTitle.text = "OTP Verification"
+        navigationView.lblTitle.text = OTP_VERIFICATION
         navigationView.btnBack.isHidden = false
         navigationView.delegateBarAction = self
         if viewModel.email != "" {
@@ -114,13 +114,13 @@ extension OtpEmailVC {
                 }
             }
         } else {
-            self.showToast(message: "Netrwork")
+            self.showToast(message: NETWORK)
         }
         
     }
     func btnContinueAction() {
         if self.txtOtp1.text ?? "" == "" || self.txtOtp2.text ?? "" == "" || self.txtOtp3.text ?? "" == "" || self.txtOtp4.text ?? "" == "" {
-            self.showToast(message: "Please enter otp")
+            self.showToast(message: PLEASE_ENTER_OTP)
         } else {
             
             let isValidate = viewModel.validateUserInput
@@ -136,7 +136,11 @@ extension OtpEmailVC {
                             SVProgressHUD.dismiss()
                             DispatchQueue.main.async {
                                 let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
-                                view.strMessage = "Your email has been verified successfully!"
+                                view.strMessage = EMAIL_SENT_SUCCESSFULLY
+                                
+                                view.img = CHECK_RIGHT_ICON
+                                                view.strMsgForlbl = "Verified"
+                                                view.strMsgBtn = "Great"
                                 view.closerForBack = { istrue in
                                     if istrue ==  true
                                     {

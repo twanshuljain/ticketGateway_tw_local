@@ -19,6 +19,8 @@ class suggestedOrganizerList: UICollectionView {
     }
 
 }
+
+//MARK: - UICollectionViewDataSource ,UICollectionViewDelegate
 extension suggestedOrganizerList : UICollectionViewDataSource ,UICollectionViewDelegate {
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {

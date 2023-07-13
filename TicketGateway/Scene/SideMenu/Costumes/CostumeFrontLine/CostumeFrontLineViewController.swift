@@ -103,7 +103,7 @@ extension CostumeFrontLineViewController {
     }
     
     func setNavigationBar() {
-        self.vwNavigationBar.lblTitle.text = "Costume Details"
+        self.vwNavigationBar.lblTitle.text = COSTUME_DETAILS
         self.vwNavigationBar.delegateBarAction = self
         self.vwNavigationBar.btnBack.isHidden = false
         self.vwNavigationBar.vwBorder.isHidden = false
@@ -118,34 +118,43 @@ extension CostumeFrontLineViewController {
         
         self.btnSizeChart.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSizeChart.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
-        
+        self.lblBraSize.text = BRA_SIZE
         self.lblBraSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblBraSize.textColor = UIColor.setColor(colorType: .lblTextPara)
         
+        self.lblCupSize.text = CUP_SIZE
         self.lblCupSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblCupSize.textColor = UIColor.setColor(colorType: .lblTextPara)
         
+        self.lblWaistSize.text = WAIST_SIZE
         self.lblWaistSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblWaistSize.textColor = UIColor.setColor(colorType: .lblTextPara)
         
+        self.lblBottomSize.text = BOTTOM_SIZE
         self.lblBottomSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblBottomSize.textColor = UIColor.setColor(colorType: .lblTextPara)
         
+        self.lblHipSize.text = HIP_SIZE
         self.lblHipSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblHipSize.textColor = UIColor.setColor(colorType: .lblTextPara)
         
+        self.lblPantySize.text = PANTY_SIZE
         self.lblPantySize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblPantySize.textColor = UIColor.setColor(colorType: .lblTextPara)
         
+        self.lblBeltSize.text = BELT_SIZE
         self.lblBeltSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblBeltSize.textColor = UIColor.setColor(colorType: .lblTextPara)
         
+        self.lblAddOns.text = ADD_ONS
         self.lblAddOns.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblAddOns.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
+        self.lblPromoCode.text = PROMO_CODE
         self.lblPromoCode.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblPromoCode.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
+        self.lblApplyPromo.text = APPLY_PROMO
         self.lblApplyPromo.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblApplyPromo.textColor = UIColor.setColor(colorType: .lblTextPara)
         
@@ -154,7 +163,7 @@ extension CostumeFrontLineViewController {
         
         self.btnGoToCart.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnGoToCart.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.btnGoToCart.addLeftIcon(image: UIImage(named: "Cart_ip"))
+        self.btnGoToCart.addLeftIcon(image: UIImage(named: CART_ICON))
     }
     
     func setTextFieldDropDown() {

@@ -14,15 +14,14 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setFont()
+        self.setFont()
        
      
     }
     
     func setFont(){
-       //self.lblProduct.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblProduct.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblProduct.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblProduct.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.lblProduct.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     
 }

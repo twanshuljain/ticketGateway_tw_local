@@ -56,7 +56,7 @@ extension ManageEventVC {
     func setUi(){
         self.txtAllorganiser.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.txtAllorganiser.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        btnCreateEvent.setTitles(text: "Create Event", font: UIFont.boldSystemFont(ofSize: 20), tintColour: UIColor.setColor(colorType: .TGBlack))
+        btnCreateEvent.setTitles(text: CREATE_EVENT, font: UIFont.boldSystemFont(ofSize: 20), tintColour: UIColor.setColor(colorType: .TGBlack))
         self.btnCreateEvent.addLeftIcon(image: UIImage(named: PLUS_ICON))
     }
 }

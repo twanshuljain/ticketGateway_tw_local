@@ -8,13 +8,14 @@
 import UIKit
 
 class DepositeTableViewCell: UITableViewCell {
-
+    
+//MARK: - Ouultes
     @IBOutlet weak var lblDeposit: UILabel!
     @IBOutlet weak var lblFinalBalance: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setFont()
+       self.setFont()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,10 +24,10 @@ class DepositeTableViewCell: UITableViewCell {
     }
     
     func setFont() {
-        lblDeposit.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        lblDeposit.textColor = UIColor.setColor(colorType: .lblTextPara)
-        lblFinalBalance.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        lblFinalBalance.textColor = UIColor.orange
+        self.lblDeposit.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        self.lblDeposit.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblFinalBalance.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
+        self.lblFinalBalance.textColor = UIColor.orange
     }
     
 }

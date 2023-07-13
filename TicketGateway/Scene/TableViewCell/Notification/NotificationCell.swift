@@ -8,16 +8,16 @@
 import UIKit
 
 class NotificationCell: UITableViewCell {
-
+    
+//MARK: - Oultes
     @IBOutlet weak var imgProfile: UIImageView!
-   @IBOutlet weak var lblTIttle: UILabel!
+    @IBOutlet weak var lblTIttle: UILabel!
     @IBOutlet weak var lblDay: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     
     override func awakeFromNib() {
-        self.setUi()
         super.awakeFromNib()
-        // Initialization code
+        self.setUi()
     }
     func setUi(){
         
@@ -26,14 +26,10 @@ class NotificationCell: UITableViewCell {
             $0.textColor = UIColor.setColor(colorType: .lblTextPara)
             
         }
-        lblTIttle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        lblTIttle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-      
+        self.lblTIttle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+        self.lblTIttle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
     
 }

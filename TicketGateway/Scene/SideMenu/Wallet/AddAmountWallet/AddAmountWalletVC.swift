@@ -42,6 +42,7 @@ class AddAmountWalletVC: UIViewController {
     @IBOutlet weak var txtCountryCUrrency: DropDown!
     @IBOutlet weak var txtCVV: UITextField!
     @IBOutlet weak var txtExpiryDate: UITextField!
+    @IBOutlet weak var lblDollar: UILabel!
     
     // MARK: - Variables
     private var previousTextFieldContent: String?
@@ -75,6 +76,7 @@ class AddAmountWalletVC: UIViewController {
 // MARK: - Functions
 extension AddAmountWalletVC {
     private func setup() {
+   
         self.gradientLayer.colors = [colorTop, colorBottom]
         self.gradientLayer.locations = [0.0, 1.0]
         self.gradientLayer.frame = self.view.bounds
@@ -88,15 +90,15 @@ extension AddAmountWalletVC {
         self.navigationView.btnBack.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Add amount"
-        self.navigationView.lblDiscripation.text = "in TG wallet"
+        self.navigationView.lblTitle.text = ADD_AMOUNT
+        self.navigationView.lblDiscripation.text = IN_TG_WALLET
         self.navigationView.vwBorder.isHidden = false
-        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
-        btnContinue.setTitles(text: "Proceed to add CA$1000.00", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
+        btnContinue.setTitles(text: "Proceed to add CA$1000.00", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         [self.btnContinue,self.btnCard,btnWallet,btnSelectWallet].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        self.funcDefoultSet()
+        self.vwDefaultSet()
         self.txtCountryCUrrency.optionArray = ["INR", "USD", "EUR","CAD"]
         self.txtCountryCUrrency.optionIds = [1,23,54,22]
         self.txtCountryCUrrency.didSelect{(selectedText , index ,id) in
@@ -106,33 +108,42 @@ extension AddAmountWalletVC {
     
     func setUi(){
         [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCVC_CVV].forEach {
-            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
         
         [self.lblPayWithCard,lblPayWithDigitalWAllet].forEach {
-            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .seventeen)
+            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .TGBlack)
         }
         
         [self.lblSelectCountry,lblAddAmount,lblAddAmtDigiWallet,lblMoreWayToPay].forEach {
-            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
+            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
             
         }
+         
+        self.lblDollar.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
+        self.lblDollar.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblSelectCountry.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Select Currency ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        
+        self.lblAddAmount.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Add Amount ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        
     }
     
-    func funcDefoultSet(){
+    func vwDefaultSet(){
         self.vwBgCard.backgroundColor = .clear
         self.vwBgWallet.backgroundColor = .clear
+        self.vwBgWallet.borderColor = UIColor.setColor(colorType: .BorderLineColour)
+        self.vwBgCard.borderColor = UIColor.setColor(colorType: .BorderLineColour)
         self.vwWallet.isHidden = true
         self.vwCard.isHidden = true
         self.vwWalletTop.isHidden = true
         self.vwCardTop.isHidden = true
-        self.imgCard.image = UIImage(named: "unActive")
-        self.imgWallet.image = UIImage(named: "unActive")
-        self.btnCard.setImage(UIImage(named: "arrow-up"), for: .normal)
-        self.btnWallet.setImage(UIImage(named: "arrow-up"), for: .normal)
+        self.imgCard.image = UIImage(named: UNACTIVE_ICON )
+        self.imgWallet.image = UIImage(named: UNACTIVE_ICON )
+        self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
+        self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
         self.setGradientBackground(viewadd: UIView())
     }
     
@@ -158,36 +169,38 @@ extension AddAmountWalletVC {
     func btnWalletAction() {
         if self.vwBgWallet.backgroundColor == .clear {
             self.setGradientBackground(viewadd: vwBgWallet)
+            self.vwBgWallet.borderColor = UIColor.setColor(colorType: .TGBlue)
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
             self.vwWallet.isHidden = false
             self.vwCard.isHidden = true
             self.vwWalletTop.isHidden = false
             self.vwCardTop.isHidden = true
-            self.imgWallet.image = UIImage(named: "active")
-            self.imgCard.image = UIImage(named: "unActive")
-            self.btnWallet.setImage(UIImage(named: "arrow-down"), for: .normal)
-            self.btnCard.setImage(UIImage(named: "arrow-up"), for: .normal)
+            self.imgWallet.image = UIImage(named: ACTIVE_ICON )
+            self.imgCard.image = UIImage(named: UNACTIVE_ICON)
+            self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+            self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
         } else {
-            self.funcDefoultSet()
+            self.vwDefaultSet()
         }
     }
     
     func btnCardAction() {
         if self.vwBgCard.backgroundColor == .clear {
             self.setGradientBackground(viewadd: vwBgCard)
+            self.vwBgCard.borderColor = UIColor.setColor(colorType: .TGBlue)
             self.vwBgCard.backgroundColor = .white
             self.vwBgWallet.backgroundColor = .clear
             self.vwWalletTop.isHidden = true
             self.vwCardTop.isHidden = false
             self.vwWallet.isHidden = true
             self.vwCard.isHidden = false
-            self.imgCard.image = UIImage(named: "active")
-            self.imgWallet.image = UIImage(named: "unActive")
-            self.btnCard.setImage(UIImage(named: "arrow-down"), for: .normal)
-            self.btnWallet.setImage(UIImage(named: "arrow-up"), for: .normal)
+            self.imgCard.image = UIImage(named: ACTIVE_ICON)
+            self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
+            self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+            self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
         } else {
-            self.funcDefoultSet()
+            self.vwDefaultSet()
         }
     }
     

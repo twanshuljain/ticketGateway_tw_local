@@ -141,10 +141,10 @@ class CostumeTableViewCell: UITableViewCell {
     @objc func btnImage(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            btnLike.setImage(UIImage(named: "Like_ip"), for: .selected)
+            btnLike.setImage(UIImage(named: LIKE_ICON), for: .selected)
 
         } else {
-            btnLike.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
+            btnLike.setImage(UIImage(named: FAV_UNSELECT_ICON), for: .normal)
 
         }
     }

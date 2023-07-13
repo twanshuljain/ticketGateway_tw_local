@@ -49,9 +49,9 @@ class FAQVC: UIViewController {
 // MARK: - Functions
 extension FAQVC{
     func setNavigationBar(){
-        self.vwNavigatioView.lblTitle.text = "FAQs"
+        self.vwNavigatioView.lblTitle.text = FAQS
         self.vwNavigatioView.delegateBarAction = self
-        self.vwNavigatioView.imgBack.image = UIImage(named: "Menu")
+        self.vwNavigatioView.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigatioView.btnBack.isHidden = false
         self.vwNavigatioView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigatioView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
@@ -117,14 +117,14 @@ extension FAQVC: UITableViewDelegate, UITableViewDataSource {
         if obj.isExpand == true{
             let gradient = getGradientLayer(bounds: view.bounds)
             cell.lblQuestion.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
-            cell.btnUp.setImage(UIImage(named: "chevron-upGD_ip"), for: .normal)
+            cell.btnUp.setImage(UIImage(named: CHEVRON_UP_GD_ICON), for: .normal)
             let height = cell.bgView.bounds.height
             print("......................................", height)
             cell.lblAnswer.text = obj.ansValue
             cell.bgView.layoutIfNeeded()
         } else {
             cell.lblAnswer.text = ""
-            cell.btnUp.setImage(UIImage(named: "chevron-downDB_ip"), for: .normal)
+            cell.btnUp.setImage(UIImage(named: CHEVRON_DOWN_DB_ICON), for: .normal)
             cell.bgView.borderColor = UIColor.setColor(colorType: .BorderLineColour)
             cell.lblQuestion.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
             cell.bgView.layoutIfNeeded()

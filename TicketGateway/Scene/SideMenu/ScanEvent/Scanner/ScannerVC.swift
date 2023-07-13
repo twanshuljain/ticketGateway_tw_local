@@ -10,8 +10,8 @@ import AVFoundation
 
 class ScannerVC: UIViewController {
     
- 
-//MARK: - Outlets
+    
+    //MARK: - Outlets
     @IBOutlet weak var qrScannerView: UIView!
     @IBOutlet weak var lblScan: UILabel!
     @IBOutlet weak var imgScan: UIImageView!
@@ -33,8 +33,8 @@ class ScannerVC: UIViewController {
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblRejected: UILabel!
     
-//MARK: - Variables
-       let viewModel = ScannerViewModel()
+    //MARK: - Variables
+    let viewModel = ScannerViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,59 +42,62 @@ class ScannerVC: UIViewController {
         self.setFont()
         self.getCameraPreview()
     }
-  
+    
 }
 
 //MARK: -
 extension ScannerVC {
-   
+    
     func getCameraPreview(){
         viewModel.captureSession = AVCaptureSession()
-    guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
-    let videoInput: AVCaptureDeviceInput
-    do {
-    videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-    } catch {
-    return
-    }
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+        let videoInput: AVCaptureDeviceInput
+        do {
+            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+        } catch {
+            return
+        }
         if (viewModel.captureSession.canAddInput(videoInput)){
             viewModel.captureSession.addInput(videoInput)
-    } else {
-    
-    showAlertController(message: "Your device doesn't support for scanning a QR code. Please use a device with a camera.")
-    return
-    }
-    let metadataOutput = AVCaptureMetadataOutput()
+        } else {
+            
+            showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
+            return
+        }
+        let metadataOutput = AVCaptureMetadataOutput()
         if (viewModel.captureSession.canAddOutput(metadataOutput)) {
             viewModel.captureSession.addOutput(metadataOutput)
-    metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-    metadataOutput.metadataObjectTypes = [.qr]
-    } else {
-        showAlertController(message: "Your device doesn't support for scanning a QR code. Please use a device with a camera.")
-    return
-    }
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metadataOutput.metadataObjectTypes = [.qr]
+        } else {
+            showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
+            return
+        }
         viewModel.previewLayer = AVCaptureVideoPreviewLayer(session: viewModel.captureSession)
         viewModel.previewLayer.frame = qrScannerView.layer.bounds
         viewModel.previewLayer.videoGravity = .resizeAspectFill
         qrScannerView.layer.addSublayer(viewModel.previewLayer)
         DispatchQueue.global(qos: .background).async {
             self.viewModel.captureSession.startRunning()
-
+            
         }
     }
-
+    
     func setFont() {
+        self.lblScan.text = SCAN
         self.lblScan.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         let gradient = getGradientLayer(bounds: view.bounds)
-        lblScan.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
-
-        self.imgScan.image = UIImage(named: "ScanSelected_ip")
+        self.lblScan.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
+        
+        self.imgScan.image = UIImage(named: SCAN_SELECTED_ICON)
         self.lblFindRfid.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblFindRfid.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.imgFindRfid.image = UIImage(named: "FindUnselect_ip")
+        self.lblFindRfid.text = FIND_RFID
+        self.imgFindRfid.image = UIImage(named: FIND_UNSELECT_ICON)
+        self.lblSearch.text = SEARCH
         self.lblSearch.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblSearch.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.imgSearch.image = UIImage(named: "SearchUnselect_ip")
+        self.imgSearch.image = UIImage(named: SEARCH_UNSELECT_ICON)
         self.lbl3Tix.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lbl3Tix.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblSunburnReload.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -111,7 +114,7 @@ extension ScannerVC {
         self.lblTotal.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblRejected.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblRejected.textColor = UIColor.setColor(colorType: .TGRed)
-     
+        
     }
 }
 
@@ -148,22 +151,22 @@ extension ScannerVC {
     }
     
     func btnScanAction() {
-
-
+        
+        
         
     }
     
     func btnFindRfidAction() {
         let vc = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC)
         self.navigationController?.pushViewController(vc, animated: false)
-
+        
     }
     
     func btnSearchAction() {
-   
+        
         let vc = createView(storyboard: .scanevent, storyboardID: .SearchVC)
         self.navigationController?.pushViewController(vc, animated: false)
-
+        
         
     }
     
@@ -178,18 +181,37 @@ extension ScannerVC {
         
         
     }
-   
+    
     func btn1XAction() {
     }
     
+    
     func btnTourchAction() {
+        let device = AVCaptureDevice.default(for: AVMediaType.video)
+        if ((device?.hasTorch) != nil) {
+            do {
+                try device?.lockForConfiguration()
+                if (device?.torchMode == AVCaptureDevice.TorchMode.on) {
+                    device?.torchMode = AVCaptureDevice.TorchMode.off
+                } else {
+                    do {
+                        try device?.setTorchModeOn(level: 1.0)
+                    } catch {
+                        print(error)
+                    }
+                }
+                device?.unlockForConfiguration()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func btnEndScanAction() {
         let vc = self.createView(storyboard: .scanevent, storyboardID: .EndScanPoPUpVC) as! EndScanPoPUpVC
         vc.delegate = self
-        vc.strMsgForTitle = "End scan?"
-        vc.strMsgForDescription = "Are you sure you want to scan for this event."
+        vc.strMsgForTitle = END_SCAN
+        vc.strMsgForDescription = WANT_TO_SCAN_EVENT
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
         self.present(vc, animated: true)
         
@@ -202,24 +224,24 @@ extension ScannerVC {
 extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         viewModel.captureSession.stopRunning() // stop scanning after receiving metadata output
-    if let metadataObject = metadataObjects.first {
-    guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-    guard let codeString = readableObject.stringValue else { return }
-    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-    self.receivedCodeForQR(qrcode: codeString)
-    }
+        if let metadataObject = metadataObjects.first {
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let codeString = readableObject.stringValue else { return }
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.receivedCodeForQR(qrcode: codeString)
+        }
     }
     
     func receivedCodeForQR(qrcode: String) {
-    print(qrcode)
-
+        print(qrcode)
+        
     }
-
+    
 }
 //MARK: - AlertAction
 extension ScannerVC: AlertAction {
     func alertYesaction() {
         let vc = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC)
-         self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

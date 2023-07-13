@@ -9,6 +9,7 @@ import UIKit
 
 class TicketTypesCell: UITableViewCell {
 
+//MARK: - Outlet
     @IBOutlet weak var vwDotted: UIView!
     @IBOutlet weak var vwStepper: CustomStepper!
     @IBOutlet weak var vwEtcDiscripation: UIView!
@@ -23,14 +24,8 @@ class TicketTypesCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
-        // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     func setUi(){
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)

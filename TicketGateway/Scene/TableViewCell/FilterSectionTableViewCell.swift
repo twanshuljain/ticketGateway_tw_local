@@ -9,6 +9,7 @@ import UIKit
 
 class FilterSectionTableViewCell: UITableViewCell {
     
+    //MARK: - OUTLETS
     @IBOutlet weak var lblFilterTitle:UILabel!
     @IBOutlet weak var filterView:UIView!
 
@@ -35,9 +36,5 @@ class FilterSectionTableViewCell: UITableViewCell {
         self.filterView.backgroundColor = UIColor.setColor(colorType: .white)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-    
+   
 }

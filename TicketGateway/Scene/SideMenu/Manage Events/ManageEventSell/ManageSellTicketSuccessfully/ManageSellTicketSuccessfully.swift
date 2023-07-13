@@ -19,7 +19,7 @@ class ManageSellTicketSuccessfully: UIViewController {
     @IBOutlet weak var btnGoToOrder: CustomButtonNormalWithBorder!
     @IBOutlet weak var navigationView: NavigationBarView!
     
-    var strTittle = "Sunburn reload NYE - toronto"
+    var strTittle = HEADER_TITLE_SUNBURN
     var strDiscripation = ""
     var strComplimentry = ""
     var strSummary = ""
@@ -29,7 +29,6 @@ class ManageSellTicketSuccessfully: UIViewController {
         super.viewDidLoad()
         self.setUp()
 
-        // Do any additional setup after loading the view.
     }
 }
 
@@ -38,13 +37,12 @@ extension ManageSellTicketSuccessfully {
     func setUp(){
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
-        if strTittle == "Sunburn reload NYE - toronto" {
-            self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
-            self.navigationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
+        if strTittle == HEADER_TITLE_SUNBURN {
+            self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+            self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
             [self.btnDone,self.btnShare,self.btnDownload,self.btnSendAnotherComp].forEach {
                 $0?.isHidden = false
             }
-            
         }else {
             self.navigationView.lblTitle.text = strTittle
             self.navigationView.lblDiscripation.text = strDiscripation
@@ -54,39 +52,26 @@ extension ManageSellTicketSuccessfully {
         }
         self.navigationView.lblDiscripation.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        
         [self.btnGoToOrder,self.btnDone,self.btnShare,self.btnDownload,self.btnSendAnotherComp].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        
         self.lblComplimentry.text = strComplimentry
         self.lblticketDetail.text = strSummary
-        //   self.btnGoToOrder.titleLabel?.text = btnStr
         self.btnGoToOrder.setTitle(btnStr, for: .normal)
-        
-        btnGoToOrder.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        btnGoToOrder.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
-        
-        //        btnGoToOrder.setTitles(text: "Go To Order", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .PlaceHolder))
+        self.btnGoToOrder.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.btnGoToOrder.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
         self.btnShare.addLeftIcon(image: UIImage(named: SHARE_ICON))
-        self.btnShare.setTitles(text: "Share", font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
-        self.btnDownload.addLeftIcon(image: UIImage(named: "download"))
-        self.btnDownload.setTitles(text: "Download", font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
-        self.btnSendAnotherComp.setTitles(text: "Send another comp", font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
-        self.btnDone.setTitles(text: "Done", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        
-        
-        
-        lblThanku.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
-        lblThanku.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        
-        lblComplimentry.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        lblComplimentry.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
-        
-        
-        lblticketDetail.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        lblticketDetail.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.btnShare.setTitles(text: SHARE, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
+        self.btnDownload.addLeftIcon(image: UIImage(named: DOWNLOAD_ICON))
+        self.btnDownload.setTitles(text: DOWNLOAD, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
+        self.btnSendAnotherComp.setTitles(text: SEND_ANOTHER_COMP, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
+        self.btnDone.setTitles(text: DONE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+        self.lblThanku.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
+        self.lblThanku.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblComplimentry.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblComplimentry.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblticketDetail.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
+        self.lblticketDetail.textColor = UIColor.setColor(colorType: .lblTextPara)
         
     }
 }
@@ -110,7 +95,7 @@ extension ManageSellTicketSuccessfully {
         }
     }
     func btnGoToOrderAction() {
-        self.showToast(message: "Amount added Successfully")
+        self.showToast(message: AMOUNT_ADDED_SUCCESSFULLY)
     }
     
    }

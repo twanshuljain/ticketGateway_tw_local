@@ -59,10 +59,10 @@ extension FavouriteVC{
     }
     
     func setNavigationBar() {
-        self.vwNavigationView.lblTitle.text = "Favourites"
+        self.vwNavigationView.lblTitle.text = FAVOURITE
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.vwNavigationView.imgBack.image = UIImage(named: "Menu")
+        self.vwNavigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigationView.btnBack.isHidden =  false
         self.vwNavigationView.delegateBarAction = self
     }

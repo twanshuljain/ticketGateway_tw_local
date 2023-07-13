@@ -39,17 +39,21 @@ class ScanQRVC: UIViewController {
 extension ScanQRVC {
     
     func setNavigationBar() {
+        self.lblScanTGQR.text = SCAN_TG_QR
         self.lblScanTGQR.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblScanTGQR.textColor = UIColor.setColor(colorType: .white)
+        
     }
     
     func setFont() {
+        self.lblPleaseAlignQR.text = PLEASE_ALIGN_QR
         self.lblPleaseAlignQR.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblPleaseAlignQR.textColor = UIColor.setColor(colorType: .TGBlue)
         
         self.btnScanWithImage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnScanWithImage.titleLabel?.textColor = UIColor.setColor(colorType: .white)
-        self.btnScanWithImage.addLeftIcon(image: UIImage(named: "image_ip"))
+        self.btnScanWithImage.addLeftIcon(image: UIImage(named: IMAGE_ICON_))
+        
     }
     
     func getCameraPreview(){
@@ -65,7 +69,7 @@ extension ScanQRVC {
             viewModel.captureSession.addInput(videoInput)
     } else {
     
-    showAlertController(message: "Your device doesn't support for scanning a QR code. Please use a device with a camera.")
+    showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
     return
     }
     let metadataOutput = AVCaptureMetadataOutput()
@@ -74,7 +78,7 @@ extension ScanQRVC {
     metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
     metadataOutput.metadataObjectTypes = [.qr]
     } else {
-        showAlertController(message: "Your device doesn't support for scanning a QR code. Please use a device with a camera.")
+        showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
     return
     }
         viewModel.previewLayer = AVCaptureVideoPreviewLayer(session: viewModel.captureSession)
@@ -124,7 +128,7 @@ extension ScanQRVC {
 //MARK: - Instance Method
 extension ScanQRVC {
     func setUI () {
-        [btnBack,btnFlash].forEach {
+        [btnBack,btnFlash,btnScanWithImage].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         }
     }
@@ -135,6 +139,8 @@ extension ScanQRVC {
             self.btnBackAction()
         case btnFlash:
             self.btnFlashAction()
+        case btnScanWithImage:
+            ImagePickerManager().openGallery(viewController: self)
         default:
             break
         }
@@ -144,9 +150,29 @@ extension ScanQRVC {
         self.navigationController?.popViewController(animated: true)
 
     }
-
+        
+//    func btnFlashAction() {
+//
+//    }
     func btnFlashAction() {
-       
+        let device = AVCaptureDevice.default(for: AVMediaType.video)
+        if ((device?.hasTorch) != nil) {
+            do {
+                try device?.lockForConfiguration()
+                if (device?.torchMode == AVCaptureDevice.TorchMode.on) {
+                    device?.torchMode = AVCaptureDevice.TorchMode.off
+                } else {
+                    do {
+                        try device?.setTorchModeOn(level: 1.0)
+                    } catch {
+                        print(error)
+                    }
+                }
+                device?.unlockForConfiguration()
+            } catch {
+                print(error)
+            }
+        }
     }
   
 }

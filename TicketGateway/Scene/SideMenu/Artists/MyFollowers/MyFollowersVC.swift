@@ -30,10 +30,10 @@ class MyFollowersVC: UIViewController {
 //MARK: - Functions
 extension MyFollowersVC{
     func setNavigationView() {
-        self.vwNavigationView.lblTitle.text = "My Followers"
+        self.vwNavigationView.lblTitle.text = MY_FOLLOWERS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize:   .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.vwNavigationView.imgBack.image = UIImage(named: "Menu")
+        self.vwNavigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.delegateBarAction = self
         // self.vwNavigationView.vwBorder.isHidden = false

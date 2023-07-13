@@ -65,11 +65,11 @@ extension MyTicketVC{
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "My Tickets"
+        self.vwNavigationView.lblTitle.text = MY_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.vwNavigationView.btnRight.isHidden = false
-        self.vwNavigationView.btnRight.setImage(UIImage(named: "menuDot_ip"), for: .normal)
+        self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
         self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
     }
     
@@ -78,15 +78,15 @@ extension MyTicketVC{
         self.vwDashedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [6,6])
         self.btnSeeFullTicket.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSeeFullTicket.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.btnSeeFullTicket.addRightIcon(image: UIImage(named: "chevron-down_ip"))
+        self.btnSeeFullTicket.addRightIcon(image: UIImage(named: CHEVRON_DOWN))
         
         self.btnSaveTicketAsImage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSaveTicketAsImage.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
-        self.btnSaveTicketAsImage.addLeftIcon(image: UIImage(named: "download_ip"))
+        self.btnSaveTicketAsImage.addLeftIcon(image: UIImage(named: DOWNLOAD_ICON_ORDER))
         
         self.btnAddAppToWallet.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnAddAppToWallet.titleLabel?.textColor = UIColor.setColor(colorType: .white)
-        self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: "Apple_Wallet_ip"))
+        self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: APPLE_WALLET_ICON))
         
     }
     

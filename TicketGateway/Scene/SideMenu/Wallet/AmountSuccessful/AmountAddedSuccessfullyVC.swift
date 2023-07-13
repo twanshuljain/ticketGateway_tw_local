@@ -31,13 +31,13 @@ extension AmountAddedSuccessfullyVC {
     func setUp(){
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Successful Added"
+        self.navigationView.lblTitle.text = SUCCESSFUL_ADDED
         self.navigationView.vwBorder.isHidden = false
         
         [self.btnOkey].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        btnOkey.setTitles(text: "Okay", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .PlaceHolder))
+        btnOkey.setTitles(text: OKAY, textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .PlaceHolder))
         lblThanku.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
         lblThanku.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
@@ -64,7 +64,7 @@ extension AmountAddedSuccessfullyVC {
         }
     }
     func btnOkeyAction() {
-        self.showToast(message: "Amount added Successfully")
+        self.showToast(message: AMOUNT_ADDED_SUCCESSFULLY)
     }
     
 }

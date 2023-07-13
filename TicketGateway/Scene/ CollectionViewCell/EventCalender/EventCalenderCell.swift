@@ -10,7 +10,6 @@ import UIKit
 class EventCalenderCell: UICollectionViewCell {
 
     @IBOutlet weak var lblDay: UILabel!
-   
     @IBOutlet weak var lblMonth_Year: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     

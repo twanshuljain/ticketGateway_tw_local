@@ -42,7 +42,7 @@ extension ChangeNameVC{
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Change name"
+        self.vwNavigationView.lblTitle.text = CHANGE_NAME
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
        
@@ -72,14 +72,14 @@ extension ChangeNameVC{
         
         self.btnSaveChanges.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSaveChanges.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.btnSaveChanges.addRightIcon(image: UIImage(named: "Save_ip"))
+        self.btnSaveChanges.addRightIcon(image: UIImage(named: SAVE_ICON))
         
         self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
-        self.lblFirstName.attributedText = getAttributedTextAction(attributedText: "*", firstString: "First Name ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblFirstName.attributedText = getAttributedTextAction(attributedText: "*", firstString: FIRST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
-        self.lblLastName.attributedText = getAttributedTextAction(attributedText: "*", firstString: "First Name ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblLastName.attributedText = getAttributedTextAction(attributedText: "*", firstString: LAST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
     }
 }
@@ -88,10 +88,10 @@ extension ChangeNameVC{
 extension ChangeNameVC{
     @IBAction func btnSaveChange(_ sender: Any) {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        view?.strTittle = "Ticket Name Changed"
+        view?.strTittle = TICKET_NAME_CHANGED
         view?.strComplimentry = "1 Ticket(S) with amount $100.00"
-        view?.strSummary = "Your ticket name has been successfully changed."
-        view?.btnStr = "Okay"
+        view?.strSummary = TICKET_NAME_SUCCESSFULLY_CHANGED
+        view?.btnStr = OKAY
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }

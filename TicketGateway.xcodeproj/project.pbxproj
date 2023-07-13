@@ -195,7 +195,6 @@
 		18A73E0029EED210007365CB /* VerifyPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73DFF29EED210007365CB /* VerifyPopupVC.swift */; };
 		18A73E0229EFB81C007365CB /* SignUpAuth_VerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0129EFB81C007365CB /* SignUpAuth_VerifyModel.swift */; };
 		18A73E0429EFBE76007365CB /* CheckInterNetConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0329EFBE76007365CB /* CheckInterNetConnectivity.swift */; };
-		18A73E0629EFBF5A007365CB /* StringConstantFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0529EFBF5A007365CB /* StringConstantFile.swift */; };
 		18A73E0829EFBF88007365CB /* CreateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0729EFBF88007365CB /* CreateAccountModel.swift */; };
 		18A73E0A29EFD5D7007365CB /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0929EFD5D7007365CB /* UserDefaultManager.swift */; };
 		18A73E0D29EFD651007365CB /* CommonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0C29EFD651007365CB /* CommonEnum.swift */; };
@@ -579,7 +578,6 @@
 		18A73DFF29EED210007365CB /* VerifyPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPopupVC.swift; sourceTree = "<group>"; };
 		18A73E0129EFB81C007365CB /* SignUpAuth_VerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAuth_VerifyModel.swift; sourceTree = "<group>"; };
 		18A73E0329EFBE76007365CB /* CheckInterNetConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInterNetConnectivity.swift; sourceTree = "<group>"; };
-		18A73E0529EFBF5A007365CB /* StringConstantFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstantFile.swift; sourceTree = "<group>"; };
 		18A73E0729EFBF88007365CB /* CreateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountModel.swift; sourceTree = "<group>"; };
 		18A73E0929EFD5D7007365CB /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		18A73E0C29EFD651007365CB /* CommonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEnum.swift; sourceTree = "<group>"; };
@@ -1833,7 +1831,6 @@
 			isa = PBXGroup;
 			children = (
 				187734E529E8324D00E26B65 /* GradientButton.swift */,
-				18A73E0529EFBF5A007365CB /* StringConstantFile.swift */,
 			);
 			path = GradientButton;
 			sourceTree = "<group>";
@@ -3171,7 +3168,6 @@
 				188CE1B02A1367C000BCEC76 /* TicketAddInOrderTableViewList.swift in Sources */,
 				186D6ADE29F65C5C00F6FA0C /* SocialSignInVC.swift in Sources */,
 				188A67FF2A0CF14F00987BAD /* TicketTypeListTableView.swift in Sources */,
-				18A73E0629EFBF5A007365CB /* StringConstantFile.swift in Sources */,
 				18AF9B9429E3E65800E4C70E /* SceneDelegate.swift in Sources */,
 				18B636A929F7B6B600DC14B8 /* LoginNmberWithEmailVC.swift in Sources */,
 				186FB94A2A402AF8002B0E5C /* WelcomeViewModel.swift in Sources */,

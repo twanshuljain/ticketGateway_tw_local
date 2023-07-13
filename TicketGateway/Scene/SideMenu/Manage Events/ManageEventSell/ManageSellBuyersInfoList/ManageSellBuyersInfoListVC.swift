@@ -48,7 +48,7 @@ extension ManageSellBuyersInfoListVC{
             
         }
           self.navigationView.delegateBarAction = self
-          self.navigationView.lblTitle.text = "Buyers info"
+          self.navigationView.lblTitle.text = BUYESR_INFO
           self.navigationView.lblDiscripation.isHidden = false
           self.navigationView.lblSeprator.isHidden = false
           self.navigationView.btnBack.isHidden = false
@@ -57,7 +57,7 @@ extension ManageSellBuyersInfoListVC{
           [self.btnAdd].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
           }
-        self.btnAdd.setTitles(text: "Add more buyers", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+        self.btnAdd.setTitles(text: ADD_MORE_BUYER, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
         self.btnAdd.addLeftIcon(image: UIImage(named: PLUS_ICON))
     }
 }

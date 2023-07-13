@@ -9,6 +9,8 @@ import UIKit
 
 class CancelEventTableViewCell: UITableViewCell {
     
+    //MARK: - OUTLETS
+
     @IBOutlet weak var btnSelect: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
 
@@ -18,7 +20,7 @@ class CancelEventTableViewCell: UITableViewCell {
     }
 
     func setFont() {
-        lblTitle.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+     self.lblTitle.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
     }
    
 }

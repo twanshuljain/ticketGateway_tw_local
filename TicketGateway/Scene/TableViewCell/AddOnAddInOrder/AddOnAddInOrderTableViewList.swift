@@ -8,7 +8,8 @@
 import UIKit
 
 class AddOnAddInOrderTableViewList: UITableView {
-    
+  
+//MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
@@ -52,8 +53,6 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
         
     }
     
-
-
     @objc func PlusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
         let indexPath = IndexPath(row: sender.tag, section: 0)
@@ -76,8 +75,5 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
             cell.vwStepper.lblCount.text = "0"
         }
     }
-    
-    
-    
-    
+  
 }

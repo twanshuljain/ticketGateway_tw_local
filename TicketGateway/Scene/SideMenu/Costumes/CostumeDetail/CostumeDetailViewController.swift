@@ -68,7 +68,7 @@ class CostumeDetailViewController: UIViewController {
 //MARK: - Functions
 extension CostumeDetailViewController{
     func setNavigaionBar() {
-        vwNavigationBar.lblTitle.text = "Costume Details"
+        vwNavigationBar.lblTitle.text = COSTUME_DETAILS
         vwNavigationBar.delegateBarAction = self
         vwNavigationBar.btnBack.isHidden = false
         vwNavigationBar.vwBorder.isHidden = false
@@ -102,34 +102,40 @@ extension CostumeDetailViewController{
     }
     
     func setUI() {
+        
         lblDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
-        lblLocation.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        lblLocation.text = Parade_Location
+        lblLocation.font =  UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblLocation.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblAddress.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblJuniorCarnival.text = Junior_Carnival
         lblJuniorCarnival.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         lblJuniorCarnival.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblMasCamp.text = Mas_Camp_Location
         lblMasCamp.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblMasCamp.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         lblSanFernado.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         lblSanFernado.textColor = UIColor.setColor(colorType: .Headinglbl)
+        lblMon.text = LBL_MON
         lblMon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblMon.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblMonTime.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblMonTime.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblSat.text = LBL_SAT
         lblSat.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblSat.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblSatTime.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblSatTime.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+        lblBandLeader.text = Band_Leader
         lblBandLeader.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblBandLeader.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         lblDj.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         lblDj.textColor = UIColor.setColor(colorType: .TGBlue)
         btnContact.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnContact.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        
+        lblSectionLeader.text = Section_Leader
         lblSectionLeader.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblSectionLeader.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
@@ -142,11 +148,13 @@ extension CostumeDetailViewController{
         btnContactSectionLeader.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnContactSectionLeader.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
-      
+        lblVideo.text = VIDEOS
         lblVideo.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblVideo.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblPhotos.text = PHOTOS
         lblPhotos.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblPhotos.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblSimilarProduct.text = SIMILAR_PRODUCT
         lblSimilarProduct.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblSimilarProduct.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
@@ -154,7 +162,7 @@ extension CostumeDetailViewController{
 
         btnRegisterNow.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnRegisterNow.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        btnRegisterNow.addRightIcon(image: UIImage(named: "LeftArrow_ip"))
+        btnRegisterNow.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         
       //  lblVideoTime.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
        // lblVideoTime.textColor = UIColor.setColor(colorType: .white)

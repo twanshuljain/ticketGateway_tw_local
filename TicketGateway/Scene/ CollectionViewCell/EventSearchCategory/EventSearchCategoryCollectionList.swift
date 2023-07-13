@@ -8,11 +8,13 @@
 import UIKit
 
 class EventSearchCategoryCollectionList: UICollectionView {
+   
+//MARK: - Variables
     var selectedIndex = -1
     var isFromCategory = false
     var collVwDidSelectAtIndex: ((GetEventCategoryModel) -> Void)?
-    
     var arrData = [GetEventCategoryModel]()
+    
     func configure() {
         self.register(UINib(nibName: "EventSearchCategoryCell", bundle: nil), forCellWithReuseIdentifier: "EventSearchCategoryCell")
         self.delegate = self
@@ -20,6 +22,8 @@ class EventSearchCategoryCollectionList: UICollectionView {
     }
 
 }
+
+//MARK: - UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -40,10 +44,10 @@ extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UIColl
          if selectedIndex == indexPath.row{
              cell?.vwBg.backgroundColor = UIColor.setColor(colorType: .lightBlack)
              cell?.lblTittle.textColor = UIColor.setColor(colorType: .white)
-             cell?.imgArrow.image = UIImage(named: "arrow_down_white")
+             cell?.imgArrow.image = UIImage(named: ARROW_DOWN_WHITE_ICON)
         } else {
              cell?.vwBg.backgroundColor = .clear
-             cell?.imgArrow.image = UIImage(named: "arrow_down_black")
+             cell?.imgArrow.image = UIImage(named: ARROW_DOWN_BLACK_ICON)
 
              if  isFromCategory == true {
                  cell?.lblTittle.textColor = UIColor.setColor(colorType: .lightBlack)

@@ -33,13 +33,13 @@ class Organizers_Artists_ListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if self.isFrom == "Organizers" {
-            self.navigationView.lblTitle.text = "Organizers"
-            self.lblTittle.text = "Trending organizers"
-            self.lblSuggested.text = "Suggested for you"
+            self.navigationView.lblTitle.text = ORGANISER
+            self.lblTittle.text = TRENDING_ORGANISER
+            self.lblSuggested.text = SUGGESTED_FOR_YOU
         } else {
-            self.navigationView.lblTitle.text = "Artists"
-            self.lblTittle.text = "Trending Artists"
-            self.lblSuggested.text = "Suggested for you"
+            self.navigationView.lblTitle.text = ARTISTS
+            self.lblTittle.text = TRENDING_ARTISTS
+            self.lblSuggested.text = SUGGESTED_FOR_YOU
         }
     }
 }
@@ -57,7 +57,7 @@ extension Organizers_Artists_ListVC {
         self.collVwTrending_Artists.configure()
         self.navigationView.delegateBarAction = self
        
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
@@ -68,8 +68,8 @@ extension Organizers_Artists_ListVC {
         self.lblTittle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblSuggested.font = UIFont.setFont(fontType: .bold, fontSize: .eighteen)
         self.lblSuggested.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.btnSeeAll.setTitles(text: "See all", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnSeeAllForSuggested.setTitles(text: "See all", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnSeeAll.setTitles(text: SEE_ALL , font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnSeeAllForSuggested.setTitles(text: SEE_ALL , font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
       
     }
 }
@@ -110,9 +110,9 @@ extension Organizers_Artists_ListVC {
         }
     
     func btnSeeAllSuggestedAction() {
-        let vc = createView(storyboard: .sidemenu, storyboardID: .MyFollowersVC)
-        self.navigationController?.pushViewController(vc, animated:     true)
-        
+//        let vc = createView(storyboard: .sidemenu, storyboardID: .MyFollowersVC)
+//        self.navigationController?.pushViewController(vc, animated:     true)
+//        
         
         if Reachability.isConnectedToNetwork(){
         //    SVProgressHUD.show()

@@ -33,7 +33,7 @@ class ManageEventEditProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        // Do any additional setup after loading the view.
+        
     }
 }
 // MARK: - Functions
@@ -47,13 +47,13 @@ extension ManageEventEditProfileVC {
         self.txtFullName.delegate = self
         self.txtMobileNumber.delegate = self
         self.txtEmailAddress.delegate = self
-        self.btnCancel.setTitles(text: "Cancel", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TiitleColourDarkBlue))
-        self.btnContinue.setTitles(text: "Save Changes", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        btnContinue.addRightIcon(image: UIImage(named: "Save"))
-        navigationView.lblTitle.text = "Edit Profile"
-        navigationView.btnBack.isHidden = false
-        navigationView.lblSeprator.isHidden = false
-        navigationView.delegateBarAction = self
+        self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TiitleColourDarkBlue))
+        self.btnContinue.setTitles(text: SAVE_CHANGES, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+        self.btnContinue.addRightIcon(image: UIImage(named: SAVE_ICON))
+        self.navigationView.lblTitle.text = EDIT_PROFILE
+        self.navigationView.btnBack.isHidden = false
+        self.navigationView.lblSeprator.isHidden = false
+        self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
         
         self.setIntialUiDesign()

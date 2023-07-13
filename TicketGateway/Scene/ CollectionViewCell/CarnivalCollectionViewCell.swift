@@ -14,12 +14,12 @@ class CarnivalCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setFont()
+        self.setFont()
     }
     
     func setFont() {
-        lblCarnival.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        lblCarnival.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblCarnival.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
+        self.lblCarnival.textColor = UIColor.setColor(colorType: .Headinglbl)
         self.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
     }
 }

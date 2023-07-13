@@ -8,10 +8,12 @@
 import UIKit
 
 class TicketAddInOrderTableViewList: UITableView {
-    
+   
+//MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
+    
     func configure() {
         self.register(UINib(nibName: "TicketAddInOrderCell", bundle: nil), forCellReuseIdentifier: "TicketAddInOrderCell")
         self.delegate = self

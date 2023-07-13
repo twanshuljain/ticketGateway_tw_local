@@ -9,6 +9,7 @@ import UIKit
 
 class SideMenuCell: UITableViewCell {
     
+//MARK: - OUTLETS
     @IBOutlet weak var vwBg: UIView!
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var lblDiscripation: UILabel!
@@ -19,13 +20,6 @@ class SideMenuCell: UITableViewCell {
         self.setUi()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     func setUi(){
         self.lblTittle.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblTittle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)

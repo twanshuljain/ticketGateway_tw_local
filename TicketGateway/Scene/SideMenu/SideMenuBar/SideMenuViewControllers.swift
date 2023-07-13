@@ -24,7 +24,7 @@ class SideMenuViewControllers: UIViewController{
         self.setUi()
         self.tblList.configure()
         self.setUpTableView()
-        self.funcSetProfile()
+     //   self.funcSetProfile()
         self.addTapGesture()
     }
     
@@ -37,6 +37,15 @@ class SideMenuViewControllers: UIViewController{
 //MARK: - Functions
 extension SideMenuViewControllers{
     func setUi(){
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            lblName.text = "Guest"
+            lblProfileview.text = "Login"
+            btnChangeProfile.setImage(UIImage(named: "chevron-right_ip"), for: .normal)
+           
+        } else {
+            lblName.text = "fnghgg"
+            lblProfileview.text = "Profile View"
+        }
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblProfileview.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
@@ -48,10 +57,12 @@ extension SideMenuViewControllers{
         self.lblProfileview.addGestureRecognizer(gesture)
       }
       @objc func navigateToProfile(_ sender: UITapGestureRecognizer) {
-        // handling code
-        let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC)
-        self.navigationController?.pushViewController(vc, animated: false)
-      }
+          // handling code
+           if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC{
+             vc.isComingFromOranizer = true
+             self.navigationController?.pushViewController(vc, animated: false)
+           }
+         }
     
     func setUpTableView(){
         self.tblList.isFromManageEvent = false
@@ -133,6 +144,12 @@ extension SideMenuViewControllers{
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .Reward_LoyaltyPointsVC) as? Reward_LoyaltyPointsVC
                 self.navigationController?.pushViewController(view!, animated: true)
             }
+            else if obj.title == "My Followers" {
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .MyFollowersVC) as? MyFollowersVC
+                self.navigationController?.pushViewController(view!, animated: true)
+            }
+            
+            
             else if obj.title == "Orders" {
                 let vc = self.createView(storyboard: .order, storyboardID: .MyOrderViewController)
                 self.navigationController?.pushViewController(vc, animated: false)

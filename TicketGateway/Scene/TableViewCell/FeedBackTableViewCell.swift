@@ -8,7 +8,8 @@
 import UIKit
 
 class FeedBackTableViewCell: UITableViewCell {
-    
+
+    //MARK: - OUTLETS
     @IBOutlet weak var lblFeedback:UILabel!
     @IBOutlet weak var btnThumbsUp:UIButton!
     @IBOutlet weak var btnThumbsDown:UIButton!
@@ -34,9 +35,5 @@ class FeedBackTableViewCell: UITableViewCell {
         lblFeedback.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblFeedback.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+ 
 }

@@ -19,11 +19,11 @@ class ExpandableNames {
 
 class TransactionListTableView: UITableView {
     
+//MARK: - Variables
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
     var isFrom = ""
-    
     var arrData = [ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),

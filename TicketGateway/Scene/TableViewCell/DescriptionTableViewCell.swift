@@ -9,6 +9,7 @@ import UIKit
 
 class DescriptionTableViewCell: UITableViewCell {
     
+    //MARK: - OUTLETS
     @IBOutlet weak var lblDescription:UILabel!
 
     override func awakeFromNib() {

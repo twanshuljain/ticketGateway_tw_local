@@ -51,8 +51,8 @@ class EventSearchHomeVC: UIViewController, UITextFieldDelegate {
            
         }
         self.collVwEventSubCategory.collectionViewLayout = createLeftAlignedLayout()
-        self.btnShowResult.setTitles(text: "Show Results", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-        self.btnReset.setTitles(text: "Reset", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnShowResult.setTitles(text: SHOW_RESULT, font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
+        self.btnReset.setTitles(text: RESET, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
         self.viewModel.funcCallApi(vc: self)
         self.funcSetDropDown()
     }

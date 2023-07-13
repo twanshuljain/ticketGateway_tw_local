@@ -63,23 +63,23 @@ extension ManageEventCheckInVC {
     func setFont() {
         self.btnScanQR.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnScanQR.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.btnScanQR.addLeftIcon(image: UIImage(named: "scan"))
+        self.btnScanQR.addLeftIcon(image: UIImage(named: SCAN_ICON))
         self.btnStats.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnStats.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.btnStats.addLeftIcon(image: UIImage(named: "bar-chart"))
+        self.btnStats.addLeftIcon(image: UIImage(named: BAR_CHART_ICON))
     }
     
     func setNavigationBar() {
         self.vwNavighationView.delegateBarAction = self
         self.vwNavighationView.btnBack.isHidden = false
-        self.vwNavighationView.lblTitle.text = "Sunburn Reload NYE - Toronto"
+        self.vwNavighationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.vwNavighationView.lblDiscripation.isHidden = false
         self.vwNavighationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavighationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.vwNavighationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
+        self.vwNavighationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.vwNavighationView.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.vwNavighationView.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.vwNavighationView.imgBack.image = UIImage(named: "Menu")
+        self.vwNavighationView.imgBack.image = UIImage(named: MENU_ICON)
     }
     
 }

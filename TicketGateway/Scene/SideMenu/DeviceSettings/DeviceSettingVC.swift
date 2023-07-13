@@ -41,10 +41,10 @@ class DeviceSettingVC: UIViewController {
 extension DeviceSettingVC {
     private func setup() {
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Device settings"
+        self.navigationView.lblTitle.text = DEVICE_SETTINGS
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.vwBorder.isHidden = false
         [self.btnfaceId,self.btnFeedback,self.btnRateUs,self.btnhowToUseApp,self.btnchageAvtarImage,self.btnEmailId].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)

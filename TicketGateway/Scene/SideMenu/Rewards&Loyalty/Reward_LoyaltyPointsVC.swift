@@ -40,8 +40,8 @@ extension Reward_LoyaltyPointsVC {
         self.tbllatest.isFrom = "Refunds"
         self.tblHistory.configure()
         self.tblHistory.isFrom = "Refunds"
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
-          self.navigationView.lblTitle.text = "Rewards & Loyalty Points"
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
+          self.navigationView.lblTitle.text = REWARDS_LOYALTY_POINTS
           self.navigationView.btnBack.isHidden = false
           self.navigationView.delegateBarAction = self
           self.navigationView.vwBorder.isHidden = false
@@ -51,7 +51,7 @@ extension Reward_LoyaltyPointsVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.txtmonths.optionArray = ["Jan", "Feb", "Mar","April"]
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.txtmonths.optionIds = [1,23,54,22]
         self.txtmonths.didSelect{(selectedText , index ,id) in
         self.txtmonths.text = "\(selectedText)\(index)"

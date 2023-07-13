@@ -55,7 +55,7 @@ extension RequestRefundVC {
     func setFont() {
         self.btnProcssRefund.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnProcssRefund.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.btnProcssRefund.addRightIcon(image: UIImage(named: "LeftArrow_ip"))
+        self.btnProcssRefund.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.lblNeedRefundAmount.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
@@ -69,15 +69,15 @@ extension RequestRefundVC {
     func setRefundRequestButton() {
         if isRefundAll == true {
          
-            self.btnRefundAll.setImage(UIImage(named: "active"), for: .normal)
-            self.btnRefundIndividual.setImage(UIImage(named: "Unselected_ip"), for: .normal)
+            self.btnRefundAll.setImage(UIImage(named: ACTIVE_ICON), for: .normal)
+            self.btnRefundIndividual.setImage(UIImage(named: UNSELECTED_ICON), for: .normal)
           self.lblRefundAll.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             self.lblRefundAll.textColor = UIColor.setColor(colorType: .lblTextPara);        self.lblRefundIndividual.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
            self.lblRefundIndividual.textColor = UIColor.setColor(colorType: .lblTextPara)
             
         } else {
-            self.btnRefundAll.setImage(UIImage(named: "Unselected_ip"), for: .normal)
-            self.btnRefundIndividual.setImage(UIImage(named: "active"), for: .normal)
+            self.btnRefundAll.setImage(UIImage(named: UNSELECTED_ICON), for: .normal)
+            self.btnRefundIndividual.setImage(UIImage(named: ACTIVE_ICON), for: .normal)
            self.lblRefundAll.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             self.lblRefundAll.textColor = UIColor.setColor(colorType: .lblTextPara)
             self.lblRefundIndividual.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -87,11 +87,11 @@ extension RequestRefundVC {
     func setNavigationView() {
        self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Request Refund"
+        self.vwNavigationView.lblTitle.text = REQUEST_REFUND
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.vwNavigationView.lblDiscripation.isHidden = false
-        self.vwNavigationView.lblDiscripation.text = "Sale #32926471 Mangesh Yahoo"
+        self.vwNavigationView.lblDiscripation.text = SALE_NUMBER
         self.vwNavigationView.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.vwNavigationView.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
 
@@ -125,10 +125,10 @@ extension RequestRefundVC {
     }
     func btnProcssRefundAction(){
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        view?.strTittle = "Refund Successfull"
+        view?.strTittle = REFUND_SUCCESSFULL
         view?.strComplimentry = "1 Ticket(S) with amount $300.00"
         view?.strSummary = "Ticket for Order Id #32916222 has been successfully refunded in your TG Wallet"
-        view?.btnStr = "Okay"
+        view?.btnStr = OKAY
     self.navigationController?.pushViewController(view!, animated: true)
     }
 
@@ -231,17 +231,17 @@ extension RequestRefundVC: UITableViewDelegate, UITableViewDataSource {
         headerView.btnUp.addTarget(self, action: #selector(nextBtn(sender:)), for: .touchUpInside)
         let obj = arrData[section]
         if isRefundAll == true {
-            headerView.btnCheck.setImage(UIImage(named: "active_ip"), for: .normal)
+            headerView.btnCheck.setImage(UIImage(named: ACTIVE_ICON_SQUARE), for: .normal)
         } else {
-            let img = obj.isSelected ? "active_ip" : "uncheck_ip"
+            let img = obj.isSelected ? ACTIVE_ICON_SQUARE : "uncheck_ip"
             headerView.btnCheck.setImage(UIImage(named: img), for: .normal)
         }
       
         if obj.isExpanded == true {
-            headerView.btnUp.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
+            headerView.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_UP_ICON), for: .normal)
             headerView.headerBottomLine.isHidden = true
         }else {
-            headerView.btnUp.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
+            headerView.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_DOWN_ICON), for: .normal)
             headerView.headerBottomLine.isHidden = false
         }
         

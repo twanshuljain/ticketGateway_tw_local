@@ -33,7 +33,7 @@ class FeedbackViewController: UIViewController {
 // MARK: - Functions
 extension FeedbackViewController{
     func setNavigationBar() {
-        self.vwNavigatioView.lblTitle.text = "Feedback"
+        self.vwNavigatioView.lblTitle.text = FEEDBACK
         self.vwNavigatioView.delegateBarAction = self
         self.vwNavigatioView.btnBack.isHidden = false
         self.vwNavigatioView.vwBorder.isHidden = false

@@ -9,6 +9,7 @@ import UIKit
 
 class suggestedOrganizerCell: UICollectionViewCell {
     
+//MARK: - Outlets
     @IBOutlet weak var vwImgProfile: UIView!
     @IBOutlet weak var btnFollerwers: CustomButtonGradiant!
     @IBOutlet weak var imgProfile: UIImageView!

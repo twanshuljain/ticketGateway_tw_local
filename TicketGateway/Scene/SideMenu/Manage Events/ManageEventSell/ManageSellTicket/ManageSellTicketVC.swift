@@ -48,28 +48,28 @@ extension ManageSellTicketVC {
         self.tblEventTicketTypes.isFromSellTab = true
         self.tblEventTicketTypes.configure()
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
+        self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.isHidden = false
-        self.navigationView.lblDiscripation.text = "Saturday, March 18 • 6:00 AM"
+        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.delegateBarAction = self
         [self.btnBuy,self.btnCard,self.btnCash,self.btnmenu,self.btnViewCart,self.btnPromoCode,self.btnAddCustomerInfo,self.btnComplimentary,self.btnCancel].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        self.btnBuy.setTitles(text: "Buy Now", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        self.btnCard.addLeftIcon(image: UIImage(named: "credit-card"))
-        self.btnCard.setTitles(text: "Card", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .white))
+        self.btnBuy.setTitles(text: BUY_NOW, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+        self.btnCard.addLeftIcon(image: UIImage(named: CREDIT_CARD_ICON))
+        self.btnCard.setTitles(text: CARD, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .white))
         self.btnCard.backgroundColor = UIColor.setColor(colorType: .lightBlack)
-        self.btnCash.addLeftIcon(image: UIImage(named: "dollar-sign"))
-        self.btnCash.setTitles(text: "Cash", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .white))
+        self.btnCash.addLeftIcon(image: UIImage(named: DOLLAR_ICON))
+        self.btnCash.setTitles(text: CASH, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .white))
         self.btnCash.backgroundColor = UIColor.setColor(colorType: .lightBlack)
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
-        self.btnViewCart.setTitles(text: "View Cart", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnAddCustomerInfo.setTitles(text: "Add customer info", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnPromoCode.setTitles(text: "Promo Code", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnComplimentary.setTitles(text: "Complimentary", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnCancel.setTitles(text: "Cancel", font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
+        self.btnViewCart.setTitles(text: VIEW_CART, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnAddCustomerInfo.setTitles(text: ADD_CUSTOMER_INFO, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnPromoCode.setTitles(text: PROMO_CODE, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnComplimentary.setTitles(text: COMPLIMENTRY, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
       }
 }
 

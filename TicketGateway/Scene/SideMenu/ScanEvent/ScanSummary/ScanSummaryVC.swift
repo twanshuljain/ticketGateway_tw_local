@@ -62,7 +62,7 @@ extension ScanSummaryVC {
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Scan Summary"
+        self.vwNavigationView.lblTitle.text = SCAN_SUMMARY
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.vwNavigationView.vwBorder.isHidden = false
@@ -107,7 +107,7 @@ extension ScanSummaryVC {
         self.btnDownloadReport.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnDownloadReport.titleLabel?.textColor = UIColor.setColor(colorType: .white)
         self.btnDownloadReport.setImage(UIImage(named: ""), for: .normal)
-        self.btnDownloadReport.addRightIcon(image: UIImage(named: "downloadwhite_ip"))
+        self.btnDownloadReport.addRightIcon(image: UIImage(named: DOWNLOAD_WHITE_ICON))
         
         self.btnUpdateLiveOnServer.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnUpdateLiveOnServer.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)

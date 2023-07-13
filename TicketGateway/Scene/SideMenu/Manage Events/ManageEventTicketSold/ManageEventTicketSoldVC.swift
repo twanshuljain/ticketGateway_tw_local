@@ -29,7 +29,7 @@ class ManageEventTicketSoldVC: UIViewController {
 extension ManageEventTicketSoldVC{
     func setup(){
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Ticket Sold"
+        self.navigationView.lblTitle.text = TICKET_SOLD
         self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
     }

@@ -9,6 +9,7 @@ import UIKit
 
 class InstallmentTableViewCell: UITableViewCell {
     
+//MARK: - Outltes
     @IBOutlet weak var lblDownPayment: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
@@ -17,7 +18,7 @@ class InstallmentTableViewCell: UITableViewCell {
     @IBOutlet weak var bgView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        setFont()
+        self.setFont()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,14 +27,14 @@ class InstallmentTableViewCell: UITableViewCell {
     }
     
     func setFont() {
-        lblDownPayment.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblDownPayment.textColor = UIColor.setColor(colorType: .TGBlack)
-        lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        lblTime.textColor = UIColor.setColor(colorType: .lblTextPara)
-        lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblPrice.textColor = UIColor.setColor(colorType: .TGBlack)
-        lblCAD.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        lblCAD.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblDownPayment.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.lblDownPayment.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        self.lblTime.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblCAD.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        self.lblCAD.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     
 }

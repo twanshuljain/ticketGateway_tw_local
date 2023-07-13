@@ -9,6 +9,7 @@ import UIKit
 
 class TransactionsListCell: UITableViewCell {
 
+//MARK: - Outlets
     @IBOutlet weak var vwCreditDebit: UIView!
     @IBOutlet weak var btnOpen: UIButton!
     @IBOutlet weak var lblTittle: UILabel!
@@ -19,14 +20,12 @@ class TransactionsListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUi()
-        // Initialization code
+        self.setUi()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     func setUi(){
         self.lblTittle.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)

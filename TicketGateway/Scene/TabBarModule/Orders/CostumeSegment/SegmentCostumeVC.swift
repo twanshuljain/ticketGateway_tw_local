@@ -18,9 +18,16 @@ class SegmentCostumeVC: ViewController {
     @IBOutlet weak var lblYear: UILabel!
     @IBOutlet weak var segmentcontrol: UISegmentedControl!
     @IBOutlet weak var tblCostume: UITableView!
+    @IBOutlet weak var vwPopUp: customSocialLoginView!
+    @IBOutlet weak var btnMonth: UIButton!
+    @IBOutlet weak var lblMonth: UILabel!
+    @IBOutlet weak var btnYear: UIButton!
+    @IBOutlet weak var lblPopYear: UILabel!
+    @IBOutlet weak var btnDate: UIButton!
+    @IBOutlet weak var lblDate: UILabel!
    
     //MARK: - Variables
-    let tableData = ["costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip"]
+    let tableData = ["costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip" ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +41,8 @@ class SegmentCostumeVC: ViewController {
 //MARK: - Functions
 extension SegmentCostumeVC{
     func setNavigationView() {
-        self.vwNavigationBar.lblTitle.text = "My Orders"
-        self.vwNavigationBar.imgBack.image = UIImage(named: "Menu")
+        self.vwNavigationBar.lblTitle.text = MY_ORDERS
+        self.vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigationBar.btnBack.isHidden = false
         self.vwNavigationBar.delegateBarAction = self
 
@@ -51,12 +58,24 @@ extension SegmentCostumeVC{
     
     func setFont() {
         self.segmentcontrol.selectedSegmentIndex = 1
+        self.vwPopUp.isHidden = true
         self.segmentBgView.addBottomShadow()
-        self.btnFilter.addLeftIcon(image: UIImage(named: "ic-Filter"))
+        self.btnFilter.addLeftIcon(image: UIImage(named: FILTER))
         self.lblYear.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblYear.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.btnFilter.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblMonth.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblMonth.textColor = UIColor.setColor(colorType: .lblTextPara)
+        
+        self.lblPopYear.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblPopYear.textColor = UIColor.setColor(colorType: .lblTextPara)
+        
+        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
+        [btnFilter].forEach {
+            $0?.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
+        }
     }
     
 }
@@ -74,6 +93,21 @@ extension SegmentCostumeVC{
         }
        
     }
+    
+    @objc func buttonPressed(sender: UIButton) {
+        switch sender {
+        case btnFilter:
+            self.filterAction()
+            
+        default:
+            break
+        }
+    }
+    
+    func filterAction() {
+        vwPopUp.isHidden = !vwPopUp.isHidden
+    }
+    
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -90,9 +124,9 @@ extension SegmentCostumeVC: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.createView(storyboard: .order, storyboardID: .MyTicketVC)

@@ -9,6 +9,7 @@ import UIKit
 
 class OtherBrandLeaderCollectionViewCell: UICollectionViewCell {
     
+//MARK: - Outlets
     @IBOutlet weak var imgBrandLeader:UIImageView!
 
     override func awakeFromNib() {

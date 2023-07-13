@@ -31,12 +31,22 @@ class OtpNumberVC: UIViewController {
      override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        // Do any additional setup after loading the view.
-    }
+         self.setText()
+
+     }
 }
 
 // MARK: - Functions
 extension OtpNumberVC {
+    
+    func setText() {
+        lblSentVerification.text = SENT_VERIFICATION_CODE_TO
+        lblApplyAuto.text = AUTO_APPLY
+    }
+    
+    
+    
+    
     private func setup() {
         [self.btnContinue,self.btnResendOtp].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -44,9 +54,9 @@ extension OtpNumberVC {
         [self.txtOtp1,self.txtOtp2,self.txtOtp3,self.txtOtp4].forEach{$0?.delegate = self}
         [self.txtOtp1,self.txtOtp2,self.txtOtp3,self.txtOtp4].forEach{$0?.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)}
         navigationView.delegateBarAction = self
-        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        navigationView.lblTitle.text = "OTP Verification"
+        navigationView.lblTitle.text = OTP_VERIFICATION
         navigationView.btnBack.isHidden = false
         navigationView.delegateBarAction = self
         
@@ -110,7 +120,7 @@ extension OtpNumberVC {
     
     func btnContinueAction() {
         if self.txtOtp1.text ?? "" == "" || self.txtOtp2.text ?? "" == "" || self.txtOtp3.text ?? "" == "" || self.txtOtp4.text ?? "" == "" {
-            self.showToast(message: "Please enter otp")
+            self.showToast(message: PLEASE_ENTER_OTP)
         } else {
             let otp = "\(self.txtOtp1.text ?? "")" + "\(self.txtOtp2.text ?? "")" + "\(self.txtOtp3.text ?? "")" + "\(self.txtOtp4.text ?? "")"
             self.viewModel.otp = otp

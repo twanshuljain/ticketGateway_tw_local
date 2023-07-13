@@ -39,7 +39,8 @@ class APIHandler: NSObject {
   private let session = URLSession.shared
   private let baseURL = "http://3.145.128.211/"
   private let boundary = "Boundary-\(NSUUID().uuidString)"
-  func executeRequestWith<T: Decodable, U: Encodable>(of type: T.Type = T.self, apiName: APIName, parameters: U?, methodType: MethodType, authRequired: Bool = true, complition: @escaping(Result<ResponseModal<T>, Error>) -> Void) {
+  
+    func executeRequestWith<T: Decodable, U: Encodable>(of type: T.Type = T.self, apiName: APIName, parameters: U?, methodType: MethodType, authRequired: Bool = true, complition: @escaping(Result<ResponseModal<T>, Error>) -> Void) {
     
     let finalURL = baseURL + apiName.rawValue
     guard let requestURL = URL(string: finalURL) else {

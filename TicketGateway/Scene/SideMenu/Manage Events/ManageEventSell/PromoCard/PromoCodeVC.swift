@@ -25,8 +25,8 @@ class PromoCodeVC: UIViewController {
 // MARK: - Functions
 extension PromoCodeVC{
     func setUp() {
-        self.btnApply.setTitles(text: "Apply", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        self.navigationView.lblTitle.text = "Promo code"
+        self.btnApply.setTitles(text: APPLY, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+        self.navigationView.lblTitle.text = PROMO_CODE
         self.navigationView.btnBack.isHidden = false
         self.navigationView.imgBack.image = UIImage(named: X_ICON)
         self.navigationView.btnRight.isHidden = false

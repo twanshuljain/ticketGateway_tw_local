@@ -26,10 +26,10 @@ extension NotificationVC {
     private func setup() {
          self.tblNotification.configure()
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Notifications"
+        self.navigationView.lblTitle.text = NOTIFICATIONS
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.imgBack.image = UIImage(named: "Menu")
+        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.vwBorder.isHidden = false
        
     }

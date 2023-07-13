@@ -37,6 +37,13 @@ class LoginVC: UIViewController{
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
      @IBOutlet weak var btnEye: UIButton!
+    @IBOutlet weak var lblSignIn: UILabel!
+    @IBOutlet weak var lblSignInWith: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var lblMobileNumber: UILabel!
+    @IBOutlet weak var lblPleaseEnterMobileNumber: UILabel!
+    @IBOutlet weak var lblDontHaveAnAccount: UILabel!
+    
     
     // MARK: - Variable
     var viewModel = SignInViewModel()
@@ -48,6 +55,7 @@ class LoginVC: UIViewController{
         self.viewModel = SignInViewModel(vc: self)
         self.setup()
         self.setIntialUiDesign()
+        self.setUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,6 +65,21 @@ class LoginVC: UIViewController{
 
 // MARK: - Functions
 extension LoginVC {
+    
+    func setUI() {
+        self.lblSignIn.text = LBL_SIGN_IN
+        self.lblSignInWith.text = LBL_OR_SIGNIN_WITH
+        self.lblEmail.text = EMAIL
+        self.lblMobileNumber.text = MOBILE_NUMBER
+        self.lblPleaseEnterMobileNumber.text = PLEASE_ENTER_YOUR_MOBILE_NUMBER_DDESCRIPTION
+        self.lblDontHaveAnAccount.text = DONT_HAVE_AN_ACCOUNT
+    }
+    
+    
+    
+    
+    
+    
     private func setup() {
         self.viewModel.countries = self.jsonSerial()
         self.collectCountries()
@@ -72,9 +95,9 @@ extension LoginVC {
         self.vwNumber.layer.borderColor = UIColor.lightGray.cgColor
         self.isFromNumberOrEmailUI()
         self.btnLogin.setTitles(text: TITLE_LOGIN, font: .systemFont(ofSize: 14), tintColour: .black)
-        self.btnEye.setImage(UIImage(named: "eyeClose"), for: .normal)
+        self.btnEye.setImage(UIImage(named: EYE_CLOSE), for: .normal)
         self.txtPassword.isSecureTextEntry = true
-        self.btnLogin.addRightIcon(image: UIImage(named: RIGHT_BUTTON_ICON))
+        self.btnLogin.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
     }
     func isFromNumberOrEmailUI(){
         if viewModel.isFromNumberOrEmail == true {
@@ -82,8 +105,8 @@ extension LoginVC {
             self.vwPassword.isHidden = false
             self.vwNumber.isHidden = true
             self.vwNumberHeading.isHidden = true
-            self.imgEmail.image = UIImage(named: "active")
-            self.imgNumber.image = UIImage(named: "unActive")
+            self.imgEmail.image = UIImage(named: ACTIVE_ICON)
+            self.imgNumber.image = UIImage(named: UNACTIVE_ICON)
             self.txtEmail.text = ""
             self.txtPassword.text = ""
             self.viewModel.isForEmail = true
@@ -92,13 +115,14 @@ extension LoginVC {
             self.vwPassword.isHidden = true
             self.vwNumber.isHidden = false
             self.vwNumberHeading.isHidden = false
-            self.imgEmail.image = UIImage(named: "unActive")
-            self.imgNumber.image = UIImage(named: "active")
+            self.imgEmail.image = UIImage(named: UNACTIVE_ICON)
+            self.imgNumber.image = UIImage(named: ACTIVE_ICON)
             self.txtNumber.text = ""
             self.viewModel.isForEmail = false
            
         }
     }
+    
 }
 // MARK: - Actions
 extension LoginVC {
@@ -128,11 +152,11 @@ extension LoginVC {
     }
     func btnEyeAction(){
         if self.txtPassword.isSecureTextEntry == false{
-            self.btnEye.setImage(UIImage(named: "eyeClose"), for: .normal)
+            self.btnEye.setImage(UIImage(named: EYE_CLOSE), for: .normal)
             self.txtPassword.isSecureTextEntry = true
         }
         else {
-            self.btnEye.setImage(UIImage(named: "eyeOpen"), for: .normal)
+            self.btnEye.setImage(UIImage(named: EYE_OPEN), for: .normal)
             self.txtPassword.isSecureTextEntry = false
         }
     }

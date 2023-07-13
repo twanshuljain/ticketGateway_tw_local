@@ -51,20 +51,20 @@ extension ManageSellAddBuyerVC {
         self.txtMobileNumber.text = viewModel.ToupleBuyerInfoData.strNumberValue
         self.txtEmailAddress.text = viewModel.ToupleBuyerInfoData.strEmailValue
         if self.viewModel.isFromAddInfo == true{
-            self.btnCancel.setTitles(text: "Cancel", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .PlaceHolder))
+            self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .PlaceHolder))
             self.btnCancel.addLeftIcon(image: UIImage(named: X_ICON))
-            self.btnContinue.setTitles(text: "Save", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+            self.btnContinue.setTitles(text: SAVE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
             self.btnContinue.addRightIcon(image: UIImage(named: ""))
         } else {
-            self.btnCancel.setTitles(text: "Previeous", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .PlaceHolder))
-            self.btnCancel.addLeftIcon(image: UIImage(named: "arrow left"))
-            self.btnContinue.setTitles(text: "Next", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-            self.btnContinue.addRightIcon(image: UIImage(named: "arrow right"))
+            self.btnCancel.setTitles(text: PREVIOUS, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .PlaceHolder))
+            self.btnCancel.addLeftIcon(image: UIImage(named: LEFT_ARROW_ICON))
+            self.btnContinue.setTitles(text: NEXT, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+            self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         }
         
         
         self.btnCancel.layer.cornerRadius = 5
-        self.navigationView.lblTitle.text = "Buyers info"
+        self.navigationView.lblTitle.text = BUYESR_INFO
         self.navigationView.btnBack.isHidden = false
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.delegateBarAction = self

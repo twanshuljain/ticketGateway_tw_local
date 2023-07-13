@@ -39,11 +39,11 @@ extension  TransferTicketVC{
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Transfer Tickets"
+        self.vwNavigationView.lblTitle.text = TRANSFER_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.vwNavigationView.lblDiscripation.isHidden = false
-        self.vwNavigationView.lblDiscripation.text = "#3246431341"
+        self.vwNavigationView.lblDiscripation.text = NUMBERS
         self.vwNavigationView.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.vwNavigationView.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
@@ -105,10 +105,10 @@ extension TransferTicketVC: UITableViewDelegate, UITableViewDataSource {
         headerview.btnUp.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         let obj = arrData[section]
         if obj.isExpanded == true {
-            headerview.btnUp.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
+            headerview.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_UP_ICON), for: .normal)
             headerview.headerBottomLine.isHidden = true
         }else {
-            headerview.btnUp.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
+            headerview.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_DOWN_ICON), for: .normal)
             headerview.headerBottomLine.isHidden = false
         }
         

@@ -28,10 +28,7 @@ class CancelThisEventVC: UIViewController {
 
         
     }
-    
-
-   
-
+  
 }
 
 
@@ -43,8 +40,8 @@ extension CancelThisEventVC {
         self.vwNavigationView.imgBack.isHidden = false
         self.vwNavigationView.lblDiscripation.isHidden = false
         self.vwNavigationView.delegateBarAction = self
-        self.vwNavigationView.lblTitle.text = "Sunburn reload NYE - toronto"
-        self.vwNavigationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
+        self.vwNavigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+        self.vwNavigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.vwNavigationView.vwBorder.isHidden = false
         
         
@@ -79,8 +76,8 @@ extension CancelThisEventVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CancelEventTableViewCell", for:  indexPath) as! CancelEventTableViewCell
         let data = viewModel.arrData[indexPath.row]
         cell.lblTitle.text = data
-            cell.btnSelect.setImage(UIImage(named: "radio selection_ip"), for: .selected)
-            cell.btnSelect.setImage(UIImage(named: "filter_radio_inactive"), for: .normal)
+            cell.btnSelect.setImage(UIImage(named: RADIO_SELECTION_ICON), for: .selected)
+            cell.btnSelect.setImage(UIImage(named: FILTER_RADIO_INACTIVE), for: .normal)
         cell.btnSelect.addTarget(self, action: #selector(actionBtn(_ :)), for: .touchUpInside)
         return cell
 
@@ -108,12 +105,11 @@ extension CancelThisEventVC {
     func btnContinueAction() {
         let vc = self.createView(storyboard: .scanevent, storyboardID: .EndScanPoPUpVC) as! EndScanPoPUpVC
         vc.delegate = self
-        vc.strMsgForTitle = "Cancel event?"
-        vc.strMsgForDescription = "Are you sure you want to cancel this event."
+        vc.strMsgForTitle = CANCEL_EVENT
+        vc.strMsgForDescription = ARE_YOU_SURE_CANCEL_EVENT
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
         self.present(vc, animated: true)
         
-
     }
    
 }
@@ -137,6 +133,5 @@ extension CancelThisEventVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
+   
 }

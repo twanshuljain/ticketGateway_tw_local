@@ -11,23 +11,16 @@ class ContactOrganiserVC: UIViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
-    
     @IBOutlet weak var lblSunburnReload: UILabel!
-    
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var txtName: UITextField!
-    
     @IBOutlet weak var lblEmailAddress: UILabel!
     @IBOutlet weak var txtEmailAddress: UITextField!
-    
     @IBOutlet weak var lblReason: UILabel!
     @IBOutlet weak var btnDropDown: UIButton!
     @IBOutlet weak var txtReason: UITextField!
-    
-   @IBOutlet weak var lblMessage: UILabel!
-   @IBOutlet weak var txtMessage: UITextField!
-    
-    
+    @IBOutlet weak var lblMessage: UILabel!
+    @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var btnSendMessage: CustomButtonGradiant!
     
     //MARK: - Variables
@@ -49,8 +42,8 @@ extension ContactOrganiserVC {
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.imgBack.image = UIImage(named: "x_ip")
-        self.vwNavigationView.lblTitle.text = "Contact Organiser"
+        self.vwNavigationView.imgBack.image = UIImage(named: CANCEL_ICON)
+        self.vwNavigationView.lblTitle.text = CONTACT_ORGANISER
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
@@ -72,15 +65,15 @@ extension ContactOrganiserVC {
             txtfld?.textColor = UIColor.setColor(colorType: .Headinglbl)
         }
         
-        self.btnSendMessage.addRightIcon(image: UIImage(named: "LeftArrow_ip"))
+        self.btnSendMessage.addRightIcon(image: UIImage(named: LEFT_ARROW))
         self.btnSendMessage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSendMessage.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
-        self.lblName.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Name ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblName.attributedText = getAttributedTextAction(attributedText: "*", firstString: NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
-        self.lblEmailAddress.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Email Address ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblEmailAddress.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
-        self.lblReason.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Reason ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblReason.attributedText = getAttributedTextAction(attributedText: "*", firstString: REASON, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         [btnSendMessage].forEach{
             $0?.addTarget(self, action: #selector(btnSendAction(sender:)), for: .touchUpInside)
         }
@@ -99,7 +92,7 @@ extension ContactOrganiserVC {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         //      let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.action))
-        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
+        let button = UIBarButtonItem(title: DONE, style: .plain, target: self, action: #selector(self.action))
         toolBar.setItems([button], animated: true)
         toolBar.isUserInteractionEnabled = true
         txtReason.inputAccessoryView = toolBar
@@ -114,10 +107,10 @@ extension ContactOrganiserVC {
     
     @objc func btnSendAction(sender:UIButton) {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        view?.strTittle = "Change Orangniser"
+        view?.strTittle = CHANGE_ORGANISER
         view?.strComplimentry = ""
-        view?.strSummary = "Your message has been succssfully sent to the organiser of this event"
-        view?.btnStr = "Okay"
+        view?.strSummary = MESSAGE_SUCCESSFULLY_SENT_TO_ORGANISER
+        view?.btnStr = OKAY
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }

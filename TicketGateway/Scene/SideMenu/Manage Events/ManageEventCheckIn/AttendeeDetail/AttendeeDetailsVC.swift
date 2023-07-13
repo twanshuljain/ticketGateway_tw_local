@@ -50,7 +50,7 @@ extension AttendeeDetailsVC {
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Attendee Details"
+        self.vwNavigationView.lblTitle.text = ATTENDEE_DETAILS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
@@ -59,14 +59,21 @@ extension AttendeeDetailsVC {
     func setFont() {
         if viewModel.isCheckedIn {
             self.checkedInStackView.isHidden = false
-            self.btnCheckIn.setTitle("Checked In", for: .normal)
-            self.btnCheckIn.addLeftIcon(image: UIImage(named: "check-circle"))
+            self.btnCheckIn.setTitle(CHECKED_IN, for: .normal)
+            self.btnCheckIn.addLeftIcon(image: UIImage(named: CHECK_CIRCLE_ICON))
             self.btnCheckIn.backgroundColor = UIColor.setColor(colorType: .TGYellow)
             
         } else {
-            self.btnCheckIn.setTitle("Check In", for: .normal)
+            self.btnCheckIn.setTitle(CHECK_IN, for: .normal)
             self.checkedInStackView.isHidden = true
         }
+        self.lblOrderNo.text = ORDER_NO
+        self.lblDeliveryMethod.text = DELIVERY_METHOD
+        self.lblTicketType.text = TICKET_TYPE
+        self.lblCheckedIn.text = CHECKED_IN
+        self.lblBarcode.text = BARCODE
+        self.lblNotes.text = NOTES
+        
         
         let lbls = [lblAttendee, lblAttendeeEmail, lblOrderNo, lblTicketType, lblDeliveryMethod, lblBarcode, lblNotes, lblCheckedIn]
         for lbl in lbls {
@@ -87,7 +94,6 @@ extension AttendeeDetailsVC {
         
         self.txtNotes.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.txtNotes.textColor = UIColor.setColor(colorType: .TGBlack)
-        
         
         self.btnCheckIn.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnCheckIn.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)

@@ -21,7 +21,6 @@ class ManageSellTicketComplimentary: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        // Do any additional setup after loading the view.
     }
 }
 
@@ -33,9 +32,9 @@ extension ManageSellTicketComplimentary {
         self.tblEventTicketTypes.configure()
         self.navigationView.imgBack.image = UIImage(named: X_ICON)
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
+        self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.isHidden = false
-        self.navigationView.lblDiscripation.text = "Saturday, March 18 • 6:00 AM"
+        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.delegateBarAction = self
@@ -61,7 +60,7 @@ extension ManageSellTicketComplimentary {
  
     func btnContinueAction(){
         DispatchQueue.main.async {
-            self.showToast(message: "Complimentary applied successfully")
+            self.showToast(message: COMPLIMENTRY_APPLIED_SUCCESSFULLY)
         }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.navigationController?.popViewController(animated: false)

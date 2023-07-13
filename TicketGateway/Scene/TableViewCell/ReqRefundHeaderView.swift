@@ -9,6 +9,7 @@ import UIKit
 
 class ReqRefundHeaderView: UITableViewHeaderFooterView {
 
+    //MARK: - OUTLETS
     @IBOutlet weak var btnCheck: UIButton!
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var btnUp: UIButton!

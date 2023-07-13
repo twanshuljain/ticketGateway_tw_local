@@ -44,7 +44,7 @@ extension ReviewRefundVC{
     func setNavigationView(){
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
-        self.vwNavigationView.lblTitle.text = "Review Refund"
+        self.vwNavigationView.lblTitle.text = REVIEW_REFUND
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
 
@@ -64,31 +64,38 @@ extension ReviewRefundVC{
         
         self.lblTotalToRefund.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblTotalToRefund.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblTotalToRefund.text = Total_to_Refund
         
         self.lblName.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        
         
         self.lblNamePrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblNamePrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         
         self.lblOrderNo.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblOrderNo.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblOrderNo.text = ORDER_NO
         self.lblOrderNoValue.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblOrderNoValue.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.lblTotalTicket.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTotalTicket.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblTotalTicket.text = Total_Tickets
         self.lblTotalTicketValue.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblTotalTicketValue.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.lblTickets.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTickets.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblTickets.text = TICKETS
         
         self.lblRefundAmount.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblRefundAmount.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.lblRefundAmount.text = REFUND_AMOUNT
         
         self.btnProceedRefund.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnProceedRefund.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
+        self.btnProceedRefund.titleLabel?.text = PROCEED_REFUND
         
         self.lblDollar.font = UIFont.setFont(fontType: .semiBold, fontSize: .twenty)
         let gradientDollar = getGradientLayer(bounds: view.bounds)

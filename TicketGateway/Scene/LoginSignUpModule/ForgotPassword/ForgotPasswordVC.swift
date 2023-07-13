@@ -10,21 +10,19 @@ import SVProgressHUD
 
 class ForgotPasswordVC: UIViewController {
     
-    // MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var lblHeadingDescription: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
     
-    // MARK: - Variable
+// MARK: - Variable
     let viewModel = ForgotPasswordViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        
-        // Do any additional setup after loading the view.
     }
 }
 
@@ -37,10 +35,13 @@ extension ForgotPasswordVC {
         
         txtEmail.delegate = self
        self.btnContinue.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
+        self.btnContinue.setImage(UIImage(named: RIGHT_ARROW_ICON), for: .normal)
        
-        navigationView.lblTitle.text = "Forgot password"
-        navigationView.btnBack.isHidden = false
-        navigationView.delegateBarAction = self
+        self.navigationView.lblTitle.text = FORGOT_PASSWORD
+        self.navigationView.btnBack.isHidden = false
+        self.navigationView.delegateBarAction = self
+        self.lblHeadingDescription.text = DONT_WORRY
+        
     }
 }
 // MARK: - Actions
@@ -63,7 +64,7 @@ extension ForgotPasswordVC {
                     if isTrue == true {
                         SVProgressHUD.dismiss()
                         DispatchQueue.main.async {
-                            self.showToast(message: "Email link has been sent")
+                            self.showToast(message: EMAIL_LINK_SENT)
                         }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                             self.navigationController?.popViewController(animated: true)

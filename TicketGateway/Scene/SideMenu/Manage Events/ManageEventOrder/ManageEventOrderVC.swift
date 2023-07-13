@@ -36,14 +36,14 @@ extension ManageEventOrderVC{
     func setNavigationBar() {
         self.vwNavigationBar.delegateBarAction = self
         self.vwNavigationBar.btnBack.isHidden = false
-        self.vwNavigationBar.lblTitle.text = "Sunburn reload NYE - toronto"
+        self.vwNavigationBar.lblTitle.text = HEADER_TITLE_SUNBURN
         self.vwNavigationBar.lblDiscripation.isHidden = false
         self.vwNavigationBar.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationBar.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.vwNavigationBar.lblDiscripation.text = "Wed, Dec 7, 2023 at 05:00 PM"
+        self.vwNavigationBar.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.vwNavigationBar.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.vwNavigationBar.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.vwNavigationBar.imgBack.image = UIImage(named: "Menu")
+        self.vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
     }
     func setTableView() {
         self.OrderTableView.delegate = self
@@ -145,10 +145,10 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
         headerView.btnChevron.addTarget(self, action: #selector(nextBtn(sender:)), for: .touchUpInside)
         let obj = viewModel.arrData[section]
         if obj.isExpanded == true {
-            headerView.btnChevron.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
+            headerView.btnChevron.setImage(UIImage(named: CIRCLE_CHEVRON_UP_ICON), for: .normal)
             headerView.vwLineView.isHidden = true
         }else {
-            headerView.btnChevron.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
+            headerView.btnChevron.setImage(UIImage(named: CIRCLE_CHEVRON_DOWN_ICON), for: .normal)
             headerView.vwLineView.isHidden = false
         }
         return headerView

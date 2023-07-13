@@ -17,9 +17,6 @@ class MyOrderViewController: UIViewController {
     @IBOutlet weak var btnUpcoming: UIButton!
     @IBOutlet weak var btnPast: UIButton!
     @IBOutlet weak var lblYear: UILabel!
-    @IBOutlet weak var lblNotSeeingYourtickets: UILabel!
-    @IBOutlet weak var lblLearnMore: UILabel!
-    @IBOutlet weak var btnFindMyTickets: UIButton!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var pastView: UIView!
     @IBOutlet weak var lblNoTicket: UILabel!
@@ -27,8 +24,18 @@ class MyOrderViewController: UIViewController {
     @IBOutlet weak var btnBrowseEvents: UIButton!
     @IBOutlet weak var lblStillHavingTrouble: UILabel!
     @IBOutlet weak var btnVisitHelpCenter: UIButton!
-    @IBOutlet weak var vwSearchBar: UIView!
-    @IBOutlet weak var noTicketBgView: UIView!
+    @IBOutlet weak var txtSearch: UITextField!
+    @IBOutlet weak var btnFilter: CustomButtonNormal!
+    
+    @IBOutlet weak var vwBgSearchView: UIView!
+    
+    @IBOutlet weak var vwPopUp: customSocialLoginView!
+    @IBOutlet weak var lblMonth: UILabel!
+    @IBOutlet weak var btnMonth: UIButton!
+    @IBOutlet weak var lblPopYear: UILabel!
+    @IBOutlet weak var btnYear: UIButton!
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var btnDate: UIButton!
     
     //MARK: - Variables
     let tbleData = ["Upcoming_ip", "Upcoming_ip"]
@@ -66,8 +73,8 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
 //MARK: - Functions
 extension MyOrderViewController {
     func setNavigationView() {
-        self.vwNavigationBar.lblTitle.text = "My Orders"
-        self.vwNavigationBar.imgBack.image = UIImage(named: "Menu")
+        self.vwNavigationBar.lblTitle.text = MY_ORDERS
+        self.vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigationBar.btnBack.isHidden = false
         self.vwNavigationBar.delegateBarAction = self
     }
@@ -96,16 +103,11 @@ extension MyOrderViewController {
     }
     func setFont(){
         self.segmentBgView.addBottomShadow()
+        self.vwPopUp.isHidden = true
         self.lblYear.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblYear.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.btnUpcoming.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnPast.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblNotSeeingYourtickets.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblNotSeeingYourtickets.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.lblLearnMore.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblLearnMore.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.btnFindMyTickets.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnFindMyTickets.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
         
         
         self.lblNoTicket.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
@@ -122,12 +124,29 @@ extension MyOrderViewController {
         
         self.btnVisitHelpCenter.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnVisitHelpCenter.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        
+        self.btnFilter.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
+        self.btnFilter.addLeftIcon(image: UIImage(named: FILTER))
+        
+        self.lblMonth.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblMonth.textColor = UIColor.setColor(colorType: .lblTextPara)
+        
+        self.lblPopYear.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblPopYear.textColor = UIColor.setColor(colorType: .lblTextPara)
+        
+        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
+        
+        
     }
     
     func setUI () {
-        [btnPast,btnUpcoming].forEach {
+        [btnPast,btnUpcoming,btnFilter].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         }
+        
+        
     }
 }
 
@@ -152,7 +171,9 @@ extension MyOrderViewController {
         case btnUpcoming:
             self.UpcomingAction()
         case btnPast:
-            PastAction()
+            self.PastAction()
+        case btnFilter:
+            self.filterAction()
             
         default:
             break
@@ -169,6 +190,12 @@ extension MyOrderViewController {
         self.isFromUpcoming = false
         self.setButtonBackground()
         self.pastView.isHidden = false
+    }
+    
+
+    
+    func filterAction() {
+        vwPopUp.isHidden = !vwPopUp.isHidden
     }
     
 }

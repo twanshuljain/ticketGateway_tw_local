@@ -10,6 +10,7 @@ import iOSDropDown
 
 class ExchangeTableViewCell: UITableViewCell {
 
+//MARK: - OUTLETS
     @IBOutlet weak var lblYoungGold: UILabel!
     @IBOutlet weak var lblQty: UILabel!
     

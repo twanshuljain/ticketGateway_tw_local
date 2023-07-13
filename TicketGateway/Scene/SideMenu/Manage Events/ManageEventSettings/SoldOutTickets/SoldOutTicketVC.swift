@@ -37,8 +37,8 @@ extension SoldOutTicketVC {
         self.vwNavigationView.imgBack.isHidden = false
         self.vwNavigationView.lblDiscripation.isHidden = false
         self.vwNavigationView.delegateBarAction = self
-        self.vwNavigationView.lblTitle.text = "Sunburn reload NYE - toronto"
-        self.vwNavigationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
+        self.vwNavigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+        self.vwNavigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.vwNavigationView.vwBorder.isHidden = false
         
         
@@ -55,8 +55,6 @@ extension SoldOutTicketVC {
         self.lblSoldOutTickets.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)
     }
 }
-
-
 
 
 //MARK: - UITableViewDelegate, UITableViewDataSource

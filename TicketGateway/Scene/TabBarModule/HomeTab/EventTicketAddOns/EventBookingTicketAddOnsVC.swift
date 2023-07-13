@@ -35,10 +35,10 @@ extension EventBookingTicketAddOnsVC{
     
     private func setup() {
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Add Ons"
+        self.navigationView.lblTitle.text = ADD_ONS
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.btnSkip.isHidden = false
-        self.navigationView.btnSkip.setTitle("Skip", for: .normal)
+        self.navigationView.btnSkip.setTitle(SKIP, for: .normal)
         self.navigationView.vwSkip.isHidden = false
         self.navigationView.btnBack.isHidden = false
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
@@ -80,8 +80,8 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         cell.btnDropDown.addTarget(self, action: #selector(dropDownBtn), for: .touchUpInside)
         cell.toggle.tag = indexPath.row
         cell.toggle.addTarget(self, action: #selector(dropDownBtn23), for: .touchUpInside)
-        cell.lblTitle.text = "T-shirt"
-        cell.lblPrice.text = "$ 0.00"
+        cell.lblTitle.text = T_SHIRT
+        cell.lblPrice.text = DOLLAR_PRICE
         cell.txtSelect.optionArray = ["Xl", "Large", "Medium", "Small"]
         cell.txtSelect.optionIds = [1,23,54,22]
         cell.txtSelect.didSelect{(selectedText , index ,id) in
@@ -103,10 +103,10 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
             cell.bgTextView.isHidden = false
             
             let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
-            view.strMsgForlbl = "Pepsi"
-            view.img = "pop_ip"
-            view.strMessage = "Pepsi cans and bottles available, In the sizes of Large & Medium, Pepsi black and Diet coke,"
-            view.strMsgBtn = "Okay"
+            view.strMsgForlbl = PEPSI
+            view.img = POP_ICON
+            view.strMessage = POP_DESCRIPTION
+            view.strMsgBtn = OKAY
             view.closerForBack = { istrue in
                 if istrue ==  true
                 {
