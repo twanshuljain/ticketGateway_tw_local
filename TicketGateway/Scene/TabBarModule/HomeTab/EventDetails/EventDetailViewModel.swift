@@ -14,7 +14,7 @@ final class EventDetailViewModel{
     var eventDetail:EventDetail?
     var eventId:Int?
     var suggestedEventCategoryId:Int?
-    //MARK: - Variables
+    var selectedArrTicketList = [EventTicket]()
     var arrEventData : [GetEventModel] = [GetEventModel]()
     
 }

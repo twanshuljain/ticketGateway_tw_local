@@ -22,7 +22,8 @@ struct GetEventRequest: Codable {
     
     enum CodingKeys: String, CodingKey {
         case eventType = "event_type"
-        case limit, page
+        case limit
+        case page
     }
 }
 

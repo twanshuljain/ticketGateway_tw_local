@@ -28,6 +28,8 @@ public enum APIName: String {
     case GetEventSubCategoryList =  "events/sub/category/list/"
     case GetEventSuggestedCategoryList = "events/category/"
     case GetOrganizersList = "organizer/featured-organizer/list/"
+    
+    case GetTicketList = "events/ticket-list/"
 }
 public enum GroupApiName: String {
     case auth = "auth"

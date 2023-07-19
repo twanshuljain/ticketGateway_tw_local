@@ -1,0 +1,42 @@
+//
+//  EventBookingTicketViewModel.swift
+//  TicketGateway
+//
+//  Created by Apple on 14/07/23.
+//
+
+import Foundation
+
+
+final class EventBookingTicketViewModel{
+    //MARK: - Variables
+    var ticketId = ""
+    var eventDetail:EventDetail?
+    var arrTicketList : [EventTicket]?
+    var selectedArrTicketList = [EventTicket]()
+    
+}
+//MARK: - Functions
+extension EventBookingTicketViewModel{
+    func getEventTicketList(complition: @escaping (Bool,String) -> Void ) {
+        var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
+       // var getURL = APIName.GetTicketList.rawValue + "12" + "/"
+        APIHandler.shared.executeRequestWith(apiName: .GetTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    if let data = response.data{
+                        self.arrTicketList = data
+                        //self.arrTicketList?.append(contentsOf: data)
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                complition(false,"\(error)")
+            }
+        }
+    }
+}

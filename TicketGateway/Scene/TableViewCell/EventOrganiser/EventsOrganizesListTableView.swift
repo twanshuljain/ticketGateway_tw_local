@@ -21,7 +21,7 @@ protocol EventsOrganizesListTableViewProtocol{
 class EventsOrganizesListTableView: UITableView {
     var arrData = [GetEventModel]()
     var arrDataa = [GetEventModel]()
-    
+    var arrEventCategory = [EventCategories]()
     
     var arrDataaWeekend = [GetEventModel]()
     var arrDataaVirtual = [GetEventModel]()
@@ -49,7 +49,20 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.isComingFrom == .Home{
-            return 5
+//            if self.arrDataaWeekend.count != 0{
+//                return 1
+//            }else if self.arrDataaVirtual.count != 0{
+//                return 2
+//            }else if self.arrDataaPopular.count != 0{
+//                return 3
+//            }else if self.arrDataaFree.count != 0{
+//                return 4
+//            }else if self.arrDataaUpcoming.count != 0{
+//                return 5
+//            }else{
+//                return 0
+//            }
+           return self.arrEventCategory.count
         }else{
             return 1
         }
@@ -57,20 +70,35 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.isComingFrom == .Home{
-            switch section {
-            case 0: return self.arrDataaWeekend.count
-            case 1: return self.arrDataaVirtual.count
-            case 2: return self.arrDataaPopular.count
-            case 3: return self.arrDataaFree.count
-            case 4: return self.arrDataaUpcoming.count
-            default:
-                return 0
-            }
+//            switch section {
+//            case 0: return self.arrDataaWeekend.count
+//            case 1: return self.arrDataaVirtual.count
+//            case 2: return self.arrDataaPopular.count
+//            case 3: return self.arrDataaFree.count
+//            case 4: return self.arrDataaUpcoming.count
+//            default:
+//                return 0
+//            }
 //            if self.arrDataa.count == 0{
 //                return 5
 //            }else{
 //                return self.arrDataa.count
 //            }
+            if self.arrEventCategory[section] == .weekend{
+                return self.arrDataaWeekend.count
+            }else if self.arrEventCategory[section] == .online{
+                return self.arrDataaVirtual.count
+            }else if self.arrEventCategory[section] == .popular{
+                return self.arrDataaPopular.count
+            }else if self.arrEventCategory[section] == .free{
+                return self.arrDataaFree.count
+            }else if self.arrEventCategory[section] == .upcoming{
+                return self.arrDataaUpcoming.count
+            }else{
+                return 0
+            }
+            
+            
         }else if self.isComingFrom == .EventDetail{
             if self.arrData.count == 0{
                 return 5
@@ -85,30 +113,26 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
             if self.isComingFrom == .Home{
                 
-                switch indexPath.section {
-                case 0:
+                switch self.arrEventCategory[indexPath.section] {
+                case .weekend:
                     if arrDataaWeekend.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaWeekend[indexPath.row]
                     }
-                case 1:
+                case .online:
                     if arrDataaVirtual.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaVirtual[indexPath.row]
                     }
-                case 2:
+                case .popular:
                     if arrDataaPopular.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaPopular[indexPath.row]
                     }
-                case 3:
+                case .free:
                     if arrDataaFree.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaFree[indexPath.row]
                     }
-                case 4:
+                case .upcoming:
                     if arrDataaUpcoming.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaUpcoming[indexPath.row]
-                    }
-                default:
-                    if arrDataa.indices.contains(indexPath.row){
-                        cell.getEvent = self.arrDataa[indexPath.row]
                     }
                 }
             }else{
@@ -116,8 +140,6 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                     cell.getEvent = self.arrData[indexPath.row]
                 }
             }
-            
-            
             cell.cellConfiguration()
             return cell
         } else {
@@ -132,30 +154,38 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
             label.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
             label.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-            
             headerView.addSubview(label)
-            switch section {
-            case 0: label.text = "This Weekend"
-            case 1: label.text = "Online Events"
-            case 2: label.text = "Popular Events"
-            case 3: label.text = "Free Events"
-            case 4: label.text = "Upcoming Events"
-            default:
-               label.text = "Events near Toronto"
+            
+            
+            switch self.arrEventCategory[section] {
+            case .weekend:
+                label.text = "This Weekend"
+                return headerView
+            case .online:
+                label.text = "Online Events"
+                return headerView
+            case .popular:
+                label.text = "Popular Events"
+                return headerView
+            case .free:
+                label.text = "Free Events"
+                return headerView
+            case .upcoming:
+                label.text = "Upcoming Events"
+                return headerView
             }
-            return headerView
         }
         return nil
     }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-             switch indexPath.section {
-             case 0: self.tableDidSelectAtIndex?(indexPath)
-             case 1: self.tableDidSelectAtIndex?(indexPath)
-             case 2: self.tableDidSelectAtIndex?(indexPath)
-             case 3: self.tableDidSelectAtIndex?(indexPath)
-             case 4: self.tableDidSelectAtIndex?(indexPath)
+             switch self.arrEventCategory[indexPath.section] {
+             case .weekend: self.tableDidSelectAtIndex?(indexPath)
+             case .online: self.tableDidSelectAtIndex?(indexPath)
+             case .popular: self.tableDidSelectAtIndex?(indexPath)
+             case .free: self.tableDidSelectAtIndex?(indexPath)
+             case .upcoming: self.tableDidSelectAtIndex?(indexPath)
              default:
                  break;
              }
@@ -179,7 +209,18 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             footerView.addSubview(separatorView)
             separatorView.backgroundColor = UIColor.setColor(colorType: .PlaceHolder)
             
-            return footerView
+            switch self.arrEventCategory[section] {
+            case .weekend:
+                return footerView
+            case .online:
+                return footerView
+            case .popular:
+                return footerView
+            case .free:
+                return footerView
+            case .upcoming:
+                return footerView
+            }
         }
         return nil
     }
@@ -206,20 +247,20 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func buttonPressed(sender: UIButton) {
-        switch sender.tag {
-        case 0:
+        switch self.arrEventCategory[sender.tag] {
+        case .weekend:
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
             print(sender.tag)
-        case 1:
+        case .online:
             print(sender.tag)
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-        case 2:
+        case .popular:
             print(sender.tag)
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-        case 3:
+        case .free:
             print(sender.tag)
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-        case 4:
+        case .upcoming:
             print(sender.tag)
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
         default:

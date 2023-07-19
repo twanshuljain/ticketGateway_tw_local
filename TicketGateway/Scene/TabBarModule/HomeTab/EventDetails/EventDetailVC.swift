@@ -207,6 +207,7 @@ extension EventDetailVC {
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
+        self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
         
@@ -290,8 +291,12 @@ extension EventDetailVC {
     
     func btnBookTicket()
     {
-        let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
+            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
 }
 

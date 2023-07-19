@@ -32,6 +32,11 @@ class HomeVC: UIViewController{
         super.viewDidLoad()
         self.setUp()
         self.funcCallApi(viewAll: false)
+        // self.apiCall()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 }
 
@@ -57,29 +62,27 @@ extension HomeVC {
        
         self.tblEvents.tableDidSelectAtIndex = {  index in
             let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
-            switch index.section {
-            case 0:
+            switch self.viewModel.arrEventCategory[index.section] {
+            case .weekend:
                 if self.viewModel.arrDataaWeekend.indices.contains(index.row){
                     view?.viewModel.eventId = self.viewModel.arrDataaWeekend[index.row].event?.id
                 }
-            case 1:
+            case .online:
                 if self.viewModel.arrDataaVirtual.indices.contains(index.row){
                     view?.viewModel.eventId = self.viewModel.arrDataaVirtual[index.row].event?.id
                 }
-            case 2:
+            case .popular:
                 if self.viewModel.arrDataaPopular.indices.contains(index.row){
                     view?.viewModel.eventId = self.viewModel.arrDataaPopular[index.row].event?.id
                 }
-            case 3:
+            case .free:
                 if self.viewModel.arrDataaFree.indices.contains(index.row){
                     view?.viewModel.eventId = self.viewModel.arrDataaFree[index.row].event?.id
                 }
-            case 4:
+            case .upcoming:
                 if self.viewModel.arrDataaUpcoming.indices.contains(index.row){
                     view?.viewModel.eventId = self.viewModel.arrDataaUpcoming[index.row].event?.id
                 }
-            default:
-                break;
             }
             
             self.navigationController?.pushViewController(view!, animated: true)
@@ -103,6 +106,32 @@ extension HomeVC {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfNearOrganisedEvent.constant = tblEvents.contentSize.height
         
+    }
+    
+    func apiCall(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModel.GetEventApi(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                    DispatchQueue.main.async {
+                        self.tblEvents.arrDataaWeekend = self.viewModel.arrDataaWeekend
+                        self.tblEvents.reloadData()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
     }
     
     func funcCallApi(viewAll:Bool){
@@ -269,10 +298,6 @@ extension HomeVC {
 //                    if let items = self.viewModel.arrEventData.items{
 //                        self.tblEvents.arrDataa = items
 //                    }
-//                    
-                    DispatchQueue.main.async {
-                        self.tblEvents.reloadData()
-                    }
                 } else {
                     DispatchQueue.main.async {
                         SVProgressHUD.dismiss()
@@ -288,7 +313,9 @@ extension HomeVC {
         }
         
         self.viewModel.dispatchGroup5.notify(queue: .main) {
-            self.funcCallApiForOrganizersList(viewAll: false)
+            self.tblEvents.arrEventCategory = self.viewModel.arrEventCategory
+                self.tblEvents.reloadData()
+                self.funcCallApiForOrganizersList(viewAll: false)
         }
         
     }
@@ -341,20 +368,8 @@ extension HomeVC: CustomSearchMethodsDelegate {
 extension HomeVC:EventsOrganizesListTableViewProtocol{
     func tapActionOfViewMoreEvents(index: Int) {
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
+        view?.viewModel.index = index
+        view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
-        switch index {
-        case 0:
-            self.funcCallApi(viewAll: true)
-        case 1:
-            self.funcCallApiForOnlineEvents(viewAll: true)
-        case 2:
-            self.funcCallApiForPopularEvents(viewAll: true)
-        case 3:
-            self.funcCallApiForFreeEvents(viewAll: true)
-        case 4:
-            self.funcCallApiForUpcomingEvents(viewAll: true)
-        default:
-            break;
-        }
     }
 }

@@ -7,6 +7,15 @@
 
 import UIKit
 
+
+enum EventCategories:String{
+    case weekend = "This Weekend"
+    case online = "Online Events"
+    case popular = "Popular Events"
+    case free = "Free Events"
+    case upcoming = "Upcoming Events"
+}
+
 // MARK: - GetEventModel
 struct GetEvent: Codable {
     var items: [GetEventModel]?
@@ -50,6 +59,7 @@ struct GetEventModel: Codable,Equatable {
     var location: Location?
     var date: DateClass?
     var likeCountData: LikeCountData?
+    var ticketOnwards: Int?
 
     enum CodingKeys: String, CodingKey {
         case event
@@ -57,6 +67,7 @@ struct GetEventModel: Codable,Equatable {
         case coverImage = "cover_image"
         case location, date
         case likeCountData = "like_count_data"
+        case ticketOnwards = "ticket_onwards"
     }
     
     static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {

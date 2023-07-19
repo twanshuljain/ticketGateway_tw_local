@@ -23,6 +23,7 @@
 		180A07F429ED764C0088C03A /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A07F329ED764C0088C03A /* TabBar.storyboard */; };
 		180A07F929ED7D990088C03A /* TabBar_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A07F829ED7D990088C03A /* TabBar_VC.swift */; };
 		180A07FB29ED83FB0088C03A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A07FA29ED83FB0088C03A /* HomeVC.swift */; };
+		180BA5002A5FDC6200639651 /* ViewMoreEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BA4FF2A5FDC6200639651 /* ViewMoreEventsViewModel.swift */; };
 		181EBF102A31C64D0044C734 /* Pods_TicketGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5A94928E066BE89280A148 /* Pods_TicketGateway.framework */; };
 		1821FDE22A30A80800BD4AB6 /* RefundOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDE12A30A80800BD4AB6 /* RefundOptionsVC.swift */; };
 		1821FDE42A30A86D00BD4AB6 /* ReviewRefundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDE32A30A86D00BD4AB6 /* ReviewRefundVC.swift */; };
@@ -232,6 +233,8 @@
 		18B636AD29F7B76100DC14B8 /* LoginNmberWithEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B636AC29F7B76100DC14B8 /* LoginNmberWithEmailCell.swift */; };
 		18B636AF29F7BDE800DC14B8 /* LoginNmberWithEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B636AE29F7BDE800DC14B8 /* LoginNmberWithEmailModel.swift */; };
 		18B636B129F7D38B00DC14B8 /* NumberVerifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B636B029F7D38B00DC14B8 /* NumberVerifyViewModel.swift */; };
+		18B7D7582A6165F2006C39E1 /* EventBookingTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D7572A6165F2006C39E1 /* EventBookingTicketViewModel.swift */; };
+		18B7D75A2A61796F006C39E1 /* EventBookingTicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D7592A61796F006C39E1 /* EventBookingTicketModel.swift */; };
 		18BC2EE52A52978500FB427E /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */; };
 		18BC9F9B2A53EE5900863CD5 /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */; };
 		18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */; };
@@ -418,6 +421,7 @@
 		180A07F329ED764C0088C03A /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		180A07F829ED7D990088C03A /* TabBar_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar_VC.swift; sourceTree = "<group>"; };
 		180A07FA29ED83FB0088C03A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		180BA4FF2A5FDC6200639651 /* ViewMoreEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsViewModel.swift; sourceTree = "<group>"; };
 		1821FDE12A30A80800BD4AB6 /* RefundOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundOptionsVC.swift; sourceTree = "<group>"; };
 		1821FDE32A30A86D00BD4AB6 /* ReviewRefundVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRefundVC.swift; sourceTree = "<group>"; };
 		1821FDE52A30A90F00BD4AB6 /* ReviewRefundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRefundTableViewCell.swift; sourceTree = "<group>"; };
@@ -623,6 +627,8 @@
 		18B636AC29F7B76100DC14B8 /* LoginNmberWithEmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNmberWithEmailCell.swift; sourceTree = "<group>"; };
 		18B636AE29F7BDE800DC14B8 /* LoginNmberWithEmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNmberWithEmailModel.swift; sourceTree = "<group>"; };
 		18B636B029F7D38B00DC14B8 /* NumberVerifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVerifyViewModel.swift; sourceTree = "<group>"; };
+		18B7D7572A6165F2006C39E1 /* EventBookingTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketViewModel.swift; sourceTree = "<group>"; };
+		18B7D7592A61796F006C39E1 /* EventBookingTicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketModel.swift; sourceTree = "<group>"; };
 		18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsVC.swift; sourceTree = "<group>"; };
@@ -1171,6 +1177,8 @@
 			isa = PBXGroup;
 			children = (
 				188A67F72A0CEF6B00987BAD /* EventBookingTicketVC.swift */,
+				18B7D7572A6165F2006C39E1 /* EventBookingTicketViewModel.swift */,
+				18B7D7592A61796F006C39E1 /* EventBookingTicketModel.swift */,
 			);
 			path = EventBooking;
 			sourceTree = "<group>";
@@ -2088,6 +2096,7 @@
 			isa = PBXGroup;
 			children = (
 				18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */,
+				180BA4FF2A5FDC6200639651 /* ViewMoreEventsViewModel.swift */,
 			);
 			path = ViewMoreEvents;
 			sourceTree = "<group>";
@@ -2997,6 +3006,7 @@
 				18BC9F9B2A53EE5900863CD5 /* PhoneVerificationViewController.swift in Sources */,
 				18A6D0DF29E920D400D6210E /* ValidationConstantStrings.swift in Sources */,
 				18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */,
+				18B7D75A2A61796F006C39E1 /* EventBookingTicketModel.swift in Sources */,
 				18F5A4BA2A4EA55900CA18F7 /* ScanSummaryTableViewCell.swift in Sources */,
 				18717F972A2A1BE9002F36BC /* TransferTicketVC.swift in Sources */,
 				187E22902A4075B1003236EC /* EmailVerifyRequest.swift in Sources */,
@@ -3134,6 +3144,7 @@
 				18A73E0D29EFD651007365CB /* CommonEnum.swift in Sources */,
 				18F5A4C12A4EA55900CA18F7 /* FindRFIDViewModel.swift in Sources */,
 				18F6F74B29E98591007B9513 /* UITextField+Extension.swift in Sources */,
+				180BA5002A5FDC6200639651 /* ViewMoreEventsViewModel.swift in Sources */,
 				18F5A4C32A4EA55900CA18F7 /* ScanSummaryVC.swift in Sources */,
 				18717F8E2A2A1BE9002F36BC /* MyOrderViewController.swift in Sources */,
 				18717F8F2A2A1BE9002F36BC /* ContactOrganiserVC.swift in Sources */,
@@ -3183,6 +3194,7 @@
 				188B4D262A28785E0048C3DB /* EventImageCollectionViewList.swift in Sources */,
 				187734EB29E8330D00E26B65 /* NavigationBarView.swift in Sources */,
 				18717F882A2A1BE9002F36BC /* TransferTicketTableViewCell.swift in Sources */,
+				18B7D7582A6165F2006C39E1 /* EventBookingTicketViewModel.swift in Sources */,
 				18FBC0CD2A309239002CF129 /* ManageSellTicketComplimentary.swift in Sources */,
 				18FBC1052A309239002CF129 /* SideMenuList.swift in Sources */,
 				1861A2E52A4469B700E13A5D /* ManageEventOrderViewModel.swift in Sources */,

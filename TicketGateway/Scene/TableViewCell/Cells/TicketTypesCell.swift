@@ -25,6 +25,29 @@ class TicketTypesCell: UITableViewCell {
         super.awakeFromNib()
         self.setUi()
     }
+    
+    func setData(event:EventTicket?){
+        if let event = event{
+            self.lblTittle.text = event.ticketName ?? ""
+            
+            self.lblAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
+            
+            self.lblNoOfInGroup.text = ""
+            
+            
+            self.lblSecAmount.text = ""
+            
+            self.lblAmountWithAdditionCharge.text = ""
+            
+            self.lblDiscripation.text = event.ticketDescription ?? ""
+        }
+    }
+    
+    func setSelectedTicketData(selectedTicket:EventTicket?){
+        if let selectedTicket = selectedTicket?.selectedTicketQuantity{
+            self.vwStepper.lblCount.text = String(selectedTicket)
+        }
+    }
 
     
     func setUi(){

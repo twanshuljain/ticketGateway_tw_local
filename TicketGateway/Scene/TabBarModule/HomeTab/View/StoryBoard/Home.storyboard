@@ -129,7 +129,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNA-qs-otp" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
+                                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNA-qs-otp" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
                                                                                 <rect key="frame" x="273" y="0.0" width="120" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="120" id="jgK-hg-UNs"/>
@@ -3985,15 +3985,22 @@ TG fee is non-refundable.</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRb-P6-Dda" customClass="CustomSearchBar" customModule="TicketGateway" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbx-Hb-D1g" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="xpD-uE-WVA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRb-P6-Dda" customClass="CustomSearchBar" customModule="TicketGateway" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="119" width="393" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="iBr-D3-P0A"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6fd-rS-rEP">
-                                <rect key="frame" x="0.0" y="119" width="393" height="1298"/>
+                                <rect key="frame" x="0.0" y="179" width="393" height="1238"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -4002,10 +4009,13 @@ TG fee is non-refundable.</string>
                         <constraints>
                             <constraint firstItem="afH-ZK-OLX" firstAttribute="trailing" secondItem="6fd-rS-rEP" secondAttribute="trailing" id="1bx-Mz-uhQ"/>
                             <constraint firstItem="afH-ZK-OLX" firstAttribute="bottom" secondItem="6fd-rS-rEP" secondAttribute="bottom" id="2Yc-xV-8KD"/>
+                            <constraint firstItem="jbx-Hb-D1g" firstAttribute="top" secondItem="afH-ZK-OLX" secondAttribute="top" id="5ie-1u-VPG"/>
                             <constraint firstItem="afH-ZK-OLX" firstAttribute="trailing" secondItem="iRb-P6-Dda" secondAttribute="trailing" id="LOW-Ns-EWd"/>
                             <constraint firstItem="iRb-P6-Dda" firstAttribute="leading" secondItem="afH-ZK-OLX" secondAttribute="leading" id="Osk-NW-p9V"/>
                             <constraint firstItem="6fd-rS-rEP" firstAttribute="leading" secondItem="afH-ZK-OLX" secondAttribute="leading" id="bFb-ZD-5vL"/>
-                            <constraint firstItem="iRb-P6-Dda" firstAttribute="top" secondItem="afH-ZK-OLX" secondAttribute="top" id="hhx-Gg-3Vm"/>
+                            <constraint firstItem="jbx-Hb-D1g" firstAttribute="trailing" secondItem="afH-ZK-OLX" secondAttribute="trailing" id="gUK-2P-gCP"/>
+                            <constraint firstItem="iRb-P6-Dda" firstAttribute="top" secondItem="jbx-Hb-D1g" secondAttribute="bottom" id="h1F-xG-ae7"/>
+                            <constraint firstItem="jbx-Hb-D1g" firstAttribute="leading" secondItem="afH-ZK-OLX" secondAttribute="leading" id="l2O-GV-59G"/>
                             <constraint firstItem="6fd-rS-rEP" firstAttribute="top" secondItem="iRb-P6-Dda" secondAttribute="bottom" id="q4w-iZ-As1"/>
                         </constraints>
                     </view>
@@ -4017,6 +4027,7 @@ TG fee is non-refundable.</string>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
+                        <outlet property="navigationView" destination="jbx-Hb-D1g" id="z2r-tf-Bos"/>
                         <outlet property="tblView" destination="6fd-rS-rEP" id="z8p-Pu-PdH"/>
                         <outlet property="vwSearchBar" destination="iRb-P6-Dda" id="nAz-be-qV3"/>
                     </connections>
@@ -4461,7 +4472,7 @@ TicketGateway fee is non refundable.</string>
         <image name="arrow-down" width="24" height="24"/>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
-        <image name="chevron-down_ip" width="16" height="16"/>
+        <image name="chevron-down_ip" width="24.333333969116211" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>
         <image name="homeDas" width="343" height="165"/>
         <image name="home_un" width="24.333333969116211" height="24"/>

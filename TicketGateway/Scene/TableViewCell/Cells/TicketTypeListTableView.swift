@@ -13,7 +13,9 @@ class TicketTypeListTableView: UITableView {
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
-    
+    var arrTicketList:[EventTicket]?
+    var selectedArrTicketList = [EventTicket]()
+//    var maxStepperCount: Int = 10
     func configure() {
         self.register(UINib(nibName: "TicketTypesCell", bundle: nil), forCellReuseIdentifier: "TicketTypesCell")
         self.delegate = self
@@ -24,30 +26,40 @@ class TicketTypeListTableView: UITableView {
 // MARK: - TableView Delegate
 extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return arrTicketList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
-        if indexPath.row == 0 {
-            cell.vwForGroup.isHidden = true
-            cell.vwEtcDiscripation.isHidden = false
-            cell.lblAmount.isHidden = true
-            cell.lblTittle.text = "General Admission"
-            
-        } else if indexPath.row == 1 {
-            cell.lblAmount.isHidden = false
-            cell.vwForGroup.isHidden = true
-            cell.vwEtcDiscripation.isHidden = false
-            cell.lblTittle.text = "Early Bird Admission"
-            
-        } else if indexPath.row == 2{
-            cell.lblAmount.isHidden = false
-            cell.vwForGroup.isHidden = false
-            cell.vwEtcDiscripation.isHidden = true
-            cell.lblTittle.text = "Group Admission"
-            
+        
+        if let arrTicketList = self.arrTicketList, arrTicketList.indices.contains(indexPath.row){
+            cell.setData(event: arrTicketList[indexPath.row])
         }
+        
+        if  self.selectedArrTicketList.indices.contains(indexPath.row){
+            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
+        }
+        
+        
+//        if indexPath.row == 0 {
+//            cell.vwForGroup.isHidden = true
+//            cell.vwEtcDiscripation.isHidden = false
+//            cell.lblAmount.isHidden = true
+//            cell.lblTittle.text = "General Admission"
+//
+//        } else if indexPath.row == 1 {
+//            cell.lblAmount.isHidden = false
+//            cell.vwForGroup.isHidden = true
+//            cell.vwEtcDiscripation.isHidden = false
+//            cell.lblTittle.text = "Early Bird Admission"
+//
+//        } else if indexPath.row == 2{
+//            cell.lblAmount.isHidden = false
+//            cell.vwForGroup.isHidden = false
+//            cell.vwEtcDiscripation.isHidden = true
+//            cell.lblTittle.text = "Group Admission"
+//
+//        }
         
       
         cell.vwStepper.btnPlus.tag = indexPath.row
@@ -82,8 +94,12 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
-        self.lblNumberOfCount = self.lblNumberOfCount + 1
-        cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+        if lblNumberOfCount < arrTicketList?[sender.tag].ticketMaximumQuantity ?? 0 {
+            self.lblNumberOfCount = self.lblNumberOfCount + 1
+            cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+            arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
+            self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
+        }
     }
     
     @objc func MinustButtonPressed(_ sender: UIButton) {
@@ -94,8 +110,12 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         if self.lblNumberOfCount > 0 {
             self.lblNumberOfCount = self.lblNumberOfCount - 1
             cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+            arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
+            self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
         } else {
             cell.vwStepper.lblCount.text = "0"
+            arrTicketList?[sender.tag].selectedTicketQuantity = 0
+            self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
         }
     }
   

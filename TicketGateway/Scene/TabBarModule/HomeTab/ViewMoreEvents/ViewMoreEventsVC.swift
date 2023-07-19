@@ -7,6 +7,7 @@
 
 import UIKit
 import SideMenu
+import SVProgressHUD
 
 class ViewMoreEventsVC: UIViewController {
     
@@ -15,14 +16,20 @@ class ViewMoreEventsVC: UIViewController {
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var navigationView: NavigationBarView!
     
-    var arrData:GetEvent?
+   
+    var viewModel = ViewMoreEventsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.setUp()
+        self.viewModel.refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        tblView.refreshControl = self.viewModel.refreshControl
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setData()
+    }
 
 }
 //MARK: - Functions
@@ -32,33 +39,288 @@ extension ViewMoreEventsVC{
         self.tblView.delegate = self
         self.tblView.dataSource = self
         
-        self.vwSearchBar.delegate = self
-        self.vwSearchBar.txtSearch.delegate = self
-        
         self.navigationView.delegateBarAction = self
         self.navigationView.btnBack.isHidden = false
         self.navigationView.btnSecRight.isHidden = true
         self.navigationView.lblSeprator.isHidden = true
         self.navigationView.vwBorder.isHidden = true
-        navigationView.lblTitle.text = "Weekend"
+        self.setNavigationView()
+    }
+    
+    func setNavigationView() {
+        self.vwSearchBar.delegate = self
+        self.vwSearchBar.txtSearch.delegate = self
+        self.vwSearchBar.btnMenu.isHidden = true
+        self.vwSearchBar.vwLocation.isHidden = true
+    }
+    
+    func setData(){
+        switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .weekend:
+            navigationView.lblTitle.text = "This Weekend"
+            self.funcCallApi()
+        case .online:
+            navigationView.lblTitle.text = "Online Events"
+            self.funcCallApiForOnlineEvents()
+        case .popular:
+            navigationView.lblTitle.text = "Popular Events"
+            self.funcCallApiForPopularEvents()
+        case .free:
+            navigationView.lblTitle.text = "Free Events"
+           self.funcCallApiForFreeEvents()
+        case .upcoming:
+            navigationView.lblTitle.text = "Upcoming Events"
+            self.funcCallApiForUpcomingEvents()
+        default:
+            break;
+        }
+    }
+    
+    func funcCallApi(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModel.getEventApiForWeekendEvents(viewAll:true,complition: { isTrue, messageShowToast in
+                
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                    if let itemWeekend = self.viewModel.arrData?.itemsWeekend{
+                        DispatchQueue.main.async {
+                            self.tblView.reloadData()
+                        }
+                    }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    
+    func funcCallApiForOnlineEvents(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModel.getEventApiForOnlineEvents(viewAll:true,complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                    if let itemsVirtual = self.viewModel.arrData?.itemsVirtual{
+                        DispatchQueue.main.async {
+                            self.tblView.reloadData()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+
+
+    func funcCallApiForPopularEvents(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModel.getEventApiForPopularEvents(viewAll:true,complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                    if let itemsPopular = self.viewModel.arrData?.itemsPopular{
+                        DispatchQueue.main.async {
+                            self.tblView.reloadData()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+
+
+    func funcCallApiForFreeEvents(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModel.getEventApiForFreeEvents(viewAll:true,complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                    if let itemsFree = self.viewModel.arrData?.itemsFree{
+                        DispatchQueue.main.async {
+                            self.tblView.reloadData()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+
+    func funcCallApiForUpcomingEvents(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModel.getEventApiForUpcomingEvents(viewAll:true,complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                        if let itemsUpcoming = self.viewModel.arrData?.itemsUpcoming{
+                            DispatchQueue.main.async {
+                                self.tblView.reloadData()
+                            }
+                        }
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+
+    }
+    
+    @objc func loadData() {
+        // Make network call to fetch data for currentPage
+        self.viewModel.currentPage += 1
+        viewModel.refreshControl.endRefreshing()
+        
+        switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .weekend:
+            self.funcCallApi()
+        case .online:
+            self.funcCallApiForOnlineEvents()
+        case .popular:
+            self.funcCallApiForPopularEvents()
+        case .free:
+           self.funcCallApiForFreeEvents()
+        case .upcoming:
+            self.funcCallApiForUpcomingEvents()
+        default:
+            break;
+        }
     }
 }
 
 // MARK: - TableView Delegate
 extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrData?.itemsWeekend?.count ?? 0
+        switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .weekend:
+            return self.viewModel.arrData?.itemsWeekend?.count ?? 0
+        case .online:
+            return self.viewModel.arrData?.itemsVirtual?.count ?? 0
+        case .popular:
+            return self.viewModel.arrData?.itemsPopular?.count ?? 0
+        case .free:
+            return self.viewModel.arrData?.itemsFree?.count ?? 0
+        case .upcoming:
+            return self.viewModel.arrData?.itemsUpcoming?.count ?? 0
+        default:
+            return 0
+        }
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-            if let data = arrData?.itemsWeekend, data.indices.contains(indexPath.row){
-                cell.getEvent = data[indexPath.row]
+            switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .weekend:
+                if let data = self.viewModel.arrData?.itemsWeekend, data.indices.contains(indexPath.row){
+                    cell.getEvent = data[indexPath.row]
+                }
+            case .online:
+                if let data = self.viewModel.arrData?.itemsVirtual, data.indices.contains(indexPath.row){
+                    cell.getEvent = data[indexPath.row]
+                }
+            case .popular:
+                if let data = self.viewModel.arrData?.itemsPopular, data.indices.contains(indexPath.row){
+                    cell.getEvent = data[indexPath.row]
+                }
+            case .free:
+                if let data = self.viewModel.arrData?.itemsFree, data.indices.contains(indexPath.row){
+                    cell.getEvent = data[indexPath.row]
+                }
+            case .upcoming:
+                if let data = self.viewModel.arrData?.itemsUpcoming, data.indices.contains(indexPath.row){
+                    cell.getEvent = data[indexPath.row]
+                }
+            default:
+                if let data = self.viewModel.arrData?.itemsWeekend, data.indices.contains(indexPath.row){
+                    cell.getEvent = data[indexPath.row]
+                }
             }
+            
+            
             
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .weekend:
+            if let data = self.viewModel.arrData?.itemsWeekend, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+                self.loadData()
+            }
+        case .online:
+            if let data = self.viewModel.arrData?.itemsVirtual, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+                self.loadData()
+            }
+        case .popular:
+            if let data = self.viewModel.arrData?.itemsPopular, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+                self.loadData()
+            }
+        case .free:
+            if let data = self.viewModel.arrData?.itemsFree, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+                self.loadData()
+            }
+        case .upcoming:
+            if let data = self.viewModel.arrData?.itemsUpcoming, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+                self.loadData()
+            }
+        default:
+            break;
+        }
+        
+       
     }
     
     
