@@ -21,7 +21,7 @@ class SelectTicketTypeTableviewCell: UITableViewCell {
 
     func setFont() {
         self.lblTicketType.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.swTicketTypeSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
+        self.swTicketTypeSwitch.onTintColor = UIColor.setColor(colorType: .tgBlue)
     }
 
 }

@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple on 20/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import AVFoundation
@@ -99,21 +106,21 @@ extension ScannerVC {
         self.lblSearch.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.imgSearch.image = UIImage(named: SEARCH_UNSELECT_ICON)
         self.lbl3Tix.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        self.lbl3Tix.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lbl3Tix.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblSunburnReload.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblSunburnReload.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblSunburnReload.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.btn1X.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .ten)
-        self.btn1X.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btn1X.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnEndScan.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnEndScan.titleLabel?.textColor = UIColor.setColor(colorType: .TGRed)
+        self.btnEndScan.titleLabel?.textColor = UIColor.setColor(colorType: .tgRed)
         self.lblAccepted.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblAccepted.textColor = UIColor.setColor(colorType: .TGGreen)
+        self.lblAccepted.textColor = UIColor.setColor(colorType: .tgGreen)
         self.lblTotal.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblTotal.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTotal.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblRejected.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblRejected.textColor = UIColor.setColor(colorType: .TGRed)
+        self.lblRejected.textColor = UIColor.setColor(colorType: .tgRed)
         
     }
 }

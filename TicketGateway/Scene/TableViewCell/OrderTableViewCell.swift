@@ -27,11 +27,11 @@ class OrderTableViewCell: UITableViewCell {
     
     func setFont() {
         self.lblJouverRepublic.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblJouverRepublic.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblJouverRepublic.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.btnSeeCostumes.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnSeeCostumes.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnSeeCostumes.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
     }
     
 }

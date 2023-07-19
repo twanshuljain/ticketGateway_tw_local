@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Apple  on 28/04/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 
@@ -22,12 +28,13 @@ class EventsOrganizesListTableView: UITableView {
     var arrData = [GetEventModel]()
     var arrDataa = [GetEventModel]()
     
-    
     var arrDataaWeekend = [GetEventModel]()
     var arrDataaVirtual = [GetEventModel]()
     var arrDataaPopular = [GetEventModel]()
     var arrDataaFree = [GetEventModel]()
     var arrDataaUpcoming = [GetEventModel]()
+    var arrDataCategorySearch = [GetEventModel]()
+    var arrSearchData = [GetEventModel]()
     
     
     var tableDidSelectAtIndex: ((IndexPath) -> Void)?
@@ -35,6 +42,7 @@ class EventsOrganizesListTableView: UITableView {
     var isFromDeselected = false
     var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .Home
     var delegateViewMore:EventsOrganizesListTableViewProtocol?
+    var isFromSearch: Bool = false
     
     func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
         self.isComingFrom = isComingFrom
@@ -77,6 +85,9 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             }else{
                 return self.arrData.count
             }
+        } else if self.isComingFrom == .EventSearch {
+            ///return arrDataCategorySearch.count
+            return isFromSearch ? arrSearchData.count: arrDataCategorySearch.count
         }
         return 0
     }
@@ -111,7 +122,21 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                         cell.getEvent = self.arrDataa[indexPath.row]
                     }
                 }
-            }else{
+            } else if self.isComingFrom == .EventSearch {
+                if isFromSearch {
+                    if arrSearchData.indices.contains(indexPath.row) {
+                        cell.getEvent = self.arrSearchData[indexPath.row]
+                    }
+                } else {
+                    if arrDataCategorySearch.indices.contains(indexPath.row) {
+                        cell.getEvent = self.arrDataCategorySearch[indexPath.row]
+                    }
+                }
+                
+//                if arrDataCategorySearch.indices.contains(indexPath.row) {
+//                    cell.getEvent = self.arrDataCategorySearch[indexPath.row]
+//                }
+            } else {
                 if arrData.indices.contains(indexPath.row){
                     cell.getEvent = self.arrData[indexPath.row]
                 }
@@ -131,17 +156,17 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             let label = UILabel()
             label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
             label.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-            label.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            label.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
             
             headerView.addSubview(label)
             switch section {
-            case 0: label.text = "This Weekend"
-            case 1: label.text = "Online Events"
-            case 2: label.text = "Popular Events"
-            case 3: label.text = "Free Events"
-            case 4: label.text = "Upcoming Events"
+            case 0: label.text = This_Weekend
+            case 1: label.text = Online_Events
+            case 2: label.text = Popular_Events
+            case 3: label.text = Free_Events
+            case 4: label.text = Upcoming_Events
             default:
-               label.text = "Events near Toronto"
+               label.text = Events_Near_Toronto
             }
             return headerView
         }
@@ -170,14 +195,14 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             let button = CustomButtonNormal()
             button.frame = CGRect.init(x: 16, y: 0, width: footerView.frame.width, height: footerView.frame.height)
             footerView.addSubview(button)
-            button.setTitles(text: "View more events", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+            button.setTitles(text: VIEW_MORE_EVENT, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
             button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-            button.addRightIcon(image: UIImage(named: "ri8Blue"))
+            button.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
             button.tag = section
             
             let separatorView = UIView(frame: CGRect.init(x: 25, y: 45, width: tableView.frame.width - 50, height: 1))
             footerView.addSubview(separatorView)
-            separatorView.backgroundColor = UIColor.setColor(colorType: .PlaceHolder)
+            separatorView.backgroundColor = UIColor.setColor(colorType: .placeHolder)
             
             return footerView
         }

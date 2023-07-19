@@ -10,18 +10,16 @@ import UIKit
 
 final class SocialSignInViewModel {
     // MARK: - Variable
-    var vc : SocialSignInVC?
+    var vc: SocialSignInVC?
     var strEmail: String = ""
     var strName: String = ""
-    var strUserID : String = ""
-    var strProfile : String = ""
-    var strNumber : String = ""
-    var strSocialId : String = ""
-    
-    init(){
+    var strUserID: String = ""
+    var strProfile: String = ""
+    var strNumber: String = ""
+    var strSocialId: String = ""
+    init() {
     }
-    init(vc:SocialSignInVC) {
+    init(vc: SocialSignInVC) {
         self.vc = vc
     }
-    
 }

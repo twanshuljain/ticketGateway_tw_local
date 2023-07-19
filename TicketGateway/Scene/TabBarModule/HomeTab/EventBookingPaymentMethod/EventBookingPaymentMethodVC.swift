@@ -3,8 +3,15 @@
 //  TicketGateway
 //
 //  Created by Apple  on 16/05/23.
-//
-
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable cyclomatic_complexity
+// swiftlint: disable shorthand_operator
 import UIKit
 
 class EventBookingPaymentMethodVC: UIViewController {
@@ -104,7 +111,7 @@ extension EventBookingPaymentMethodVC {
         
         [self.lblPayWithCard,lblPayWithDigitalWAllet].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-            $0?.textColor = UIColor.setColor(colorType: .TGBlack)
+            $0?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
         [self.lblTittleBalance,lblMoreWayToPay].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -119,8 +126,8 @@ extension EventBookingPaymentMethodVC {
         self.vwBgWallet.backgroundColor = .clear
         self.vwWallet.isHidden = true
         self.vwCard.isHidden = true
-        self.vwBgWallet.borderColor = UIColor.setColor(colorType: .BorderColor)
-        self.vwBgCard.borderColor = UIColor.setColor(colorType: .BorderColor)
+        self.vwBgWallet.borderColor = UIColor.setColor(colorType: .borderColor)
+        self.vwBgCard.borderColor = UIColor.setColor(colorType: .borderColor)
 
         self.vwWalletTop.isHidden = true
         self.vwCardTop.isHidden = true
@@ -156,7 +163,7 @@ extension EventBookingPaymentMethodVC {
             self.setGradientBackground(viewadd: vwBgWallet)
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
-            self.vwBgWallet.borderColor = UIColor.setColor(colorType: .TGBlue)
+            self.vwBgWallet.borderColor = UIColor.setColor(colorType: .tgBlue)
             self.vwWallet.isHidden = false
             self.vwCard.isHidden = true
             self.vwWalletTop.isHidden = false
@@ -175,7 +182,7 @@ extension EventBookingPaymentMethodVC {
             self.setGradientBackground(viewadd: vwBgCard)
             self.vwBgCard.backgroundColor = .white
             self.vwBgWallet.backgroundColor = .clear
-            self.vwBgCard.borderColor = UIColor.setColor(colorType: .TGBlue)
+            self.vwBgCard.borderColor = UIColor.setColor(colorType: .tgBlue)
 
             self.vwWalletTop.isHidden = true
             self.vwCardTop.isHidden = false

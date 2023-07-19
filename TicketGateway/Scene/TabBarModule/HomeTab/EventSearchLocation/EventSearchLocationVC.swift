@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Apple  on 22/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 import SideMenu
@@ -26,7 +32,7 @@ class EventSearchLocationVC: UIViewController {
         self.setUI()
         self.vwSearchBar.delegate = self
         self.vwSearchBar.vwLocation.isHidden = true
-        self.vwSearchBar.txtSearch.attributedPlaceholder = NSAttributedString(string: FIND_EVENT_IN, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .PlaceHolder)])
+        self.vwSearchBar.txtSearch.attributedPlaceholder = NSAttributedString(string: FIND_EVENT_IN, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .placeHolder)])
         self.vwSearchBar.txtSearch.delegate = self
         self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
     }
@@ -43,7 +49,7 @@ extension EventSearchLocationVC{
     private func setUI(){
         [self.lblNearBy,self.lblOnlineEvents,self.lblBrowingIn].forEach{
             $0.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-            $0.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            $0.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         [self.lblNearByDiscripation,self.lblOnlineEventDis].forEach{
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

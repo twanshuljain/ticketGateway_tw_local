@@ -26,7 +26,7 @@ class InstallmentHeaderView: UITableViewHeaderFooterView {
     
     func setFont() {
         lblInstallment.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblInstallment.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblInstallment.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblAfterDownpayment.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         lblAfterDownpayment.textColor = UIColor.setColor(colorType: .lblTextPara)
         //btnSelected.addTarget(self, action: #selector(setImage(_:)), for: .touchUpInside)

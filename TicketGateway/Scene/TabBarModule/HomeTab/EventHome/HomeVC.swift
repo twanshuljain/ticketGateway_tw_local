@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Apple  on 17/04/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 import SideMenu
@@ -93,10 +99,10 @@ extension HomeVC {
     
     func setUi(){
         self.lblNearOrganisedEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblSuggestedOrganised.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblSuggestedOrganised.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.btnViewAllForSuggestedOrganised.setTitles(text: SEE_ALL, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+        self.lblSuggestedOrganised.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.btnViewAllForSuggestedOrganised.setTitles(text: SEE_ALL, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
       }
     
     

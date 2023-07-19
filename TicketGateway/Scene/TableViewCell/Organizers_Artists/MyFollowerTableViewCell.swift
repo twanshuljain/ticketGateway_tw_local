@@ -28,9 +28,9 @@ class MyFollowerTableViewCell: UITableViewCell {
     
     func setFonts(){
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblFollowers.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblFollowers.textColor = UIColor.setColor(colorType: .headinglbl)
         
     }
     

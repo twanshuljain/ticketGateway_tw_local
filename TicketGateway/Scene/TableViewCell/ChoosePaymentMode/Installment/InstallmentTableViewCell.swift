@@ -28,11 +28,11 @@ class InstallmentTableViewCell: UITableViewCell {
     
     func setFont() {
         self.lblDownPayment.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblDownPayment.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblDownPayment.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTime.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblCAD.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblCAD.textColor = UIColor.setColor(colorType: .lblTextPara)
     }

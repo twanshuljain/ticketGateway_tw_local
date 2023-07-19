@@ -37,9 +37,9 @@ extension AmountAddedSuccessfullyVC {
         [self.btnOkey].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        btnOkey.setTitles(text: OKAY, textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .PlaceHolder))
+        btnOkey.setTitles(text: OKAY, textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .placeHolder))
         lblThanku.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
-        lblThanku.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblThanku.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         lblAmount.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblAmount.textColor = UIColor.setColor(colorType: .lblTextPara)

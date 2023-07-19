@@ -27,16 +27,16 @@ class ReviewRefundTableViewCell: UITableViewCell {
     
     func setFont() {
         self.lblAtTheDoor.font = UIFont.setFont(fontType: .medium, fontSize:    .fourteen)
-        self.lblAtTheDoor.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblAtTheDoor.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize:    .fourteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblGeneralAdmission.font = UIFont.setFont(fontType: .regular, fontSize:    .twelve)
-        self.lblGeneralAdmission.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblGeneralAdmission.textColor = UIColor.setColor(colorType: .tgGrey)
         
         self.lblBarCodd.font = UIFont.setFont(fontType: .regular, fontSize:    .twelve)
-        self.lblBarCodd.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblBarCodd.textColor = UIColor.setColor(colorType: .tgGrey)
         
     }
     

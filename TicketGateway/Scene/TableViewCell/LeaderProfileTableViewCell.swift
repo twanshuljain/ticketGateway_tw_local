@@ -42,11 +42,11 @@ class LeaderProfileTableViewCell: UITableViewCell {
     
      func setUpUI() {
         self.lblTitle.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblTitle.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblTitle.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.lblTitleValue.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblTitleValue.textColor = UIColor.setColor(colorType: .TGBlack)
-        self.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+        self.lblTitleValue.textColor = UIColor.setColor(colorType: .tgBlack)
+        self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
 
    

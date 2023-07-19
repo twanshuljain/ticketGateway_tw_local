@@ -28,13 +28,13 @@ class UpcomingTableViewCell: UITableViewCell {
     
     func setFonts() {
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTime.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.btnSeeTickets.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnSeeTickets.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnSeeTickets.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
     }
     
 }

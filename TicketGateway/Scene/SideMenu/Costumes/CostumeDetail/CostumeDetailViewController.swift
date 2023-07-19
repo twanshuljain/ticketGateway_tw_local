@@ -3,7 +3,13 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 03/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disbale identifier_name
+// swiftlint: disbalefunction_parameter_count
 
 import UIKit
 import MapKit
@@ -107,17 +113,17 @@ extension CostumeDetailViewController{
         lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblLocation.text = Parade_Location
         lblLocation.font =  UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblLocation.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblLocation.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblAddress.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblJuniorCarnival.text = Junior_Carnival
         lblJuniorCarnival.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        lblJuniorCarnival.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblJuniorCarnival.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblMasCamp.text = Mas_Camp_Location
         lblMasCamp.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblMasCamp.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblMasCamp.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblSanFernado.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblSanFernado.textColor = UIColor.setColor(colorType: .Headinglbl)
+        lblSanFernado.textColor = UIColor.setColor(colorType: .headinglbl)
         lblMon.text = LBL_MON
         lblMon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblMon.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -130,16 +136,16 @@ extension CostumeDetailViewController{
         lblSatTime.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblBandLeader.text = Band_Leader
         lblBandLeader.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblBandLeader.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblBandLeader.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblDj.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        lblDj.textColor = UIColor.setColor(colorType: .TGBlue)
+        lblDj.textColor = UIColor.setColor(colorType: .tgBlue)
         btnContact.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnContact.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         lblSectionLeader.text = Section_Leader
         lblSectionLeader.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblSectionLeader.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblSectionLeader.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        lblName.textColor = UIColor.setColor(colorType: .TGBlue)
+        lblName.textColor = UIColor.setColor(colorType: .tgBlue)
        
         lblEmail.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblEmail.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -150,15 +156,15 @@ extension CostumeDetailViewController{
         
         lblVideo.text = VIDEOS
         lblVideo.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblVideo.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblVideo.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblPhotos.text = PHOTOS
         lblPhotos.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblPhotos.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblPhotos.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblSimilarProduct.text = SIMILAR_PRODUCT
         lblSimilarProduct.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        lblSimilarProduct.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblSimilarProduct.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
-        dottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [2,4])
+        dottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [2,4])
 
         btnRegisterNow.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnRegisterNow.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
@@ -249,8 +255,8 @@ extension CostumeDetailViewController {
     func setPageControll() {
         photoPageController.drawer = ExtendedDotDrawer(numberOfPages: 3,
                                                        space: 16.0,
-                                                       indicatorColor: UIColor.setColor(colorType: .TiitleColourDarkBlue),
-                                                       dotsColor: UIColor.setColor(colorType: .PlaceHolder),
+                                                       indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                       dotsColor: UIColor.setColor(colorType: .placeHolder),
                                                        isBordered: false,
                                                        borderWidth: 0.0,
                                                        indicatorBorderColor: .clear,
@@ -258,8 +264,8 @@ extension CostumeDetailViewController {
         
         productPageController.drawer = ExtendedDotDrawer(numberOfPages: 3,
                                                          space: 16.0,
-                                                         indicatorColor: UIColor.setColor(colorType: .TiitleColourDarkBlue),
-                                                         dotsColor: UIColor.setColor(colorType: .PlaceHolder),
+                                                         indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                         dotsColor: UIColor.setColor(colorType: .placeHolder),
                                                          isBordered: false,
                                                          borderWidth: 0.0,
                                                          indicatorBorderColor: .clear,

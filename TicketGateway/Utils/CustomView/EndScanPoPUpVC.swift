@@ -31,13 +31,13 @@ class EndScanPoPUpVC: UIViewController {
 extension EndScanPoPUpVC {
     func setFont() {
         self.lblEndScan.font = UIFont.setFont(fontType: .semiBold, fontSize: .twentyFour)
-        self.lblEndScan.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblEndScan.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblTitleDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblTitleDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.btnYes.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnYes.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnYes.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         self.btnNo.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnNo.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnNo.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
     }
 }
 //MARK: - Instance Method

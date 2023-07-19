@@ -5,7 +5,14 @@
 ////  Created by Apple  on 02/05/23.
 ////
 //
-//import UIKit
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 //

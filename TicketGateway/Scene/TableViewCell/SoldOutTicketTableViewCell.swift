@@ -22,7 +22,7 @@ class SoldOutTicketTableViewCell: UITableViewCell {
     
     func setFont() {
         self.lblGeneralAdmission.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblGeneralAdmission.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblGeneralAdmission.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblTotalTicket.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTotalTicket.textColor = UIColor.setColor(colorType: .lblTextPara)

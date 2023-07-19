@@ -29,9 +29,9 @@ class TransactionsListCell: UITableViewCell {
     }
     func setUi(){
         self.lblTittle.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblTittle.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblTittle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblAmount.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblAmount.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblAmount.textColor = UIColor.setColor(colorType: .tgBlack)
     }
     
 }

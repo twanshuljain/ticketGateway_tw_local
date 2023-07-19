@@ -28,12 +28,12 @@ class RequestRefundTableViewCell: UITableViewCell {
     
     func setFont() {
         self.lblTicketId.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        self.lblTicketId.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblTicketId.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblTicketIdValue.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblTicketIdValue.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.lblTicketName.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        self.lblTicketName.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblTicketName.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblTicketNameValue.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblTicketNameValue.textColor = UIColor.setColor(colorType: .lblTextPara)
     }

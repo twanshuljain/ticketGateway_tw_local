@@ -19,9 +19,9 @@ class ManageEventSellTicketCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblTittle.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblTittle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblAmountComp.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblAmountComp.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblAmountComp.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblOrderStatus.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblOrderStatus.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblTittleDis.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)

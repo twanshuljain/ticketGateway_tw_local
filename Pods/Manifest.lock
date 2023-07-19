@@ -8,6 +8,7 @@ PODS:
   - iOSDropDown (0.4.0)
   - SideMenu (6.5.0)
   - SwiftAlgorithms (1.0.0)
+  - SwiftLint (0.52.4)
 
 DEPENDENCIES:
   - AdvancedPageControl
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - Cosmos
   - iOSDropDown
   - SideMenu
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -24,6 +26,7 @@ SPEC REPOS:
     - iOSDropDown
     - SideMenu
     - SwiftAlgorithms
+    - SwiftLint
 
 SPEC CHECKSUMS:
   AdvancedPageControl: 39e3b32b00b2d324c534f8e17cc6c5be9abe84b7
@@ -32,7 +35,8 @@ SPEC CHECKSUMS:
   iOSDropDown: ce9daa584eaa5567cafc1b633e3cc7eb6d9cea42
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
+  SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: 29d61bc8623733cb795f30ebde6dd7aa396536a3
+PODFILE CHECKSUM: 7a827c884d9d27c6728edb262409dd8a108d65a0
 
 COCOAPODS: 1.12.1

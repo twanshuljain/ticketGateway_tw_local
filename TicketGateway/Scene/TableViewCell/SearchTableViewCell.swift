@@ -28,7 +28,7 @@ class SearchTableViewCell: UITableViewCell {
     
     func setFont() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblName.textColor = UIColor.setColor(colorType: .tgBlack)
         
         let lbls = [lblOrderId, lblCardNo, lblNameOnCard]
         for lbl in lbls {

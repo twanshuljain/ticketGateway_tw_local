@@ -3,7 +3,13 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 03/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disbale identifier_name
+// swiftlint: disbalefunction_parameter_count
 
 import UIKit
 import SwiftUI
@@ -97,7 +103,7 @@ class CostumeTableViewCell: UITableViewCell {
             if let costumeObj = costumeObj as? CostumeViewController{
                 self.delegate = costumeObj
             }
-            self.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+            self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
             self.btnRegister.isHidden = false
             self.htRegisterBtn.constant = 48
             self.collectionViewCostume.isScrollEnabled = false
@@ -112,23 +118,23 @@ class CostumeTableViewCell: UITableViewCell {
     func setCollectionView() {
         collectionViewCostume.delegate = self
         collectionViewCostume.dataSource = self
-        collectionViewCostume.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+        collectionViewCostume.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
         self.collectionViewCostume.register(UINib(nibName: "CostumeImageCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CostumeImageCollectionViewCell")
         //
     }
     
     func setFont() {
         lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         btnFrontLine.titleLabel?.font = UIFont.setFont(fontType: .light, fontSize: .twelve)
-        btnFrontLine.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        btnFrontLine.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         lblTime.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         lblFlexiblePayment.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        lblFlexiblePayment.textColor = UIColor.setColor(colorType: .TGBlack)
+        lblFlexiblePayment.textColor = UIColor.setColor(colorType: .tgBlack)
         btnRegister.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnRegister.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         btnRegister.backgroundColor = UIColor.setColor(colorType: .white)
@@ -188,8 +194,8 @@ extension CostumeTableViewCell {
     func toSetPageControll() {
         imagePageController.drawer = ExtendedDotDrawer(numberOfPages: self.imgCollectionData.count,
                                                        space: 16.0,
-                                                       indicatorColor: UIColor.setColor(colorType: .TiitleColourDarkBlue),
-                                                       dotsColor: UIColor.setColor(colorType: .PlaceHolder),
+                                                       indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                       dotsColor: UIColor.setColor(colorType: .placeHolder),
                                                        isBordered: false,
                                                        borderWidth: 0.0,
                                                        indicatorBorderColor: .clear,

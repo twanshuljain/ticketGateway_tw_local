@@ -7,6 +7,5 @@
 
 import UIKit
 
-class LoginNmberWithEmailModel{
-    
+class LoginNmberWithEmailModel {
 }

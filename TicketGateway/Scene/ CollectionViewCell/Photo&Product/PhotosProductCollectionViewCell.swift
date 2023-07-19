@@ -24,9 +24,9 @@ class PhotosProductCollectionViewCell: UICollectionViewCell {
     
     func setFont() {
         lblSunburnReload.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        lblSunburnReload.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblSunburnReload.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblFrontLine.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        lblFrontLine.textColor = UIColor.setColor(colorType: .Headinglbl)
+        lblFrontLine.textColor = UIColor.setColor(colorType: .headinglbl)
         lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .eighteen)
       //  lblPrice.textColor = UIColor.setColor(colorType: UIColor.black.cgColor)
     }

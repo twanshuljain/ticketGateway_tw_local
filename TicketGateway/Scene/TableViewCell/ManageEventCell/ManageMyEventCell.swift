@@ -56,11 +56,11 @@ class ManageMyEventCell: UITableViewCell {
     
     func setUi(){
         self.vwPopUp.isHidden = true
-        self.btnManage.setTitles(text: MANAGE, textColour: UIColor.setColor(colorType: .TGBlack), borderColour: UIColor.setColor(colorType: .TGBlack))
+        self.btnManage.setTitles(text: MANAGE, textColour: UIColor.setColor(colorType: .tgBlack), borderColour: UIColor.setColor(colorType: .tgBlack))
         self.lblEventName.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)
-        self.lblEventName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblEventName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblStatus.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblStatus.textColor = UIColor.setColor(colorType: .TGGreen)
+        self.lblStatus.textColor = UIColor.setColor(colorType: .tgGreen)
         self.lblEnd.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblEnd.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblEndValue.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)

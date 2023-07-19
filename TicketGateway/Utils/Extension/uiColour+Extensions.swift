@@ -6,9 +6,6 @@
 //
 
 import UIKit
-
-import UIKit
-
 extension UIColor {
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         var hexFormatted: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
@@ -41,38 +38,37 @@ extension UIColor {
     }
     // MARK: - Color Setups
     enum ColorPalette: String {
-        case BorderLineColour = "BorderLineColour"
-        case EndGradient = "EndGradient"
-        case StartGradient = "StartGradient"
-        case EnterTxtFiled = "EnterTxtFiled"
+        case borderLineColour = "BorderLineColour"
+        case endGradient = "EndGradient"
+        case startGradient = "StartGradient"
+        case enterTxtFiled = "EnterTxtFiled"
         case darkBlueBG = "DarkBlueBG"
-        case Headinglbl = "Headinglbl"
+        case headinglbl = "Headinglbl"
         case quillLight = "QuillLight"
         case lightBlack = "lightBlack"
-        case PlaceHolder = "PlaceHolder"
-        case TGBlue = "TGBlue"
-        case TGGrey = "TGGrey"
-        case TGBlack = "TGBlack"
-        case TGGreen = "TGGreen"
-        case TGYellow = "TGYellow"
-        case TGRed = "TGRed"
-        case TiitleColourDarkBlue = "TiitleColourDarkBlue"
+        case placeHolder = "PlaceHolder"
+        case tgBlue = "TGBlue"
+        case tgGrey = "TGGrey"
+        case tgBlack = "TGBlack"
+        case tgGreen = "TGGreen"
+        case tgYellow = "TGYellow"
+        case tgRed = "TGRed"
+        case titleColourDarkBlue = "TiitleColourDarkBlue"
         case btnDarkBlue = "btnDarkBlue"
         case lblTextPara = "lblTextPara"
         case white = "white"
-        case ExtraLightBlack = "ExtraLightBlack"
-        case BorderColor = "BorderColor"
-        case StartTextGradientColor = "StartTextGradientColor"
-        case EndTextGradientColor = "EndTextGradientColor"
-        case SegmentColor = "SegmentColor"
-        case BgPurpleColor = "BgPurpleColor"
-        case AppleDarkGrey = "appleGrey"
+        case extraLightBlack = "ExtraLightBlack"
+        case borderColor = "BorderColor"
+        case startTextGradientColor = "StartTextGradientColor"
+        case endTextGradientColor = "EndTextGradientColor"
+        case segmentColor = "SegmentColor"
+        case bgPurpleColor = "BgPurpleColor"
+        case appleDarkGrey = "appleGrey"
         case lightGrey = "lightGrey"
     }
     static func setColor(colorType: ColorPalette) -> UIColor {
         return UIColor(named: colorType.rawValue) ?? .blue
     }
-    
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")

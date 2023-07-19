@@ -9,8 +9,9 @@ target 'TicketGateway' do
   pod 'AdvancedPageControl'
   pod 'Charts'
   pod 'Cosmos'
+  pod 'SwiftLint'
   
-  # Pods for TicketGateway
+# Pods for TicketGateway
 
   target 'TicketGatewayTests' do
     inherit! :search_paths

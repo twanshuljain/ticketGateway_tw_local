@@ -52,7 +52,7 @@ extension AttendeeDetailsVC {
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = ATTENDEE_DETAILS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
     }
     
@@ -61,7 +61,7 @@ extension AttendeeDetailsVC {
             self.checkedInStackView.isHidden = false
             self.btnCheckIn.setTitle(CHECKED_IN, for: .normal)
             self.btnCheckIn.addLeftIcon(image: UIImage(named: CHECK_CIRCLE_ICON))
-            self.btnCheckIn.backgroundColor = UIColor.setColor(colorType: .TGYellow)
+            self.btnCheckIn.backgroundColor = UIColor.setColor(colorType: .tgYellow)
             
         } else {
             self.btnCheckIn.setTitle(CHECK_IN, for: .normal)
@@ -81,19 +81,19 @@ extension AttendeeDetailsVC {
             lbl?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
         self.lblOrderNoValue.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblOrderNoValue.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblOrderNoValue.textColor = UIColor.setColor(colorType: .tgBlue)
         
         self.lblAttendeeName.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)
-        self.lblAttendeeName.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblAttendeeName.textColor = UIColor.setColor(colorType: .tgBlack)
         
         let valueLbls = [lblDeliveryMethodValue, lblTicketTypeValue, lblBarcodeValue, lblCheckedInValue]
         for valueLbl in valueLbls {
             valueLbl?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            valueLbl?.textColor = UIColor.setColor(colorType: .TGBlack)
+            valueLbl?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
         
         self.txtNotes.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.txtNotes.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.txtNotes.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.btnCheckIn.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnCheckIn.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)

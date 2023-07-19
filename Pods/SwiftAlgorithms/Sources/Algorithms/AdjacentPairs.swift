@@ -184,49 +184,49 @@ extension AdjacentPairsCollection: Collection {
   }
 
   @inlinable
-  public func index(after i: Index) -> Index {
-    precondition(i != endIndex, "Can't advance beyond endIndex")
-    let next = base.index(after: i.second)
+  public func index(after num: Index) -> Index {
+    precondition(num != endIndex, "Can't advance beyond endIndex")
+    let next = base.index(after: num.second)
     return next == base.endIndex
       ? endIndex
-      : Index(first: i.second, second: next)
+      : Index(first: num.second, second: next)
   }
 
   @inlinable
-  public func index(_ i: Index, offsetBy distance: Int) -> Index {
-    guard distance != 0 else { return i }
+  public func index(_ num: Index, offsetBy distance: Int) -> Index {
+    guard distance != 0 else { return num }
 
     guard let result = distance > 0
-      ? offsetForward(i, by: distance, limitedBy: endIndex)
-      : offsetBackward(i, by: -distance, limitedBy: startIndex)
+      ? offsetForward(num, by: distance, limitedBy: endIndex)
+      : offsetBackward(num, by: -distance, limitedBy: startIndex)
     else { fatalError("Index out of bounds") }
     return result
   }
 
   @inlinable
   public func index(
-    _ i: Index, offsetBy distance: Int, limitedBy limit: Index
+    _ index: Index, offsetBy distance: Int, limitedBy limit: Index
   ) -> Index? {
-    guard distance != 0 else { return i }
-    guard limit != i else { return nil }
+    guard distance != 0 else { return index }
+    guard limit != index else { return nil }
     
     if distance > 0 {
-      let limit = limit > i ? limit : endIndex
-      return offsetForward(i, by: distance, limitedBy: limit)
+      let limit = limit > index ? limit : endIndex
+      return offsetForward(index, by: distance, limitedBy: limit)
     } else {
-      let limit = limit < i ? limit : startIndex
-      return offsetBackward(i, by: -distance, limitedBy: limit)
+      let limit = limit < index ? limit : startIndex
+      return offsetBackward(index, by: -distance, limitedBy: limit)
     }
   }
   
   @inlinable
   internal func offsetForward(
-    _ i: Index, by distance: Int, limitedBy limit: Index
+    _ index: Index, by distance: Int, limitedBy limit: Index
   ) -> Index? {
     assert(distance > 0)
-    assert(limit > i)
+    assert(limit > index)
     
-    guard let newFirst = base.index(i.second, offsetBy: distance - 1, limitedBy: limit.first),
+    guard let newFirst = base.index(index.second, offsetBy: distance - 1, limitedBy: limit.first),
           newFirst != base.endIndex
     else { return nil }
     let newSecond = base.index(after: newFirst)
@@ -239,14 +239,14 @@ extension AdjacentPairsCollection: Collection {
   
   @inlinable
   internal func offsetBackward(
-    _ i: Index, by distance: Int, limitedBy limit: Index
+    _ index: Index, by distance: Int, limitedBy limit: Index
   ) -> Index? {
     assert(distance > 0)
-    assert(limit < i)
+    assert(limit < index)
         
-    let offset = i == endIndex ? 0 : 1
+    let offset = index == endIndex ? 0 : 1
     guard let newSecond = base.index(
-      i.first,
+        index.first,
       offsetBy: -(distance - offset),
       limitedBy: limit.second)
     else { return nil }
@@ -274,11 +274,11 @@ extension AdjacentPairsCollection: BidirectionalCollection
   where Base: BidirectionalCollection
 {
   @inlinable
-  public func index(before i: Index) -> Index {
-    precondition(i != startIndex, "Can't offset before startIndex")
-    let second = i == endIndex
+  public func index(before index: Index) -> Index {
+    precondition(index != startIndex, "Can't offset before startIndex")
+    let second = index == endIndex
       ? base.index(before: base.endIndex)
-      : i.first
+      : index.first
     let first = base.index(before: second)
     return Index(first: first, second: second)
   }

@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple  on 19/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import SideMenu
@@ -46,7 +53,7 @@ class ManageEventDashboardVC: UIViewController {
         self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
-        self.btnSeeMore.setTitles(text: "See More", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .TGBlue), textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnSeeMore.setTitles(text: "See More", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .tgBlue), textColour: UIColor.setColor(colorType: .tgBlue))
         self.tblTickets.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblTickets.configure()
         self.heightOfTableView.constant = self.tblTickets.contentSize.height
@@ -79,23 +86,23 @@ extension ManageEventDashboardVC{
         
         [self.lblNetTicketSoldValue,self.lblTotalAddCheckValue].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
-            $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         
         [self.lblAddmissionSold].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-            $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         
         [self.lblTotalTicketSold].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-            $0?.textColor = UIColor.setColor(colorType: .TGBlack)
+            $0?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
         
         
         [self.lblAddmissionSoldTotalAvaiable,].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-            $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         
     }

@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple  on 24/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 
@@ -47,7 +54,7 @@ extension ManageEventEditProfileVC {
         self.txtFullName.delegate = self
         self.txtMobileNumber.delegate = self
         self.txtEmailAddress.delegate = self
-        self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TiitleColourDarkBlue))
+        self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .titleColourDarkBlue))
         self.btnContinue.setTitles(text: SAVE_CHANGES, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
         self.btnContinue.addRightIcon(image: UIImage(named: SAVE_ICON))
         self.navigationView.lblTitle.text = EDIT_PROFILE

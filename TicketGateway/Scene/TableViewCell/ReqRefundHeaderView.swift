@@ -24,9 +24,9 @@ class ReqRefundHeaderView: UITableViewHeaderFooterView {
     
     func setFont() {
         self.lblNumber.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblNumber.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblNumber.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
 }

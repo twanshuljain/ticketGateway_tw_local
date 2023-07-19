@@ -55,7 +55,7 @@ extension HomeDashBoardViewModel {
 //    }
     
     func getOrganizersList(complition: @escaping (Bool,String) -> Void ) {
-        APIHandler.shared.executeRequestWith(apiName: .GetOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -74,7 +74,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForWeekendEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let parameters = viewAll == false ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.weekend.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup1.leave() }
@@ -105,7 +105,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForOnlineEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.virtual.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.virtual.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup2.leave() }
@@ -136,7 +136,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForPopularEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.popular.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.popular.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -166,7 +166,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForFreeEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.free.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.free.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -195,7 +195,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForUpcomingEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.upcoming.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.upcoming.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

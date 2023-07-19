@@ -3,13 +3,12 @@
 //  TicketGateway
 //
 //  Created by Apple  on 18/05/23.
-//
+// swiftlint: disable identifier_name
 
 import UIKit
 import iOSDropDown
 
 class AddAmountWalletVC: UIViewController {
-    
     @IBOutlet weak var viewDatePicker: UIView!
     @IBOutlet weak var picker_monthYear: UIPickerView!
     @IBOutlet weak var vwWalletTop: UIView!
@@ -43,13 +42,12 @@ class AddAmountWalletVC: UIViewController {
     @IBOutlet weak var txtExpiryDate: UITextField!
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
-    
     var MONTH = 0
     var YEAR = 1
     var selectedMonthName = ""
     var selectedyearName = ""
-    var months = [Any]()
-    var years = [Any]()
+    var months = [String]()
+    var years = [String]()
     var minYear: Int = 0
     var maxYear: Int = 0
     var rowHeight: Int = 0
@@ -58,9 +56,6 @@ class AddAmountWalletVC: UIViewController {
     let colorTop =  UIColor(red: 146.0/255.0, green: 254.0/255.0, blue: 157.0/255.0, alpha: 0.2).cgColor
     let colorBottom = UIColor(red: 0/255.0, green: 201.0/255.0, blue: 255.0/255.0, alpha: 0.2).cgColor
     let gradientLayer = CAGradientLayer()
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -251,14 +246,14 @@ extension AddAmountWalletVC {
         print(selectedMonth,selectdYear)
         self.picker_monthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
         var ind = 0
-        var i = 0
+        var num = 0
         for obj in self.years{
             let yer = String(selectdYear)
-            if obj as! String == yer{
-                ind = i
+            if obj = yer {
+                ind = num
                 break
             }
-            i = i + 1
+            num +=  1
         }
         self.picker_monthYear.selectRow(ind, inComponent: 1, animated: false)
         self.picker_monthYear.reloadAllComponents()
@@ -363,11 +358,11 @@ extension AddAmountWalletVC:UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if component == MONTH {
-            let monthName: String = months[row] as! String
+            let monthName = months[row]
             return monthName
         }
         else {
-            let yearName: String = years[row] as! String
+            let yearName = years[row]
             let str = "\(yearName)"
             return str
         }
@@ -381,7 +376,7 @@ extension AddAmountWalletVC:UIPickerViewDelegate,UIPickerViewDataSource{
             let strCurrentMonth = String(Calendar.current.component(.month, from: Date()))
             let str = selectedyearName
             if strCurrentYear == str {
-                let strMonths = months[row] as! String
+                let strMonths = months[row]
                 if Int(strCurrentMonth) ?? 0 > Int(strMonths) ?? 0 {
                     let index = (Int(strCurrentMonth) ?? 0) - 1
                     self.picker_monthYear.selectRow(index, inComponent: 0, animated: false)
@@ -390,13 +385,13 @@ extension AddAmountWalletVC:UIPickerViewDelegate,UIPickerViewDataSource{
                         selectedMonthName = "0" + selectedMonthName
                     }
                 } else {
-                    selectedMonthName = months[row] as! String
+                    selectedMonthName = months[row]
                     if selectedMonthName.count <= 1 {
                         selectedMonthName = "0" + selectedMonthName
                     }
                 }
             } else {
-                selectedMonthName = months[row] as! String
+                selectedMonthName = months[row]
                 if selectedMonthName.count <= 1 {
                     selectedMonthName = "0" + selectedMonthName
                 }

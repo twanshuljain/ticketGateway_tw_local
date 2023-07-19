@@ -20,7 +20,7 @@ class ContactTableViewCell: UITableViewCell {
 
     func setFont() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblName.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.lblGeneralAdmission.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblGeneralAdmission.textColor = UIColor.setColor(colorType: .lblTextPara)

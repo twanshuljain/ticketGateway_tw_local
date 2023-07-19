@@ -34,8 +34,8 @@ class AddOnTableViewCell: UITableViewCell {
         self.lblTitle.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .lightBlack)
         self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.toggle.onTintColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.toggle.onTintColor = UIColor.setColor(colorType: .tgBlue)
         self.txtSelect.font = UIFont.setFont(fontType: .regular, fontSize:   .fourteen)
         self.txtSelect.textColor = UIColor.setColor(colorType: .lblTextPara)
 

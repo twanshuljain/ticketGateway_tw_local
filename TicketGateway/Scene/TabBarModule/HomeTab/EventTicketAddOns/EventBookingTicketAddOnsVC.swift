@@ -3,28 +3,30 @@
 //  TicketGateway
 //
 //  Created by Apple  on 15/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 import iOSDropDown
-
 class EventBookingTicketAddOnsVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblAddOn: UITableView!
-    
-    //MARK: - Variables
+    // MARK: - Variables
     var addOnTableData = ["Tshirt_ip", "Tshirt_ip", "Tshirt_ip", "Tshirt_ip"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
         self.setup()
     }
 }
-
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingTicketAddOnsVC{
     func setTableView() {
         tblAddOn.delegate = self

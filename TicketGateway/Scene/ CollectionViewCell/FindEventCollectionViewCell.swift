@@ -19,6 +19,6 @@ class FindEventCollectionViewCell: UICollectionViewCell {
     
     func setFont() {
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
 }

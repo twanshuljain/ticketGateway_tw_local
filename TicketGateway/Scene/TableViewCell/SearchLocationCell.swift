@@ -20,9 +20,9 @@ class SearchLocationCell: UITableViewCell {
 
     func setFont() {
         self.lblTittle.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblTittle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTittle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblOnOFF.font = UIFont.setFont(fontType: .medium, fontSize: .seventeen)
-        self.lblOnOFF.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblOnOFF.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
     }
     

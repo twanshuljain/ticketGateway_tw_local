@@ -3,7 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 24/05/23.
-//
+// swiftlint: disable identifier_name
 
 import UIKit
 
@@ -30,8 +30,8 @@ class AddCardVC: UIViewController {
     var YEAR = 1
     var selectedMonthName = ""
     var selectedyearName = ""
-    var months = [Any]()
-    var years = [Any]()
+    var months = [String]()
+    var years = [String]()
     var minYear: Int = 0
     var maxYear: Int = 0
     var rowHeight: Int = 0
@@ -156,14 +156,14 @@ extension AddCardVC {
         print(selectedMonth,selectdYear)
         self.picker_monthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
         var ind = 0
-        var i = 0
+        var num = 0
         for obj in self.years{
             let yer = String(selectdYear)
-            if obj as! String == yer{
-                ind = i
+            if obj  == yer{
+                ind = num
                 break
             }
-            i = i + 1
+            num += 1
         }
         self.picker_monthYear.selectRow(ind, inComponent: 1, animated: false)
         self.picker_monthYear.reloadAllComponents()
@@ -268,11 +268,11 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if component == MONTH {
-            let monthName: String = months[row] as! String
+            let monthName = months[row]
             return monthName
         }
         else {
-            let yearName: String = years[row] as! String
+            let yearName = years[row]
             let str = "\(yearName)"
             return str
         }
@@ -288,7 +288,7 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
              let str = selectedyearName
             if strCurrentYear == str
             {
-                let strMonths = months[row] as! String
+                let strMonths = months[row]
                 if Int(strCurrentMonth) ?? 0 > Int(strMonths) ?? 0
                 {
                     
@@ -308,7 +308,7 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
                 }
                 else
                 {
-                    selectedMonthName = months[row] as! String
+                    selectedMonthName = months[row]
                     
                     if selectedMonthName.count <= 1
                     {
@@ -319,7 +319,7 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
                 
             }else
             {
-                selectedMonthName = months[row] as! String
+                selectedMonthName = months[row] 
                 if selectedMonthName.count <= 1
                 {
                     selectedMonthName = "0" + selectedMonthName

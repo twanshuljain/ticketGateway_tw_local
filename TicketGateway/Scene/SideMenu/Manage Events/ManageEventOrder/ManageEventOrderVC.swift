@@ -3,7 +3,14 @@
 // TicketGateway
 //
 // Created by Dr.Mac on 23/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 import UIKit
 import SideMenu
 class ExpandableName {
@@ -23,6 +30,7 @@ class ManageEventOrderVC: UIViewController {
     @IBOutlet weak var btnScan: UIButton!
     //MARK: - Variables
     var viewModel = ManageEventOrderViewModel()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
@@ -39,7 +47,7 @@ extension ManageEventOrderVC{
         self.vwNavigationBar.lblTitle.text = HEADER_TITLE_SUNBURN
         self.vwNavigationBar.lblDiscripation.isHidden = false
         self.vwNavigationBar.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.vwNavigationBar.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationBar.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.vwNavigationBar.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.vwNavigationBar.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.vwNavigationBar.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -55,7 +63,7 @@ extension ManageEventOrderVC{
     }
     func setFont() {
         self.lblSorry.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblSorry.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblSorry.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblYourSearch.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblYourSearch.textColor = UIColor.setColor(colorType: .lblTextPara)
     }

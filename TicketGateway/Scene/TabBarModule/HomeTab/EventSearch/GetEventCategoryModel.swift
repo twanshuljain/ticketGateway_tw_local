@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - GetEventCategoryModel
 struct GetEventCategoryModel: Codable {
     var id: Int?
     var name: String?
@@ -15,7 +16,7 @@ struct GetEventCategoryModel: Codable {
     var isActive: Bool?
     var url, description: String?
     var order: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name, status, image
@@ -23,4 +24,11 @@ struct GetEventCategoryModel: Codable {
         case url, description, order
     }
 }
+
+
+
+
+
+
+
 

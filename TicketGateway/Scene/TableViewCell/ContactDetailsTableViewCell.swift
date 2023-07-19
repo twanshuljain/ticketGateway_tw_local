@@ -30,7 +30,7 @@ class ContactDetailsTableViewCell: UITableViewCell {
         self.lblLink.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblLink.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
-       self.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+       self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

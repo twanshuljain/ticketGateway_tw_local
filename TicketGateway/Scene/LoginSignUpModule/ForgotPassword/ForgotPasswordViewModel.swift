@@ -3,20 +3,19 @@
 //  TicketGateway
 //
 //  Created by Apple  on 14/04/23.
-//
+// swiftlint: disable line_length
+// swiftlint: disable force_cast
 
 import UIKit
-
 final class ForgotPasswordViewModel {
     // MARK: - Variable
     var email: String = ""
     var objModel: ForgotPasswordModel?
-    var vc : ForgotPasswordVC?
-    
+    var frgtPassVC : ForgotPasswordVC?
     init(){
     }
-    init(vc:ForgotPasswordVC) {
-        self.vc = vc
+    init(frgtPassVC:ForgotPasswordVC) {
+        self.frgtPassVC = frgtPassVC
     }
 }
 // MARK: - Functions
@@ -28,7 +27,6 @@ extension ForgotPasswordViewModel {
         }
         return ("", true)
     }
-    
     func forgotPasswordAPI(complition: @escaping (Bool, String) -> Void) {
         let param = ForgotPasswordRequestModel(email: email)
         APIHandler.shared.executeRequestWith(apiName: .forgotPassword, parameters: param, methodType: .POST) { (result: Result<ResponseModal<ForgotPasswordModel>, Error>) in

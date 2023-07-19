@@ -8,5 +8,5 @@
 import Foundation
 
 struct SignUpRequest: Codable {
-  let email: String?
+    let email: String?
 }

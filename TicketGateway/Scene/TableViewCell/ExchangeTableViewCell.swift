@@ -35,14 +35,14 @@ class ExchangeTableViewCell: UITableViewCell {
     
     func setFont() {
         self.lblYoungGold.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblYoungGold.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblYoungGold.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.lblQty.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblQty.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblQty.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblAlreadyExchange.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        self.lblAlreadyExchange.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.swSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblAlreadyExchange.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.swSwitch.onTintColor = UIColor.setColor(colorType: .tgBlue)
         
         self.txtField.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.txtField.textColor = UIColor.setColor(colorType: .lblTextPara)

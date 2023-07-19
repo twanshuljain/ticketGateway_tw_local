@@ -26,7 +26,7 @@ class AddOnAddInOrderCell: UITableViewCell {
     func setUi(){
         [self.lblTittle,lblTittleValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
     }
     

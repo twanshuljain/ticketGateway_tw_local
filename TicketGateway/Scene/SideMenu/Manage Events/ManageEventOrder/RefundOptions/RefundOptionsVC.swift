@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple on 07/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import iOSDropDown
@@ -56,7 +63,7 @@ extension RefundOptionsVC{
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = REFUND_OPTIONS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
     }
     
@@ -90,7 +97,7 @@ extension RefundOptionsVC{
         let boldlbls = [lblPaymentMethod, lblTGWallet, lblFullRefund, lblPartialRefund]
         for boldlbl in boldlbls {
             boldlbl?.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-            boldlbl?.textColor = UIColor.setColor(colorType: .TGBlack)
+            boldlbl?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
         
         self.lblReasonForRefund.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
@@ -99,23 +106,23 @@ extension RefundOptionsVC{
         let regularLbls = [lblRefundToOriginal, lblGetAFullRefund, lblBarcodeWillNoLongerValid, lblBarcodeWillRemainValid]
         for regularLbl in regularLbls {
             regularLbl?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-            regularLbl?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            regularLbl?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         
         self.lblSelectTicket.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblSelectTicket.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblSelectTicket.textColor = UIColor.setColor(colorType: .tgBlack)
         
-        self.swPaymentMethodSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
-        self.swTGWalletSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
-        self.swFullRefundSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
-        self.swPartialRefundSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
+        self.swPaymentMethodSwitch.onTintColor = UIColor.setColor(colorType: .tgBlue)
+        self.swTGWalletSwitch.onTintColor = UIColor.setColor(colorType: .tgBlue)
+        self.swFullRefundSwitch.onTintColor = UIColor.setColor(colorType: .tgBlue)
+        self.swPartialRefundSwitch.onTintColor = UIColor.setColor(colorType: .tgBlue)
         self.lblSelectTicket.attributedText = getAttributedTextAction(attributedText: "*", firstString: SELECT_TICKETS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
         self.txtReasonForRefund.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        self.txtReasonForRefund.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.txtReasonForRefund.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.txtSelectTicket.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        self.txtSelectTicket.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.txtSelectTicket.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.btnNext.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnNext.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)

@@ -80,21 +80,21 @@ extension BandLeaderProfileViewController{
     
     func setUpUI() {
         self.lblFullName.font = UIFont.setFont(fontType: .semiBold, fontSize: .twentyFour)
-        self.lblFullName.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblFullName.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblMailId.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblMailId.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.btnFollow.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.btnFollow.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnFollow.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.lblOtherBrandLeader.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblOtherBrandLeader.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblOtherBrandLeader.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.btnSeeAll.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.btnFollow.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btnFollow.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         
         self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
-        self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .SegmentColor) ], for: .normal)
+        self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
     }
 }
 //MARK: - Actions
@@ -105,7 +105,7 @@ extension BandLeaderProfileViewController{
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .selected)
-            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .SegmentColor) ], for: .normal)
+            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
             self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
             self.tblView.layoutIfNeeded()
             viewModel.isAboutSelected = false
@@ -123,7 +123,7 @@ extension BandLeaderProfileViewController{
         case 1:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .selected)
-            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .SegmentColor) ], for: .normal)
+            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
             self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
             viewModel.isAboutSelected = true
             btnSeeAll.isHidden = true
@@ -174,7 +174,7 @@ extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSo
             let label = UILabel()
             label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
             label.font = UIFont.setFont(fontType: .medium, fontSize: .twenty)
-            label.textColor = UIColor.setColor(colorType: .TGBlack)
+            label.textColor = UIColor.setColor(colorType: .tgBlack)
             
             headerView.addSubview(label)
             
@@ -281,8 +281,8 @@ extension BandLeaderProfileViewController {
     func toSetPageControll() {
         imagePageController.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.arrBrandLeader.count,
                                                        space: 16.0,
-                                                       indicatorColor: UIColor.setColor(colorType: .TiitleColourDarkBlue),
-                                                       dotsColor: UIColor.setColor(colorType: .PlaceHolder),
+                                                       indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                       dotsColor: UIColor.setColor(colorType: .placeHolder),
                                                        isBordered: false,
                                                        borderWidth: 0.0,
                                                        indicatorBorderColor: .clear,

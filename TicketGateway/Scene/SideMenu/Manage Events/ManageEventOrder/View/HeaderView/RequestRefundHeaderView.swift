@@ -23,12 +23,12 @@ class RequestRefundHeaderView: UITableViewHeaderFooterView {
     
     func setFont() {
         lblName.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblPaymentStatus.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblPaymentStatus.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        lblPaymentStatus.textColor = UIColor.setColor(colorType: .TGYellow)
+        lblPaymentStatus.textColor = UIColor.setColor(colorType: .tgYellow)
         
         
     }

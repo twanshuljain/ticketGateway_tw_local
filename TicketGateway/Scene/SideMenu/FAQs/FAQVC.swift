@@ -3,8 +3,16 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 30/05/23.
-//
-
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable cyclomatic_complexity
+// swiftlint: disable shorthand_operator
+// swiftlint: disable type_name
 import UIKit
 import SideMenu
 
@@ -54,7 +62,7 @@ extension FAQVC{
         self.vwNavigatioView.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigatioView.btnBack.isHidden = false
         self.vwNavigatioView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.vwNavigatioView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigatioView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
     
     func setTableView() {
@@ -125,8 +133,8 @@ extension FAQVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.lblAnswer.text = ""
             cell.btnUp.setImage(UIImage(named: CHEVRON_DOWN_DB_ICON), for: .normal)
-            cell.bgView.borderColor = UIColor.setColor(colorType: .BorderLineColour)
-            cell.lblQuestion.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            cell.bgView.borderColor = UIColor.setColor(colorType: .borderLineColour)
+            cell.lblQuestion.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
             cell.bgView.layoutIfNeeded()
             
         }

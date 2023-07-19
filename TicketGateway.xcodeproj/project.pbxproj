@@ -193,7 +193,7 @@
 		18A6D0E929E9319300D6210E /* DataPassOnSignUpProcessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D0E829E9319300D6210E /* DataPassOnSignUpProcessModel.swift */; };
 		18A73DFE29EED1B1007365CB /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73DFD29EED1B1007365CB /* Image+Extensions.swift */; };
 		18A73E0029EED210007365CB /* VerifyPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73DFF29EED210007365CB /* VerifyPopupVC.swift */; };
-		18A73E0229EFB81C007365CB /* SignUpAuth_VerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0129EFB81C007365CB /* SignUpAuth_VerifyModel.swift */; };
+		18A73E0229EFB81C007365CB /* SignUpAuthVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0129EFB81C007365CB /* SignUpAuthVerifyModel.swift */; };
 		18A73E0429EFBE76007365CB /* CheckInterNetConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0329EFBE76007365CB /* CheckInterNetConnectivity.swift */; };
 		18A73E0829EFBF88007365CB /* CreateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0729EFBF88007365CB /* CreateAccountModel.swift */; };
 		18A73E0A29EFD5D7007365CB /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E0929EFD5D7007365CB /* UserDefaultManager.swift */; };
@@ -278,6 +278,7 @@
 		18F6F74929E9832C007B9513 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6F74829E9832B007B9513 /* ForgotPasswordVC.swift */; };
 		18F6F74B29E98591007B9513 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6F74A29E98591007B9513 /* UITextField+Extension.swift */; };
 		18F6F74D29E9894C007B9513 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6F74C29E9894C007B9513 /* ForgotPasswordViewModel.swift */; };
+		18F7E1E92A5FDB8400AB3837 /* GetEventSearchByCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F7E1E82A5FDB8400AB3837 /* GetEventSearchByCategoryRequest.swift */; };
 		18F88C392A25D61F005E7457 /* GetEventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F88C382A25D61F005E7457 /* GetEventListViewModel.swift */; };
 		18F9488D2A332CFF007CD749 /* ManageEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F9488C2A332CFF007CD749 /* ManageEvents.storyboard */; };
 		18FBC0A62A309239002CF129 /* NotificationTableViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC00C2A309237002CF129 /* NotificationTableViewList.swift */; };
@@ -581,7 +582,7 @@
 		18A6D0E829E9319300D6210E /* DataPassOnSignUpProcessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassOnSignUpProcessModel.swift; sourceTree = "<group>"; };
 		18A73DFD29EED1B1007365CB /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		18A73DFF29EED210007365CB /* VerifyPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPopupVC.swift; sourceTree = "<group>"; };
-		18A73E0129EFB81C007365CB /* SignUpAuth_VerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAuth_VerifyModel.swift; sourceTree = "<group>"; };
+		18A73E0129EFB81C007365CB /* SignUpAuthVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAuthVerifyModel.swift; sourceTree = "<group>"; };
 		18A73E0329EFBE76007365CB /* CheckInterNetConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInterNetConnectivity.swift; sourceTree = "<group>"; };
 		18A73E0729EFBF88007365CB /* CreateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountModel.swift; sourceTree = "<group>"; };
 		18A73E0929EFD5D7007365CB /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
@@ -669,6 +670,7 @@
 		18F6F74829E9832B007B9513 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		18F6F74A29E98591007B9513 /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		18F6F74C29E9894C007B9513 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		18F7E1E82A5FDB8400AB3837 /* GetEventSearchByCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventSearchByCategoryRequest.swift; sourceTree = "<group>"; };
 		18F88C382A25D61F005E7457 /* GetEventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventListViewModel.swift; sourceTree = "<group>"; };
 		18F9488C2A332CFF007CD749 /* ManageEvents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageEvents.storyboard; sourceTree = "<group>"; };
 		18FBC00C2A309237002CF129 /* NotificationTableViewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewList.swift; sourceTree = "<group>"; };
@@ -984,7 +986,7 @@
 			isa = PBXGroup;
 			children = (
 				18A6D0E829E9319300D6210E /* DataPassOnSignUpProcessModel.swift */,
-				18A73E0129EFB81C007365CB /* SignUpAuth_VerifyModel.swift */,
+				18A73E0129EFB81C007365CB /* SignUpAuthVerifyModel.swift */,
 				186FB94E2A4039FF002B0E5C /* SignUpRequest.swift */,
 				18A6D0E629E9300E00D6210E /* SignUpViewModel.swift */,
 				1892EE2129E54A8C00AD7CC7 /* SignUpVC.swift */,
@@ -1163,6 +1165,7 @@
 				18FDDED82A2DBBFC008BEEF0 /* GetEventCategoryModel.swift */,
 				18FDDED62A2DB762008BEEF0 /* GetEventCategoryViewModel.swift */,
 				1801874C2A1B41AE003308AE /* EventSearchHomeVC.swift */,
+				18F7E1E82A5FDB8400AB3837 /* GetEventSearchByCategoryRequest.swift */,
 			);
 			path = EventSearch;
 			sourceTree = "<group>";
@@ -2603,6 +2606,7 @@
 				18AF9B8C29E3E65800E4C70E /* Resources */,
 				3BA3E2AE6BC4214EA8F764E1 /* [CP] Embed Pods Frameworks */,
 				184888BC2A31FCEE00D36B3E /* ShellScript */,
+				18F1BBA52A669815008C183C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2853,6 +2857,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
+		18F1BBA52A669815008C183C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
+		};
 		3BA3E2AE6BC4214EA8F764E1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -2979,6 +3000,7 @@
 				1861A2E32A4466F600E13A5D /* ManageEventEditProfileViewModel.swift in Sources */,
 				18FBC1082A309239002CF129 /* SideMenuCell.swift in Sources */,
 				18A6D0E529E92F3300D6210E /* SignInViewModel.swift in Sources */,
+				18F7E1E92A5FDB8400AB3837 /* GetEventSearchByCategoryRequest.swift in Sources */,
 				186FB9462A40262F002B0E5C /* UITableViewCell+Extension.swift in Sources */,
 				18FBC0B62A309239002CF129 /* RequestRefundHeaderView.swift in Sources */,
 				18FDDED72A2DB762008BEEF0 /* GetEventCategoryViewModel.swift in Sources */,
@@ -3138,7 +3160,7 @@
 				18717F8E2A2A1BE9002F36BC /* MyOrderViewController.swift in Sources */,
 				18717F8F2A2A1BE9002F36BC /* ContactOrganiserVC.swift in Sources */,
 				18717F932A2A1BE9002F36BC /* ChangeNameVC.swift in Sources */,
-				18A73E0229EFB81C007365CB /* SignUpAuth_VerifyModel.swift in Sources */,
+				18A73E0229EFB81C007365CB /* SignUpAuthVerifyModel.swift in Sources */,
 				18FBC0C12A309239002CF129 /* ManageEventSettingVC.swift in Sources */,
 				18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */,
 				188CE1BE2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift in Sources */,

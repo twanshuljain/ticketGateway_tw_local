@@ -3,7 +3,13 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 03/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disbale identifier_name
+// swiftlint: disbalefunction_parameter_count
 
 import UIKit
 
@@ -31,7 +37,7 @@ extension CostumeTypeCollectionView: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CostumeTypeCollectionViewCell", for: indexPath) as! CostumeTypeCollectionViewCell
         let data = costumeType[indexPath.row]
         cell.lblCostumeType.text = data
-        cell.bgView.backgroundColor = selectedIndex == indexPath.row ? UIColor.setColor(colorType: .lblTextPara) : UIColor.setColor(colorType: .BorderLineColour)
+        cell.bgView.backgroundColor = selectedIndex == indexPath.row ? UIColor.setColor(colorType: .lblTextPara) : UIColor.setColor(colorType: .borderLineColour)
         cell.lblCostumeType.textColor = selectedIndex == indexPath.row ? UIColor.white : UIColor.darkGray
         return cell
     }

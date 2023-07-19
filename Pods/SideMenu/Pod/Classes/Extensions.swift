@@ -3,7 +3,13 @@
 //  Pods-Example
 //
 //  Created by Jon Kent on 7/1/19.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 

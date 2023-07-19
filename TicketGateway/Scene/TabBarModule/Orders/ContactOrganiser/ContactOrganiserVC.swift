@@ -3,12 +3,10 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-//
-
+// swiftlint: disable line_length
 import UIKit
 
 class ContactOrganiserVC: UIViewController {
-    
     //MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var lblSunburnReload: UILabel!
@@ -22,12 +20,10 @@ class ContactOrganiserVC: UIViewController {
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var btnSendMessage: CustomButtonGradiant!
-    
-    //MARK: - Variables
+    // MARK: - Variables
     var selectedReason: String?
     var reasonList = ["Choose one", "Question about the event", "Question about my ticket"]
-    
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
         self.setFont()
@@ -36,8 +32,7 @@ class ContactOrganiserVC: UIViewController {
 
     }
 }
-
-//MARK: - Functions
+// MARK: - Functions
 extension ContactOrganiserVC {
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
@@ -45,41 +40,31 @@ extension ContactOrganiserVC {
         self.vwNavigationView.imgBack.image = UIImage(named: CANCEL_ICON)
         self.vwNavigationView.lblTitle.text = CONTACT_ORGANISER
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        
-    }
-    
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+            }
     func setFont() {
         self.lblSunburnReload.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-        self.lblSunburnReload.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        
+        self.lblSunburnReload.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         let lbls = [lblName, lblEmailAddress, lblReason, lblMessage]
         for lbl in lbls {
             lbl?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
             lbl?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        
         let txtflds = [txtName, txtEmailAddress, txtReason, txtMessage]
         for txtfld in txtflds {
             txtfld?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            txtfld?.textColor = UIColor.setColor(colorType: .Headinglbl)
+            txtfld?.textColor = UIColor.setColor(colorType: .headinglbl)
         }
-        
         self.btnSendMessage.addRightIcon(image: UIImage(named: LEFT_ARROW))
         self.btnSendMessage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSendMessage.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        
-        self.lblName.attributedText = getAttributedTextAction(attributedText: "*", firstString: NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        
-        self.lblEmailAddress.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        
-        self.lblReason.attributedText = getAttributedTextAction(attributedText: "*", firstString: REASON, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        [btnSendMessage].forEach{
+        self.lblName.attributedText = getAttributedTextAction(attributedText: "*", firstString: NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblEmailAddress.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblReason.attributedText = getAttributedTextAction(attributedText: "*", firstString: REASON, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        [btnSendMessage].forEach {
             $0?.addTarget(self, action: #selector(btnSendAction(sender:)), for: .touchUpInside)
         }
-        
     }
-    
     func createPickerView() {
         let pickerView = UIPickerView()
         pickerView.backgroundColor = UIColor.setColor(colorType: .white)
@@ -87,8 +72,6 @@ extension ContactOrganiserVC {
         txtReason.inputView = pickerView
     }
     func dismissPickerView() {
-        
-        
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         //      let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.action))
@@ -101,10 +84,8 @@ extension ContactOrganiserVC {
         view.endEditing(true)
     }
 }
-
-//MARK: - Actions
+// MARK: - Actions
 extension ContactOrganiserVC {
-    
     @objc func btnSendAction(sender:UIButton) {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
         view?.strTittle = CHANGE_ORGANISER
@@ -116,16 +97,14 @@ extension ContactOrganiserVC {
 }
 
 
-//MARK: - UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate
 extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return reasonList.count
     }
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return reasonList[row]
     }
@@ -134,7 +113,6 @@ extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource,  UIT
         txtReason.text = selectedReason
 
     }
-    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
@@ -143,16 +121,14 @@ extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource,  UIT
             pickerLabel?.textAlignment = .center
         }
         pickerLabel?.text = reasonList[row]
-        pickerLabel?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        pickerLabel?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
 
         return pickerLabel!
     }
 }
-
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension ContactOrganiserVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: false)
     }
-  
 }

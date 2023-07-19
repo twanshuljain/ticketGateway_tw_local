@@ -8,27 +8,24 @@
 import UIKit
 
 class AddCardVC: UIViewController {
-    
     // MARK: - @IBOutlets
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var viewDatePicker: UIView!
-    @IBOutlet weak var picker_monthYear: UIPickerView!
+    @IBOutlet weak var pickerMonthYear: UIPickerView!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var lblCardNumber: UILabel!
     @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var lblExpiry: UILabel!
-    @IBOutlet weak var lblCVC_CVV: UILabel!
+    @IBOutlet weak var lblCVCCVV: UILabel!
     @IBOutlet weak var txtCardNumber: UITextField!
     @IBOutlet weak var txtCardName: UITextField!
     @IBOutlet weak var txtCVV: UITextField!
     @IBOutlet weak var txtExpiryDate: UITextField!
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
-   
-//MARK: - VARIABLES
+    // MARK: - VARIABLES
     var viewModel = AddCardViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -46,8 +43,8 @@ extension AddCardVC {
         self.txtCardNumber.delegate = self
         self.txtExpiryDate.delegate = self
         self.txtCVV.delegate = self
-        self.picker_monthYear.delegate = self
-        self.picker_monthYear.dataSource = self
+        self.pickerMonthYear.delegate = self
+        self.pickerMonthYear.dataSource = self
         self.viewModel.loadDefaultsParameters()
         self.navigationView.btnBack.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
@@ -60,11 +57,9 @@ extension AddCardVC {
         [self.btnContinue].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-     }
-    
-    
-    func setUi(){
-        [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCVC_CVV].forEach {
+    }
+    func setUi() {
+        [self.lblCardNumber, self.lblFullName, self.lblExpiry, self.lblCVCCVV].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
@@ -81,83 +76,70 @@ extension AddCardVC {
             break
         }
     }
-   
-    
-   func btnContinueAction() {
-       let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-   self.navigationController?.pushViewController(view!, animated: true)
+    func btnContinueAction() {
+        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
+        self.navigationController?.pushViewController(view!, animated: true)
     }
-    
-    
     @IBAction func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
-        self.picker_monthYear.reloadAllComponents()
+        self.pickerMonthYear.reloadAllComponents()
         var selectedMonth = 0
         var selectdYear = 0
         viewModel.selectedMonthName = ""
         viewModel.selectedyearName = ""
-        if txtExpiryDate.text == ""
-        {
-            
+        if txtExpiryDate.text == "" {
             let  strSelectedmonths = Calendar.current.component(.month, from: Date())
             let selectedMonthIndex = strSelectedmonths-1
             selectedMonth = selectedMonthIndex
             let strSelctedyears = Calendar.current.component(.year, from: Date())
             selectdYear = strSelctedyears
             self.viewModel.selectedMonthName = String(strSelectedmonths)
-            
             if  self.viewModel.selectedMonthName.count <= 1
             {
                 self.viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
             }
-            
             self.viewModel.selectedyearName = String(strSelctedyears)
             if (viewModel.selectedyearName.count ) > 2 {
-                let strLastTwoDigits: String! = (viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count) - 2)
+                let _: String! = (viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count) - 2)
                 viewModel.selectedyearName = "\(self.viewModel.selectedyearName)"
                 viewModel.selectedMonthName = "\(self.viewModel.selectedMonthName)"
             }
-        }
-        else
-        {
+        } else {
             let arr = txtExpiryDate.text?.components(separatedBy: "/")
             let strSelectedmonths = arr?[0] ?? ""
             let strSelctedyears = arr?[1] ?? ""
-            
             let selectedMonthIndex = Int(strSelectedmonths)! - 1
             selectedMonth = selectedMonthIndex
             selectdYear  = Int(strSelctedyears)!
-           // selectdYear = Int("20"+(strSelctedyears))!
+            // selectdYear = Int("20"+(strSelctedyears))!
             self.viewModel.selectedMonthName = String(strSelectedmonths)
             self.viewModel.selectedyearName = String(strSelctedyears)
             if (viewModel.selectedyearName.count ) > 2 {
-                let strLastTwoDigits: String! = (viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count ) - 2)
+                let _: String! = (viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count ) - 2)
                 viewModel.selectedyearName = "\(strSelctedyears)"
                 viewModel.selectedMonthName = "\(strSelectedmonths)"
             }
-            
         }
         print(selectedMonth,selectdYear)
-        self.picker_monthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
+        self.pickerMonthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
         var ind = 0
-        var i = 0
+        var num = 0
         for obj in self.viewModel.years{
             let yer = String(selectdYear)
-            if obj as! String == yer{
-                ind = i
+            if obj == yer{
+                ind = num
                 break
             }
-            i = i + 1
+            num += 1
         }
-        self.picker_monthYear.selectRow(ind, inComponent: 1, animated: false)
-        self.picker_monthYear.reloadAllComponents()
+        self.pickerMonthYear.selectRow(ind, inComponent: 1, animated: false)
+        self.pickerMonthYear.reloadAllComponents()
     }
-   
     @IBAction func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
-        if viewModel.selectedMonthName.count > 0 && viewModel.selectedyearName.count > 0{
+        if viewModel.selectedMonthName.count > 0 && viewModel.selectedyearName.count > 0 {
             let str = "\(viewModel.selectedMonthName)/\(viewModel.selectedyearName)"
             txtExpiryDate.text = str
             viewModel.strMonth = viewModel.selectedMonthName
@@ -169,12 +151,10 @@ extension AddCardVC {
             viewModel.selectedyearName = ""
         }
     }
-    
     @IBAction func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }
-   
 }
 // MARK: - UITextFieldDelegate
 extension AddCardVC : UITextFieldDelegate{
@@ -185,16 +165,12 @@ extension AddCardVC : UITextFieldDelegate{
             self.txtCardName.resignFirstResponder()
             self.txtCardName.becomeFirstResponder()
         }
-        
-           return true
+        return true
     }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.viewDatePicker.isHidden = true
     }
-
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         if string == "" {
             return true
         }
@@ -202,125 +178,98 @@ extension AddCardVC : UITextFieldDelegate{
             let maxLength = 4
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
-                currentString.replacingCharacters(in: range, with: string) as NSString
+            currentString.replacingCharacters(in: range, with: string) as NSString
             if newString.length == 5{
                 textField.resignFirstResponder()
             }
             return newString.length <= maxLength
-        }else if textField == txtCardNumber{
+        } else if textField == txtCardNumber{
             previousTextFieldContent = textField.text;
             previousSelection = textField.selectedTextRange;
-            
-            
             return true
-        }else if textField == txtCardName{
+        } else if textField == txtCardName{
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
-                currentString.replacingCharacters(in: range, with: string) as NSString
+            currentString.replacingCharacters(in: range, with: string) as NSString
             let maxLength = 30
-            
             return newString.length <= maxLength
-        }
-        else{
+        } else {
             return true
         }
     }
 }
-// MARK: - UIPickerViewDelegate,UIPickerViewDataSource
-extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
-    
-    // MARK:- Picker View Delegates
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
+extension AddCardVC: UIPickerViewDelegate,UIPickerViewDataSource {
+    // MARK: - Picker View Delegates
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         view.endEditing(true)
-        
         if component == viewModel.MONTH {
             return viewModel.months.count
-        }
-        else {
+        } else {
             return viewModel.years.count
         }
     }
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         if component == viewModel.MONTH {
-            let monthName: String = viewModel.months[row] as! String
+            let monthName: String = viewModel.months[row]
             return monthName
-        }
-        else {
-            let yearName: String = viewModel.years[row] as! String
+        } else {
+            let yearName: String = viewModel.years[row]
             let str = "\(yearName)"
             return str
         }
     }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         view.endEditing(true)
-        
         if component == self.viewModel.MONTH {
-            
             let strCurrentYear = String(Calendar.current.component(.year, from: Date()))
             let strCurrentMonth = String(Calendar.current.component(.month, from: Date()))
-             let str = viewModel.selectedyearName
-            if strCurrentYear == str
-            {
-                let strMonths = viewModel.months[row] as! String
-                if Int(strCurrentMonth) ?? 0 > Int(strMonths) ?? 0
-                {
+            let str = viewModel.selectedyearName
+            if strCurrentYear == str {
+                let strMonths = viewModel.months[row]
+                if Int(strCurrentMonth) ?? 0 > Int(strMonths) ?? 0 {
                     let index = (Int(strCurrentMonth) ?? 0) - 1
-                    self.picker_monthYear.selectRow(index, inComponent: 0, animated: false)
+                    self.pickerMonthYear.selectRow(index, inComponent: 0, animated: false)
                     viewModel.selectedMonthName = strCurrentMonth
-                    if viewModel.selectedMonthName.count <= 1
-                    {
+                    if viewModel.selectedMonthName.count <= 1 {
+                        viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
+                    }
+                } else {
+                    viewModel.selectedMonthName = viewModel.months[row]
+                    if viewModel.selectedMonthName.count <= 1 {
                         viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
                     }
                 }
-                else
-                {
-                    viewModel.selectedMonthName = viewModel.months[row] as! String
-                    if viewModel.selectedMonthName.count <= 1
-                    {
-                        viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
-                    }
-                }
-            }else
-            {
-                viewModel.selectedMonthName = viewModel.months[row] as! String
-                if viewModel.selectedMonthName.count <= 1
-                {
+            } else {
+                viewModel.selectedMonthName = viewModel.months[row]
+                if viewModel.selectedMonthName.count <= 1 {
                     viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
                 }
             }
-        }else {
+        } else {
             let strCurrentYear = String(Calendar.current.component(.year, from: Date()))
             let strCurrentMonth = String(Calendar.current.component(.month, from: Date()))
             let str = "\(viewModel.years[row])"
-            if strCurrentYear == str
-            {
+            if strCurrentYear == str {
                 let index = (Int(strCurrentMonth) ?? 0) - 1
-                self.picker_monthYear.selectRow(index, inComponent: 0, animated: false)
+                self.pickerMonthYear.selectRow(index, inComponent: 0, animated: false)
                 viewModel.selectedMonthName = strCurrentMonth
                 //25/03/2022
-                if viewModel.selectedMonthName.count <= 1
-                {
+                if viewModel.selectedMonthName.count <= 1 {
                     viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
                 }
-                //
                 let str = Int(strCurrentMonth)! - 1
                 if (strCurrentYear.count ) > 2 {
                     let strLastTwoDigits: String! = (strCurrentYear as? NSString)?.substring(from: (strCurrentYear.count ) - 2)
                     viewModel.selectedyearName = "\(str)"
                 }
-            }
-            else
-            {
+            } else {
                 let str = "\(viewModel.years[row])"
                 if (str.count ) > 2 {
-                    let strLastTwoDigits: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
+                    let _: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
                     viewModel.selectedyearName = "\(str)"
                     //viewModel.selectedMonthName = "\(months[row])"
                 }
@@ -332,6 +281,6 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
 // MARK: - NavigationBarViewDelegate
 extension AddCardVC : NavigationBarViewDelegate {
     func navigationBackAction() {
-    self.navigationController?.popViewController(animated: true)
-  }
+        self.navigationController?.popViewController(animated: true)
+    }
 }

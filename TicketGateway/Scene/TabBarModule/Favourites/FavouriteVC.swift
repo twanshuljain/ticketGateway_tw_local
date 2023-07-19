@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 29/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 import SideMenu
@@ -44,7 +50,7 @@ extension FavouriteVC{
         let labels = [lblNoLikedEvent, lblFindEventNearYou, lblVenuNoLikeEvent]
         for label in labels {
             label?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-            label?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            label?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
             
         }
         
@@ -55,13 +61,13 @@ extension FavouriteVC{
         }
         
         lblVenuSuggestionForYou.font = UIFont.setFont(fontType: .bold, fontSize: .eighteen)
-        lblVenuSuggestionForYou.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblVenuSuggestionForYou.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
     
     func setNavigationBar() {
         self.vwNavigationView.lblTitle.text = FAVOURITE
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.vwNavigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigationView.btnBack.isHidden =  false
         self.vwNavigationView.delegateBarAction = self

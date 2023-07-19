@@ -50,8 +50,8 @@ extension VenueVC{
     }
     func setUi(){
         self.lblNearOrganisedEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-        self.btnViewAllMoreForNearOrganisedEvent.setTitles(text: VIEW_MORE_EVENT, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+        self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.btnViewAllMoreForNearOrganisedEvent.setTitles(text: VIEW_MORE_EVENT, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
         self.btnViewAllMoreForNearOrganisedEvent.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
     }
 }

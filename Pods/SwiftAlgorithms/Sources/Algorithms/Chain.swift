@@ -8,7 +8,13 @@
 // See https://swift.org/LICENSE.txt for license information
 //
 //===----------------------------------------------------------------------===//
-
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 /// A concatenation of two sequences with the same element type.
 public struct Chain2Sequence<Base1: Sequence, Base2: Sequence>
   where Base1.Element == Base2.Element

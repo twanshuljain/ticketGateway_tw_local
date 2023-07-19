@@ -37,7 +37,7 @@ class TransferTicketTableViewCell: UITableViewCell {
         let lbls = [lblTicketId,  lblNameOnTicket, lblTransferredTo]
         for lbl in lbls {
             lbl?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-            lbl?.textColor = UIColor.setColor(colorType: .TGGrey)
+            lbl?.textColor = UIColor.setColor(colorType: .tgGrey)
         }
         
         
@@ -47,7 +47,7 @@ class TransferTicketTableViewCell: UITableViewCell {
             lbl?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
         self.btnCopyEmail.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        self.btnCopyEmail.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnCopyEmail.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.btnContinueToTransfer.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnContinueToTransfer.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)

@@ -3,8 +3,17 @@
 //  TicketGateway
 //
 //  Created by Apple  on 24/05/23.
-//
-
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
+// swiftlint: disable cyclomatic_complexity
+// swiftlint: disable shorthand_operator
+// swiftlint: ddiable type_name
 import UIKit
 
 class ManageEventSellTicketTableViewList: UITableView {
@@ -32,8 +41,8 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "ManageEventSellTicketCell") as! ManageEventSellTicketCell
         cell.vwStepper.btnPlus.tag = indexPath.row
         cell.vwStepper.btnMinus.tag = indexPath.row
-        cell.vwStepper.btnPlus.addTarget(self, action: #selector(PlusButtonPressed), for: .touchUpInside)
-        cell.vwStepper.btnMinus.addTarget(self, action: #selector(MinustButtonPressed), for: .touchUpInside)
+        cell.vwStepper.btnPlus.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        cell.vwStepper.btnMinus.addTarget(self, action: #selector(minustButtonPressed), for: .touchUpInside)
         if self.isFromSellTab == true {
             cell.lblAmountComp.text = "$250"
         } else {
@@ -61,7 +70,7 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
     
 
 
-    @objc func PlusButtonPressed(_ sender: UIButton) {
+    @objc func plusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! ManageEventSellTicketCell
@@ -71,7 +80,7 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
         cell.vwStepper.lblCount.text = String(lblNumberOfCount)
     }
     
-    @objc func MinustButtonPressed(_ sender: UIButton) {
+    @objc func minustButtonPressed(_ sender: UIButton) {
          let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! ManageEventSellTicketCell
         let value =  cell.vwStepper.lblCount.text ?? ""

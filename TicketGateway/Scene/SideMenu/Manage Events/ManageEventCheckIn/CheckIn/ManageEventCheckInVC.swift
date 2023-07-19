@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple on 26/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import SideMenu
@@ -75,7 +82,7 @@ extension ManageEventCheckInVC {
         self.vwNavighationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.vwNavighationView.lblDiscripation.isHidden = false
         self.vwNavighationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.vwNavighationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavighationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.vwNavighationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.vwNavighationView.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.vwNavighationView.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)

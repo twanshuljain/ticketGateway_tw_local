@@ -42,13 +42,13 @@ extension PaymentSuccessFullVC {
         }
         self.btnViewMyTicket.titleLabel?.text = VIEW_MY_TICKETS
         self.btnViewMyTicket.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnViewMyTicket.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btnViewMyTicket.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnGoTopMyAccount.titleLabel?.text = GO_TO_MY_ACCOUNT
         self.btnGoTopMyAccount.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnGoTopMyAccount.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.btnNeedHelp.titleLabel?.text = NEED_HELP_CONTACT_US
         self.btnNeedHelp.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnNeedHelp.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btnNeedHelp.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnNeedHelp.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
     }
     func setUi() {
@@ -64,7 +64,7 @@ extension PaymentSuccessFullVC {
             btnBrowseMorwEvents.setTitle("Browse more events", for: .normal)
         }
         lblThankYou.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFour)
-        lblThankYou.textColor = UIColor.setColor(colorType: .TGBlack)
+        lblThankYou.textColor = UIColor.setColor(colorType: .tgBlack)
         lbl1Ticket.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         lbl1Ticket.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblCADPrice.font = UIFont.setFont(fontType: .semiBold, fontSize: .fifteen)
@@ -72,9 +72,9 @@ extension PaymentSuccessFullVC {
         lblTicketForOrder.font = UIFont.setFont(fontType: .semiBold, fontSize: .fifteen)
         lblTicketForOrder.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblRefundPolicy.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        lblRefundPolicy.textColor = UIColor.setColor(colorType: .TGBlack)
+        lblRefundPolicy.textColor = UIColor.setColor(colorType: .tgBlack)
         lblNoRefundAnytime.font = UIFont.setFont(fontType: .semiBold, fontSize: .fifteen)
-        lblNoRefundAnytime.textColor = UIColor.setColor(colorType: .TGBlack)
+        lblNoRefundAnytime.textColor = UIColor.setColor(colorType: .tgBlack)
         lbl1Ticket.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         lbl1Ticket.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblRefundDescription.font = UIFont.setFont(fontType: .regular, fontSize: .thirteen)

@@ -31,11 +31,11 @@ class TransactionDetailCell: UITableViewCell {
     }
     func setUi(){
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblDate.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblDate.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblTicketID.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblTicketID.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblTicketID.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblTicketName.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblTicketName.textColor = UIColor.setColor(colorType: .TGGrey)
+        self.lblTicketName.textColor = UIColor.setColor(colorType: .tgGrey)
         
         self.lblTicketIDValue.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblTicketIDValue.textColor = UIColor.setColor(colorType: .lblTextPara)

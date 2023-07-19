@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 
@@ -33,7 +39,7 @@ extension ExchangeTicketVC{
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = EXCHANGE_FOR
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.vwNavigationView.lblDiscripation.isHidden = false
         self.vwNavigationView.lblDiscripation.text = NUMBERS
         self.vwNavigationView.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)

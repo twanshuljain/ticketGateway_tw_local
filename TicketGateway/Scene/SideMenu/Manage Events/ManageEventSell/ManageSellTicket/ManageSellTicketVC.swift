@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple  on 23/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import SideMenu
@@ -65,11 +72,11 @@ extension ManageSellTicketVC {
         self.btnCash.setTitles(text: CASH, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .white))
         self.btnCash.backgroundColor = UIColor.setColor(colorType: .lightBlack)
         self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
-        self.btnViewCart.setTitles(text: VIEW_CART, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnAddCustomerInfo.setTitles(text: ADD_CUSTOMER_INFO, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnPromoCode.setTitles(text: PROMO_CODE, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnComplimentary.setTitles(text: COMPLIMENTRY, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
-        self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .TGBlue))
+        self.btnViewCart.setTitles(text: VIEW_CART, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .tgBlue))
+        self.btnAddCustomerInfo.setTitles(text: ADD_CUSTOMER_INFO, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .tgBlue))
+        self.btnPromoCode.setTitles(text: PROMO_CODE, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .tgBlue))
+        self.btnComplimentary.setTitles(text: COMPLIMENTRY, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .tgBlue))
+        self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .tgBlue))
       }
 }
 

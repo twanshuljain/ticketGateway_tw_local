@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple  on 08/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import iOSDropDown
@@ -59,7 +66,7 @@ extension MyWalletVC {
         self.lblBalance.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblTotalBalance.text = TOTAL_BALANCE
         self.lblTotalBalance.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblTotalBalance.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTotalBalance.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAddAmountInTGWallet.text = ADD_AMOUNT_IN_TG_WALLET
         self.lblAddAmountInTGWallet.font =  UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblAddAmountInTGWallet.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -67,7 +74,7 @@ extension MyWalletVC {
         self.lblTRansaction.text = TRANSACTION
 
         self.lblTRansaction.font = UIFont.setFont(fontType: .medium, fontSize: .twentyTwo)
-        self.lblTRansaction.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTRansaction.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
        
       
     }

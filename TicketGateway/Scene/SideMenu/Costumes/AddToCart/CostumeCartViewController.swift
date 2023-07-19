@@ -3,7 +3,13 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 08/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disbale identifier_name
+// swiftlint: disbalefunction_parameter_count
 
 import UIKit
 
@@ -87,9 +93,9 @@ class CostumeCartViewController: UIViewController {
 extension CostumeCartViewController{
     func setUI() {
         lblJouvertRepublic.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        lblJouvertRepublic.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblJouvertRepublic.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblFrontline.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        lblFrontline.textColor = UIColor.setColor(colorType: .Headinglbl)
+        lblFrontline.textColor = UIColor.setColor(colorType: .headinglbl)
         lblOnlyFewLeft.font = UIFont.setFont(fontType: .regular, fontSize: .ten)
         lblOnlyFewLeft.textColor = UIColor.red
         lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
@@ -109,9 +115,9 @@ extension CostumeCartViewController{
         lblNotes.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblChoosePaymentMode.text = Choose_Payment_Mode
         lblChoosePaymentMode.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        lblChoosePaymentMode.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        lblChoosePaymentMode.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
-        self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .SegmentColor) ], for: .normal)
+        self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
 
         
         }
@@ -151,7 +157,7 @@ extension CostumeCartViewController{
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .selected)
-            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .SegmentColor) ], for: .normal)
+            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
             self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
             self.arrData.removeAll()
             self.paymentTableView.layoutIfNeeded()
@@ -166,7 +172,7 @@ extension CostumeCartViewController{
         case 1:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .selected)
-            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .SegmentColor) ], for: .normal)
+            self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
             self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
             self.arrData.removeAll()
             self.paymentTableView.layoutIfNeeded()
@@ -251,11 +257,11 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
         if obj.isExpanded == true {
              headerView.btnSelected.setImage(UIImage(named: RADIO_SELECTION_ICON), for: .normal)
             headerView.btnAdd.setImage(UIImage(named: REMOVE_ICON), for: .normal)
-            headerView.bgView.borderColor = UIColor.setColor(colorType: .TGBlue)
+            headerView.bgView.borderColor = UIColor.setColor(colorType: .tgBlue)
         } else {
             headerView.btnSelected.setImage(UIImage(named: UNSELECTED_ICON), for: .normal)
             headerView.btnAdd.setImage(UIImage(named: ADD_ICON), for: .normal)//Remov_ip
-            headerView.bgView.borderColor = UIColor.setColor(colorType: .BorderLineColour)
+            headerView.bgView.borderColor = UIColor.setColor(colorType: .borderLineColour)
 
         }
         return headerView

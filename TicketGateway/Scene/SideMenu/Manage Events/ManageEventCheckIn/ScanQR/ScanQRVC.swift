@@ -48,7 +48,7 @@ extension ScanQRVC {
     func setFont() {
         self.lblPleaseAlignQR.text = PLEASE_ALIGN_QR
         self.lblPleaseAlignQR.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblPleaseAlignQR.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblPleaseAlignQR.textColor = UIColor.setColor(colorType: .tgBlue)
         
         self.btnScanWithImage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnScanWithImage.titleLabel?.textColor = UIColor.setColor(colorType: .white)
@@ -95,8 +95,8 @@ extension ScanQRVC {
         
         let height: CGFloat = 15
         let opacity: Float = 0.4
-        let topColor = UIColor.setColor(colorType: .TGBlue).withAlphaComponent(0)
-        let bottomColor = UIColor.setColor(colorType: .TGBlue)
+        let topColor = UIColor.setColor(colorType: .tgBlue).withAlphaComponent(0)
+        let bottomColor = UIColor.setColor(colorType: .tgBlue)
 
         let layer = CAGradientLayer()
         layer.colors = [topColor.cgColor, bottomColor.cgColor]

@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disbale identifier_name
+// swiftlint: disbalefunction_parameter_count
 
 import UIKit
 
@@ -59,7 +65,7 @@ extension ContinueToTransferVC{
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = TRANSFER_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
     }
 
@@ -74,11 +80,11 @@ extension ContinueToTransferVC{
         let txtflds = [txtPhoneNumber, txtEmail, txtConfirmEmail, txtNameOnTicket]
         for txtfld in txtflds {
             txtfld?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            txtfld?.textColor = UIColor.setColor(colorType: .Headinglbl)
+            txtfld?.textColor = UIColor.setColor(colorType: .headinglbl)
         }
         
         self.btnChangeNumber.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnChangeNumber.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnChangeNumber.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.lblOnceTicketTransfer.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblOnceTicketTransfer.textColor = UIColor.setColor(colorType: .lblTextPara)

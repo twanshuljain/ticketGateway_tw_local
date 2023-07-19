@@ -73,7 +73,7 @@ extension SeeFullTicketVC{
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = MY_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.vwNavigationView.btnRight.isHidden = false
         self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
         self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
@@ -121,24 +121,24 @@ extension SeeFullTicketVC{
             lbl?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         let mediumLbl = [lblEventName, lblGeneralAdmission, lblDateValue, lblLocationName, lblOrderNumberValue]
         for lbl in mediumLbl {
             lbl?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-            lbl?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            lbl?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         
         let btns = [btnAddToCalender, btnViewMap, btnViewEventList, btnGetARefund]
         for btn in btns {
             btn?.titleLabel?.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-            btn?.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+            btn?.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         }
         
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblAddress.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblAddress.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblSummary.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblSummary.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblSummary.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .twelve)
         self.lblRefundPolicy.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -151,7 +151,7 @@ extension SeeFullTicketVC{
         self.btnSeeLessView.addRightIcon(image: UIImage(named: CHEVRON_DOWN_DB_ICON))
         
         self.btnSaveTicketAsImage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnSaveTicketAsImage.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btnSaveTicketAsImage.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnSaveTicketAsImage.addLeftIcon(image: UIImage(named: DOWNLOAD_ICON_ORDER))
         
         self.btnAddAppToWallet.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -160,14 +160,14 @@ extension SeeFullTicketVC{
         
         let dottedLines = [vwNameDottedLine, vwTicketDottedLine, vwSeeLessDottedLine, vwViewMapDottedLine, vwRefundPolicyDottedLine]
         for dottedLine in dottedLines {
-            dottedLine?.createDottedLine(width: 2, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [6,6])
+            dottedLine?.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [6,6])
         }
         
         self.lblOrganizerName.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblOrganizerName.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblOrganizerName.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.btnFollowing.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnFollowing.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnFollowing.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.lblPolicyExpired.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         

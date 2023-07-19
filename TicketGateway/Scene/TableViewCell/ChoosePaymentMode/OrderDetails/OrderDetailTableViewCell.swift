@@ -45,30 +45,30 @@ class OrderDetailTableViewCell: UITableViewCell {
         self.lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.lblOrderDetails.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblOrderDetails.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblOrderDetails.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblItemsAdd.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblItemsAdd.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblItemsAdd.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblTitleCostumePrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblTitleCostumePrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitleCostumePrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblCostumePrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblCostumePrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblCostumePrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblTitleDiscounted.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblTitleDiscounted.textColor = UIColor.setColor(colorType: .TGGreen)
+        self.lblTitleDiscounted.textColor = UIColor.setColor(colorType: .tgGreen)
         self.lblDiscounted.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblDiscounted.textColor = UIColor.setColor(colorType: .TGGreen )
+        self.lblDiscounted.textColor = UIColor.setColor(colorType: .tgGreen )
         
         self.lblTitleServiceCharge.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblTitleServiceCharge.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitleServiceCharge.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblServiceCharge.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblServiceCharge.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblServiceCharge.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblTitleTotalAmount.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblTitleTotalAmount.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitleTotalAmount.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblTotalAmount.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
-        self.lblTotalAmount.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTotalAmount.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblCA109.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblCA109.textColor = UIColor.setColor(colorType: .lightBlack)
@@ -78,8 +78,8 @@ class OrderDetailTableViewCell: UITableViewCell {
         self.btnContinue.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnContinue.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         
-        self.dottedDiscounted.createDottedLine(width: 1, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [3,5])
-        self.dottedLineServiceCharge.createDottedLine(width: 1, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [3,5])
+        self.dottedDiscounted.createDottedLine(width: 1, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [3,5])
+        self.dottedLineServiceCharge.createDottedLine(width: 1, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [3,5])
         
         
     }

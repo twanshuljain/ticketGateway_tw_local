@@ -27,7 +27,7 @@ class NotificationCell: UITableViewCell {
             
         }
         self.lblTIttle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblTIttle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTIttle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
     }
     

@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disbale identifier_name
+// swiftlint: disbale function_parameter_count
 
 import UIKit
 
@@ -44,7 +50,7 @@ extension ChangeNameVC{
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = CHANGE_NAME
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
        
     }
     
@@ -54,18 +60,18 @@ extension ChangeNameVC{
         self.lblSelectTicket.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblSelectTicket.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.txtSelectTickte.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.txtSelectTickte.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.txtSelectTickte.textColor = UIColor.setColor(colorType: .headinglbl)
         
         
         self.lblFirstName.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblFirstName.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.txtFirstName.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.txtFirstName.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.txtFirstName.textColor = UIColor.setColor(colorType: .headinglbl)
         
         self.lblLastName.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblLastName.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.txtLastName.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.txtLastName.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.txtLastName.textColor = UIColor.setColor(colorType: .headinglbl)
         
         self.lblTicketNameChange.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTicketNameChange.textColor = UIColor.setColor(colorType: .lblTextPara)

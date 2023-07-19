@@ -33,7 +33,7 @@ class FilterSelectedTableViewCell: UITableViewCell {
         self.btnSelectedFilter.titleLabel?.text = ""
         self.btnSelectedFilter.setTitle("", for: .normal)
         self.lblFilter.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblFilter.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblFilter.textColor = UIColor.setColor(colorType: .tgBlack)
         self.btnSelectedFilter.setImage(UIImage.init(named: FILTER_RADIO_INACTIVE), for: .normal)
     }
 

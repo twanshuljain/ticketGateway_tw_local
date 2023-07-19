@@ -57,16 +57,16 @@ class EventTableViewCell: UITableViewCell {
     
     func setUi(){
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-        self.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblAddress.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblAddress.textColor = UIColor.setColor(colorType: .headinglbl)
         
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblDate.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblDate.textColor = UIColor.setColor(colorType: .headinglbl)
         self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblTime.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblTime.textColor = UIColor.setColor(colorType: .headinglbl)
         self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
        
     }
     

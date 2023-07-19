@@ -9,7 +9,6 @@ import UIKit
 import Foundation
 
 let objAppShareData = AppShareData.sharedObject()
-
 class AppShareData {
     //MARK: - Shared object
     private static var sharedManager: AppShareData = {
@@ -21,9 +20,7 @@ class AppShareData {
     class func sharedObject() -> AppShareData {
         return sharedManager
     }
-    //NewVariable
-   
-    var DicToHoldDataOnSignUpModule : DataHoldOnSignUpProcessModel?
+    // NewVariable
+    var dicToHoldDataOnSignUpModule : DataHoldOnSignUpProcessModel?
     var userAuth = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-    
 }

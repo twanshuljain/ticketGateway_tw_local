@@ -19,7 +19,7 @@ class CarnivalCollectionViewCell: UICollectionViewCell {
     
     func setFont() {
         self.lblCarnival.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        self.lblCarnival.textColor = UIColor.setColor(colorType: .Headinglbl)
-        self.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+        self.lblCarnival.textColor = UIColor.setColor(colorType: .headinglbl)
+        self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
 }

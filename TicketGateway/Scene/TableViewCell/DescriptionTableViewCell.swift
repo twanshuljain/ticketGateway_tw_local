@@ -19,8 +19,8 @@ class DescriptionTableViewCell: UITableViewCell {
 
     func setUpUI() {
         self.lblDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblDescription.textColor = UIColor.setColor(colorType: .AppleDarkGrey)
-        self.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+        self.lblDescription.textColor = UIColor.setColor(colorType: .appleDarkGrey)
+        self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

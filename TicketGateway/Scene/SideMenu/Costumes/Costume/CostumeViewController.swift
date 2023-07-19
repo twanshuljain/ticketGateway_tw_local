@@ -3,7 +3,13 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 03/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 import AdvancedPageControl
@@ -68,7 +74,7 @@ extension CostumeViewController{
     func setFont() {
         self.lblImageCollectionHeader.text = TRENDING_BAND_LEADERS
         self.lblImageCollectionHeader.font =  UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .tgBlack)
     }
     
     func setDropDownTxt() {
@@ -88,9 +94,9 @@ extension CostumeViewController{
         btnFilter.addRightIcon(image: UIImage(named: CHEVRON_DOWN)) //ic-filter
         btnFilter.addLeftIcon(image: UIImage(named: FILTER)) //ic-chevron
         btnFilter.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .TGGrey)
+        btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .tgGrey)
         btnSortBy.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-        btnSortBy.titleLabel?.textColor = UIColor.setColor(colorType: .TGGrey)
+        btnSortBy.titleLabel?.textColor = UIColor.setColor(colorType: .tgGrey)
         btnSortBy.addRightIcon(image: UIImage(named:  CHEVRON_DOWN))
         btnSortBy.addLeftIcon(image: UIImage(named: SORT_ICON))
         
@@ -100,7 +106,7 @@ extension CostumeViewController{
     func setCollectionView() {
         carnivalCollectionView.delegate = self
         carnivalCollectionView.dataSource = self
-        carnivalCollectionView.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+        carnivalCollectionView.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         self.imageCollectionView.register(UINib(nibName: "CostumeImageCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CostumeImageCollectionViewCell")
@@ -181,8 +187,8 @@ extension CostumeViewController {
     func toSetPageControll() {
         imagePageController.drawer = ExtendedDotDrawer(numberOfPages: 3,
                                                        space: 16.0,
-                                                       indicatorColor: UIColor.setColor(colorType: .TiitleColourDarkBlue),
-                                                       dotsColor: UIColor.setColor(colorType: .PlaceHolder),
+                                                       indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                       dotsColor: UIColor.setColor(colorType: .placeHolder),
                                                        isBordered: false,
                                                        borderWidth: 0.0,
                                                        indicatorBorderColor: .clear,

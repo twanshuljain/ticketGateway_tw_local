@@ -3,7 +3,13 @@
 //  TicketGateway
 //
 //  Created by Apple  on 05/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 import iOSDropDown
@@ -88,9 +94,9 @@ extension EventDetailVC {
         self.navigationView.btnSecRight.isHidden = false
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
-        btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
-        btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
+        btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
+        btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
+        btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
@@ -98,7 +104,7 @@ extension EventDetailVC {
         navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .normal)
         navigationView.delegateBarAction = self
         btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-        btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .TiitleColourDarkBlue))
+        btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
         btnBookTickets.addLeftIcon(image: UIImage(named: "ticketBlack"))
         [self.btnFollowing,self.btnReadMore,self.btnAddToCalender,self.btnBookTickets,btnSelectDate,btnSelectLocationAccordingToDate].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -174,17 +180,17 @@ extension EventDetailVC {
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblFollowers.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblEventName.font = UIFont.setFont(fontType: .bold, fontSize: .twentyFour)
-        self.lblEventName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblEventName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblSelectDateTime.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblEventName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblEventName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAboutOfEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblAboutOfEvent.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblAboutOfEvent.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblOrganizer.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblOrganizer.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblOrganizer.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblTags.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblTags.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTags.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblSuggestionForYou.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblSuggestionForYou.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblSuggestionForYou.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAboutDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAboutDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblFullAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
@@ -200,7 +206,7 @@ extension EventDetailVC {
         self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblRefundPolicy.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblOnTicketGateway.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblOnTicketGateway.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
@@ -300,8 +306,8 @@ extension EventDetailVC {
     func toSetPageControll() {
         pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
                                                            space: 16.0,
-                                                           indicatorColor: UIColor.setColor(colorType: .TiitleColourDarkBlue),
-                                                           dotsColor: UIColor.setColor(colorType: .PlaceHolder),
+                                                           indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                           dotsColor: UIColor.setColor(colorType: .placeHolder),
                                                            isBordered: false,
                                                            borderWidth: 0.0,
                                                            indicatorBorderColor: .clear,

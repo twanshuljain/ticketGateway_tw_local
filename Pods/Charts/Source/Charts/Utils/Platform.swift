@@ -3,6 +3,18 @@ import Foundation
 /** This file provides a thin abstraction layer atop of UIKit (iOS, tvOS) and Cocoa (OS X). The two APIs are very much 
 alike, and for the chart library's usage of the APIs it is often sufficient to typealias one to the other. The NSUI*
 types are aliased to either their UI* implementation (on iOS) or their NS* implementation (on OS X). */
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
+// swiftlint: disable cyclomatic_complexity
+// swiftlint: disable shorthand_operator
+// swiftlint: disable type_name
+// swiftlint: disable large_tuple
 #if os(iOS) || os(tvOS)
 	import UIKit
 

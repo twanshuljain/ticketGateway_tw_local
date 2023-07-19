@@ -7,7 +7,7 @@
 //  Licensed under Apache License 2.0
 //
 //  https://github.com/danielgindi/Charts
-//
+// swiftlint: disable force_cast
 
 import Foundation
 import CoreGraphics

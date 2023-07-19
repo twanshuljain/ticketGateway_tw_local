@@ -1,4 +1,3 @@
-
 //
 //  WelocomeLoginSignup.swift
 //  TicketGateway
@@ -7,24 +6,18 @@
 //
 
 import UIKit
-
 class WelcomeLoginSignupVC: UIViewController {
-    
     // MARK: - Outlets
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var lblTicketgatewayCom: UILabel!
     @IBOutlet weak var lblJoinTheMillon: UILabel!
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setUI()
     }
-    
     func setUI() {
         lblTicketgatewayCom.text = WELCOME_TITLE
         lblJoinTheMillon.text = WELCOME_DESCRIPTION
@@ -32,11 +25,7 @@ class WelcomeLoginSignupVC: UIViewController {
         btnSignIn.titleLabel?.text = SIGN_IN
         btnSignUp.titleLabel?.text = NEW_HERE
     }
-    
-  
-
 }
-
 // MARK: - Functions
 extension WelcomeLoginSignupVC {
     private func setup() {
@@ -45,10 +34,8 @@ extension WelcomeLoginSignupVC {
         }
     }
 }
-
 // MARK: - Actions
 extension WelcomeLoginSignupVC {
-   
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnSkip:
@@ -57,24 +44,20 @@ extension WelcomeLoginSignupVC {
             self.btnLoginAction()
         case btnSignUp:
             self.btnSignAction()
-            
         default:
             break
         }
-   }
-    
+    }
     func btnLoginAction() {
         let view = self.createView(storyboard: .main, storyboardID: .LoginVC)
         let viewC = view as? LoginVC
         viewC?.viewModel.isFromWelcomeScreen = true
         self.navigationController?.pushViewController(view, animated: true)
     }
-    
     func btnSkipAction() {
-      UserDefaultManager.share.guestUserLogin(value: true, key: .isGuestLogin)
-      objSceneDelegate.showTabBar()
+        UserDefaultManager.share.guestUserLogin(value: true, key: .isGuestLogin)
+        objSceneDelegate.showTabBar()
     }
-    
     func btnSignAction() {
         let view = self.createView(storyboard: .main, storyboardID: .SignUpVC)
         let viewC = view as? SignUpVC

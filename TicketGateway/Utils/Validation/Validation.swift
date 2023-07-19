@@ -3,12 +3,20 @@
 //  TicketGateway
 //
 //  Created by Apple  on 14/04/23.
-//
-
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
+// swiftlint: disable cyclomatic_complexity
+// swiftlint: disable shorthand_operator
+// swiftlint: disable type_name
+// swiftlint: disable duplicate_conditions
 import UIKit
-
-
-
+//MARK: - InputValidation
 enum InputValidation: String {
     case email
     case otp
@@ -42,14 +50,12 @@ enum InputCompareValidation: String {
     case email
     case password
 }
-
+//MARK: - Validation
 class Validation {
-    
     static let shared = Validation()
     private init() { }
     // swiftlint:disable empty_count
     public typealias ValidationParam = [ValidationType: (priority: Int, fieldToValidate: UITextField)]
-
     func textValidation(text: String, validationType: InputValidation) -> (Bool, String) {
         switch validationType {
         case .email:
@@ -59,61 +65,49 @@ class Validation {
         case .number:
             return(
                 text.isEmpty ? true:
-                text.count < 4 ? true : false,
+                    text.count < 4 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyNumber:ValidationConstantStrings.invalidNumber)
         case .password:
             return(
                 text.isEmpty ? true :
-                text.count < 4 ? true : false,
+                    text.count < 4 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.invalidPassword)
-            
         case .newPassword:
             return(
                 text.isEmpty ? true :
-                text.count < 8 ? true : false,
+                    text.count < 8 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyNewPassword : ValidationConstantStrings.invalidNewPassword)
-            
         case .currentPassword:
             return(
                 text.isEmpty ? true :
-                text.count < 8 ? true : false,
+                    text.count < 8 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyCurrentPassword : ValidationConstantStrings.invalidCurrentPassword)
-            
         case .confirmPassword:
             return(
                 text.isEmpty ? true :
-                text.count < 8 ? true : false,
+                    text.count < 8 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword : ValidationConstantStrings.invalidConfirmPassword)
-            
         case .name:
             return( text.isEmpty ? true :
                         text.count < 2 ? true : false,
-                        text.isEmpty ? ValidationConstantStrings.emptyName : ValidationConstantStrings.invalidName)
-            
+                    text.isEmpty ? ValidationConstantStrings.emptyName : ValidationConstantStrings.invalidName)
         case .description:
             return( text.isEmpty ? true :
                         text.count > 140 ? true : false,
                     text.isEmpty ? "AppConstant.emptyDescription": "AppConstant.invalidDescription")
-            
         case .otp:
-            
             return(text.isEmpty ? true :
-                   text.count < 4 ? true : false,
+                    text.count < 4 ? true : false,
                    text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
         }
     }
-    
-    
-    
     func CompareValidation(fieldName: ValidationParam, compare: (CompareField: UITextField, CompareFieldTo: UITextField)? = nil) -> (Bool, String) {
         var valuess = fieldName.sorted(by: { (arg0, arg1) -> Bool in
             return arg0.value.priority < arg1.value.priority
         })
-            
         if compare != nil {
             valuess.append((key: .compareField, value: (valuess.count + 1, compare?.CompareField ?? UITextField())))
         }
-        
         for (key: valType, value: (priority: _, fieldToValidate: txtField)) in valuess {
             switch valType {
             case .reqName:
@@ -184,7 +178,6 @@ class Validation {
                     compare?.CompareFieldTo.becomeFirstResponder()
                     return (false, "Invalid Compare filed.")
                 }
-                
             case .containWhiteSpace:
                 break
             case .validUrl:
@@ -192,7 +185,7 @@ class Validation {
                     txtField.becomeFirstResponder()
                     return (false, "Invalid URL")
                 }
-            case .reqDob :
+            case .reqDob:
                 if txtField.text?.trim() == "" {
                     txtField.becomeFirstResponder()
                     return (false, "Invalid DOB")
@@ -201,8 +194,6 @@ class Validation {
         }
         return (true, "")
     }
-
-    
     func textComparisonValidation(firstText: String,
                                   secondText: String,
                                   validationType: InputCompareValidation) -> (Bool, String) {
@@ -213,32 +204,29 @@ class Validation {
             return firstText != secondText ? (true, ValidationConstantStrings.passwordNotMatch) : (false, "he")
         }
     }
-    
     func isValidEmail(emaiId: String) -> Bool {
         let emailRegEx = NSPredicate(format: "SELF MATCHES %@",
                                      "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$")
         return emailRegEx.evaluate(with: emaiId)
     }
-    
     // Passwords Validations
-    
     func isValidPassword(password: String) -> Bool {
         let passwordRegEx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
-       // "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"
+        // "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
         return passwordTest.evaluate(with: password)
     }
     func isValidname(name: String) -> Bool {
         let nameRegEx = NSPredicate(format: "SELF MATCHES %@",
-                                     "^[a-zA-Z]-_")
+                                    "^[a-zA-Z]-_")
         return nameRegEx.evaluate(with: name)
     }
     func isValidPhoneNumber(number:String) -> Bool {
-            let regEx = "^\\+(?:[0-9]?){6,14}[0-9]$"
-
-            let phoneCheck = NSPredicate(format: "SELF MATCHES %@", regEx)
-            return phoneCheck.evaluate(with: number)
-        }
+        let regEx = "^\\+(?:[0-9]?){6,14}[0-9]$"
+        
+        let phoneCheck = NSPredicate(format: "SELF MATCHES %@", regEx)
+        return phoneCheck.evaluate(with: number)
+    }
     // Special Characters Validations
     func isTextContainspecialCharacters(string: String) -> Bool {
         do {
@@ -253,5 +241,4 @@ class Validation {
             return true
         }
     }
-    
 }

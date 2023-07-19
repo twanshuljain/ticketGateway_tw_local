@@ -22,10 +22,10 @@ class TransferTicketHeaderView: UITableViewHeaderFooterView {
    
     func setFont() {
         self.lblTicketTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblTicketTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTicketTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
 
 }

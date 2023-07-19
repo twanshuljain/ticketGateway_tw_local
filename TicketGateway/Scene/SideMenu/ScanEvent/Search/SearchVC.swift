@@ -3,7 +3,14 @@
 // TicketGateway
 //
 // Created by Apple on 21/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 import UIKit
 class SearchVC: UIViewController {
 
@@ -21,8 +28,10 @@ class SearchVC: UIViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var lblSearchText: UILabel!
     
+    
     //MARK: - Variables
     let viewModel = SearchViewModel()
+    
     let textField = UITextField()
     
     override func viewDidLoad() {
@@ -35,7 +44,7 @@ class SearchVC: UIViewController {
     func setTextField() {
         self.view.addSubview(textField)
         textField.frame = CGRect(origin: .zero, size: .zero)
-        var txtSearch = CustomSearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70))
+        let txtSearch = CustomSearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70))
         txtSearch.locationView.isHidden = true
         txtSearch.btnMenu.isHidden = true
         txtSearch.btnFilter.isHidden = true
@@ -46,7 +55,14 @@ class SearchVC: UIViewController {
     }
     @objc func actionTextField(_ sender: UITextField) {
         lblSearchText.text = sender.text
+        viewModel.isFromSearchTxtField = true
+        viewModel.filterData(searchText: sender.text ?? "") { [weak self] in
+            if let self {
+                self.tblSearchTableView.reloadData()
+            }
+        }
     }
+    
 }
 //MARK: -
 extension SearchVC {
@@ -68,7 +84,7 @@ extension SearchVC {
         self.lblSearch.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
         self.imgSearch.image = UIImage(named: SEARCH_SELECTED_ICON)
         self.lblSearchText.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblSearchText.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblSearchText.textColor = UIColor.setColor(colorType: .tgBlack)
     }
 }
 //MARK: - UITableViewDataSource, UITableViewDelegate
@@ -78,10 +94,13 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
         self.textField.resignFirstResponder()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return viewModel.numberOfRows
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
+        let info = viewModel.getItem(indexPath: indexPath.row)
+        cell.lblName.text = info.name
+        cell.lblCardNo.text = info.cardNo
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

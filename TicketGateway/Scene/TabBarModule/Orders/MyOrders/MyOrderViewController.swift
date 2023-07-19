@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 15/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import SideMenu
@@ -111,19 +118,19 @@ extension MyOrderViewController {
         
         
         self.lblNoTicket.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblNoTicket.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblNoTicket.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblLookForSomething.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblLookForSomething.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.btnBrowseEvents.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnBrowseEvents.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnBrowseEvents.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         
         self.lblStillHavingTrouble.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblStillHavingTrouble.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.btnVisitHelpCenter.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnVisitHelpCenter.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btnVisitHelpCenter.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         
         self.btnFilter.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)

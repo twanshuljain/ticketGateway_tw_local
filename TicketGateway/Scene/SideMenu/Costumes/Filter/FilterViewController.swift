@@ -50,16 +50,16 @@ extension FilterViewController{
             
             self.btnCancel.backgroundColor = UIColor.setColor(colorType: .white)
             self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-            self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .BorderColor)
+            self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .borderColor)
         }else{
             self.btnApply.gradientLayer.removeFromSuperlayer()
-            self.btnApply.backgroundColor = UIColor.setColor(colorType: .BgPurpleColor)
+            self.btnApply.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
             self.btnApply.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             self.btnApply.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
             
             self.btnCancel.backgroundColor = UIColor.setColor(colorType: .white)
             self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-            self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .BorderColor)
+            self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .borderColor)
         }
     }
 }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class EventSearchCategoryCollectionList: UICollectionView {
    
 //MARK: - Variables
@@ -14,7 +16,7 @@ class EventSearchCategoryCollectionList: UICollectionView {
     var isFromCategory = false
     var collVwDidSelectAtIndex: ((GetEventCategoryModel) -> Void)?
     var arrData = [GetEventCategoryModel]()
-    
+   
     func configure() {
         self.register(UINib(nibName: "EventSearchCategoryCell", bundle: nil), forCellWithReuseIdentifier: "EventSearchCategoryCell")
         self.delegate = self
@@ -52,7 +54,7 @@ extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UIColl
              if  isFromCategory == true {
                  cell?.lblTittle.textColor = UIColor.setColor(colorType: .lightBlack)
              } else {
-                 cell?.lblTittle.textColor = UIColor.setColor(colorType: .TGGrey)
+                 cell?.lblTittle.textColor = UIColor.setColor(colorType: .tgGrey)
              }
          }
          if isFromCategory == true {
@@ -61,7 +63,7 @@ extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UIColl
              cell?.vwBg.layer.cornerRadius = 10
              cell?.imgArrow.isHidden = false
          } else {
-             cell?.vwBg.layer.borderColor = UIColor.setColor(colorType: .TGGrey).cgColor
+             cell?.vwBg.layer.borderColor = UIColor.setColor(colorType: .tgGrey).cgColor
              cell?.vwBg.layer.borderWidth = 1
              cell?.vwBg.layer.cornerRadius = 10
              cell?.imgArrow.isHidden = true
@@ -79,7 +81,7 @@ extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UIColl
         if isFromCategory == true {
             self.collVwDidSelectAtIndex!(obj)
         } else {
-            
+
         }
         self.reloadData()
     }

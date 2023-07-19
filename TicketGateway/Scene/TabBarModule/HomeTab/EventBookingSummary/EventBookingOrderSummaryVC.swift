@@ -62,24 +62,24 @@ extension EventBookingOrderSummaryVC {
     func setUi(){
         [self.lblSubTotal,lblSubTotalValue,self.lblfacilityFee,self.lblfacilityFeeValue,self.lblSavingCharge,self.lblSavingChargeValue,self.lblProcessingFee,self.lblProcessingFeeValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         [self.lblDiscouted,self.lblDiscoutedValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            $0?.textColor = UIColor.setColor(colorType: .TGGreen)
+            $0?.textColor = UIColor.setColor(colorType: .tgGreen)
         }
         self.lblTotalAmt.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblTotalAmt.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTotalAmt.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblTotalAmtValue.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblTotalAmtValue.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTotalAmtValue.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .twelve)
         self.lblRefundPolicy.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblContractOrganiser.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        self.lblContractOrganiser.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblContractOrganiser.textColor = UIColor.setColor(colorType: .tgBlue)
         self.lblRefundDisc.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblRefundDisc.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblContractOrganiser.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
-        self.lblContractOrganiser.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblContractOrganiser.textColor = UIColor.setColor(colorType: .tgBlue)
         vwDotted.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDotteds.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDottedDIscount.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])

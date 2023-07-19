@@ -50,6 +50,8 @@ struct GetEventModel: Codable,Equatable {
     var location: Location?
     var date: DateClass?
     var likeCountData: LikeCountData?
+    var eventLikes: Int?
+    var isLikedEvent: Bool?
 
     enum CodingKeys: String, CodingKey {
         case event
@@ -57,6 +59,8 @@ struct GetEventModel: Codable,Equatable {
         case coverImage = "cover_image"
         case location, date
         case likeCountData = "like_count_data"
+        case eventLikes = "event_likes"
+        case isLikedEvent = "is_liked_event"
     }
     
     static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {

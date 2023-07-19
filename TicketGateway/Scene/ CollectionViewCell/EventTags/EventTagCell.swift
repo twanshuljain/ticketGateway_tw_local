@@ -24,7 +24,7 @@ class EventTagCell: UICollectionViewCell {
     
     func setUi(){
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblName.textColor = UIColor.setColor(colorType: .tgBlue)
      }
     
 

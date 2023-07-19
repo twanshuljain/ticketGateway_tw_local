@@ -55,7 +55,7 @@ extension ManageEventOrderDeatilVC {
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = "Order Details"
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
 
     }
     
@@ -73,7 +73,7 @@ extension ManageEventOrderDeatilVC {
         lblAttendee.text = ATTEENDE
         
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblName.textColor = UIColor.setColor(colorType: .tgBlack)
        
         let regularLbls = [lblEmail, lblorderNo, lblSale, lblDate, lblTime, lblDeliveryMethode, lbl1xGeneralAdmission, lblTotal, lblComplementry]
         for lbl in regularLbls {
@@ -82,16 +82,16 @@ extension ManageEventOrderDeatilVC {
         }
        
         self.lblOrderNoValue.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblOrderNoValue.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.lblOrderNoValue.textColor = UIColor.setColor(colorType: .tgBlue)
         
         let valueLbls = [lblSaleValue, lblDateValue, lblTimeValue, lblDeliveryMethodeValue]
         for valueLbl in valueLbls {
             valueLbl?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            valueLbl?.textColor = UIColor.setColor(colorType: .TGBlack)
+            valueLbl?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
         
         self.btnRefund.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnRefund.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.btnRefund.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         self.btnRefund.addLeftIcon(image: UIImage(named: REFUND_ICON))
         
         let lbls = [lblTickets, lblAttendee, lblGeneralAddmission]
@@ -103,14 +103,14 @@ extension ManageEventOrderDeatilVC {
         let lblValues = [lbl1xGeneralAdmissionValue, lblTotalValue, lblComplementryValue]
         for valueLbl in lblValues {
             valueLbl?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            valueLbl?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            valueLbl?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         
         self.lblNotes.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblNotes.textColor = UIColor.setColor(colorType: .lblTextPara)
         
         self.lblDavideTaylor.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblDavideTaylor.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblDavideTaylor.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
 }
 

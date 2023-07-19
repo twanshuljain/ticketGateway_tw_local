@@ -3,45 +3,39 @@
 //  TicketGateway
 //
 //  Created by Apple on 13/04/23.
-//
+// swiftlint: disable line_length
+// swiftlint: disable force_cast
 
 import UIKit
 import SVProgressHUD
 
 class ForgotPasswordVC: UIViewController {
-    
 // MARK: - Outlets
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var lblHeadingDescription: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
-    
 // MARK: - Variable
     let viewModel = ForgotPasswordViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
     }
 }
-
 // MARK: - Functions
 extension ForgotPasswordVC {
     private func setup() {
         [self.btnContinue].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        
         txtEmail.delegate = self
        self.btnContinue.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
         self.btnContinue.setImage(UIImage(named: RIGHT_ARROW_ICON), for: .normal)
-       
         self.navigationView.lblTitle.text = FORGOT_PASSWORD
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
         self.lblHeadingDescription.text = DONT_WORRY
-        
     }
 }
 // MARK: - Actions
@@ -54,11 +48,10 @@ extension ForgotPasswordVC {
             break
         }
     }
-    
     func btnContinueAction() {
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {
-            if Reachability.isConnectedToNetwork(){
+            if Reachability.isConnectedToNetwork() {
                 SVProgressHUD.show()
                 viewModel.forgotPasswordAPI { isTrue, messageShowToast in
                     if isTrue == true {
@@ -79,8 +72,7 @@ extension ForgotPasswordVC {
             } else {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
-        }
-        else {
+        } else {
             self.showToast(message: isValidate.errormessage)
         }
     }
@@ -94,7 +86,6 @@ extension ForgotPasswordVC: UITextFieldDelegate {
         }
         return false
     }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         if textField == txtEmail {
@@ -102,13 +93,10 @@ extension ForgotPasswordVC: UITextFieldDelegate {
         }
         return true
     }
-    
 }
 // MARK: -  NavigationBarViewDelegate
-extension ForgotPasswordVC : NavigationBarViewDelegate {
+extension ForgotPasswordVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
 }
-
-

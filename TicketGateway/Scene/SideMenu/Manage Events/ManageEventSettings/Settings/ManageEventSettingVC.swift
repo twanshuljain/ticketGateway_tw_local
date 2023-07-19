@@ -3,7 +3,14 @@
 // TicketGateway
 //
 // Created by Apple on 24/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 
 import UIKit
@@ -54,9 +61,9 @@ extension ManageEventSettingVC {
     }
     func setUi(){
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblProfileview.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        self.lblProfileview.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblProfileview.textColor = UIColor.setColor(colorType: .headinglbl)
         self.navigationView.btnBack.isHidden = true
         self.navigationView.imgBack.isHidden = true
         self.navigationView.lblDiscripation.isHidden = false

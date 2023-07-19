@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 02/06/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import Foundation
 import UIKit
@@ -41,7 +48,7 @@ import UIKit
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         // gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
-        gradient.colors = [UIColor.setColor(colorType: .StartTextGradientColor).cgColor, UIColor.setColor(colorType: .EndTextGradientColor).cgColor]
+        gradient.colors = [UIColor.setColor(colorType: .startTextGradientColor).cgColor, UIColor.setColor(colorType: .endTextGradientColor).cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         return gradient

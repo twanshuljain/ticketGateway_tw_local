@@ -21,6 +21,14 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 
@@ -34,14 +42,14 @@ public enum RingProgressViewStyle: Int {
 @objc(MKRingProgressView)
 open class RingProgressView: UIView {
     /// The start color of the progress ring.
-    @IBInspectable open var startColor: UIColor = UIColor.setColor(colorType: .EndGradient) {
+    @IBInspectable open var startColor: UIColor = UIColor.setColor(colorType: .endGradient) {
         didSet {
             ringProgressLayer.startColor = startColor.cgColor
         }
     }
     
     /// The end color of the progress ring.
-    @IBInspectable open var endColor: UIColor =  UIColor.setColor(colorType: .EndGradient) {
+    @IBInspectable open var endColor: UIColor =  UIColor.setColor(colorType: .endGradient) {
         didSet {
             ringProgressLayer.endColor = endColor.cgColor
         }

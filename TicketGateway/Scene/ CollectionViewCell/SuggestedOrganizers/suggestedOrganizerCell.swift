@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple  on 28/04/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 import SDWebImage
@@ -50,9 +57,9 @@ class suggestedOrganizerCell: UICollectionViewCell {
     
     func setUi(){
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblFollowers.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblFollowers.textColor = UIColor.setColor(colorType: .headinglbl)
         self.btnFollerwers.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
        
     }

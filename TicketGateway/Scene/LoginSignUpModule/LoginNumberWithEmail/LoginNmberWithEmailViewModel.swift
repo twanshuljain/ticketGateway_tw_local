@@ -3,40 +3,35 @@
 //  TicketGateway
 //
 //  Created by Apple  on 25/04/23.
-//
-
+// swiftlint: disable line_length
 import UIKit
 import Foundation
 
 final class LoginNmberWithEmailViewModel {
     // MARK: - Variable
     var countryCode: String = ""
-    var Image: String = ""
-    var number : String = ""
-    var strSelectedEmail : String = ""
-    var arrMail : [EmailListUser] = [EmailListUser]()
+    var image: String = ""
+    var number: String = ""
+    var strSelectedEmail: String = ""
+    var arrMail: [EmailListUser] = [EmailListUser]()
     var objUserModel: SignInAuthModel?
     let nameFormatter = PersonNameComponentsFormatter()
-    var vc:LoginNmberWithEmailVC?
-    
+    var loginVC: LoginNmberWithEmailVC?
     init() {
     }
-    init(vc:LoginNmberWithEmailVC) {
-        self.vc = vc
+    init(loginVC: LoginNmberWithEmailVC) {
+        self.loginVC = loginVC
     }
 }
 // MARK: - Functions
-extension LoginNmberWithEmailViewModel{
-    
-    func funcpersonNameComponents(strValue: String) -> String
-    {
+extension LoginNmberWithEmailViewModel {
+    func funcpersonNameComponents(strValue: String) -> String {
         var  fristName = ""
         var  lastNames = ""
         if let nameComps  = self.nameFormatter.personNameComponents(from: strValue) {
             if let  firstLetter = nameComps.givenName?.first {
                 fristName = String(firstLetter)
             }
-            
             if let lastName = nameComps.familyName?.first {
                 lastNames = String(lastName)
             }
@@ -44,28 +39,23 @@ extension LoginNmberWithEmailViewModel{
         }
         return "\(fristName)\(lastNames)".uppercased()
     }
-    
-    func signInAPI(complition: @escaping (Bool,String) -> Void ) {
+    func signInAPI(complition: @escaping (Bool, String) -> Void ) {
         let paramForEmail = SignInNumberWithEmailRequest(email: strSelectedEmail)
-          APIHandler.shared.executeRequestWith(apiName: .signInUserByNumber_Email, parameters: paramForEmail, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
-                switch result {
-                case .success(let response):
-                    if response.status_code == 200 {
-                        DispatchQueue.main.async {
-                           
-                                self.objUserModel = response.data
-                            
-                            
-                                UserDefaultManager.share.storeModelToUserDefault(userData: self.objUserModel, key: .userAuthData)
-                           
-                        }
-                        complition(true, response.message ?? "")
-                    }else{
-                        complition(false,response.message ?? "error message")
+        APIHandler.shared.executeRequestWith(apiName: .signInUserByNumberEmail, parameters: paramForEmail, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        self.objUserModel = response.data
+                        UserDefaultManager.share.storeModelToUserDefault(userData: self.objUserModel, key: .userAuthData)
                     }
-                case .failure(let error):
-                    complition(false,"\(error)")
+                    complition(true, response.message ?? "")
+                } else {
+                    complition(false, response.message ?? "error message")
                 }
+            case .failure(let error):
+                complition(false, "\(error)")
             }
         }
     }
+}

@@ -31,7 +31,7 @@ class MyRefundTransactionCell: UITableViewCell {
         
         [self.lblDate,self.lblStatus,self.lblSpent,self.lblPoint].forEach {
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            $0.textColor = UIColor.setColor(colorType: .TGGrey)
+            $0.textColor = UIColor.setColor(colorType: .tgGrey)
             
         }
         
@@ -42,7 +42,7 @@ class MyRefundTransactionCell: UITableViewCell {
         }
         
         self.lblStatusValue.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblStatusValue.textColor = UIColor.setColor(colorType: .TGYellow)
+        self.lblStatusValue.textColor = UIColor.setColor(colorType: .tgYellow)
         
     }
     

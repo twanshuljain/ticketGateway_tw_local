@@ -23,16 +23,16 @@ class FilterSectionTableViewCell: UITableViewCell {
         self.lblFilterTitle.text = str
        if selectedIndex==index{
             self.lblFilterTitle.textColor = UIColor.setColor(colorType: .white)
-            self.filterView.backgroundColor = UIColor.setColor(colorType: .TGBlue)
+            self.filterView.backgroundColor = UIColor.setColor(colorType: .tgBlue)
        }else{
-            self.lblFilterTitle.textColor = UIColor.setColor(colorType: .TGBlack)
+            self.lblFilterTitle.textColor = UIColor.setColor(colorType: .tgBlack)
             self.filterView.backgroundColor = UIColor.setColor(colorType: .white)
         }
     }
     
     func setUI(){
         self.lblFilterTitle.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblFilterTitle.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblFilterTitle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.filterView.backgroundColor = UIColor.setColor(colorType: .white)
     }
 

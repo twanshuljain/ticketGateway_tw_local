@@ -3,7 +3,15 @@
 //  TicketGateway
 //
 //  Created by Apple  on 13/04/23.
-//
+
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+
 import Foundation
 import UIKit
 
@@ -330,7 +338,12 @@ let Choose_Payment_Mode = "Choose payment mode"
 let TOTAL_BALANCE = "TOTAL BALANCE"
 let ADD_AMOUNT_IN_TG_WALLET = "Add amount in TG wallet"
 let TRANSACTION = "Transaction"
-
+let This_Weekend =  "This Weekend"
+let Online_Events = "Online Events"
+let Popular_Events = "Popular Events"
+let Free_Events = "Free Events"
+let Upcoming_Events = "Upcoming Events"
+let Events_Near_Toronto = "Events Near Toronto"
 
 
 //MARK: - IMAGE Constant

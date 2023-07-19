@@ -3,7 +3,13 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 05/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
 
 import UIKit
 import iOSDropDown
@@ -110,14 +116,14 @@ extension CostumeFrontLineViewController {
         
     }
     func setFont() {
-        self.selectSizeDottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [8,4])
-        self.addOnDottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [8,4])
-        self.promoCodeDottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .BorderLineColour).cgColor, dashPattern: [8,4])
+        self.selectSizeDottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [8,4])
+        self.addOnDottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [8,4])
+        self.promoCodeDottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [8,4])
         self.lblSelectSize.font = UIFont.setFont(fontType: .semiBold, fontSize: .seventeen)
-        self.lblSelectSize.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblSelectSize.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.btnSizeChart.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnSizeChart.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btnSizeChart.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.lblBraSize.text = BRA_SIZE
         self.lblBraSize.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblBraSize.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -148,11 +154,11 @@ extension CostumeFrontLineViewController {
         
         self.lblAddOns.text = ADD_ONS
         self.lblAddOns.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.lblAddOns.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblAddOns.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblPromoCode.text = PROMO_CODE
         self.lblPromoCode.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-        self.lblPromoCode.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblPromoCode.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblApplyPromo.text = APPLY_PROMO
         self.lblApplyPromo.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
@@ -170,7 +176,7 @@ extension CostumeFrontLineViewController {
         let txtFields = [txtBraSize, txtCupSize, txtWaistSize, txtBottomSize, txtHipSize, txtPantySize, txtBeltSize]
         for txtField in txtFields {
             txtField?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
-            txtField?.textColor = UIColor.setColor(colorType: .TGBlue)
+            txtField?.textColor = UIColor.setColor(colorType: .tgBlue)
             txtField?.optionArray = ["S", "L", "M","XL","XXl"]
             
             txtField?.optionIds = [1,23,54,22]

@@ -3,7 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 16/05/23.
-//
+// swiftlint: disable force_cast
 
 import UIKit
 
@@ -54,23 +54,23 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
     
 
 
-    @objc func PlusButtonPressed(_ sender: UIButton) {
+    @objc func plusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
-        self.lblNumberOfCount = self.lblNumberOfCount + 1
+        self.lblNumberOfCount += 1
         cell.vwStepper.lblCount.text = String(lblNumberOfCount)
     }
     
-    @objc func MinustButtonPressed(_ sender: UIButton) {
+    @objc func minustButtonPressed(_ sender: UIButton) {
          let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
         if self.lblNumberOfCount > 0 {
-            self.lblNumberOfCount = self.lblNumberOfCount - 1
+            self.lblNumberOfCount -= 1
             cell.vwStepper.lblCount.text = String(lblNumberOfCount)
         } else {
             cell.vwStepper.lblCount.text = "0"

@@ -3,7 +3,14 @@
 //  TicketGateway
 //
 //  Created by Apple  on 23/05/23.
-//
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 
@@ -59,7 +66,7 @@ extension ManageSellTicketSuccessfully {
         self.lblticketDetail.text = strSummary
         self.btnGoToOrder.setTitle(btnStr, for: .normal)
         self.btnGoToOrder.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnGoToOrder.titleLabel?.textColor = UIColor.setColor(colorType: .TGBlue)
+        self.btnGoToOrder.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnShare.addLeftIcon(image: UIImage(named: SHARE_ICON))
         self.btnShare.setTitles(text: SHARE, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
         self.btnDownload.addLeftIcon(image: UIImage(named: DOWNLOAD_ICON))
@@ -67,7 +74,7 @@ extension ManageSellTicketSuccessfully {
         self.btnSendAnotherComp.setTitles(text: SEND_ANOTHER_COMP, font: UIFont.setFont(fontType: .semiBold, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .lblTextPara))
         self.btnDone.setTitles(text: DONE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
         self.lblThanku.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
-        self.lblThanku.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblThanku.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblComplimentry.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblComplimentry.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblticketDetail.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)

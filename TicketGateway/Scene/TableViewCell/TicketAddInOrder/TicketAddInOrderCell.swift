@@ -27,15 +27,15 @@ class TicketAddInOrderCell: UITableViewCell {
     func setUi(){
          [self.lblAmt,lblTittleDis,lblAmtValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-            $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblTittle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTittle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
         self.lblDiscount.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        self.lblDiscount.textColor = UIColor.setColor(colorType: .TGGreen)
+        self.lblDiscount.textColor = UIColor.setColor(colorType: .tgGreen)
         self.lblDiscountValue.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        self.lblDiscountValue.textColor = UIColor.setColor(colorType: .TGGreen)
+        self.lblDiscountValue.textColor = UIColor.setColor(colorType: .tgGreen)
     }
     
 }

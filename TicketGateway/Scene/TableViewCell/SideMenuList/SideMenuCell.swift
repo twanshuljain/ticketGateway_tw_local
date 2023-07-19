@@ -22,9 +22,9 @@ class SideMenuCell: UITableViewCell {
     }
     func setUi(){
         self.lblTittle.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblTittle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+        self.lblTittle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        self.lblDiscripation.textColor = UIColor.setColor(colorType: .Headinglbl)
+        self.lblDiscripation.textColor = UIColor.setColor(colorType: .headinglbl)
   }
 }
 
