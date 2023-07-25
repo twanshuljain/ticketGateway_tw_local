@@ -31,7 +31,7 @@ class HomeVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        self.funcCallApi(viewAll: false)
+      self.funcCallApi(viewAll: false)
         // self.apiCall()
     }
     
@@ -59,7 +59,6 @@ extension HomeVC {
         self.tblEvents.tableDidSelectAtIndex = { _ in
             self.navigationController?.popViewController(animated: true)
         }
-       
         self.tblEvents.tableDidSelectAtIndex = {  index in
             let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
             switch self.viewModel.arrEventCategory[index.section] {
@@ -84,7 +83,6 @@ extension HomeVC {
                     view?.viewModel.eventId = self.viewModel.arrDataaUpcoming[index.row].event?.id
                 }
             }
-            
             self.navigationController?.pushViewController(view!, animated: true)
         }
         //self.tblEvents.reloadData()
@@ -117,6 +115,7 @@ extension HomeVC {
                     SVProgressHUD.dismiss()
                     DispatchQueue.main.async {
                         self.tblEvents.arrDataaWeekend = self.viewModel.arrDataaWeekend
+                        
                         self.tblEvents.reloadData()
                     }
                 } else {

@@ -29,7 +29,7 @@ extension ViewMoreEventsViewModel {
                 if response.status_code == 200 {
                         if var data = response.data, let items = data.items{
                             self.arrData = data
-                            self.totalPage = (response.total as! NSString).integerValue
+                            self.totalPage = response.total ?? 0
                             self.arrData?.itemsWeekend = items
                         complition(true, response.message ?? "")
                     }
@@ -79,7 +79,8 @@ extension ViewMoreEventsViewModel {
                     DispatchQueue.main.async {
                         if var data = response.data, let items = data.items{
                             self.arrData = data
-                            self.totalPage = (response.total as! NSString).integerValue
+                         //   self.totalPage = (response.total as! NSString).integerValue
+                            self.totalPage = response.total ?? 0
                             self.arrData?.itemsPopular = items
                         }
                         complition(true, response.message ?? "")
@@ -128,7 +129,8 @@ extension ViewMoreEventsViewModel {
                     DispatchQueue.main.async {
                         if var data = response.data, let items = data.items{
                             self.arrData = data
-                            self.totalPage = (response.total as! NSString).integerValue
+                            //self.totalPage = (response.total as! NSString).integerValue
+                            self.totalPage = response.total ?? 0
                             self.arrData?.itemsUpcoming = items
                         }
                         complition(true, response.message ?? "")

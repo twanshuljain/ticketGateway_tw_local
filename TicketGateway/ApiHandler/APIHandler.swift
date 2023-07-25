@@ -30,6 +30,7 @@ public enum APIName: String {
     case GetOrganizersList = "organizer/featured-organizer/list/"
     
     case GetTicketList = "events/ticket-list/"
+    case getAddOnList = "events/ticket-add-on-list/"
 }
 public enum GroupApiName: String {
     case auth = "auth"
@@ -74,26 +75,26 @@ class APIHandler: NSObject {
         
         if methodType == .GET{
             if parameters != nil {
-                if #available(iOS 16.0, *) {
+              //  if #available(iOS 16.0, *) {
                     let param = try? JSONEncoder().encode(parameters!)
                     do {
                         let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String : Any]
+                       // print("---------------", json ?? "")
 //                        requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: json?.keys.first ?? "", value: (json?.values.first as? String) ?? "")])
                         var queryItems = [URLQueryItem]()
                         for (key, value) in json! {
                             let queryItem = URLQueryItem(name: key, value: "\(value)")
                             queryItems.append(queryItem)
                         }
-                        requestURL.append(queryItems: queryItems)
-                        
+                        requestURL =  requestURL.appending(queryItems) ?? requestURL
                         
                     } catch {
                         print("errorMsg")
                     }
                     //requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: param, value: "39")])
-                } else {
-                    // Fallback on earlier versions
-                }
+//                } else {
+//                    // Fallback on earlier versions
+//                }
             }
         }
         
@@ -144,7 +145,7 @@ class APIHandler: NSObject {
                 } else if httpStatusCode == 200, let data = data {
                     do {
                         let JSON = self.nsdataToJSON(data: data as NSData)
-                       // print("JSON",JSON)
+                 print("----------------",JSON)
                         do {
                             let responseModel = try JSONDecoder().decode(ResponseModal<T>.self, from: data)
                             complition(.success(responseModel))

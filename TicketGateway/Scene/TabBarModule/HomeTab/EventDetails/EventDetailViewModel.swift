@@ -30,6 +30,7 @@ extension EventDetailViewModel{
                     print("response....",response)
                     DispatchQueue.main.async {
                         self.eventDetail = response.data ?? EventDetail()
+                        print("--------------------",self.eventDetail)
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")

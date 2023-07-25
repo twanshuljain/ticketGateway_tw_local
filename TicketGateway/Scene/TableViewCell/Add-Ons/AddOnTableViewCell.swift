@@ -18,6 +18,7 @@ class AddOnTableViewCell: UITableViewCell {
     @IBOutlet weak var toggle: UISwitch!
     @IBOutlet weak var bgTextView: UIView!
     @IBOutlet weak var txtSelect: DropDown!
+    @IBOutlet weak var btnInfo: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +32,7 @@ class AddOnTableViewCell: UITableViewCell {
     }
     
     func setFont() {
+        
         self.lblTitle.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .lightBlack)
         self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

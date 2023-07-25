@@ -117,6 +117,7 @@ extension FAQVC: UITableViewDelegate, UITableViewDataSource {
         if obj.isExpand == true{
             let gradient = getGradientLayer(bounds: view.bounds)
             cell.lblQuestion.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
+           
             cell.btnUp.setImage(UIImage(named: CHEVRON_UP_GD_ICON), for: .normal)
             let height = cell.bgView.bounds.height
             print("......................................", height)

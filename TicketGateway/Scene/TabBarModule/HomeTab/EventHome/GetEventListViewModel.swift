@@ -42,6 +42,7 @@ extension HomeDashBoardViewModel {
                     DispatchQueue.main.async {
                         //self.arrEventData = response.data ?? [GetEventModel]()
                         if var data = response.data{
+                           // print(response.data)
                             //data.unique{$0.event!.id! == $1.event!.id! }
                             //self.arrEventData = data
                            // self.arrEventData.itemsWeekend = items

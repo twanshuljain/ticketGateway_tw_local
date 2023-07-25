@@ -18,6 +18,7 @@
 		1801CD592A4EEC27007DA967 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801CD582A4EEC27007DA967 /* FeedbackViewModel.swift */; };
 		1801CD5B2A4EF894007DA967 /* RatingCustomFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1801CD5A2A4EF894007DA967 /* RatingCustomFooterView.xib */; };
 		1801CD5D2A4EFAF6007DA967 /* RatingCustomFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801CD5C2A4EFAF6007DA967 /* RatingCustomFooterView.swift */; };
+		180834712A6ABC510074766D /* EmailSentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180834702A6ABC510074766D /* EmailSentVC.swift */; };
 		180A07E329ED1F4C0088C03A /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A07E229ED1F4C0088C03A /* CreateAccountViewModel.swift */; };
 		180A07E729ED646B0088C03A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 180A07E629ED646B0088C03A /* IQKeyboardManagerSwift */; };
 		180A07F429ED764C0088C03A /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A07F329ED764C0088C03A /* TabBar.storyboard */; };
@@ -238,6 +239,7 @@
 		18BC2EE52A52978500FB427E /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */; };
 		18BC9F9B2A53EE5900863CD5 /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */; };
 		18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */; };
+		18D361412A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */; };
 		18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA75302A4AFD5700113541 /* FilterViewController.swift */; };
 		18DF185A2A3CA0CA00E89AB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DF18592A3CA0CA00E89AB5 /* Main.storyboard */; };
 		18E8442729E4194300F6525A /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E8442629E4194300F6525A /* APIHandler.swift */; };
@@ -283,6 +285,7 @@
 		18F6F74D29E9894C007B9513 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6F74C29E9894C007B9513 /* ForgotPasswordViewModel.swift */; };
 		18F88C392A25D61F005E7457 /* GetEventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F88C382A25D61F005E7457 /* GetEventListViewModel.swift */; };
 		18F9488D2A332CFF007CD749 /* ManageEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F9488C2A332CFF007CD749 /* ManageEvents.storyboard */; };
+		18F9E7EC2A6F957A003C84C2 /* EventTicketAddOnResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E7EB2A6F957A003C84C2 /* EventTicketAddOnResponseModel.swift */; };
 		18FBC0A62A309239002CF129 /* NotificationTableViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC00C2A309237002CF129 /* NotificationTableViewList.swift */; };
 		18FBC0A72A309239002CF129 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FBC00D2A309237002CF129 /* NotificationCell.xib */; };
 		18FBC0A82A309239002CF129 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC00E2A309237002CF129 /* NotificationCell.swift */; };
@@ -417,6 +420,7 @@
 		1801CD582A4EEC27007DA967 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		1801CD5A2A4EF894007DA967 /* RatingCustomFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingCustomFooterView.xib; sourceTree = "<group>"; };
 		1801CD5C2A4EFAF6007DA967 /* RatingCustomFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCustomFooterView.swift; sourceTree = "<group>"; };
+		180834702A6ABC510074766D /* EmailSentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSentVC.swift; sourceTree = "<group>"; };
 		180A07E229ED1F4C0088C03A /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		180A07F329ED764C0088C03A /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		180A07F829ED7D990088C03A /* TabBar_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar_VC.swift; sourceTree = "<group>"; };
@@ -632,6 +636,7 @@
 		18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsVC.swift; sourceTree = "<group>"; };
+		18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTiclketAddOnViewModel.swift; sourceTree = "<group>"; };
 		18DA75302A4AFD5700113541 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		18DF18592A3CA0CA00E89AB5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		18E8442629E4194300F6525A /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
@@ -677,6 +682,7 @@
 		18F6F74C29E9894C007B9513 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		18F88C382A25D61F005E7457 /* GetEventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventListViewModel.swift; sourceTree = "<group>"; };
 		18F9488C2A332CFF007CD749 /* ManageEvents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageEvents.storyboard; sourceTree = "<group>"; };
+		18F9E7EB2A6F957A003C84C2 /* EventTicketAddOnResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTicketAddOnResponseModel.swift; sourceTree = "<group>"; };
 		18FBC00C2A309237002CF129 /* NotificationTableViewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewList.swift; sourceTree = "<group>"; };
 		18FBC00D2A309237002CF129 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		18FBC00E2A309237002CF129 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
@@ -851,6 +857,8 @@
 			isa = PBXGroup;
 			children = (
 				184B79132A440F9600577B26 /* EventBookingTicketAddOnsVC.swift */,
+				18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */,
+				18F9E7EB2A6F957A003C84C2 /* EventTicketAddOnResponseModel.swift */,
 			);
 			path = EventTicketAddOns;
 			sourceTree = "<group>";
@@ -1434,6 +1442,7 @@
 			isa = PBXGroup;
 			children = (
 				18DF18592A3CA0CA00E89AB5 /* Main.storyboard */,
+				180834702A6ABC510074766D /* EmailSentVC.swift */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -3033,6 +3042,7 @@
 				18A6D0DD29E91CE700D6210E /* Validation.swift in Sources */,
 				18FBC0B02A309239002CF129 /* MyRefundTransactionCell.swift in Sources */,
 				18B384962A5BE55100B47D9D /* GetEventRequest.swift in Sources */,
+				180834712A6ABC510074766D /* EmailSentVC.swift in Sources */,
 				18FBC0F72A309239002CF129 /* InstallmentHeaderView.swift in Sources */,
 				18FBC0CA2A309239002CF129 /* ManageSellTicketVC.swift in Sources */,
 				188A68042A0CF6EE00987BAD /* CustomStepper.swift in Sources */,
@@ -3057,6 +3067,7 @@
 				18717F872A2A1BE9002F36BC /* OrderTableViewCell.swift in Sources */,
 				18FBC0AF2A309239002CF129 /* RefundListTableView.swift in Sources */,
 				187E22942A407B03003236EC /* SocialSignInViewModel.swift in Sources */,
+				18F9E7EC2A6F957A003C84C2 /* EventTicketAddOnResponseModel.swift in Sources */,
 				189FAEC929F12A7100B8325A /* CommonFunctions.swift in Sources */,
 				18FBC0FF2A309239002CF129 /* AmountAddedSuccessfullyVC.swift in Sources */,
 				18F6AEF02A42C7E600500678 /* UIFont+Extension.swift in Sources */,
@@ -3226,6 +3237,7 @@
 				183A26372A4336BF00DC97E3 /* AddOnAddInOrderTableViewList.swift in Sources */,
 				18717FAD2A2A2158002F36BC /* FavouriteVC.swift in Sources */,
 				18FBC0C02A309239002CF129 /* ManageEventProfileVC.swift in Sources */,
+				18D361412A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift in Sources */,
 				18A73E1129EFF31F007365CB /* EmailVerifyViewModel.swift in Sources */,
 				18E8442729E4194300F6525A /* APIHandler.swift in Sources */,
 				18F5A4C42A4EA55900CA18F7 /* ScanSummaryViewModel.swift in Sources */,

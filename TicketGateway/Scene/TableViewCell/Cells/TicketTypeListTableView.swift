@@ -32,15 +32,16 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
         
+ // MARK: - ONLINE
         if let arrTicketList = self.arrTicketList, arrTicketList.indices.contains(indexPath.row){
             cell.setData(event: arrTicketList[indexPath.row])
         }
-        
+
         if  self.selectedArrTicketList.indices.contains(indexPath.row){
             cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
         }
         
-        
+ // MARK: - OFFLINE
 //        if indexPath.row == 0 {
 //            cell.vwForGroup.isHidden = true
 //            cell.vwEtcDiscripation.isHidden = false
@@ -53,7 +54,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
 //            cell.vwEtcDiscripation.isHidden = false
 //            cell.lblTittle.text = "Early Bird Admission"
 //
-//        } else if indexPath.row == 2{
+//        } else if indexPath.row == 2 {
 //            cell.lblAmount.isHidden = false
 //            cell.vwForGroup.isHidden = false
 //            cell.vwEtcDiscripation.isHidden = true
@@ -86,8 +87,31 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    //MARK: - OFFLINE
+//    @objc func PlusButtonPressed(_ sender: UIButton) {
+//       print(sender.tag)
+//        let indexPath = IndexPath(row: sender.tag, section: 0)
+//        let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
+//        let value =  cell.vwStepper.lblCount.text ?? ""
+//        self.lblNumberOfCount = Int(value) ?? 0
+//        self.lblNumberOfCount = self.lblNumberOfCount + 1
+//        cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+//    }
+//
+//    @objc func MinustButtonPressed(_ sender: UIButton) {
+//         let indexPath = IndexPath(row: sender.tag, section: 0)
+//        let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
+//        let value =  cell.vwStepper.lblCount.text ?? ""
+//        self.lblNumberOfCount = Int(value) ?? 0
+//        if self.lblNumberOfCount > 0 {
+//            self.lblNumberOfCount = self.lblNumberOfCount - 1
+//            cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+//        } else {
+//            cell.vwStepper.lblCount.text = "0"
+//        }
+//    }
 
-
+    //MARK: - ONLINE
     @objc func PlusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
         let indexPath = IndexPath(row: sender.tag, section: 0)
@@ -101,7 +125,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
             self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
         }
     }
-    
+
     @objc func MinustButtonPressed(_ sender: UIButton) {
          let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell

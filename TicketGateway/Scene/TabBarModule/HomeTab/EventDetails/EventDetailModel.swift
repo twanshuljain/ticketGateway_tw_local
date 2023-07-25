@@ -31,6 +31,7 @@ struct EventDetail: Codable {
     var event: Event?
     var ticketOnwards: Int?
     var locationType: String?
+    var is_multi_location: Bool?
     var organizer: Organizer?
     var eventType: DataEventType?
     var eventCategory, eventSubCategory: EventCategory?

@@ -27,6 +27,7 @@ extension EventBookingTicketViewModel{
                 if response.status_code == 200 {
                     if let data = response.data{
                         self.arrTicketList = data
+                        print("---------------ARRTICKETDATA", self.arrTicketList ?? [])
                         //self.arrTicketList?.append(contentsOf: data)
                         complition(true, response.message ?? "")
                     }

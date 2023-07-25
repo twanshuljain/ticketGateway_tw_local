@@ -125,7 +125,7 @@ extension OtpNumberVC {
             let otp = "\(self.txtOtp1.text ?? "")" + "\(self.txtOtp2.text ?? "")" + "\(self.txtOtp3.text ?? "")" + "\(self.txtOtp4.text ?? "")"
             self.viewModel.otp = otp
             
-            //REMOVE WHEN API IS WORKING
+            // REMOVE WHEN API IS WORKING
             if isComingFromLogin{
                 let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
                 view.viewModel?.arrMail.append(EmailListUser(name: "", email: ""))
@@ -135,8 +135,8 @@ extension OtpNumberVC {
                 self.navigationController?.pushViewController(view!, animated: true)
             }
             
-     //       ------------------------------------
-            //TO BE DONE WHEN API IS WORKING
+       //     ------------------------------------
+    //        TO BE DONE WHEN API IS WORKING
 //            if Reachability.isConnectedToNetwork(){
 //                SVProgressHUD.show()
 //                viewModel.signUpVerifyNumberAPI(complition: { isTrue, messageShowToast  in
@@ -149,7 +149,7 @@ extension OtpNumberVC {
 //                                if istrue ==  true
 //                                {
 //                                    let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
-//                                    view.viewModel.arrMail = self.viewModel.arrMail
+//                                    view.viewModel?.arrMail = self.viewModel.arrMail
 //                                    self.navigationController?.pushViewController(view, animated: true)
 //                                }
 //                            }

@@ -141,10 +141,19 @@ extension EventBookingTicketVC {
 // MARK: - NavigationBarViewDelegate
 extension EventBookingTicketVC : NavigationBarViewDelegate {
     func navigationBackAction() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
-            view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
-            self.navigationController?.popToViewController(view, animated: false)
+//        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
+//            view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
+//            self.navigationController?.popToViewController(view, animated: false)
+//        }
+
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: EventDetailVC.self) {
+                (controller as! EventDetailVC).viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
         }
+
       // self.navigationController?.popViewController(animated: true)
   }
 }

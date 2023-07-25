@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cv9-9L-CGR">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -591,7 +591,7 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                         <state key="normal" title="Forgot Password ?">
-                                                                            <color key="titleColor" red="0.29019607843137252" green="0.33333333333333331" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <color key="titleColor" name="TGBlue"/>
                                                                         </state>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don’t have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRN-R0-cia">
@@ -2739,13 +2739,13 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-Cu-r5b">
                                                                     <rect key="frame" x="124" y="20.666666666666671" width="240" height="67"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7h2-Ws-znK">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Mobile number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7h2-Ws-znK">
                                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="22.666666666666668"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                                             <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the email account you want to login" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-e2-KnD">
+                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select the email account you want to login" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-e2-KnD">
                                                                             <rect key="frame" x="0.0" y="27.666666666666668" width="240" height="39.333333333333329"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
@@ -3233,9 +3233,100 @@ Sit sagittis ullamcorper ante.</string>
             </objects>
             <point key="canvasLocation" x="4447.826086956522" y="681.52173913043487"/>
         </scene>
+        <!--Email SentVC-->
+        <scene sceneID="kC1-Bm-V5q">
+            <objects>
+                <viewController storyboardIdentifier="EmailSentVC" id="mNb-TG-Ya4" customClass="EmailSentVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dA1-rQ-0wq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-cj-wzL">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Done_ip" translatesAutoresizingMaskIntoConstraints="NO" id="Aip-Zv-eOA">
+                                        <rect key="frame" x="183" y="250" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="7tH-um-gIT"/>
+                                            <constraint firstAttribute="height" constant="48" id="VcP-eh-Dq8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KhK-f4-65k">
+                                        <rect key="frame" x="79.333333333333329" y="314" width="255.33333333333337" height="88"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Sent" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="159-H4-i4f">
+                                                <rect key="frame" x="0.0" y="0.0" width="255.33333333333334" height="20"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" name="lblTextPara"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9a-at-SvX">
+                                                <rect key="frame" x="0.0" y="28" width="255.33333333333334" height="60"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment>
+                                                        <string key="content">We have sent an email
+</string>
+                                                        <attributes>
+                                                            <color key="NSColor" name="lblTextPara"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="rebecca@ticketgateway.com">
+                                                        <attributes>
+                                                            <color key="NSColor" name="lblTextPara"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment>
+                                                        <string key="content">
+with a link to reset your password</string>
+                                                        <attributes>
+                                                            <color key="NSColor" name="lblTextPara"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="KhK-f4-65k" firstAttribute="top" secondItem="Aip-Zv-eOA" secondAttribute="bottom" constant="16" id="G6k-Je-Zlx"/>
+                                    <constraint firstItem="KhK-f4-65k" firstAttribute="leading" secondItem="NIe-cj-wzL" secondAttribute="leading" constant="79.329999999999998" id="hjf-hi-XF0"/>
+                                    <constraint firstItem="Aip-Zv-eOA" firstAttribute="top" secondItem="NIe-cj-wzL" secondAttribute="top" constant="250" id="kwq-AT-SYL"/>
+                                    <constraint firstItem="KhK-f4-65k" firstAttribute="centerX" secondItem="Aip-Zv-eOA" secondAttribute="centerX" id="ruk-r0-oAQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="KhK-f4-65k" secondAttribute="trailing" constant="79.329999999999998" id="tqo-21-a3e"/>
+                                    <constraint firstItem="Aip-Zv-eOA" firstAttribute="centerX" secondItem="NIe-cj-wzL" secondAttribute="centerX" id="vhj-4X-7RE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FQn-7S-R9l"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NIe-cj-wzL" firstAttribute="leading" secondItem="FQn-7S-R9l" secondAttribute="leading" id="8Fj-zC-eY3"/>
+                            <constraint firstItem="FQn-7S-R9l" firstAttribute="bottom" secondItem="NIe-cj-wzL" secondAttribute="bottom" id="8Ue-RK-xbg"/>
+                            <constraint firstItem="NIe-cj-wzL" firstAttribute="top" secondItem="FQn-7S-R9l" secondAttribute="top" id="HR2-i3-DbU"/>
+                            <constraint firstItem="FQn-7S-R9l" firstAttribute="trailing" secondItem="NIe-cj-wzL" secondAttribute="trailing" id="OMZ-sR-FCN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lblDescription" destination="Z9a-at-SvX" id="0Ke-Fe-64O"/>
+                        <outlet property="lblEmail" destination="159-H4-i4f" id="6PX-4W-Xmz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Pr-t7-gXE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5528.985507246377" y="697.82608695652175"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BG image" width="375" height="812"/>
+        <image name="Done_ip" width="36.666667938232422" height="36.666667938232422"/>
         <image name="IN.png" width="40" height="30"/>
         <image name="applelogin1" width="30" height="30"/>
         <image name="back_arrow_black" width="24" height="24"/>
@@ -3267,6 +3358,9 @@ Sit sagittis ullamcorper ante.</string>
         </namedColor>
         <namedColor name="TiitleColourDarkBlue">
             <color red="0.043000001460313797" green="0.13699999451637268" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lblTextPara">
+            <color red="0.3529999852180481" green="0.40799999237060547" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

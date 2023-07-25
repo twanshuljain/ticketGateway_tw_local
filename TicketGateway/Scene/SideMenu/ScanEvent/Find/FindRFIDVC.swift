@@ -137,12 +137,7 @@ extension FindRFIDVC {
     
     func btnTicketAction() {
         
-        for controller in self.navigationController!.viewControllers as Array {
-            if controller.isKind(of: SelectTicketTypeVC.self) {
-                self.navigationController!.popToViewController(controller, animated: true)
-                break
-            }
-        }
+
         
         
     }

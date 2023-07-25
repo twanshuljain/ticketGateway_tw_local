@@ -13,11 +13,9 @@ class WelComeVC: UIViewController {
     // MARK: - @IBOutlets
     @IBOutlet var CvSlider: UICollectionView!
     
-    
     // MARK: - Variable
     var viewModel = WelcomeViewModel()
-    
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = WelcomeViewModel(vc: self)
@@ -66,7 +64,7 @@ extension WelComeVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         if self.viewModel.arrSliderImages.count-1 == indexPath.row || indexPath.row == 0 {
             cell.btnSkip.isHidden = true
         } else {
-            cell.btnSkip.isHidden = false
+            cell.btnSkip.isHidden = true
         }
         return cell
     }
@@ -82,8 +80,7 @@ extension WelComeVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColl
    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
        self.viewModel.currentIndex = indexPath.row
    }
-    
-    
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.currentIndex = indexPath.row
         self.viewModel.setPageController() }

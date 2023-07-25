@@ -12,6 +12,8 @@ enum IsComingFromForEventsOrganizesListTableView{
     case EventDetail
     case Venue
     case EventSearch
+    case None
+    case NoneEventDetail
 }
 
 protocol EventsOrganizesListTableViewProtocol{
@@ -179,18 +181,21 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-             switch self.arrEventCategory[indexPath.section] {
-             case .weekend: self.tableDidSelectAtIndex?(indexPath)
-             case .online: self.tableDidSelectAtIndex?(indexPath)
-             case .popular: self.tableDidSelectAtIndex?(indexPath)
-             case .free: self.tableDidSelectAtIndex?(indexPath)
-             case .upcoming: self.tableDidSelectAtIndex?(indexPath)
-             default:
-                 break;
-             }
-             self.reloadData()
-         }
+//         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
+//             if arrEventCategory.indices.contains(indexPath.section){
+//                 switch self.arrEventCategory[indexPath.section] {
+//                 case .weekend: self.tableDidSelectAtIndex?(indexPath)
+//                 case .online: self.tableDidSelectAtIndex?(indexPath)
+//                 case .popular: self.tableDidSelectAtIndex?(indexPath)
+//                 case .free: self.tableDidSelectAtIndex?(indexPath)
+//                 case .upcoming: self.tableDidSelectAtIndex?(indexPath)
+//                 default:
+//                     break;
+//                 }
+//                 self.reloadData()
+//             }
+//         }
+         self.tableDidSelectAtIndex?(indexPath)
     }
     
     // set view for footer

@@ -25,7 +25,7 @@ class SideMenuViewControllers: UIViewController{
         self.tblList.configure()
         self.setUpTableView()
      //   self.funcSetProfile()
-        self.addTapGesture()
+        //self.addTapGesture()
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,6 +40,7 @@ extension SideMenuViewControllers{
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
             lblName.text = "Guest"
             lblProfileview.text = "Login"
+            self.addTapGesture()
             btnChangeProfile.setImage(UIImage(named: "chevron-right_ip"), for: .normal)
            
         } else {
@@ -57,11 +58,15 @@ extension SideMenuViewControllers{
         self.lblProfileview.addGestureRecognizer(gesture)
       }
       @objc func navigateToProfile(_ sender: UITapGestureRecognizer) {
+          objSceneDelegate.showLogin_Signup()
+          UserDefaultManager.share.clearAllUserDataAndModel()
           // handling code
-           if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC{
-             vc.isComingFromOranizer = true
-             self.navigationController?.pushViewController(vc, animated: false)
-           }
+//           if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC{
+//             vc.isComingFromOranizer = true
+//             self.navigationController?.pushViewController(vc, animated: false)
+//           }
+          
+          
          }
     
     func setUpTableView(){
@@ -108,8 +113,10 @@ extension SideMenuViewControllers{
                 
             }
             else if obj.title == "Log Out" {
-                objSceneDelegate.showLogin_Signup()
-                UserDefaultManager.share.clearAllUserDataAndModel()
+                self.showAlert(message: "Are you sure you want to logout", complition: { _ in
+                    objSceneDelegate.showLogin_Signup()
+                    UserDefaultManager.share.clearAllUserDataAndModel()
+                })
             }
             
             else if obj.title == "Manage Events" {
