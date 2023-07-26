@@ -3,22 +3,18 @@
 //  TicketGateway
 //
 //  Created by Apple  on 05/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
+//
 
 import UIKit
 import iOSDropDown
 import AdvancedPageControl
 import SVProgressHUD
 import SDWebImage
+import EventKitUI
 
 class EventDetailVC: UIViewController, UITextFieldDelegate{
-    // MARK: - IBOutlets
+    
+    //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageConrtrolEventImages: AdvancedPageControlView!
     @IBOutlet weak var collvwEventImages: UICollectionView!
@@ -57,7 +53,17 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnSelectLocationAccordingToDate: UIButton!
     @IBOutlet weak var btnSelectDate: UIButton!
     @IBOutlet weak var lblEventDate: UILabel!
+    @IBOutlet weak var vwSelectDateView: UIView!
+    @IBOutlet weak var vwSelectLocationView: UIView!
+    @IBOutlet weak var vwSelectLocationAndDateView: UIView!
+
+    @IBOutlet weak var dateAndLocationStackView: UIStackView!
+    @IBOutlet weak var vwStackHeight: NSLayoutConstraint!
+    
+    //MARK: - Variables
     var viewModel = EventDetailViewModel()
+    let store = EKEventStore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.funcCallApi()
@@ -65,9 +71,9 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     }
 }
 
-// MARK: - Functions
+//MARK: - Functions
 extension EventDetailVC {
-    func setUp() {
+    func setUp(){
         self.setUi()
         self.collvwEventImages.reloadData()
         self.txtDate.delegate = self
@@ -75,7 +81,7 @@ extension EventDetailVC {
         self.collVwTags.configure()
         self.tblSuggestedEvent.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.EventDetail)
         self.tblSuggestedEvent.tableDidSelectAtIndex = { index in
-            if self.viewModel.arrEventData.indices.contains(index.row) {
+            if self.viewModel.arrEventData.indices.contains(index.row){
                 self.viewModel.eventId = self.viewModel.arrEventData[index.row].event?.id
                 self.funcCallApi()
                 self.setUp()
@@ -91,16 +97,17 @@ extension EventDetailVC {
         self.navigationView.btnSecRight.isHidden = false
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
-        btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
-        btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
+        btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
+        btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
+        btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .TGBlue))
+        
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
         navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .normal)
         navigationView.delegateBarAction = self
         btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-        btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
+        btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .TiitleColourDarkBlue))
         btnBookTickets.addLeftIcon(image: UIImage(named: "ticketBlack"))
         [self.btnFollowing,self.btnReadMore,self.btnAddToCalender,self.btnBookTickets,btnSelectDate,btnSelectLocationAccordingToDate].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -121,6 +128,17 @@ extension EventDetailVC {
                             self.collvwEventImages.reloadData()
                             self.setData()
                         }
+                        DispatchQueue.main.async {
+                            if self.viewModel.eventDetail?.is_multi_location == true {
+                                self.dateAndLocationStackView.isHidden = false
+                               self.vwStackHeight.constant = 155
+                            } else {
+                                self.dateAndLocationStackView.isHidden = true
+                                self.vwStackHeight.constant = 0
+
+                            }
+                        }
+                        
                         if let eventCategoryId = self.viewModel.eventDetail?.event?.eventCategoryID{
                             self.viewModel.suggestedEventCategoryId = eventCategoryId
                             self.funcCallApiForEventCategory(categoryId: eventCategoryId)
@@ -169,23 +187,24 @@ extension EventDetailVC {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfSuggestedOrganisedEvent.constant = tblSuggestedEvent.contentSize.height
+        
     }
     
     func setUi(){
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblFollowers.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblEventName.font = UIFont.setFont(fontType: .bold, fontSize: .twentyFour)
-        self.lblEventName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.lblEventName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblSelectDateTime.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblEventName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.lblEventName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblAboutOfEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblAboutOfEvent.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.lblAboutOfEvent.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblOrganizer.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblOrganizer.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.lblOrganizer.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblTags.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblTags.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.lblTags.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblSuggestionForYou.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-        self.lblSuggestionForYou.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.lblSuggestionForYou.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblAboutDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAboutDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblFullAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
@@ -201,13 +220,14 @@ extension EventDetailVC {
         self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblRefundPolicy.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblPrice.textColor = UIColor.setColor(colorType: .tgBlack)
+        self.lblPrice.textColor = UIColor.setColor(colorType: .TGBlack)
         self.lblOnTicketGateway.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblOnTicketGateway.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
+        self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
         
@@ -274,7 +294,8 @@ extension EventDetailVC {
             self.addToCalenAction()
         case btnShowMap :
             self.addToCalenAction()
-        case btnAddToCalender :
+        case btnAddToCalender:
+            //break
             self.addToCalenAction()
         case btnSelectDate :
             self.txtDate.showList()
@@ -286,12 +307,35 @@ extension EventDetailVC {
     }
     
     func addToCalenAction() {
+        store.requestAccess(to: .event, completion: { sucess, err in
+            if sucess, err == nil {
+                DispatchQueue.main.async {
+                    let newEvent = EKEvent(eventStore: self.store)
+                    newEvent.title = "New event"
+                    newEvent.startDate = Date()
+                    newEvent.endDate = Date()
+                    
+                    let vc = EKEventViewController()
+                    vc.delegate = self
+                    vc.event = newEvent
+                    let navVC = UINavigationController(rootViewController: vc)
+                    self.present(navVC, animated: true)
+                    
+                }
+            }
+            
+        })
+        
         
     }
     
     func btnBookTicket() {
-        let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
+            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
 }
 
@@ -300,8 +344,8 @@ extension EventDetailVC {
     func toSetPageControll() {
         pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
                                                            space: 16.0,
-                                                           indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
-                                                           dotsColor: UIColor.setColor(colorType: .placeHolder),
+                                                           indicatorColor: UIColor.setColor(colorType: .TiitleColourDarkBlue),
+                                                           dotsColor: UIColor.setColor(colorType: .PlaceHolder),
                                                            isBordered: false,
                                                            borderWidth: 0.0,
                                                            indicatorBorderColor: .clear,
@@ -314,25 +358,31 @@ extension EventDetailVC {
     }
 }
 
-//MARK:- UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
-extension EventDetailVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+//MARK: - UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         var imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
-        if imgCount == 0 {
-            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil {
+        if imgCount == 0{
+            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil{
                 return 1
             }
             return 0
-        } else {
+        }else{
             return imgCount
         }
+        
+        
+        
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventImageCell", for: indexPath) as! EventImageCell
         cell.setData(index: indexPath.row, eventDetail: self.viewModel.eventDetail)
@@ -343,14 +393,26 @@ extension EventDetailVC: UICollectionViewDataSource, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+}
+//MARK: - EKEventViewDelegate
+extension EventDetailVC: EKEventViewDelegate {
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        controller.dismiss(animated: true)
+    }
+    
+    
 }
 
+
 //MARK: - NavigationBarViewDelegate
-extension EventDetailVC: NavigationBarViewDelegate {
+extension EventDetailVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
- }
+    
+}

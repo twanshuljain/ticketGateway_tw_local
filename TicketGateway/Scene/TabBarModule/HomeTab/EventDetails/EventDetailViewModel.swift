@@ -20,7 +20,7 @@ final class EventDetailViewModel{
     var eventDetail:EventDetail?
     var eventId:Int?
     var suggestedEventCategoryId:Int?
-    //MARK: - Variables
+    var selectedArrTicketList = [EventTicket]()
     var arrEventData : [GetEventModel] = [GetEventModel]()
     
 }
@@ -36,6 +36,7 @@ extension EventDetailViewModel{
                     print("response....",response)
                     DispatchQueue.main.async {
                         self.eventDetail = response.data ?? EventDetail()
+                        print("--------------------",self.eventDetail)
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")

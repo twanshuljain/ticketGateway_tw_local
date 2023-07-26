@@ -25,25 +25,43 @@ class TicketTypesCell: UITableViewCell {
         super.awakeFromNib()
         self.setUi()
     }
+    
+    func setData(event:EventTicket?){
+        if let event = event{
+            self.lblTittle.text = event.ticketName ?? ""
+            
+          //  self.lblAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
+            self.lblAmount.isHidden = true
+            self.lblNoOfInGroup.text = ""
+             self.lblSecAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
+            self.lblAmountWithAdditionCharge.text = "Incl. CA$10.00 Facility Fee"
+            
+            if let endDate = event.ticketSaleEndDate {
+               self
+                    .lblDiscripation.text = "Sales end \(String(describing: endDate.getDateFormattedFromTo()))"
+            }
+           
+        }
+    }
+    
+    func setSelectedTicketData(selectedTicket:EventTicket?){
+        if let selectedTicket = selectedTicket?.selectedTicketQuantity{
+            self.vwStepper.lblCount.text = String(selectedTicket)
+        }
+    }
 
     
     func setUi(){
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-        self.lblTittle.textColor = UIColor.setColor(colorType: .tgBlack)
-        
+        self.lblTittle.textColor = UIColor.setColor(colorType: .TGBlack)
         self.lblAmount.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblAmount.textColor = UIColor.setColor(colorType: .tgBlack)
-        
+        self.lblAmount.textColor = UIColor.setColor(colorType: .TGBlack)
         self.lblNoOfInGroup.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblNoOfInGroup.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
-        
         self.lblSecAmount.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-        self.lblSecAmount.textColor = UIColor.setColor(colorType: .tgBlack)
-        
+        self.lblSecAmount.textColor = UIColor.setColor(colorType: .TGBlack)
         self.lblAmountWithAdditionCharge.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblAmountWithAdditionCharge.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
         self.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
         vwDotted.createDottedLine(width: 1.5, color: UIColor.lightGray.cgColor, dashPattern: [1,4])

@@ -29,7 +29,9 @@ struct GetEventDetail: Codable {
 // MARK: - EventDetail
 struct EventDetail: Codable {
     var event: Event?
+    var ticketOnwards: Int?
     var locationType: String?
+    var is_multi_location: Bool?
     var organizer: Organizer?
     var eventType: DataEventType?
     var eventCategory, eventSubCategory: EventCategory?
@@ -44,6 +46,7 @@ struct EventDetail: Codable {
 
     enum CodingKeys: String, CodingKey {
         case event
+        case ticketOnwards = "ticket_onwards"
         case locationType = "location_type"
         case organizer
         case eventType = "event_type"

@@ -1,0 +1,34 @@
+//
+//  EventTiclketAddOnViewModel.swift
+//  TicketGateway
+//
+//  Created by Apple on 20/07/23.
+//
+
+import Foundation
+class EventTiclketAddOnViewModel {
+    
+    var ticketId = ""
+    var arrAddOnTicketList: [EventTicketAddOnResponseModel]?
+    
+    func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
+        // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
+        var getURL = APIName.getAddOnList.rawValue + "4" + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getAddOnList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicketAddOnResponseModel]>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    if let data = response.data{
+                        self.arrAddOnTicketList = data
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                complition(false,"\(error)")
+            }
+        }
+    }
+}
