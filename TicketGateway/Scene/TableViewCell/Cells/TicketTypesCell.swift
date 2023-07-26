@@ -53,13 +53,13 @@ class TicketTypesCell: UITableViewCell {
     
     func setUi(){
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-        self.lblTittle.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblTittle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblAmount.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        self.lblAmount.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblAmount.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblNoOfInGroup.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblNoOfInGroup.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblSecAmount.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
-        self.lblSecAmount.textColor = UIColor.setColor(colorType: .TGBlack)
+        self.lblSecAmount.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblAmountWithAdditionCharge.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblAmountWithAdditionCharge.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

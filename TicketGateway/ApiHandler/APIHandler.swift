@@ -4,6 +4,15 @@
 //
 //  Created by Apple on 28/06/22.
 //
+
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 import SVProgressHUD
 import UIKit
 public enum MethodType: String {
@@ -17,7 +26,7 @@ public enum APIName: String {
     case verifyNumberOtp = "auth/user/login/mobile/otp/verify/"
     case registerUser = "auth/register/"
     case signInUser = "auth/user/login/"
-    case signInUserByNumber_Email = "auth/user/mobile-linked/email/login/"
+    case signInUserByNumberEmail = "auth/user/mobile-linked/email/login/"
     case forgotPassword = "auth/user/forget-password/"
     case logoutUser = ""
     //******HOME*******//
@@ -28,6 +37,9 @@ public enum APIName: String {
     case GetEventSubCategoryList =  "events/sub/category/list/"
     case GetEventSuggestedCategoryList = "events/category/"
     case GetOrganizersList = "organizer/featured-organizer/list/"
+    
+    case GetEventSearchByCategory = "events/event/search/category/"
+    case GetEventSearch = "events/event/search/category/?"
     
     case GetTicketList = "events/ticket-list/"
     case getAddOnList = "events/ticket-add-on-list/"

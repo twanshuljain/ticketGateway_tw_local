@@ -4,6 +4,14 @@
 //
 //  Created by Apple  on 28/04/23.
 //
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
+// swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
 
 import UIKit
 
@@ -31,12 +39,15 @@ class EventsOrganizesListTableView: UITableView {
     var arrDataaFree = [GetEventModel]()
     var arrDataaUpcoming = [GetEventModel]()
     
-    
+    var isFromSearch: Bool = false
     var tableDidSelectAtIndex: ((IndexPath) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
     var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .Home
     var delegateViewMore:EventsOrganizesListTableViewProtocol?
+    
+    var arrDataCategorySearch = [GetEventModel]()
+    var arrSearchData = [GetEventModel]()
     
     func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
         self.isComingFrom = isComingFrom
@@ -107,7 +118,10 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             }else{
                 return self.arrData.count
             }
-        }
+        }else if self.isComingFrom == .EventSearch {
+            ///return arrDataCategorySearch.count
+            return isFromSearch ? arrSearchData.count: arrDataCategorySearch.count
+          }
         return 0
     }
     
@@ -137,7 +151,20 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                         cell.getEvent = self.arrDataaUpcoming[indexPath.row]
                     }
                 }
-            }else{
+            }else if self.isComingFrom == .EventSearch {
+                if isFromSearch {
+                  if arrSearchData.indices.contains(indexPath.row) {
+                    cell.getEvent = self.arrSearchData[indexPath.row]
+                  }
+                } else {
+                  if arrDataCategorySearch.indices.contains(indexPath.row) {
+                    cell.getEvent = self.arrDataCategorySearch[indexPath.row]
+                  }
+                }
+                //    if arrDataCategorySearch.indices.contains(indexPath.row) {
+                //     cell.getEvent = self.arrDataCategorySearch[indexPath.row]
+                //    }
+              }else{
                 if arrData.indices.contains(indexPath.row){
                     cell.getEvent = self.arrData[indexPath.row]
                 }
@@ -155,7 +182,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             let label = UILabel()
             label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
             label.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
-            label.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
+            label.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
             headerView.addSubview(label)
             
             
@@ -205,14 +232,14 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             let button = CustomButtonNormal()
             button.frame = CGRect.init(x: 16, y: 0, width: footerView.frame.width, height: footerView.frame.height)
             footerView.addSubview(button)
-            button.setTitles(text: "View more events", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
+            button.setTitles(text: "View more events", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
             button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
             button.addRightIcon(image: UIImage(named: "ri8Blue"))
             button.tag = section
             
             let separatorView = UIView(frame: CGRect.init(x: 25, y: 45, width: tableView.frame.width - 50, height: 1))
             footerView.addSubview(separatorView)
-            separatorView.backgroundColor = UIColor.setColor(colorType: .PlaceHolder)
+            separatorView.backgroundColor = UIColor.setColor(colorType: .placeHolder)
             
             switch self.arrEventCategory[section] {
             case .weekend:
