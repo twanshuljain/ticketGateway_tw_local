@@ -15,18 +15,14 @@ class ManageSellTicketComplimentary: UIViewController {
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblEventTicketTypes: ManageEventSellTicketTableViewList!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
-   
-    
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
     }
 }
-
 // MARK: - Functions
 extension ManageSellTicketComplimentary {
-    func setUp(){
+    func setUp() {
         self.vwMore.isHidden = true
         self.tblEventTicketTypes.isFromSellTab = false
         self.tblEventTicketTypes.configure()
@@ -42,23 +38,19 @@ extension ManageSellTicketComplimentary {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-       
       }
 }
-
 // MARK: - Actions
 extension ManageSellTicketComplimentary {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case  btnContinue:
             self.btnContinueAction()
-        
         default:
             break
         }
     }
- 
-    func btnContinueAction(){
+    func btnContinueAction() {
         DispatchQueue.main.async {
             self.showToast(message: COMPLIMENTRY_APPLIED_SUCCESSFULLY)
         }
@@ -66,12 +58,10 @@ extension ManageSellTicketComplimentary {
             self.navigationController?.popViewController(animated: false)
         }
     }
-    
-
 }
 
 // MARK: - NavigationBarViewDelegate
-extension ManageSellTicketComplimentary : NavigationBarViewDelegate{
+extension ManageSellTicketComplimentary: NavigationBarViewDelegate{
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: false)
     }

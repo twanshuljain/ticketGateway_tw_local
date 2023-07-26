@@ -120,7 +120,7 @@ extension AddCardVC {
                 viewModel.selectedMonthName = "\(strSelectedmonths)"
             }
         }
-        print(selectedMonth,selectdYear)
+        print(selectedMonth, selectdYear)
         self.pickerMonthYear.selectRow((selectedMonth), inComponent: 0, animated: false)
         var ind = 0
         var num = 0
@@ -256,7 +256,7 @@ extension AddCardVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 let index = (Int(strCurrentMonth) ?? 0) - 1
                 self.pickerMonthYear.selectRow(index, inComponent: 0, animated: false)
                 viewModel.selectedMonthName = strCurrentMonth
-                //25/03/2022
+                // 25/03/2022
                 if viewModel.selectedMonthName.count <= 1 {
                     viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
                 }
@@ -270,7 +270,7 @@ extension AddCardVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 if (str.count ) > 2 {
                     let _: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
                     viewModel.selectedyearName = "\(str)"
-                    //viewModel.selectedMonthName = "\(months[row])"
+                    // viewModel.selectedMonthName = "\(months[row])"
                 }
             }
         }

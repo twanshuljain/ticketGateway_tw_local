@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 23/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
@@ -25,41 +18,38 @@ class ManageSellTicketSuccessfully: UIViewController {
     @IBOutlet weak var btnSendAnotherComp: CustomButtonNormal!
     @IBOutlet weak var btnGoToOrder: CustomButtonNormalWithBorder!
     @IBOutlet weak var navigationView: NavigationBarView!
-    
     var strTittle = HEADER_TITLE_SUNBURN
     var strDiscripation = ""
     var strComplimentry = ""
     var strSummary = ""
     var btnStr = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-
+        
     }
 }
-
 // MARK: - Functions
 extension ManageSellTicketSuccessfully {
-    func setUp(){
+    func setUp() {
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
         if strTittle == HEADER_TITLE_SUNBURN {
             self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
             self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
-            [self.btnDone,self.btnShare,self.btnDownload,self.btnSendAnotherComp].forEach {
+            [self.btnDone, self.btnShare, self.btnDownload, self.btnSendAnotherComp].forEach {
                 $0?.isHidden = false
             }
-        }else {
+        } else {
             self.navigationView.lblTitle.text = strTittle
             self.navigationView.lblDiscripation.text = strDiscripation
-            [self.btnDone,self.btnShare,self.btnDownload,self.btnSendAnotherComp].forEach {
+            [self.btnDone, self.btnShare, self.btnDownload, self.btnSendAnotherComp].forEach {
                 $0?.isHidden = true
             }
         }
         self.navigationView.lblDiscripation.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        [self.btnGoToOrder,self.btnDone,self.btnShare,self.btnDownload,self.btnSendAnotherComp].forEach {
+        [self.btnGoToOrder, self.btnDone, self.btnShare, self.btnDownload, self.btnSendAnotherComp].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.lblComplimentry.text = strComplimentry
@@ -79,7 +69,6 @@ extension ManageSellTicketSuccessfully {
         self.lblComplimentry.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblticketDetail.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblticketDetail.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
     }
 }
 
@@ -104,13 +93,12 @@ extension ManageSellTicketSuccessfully {
     func btnGoToOrderAction() {
         self.showToast(message: AMOUNT_ADDED_SUCCESSFULLY)
     }
-    
-   }
+}
 
 // MARK: - NavigationBarViewDelegate
-extension ManageSellTicketSuccessfully : NavigationBarViewDelegate {
+extension ManageSellTicketSuccessfully: NavigationBarViewDelegate {
     func navigationBackAction() {
         
-    self.navigationController?.popViewController(animated: true)
-  }
+        self.navigationController?.popViewController(animated: true)
+    }
 }

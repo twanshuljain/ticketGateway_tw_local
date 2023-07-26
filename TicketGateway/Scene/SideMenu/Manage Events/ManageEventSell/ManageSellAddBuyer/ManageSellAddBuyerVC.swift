@@ -3,19 +3,13 @@
 //  TicketGateway
 //
 //  Created by Apple  on 23/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+// swiftlint: disable line_length
+// swiftlint: disable force_cast
 
 import UIKit
 
 class ManageSellAddBuyerVC: UIViewController {
-    
     // MARK: - Outlets
     @IBOutlet weak var btnCancel: CustomButtonNormal!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
@@ -32,10 +26,8 @@ class ManageSellAddBuyerVC: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var btnSelectCountry: UIButton!
-    
     var viewModel = ManageSellAddBuyerViewModel()
     let createAccountViewModel = CreateAccountViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -47,17 +39,17 @@ extension ManageSellAddBuyerVC {
     private func setup() {
         self.viewModel.countries = self.jsonSerial()
         self.viewModel.collectCountries()
-        [self.btnContinue, self.btnSelectCountry,self.btnCancel].forEach {
+        [self.btnContinue, self.btnSelectCountry, self.btnCancel].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.txtFullName.delegate = self
         self.txtMobileNumber.delegate = self
         self.txtEmailAddress.delegate = self
         self.txtLastName.delegate = self
-        self.txtFullName.text = viewModel.ToupleBuyerInfoData.strNameValue
-        self.txtMobileNumber.text = viewModel.ToupleBuyerInfoData.strNumberValue
-        self.txtEmailAddress.text = viewModel.ToupleBuyerInfoData.strEmailValue
-        if self.viewModel.isFromAddInfo == true{
+        self.txtFullName.text = viewModel.toupleBuyerInfoData.strNameValue
+        self.txtMobileNumber.text = viewModel.toupleBuyerInfoData.strNumberValue
+        self.txtEmailAddress.text = viewModel.toupleBuyerInfoData.strEmailValue
+        if self.viewModel.isFromAddInfo == true {
             self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .placeHolder))
             self.btnCancel.addLeftIcon(image: UIImage(named: X_ICON))
             self.btnContinue.setTitles(text: SAVE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
@@ -68,8 +60,6 @@ extension ManageSellAddBuyerVC {
             self.btnContinue.setTitles(text: NEXT, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
             self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         }
-        
-        
         self.btnCancel.layer.cornerRadius = 5
         self.navigationView.lblTitle.text = BUYESR_INFO
         self.navigationView.btnBack.isHidden = false
@@ -78,20 +68,17 @@ extension ManageSellAddBuyerVC {
         self.navigationView.vwBorder.isHidden = false
         self.setIntialUiDesign()
     }
-    func setIntialUiDesign()
-    {
+    func setIntialUiDesign() {
         //Default Country
         //UI Changes---
         self.imgCountry.image = nil
-        if self.imgCountry.image == nil
-        {
+        if self.imgCountry.image == nil {
             let str = NSLocale.current.regionCode
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
             let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
-            
-            if arr.count>0{
+            if arr.count>0 {
                 let country = arr[0]
                 viewModel.strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code
@@ -102,9 +89,7 @@ extension ManageSellAddBuyerVC {
                 let imagePath = "CountryPicker.bundle/\( country.country_code).png"
                 self.imgCountry.image = UIImage(named: imagePath)
             }
-        }
-        else{
-            //noting to do
+        } else {
         }
     }
 }
@@ -125,17 +110,15 @@ extension ManageSellAddBuyerVC {
     func btnCancelAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
     func btnContinueAction() {
-        if viewModel.isFromAddInfo == true
-        {
+        if viewModel.isFromAddInfo == true {
             self.navigationController?.popViewController(animated: true)
         } else {
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        self.navigationController?.pushViewController(view!, animated: true)
+            self.navigationController?.pushViewController(view!, animated: true)
         }
     }
-    func btnSelectCountryAction(){
+    func btnSelectCountryAction() {
         self.view.endEditing(true)
         let sb = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as! RSCountryPickerController
         sb.RScountryDelegate = self
@@ -143,7 +126,6 @@ extension ManageSellAddBuyerVC {
         sb.modalPresentationStyle = .fullScreen
         self.navigationController?.present(sb, animated: true, completion: nil)
     }
-    
 }
 // MARK: - TextFieldDelegate
 extension ManageSellAddBuyerVC: UITextFieldDelegate {
@@ -165,23 +147,23 @@ extension ManageSellAddBuyerVC: UITextFieldDelegate {
             createAccountViewModel.fullName = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtMobileNumber {
             createAccountViewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
-        }else if textField == txtEmailAddress {
+        } else if textField == txtEmailAddress {
             createAccountViewModel.emailAddress = text.replacingCharacters(in: textRange, with: string)
-        } else if textField == txtLastName{
+        } else if textField == txtLastName {
             createAccountViewModel.password = text.replacingCharacters(in: textRange, with: string)
         }
         return true
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageSellAddBuyerVC : NavigationBarViewDelegate {
+extension ManageSellAddBuyerVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
 // MARK: - Country Code
-extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
+extension ManageSellAddBuyerVC: RSCountrySelectedDelegate {
     func RScountrySelected(countrySelected country: CountryInfo) {
         let imagePath = "CountryPicker.bundle/\(country.country_code).png"
         self.imgCountry.image = UIImage(named: imagePath)
@@ -192,21 +174,3 @@ extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
         self.txtMobileNumber.becomeFirstResponder()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

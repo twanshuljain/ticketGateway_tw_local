@@ -18,8 +18,7 @@ import SVProgressHUD
 import SDWebImage
 
 class EventDetailVC: UIViewController, UITextFieldDelegate{
-    
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageConrtrolEventImages: AdvancedPageControlView!
     @IBOutlet weak var collvwEventImages: UICollectionView!
@@ -58,9 +57,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnSelectLocationAccordingToDate: UIButton!
     @IBOutlet weak var btnSelectDate: UIButton!
     @IBOutlet weak var lblEventDate: UILabel!
-    
     var viewModel = EventDetailViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.funcCallApi()
@@ -68,9 +65,9 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     }
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension EventDetailVC {
-    func setUp(){
+    func setUp() {
         self.setUi()
         self.collvwEventImages.reloadData()
         self.txtDate.delegate = self
@@ -78,7 +75,7 @@ extension EventDetailVC {
         self.collVwTags.configure()
         self.tblSuggestedEvent.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.EventDetail)
         self.tblSuggestedEvent.tableDidSelectAtIndex = { index in
-            if self.viewModel.arrEventData.indices.contains(index.row){
+            if self.viewModel.arrEventData.indices.contains(index.row) {
                 self.viewModel.eventId = self.viewModel.arrEventData[index.row].event?.id
                 self.funcCallApi()
                 self.setUp()
@@ -97,7 +94,6 @@ extension EventDetailVC {
         btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
-        
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
@@ -173,7 +169,6 @@ extension EventDetailVC {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfSuggestedOrganisedEvent.constant = tblSuggestedEvent.contentSize.height
-        
     }
     
     func setUi(){
@@ -290,12 +285,11 @@ extension EventDetailVC {
         }
     }
     
-    func addToCalenAction(){
+    func addToCalenAction() {
         
     }
     
-    func btnBookTicket()
-    {
+    func btnBookTicket() {
         let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
@@ -320,31 +314,25 @@ extension EventDetailVC {
     }
 }
 
-//MARK: - UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
-extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+//MARK:- UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+extension EventDetailVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         var imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
-        if imgCount == 0{
-            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil{
+        if imgCount == 0 {
+            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil {
                 return 1
             }
             return 0
-        }else{
+        } else {
             return imgCount
         }
-        
-        
-        
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventImageCell", for: indexPath) as! EventImageCell
         cell.setData(index: indexPath.row, eventDetail: self.viewModel.eventDetail)
@@ -355,17 +343,14 @@ extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
 }
 
 //MARK: - NavigationBarViewDelegate
-extension EventDetailVC : NavigationBarViewDelegate {
+extension EventDetailVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-}
+ }

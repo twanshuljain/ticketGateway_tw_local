@@ -8,7 +8,6 @@
 import UIKit
 
 class ManageSellBuyersInfoListVC: UIViewController {
-
     // MARK: - @IBOutlets
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblBuyerInfo: BuyersInfoTableViewList!
@@ -19,7 +18,6 @@ class ManageSellBuyersInfoListVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 }
-
 // MARK: - Functions
 extension ManageSellBuyersInfoListVC {
     func setUp() {
@@ -27,21 +25,21 @@ extension ManageSellBuyersInfoListVC {
         self.tblBuyerInfo.tableDidSelectAtIndex = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
             view?.viewModel.isFromAddInfo = false
-            view?.viewModel.ToupleBuyerInfoData.strNameValue = "Rebecca young"
-            view?.viewModel.ToupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
-            view?.viewModel.ToupleBuyerInfoData.strNumberValue = "+91 9876 543210"
-            view?.viewModel.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
-            view?.viewModel.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
+            view?.viewModel.toupleBuyerInfoData.strNameValue = "Rebecca young"
+            view?.viewModel.toupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
+            view?.viewModel.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
+            view?.viewModel.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
+            view?.viewModel.toupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
         }
         self.tblBuyerInfo.tableDidSelectAtIndexEdit = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
             view?.viewModel.isFromAddInfo = false
-            view?.viewModel.ToupleBuyerInfoData.strNameValue = "Rebecca young"
-            view?.viewModel.ToupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
-            view?.viewModel.ToupleBuyerInfoData.strNumberValue = "+91 9876 543210"
-            view?.viewModel.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
-            view?.viewModel.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
+            view?.viewModel.toupleBuyerInfoData.strNameValue = "Rebecca young"
+            view?.viewModel.toupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
+            view?.viewModel.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
+            view?.viewModel.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
+            view?.viewModel.toupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
         }
           self.navigationView.delegateBarAction = self
