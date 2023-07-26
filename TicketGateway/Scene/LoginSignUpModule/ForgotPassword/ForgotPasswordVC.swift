@@ -57,10 +57,20 @@ extension ForgotPasswordVC {
                     if isTrue == true {
                         SVProgressHUD.dismiss()
                         DispatchQueue.main.async {
-                            self.showToast(message: EMAIL_LINK_SENT)
+                           // self.showToast(message: EMAIL_LINK_SENT)
+                            let vc = self.createView(storyboard: .main, storyboardID: .EmailSentVC) as! EmailSentVC
+                            vc.strForEmail = self.txtEmail.text ?? ""
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            
                         }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                            self.navigationController?.popViewController(animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                for controller in self.navigationController!.viewControllers as Array {
+                                    if controller.isKind(of: LoginVC.self) {
+                                        self.navigationController!.popToViewController(controller, animated: true)
+                                        break
+                                    }
+                                }
+                            //self.navigationController?.popViewController(animated: true)
                         }
                     } else {
                         DispatchQueue.main.async {

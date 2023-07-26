@@ -13,7 +13,7 @@ final class HomeDashBoardViewModel {
     var arrEventDataa : [[GetEventModel]] = [[GetEventModel]]()
     var arrEventData1 : [GetEventModel] = [GetEventModel]()
     var arrEventData = GetEvent()
-    var arrEventCategory = ["This Weekend","Online Events","Popular Events","Free Events","Upcoming Events"]
+    var arrEventCategory = [EventCategories]()
     var dispatchGroup1 = DispatchGroup.init()
     var dispatchGroup2 = DispatchGroup.init()
     var dispatchGroup3 = DispatchGroup.init()
@@ -33,26 +33,37 @@ final class HomeDashBoardViewModel {
 //MARK: - Functions
 extension HomeDashBoardViewModel {
     
-//    func GetEventApi(complition: @escaping (Bool,String) -> Void ) {
-//        APIHandler.shared.executeRequestWith(apiName: .GetEventList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
-//            switch result {
-//            case .success(let response):
-//                if response.status_code == 200 {
-//
-//                    DispatchQueue.main.async {
-//                       self.arrEventData = response.data ?? [GetEventModel]()
-//                        print(self.arrEventData)
-//                        complition(true, response.message ?? "")
-//                    }
-//                    complition(true, response.message ?? "")
-//                }else{
-//                    complition(false,response.message ?? "error message")
-//                }
-//            case .failure(let error):
-//                complition(false,"\(error)")
-//            }
-//        }
-//    }
+    func GetEventApi(complition: @escaping (Bool,String) -> Void ) {
+        APIHandler.shared.executeRequestWith(apiName: .GetEventList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+
+                    DispatchQueue.main.async {
+                        //self.arrEventData = response.data ?? [GetEventModel]()
+                        if var data = response.data{
+                           // print(response.data)
+                            //data.unique{$0.event!.id! == $1.event!.id! }
+                            //self.arrEventData = data
+                           // self.arrEventData.itemsWeekend = items
+                            self.arrDataaWeekend = data
+                           // self.arrEventDataa.append(data.itemsWeekend!)
+                           // self.arrEventData1.append(contentsOf: data.itemsWeekend!)
+                          //  print("COUNT>>>",self.arrEventDataa.count)
+                        }
+                        
+                       // print(self.arrEventData)
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                complition(false,"\(error)")
+            }
+        }
+    }
     
     func getOrganizersList(complition: @escaping (Bool,String) -> Void ) {
         APIHandler.shared.executeRequestWith(apiName: .getOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
@@ -85,6 +96,9 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsWeekend = items
                             self.arrDataaWeekend = items
+                            if items.count != 0{
+                                self.arrEventCategory.append(.weekend)
+                            }
                            // self.arrEventDataa.append(data.itemsWeekend!)
                            // self.arrEventData1.append(contentsOf: data.itemsWeekend!)
                           //  print("COUNT>>>",self.arrEventDataa.count)
@@ -116,6 +130,9 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsVirtual = items
                             self.arrDataaVirtual = items
+                            if items.count != 0{
+                                self.arrEventCategory.append(.online)
+                            }
                            // self.arrEventDataa.append(data.itemsVirtual!)
                            // self.arrEventData1.append(contentsOf: data.itemsVirtual!)
                           //  print("COUNT>>>",self.arrEventDataa.count)
@@ -146,6 +163,9 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsPopular = items
                             self.arrDataaPopular = items
+                            if items.count != 0{
+                                self.arrEventCategory.append(.popular)
+                            }
                            // self.arrEventDataa.append(data.itemsPopular!)
                           //  self.arrEventData1.append(contentsOf: data.itemsPopular!)
                           //  print("COUNT>>>",self.arrEventDataa.count)
@@ -176,6 +196,9 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsFree = items
                             self.arrDataaFree = items
+                            if items.count != 0{
+                                self.arrEventCategory.append(.free)
+                            }
                             //self.arrEventDataa.append(data.itemsFree!)
                            // self.arrEventData1.append(contentsOf: data.itemsFree!)
                          //   print("COUNT>>>",self.arrEventDataa.count)
@@ -205,6 +228,9 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsUpcoming = items
                             self.arrDataaUpcoming = items
+                            if items.count != 0{
+                                self.arrEventCategory.append(.upcoming)
+                            }
 //                            self.arrEventDataa.append(data.itemsUpcoming!)
 //                            self.arrEventData1.append(contentsOf: data.itemsUpcoming!)
 //                            print("COUNT>>>",self.arrEventDataa.count)

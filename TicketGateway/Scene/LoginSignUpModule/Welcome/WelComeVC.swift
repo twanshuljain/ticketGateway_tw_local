@@ -51,7 +51,7 @@ extension WelComeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         if self.viewModel.arrSliderImages.count-1 == indexPath.row || indexPath.row == 0 {
             cell.btnSkip.isHidden = true
         } else {
-            cell.btnSkip.isHidden = false
+            cell.btnSkip.isHidden = true
         }
         return cell
     }
@@ -67,5 +67,6 @@ extension WelComeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.currentIndex = indexPath.row
-        self.viewModel.setPageController() }
+        self.viewModel.setPageController()
+    }
 }

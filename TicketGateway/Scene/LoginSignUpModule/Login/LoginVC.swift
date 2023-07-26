@@ -196,7 +196,9 @@ extension LoginVC {
             self.navigationController?.pushViewController(view, animated: true)
         } else {
             self.viewModel.isFromWelcomeScreen = false
-            self.navigationController?.popViewController(animated: true)
+            let view = self.createView(storyboard: .main, storyboardID: .SignUpVC)
+            self.navigationController?.pushViewController(view, animated: true)
+          //  self.navigationController?.popViewController(animated: true)
         }
     }
     func btnEmailAction() {

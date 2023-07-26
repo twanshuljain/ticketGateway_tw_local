@@ -16,6 +16,7 @@ import iOSDropDown
 import AdvancedPageControl
 import SVProgressHUD
 import SDWebImage
+import EventKitUI
 
 class EventDetailVC: UIViewController, UITextFieldDelegate{
     // MARK: - IBOutlets
@@ -58,6 +59,17 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnSelectDate: UIButton!
     @IBOutlet weak var lblEventDate: UILabel!
     var viewModel = EventDetailViewModel()
+    @IBOutlet weak var vwSelectDateView: UIView!
+    @IBOutlet weak var vwSelectLocationView: UIView!
+    @IBOutlet weak var vwSelectLocationAndDateView: UIView!
+
+    @IBOutlet weak var dateAndLocationStackView: UIStackView!
+    @IBOutlet weak var vwStackHeight: NSLayoutConstraint!
+    
+    //MARK: - Variables
+    var viewModel = EventDetailViewModel()
+    let store = EKEventStore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.funcCallApi()
@@ -121,6 +133,17 @@ extension EventDetailVC {
                             self.collvwEventImages.reloadData()
                             self.setData()
                         }
+                        DispatchQueue.main.async {
+                            if self.viewModel.eventDetail?.is_multi_location == true {
+                                self.dateAndLocationStackView.isHidden = false
+                               self.vwStackHeight.constant = 155
+                            } else {
+                                self.dateAndLocationStackView.isHidden = true
+                                self.vwStackHeight.constant = 0
+
+                            }
+                        }
+                        
                         if let eventCategoryId = self.viewModel.eventDetail?.event?.eventCategoryID{
                             self.viewModel.suggestedEventCategoryId = eventCategoryId
                             self.funcCallApiForEventCategory(categoryId: eventCategoryId)
@@ -208,6 +231,7 @@ extension EventDetailVC {
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
+        self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
         
@@ -274,7 +298,8 @@ extension EventDetailVC {
             self.addToCalenAction()
         case btnShowMap :
             self.addToCalenAction()
-        case btnAddToCalender :
+        case btnAddToCalender:
+            //break
             self.addToCalenAction()
         case btnSelectDate :
             self.txtDate.showList()
@@ -286,12 +311,36 @@ extension EventDetailVC {
     }
     
     func addToCalenAction() {
+        store.requestAccess(to: .event, completion: { sucess, err in
+            if sucess, err == nil {
+                DispatchQueue.main.async {
+                    let newEvent = EKEvent(eventStore: self.store)
+                    newEvent.title = "New event"
+                    newEvent.startDate = Date()
+                    newEvent.endDate = Date()
+                    
+                    let vc = EKEventViewController()
+                    vc.delegate = self
+                    vc.event = newEvent
+                    let navVC = UINavigationController(rootViewController: vc)
+                    self.present(navVC, animated: true)
+                    
+                }
+            }
+            
+        })
         
     }
     
     func btnBookTicket() {
         let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC
         self.navigationController?.pushViewController(view!, animated: true)
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
+            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
 }
 
@@ -347,6 +396,15 @@ extension EventDetailVC: UICollectionViewDataSource, UICollectionViewDelegate, U
         return 0
     }
 }
+//MARK: - EKEventViewDelegate
+extension EventDetailVC: EKEventViewDelegate {
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        controller.dismiss(animated: true)
+    }
+    
+    
+}
+
 
 //MARK: - NavigationBarViewDelegate
 extension EventDetailVC: NavigationBarViewDelegate {

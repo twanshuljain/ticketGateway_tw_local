@@ -49,6 +49,7 @@ extension WelcomeLoginSignupVC {
         }
     }
     func btnLoginAction() {
+        UserDefaultManager.share.guestUserLogin(value: false, key: .isGuestLogin)
         let view = self.createView(storyboard: .main, storyboardID: .LoginVC)
         let viewC = view as? LoginVC
         viewC?.viewModel.isFromWelcomeScreen = true
@@ -59,6 +60,7 @@ extension WelcomeLoginSignupVC {
         objSceneDelegate.showTabBar()
     }
     func btnSignAction() {
+        UserDefaultManager.share.guestUserLogin(value: false, key: .isGuestLogin)
         let view = self.createView(storyboard: .main, storyboardID: .SignUpVC)
         let viewC = view as? SignUpVC
         viewC?.viewModel.isFromWelcomeScreen = true

@@ -46,6 +46,7 @@ extension suggestedOrganizerList : UICollectionViewDataSource ,UICollectionViewD
          if let data = self.arrOrganizersList?[indexPath.row]{
              cell.setData(organizerDetail: data)
          }
+         
          return cell
     }
     

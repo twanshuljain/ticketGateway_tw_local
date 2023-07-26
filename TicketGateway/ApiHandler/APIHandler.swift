@@ -21,16 +21,21 @@ public enum APIName: String {
     case signInUserByNumberEmail = "auth/user/mobile-linked/email/login/"
     case forgotPassword = "auth/user/forget-password/"
     case logoutUser = ""
-    // ******HOME******* //
-    case getEventList = "events/list/"
-    case getEventListCategoryWise = "events/filter-types/list/"
-    case getEventDetail = "events/detail/"
-    case getEventCategoryList = "events/category/list/"
-    case getEventSubCategoryList =  "events/sub/category/list/"
-    case getEventSuggestedCategoryList = "events/category/"
-    case getOrganizersList = "organizer/featured-organizer/list/"
-    case getEventSearchByCategory = "events/event/search/category/"
-    case getEventSearch = "events/event/search/category/?"
+    
+    //******HOME*******//
+    case GetEventList = "events/list/"
+    case GetEventListCategoryWise = "events/filter-types/list/"
+    case GetEventDetail = "events/detail/"
+    case GetEventCategoryList = "events/category/list/"
+    case GetEventSubCategoryList =  "events/sub/category/list/"
+    case GetEventSuggestedCategoryList = "events/category/"
+    case GetOrganizersList = "organizer/featured-organizer/list/"
+    case GetEventSearchByCategory = "events/event/search/category/"
+    case GetEventSearch = "events/event/search/category/?"
+    
+    case GetTicketList = "events/ticket-list/"
+    case getAddOnList = "events/ticket-add-on-list/"
+    
 }
 public enum GroupApiName: String {
     case auth = "auth"
@@ -69,25 +74,23 @@ class APIHandler: NSObject {
         //        }
         if methodType == .GET {
             if parameters != nil {
-                if #available(iOS 16.0, *) {
+              //  if #available(iOS 16.0, *) {
                     let param = try? JSONEncoder().encode(parameters!)
                     do {
                         let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String : Any]
-                        print("-----------------", json)
-                        //                        requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: json?.keys.first ?? "", value: (json?.values.first as? String) ?? "")])
                         var queryItems = [URLQueryItem]()
                         for (key, value) in json! {
                             let queryItem = URLQueryItem(name: key, value: "\(value)")
                             queryItems.append(queryItem)
                         }
-                        requestURL.append(queryItems: queryItems)
+                        requestURL =  requestURL.appending(queryItems) ?? requestURL
                     } catch {
                         print("errorMsg")
                     }
                     //requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: param, value: "39")])
-                } else {
-                    // Fallback on earlier versions
-                }
+//                } else {
+//                    // Fallback on earlier versions
+//                }
             }
         }
         var request = URLRequest(url: requestURL)
