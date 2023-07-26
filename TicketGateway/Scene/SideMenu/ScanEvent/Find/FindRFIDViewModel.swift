@@ -8,8 +8,6 @@
 import Foundation
 
 class FindRFIDViewModel {
- 
-//MARK: - Variables
+// MARK: - Variables
     var isConnected: Bool = false
-
 }

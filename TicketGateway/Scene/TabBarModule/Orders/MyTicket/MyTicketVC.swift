@@ -3,72 +3,52 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 31/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
 // swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
 class MyTicketVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var btnSeeFullTicket: CustomButtonNormal!
     @IBOutlet weak var btnSaveTicketAsImage: CustomButtonNormal!
     @IBOutlet weak var vwDashedLine: UIView!
     @IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
         self.setNavigationBar()
         self.setUI()
     }
-    
-   
     @objc func addActionSheet() {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        
         actionsheet.addAction(UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            let vc = self.createView(storyboard: .order, storyboardID: .TransferTicketVC)
-            self.navigationController?.pushViewController(vc, animated: true)
-            
+            let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC)
+            self.navigationController?.pushViewController(transferTicketVC, animated: true)
         }))
-        
         actionsheet.addAction(UIAlertAction(title: "Exchange ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            let vc = self.createView(storyboard: .order, storyboardID: .ExchangeTicketVC)
-            self.navigationController?.pushViewController(vc, animated: true)
+            let exchangeTicketVC = self.createView(storyboard: .order, storyboardID: .ExchangeTicketVC)
+            self.navigationController?.pushViewController(exchangeTicketVC, animated: true)
         }))
-        
         actionsheet.addAction(UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            let vc = self.createView(storyboard: .order, storyboardID: .ChangeNameVC)
-            self.navigationController?.pushViewController(vc, animated: true)
+            let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC)
+            self.navigationController?.pushViewController(changeNameVC, animated: true)
         }))
-        
         actionsheet.addAction(UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
         }))
-        
         actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            let vc = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC)
-            self.navigationController?.pushViewController(vc, animated: true)
+            let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC)
+            self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
         }))
-        
         actionsheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (action) -> Void in
-            
         }))
         self.present(actionsheet, animated: true, completion: nil)
-        
     }
-    
-    
 }
 
-//MARK: - Functions
-extension MyTicketVC{
+// MARK: - Functions
+extension MyTicketVC {
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
@@ -79,37 +59,29 @@ extension MyTicketVC{
         self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
         self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
     }
-    
     func setFont() {
-        
-        self.vwDashedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [6,6])
+        self.vwDashedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [6, 6])
         self.btnSeeFullTicket.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSeeFullTicket.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.btnSeeFullTicket.addRightIcon(image: UIImage(named: CHEVRON_DOWN))
-        
         self.btnSaveTicketAsImage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSaveTicketAsImage.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnSaveTicketAsImage.addLeftIcon(image: UIImage(named: DOWNLOAD_ICON_ORDER))
-        
         self.btnAddAppToWallet.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnAddAppToWallet.titleLabel?.textColor = UIColor.setColor(colorType: .white)
         self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: APPLE_WALLET_ICON))
-        
     }
-    
     func setUI() {
         self.btnSeeFullTicket.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        
     }
-    
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension MyTicketVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnSeeFullTicket:
-            self.SeeFullTicketAction()
+            self.seeFullTicketAction()
         case btnSaveTicketAsImage:
             break
         case btnAddAppToWallet:
@@ -118,22 +90,16 @@ extension MyTicketVC {
             break
         }
     }
-    
-    func SeeFullTicketAction() {
-        let vc = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC)
-        self.navigationController?.pushViewController(vc, animated: false)
+    func seeFullTicketAction() {
+        let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC)
+        self.navigationController?.pushViewController(seeFullTicketVC, animated: false)
     }
-    
     func saveTicketAsImage() {
-        
     }
-    
     func addAppToWalletAction() {
-        
     }
 }
-
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension MyTicketVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

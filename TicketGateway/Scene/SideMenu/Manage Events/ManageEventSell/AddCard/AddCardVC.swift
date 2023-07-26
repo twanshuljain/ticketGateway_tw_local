@@ -95,13 +95,12 @@ extension AddCardVC {
             let strSelctedyears = Calendar.current.component(.year, from: Date())
             selectdYear = strSelctedyears
             self.viewModel.selectedMonthName = String(strSelectedmonths)
-            if  self.viewModel.selectedMonthName.count <= 1
-            {
+            if  self.viewModel.selectedMonthName.count <= 1 {
                 self.viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
             }
             self.viewModel.selectedyearName = String(strSelctedyears)
             if (viewModel.selectedyearName.count ) > 2 {
-                let _: String! = (viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count) - 2)
+                let _: String! = ((viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count) - 2))
                 viewModel.selectedyearName = "\(self.viewModel.selectedyearName)"
                 viewModel.selectedMonthName = "\(self.viewModel.selectedMonthName)"
             }
@@ -122,12 +121,12 @@ extension AddCardVC {
             }
         }
         print(selectedMonth,selectdYear)
-        self.pickerMonthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
+        self.pickerMonthYear.selectRow((selectedMonth), inComponent: 0, animated: false)
         var ind = 0
         var num = 0
-        for obj in self.viewModel.years{
+        for obj in self.viewModel.years {
             let yer = String(selectdYear)
-            if obj == yer{
+            if obj == yer {
                 ind = num
                 break
             }
@@ -157,9 +156,9 @@ extension AddCardVC {
     }
 }
 // MARK: - UITextFieldDelegate
-extension AddCardVC : UITextFieldDelegate{
+extension AddCardVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.txtCardNumber{
+        if textField == self.txtCardNumber {
             self.viewDatePicker.isHidden = true
             self.view.endEditing(true)
             self.txtCardName.resignFirstResponder()
@@ -174,20 +173,20 @@ extension AddCardVC : UITextFieldDelegate{
         if string == "" {
             return true
         }
-        if textField == txtCVV{
+        if textField == txtCVV {
             let maxLength = 4
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-            if newString.length == 5{
+            if newString.length == 5 {
                 textField.resignFirstResponder()
             }
             return newString.length <= maxLength
-        } else if textField == txtCardNumber{
-            previousTextFieldContent = textField.text;
-            previousSelection = textField.selectedTextRange;
+        } else if textField == txtCardNumber {
+            previousTextFieldContent = textField.text
+            previousSelection = textField.selectedTextRange
             return true
-        } else if textField == txtCardName{
+        } else if textField == txtCardName {
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
@@ -199,7 +198,7 @@ extension AddCardVC : UITextFieldDelegate{
     }
 }
 // MARK: - UIPickerViewDelegate, UIPickerViewDataSource
-extension AddCardVC: UIPickerViewDelegate,UIPickerViewDataSource {
+extension AddCardVC: UIPickerViewDelegate, UIPickerViewDataSource {
     // MARK: - Picker View Delegates
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
@@ -279,7 +278,7 @@ extension AddCardVC: UIPickerViewDelegate,UIPickerViewDataSource {
 }
 
 // MARK: - NavigationBarViewDelegate
-extension AddCardVC : NavigationBarViewDelegate {
+extension AddCardVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

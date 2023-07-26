@@ -3,20 +3,13 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 29/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
 // swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-
 import UIKit
 import SideMenu
 
 class FavouriteVC: UIViewController {
-    
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var favouriteTableView: FavouriteListTableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -29,11 +22,9 @@ class FavouriteVC: UIViewController {
     @IBOutlet weak var lblVenuNoLikeEvent: UILabel!
     @IBOutlet weak var lblVenuDescription: UILabel!
     @IBOutlet weak var lblVenuSuggestionForYou: UILabel!
-    
-    //MARK: - Variables
+    // MARK: - Variables
     let collectionData = ["Today", "Tomorrow", "This Week", "This Weekend"]
     var isForVenue: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBar()
@@ -42,28 +33,22 @@ class FavouriteVC: UIViewController {
         self.setFont()
     }
 }
-
-//MARK: - Functions
-extension FavouriteVC{
-    func setFont(){
-        
+// MARK: - Functions
+extension FavouriteVC {
+    func setFont() {
         let labels = [lblNoLikedEvent, lblFindEventNearYou, lblVenuNoLikeEvent]
         for label in labels {
             label?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
             label?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-            
         }
-        
         let lbls = [lblDescription, lblVenuDescription]
         for lbl in lbls {
             lbl?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             lbl?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        
         lblVenuSuggestionForYou.font = UIFont.setFont(fontType: .bold, fontSize: .eighteen)
         lblVenuSuggestionForYou.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
-    
     func setNavigationBar() {
         self.vwNavigationView.lblTitle.text = FAVOURITE
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
@@ -72,56 +57,48 @@ extension FavouriteVC{
         self.vwNavigationView.btnBack.isHidden =  false
         self.vwNavigationView.delegateBarAction = self
     }
-    
     func setCollectionView() {
         findEventCollectionView.delegate = self
         findEventCollectionView.dataSource = self
     }
 }
-
-//MARK: - Actions
-extension FavouriteVC{
-      @IBAction func actionSegmentController(_ sender: UISegmentedControl) {
-          switch segmentControl.selectedSegmentIndex {
-          case 0:
-              isForVenue == false
-             // self.vwNoLikedEventView.isHidden = true
-             self.vwVenueView.isHidden = true
-              self.favouriteTableView.reloadData()
-          case 1:
-           isForVenue == true
+// MARK: - Actions
+extension FavouriteVC {
+    @IBAction func actionSegmentController(_ sender: UISegmentedControl) {
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            isForVenue == false
+            // self.vwNoLikedEventView.isHidden = true
+            self.vwVenueView.isHidden = true
+            self.favouriteTableView.reloadData()
+        case 1:
+            isForVenue == true
             //  self.vwNoLikedEventView.isHidden = false
-                  self.vwVenueView.isHidden = false
-                  self.favouriteTableView.reloadData()
-              self.favouriteTableView.isFromVenue = "Venue"
-          
-              
-          default:
-              break
-          }
-      }
+            self.vwVenueView.isHidden = false
+            self.favouriteTableView.reloadData()
+            self.favouriteTableView.isFromVenue = "Venue"
+        default:
+            break
+        }
+    }
 }
-
-//MARK: - UICollectionViewDelegate,UICollectionViewDataSource
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension FavouriteVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionData.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FindEventCollectionViewCell", for: indexPath) as! FindEventCollectionViewCell
         let data = collectionData[indexPath.row]
         cell.lblTitle.text = data
-       
         return cell
     }
 }
-
-//MARK: - NavigationBarViewDelegate
-extension FavouriteVC : NavigationBarViewDelegate {
+// MARK: - NavigationBarViewDelegate
+extension FavouriteVC: NavigationBarViewDelegate {
     func navigationBackAction() {
-        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
+        let sideMenu = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
+        let menu = sideMenu.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
-  }
+    }
 }

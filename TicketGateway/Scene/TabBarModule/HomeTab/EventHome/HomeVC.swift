@@ -337,7 +337,7 @@ extension HomeVC: CustomSearchMethodsDelegate {
         
     }
     
-    func RightButtonPressed(_ sender: UIButton) {
+    func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         self.navigationController?.pushViewController(view!, animated: true)
     }

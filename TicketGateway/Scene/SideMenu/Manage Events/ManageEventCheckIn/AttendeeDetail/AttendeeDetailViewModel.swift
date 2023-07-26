@@ -8,8 +8,6 @@
 import Foundation
 
 class AttendeeDetailViewModel {
-
-//MARK: - Variables
+// MARK: - Variables
     var isCheckedIn: Bool = true
-
 }

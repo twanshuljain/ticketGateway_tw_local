@@ -15,13 +15,13 @@ import UIKit
 
 protocol CustomSearchMethodsDelegate {
    func leftButtonPressed(_ sender:UIButton)
-   func RightButtonPressed(_ sender:UIButton)
+   func rightButtonPressed(_ sender:UIButton)
    func filterButtonPressed(_ sender:UIButton)
 }
 
 extension CustomSearchMethodsDelegate{
     func leftButtonPressed(_ sender:UIButton) {}
-    func RightButtonPressed(_ sender:UIButton) {}
+    func rightButtonPressed(_ sender:UIButton) {}
     func filterButtonPressed(_ sender:UIButton) {}
 }
 
@@ -97,7 +97,7 @@ class CustomSearchBar: UIView {
     }
 
     @IBAction func btnRight(_ sender: UIButton) {
-        self.delegate?.RightButtonPressed(sender )
+        self.delegate?.rightButtonPressed(sender )
     }
     
     

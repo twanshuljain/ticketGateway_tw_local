@@ -51,7 +51,6 @@ extension ScanEventVC {
         self.lblForMoreInfo.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
 }
-
 // MARK: - Instance Method
 extension ScanEventVC {
     func setUI() {
@@ -74,17 +73,14 @@ extension ScanEventVC {
         }
     }
     func btnContinueAction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .SelectTicketTypeVC)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let selectTicketTypeVC = createView(storyboard: .scanevent, storyboardID: .SelectTicketTypeVC)
+        self.navigationController?.pushViewController(selectTicketTypeVC, animated: true)
     }
     func btnHereAction() {
-        
     }
     func btnDissmissAction() {
         self.navigationController?.popViewController(animated: true)
-        
     }
     func btnSecurePasswordAction() {
-        
     }
 }

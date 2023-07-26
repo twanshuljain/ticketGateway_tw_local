@@ -3,30 +3,18 @@
 //  TicketGateway
 //
 //  Created by Apple on 26/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
-
+//  swiftlint: disable force_cast
 import UIKit
 import SideMenu
 
 class ManageEventCheckInVC: UIViewController {
-    
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var vwNavighationView: NavigationBarView!
     @IBOutlet weak var btnScanQR: CustomButtonGradiant!
     @IBOutlet weak var btnStats: CustomButtonGradiant!
     @IBOutlet weak var contactTableView: UITableView!
-    
-    //MARK: - Variables
+    // MARK: - Variables
     let viewModel = ManageEventCheckInViewModel()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBar()
@@ -34,39 +22,29 @@ class ManageEventCheckInVC: UIViewController {
         self.generateWordsDict()
         self.setFont()
         self.setUI()
-        
     }
-    
-
 }
-
-//MARK: -
+// MARK: -
 extension ManageEventCheckInVC {
-    
     func setTableView() {
         self.contactTableView.delegate = self
         self.contactTableView.dataSource = self
         self.contactTableView.separatorColor = UIColor.clear
-        
     }
-    
-    func generateWordsDict(){
+    func generateWordsDict() {
         for contact in viewModel.arrData {
             let key = "\(contact[contact.startIndex])"
             let upper = key.uppercased()
-            if var contactValue = viewModel.contactDictionary[upper]
-            {
+            if var contactValue = viewModel.contactDictionary[upper] {
                 contactValue.append(contact)
                 viewModel.contactDictionary[upper]?.append(contact)
-            }else{
+            } else {
                 viewModel.contactDictionary[upper] = [contact]
             }
         }
         viewModel.contactSection = [String](viewModel.contactDictionary.keys)
         viewModel.contactSection = viewModel.contactSection.sorted()
     }
-    
-    
     func setFont() {
         self.btnScanQR.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnScanQR.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
@@ -75,7 +53,6 @@ extension ManageEventCheckInVC {
         self.btnStats.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.btnStats.addLeftIcon(image: UIImage(named: BAR_CHART_ICON))
     }
-    
     func setNavigationBar() {
         self.vwNavighationView.delegateBarAction = self
         self.vwNavighationView.btnBack.isHidden = false
@@ -88,17 +65,14 @@ extension ManageEventCheckInVC {
         self.vwNavighationView.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.vwNavighationView.imgBack.image = UIImage(named: MENU_ICON)
     }
-    
 }
-
-//MARK: - Instance Method
+// MARK: - Instance Method
 extension ManageEventCheckInVC {
     func setUI () {
-        [self.btnScanQR,self.btnStats].forEach {
+        [self.btnScanQR, self.btnStats].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         }
     }
-    
     @objc func buttonPressed(sender: UIButton) {
         switch sender {
         case btnScanQR:
@@ -109,24 +83,16 @@ extension ManageEventCheckInVC {
             break
         }
     }
-    
     func btnScanQRAction() {
-        
-        let vc = createView(storyboard: .manageevent, storyboardID: .ScanQRVC)
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+        let view = createView(storyboard: .manageevent, storyboardID: .ScanQRVC)
+        self.navigationController?.pushViewController(view, animated: true)
     }
-    
     func btnStatsAction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC)
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+        let view = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC)
+        self.navigationController?.pushViewController(view, animated: true)
     }
-    
-    
-    
 }
-//MARK: -
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension ManageEventCheckInVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.contactSection.count
@@ -134,7 +100,7 @@ extension ManageEventCheckInVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // arrData.count
         let contactKey = viewModel.contactSection[section]
-        if let contactValue = viewModel.contactDictionary[contactKey]{
+        if let contactValue = viewModel.contactDictionary[contactKey] {
             return contactValue.count
         }
         return 0
@@ -164,16 +130,13 @@ extension ManageEventCheckInVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: -
-extension ManageEventCheckInVC: NavigationBarViewDelegate ,UITextFieldDelegate {
+// MARK: -  NavigationBarViewDelegate, UITextFieldDelegate
+extension ManageEventCheckInVC: NavigationBarViewDelegate, UITextFieldDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
-        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-        
-        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
+        let sideMenu = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
+        let menu = sideMenu.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
-        
         //    self.navigationController?.popViewController(animated: true)
-        
     }
 }

@@ -3,13 +3,12 @@
 //  TicketGateway
 //
 //  Created by Apple on 22/06/23.
-//
+// swiftlint: disable force_cast
 
 import UIKit
 
 class FindRFIDVC: UIViewController {
-    
-//MARK: - Oulets
+    // MARK: - Oulets
     @IBOutlet weak var lblScan: UILabel!
     @IBOutlet weak var imgScan: UIImageView!
     @IBOutlet weak var btnScan: UIButton!
@@ -31,22 +30,16 @@ class FindRFIDVC: UIViewController {
     @IBOutlet weak var lblRejected: UILabel!
     @IBOutlet weak var connectedStackView: UIStackView!
     @IBOutlet weak var lblTickteVerified: UILabel!
-    
-//MARK: - Variables
+    // MARK: - Variables
     let viewModel = FindRFIDViewModel()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
         self.setUI()
-      
     }
- 
 }
-
-//MARK: - 
+// MARK: -
 extension FindRFIDVC {
-    
     func setFont() {
         if viewModel.isConnected {
             connectedStackView.isHidden = false
@@ -55,7 +48,6 @@ extension FindRFIDVC {
         } else {
             connectedStackView.isHidden = true
             showToast(message: SOMETHING_WENT_WRONG)
-            
         }
         self.lblScan.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblScan.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -84,23 +76,17 @@ extension FindRFIDVC {
         self.lblTotal.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblRejected.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblRejected.textColor = UIColor.setColor(colorType: .tgRed)
-        
         lblTickteVerified.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         lblTickteVerified.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
     }
 }
-
-
-//MARK: - Instance Method
+// MARK: - Instance Method
 extension FindRFIDVC {
     func setUI() {
         [self.btnSearch, self.btnScan, self.btnFindRfid, self.btnTicket].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         }
-        
     }
-    
     @objc func buttonPressed(sender: UIButton) {
         switch sender {
         case btnScan:
@@ -111,40 +97,26 @@ extension FindRFIDVC {
             self.btnSearchAction()
         case btnTicket:
             self.btnTicketAction()
-            
         default:
             break
         }
-        
     }
-    
     func btnScanAction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .ScannerVC)
-        self.navigationController?.pushViewController(vc, animated: false)
+        let scannerVC = createView(storyboard: .scanevent, storyboardID: .ScannerVC) as! ScannerVC
+        self.navigationController?.pushViewController(scannerVC, animated: false)
     }
-    
     func btnFindRfidAction() {
-        
-        
     }
-    
     func btnSearchAction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .SearchVC)
-        self.navigationController?.pushViewController(vc, animated: false)
-        
-        
+        let searchVC = createView(storyboard: .scanevent, storyboardID: .SearchVC)
+        self.navigationController?.pushViewController(searchVC, animated: false)
     }
-    
     func btnTicketAction() {
-        
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: SelectTicketTypeVC.self) {
                 self.navigationController!.popToViewController(controller, animated: true)
                 break
             }
         }
-        
-        
     }
-    
 }

@@ -8,10 +8,5 @@
 import Foundation
 
 class ScanEventViewModel {
- 
-//MARK: - Variables
-    
-    
-
-
+// MARK: - Variables
 }

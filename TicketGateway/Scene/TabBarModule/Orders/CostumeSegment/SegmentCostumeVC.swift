@@ -3,21 +3,13 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 22/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
 // swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
-
 import UIKit
 import SideMenu
 
 class SegmentCostumeVC: ViewController {
-
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationBar: NavigationBarView!
     @IBOutlet weak var segmentBgView: UIView!
     @IBOutlet weak var vwSearchBar: UIView!
@@ -32,37 +24,29 @@ class SegmentCostumeVC: ViewController {
     @IBOutlet weak var lblPopYear: UILabel!
     @IBOutlet weak var btnDate: UIButton!
     @IBOutlet weak var lblDate: UILabel!
-   
-    //MARK: - Variables
+    // MARK: - Variables
     let tableData = ["costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip" ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
         self.setTableView()
         self.setNavigationView()
-      
     }
 }
-
-//MARK: - Functions
-extension SegmentCostumeVC{
+// MARK: - Functions
+extension SegmentCostumeVC {
     func setNavigationView() {
         self.vwNavigationBar.lblTitle.text = MY_ORDERS
         self.vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
         self.vwNavigationBar.btnBack.isHidden = false
         self.vwNavigationBar.delegateBarAction = self
-
     }
-
     func setTableView() {
         tblCostume.separatorColor = UIColor.clear
         tblCostume.delegate = self
         tblCostume.dataSource = self
         tblCostume.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "OrderTableViewCell")
-        
     }
-    
     func setFont() {
         self.segmentcontrol.selectedSegmentIndex = 1
         self.vwPopUp.isHidden = true
@@ -74,21 +58,17 @@ extension SegmentCostumeVC{
         self.btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblMonth.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblMonth.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
         self.lblPopYear.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblPopYear.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
         [btnFilter].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         }
     }
-    
 }
-
-//MARK: - Actions
-extension SegmentCostumeVC{
+// MARK: - Actions
+extension SegmentCostumeVC {
     @IBAction func actionSegment(_ sender: UISegmentedControl) {
         switch segmentcontrol.selectedSegmentIndex {
         case 0:
@@ -98,54 +78,40 @@ extension SegmentCostumeVC{
         default:
             break
         }
-       
     }
-    
     @objc func buttonPressed(sender: UIButton) {
         switch sender {
         case btnFilter:
             self.filterAction()
-            
         default:
             break
         }
     }
-    
     func filterAction() {
         vwPopUp.isHidden = !vwPopUp.isHidden
     }
-    
 }
-
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension SegmentCostumeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableData.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell", for: indexPath) as! OrderTableViewCell
         let data = tableData[indexPath.row]
         cell.imgImage.image = UIImage(named: data)
         return cell
-        
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 150
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.createView(storyboard: .order, storyboardID: .MyTicketVC)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let viewController = self.createView(storyboard: .order, storyboardID: .MyTicketVC)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
-
-//MARK: - NavigationBarViewDelegate
-extension SegmentCostumeVC : NavigationBarViewDelegate {
+// MARK: - NavigationBarViewDelegate
+extension SegmentCostumeVC: NavigationBarViewDelegate {
     func navigationBackAction() {
-        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
+        let view = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
+        let menu = view.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
-  }
+    }
 }

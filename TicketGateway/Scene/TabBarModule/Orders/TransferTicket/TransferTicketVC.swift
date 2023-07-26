@@ -3,14 +3,8 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 31/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
 // swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 class ExpandableTicketCell {
@@ -19,20 +13,21 @@ class ExpandableTicketCell {
         self.isExpanded = isExpanded
     }
 }
+
 class TransferTicketVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var tblTransferTicketTableView: UITableView!
-    //MARK: - Variables
+    // MARK: - Variables
     var arrData = [ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false)]
-    let tblData = ["334566","565656", "56656456", "5645645" ]
+    let tblData = ["334566", "565656", "56656456", "5645645" ]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
         self.setNavigationView()
     }
 }
-//MARK: - Functions
+// MARK: - Functions
 extension  TransferTicketVC {
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
@@ -53,31 +48,31 @@ extension  TransferTicketVC {
         self.tblTransferTicketTableView.register(UINib(nibName: "TransferTicketHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TransferTicketHeaderView")
     }
     @objc func navigateButton(_ sender: UIButton) {
-        let vc = createView(storyboard: .order, storyboardID: .ContinueToTransferVC)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC)
+        self.navigationController?.pushViewController(continueToTransferVC, animated: true)
     }
 }
-//MARK: - Actions
+// MARK: - Actions
 extension  TransferTicketVC {
-    @objc func buttonPressed(_ sender: UIButton){
-        var obj = arrData[sender.tag]
+    @objc func buttonPressed(_ sender: UIButton) {
+        let obj = arrData[sender.tag]
         print(arrData[sender.tag])
         if obj.isExpanded == false {
             obj.isExpanded = true
         } else {
             obj.isExpanded = false
         }
-        print("value",arrData)
+        print("value", arrData)
         self.tblTransferTicketTableView.reloadData()
     }
 }
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension TransferTicketVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return arrData.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arrData[section].isExpanded == true{
+        if arrData[section].isExpanded == true {
             return 1
         } else {
             return 0
@@ -105,8 +100,7 @@ extension TransferTicketVC: UITableViewDelegate, UITableViewDataSource {
         return headerview
     }
 }
-
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension TransferTicketVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: false)

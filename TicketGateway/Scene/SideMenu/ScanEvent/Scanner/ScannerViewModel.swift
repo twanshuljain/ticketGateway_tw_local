@@ -9,9 +9,7 @@ import Foundation
 import AVFoundation
 
 class ScannerViewModel {
-    
-//MARK: - Variables
+    // MARK: - Variables
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    
 }

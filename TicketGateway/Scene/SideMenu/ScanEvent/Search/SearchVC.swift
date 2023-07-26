@@ -3,18 +3,11 @@
 // TicketGateway
 //
 // Created by Apple on 21/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
 // swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 import UIKit
 class SearchVC: UIViewController {
-
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var tblSearchTableView: UITableView!
     @IBOutlet weak var lblScan: UILabel!
     @IBOutlet weak var imgScan: UIImageView!
@@ -27,13 +20,9 @@ class SearchVC: UIViewController {
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var lblSearchText: UILabel!
-    
-    
-    //MARK: - Variables
+    // MARK: - Variables
     let viewModel = SearchViewModel()
-    
     let textField = UITextField()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUI()
@@ -62,9 +51,8 @@ class SearchVC: UIViewController {
             }
         }
     }
-    
 }
-//MARK: -
+// MARK: -
 extension SearchVC {
     func setTableView() {
         self.tblSearchTableView.separatorColor = UIColor.clear
@@ -87,9 +75,8 @@ extension SearchVC {
         self.lblSearchText.textColor = UIColor.setColor(colorType: .tgBlack)
     }
 }
-//MARK: - UITableViewDataSource, UITableViewDelegate
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension SearchVC: UITableViewDataSource, UITableViewDelegate {
-   
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.textField.resignFirstResponder()
     }
@@ -107,7 +94,7 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
         return 220
     }
 }
-//MARK: - Instance Method
+// MARK: - Instance Method
 extension SearchVC {
     func setUI() {
         [self.btnSearch, self.btnScan, self.btnFindRfid, self.btnBack].forEach {
@@ -129,15 +116,14 @@ extension SearchVC {
         }
     }
     func btnScanAction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .ScannerVC)
-        self.navigationController?.pushViewController(vc, animated: false)
+        let view = createView(storyboard: .scanevent, storyboardID: .ScannerVC)
+        self.navigationController?.pushViewController(view, animated: false)
     }
     func btnFindRfidAction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC)
-        self.navigationController?.pushViewController(vc, animated: false)
+        let view = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC)
+        self.navigationController?.pushViewController(view, animated: false)
     }
     func btnSearchAction() {
-        
     }
     func btnBackAction() {
         self.navigationController?.popViewController(animated: true)

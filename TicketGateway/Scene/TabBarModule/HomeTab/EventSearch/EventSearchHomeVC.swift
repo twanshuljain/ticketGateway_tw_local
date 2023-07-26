@@ -161,7 +161,7 @@ extension EventSearchHomeVC: CustomSearchMethodsDelegate {
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
     }
-    func RightButtonPressed(_ sender: UIButton) {
+    func rightButtonPressed(_ sender: UIButton) {
         print("hello")
     }
     private func createLeftAlignedLayout() -> UICollectionViewLayout {

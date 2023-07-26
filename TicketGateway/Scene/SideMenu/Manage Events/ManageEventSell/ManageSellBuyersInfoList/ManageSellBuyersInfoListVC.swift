@@ -13,7 +13,6 @@ class ManageSellBuyersInfoListVC: UIViewController {
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblBuyerInfo: BuyersInfoTableViewList!
     @IBOutlet weak var btnAdd: CustomButtonGradiant!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -22,8 +21,8 @@ class ManageSellBuyersInfoListVC: UIViewController {
 }
 
 // MARK: - Functions
-extension ManageSellBuyersInfoListVC{
-    func setUp(){
+extension ManageSellBuyersInfoListVC {
+    func setUp() {
           self.tblBuyerInfo.configure()
         self.tblBuyerInfo.tableDidSelectAtIndex = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
@@ -34,7 +33,6 @@ extension ManageSellBuyersInfoListVC{
             view?.viewModel.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.viewModel.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
-            
         }
         self.tblBuyerInfo.tableDidSelectAtIndexEdit = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
@@ -45,7 +43,6 @@ extension ManageSellBuyersInfoListVC{
             view?.viewModel.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.viewModel.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
-            
         }
           self.navigationView.delegateBarAction = self
           self.navigationView.lblTitle.text = BUYESR_INFO
@@ -72,21 +69,19 @@ extension ManageSellBuyersInfoListVC {
             break
         }
     }
-    
    func btnAddMoreAction() {
        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
        view?.viewModel.isFromAddInfo = true
       self.navigationController?.pushViewController(view!, animated: true)
     }
-    
 }
 
 // MARK: - NavigationBarViewDelegate
-extension ManageSellBuyersInfoListVC : NavigationBarViewDelegate{
+extension ManageSellBuyersInfoListVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
 }
 // MARK: - UITextFieldDelegate
-extension ManageSellBuyersInfoListVC : UITextFieldDelegate{
+extension ManageSellBuyersInfoListVC: UITextFieldDelegate {
 }

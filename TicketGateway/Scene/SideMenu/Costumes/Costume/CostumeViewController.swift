@@ -228,7 +228,7 @@ extension CostumeViewController: CustomSearchMethodsDelegate {
         let menu = UIStoryboard.init(name: "SideMenu", bundle: Bundle.main).instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
     }
-    func RightButtonPressed(_ sender: UIButton) {
+    func rightButtonPressed(_ sender: UIButton) {
         print("hello")
     }
 }

@@ -48,7 +48,6 @@ extension EventDetailViewModel{
         }
     }
     
-    
     func GetEventSuggestedCategory(categoryId:Int?, complition: @escaping (Bool,String) -> Void ) {
         if let suggestedEventCategoryId = categoryId{
             let url = APIName.getEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"

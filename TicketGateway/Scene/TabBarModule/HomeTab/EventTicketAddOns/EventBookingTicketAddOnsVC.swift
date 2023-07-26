@@ -65,7 +65,7 @@ extension EventBookingTicketAddOnsVC {
     func btnContinueAction() {
         let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC
         self.navigationController?.pushViewController(view!, animated: true)
-    } 
+    }
 }
 
 //MARK: - UITableViewDelegate,UITableViewDataSource

@@ -7,7 +7,7 @@
 import UIKit
 
 class ContactOrganiserVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var lblSunburnReload: UILabel!
     @IBOutlet weak var lblName: UILabel!
@@ -86,7 +86,7 @@ extension ContactOrganiserVC {
 }
 // MARK: - Actions
 extension ContactOrganiserVC {
-    @objc func btnSendAction(sender:UIButton) {
+    @objc func btnSendAction(sender: UIButton) {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
         view?.strTittle = CHANGE_ORGANISER
         view?.strComplimentry = ""
@@ -95,10 +95,8 @@ extension ContactOrganiserVC {
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
-
-
 // MARK: - UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate
-extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate {
+extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

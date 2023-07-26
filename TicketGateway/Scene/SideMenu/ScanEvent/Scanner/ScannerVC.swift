@@ -3,22 +3,13 @@
 //  TicketGateway
 //
 //  Created by Apple on 20/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
 // swiftlint: disable force_cast
-// swiftlint: disable function_body_length
 // swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
-
 import UIKit
 import AVFoundation
 
 class ScannerVC: UIViewController {
-    
-    
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var qrScannerView: UIView!
     @IBOutlet weak var lblScan: UILabel!
     @IBOutlet weak var imgScan: UIImageView!
@@ -39,22 +30,17 @@ class ScannerVC: UIViewController {
     @IBOutlet weak var lblAccepted: UILabel!
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblRejected: UILabel!
-    
-    //MARK: - Variables
+    // MARK: - Variables
     let viewModel = ScannerViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUI()
         self.setFont()
         self.getCameraPreview()
     }
-    
 }
-
-//MARK: -
+// MARK: -
 extension ScannerVC {
-    
     func getCameraPreview(){
         viewModel.captureSession = AVCaptureSession()
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -64,15 +50,14 @@ extension ScannerVC {
         } catch {
             return
         }
-        if (viewModel.captureSession.canAddInput(videoInput)){
+        if viewModel.captureSession.canAddInput(videoInput){
             viewModel.captureSession.addInput(videoInput)
         } else {
-            
             showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
             return
         }
         let metadataOutput = AVCaptureMetadataOutput()
-        if (viewModel.captureSession.canAddOutput(metadataOutput)) {
+        if viewModel.captureSession.canAddOutput(metadataOutput) {
             viewModel.captureSession.addOutput(metadataOutput)
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.qr]
@@ -86,16 +71,13 @@ extension ScannerVC {
         qrScannerView.layer.addSublayer(viewModel.previewLayer)
         DispatchQueue.global(qos: .background).async {
             self.viewModel.captureSession.startRunning()
-            
         }
     }
-    
     func setFont() {
         self.lblScan.text = SCAN
         self.lblScan.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         let gradient = getGradientLayer(bounds: view.bounds)
         self.lblScan.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
-        
         self.imgScan.image = UIImage(named: SCAN_SELECTED_ICON)
         self.lblFindRfid.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblFindRfid.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -121,20 +103,15 @@ extension ScannerVC {
         self.lblTotal.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblRejected.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblRejected.textColor = UIColor.setColor(colorType: .tgRed)
-        
     }
 }
-
-
-//MARK: - Instance Method
+// MARK: - Instance Method
 extension ScannerVC {
     func setUI() {
         [self.btnSearch, self.btnScan, self.btnFindRfid, self.btnTicket, self.btn1X, self.btnTourch, self.btnEndScan].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         }
-        
     }
-    
     @objc func buttonPressed(sender: UIButton) {
         switch sender {
         case btnScan:
@@ -154,29 +131,17 @@ extension ScannerVC {
         default:
             break
         }
-        
     }
-    
     func btnScanAction() {
-        
-        
-        
     }
-    
     func btnFindRfidAction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC)
-        self.navigationController?.pushViewController(vc, animated: false)
-        
+        let findRFIDVc = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC)
+        self.navigationController?.pushViewController(findRFIDVc, animated: false)
     }
-    
     func btnSearchAction() {
-        
-        let vc = createView(storyboard: .scanevent, storyboardID: .SearchVC)
-        self.navigationController?.pushViewController(vc, animated: false)
-        
-        
+        let searchVc = createView(storyboard: .scanevent, storyboardID: .SearchVC)
+        self.navigationController?.pushViewController(searchVc, animated: false)
     }
-    
     func btnTicketAction() {
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: SelectTicketTypeVC.self) {
@@ -184,21 +149,15 @@ extension ScannerVC {
                 break
             }
         }
-        
-        
-        
     }
-    
     func btn1XAction() {
     }
-    
-    
     func btnTourchAction() {
         let device = AVCaptureDevice.default(for: AVMediaType.video)
-        if ((device?.hasTorch) != nil) {
+        if (device?.hasTorch) != nil {
             do {
                 try device?.lockForConfiguration()
-                if (device?.torchMode == AVCaptureDevice.TorchMode.on) {
+                if device?.torchMode == AVCaptureDevice.TorchMode.on {
                     device?.torchMode = AVCaptureDevice.TorchMode.off
                 } else {
                     do {
@@ -213,21 +172,16 @@ extension ScannerVC {
             }
         }
     }
-    
     func btnEndScanAction() {
-        let vc = self.createView(storyboard: .scanevent, storyboardID: .EndScanPoPUpVC) as! EndScanPoPUpVC
-        vc.delegate = self
-        vc.strMsgForTitle = END_SCAN
-        vc.strMsgForDescription = WANT_TO_SCAN_EVENT
-        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
-        self.present(vc, animated: true)
-        
-        
+        let popUpVc = self.createView(storyboard: .scanevent, storyboardID: .EndScanPoPUpVC) as! EndScanPoPUpVC
+        popUpVc.delegate = self
+        popUpVc.strMsgForTitle = END_SCAN
+        popUpVc.strMsgForDescription = WANT_TO_SCAN_EVENT
+        popUpVc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        self.present(popUpVc, animated: true)
     }
-    
 }
-
-//MARK: - AVCaptureMetadataOutputObjectsDelegate
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         viewModel.captureSession.stopRunning() // stop scanning after receiving metadata output
@@ -238,17 +192,14 @@ extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
             self.receivedCodeForQR(qrcode: codeString)
         }
     }
-    
     func receivedCodeForQR(qrcode: String) {
         print(qrcode)
-        
     }
-    
 }
-//MARK: - AlertAction
+// MARK: - AlertAction
 extension ScannerVC: AlertAction {
     func alertYesaction() {
-        let vc = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let view = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC)
+        self.navigationController?.pushViewController(view, animated: true)
     }
 }

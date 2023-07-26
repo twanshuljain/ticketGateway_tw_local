@@ -4,7 +4,7 @@
 //
 //  Created by Apple  on 11/04/23.
 //  swiftlint: disable line_length
-// swiftlint: disable cyclomatic_complexity
+//  swiftlint: disable cyclomatic_complexity
 
 import UIKit
 import SVProgressHUD
@@ -35,7 +35,7 @@ class LoginVC: UIViewController{
     @IBOutlet weak var imgEmail: UIImageView!
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
-     @IBOutlet weak var btnEye: UIButton!
+    @IBOutlet weak var btnEye: UIButton!
     @IBOutlet weak var lblSignIn: UILabel!
     @IBOutlet weak var lblSignInWith: UILabel!
     @IBOutlet weak var lblEmail: UILabel!

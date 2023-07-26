@@ -7,13 +7,8 @@
 
 import Foundation
 import AVFoundation
-
-
 class ScanQRModel {
-    
-//MARK: - Variables
+// MARK: - Variables
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    
-    
 }

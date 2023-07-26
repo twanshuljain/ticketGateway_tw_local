@@ -8,10 +8,6 @@
 import Foundation
 
 class ScanSummaryViewModel {
-    
-//MARK: - Variables
+    // MARK: - Variables
     var isOnline: Bool = true
-
-    
-    
 }

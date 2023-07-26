@@ -3,20 +3,10 @@
 //  TicketGateway
 //
 //  Created by Apple  on 23/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
 // swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
-
 import UIKit
-
 class PromoCodeVC: UIViewController {
-    
-// MARK: - @IBOutlets
+    // MARK: - @IBOutlets
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var btnApply: CustomButtonGradiant!
@@ -24,13 +14,10 @@ class PromoCodeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        // Do any additional setup after loading the view.
     }
-    
 }
-
 // MARK: - Functions
-extension PromoCodeVC{
+extension PromoCodeVC {
     func setUp() {
         self.btnApply.setTitles(text: APPLY, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
         self.navigationView.lblTitle.text = PROMO_CODE
@@ -49,50 +36,38 @@ extension PromoCodeVC{
         self.vwSearchBar.vwLocation.isHidden = true
     }
 }
-
 // MARK: - TableView Delegate
 extension PromoCodeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PromoCodeCell") as! PromoCodeCell
-         return cell
+        return cell
     }
-
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "TicketOverAllEstimateBarCell") as! TicketOverAllEstimateBarCell
-       
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketOverAllEstimateBarCell") as! TicketOverAllEstimateBarCell
     }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-    
     @objc func buttonPressed(_ sender: UIButton) {
-        
     }
-    
 }
 // MARK: - NavigationBarViewDelegate
-extension PromoCodeVC : NavigationBarViewDelegate {
-  func navigationBackAction() {
-    self.navigationController?.popViewController(animated: false)
-  }
+extension PromoCodeVC: NavigationBarViewDelegate {
+    func navigationBackAction() {
+        self.navigationController?.popViewController(animated: false)
+    }
 }
 extension PromoCodeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-       
     }
-    
-    func RightButtonPressed(_ sender: UIButton) {
+    func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
-
 // MARK: - @IBOutlets
-extension PromoCodeVC:UITextFieldDelegate{
-    
+extension PromoCodeVC: UITextFieldDelegate {
 }
