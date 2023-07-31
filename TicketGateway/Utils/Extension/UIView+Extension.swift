@@ -456,6 +456,41 @@ extension UIView {
         label.sizeToFit()
         return label.frame.height
     }
+    static let loadingViewTag = 1938123987
+    
+    //func showLoading(parentView: UIView, style: UIActivityIndicatorView.Style = .large, color: UIColor? = nil, scale: CGFloat = 1) {
+    func showLoading(centreToView: UIView) {
+        var style: UIActivityIndicatorView.Style = .large
+        var color: UIColor? =  UIColor.setColor(colorType: .tgBlue)
+        var scale: CGFloat =  0.9
+        
+        DispatchQueue.main.async {  [self] in
+            var loading = viewWithTag(UIView.loadingViewTag) as? UIActivityIndicatorView
+            if loading == nil {
+                loading = UIActivityIndicatorView(style: style)
+            }
+            
+            if let color = color {
+                loading?.color = color
+            }
+            loading?.contentScaleFactor = scale
+            loading?.translatesAutoresizingMaskIntoConstraints = false
+            loading?.startAnimating()
+            loading?.hidesWhenStopped = true
+            loading?.tag = UIView.loadingViewTag
+            addSubview(loading!)
+            loading?.centerYAnchor.constraint(equalTo: centreToView.centerYAnchor).isActive = true
+            loading?.centerXAnchor.constraint(equalTo: centreToView.centerXAnchor).isActive = true
+        }
+    }
+    
+    func stopLoading() {
+        DispatchQueue.main.async { [self] in
+            let loading = viewWithTag(UIView.loadingViewTag) as? UIActivityIndicatorView
+            loading?.stopAnimating()
+            loading?.removeFromSuperview()
+        }
+    }
 }
 
 class customSocialLoginView: UIView {

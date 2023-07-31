@@ -12,6 +12,7 @@
 // swiftlint: disable function_parameter_count
 
 import UIKit
+import iOSDropDown
 
 class EventBookingTicketOnApplyCouponVC: UIViewController {
     
@@ -37,9 +38,10 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var lblAccessCode: UILabel!
     @IBOutlet weak var lblonAppliedAccessCodeValidation: UILabel!
     @IBOutlet weak var lblAppliedAccessCodeDIs: UILabel!
+    @IBOutlet weak var lblTotalTicketPrice :DropDown!
     
     //MARK: - Variables
-    var isCheckedTerm_COndition = false
+    let viewModel = EventBookingTicketOnApplyCouponViewModel()
     
     
     override func viewDidLoad() {
@@ -69,7 +71,14 @@ extension EventBookingTicketOnApplyCouponVC {
         }
         self.txtAccessCode.delegate = self
         self.txtAccessCode.autocorrectionType = .no
+        
+        self.setData()
      }
+    
+    func setData(){
+        self.lblTotalTicketPrice.text = self.viewModel.totalTicketPrice
+    }
+    
     func setUi(){
         self.lblAcceptedTermCon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
@@ -112,21 +121,24 @@ extension EventBookingTicketOnApplyCouponVC {
     }
     
    func btnContinueAction() {
-       let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
-       self.navigationController?.pushViewController(view!, animated: true)
+       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+           view.totalTicketPrice = self.viewModel.totalTicketPrice
+           view.feeStructure = self.viewModel.feeStructure
+           self.navigationController?.pushViewController(view, animated: true)
+       }
     }
     func btnAppliedCodeAction() {
          
      }
     
     func btnCheckTermConditionAction(){
-        if isCheckedTerm_COndition == false
+        if viewModel.isCheckedTerm_COndition == false
         {
-            isCheckedTerm_COndition = true
+            viewModel.isCheckedTerm_COndition = true
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         }
         else {
-            isCheckedTerm_COndition = false
+            viewModel.isCheckedTerm_COndition = false
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         

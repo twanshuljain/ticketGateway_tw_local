@@ -18,8 +18,15 @@ class EventBookingTicketAddOnsVC: UIViewController {
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblAddOn: UITableView!
+    @IBOutlet weak var lblTotalTicketPrice :DropDown!
+    
+    
     // MARK: - Variables
     var addOnTableData = ["Tshirt_ip", "Tshirt_ip", "Tshirt_ip", "Tshirt_ip"]
+    var totalTicketPrice = ""
+    var feeStructure:FeeStructure?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
@@ -48,6 +55,11 @@ extension EventBookingTicketAddOnsVC{
         [self.btnContinue].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
+        self.setData()
+    }
+    
+    func setData(){
+        self.lblTotalTicketPrice.text = self.totalTicketPrice
     }
 }
 
@@ -63,8 +75,11 @@ extension EventBookingTicketAddOnsVC {
         }
     }
     func btnContinueAction() {
-        let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC{
+            view.viewModel.feeStructure = self.feeStructure
+            self.navigationController?.pushViewController(view, animated: true)
+        }
+        
     }
 }
 

@@ -13,6 +13,7 @@
 
 import UIKit
 import SVProgressHUD
+import iOSDropDown
 
 class EventBookingTicketVC: UIViewController {
     //MARK: - IBOutlets
@@ -25,6 +26,8 @@ class EventBookingTicketVC: UIViewController {
     @IBOutlet weak var lblFewTIcketleft: UILabel!
     @IBOutlet weak var lblClickingonCOntinue: UILabel!
     @IBOutlet weak var tblHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblTotalTicketPrice :DropDown!
+    @IBOutlet weak var parentView: UIView!
     
     //MARK: - Variables
     var isCheckedTerm_COndition = false
@@ -47,10 +50,13 @@ extension EventBookingTicketVC {
         self.setUi()
         self.tblEventTicketTypes.configure()
         self.tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
+        self.tblEventTicketTypes.updatedPrice = { price in
+            self.lblTotalTicketPrice.text = "CA$ \(price)"
+        }
         self.navigationView.delegateBarAction = self
-          self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+          self.navigationView.lblTitle.text = ""
         self.navigationView.lblDiscripation.isHidden = false
-        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
+        self.navigationView.lblDiscripation.text = ""
           self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
           self.navigationView.delegateBarAction = self
@@ -80,32 +86,63 @@ extension EventBookingTicketVC {
    }
     
     func setData(){
+        self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
+        
+        let dateTime = "\(viewModel.eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" + " • " + "\(viewModel.eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
+        self.navigationView.lblDiscripation.text = dateTime
+        
         self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
         
     }
-    
-    
     func apiCall(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
+            self.viewModel.dispatchGroup.enter()
             viewModel.getEventTicketList(complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     DispatchQueue.main.async {
                         self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
                          self.tblEventTicketTypes.reloadData()
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+        
+        self.viewModel.dispatchGroup.notify(queue: .main) {
+            self.apiCallForFeeStructure()
+        }
+    }
+    
+    func apiCallForFeeStructure() {
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            parentView.showLoading(centreToView: self.view)
+            viewModel.getEventTicketFeeStructure(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    self.parentView.stopLoading()
+                    print(self.viewModel.feeStructure)
+                } else {
+                    DispatchQueue.main.async {
+                        self.parentView.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -139,8 +176,11 @@ extension EventBookingTicketVC {
     }
     
    func btnContinueAction() {
-       let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC
-   self.navigationController?.pushViewController(view!, animated: true)
+       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
+           view.viewModel.totalTicketPrice = self.lblTotalTicketPrice.text ?? ""
+           view.viewModel.feeStructure = self.viewModel.feeStructure
+           self.navigationController?.pushViewController(view, animated: true)
+       }
     }
 }
 

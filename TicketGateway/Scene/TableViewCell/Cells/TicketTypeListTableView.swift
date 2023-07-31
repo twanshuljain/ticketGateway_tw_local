@@ -20,11 +20,13 @@ class TicketTypeListTableView: UITableView {
 
 //MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
+    var updatedPrice: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
     var arrTicketList:[EventTicket]?
     var selectedArrTicketList = [EventTicket]()
 //    var maxStepperCount: Int = 10
+    var finalPrice = 0
     func configure() {
         self.register(UINib(nibName: "TicketTypesCell", bundle: nil), forCellReuseIdentifier: "TicketTypesCell")
         self.delegate = self
@@ -120,36 +122,47 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
 //        }
 //    }
 
-    //MARK: - ONLINE
+    // MARK: - ONLINE
     @objc func PlusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
+        let data = arrTicketList?[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
         if lblNumberOfCount < arrTicketList?[sender.tag].ticketMaximumQuantity ?? 0 {
             self.lblNumberOfCount = self.lblNumberOfCount + 1
+            self.finalPrice += data?.ticketPrice ?? 0
+            //(lblNumberOfCount * (data?.ticketPrice ?? 0))
             cell.vwStepper.lblCount.text = String(lblNumberOfCount)
             arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
             self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
+            
+            self.updatedPrice?(finalPrice)
         }
     }
 
     @objc func MinustButtonPressed(_ sender: UIButton) {
+        let data = arrTicketList?[sender.tag]
          let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
         if self.lblNumberOfCount > 0 {
             self.lblNumberOfCount = self.lblNumberOfCount - 1
+            self.finalPrice -= data?.ticketPrice ?? 0
+            //(lblNumberOfCount * (data?.ticketPrice ?? 0))
             cell.vwStepper.lblCount.text = String(lblNumberOfCount)
             arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
             self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
+            
+            self.updatedPrice?(finalPrice)
         } else {
             cell.vwStepper.lblCount.text = "0"
             arrTicketList?[sender.tag].selectedTicketQuantity = 0
             self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
+            
+            //self.updatedPrice?(0)
         }
     }
-  
 }

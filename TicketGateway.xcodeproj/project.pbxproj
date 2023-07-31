@@ -39,6 +39,9 @@
 		1821FDF62A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDF52A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift */; };
 		18233FB529E7C5B000255BB7 /* WelComeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18233FB429E7C5B000255BB7 /* WelComeVC.swift */; };
 		18233FB729E7C72500255BB7 /* WelComeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18233FB629E7C72500255BB7 /* WelComeCell.swift */; };
+		182B9FAD2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B9FAC2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift */; };
+		182B9FAF2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B9FAE2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift */; };
+		182B9FB12A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */; };
 		1830586E2A41D917007A3931 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830586D2A41D917007A3931 /* UIImageView+Extension.swift */; };
 		183A26302A4335F000DC97E3 /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */; };
 		183A26342A43367D00DC97E3 /* AddOnAddInOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */; };
@@ -440,6 +443,9 @@
 		1821FDF52A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFollowerTableViewCell.swift; sourceTree = "<group>"; };
 		18233FB429E7C5B000255BB7 /* WelComeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelComeVC.swift; sourceTree = "<group>"; };
 		18233FB629E7C72500255BB7 /* WelComeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelComeCell.swift; sourceTree = "<group>"; };
+		182B9FAC2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingOrderSummaryVieModel.swift; sourceTree = "<group>"; };
+		182B9FAE2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingPaymentMethodViewModel.swift; sourceTree = "<group>"; };
+		182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketOnApplyCouponViewModel.swift; sourceTree = "<group>"; };
 		1830586D2A41D917007A3931 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
 		183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnAddInOrderCell.swift; sourceTree = "<group>"; };
@@ -1198,6 +1204,7 @@
 			isa = PBXGroup;
 			children = (
 				188CE1AD2A13678E00BCEC76 /* EventBookingOrderSummaryVC.swift */,
+				182B9FAC2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift */,
 			);
 			path = EventBookingSummary;
 			sourceTree = "<group>";
@@ -1206,6 +1213,7 @@
 			isa = PBXGroup;
 			children = (
 				188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */,
+				182B9FAE2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift */,
 			);
 			path = EventBookingPaymentMethod;
 			sourceTree = "<group>";
@@ -1214,6 +1222,7 @@
 			isa = PBXGroup;
 			children = (
 				18692AF02A0E2A8400ADB5A5 /* EventBookingTicketOnApplyCouponVC.swift */,
+				182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */,
 			);
 			path = EventTicketApplyCoupon;
 			sourceTree = "<group>";
@@ -3125,6 +3134,7 @@
 				18BC2EE52A52978500FB427E /* PlaceholderTextView.swift in Sources */,
 				18FBC0C52A309239002CF129 /* ManageEventSellTicketCell.swift in Sources */,
 				18F5A4B92A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift in Sources */,
+				182B9FB12A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift in Sources */,
 				18FBC0BC2A309239002CF129 /* ManageEventOrderVC.swift in Sources */,
 				1821FDE22A30A80800BD4AB6 /* RefundOptionsVC.swift in Sources */,
 				186FB9482A4026AA002B0E5C /* Date+Extension.swift in Sources */,
@@ -3181,6 +3191,7 @@
 				18F5A4C32A4EA55900CA18F7 /* ScanSummaryVC.swift in Sources */,
 				18717F8E2A2A1BE9002F36BC /* MyOrderViewController.swift in Sources */,
 				18717F8F2A2A1BE9002F36BC /* ContactOrganiserVC.swift in Sources */,
+				182B9FAD2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift in Sources */,
 				18717F932A2A1BE9002F36BC /* ChangeNameVC.swift in Sources */,
 				18A73E0229EFB81C007365CB /* SignUpAuthVerifyModel.swift in Sources */,
 				18FBC0C12A309239002CF129 /* ManageEventSettingVC.swift in Sources */,
@@ -3268,6 +3279,7 @@
 				18FBC0CE2A309239002CF129 /* AddCardVC.swift in Sources */,
 				183A263E2A43375600DC97E3 /* EventsOrganizesListTableView.swift in Sources */,
 				18A6D0E929E9319300D6210E /* DataPassOnSignUpProcessModel.swift in Sources */,
+				182B9FAF2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift in Sources */,
 				18FBC0D82A309239002CF129 /* ManageMyEventCateoryList.swift in Sources */,
 				18FBC0E92A309239002CF129 /* PhotosProductCollectionViewCell.swift in Sources */,
 				1859813A2A2085A800ABDC51 /* MKRingProgressView.swift in Sources */,
@@ -3448,12 +3460,14 @@
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access required.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = .;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3492,12 +3506,14 @@
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access required.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = .;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

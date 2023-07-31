@@ -2,42 +2,44 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSRemindersUsageDescription</key>
-	<string></string>
-	<key>NSCalendarsUsageDescription</key>
-	<string></string>
-	<key>FacebookAutoLogAppEventsEnabled</key>
-	<string>TRUE</string>
-	<key>FacebookAdvertiserIDCollectionEnabled</key>
-	<string>TRUE</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
-	<key>NSCameraUsageDescription</key>
-	<string></string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>GoogleUrl</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.1090307909671-o90bdqh5777lnkgqk9mugturu85d524g</string>
 				<string>fb1248270895826914</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>FacebookUrl</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb6588780004476656</string>
+			</array>
+		</dict>
 	</array>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<string>TRUE</string>
 	<key>FacebookAppID</key>
-	<string>1248270895826914</string>
-	<key>FacebookClientToken</key>
-	<string>24b1eb724122d6cfdfbebc5e5029351c</string>
+	<string>6588780004476656</string>
+    <key>FacebookClientToken</key>
+    <string>98baa20a977471a48b64317e76b525e7</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<string>TRUE</string>
 	<key>FacebookDisplayName</key>
-	<string>TicketGatway</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
+	<string>TicketGateway</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
-		<string>fb-messenger-api</string>
+		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>

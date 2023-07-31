@@ -142,21 +142,21 @@ struct EventDateObj: Codable {
 
 // MARK: - EventLocation
 struct EventLocation: Codable {
-    var virtualEventTitle, additionalCoverImage, virtualLinkTitle, toBeAnnouncedAddress: JSONNull?
+    var virtualEventTitle, additionalCoverImage, virtualLinkTitle, toBeAnnouncedAddress: String?
     var isVirtual: Bool?
-    var virtualTitleImage, virtualExternalDocument: JSONNull?
+    var virtualTitleImage, virtualExternalDocument: String?
     var eventID: Int?
     var isAdditionalSettings: Bool?
-    var virtualTitleVideo, addDetailsDescription: JSONNull?
+    var virtualTitleVideo, addDetailsDescription: String?
     var eventAddress: String?
     var virtualImages: JSONNull?
     var isToBeAnnounced: Bool?
     var latitude: Double?
-    var virtualEventHostLink, eventCountry: JSONNull?
+    var virtualEventHostLink, eventCountry: String?
     var longitude: Double?
     var virtualVideoLinks, eventState: String?
     var id: Int?
-    var virtualLiveVideoURL, virtualVideoUrls, eventCity, locationDescription: JSONNull?
+    var virtualLiveVideoURL, virtualVideoUrls, eventCity, locationDescription: String?
     var isAddressField: Bool?
 
     enum CodingKeys: String, CodingKey {

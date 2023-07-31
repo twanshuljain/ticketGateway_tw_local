@@ -59,7 +59,20 @@ final class SocialSignInVC: UIViewController {
             if result != nil {
                 let dicFbData: NSDictionary = result as! NSDictionary
                 print("dicFbData \(dicFbData)")
-                print(dicFbData["first_name"] as? String ?? "")
+                let strName = dicFbData["name"] as? String ?? ""
+                let userID = dicFbData["id"] as? String ?? ""
+                let email = dicFbData["email"] as? String ?? ""
+                let picture = dicFbData["picture"] as? [String:Any]
+                let data = picture?["data"] as? [String:Any]
+                let url = data?["url"] as? String ?? ""
+                let accesToken = AccessToken.current?.tokenString ?? ""
+                
+                self.viewModel.strEmail = email
+                self.viewModel.strNumber = ""
+                self.viewModel.strName = strName
+                self.viewModel.strProfile = url
+                _ = DataHoldOnSocialSignUpProcessModel(strEmail: self.viewModel.strEmail, strNumber: self.viewModel.strNumber, strStatus: "", strDialCountryCode: "", strCountryCode: "", strName: self.viewModel.strName, strProfile: "" )
+                
                 DispatchQueue.main.async(execute: {
                 })
             } else {

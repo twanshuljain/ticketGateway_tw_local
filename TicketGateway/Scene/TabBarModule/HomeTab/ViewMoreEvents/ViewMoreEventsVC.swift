@@ -29,8 +29,8 @@ class ViewMoreEventsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        self.viewModel.refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
-        tblView.refreshControl = self.viewModel.refreshControl
+        //self.viewModel.refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        //tblView.refreshControl = self.viewModel.refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +63,9 @@ extension ViewMoreEventsVC{
     
     func setData(){
         switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .nearByLocation:
+            navigationView.lblTitle.text = "Events near Toronto"
+            //self.funcCallApi()
         case .weekend:
             navigationView.lblTitle.text = "This Weekend"
             self.funcCallApi()
@@ -82,6 +85,37 @@ extension ViewMoreEventsVC{
             break;
         }
     }
+    
+    
+    func funcCallApiForLocation(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModel.getEventApiForWeekendEvents(viewAll:true,complition: { isTrue, messageShowToast in
+                
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                    if let itemWeekend = self.viewModel.arrData?.itemsWeekend{
+                        DispatchQueue.main.async {
+                            self.tblView.reloadData()
+                        }
+                    }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    
     
     func funcCallApi(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
@@ -302,32 +336,48 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        switch self.viewModel.arrEventCategory[self.viewModel.index] {
-        case .weekend:
-            if let data = self.viewModel.arrData?.itemsWeekend, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-                self.loadData()
-            }
-        case .online:
-            if let data = self.viewModel.arrData?.itemsVirtual, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-                self.loadData()
-            }
-        case .popular:
-            if let data = self.viewModel.arrData?.itemsPopular, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-                self.loadData()
-            }
-        case .free:
-            if let data = self.viewModel.arrData?.itemsFree, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-                self.loadData()
-            }
-        case .upcoming:
-            if let data = self.viewModel.arrData?.itemsUpcoming, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-                self.loadData()
-            }
-        default:
-            break;
-        }
+//        switch self.viewModel.arrEventCategory[self.viewModel.index] {
+//        case .weekend:
+//            if let data = self.viewModel.arrData?.itemsWeekend, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+//                self.loadData()
+//            }
+//        case .online:
+//            if let data = self.viewModel.arrData?.itemsVirtual, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+//                self.loadData()
+//            }
+//        case .popular:
+//            if let data = self.viewModel.arrData?.itemsPopular, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+//                self.loadData()
+//            }
+//        case .free:
+//            if let data = self.viewModel.arrData?.itemsFree, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+//                self.loadData()
+//            }
+//        case .upcoming:
+//            if let data = self.viewModel.arrData?.itemsUpcoming, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
+//                self.loadData()
+//            }
+//        default:
+//            break;
+//        }
         
-       
+        self.addLoader(indexPath: indexPath)
+    }
+    
+    func addLoader(indexPath :IndexPath){
+        let lastSectionIndex = self.tblView.numberOfSections - 1
+        let lastRowIndex = tblView.numberOfRows(inSection: lastSectionIndex) - 1
+        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            self.loadData()
+            
+           // print("this is the last cell")
+            let spinner = UIActivityIndicatorView(style: .gray)
+            spinner.startAnimating()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
+
+            self.tblView.tableFooterView = spinner
+            self.tblView.tableFooterView?.isHidden = false
+        }
     }
     
     

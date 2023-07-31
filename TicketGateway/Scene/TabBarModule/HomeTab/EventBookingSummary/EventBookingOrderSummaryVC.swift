@@ -19,8 +19,8 @@ class EventBookingOrderSummaryVC: UIViewController {
     @IBOutlet weak var tblAddOnEtcThings: AddOnAddInOrderTableViewList!
     @IBOutlet weak var lblSubTotal: UILabel!
     @IBOutlet weak var lblSubTotalValue: UILabel!
-    @IBOutlet weak var lblSavingCharge: UILabel!
-    @IBOutlet weak var lblSavingChargeValue: UILabel!
+    @IBOutlet weak var lblServiceCharge: UILabel!
+    @IBOutlet weak var lblServiceChargeValue: UILabel!
     @IBOutlet weak var lblfacilityFee: UILabel!
     @IBOutlet weak var lblfacilityFeeValue: UILabel!
     @IBOutlet weak var lblProcessingFee: UILabel!
@@ -32,10 +32,16 @@ class EventBookingOrderSummaryVC: UIViewController {
     @IBOutlet weak var lblRefundDisc: UILabel!
     @IBOutlet weak var lblDiscouted: UILabel!
     @IBOutlet weak var lblDiscoutedValue: UILabel!
+    
+    
+    var viewModel = EventBookingOrderSummaryVieModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setUi()
+        self.setData()
     }
 }
 //MARK: - Functions
@@ -60,7 +66,7 @@ extension EventBookingOrderSummaryVC {
         self.heightOfAddOn.constant = self.tblAddOnEtcThings.contentSize.height
     }
     func setUi(){
-        [self.lblSubTotal,lblSubTotalValue,self.lblfacilityFee,self.lblfacilityFeeValue,self.lblSavingCharge,self.lblSavingChargeValue,self.lblProcessingFee,self.lblProcessingFeeValue].forEach {
+        [self.lblSubTotal,lblSubTotalValue,self.lblfacilityFee,self.lblfacilityFeeValue,self.lblServiceCharge,self.lblServiceChargeValue,self.lblProcessingFee,self.lblProcessingFeeValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
@@ -88,6 +94,20 @@ extension EventBookingOrderSummaryVC {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height
         self.heightOfAddOn.constant = tblAddOnEtcThings.contentSize.height
     }
+    func setData() {
+        let serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees ?? 0)
+        let processingCharge = Double((self.viewModel.feeStructure?.processingFees ?? "0")) ?? 0.0
+        let facilityCharge = Double(self.viewModel.feeStructure?.facilityFees ?? 0)
+        let subTotal = Double(self.viewModel.totalTicketPrice ) ?? 0.0
+        self.lblServiceChargeValue.text = "CA$ \(serviceCharge)"
+        self.lblProcessingFeeValue.text = "CA$ \(processingCharge)"
+        self.lblfacilityFeeValue.text = "CA$ \(facilityCharge)"
+        self.lblSubTotalValue.text = "CA$ \(subTotal)"
+        var total = serviceCharge + processingCharge + facilityCharge + subTotal
+        self.lblTotalAmtValue.text = "CA$ \(total)"
+        
+    }
+    
 }
 //MARK: - Actions
 extension EventBookingOrderSummaryVC {

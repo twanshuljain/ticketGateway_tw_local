@@ -26,19 +26,19 @@ class TicketTypesCell: UITableViewCell {
         self.setUi()
     }
     
-    func setData(event:EventTicket?){
+    func setData(event :EventTicket?){
         if let event = event{
             self.lblTittle.text = event.ticketName ?? ""
             
           //  self.lblAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
             self.lblAmount.isHidden = true
+            self.vwForGroup.isHidden = true
             self.lblNoOfInGroup.text = ""
              self.lblSecAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
             self.lblAmountWithAdditionCharge.text = "Incl. CA$10.00 Facility Fee"
             
             if let endDate = event.ticketSaleEndDate {
-               self
-                    .lblDiscripation.text = "Sales end \(String(describing: endDate.getDateFormattedFromTo()))"
+               self.lblDiscripation.text = "Sales end \(String(describing: endDate.getDateFormattedFromTo()))"
             }
            
         }

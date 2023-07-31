@@ -28,16 +28,20 @@ class HomeVC: UIViewController{
     @IBOutlet weak var tblEvents: EventsOrganizesListTableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var collvwSuggestedOrganisation: suggestedOrganizerList!
-    
+    @IBOutlet weak var tableParentView:UIView!
+    @IBOutlet weak var collectionParentView:UIView!
+    @IBOutlet weak var parentView:UIView!
     
     //MARK: - Variables
     var isMenuOpened:Bool = false
     var viewModel = HomeDashBoardViewModel()
+    private let eventCategoryViewModel = GetEventCategoryViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-      self.funcCallApi(viewAll: false)
+     // self.funcCallApi(viewAll: false)
+        self.funcCallApi()
         // self.apiCall()
     }
     
@@ -68,6 +72,10 @@ extension HomeVC {
         self.tblEvents.tableDidSelectAtIndex = {  index in
             let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
             switch self.viewModel.arrEventCategory[index.section] {
+            case .nearByLocation:
+                if self.viewModel.arrSearchCategoryData.indices.contains(index.row){
+                    view?.viewModel.eventId = self.viewModel.arrSearchCategoryData[index.row].event?.id
+                }
             case .weekend:
                 if self.viewModel.arrDataaWeekend.indices.contains(index.row){
                     view?.viewModel.eventId = self.viewModel.arrDataaWeekend[index.row].event?.id
@@ -115,10 +123,10 @@ extension HomeVC {
     func apiCall(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.GetEventApi(complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     DispatchQueue.main.async {
                         self.tblEvents.arrDataaWeekend = self.viewModel.arrDataaWeekend
                         
@@ -126,28 +134,58 @@ extension HomeVC {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
     }
     
-    func funcCallApi(viewAll:Bool){
+    func funcCallApi(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
+            self.viewModel.dispatchGroup.enter()
+            viewModel.getEventAsPerLocation(countryName: "Toronto", complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    self.parentView.stopLoading()
+                        self.tblEvents.arrDataCategorySearch = self.viewModel.arrSearchCategoryData
+                } else {
+                    DispatchQueue.main.async {
+                        self.parentView.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.parentView.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+        
+        
+        self.viewModel.dispatchGroup.notify(queue: .main) {
+            print("Finished Api Call GetEventApiForLocations")
+            self.funcCallApiForWeekendEvents(viewAll: false)
+        }
+    }
+    
+    func funcCallApiForWeekendEvents(viewAll:Bool){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup1.enter()
             viewModel.getEventApiForWeekendEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     //                   DispatchQueue.main.async {
                     if let itemWeekend = self.viewModel.arrEventData.itemsWeekend{
                         self.viewModel.semaphore.wait()
@@ -161,14 +199,14 @@ extension HomeVC {
                     
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -183,11 +221,11 @@ extension HomeVC {
     func funcCallApiForOnlineEvents(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup2.enter()
             viewModel.getEventApiForOnlineEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     if let itemsVirtual = self.viewModel.arrEventData.itemsVirtual{
                         self.viewModel.semaphore.wait()
                         self.tblEvents.arrDataaVirtual = []
@@ -196,14 +234,14 @@ extension HomeVC {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -213,16 +251,14 @@ extension HomeVC {
             self.funcCallApiForPopularEvents(viewAll: false)
         }
     }
-    
-    
-    func funcCallApiForPopularEvents(viewAll:Bool){
-        if Reachability.isConnectedToNetwork() //check internet connectivity
+    func funcCallApiForPopularEvents(viewAll: Bool){
+        if Reachability.isConnectedToNetwork() // check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup3.enter()
             viewModel.getEventApiForPopularEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     if let itemsPopular = self.viewModel.arrEventData.itemsPopular{
                         self.viewModel.semaphore.wait()
                         self.tblEvents.arrDataaPopular = []
@@ -231,14 +267,14 @@ extension HomeVC {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -253,11 +289,11 @@ extension HomeVC {
     func funcCallApiForFreeEvents(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup4.enter()
             viewModel.getEventApiForFreeEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     if let itemsFree = self.viewModel.arrEventData.itemsFree{
                         self.viewModel.semaphore.wait()
                         self.tblEvents.arrDataaFree = []
@@ -266,14 +302,14 @@ extension HomeVC {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -287,11 +323,11 @@ extension HomeVC {
     func funcCallApiForUpcomingEvents(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup5.enter()
             viewModel.getEventApiForUpcomingEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     print("Finished Api Call GetEventApiForFreeEvents")
                         if let itemsUpcoming = self.viewModel.arrEventData.itemsUpcoming{
                             self.viewModel.semaphore.wait()
@@ -305,14 +341,14 @@ extension HomeVC {
 //                    }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -328,24 +364,25 @@ extension HomeVC {
     func funcCallApiForOrganizersList(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getOrganizersList { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.parentView.stopLoading()
                     DispatchQueue.main.async {
+                        self.lblSuggestedOrganised.text = "Organizers to follow"
                         self.collvwSuggestedOrganisation.arrOrganizersList = self.viewModel.arrOrganizersList
                         self.collvwSuggestedOrganisation.reloadData()
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             }
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
