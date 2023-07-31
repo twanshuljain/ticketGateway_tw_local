@@ -70,6 +70,11 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var dateAndLocationStackView: UIStackView!
     @IBOutlet weak var vwStackHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var aboutView: UIView!
+    @IBOutlet weak var tagsView: UIView!
+    @IBOutlet weak var organizersView: UIView!
+    @IBOutlet weak var suggestionsForYouView: UIView!
+    
     //MARK: - Variables
     var viewModel = EventDetailViewModel()
     let store = EKEventStore()
@@ -132,10 +137,10 @@ extension EventDetailVC {
         if let eventId = self.viewModel.eventId{
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {
-                SVProgressHUD.show()
+                vwEventName.showLoading(centreToView: self.view)
                 viewModel.GetEventDetailApi(complition: { isTrue, messageShowToast in
                     if isTrue == true {
-                        SVProgressHUD.dismiss()
+                        self.vwEventName.stopLoading()
                         DispatchQueue.main.async {
                             self.collvwEventImages.reloadData()
                             self.setData()
@@ -157,14 +162,14 @@ extension EventDetailVC {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.vwEventName.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }
                 })
             } else {
                 DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
+                    self.vwEventName.stopLoading()
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
@@ -174,24 +179,28 @@ extension EventDetailVC {
     func funcCallApiForEventCategory(categoryId:Int){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            DispatchQueue.main.async {
+                self.tblSuggestedEvent.isHidden = true
+            }
+            vwEventName.showLoading(centreToView: self.view)
             viewModel.GetEventSuggestedCategory(categoryId: categoryId) { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
+                    self.vwEventName.stopLoading()
                     DispatchQueue.main.async {
+                        self.tblSuggestedEvent.isHidden = false
                         self.tblSuggestedEvent.arrData = self.viewModel.arrEventData
                         self.tblSuggestedEvent.reloadData()
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.vwEventName.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             }
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.vwEventName.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -242,13 +251,21 @@ extension EventDetailVC {
         self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        
         self.lblDate.text = ("\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")")
         self.lblTime.text = ("\(eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")")
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
         self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
         self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
-        self.lblAboutDiscripation.text = eventDetail?.event?.eventDescription ?? ""
+        
+        //ABOUt US
+        if (eventDetail?.event?.eventDescription != "") && (eventDetail?.event?.eventDescription != nil){
+            self.aboutView.isHidden = false
+            self.lblAboutDiscripation.text = eventDetail?.event?.eventDescription ?? ""
+            
+        }else{
+            self.aboutView.isHidden = true
+            self.lblAboutDiscripation.text = ""
+        }
         
         //ORGANIZER
         self.lblOrganiserName_Company.text = eventDetail?.organizer?.name ?? ""
@@ -273,8 +290,12 @@ extension EventDetailVC {
         }
         
         //TAGS
-        self.collVwTags.setData(eventDetail: eventDetail)
-        
+        if eventDetail?.eventTagsObj?.eventTags?.count != 0 && eventDetail?.eventTagsObj?.eventTags != nil{
+            self.tagsView.isHidden = false
+            self.collVwTags.setData(eventDetail: eventDetail)
+        }else{
+            self.tagsView.isHidden = true
+        }
         self.toSetPageControll()
         self.dropDown()
     }

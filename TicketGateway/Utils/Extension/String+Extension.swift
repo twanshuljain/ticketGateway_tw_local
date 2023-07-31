@@ -40,11 +40,22 @@ extension String {
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from: self)!
-        dateFormatter.dateFormat = "MMM d"
-        dateFormatter.locale = tempLocale // reset the locale
-        let dateString = dateFormatter.string(from: date)
-        return dateString
+        if dateFormatter.date(from: self) == nil{
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "MMM d"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }else{
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "MMM d"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }
+        //?? Date.init()
+        
     }
     
     func getDateFormattedFromTo() -> String {
@@ -52,11 +63,21 @@ extension String {
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from: self) ?? Date.init()
-        dateFormatter.dateFormat = "MMM d, yyyy"
-        dateFormatter.locale = tempLocale // reset the locale
-        let dateString = dateFormatter.string(from: date)
-        return dateString
+        if dateFormatter.date(from: self) == nil{
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }else{
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }
+        
     }
     
     

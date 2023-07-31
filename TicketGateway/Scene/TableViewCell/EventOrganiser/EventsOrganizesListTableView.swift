@@ -97,7 +97,9 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //            }else{
 //                return self.arrDataa.count
 //            }
-            if self.arrEventCategory[section] == .weekend{
+            if self.arrEventCategory[section] == .nearByLocation{
+                return self.arrDataCategorySearch.count
+            }else if self.arrEventCategory[section] == .weekend{
                 return self.arrDataaWeekend.count
             }else if self.arrEventCategory[section] == .online{
                 return self.arrDataaVirtual.count
@@ -130,6 +132,10 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             if self.isComingFrom == .Home{
                 
                 switch self.arrEventCategory[indexPath.section] {
+                case .nearByLocation:
+                    if arrDataCategorySearch.indices.contains(indexPath.row){
+                        cell.getEvent = self.arrDataCategorySearch[indexPath.row]
+                    }
                 case .weekend:
                     if arrDataaWeekend.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaWeekend[indexPath.row]
@@ -187,6 +193,9 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             
             
             switch self.arrEventCategory[section] {
+            case .nearByLocation:
+                label.text = "Events Near Toronto"
+                return headerView
             case .weekend:
                 label.text = "This Weekend"
                 return headerView
@@ -242,6 +251,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             separatorView.backgroundColor = UIColor.setColor(colorType: .placeHolder)
             
             switch self.arrEventCategory[section] {
+            case .nearByLocation:
+                return nil
             case .weekend:
                 return footerView
             case .online:
@@ -252,6 +263,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 return footerView
             case .upcoming:
                 return footerView
+            
             }
         }
         return nil
@@ -280,6 +292,9 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     @objc func buttonPressed(sender: UIButton) {
         switch self.arrEventCategory[sender.tag] {
+        case .nearByLocation:
+            //self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+            print(sender.tag)
         case .weekend:
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
             print(sender.tag)

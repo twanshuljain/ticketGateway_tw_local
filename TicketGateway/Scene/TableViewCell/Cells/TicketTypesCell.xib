@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,18 +22,18 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fS-WJ-avQ">
                         <rect key="frame" x="0.0" y="10" width="316" height="293"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="clX-eB-U6Z">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="clX-eB-U6Z">
                                 <rect key="frame" x="0.0" y="0.0" width="316" height="293"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdZ-28-BFW">
                                         <rect key="frame" x="0.0" y="0.0" width="316" height="80"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K02-1h-WiM" customClass="CustomStepper" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="186" y="12.666666666666671" width="120" height="55"/>
+                                                <rect key="frame" x="186" y="17.666666666666671" width="120" height="45"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="fYk-dM-RJ0"/>
-                                                    <constraint firstAttribute="height" constant="55" id="jsw-h8-c4w"/>
+                                                    <constraint firstAttribute="height" constant="45" id="jsw-h8-c4w"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="jjR-0H-vbB">
@@ -56,17 +56,17 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="K02-1h-WiM" firstAttribute="centerY" secondItem="jjR-0H-vbB" secondAttribute="centerY" id="5s3-qv-4DQ"/>
                                             <constraint firstItem="jjR-0H-vbB" firstAttribute="centerY" secondItem="CdZ-28-BFW" secondAttribute="centerY" id="OtX-3F-rVa"/>
                                             <constraint firstItem="jjR-0H-vbB" firstAttribute="leading" secondItem="CdZ-28-BFW" secondAttribute="leading" constant="10" id="Qoj-Lw-54o"/>
                                             <constraint firstItem="K02-1h-WiM" firstAttribute="leading" secondItem="jjR-0H-vbB" secondAttribute="trailing" constant="10" id="Wgs-u1-eJ3"/>
-                                            <constraint firstItem="K02-1h-WiM" firstAttribute="centerY" secondItem="CdZ-28-BFW" secondAttribute="centerY" id="dgc-Fz-Eu9"/>
                                             <constraint firstAttribute="trailing" secondItem="K02-1h-WiM" secondAttribute="trailing" constant="10" id="eqp-Eu-qIQ"/>
                                             <constraint firstAttribute="bottom" secondItem="jjR-0H-vbB" secondAttribute="bottom" constant="15" id="rVj-fJ-XIm"/>
                                             <constraint firstItem="jjR-0H-vbB" firstAttribute="top" secondItem="CdZ-28-BFW" secondAttribute="top" constant="15" id="y92-S9-RWP"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blR-LT-Vt0">
-                                        <rect key="frame" x="0.0" y="114" width="316" height="50"/>
+                                        <rect key="frame" x="0.0" y="98" width="316" height="82"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-fc-uXp">
                                                 <rect key="frame" x="0.0" y="0.0" width="316" height="1"/>
@@ -76,7 +76,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Group = 5 Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JN-9Q-cdO">
-                                                <rect key="frame" x="10" y="8.6666666666666572" width="145" height="34"/>
+                                                <rect key="frame" x="10" y="8.6666666666666714" width="145" height="66"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

@@ -12,6 +12,7 @@
 // swiftlint: disable function_parameter_count
 // swiftlint: disable trailing_whitespace
 import UIKit
+import iOSDropDown
 
 class EventBookingTicketOnApplyCouponVC: UIViewController {
     
@@ -39,11 +40,12 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var btnDown: UIButton!
     @IBOutlet weak var accesCodeViewHeight: NSLayoutConstraint!
     @IBOutlet weak var accesCodeStackView: UIStackView!
+    @IBOutlet weak var lblTotalTicketPrice :DropDown!
     
     //MARK: - Variables
+    let viewModel = EventBookingTicketOnApplyCouponViewModel()
     var isCheckedTerm_COndition = false
-    var isAccessCodeAvailable = false 
-    
+    var isAccessCodeAvailable = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +74,15 @@ extension EventBookingTicketOnApplyCouponVC {
         }
         self.txtAccessCode.delegate = self
         self.txtAccessCode.autocorrectionType = .no
+        
+        self.setData()
      }
-    func setUi() {
+    
+    func setData(){
+        self.lblTotalTicketPrice.text = self.viewModel.totalTicketPrice
+    }
+    
+    func setUi(){
         self.lblAcceptedTermCon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -119,19 +128,25 @@ extension EventBookingTicketOnApplyCouponVC {
    func btnContinueAction() {
        let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
        self.navigationController?.pushViewController(view, animated: true)
-//       let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
-//       self.navigationController?.pushViewController(view!, animated: true)
+       
+//       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+//           view.totalTicketPrice = self.viewModel.totalTicketPrice
+//           view.feeStructure = self.viewModel.feeStructure
+//           self.navigationController?.pushViewController(view, animated: true)
+//       }
     }
     func btnAppliedCodeAction() {
          
      }
-    
-    func btnCheckTermConditionAction() {
-        if isCheckedTerm_COndition == false {
-            isCheckedTerm_COndition = true
+
+    func btnCheckTermConditionAction(){
+        if viewModel.isCheckedTerm_COndition == false
+        {
+            viewModel.isCheckedTerm_COndition = true
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
-        } else {
-            isCheckedTerm_COndition = false
+        }
+        else {
+            viewModel.isCheckedTerm_COndition = false
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         

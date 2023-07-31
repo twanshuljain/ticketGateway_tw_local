@@ -20,8 +20,10 @@ final class HomeDashBoardViewModel {
     //MARK: - Variables
     var arrEventDataa : [[GetEventModel]] = [[GetEventModel]]()
     var arrEventData1 : [GetEventModel] = [GetEventModel]()
+    var arrSearchCategoryData = [GetEventModel]()
     var arrEventData = GetEvent()
     var arrEventCategory = [EventCategories]()
+    var dispatchGroup = DispatchGroup.init()
     var dispatchGroup1 = DispatchGroup.init()
     var dispatchGroup2 = DispatchGroup.init()
     var dispatchGroup3 = DispatchGroup.init()
@@ -38,7 +40,7 @@ final class HomeDashBoardViewModel {
     var arrDataaUpcoming = [GetEventModel]()
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension HomeDashBoardViewModel {
     
     func GetEventApi(complition: @escaping (Bool,String) -> Void ) {
@@ -91,6 +93,36 @@ extension HomeDashBoardViewModel {
         }
     }
     
+    
+    func getEventAsPerLocation(category:String? = "", countryName:String? = "", sortBy:SortBy? = .None, complition: @escaping (Bool,String) -> Void ) {
+       // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
+        let parameters =  GetEventSearchByCategoryRequest(countryName: countryName)
+        
+        APIHandler.shared.executeRequestWith(apiName: .GetEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+            switch result {
+            case .success(let response):
+                defer { self.dispatchGroup.leave() }
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let categorySearchData = response.data {
+                            self.arrSearchCategoryData = categorySearchData
+                            print("----------------",self.arrSearchCategoryData)
+                            if categorySearchData.count != 0{
+                                self.arrEventCategory.append(.nearByLocation)
+                            }
+                        }
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                defer { self.dispatchGroup.leave() }
+                complition(false,"\(error)")
+            }
+        }
+    }
     func getEventApiForWeekendEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let parameters = viewAll == false ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.weekend.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in

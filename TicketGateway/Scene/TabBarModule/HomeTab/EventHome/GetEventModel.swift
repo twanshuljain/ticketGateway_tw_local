@@ -9,6 +9,7 @@ import UIKit
 
 
 enum EventCategories:String{
+    case nearByLocation = "Events Near Toronto"
     case weekend = "This Weekend"
     case online = "Online Events"
     case popular = "Popular Events"

@@ -43,6 +43,8 @@ public enum APIName: String {
     
     case GetTicketList = "events/ticket-list/"
     case getAddOnList = "events/ticket-add-on-list/"
+    
+    case GetFeeStructure = "default/data/fee/structure/get/"
 }
 public enum GroupApiName: String {
     case auth = "auth"
@@ -65,6 +67,10 @@ class APIHandler: NSObject {
         var finalURL = baseURL + apiName.rawValue
         
         if methodType == .GET{
+            if let URL = getURL, URL != ""  {
+                finalURL = baseURL + URL
+            }
+        }else if methodType == .POST && parameters == nil{
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }

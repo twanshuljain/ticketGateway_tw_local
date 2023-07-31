@@ -62,3 +62,17 @@ struct EventTicket: Codable {
         case allowPerTicket = "allow_per_ticket"
     }
 }
+
+
+// MARK: - FeeStructure
+struct FeeStructure: Codable {
+    var serviceFees: Int?
+    var processingFees: String?
+    var facilityFees: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case serviceFees = "service_fees"
+        case processingFees = "processing_fees"
+        case facilityFees = "facility_fees"
+    }
+}
