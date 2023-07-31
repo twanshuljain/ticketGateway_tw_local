@@ -10,7 +10,7 @@
 // swiftlint: disable line_length
 // swiftlint: disable identifier_name
 // swiftlint: disable function_parameter_count
-
+// swiftlint: disable trailing_whitespace
 import UIKit
 
 class EventBookingTicketOnApplyCouponVC: UIViewController {
@@ -21,7 +21,6 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblEventTicketTypes: TicketTypeListTableView!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
- 
     @IBOutlet weak var lblFewTIcketleft: UILabel!
     @IBOutlet weak var lblClickingonCOntinue: UILabel!
     
@@ -37,9 +36,13 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var lblAccessCode: UILabel!
     @IBOutlet weak var lblonAppliedAccessCodeValidation: UILabel!
     @IBOutlet weak var lblAppliedAccessCodeDIs: UILabel!
+    @IBOutlet weak var btnDown: UIButton!
+    @IBOutlet weak var accesCodeViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var accesCodeStackView: UIStackView!
     
     //MARK: - Variables
     var isCheckedTerm_COndition = false
+    var isAccessCodeAvailable = false 
     
     
     override func viewDidLoad() {
@@ -64,13 +67,13 @@ extension EventBookingTicketOnApplyCouponVC {
           self.navigationView.delegateBarAction = self
         self.tblEventTicketTypes.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblHeight.constant = self.tblEventTicketTypes.contentSize.height
-        [self.btnContinue,self.btnAppliedCode,btnCheckTermCondition].forEach {
+        [self.btnContinue, self.btnAppliedCode, self.btnCheckTermCondition, self.btnDown].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.txtAccessCode.delegate = self
         self.txtAccessCode.autocorrectionType = .no
      }
-    func setUi(){
+    func setUi() {
         self.lblAcceptedTermCon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -106,31 +109,50 @@ extension EventBookingTicketOnApplyCouponVC {
             self.btnAppliedCodeAction()
         case btnCheckTermCondition :
             self.btnCheckTermConditionAction()
+        case btnDown:
+            self.btnDownAction()
         default:
             break
         }
     }
     
    func btnContinueAction() {
-       let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
-       self.navigationController?.pushViewController(view!, animated: true)
+       let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
+       self.navigationController?.pushViewController(view, animated: true)
+//       let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
+//       self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnAppliedCodeAction() {
          
      }
     
-    func btnCheckTermConditionAction(){
-        if isCheckedTerm_COndition == false
-        {
+    func btnCheckTermConditionAction() {
+        if isCheckedTerm_COndition == false {
             isCheckedTerm_COndition = true
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
-        }
-        else {
+        } else {
             isCheckedTerm_COndition = false
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         
     }
+    
+    func btnDownAction() {
+        
+        if isAccessCodeAvailable {
+            accesCodeViewHeight.constant = 300
+            accesCodeStackView.isHidden = false
+           // isAccessCodeAvailable = false
+            btnDown.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
+        } else {
+            accesCodeViewHeight.constant = 40
+            accesCodeStackView.isHidden = true
+//            isAccessCodeAvailable = true
+            btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
+        }
+        isAccessCodeAvailable = !isAccessCodeAvailable
+    }
+   
 }
 
 // MARK: - TextField Delegate

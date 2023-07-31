@@ -37,12 +37,5 @@ class CustomStepper: UIView {
             let nib = UINib(nibName: nibName, bundle: nil)
             return nib.instantiate(withOwner: self, options: nil).first as? UIView
         }
-    
-    
-    
-        
    
-
-    
-    
 }

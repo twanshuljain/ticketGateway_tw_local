@@ -14,11 +14,7 @@
 import UIKit
 import SideMenu
 import SVProgressHUD
-
-
-
 class HomeVC: UIViewController{
-    
     //MARK: - IBOutlets
     @IBOutlet weak var heightOfCollectionView: NSLayoutConstraint!
     @IBOutlet weak var heightOfNearOrganisedEvent: NSLayoutConstraint!
@@ -28,9 +24,7 @@ class HomeVC: UIViewController{
     @IBOutlet weak var tblEvents: EventsOrganizesListTableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var collvwSuggestedOrganisation: suggestedOrganizerList!
-    
-    
-    //MARK: - Variables
+      //MARK: - Variables
     var isMenuOpened:Bool = false
     var viewModel = HomeDashBoardViewModel()
     

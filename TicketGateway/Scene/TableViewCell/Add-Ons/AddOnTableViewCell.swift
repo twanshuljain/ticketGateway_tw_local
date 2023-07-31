@@ -10,15 +10,12 @@ import iOSDropDown
 
 class AddOnTableViewCell: UITableViewCell {
 
-//MARK: - Variables
+// MARK: - Variables
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
-    @IBOutlet weak var btnDropDown: UIButton!
-    @IBOutlet weak var toggle: UISwitch!
-    @IBOutlet weak var bgTextView: UIView!
-    @IBOutlet weak var txtSelect: DropDown!
     @IBOutlet weak var btnInfo: UIButton!
+    @IBOutlet weak var vwStepper: CustomStepper!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,11 +34,8 @@ class AddOnTableViewCell: UITableViewCell {
         self.lblTitle.textColor = UIColor.setColor(colorType: .lightBlack)
         self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.toggle.onTintColor = UIColor.setColor(colorType: .tgBlue)
-        self.txtSelect.font = UIFont.setFont(fontType: .regular, fontSize:   .fourteen)
-        self.txtSelect.textColor = UIColor.setColor(colorType: .lblTextPara)
-
-
     }
+    
+     
   
 }

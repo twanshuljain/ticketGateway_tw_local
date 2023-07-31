@@ -270,37 +270,9 @@ extension CostumeFrontLineViewController: UITableViewDelegate, UITableViewDataSo
         cell.imgImage.image = UIImage(named: data)
         cell.lblTitle.text = "T-shirt"
         cell.lblPrice.text = "$ 0.00"
-        cell.toggle.tag = indexPath.row
-       cell.toggle.addTarget(self, action: #selector(switchPressed(sender:)), for: .touchUpInside)
-        cell.btnDropDown.tag = indexPath.row
-        cell.btnDropDown.addTarget(self, action: #selector(dropDownBtn(sender:)), for: .touchUpInside)
-        cell.txtSelect.delegate = self
-        cell.txtSelect.optionArray = ["Jan", "Feb", "Mar","April"]
-        cell.txtSelect.optionIds = [1,23,54,22]
-        cell.txtSelect.didSelect{(selectedText , index ,id) in
-            cell.txtSelect.text = "\(selectedText)"
-            
-        }
-        
-        return cell
+         return cell
     }
-    
-    @objc func dropDownBtn(sender: UIButton){
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = addOnTableView.cellForRow(at: indexPath) as! AddOnTableViewCell
-        cell.txtSelect.showList()
-    }
-    
-    @objc func switchPressed(sender: UISwitch) {
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = addOnTableView.cellForRow(at: indexPath) as! AddOnTableViewCell
-        if sender.isOn {
-            cell.bgTextView.isHidden = false
-        } else {
-            cell.bgTextView.isHidden = true
-        }
-    }
-  
+   
 }
 
 //MARK: - CostumeTableViewCellProtocol

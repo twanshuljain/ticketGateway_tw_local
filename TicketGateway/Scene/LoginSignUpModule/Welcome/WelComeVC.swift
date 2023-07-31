@@ -51,7 +51,7 @@ extension WelComeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         if self.viewModel.arrSliderImages.count-1 == indexPath.row || indexPath.row == 0 {
             cell.btnSkip.isHidden = true
         } else {
-            cell.btnSkip.isHidden = true
+            cell.btnSkip.isHidden = false
         }
         return cell
     }

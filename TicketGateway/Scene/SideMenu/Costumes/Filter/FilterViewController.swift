@@ -38,7 +38,7 @@ extension FilterViewController{
         self.tblFilterSection.reloadData()
         self.tblFilterSelectedSection.reloadData()
         //lblImageCollectionHeader.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        //lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .TGBlack)
+        //lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .tgBlack)
         self.updateUI()
     }
     

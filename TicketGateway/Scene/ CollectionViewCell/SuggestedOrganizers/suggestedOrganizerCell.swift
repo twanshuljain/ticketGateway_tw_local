@@ -30,7 +30,7 @@ class suggestedOrganizerCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setData(organizerDetail:Organizers){
+    func setData(organizerDetail: Organizers){
         self.lblName.text = organizerDetail.name ?? ""
         self.lblFollowers.text = "\(organizerDetail.followers ?? 0) followers "
         

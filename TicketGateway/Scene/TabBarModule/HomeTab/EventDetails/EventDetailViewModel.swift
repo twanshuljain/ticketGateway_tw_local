@@ -28,8 +28,8 @@ final class EventDetailViewModel{
 
 extension EventDetailViewModel{
     func GetEventDetailApi(complition: @escaping (Bool,String) -> Void ) {
-        let url = APIName.getEventDetail.rawValue + "\(eventId ?? 0)"  + "/"
-        APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+        let url = APIName.GetEventDetail.rawValue + "\(eventId ?? 0)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -51,8 +51,8 @@ extension EventDetailViewModel{
     
     func GetEventSuggestedCategory(categoryId:Int?, complition: @escaping (Bool,String) -> Void ) {
         if let suggestedEventCategoryId = categoryId{
-            let url = APIName.getEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"
-            APIHandler.shared.executeRequestWith(apiName: .getEventSuggestedCategoryList, parameters: EmptyModel?.none, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+            let url = APIName.GetEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"
+            APIHandler.shared.executeRequestWith(apiName: .GetEventSuggestedCategoryList, parameters: EmptyModel?.none, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
                 switch result {
                 case .success(let response):
                     if response.status_code == 200 {

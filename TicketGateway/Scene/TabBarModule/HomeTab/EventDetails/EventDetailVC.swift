@@ -3,6 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 05/05/23.
+//
 // swiftlint: disable file_length
 // swiftlint: disable type_body_length
 // swiftlint: disable force_cast
@@ -10,7 +11,10 @@
 // swiftlint: disable line_length
 // swiftlint: disable identifier_name
 // swiftlint: disable function_parameter_count
-
+// swiftlint: disable type_name
+// swiftlint: disable trailing_whitespace
+// swiftlint: disable comment_spacing
+// swiftlint: disable opening_brace
 import UIKit
 import iOSDropDown
 import AdvancedPageControl
@@ -19,7 +23,8 @@ import SDWebImage
 import EventKitUI
 
 class EventDetailVC: UIViewController, UITextFieldDelegate{
-    // MARK: - IBOutlets
+    
+    //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageConrtrolEventImages: AdvancedPageControlView!
     @IBOutlet weak var collvwEventImages: UICollectionView!
@@ -58,7 +63,6 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnSelectLocationAccordingToDate: UIButton!
     @IBOutlet weak var btnSelectDate: UIButton!
     @IBOutlet weak var lblEventDate: UILabel!
-    var viewModel = EventDetailViewModel()
     @IBOutlet weak var vwSelectDateView: UIView!
     @IBOutlet weak var vwSelectLocationView: UIView!
     @IBOutlet weak var vwSelectLocationAndDateView: UIView!
@@ -77,9 +81,9 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     }
 }
 
-// MARK: - Functions
+//MARK: - Functions
 extension EventDetailVC {
-    func setUp() {
+    func setUp(){
         self.setUi()
         self.collvwEventImages.reloadData()
         self.txtDate.delegate = self
@@ -87,7 +91,7 @@ extension EventDetailVC {
         self.collVwTags.configure()
         self.tblSuggestedEvent.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.EventDetail)
         self.tblSuggestedEvent.tableDidSelectAtIndex = { index in
-            if self.viewModel.arrEventData.indices.contains(index.row) {
+            if self.viewModel.arrEventData.indices.contains(index.row){
                 self.viewModel.eventId = self.viewModel.arrEventData[index.row].event?.id
                 self.funcCallApi()
                 self.setUp()
@@ -101,11 +105,13 @@ extension EventDetailVC {
         self.navigationView.delegateBarAction = self
         self.navigationView.btnRight.isHidden = false
         self.navigationView.btnSecRight.isHidden = false
+        self.navigationView.btnRight.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
         btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
+        
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
@@ -114,7 +120,8 @@ extension EventDetailVC {
         btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
         btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
         btnBookTickets.addLeftIcon(image: UIImage(named: "ticketBlack"))
-        [self.btnFollowing,self.btnReadMore,self.btnAddToCalender,self.btnBookTickets,btnSelectDate,btnSelectLocationAccordingToDate].forEach {
+        [self.btnFollowing, self.btnReadMore, self.btnAddToCalender, self.btnShowMap,
+         self.btnBookTickets, self.btnSelectDate, self.btnSelectLocationAccordingToDate].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.toSetPageControll()
@@ -192,6 +199,7 @@ extension EventDetailVC {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfSuggestedOrganisedEvent.constant = tblSuggestedEvent.contentSize.height
+        
     }
     
     func setUi(){
@@ -294,16 +302,15 @@ extension EventDetailVC {
         switch sender {
         case btnBookTickets:
             self.btnBookTicket()
-        case btnReadMore :
+        case btnReadMore:
             self.addToCalenAction()
-        case btnShowMap :
-            self.addToCalenAction()
+        case btnShowMap:
+            self.btnShowMapAction()
         case btnAddToCalender:
-            //break
             self.addToCalenAction()
-        case btnSelectDate :
+        case btnSelectDate:
             self.txtDate.showList()
-        case btnSelectLocationAccordingToDate :
+        case btnSelectLocationAccordingToDate:
             self.txtLocation.showList()
         default:
             break
@@ -314,27 +321,28 @@ extension EventDetailVC {
         store.requestAccess(to: .event, completion: { sucess, err in
             if sucess, err == nil {
                 DispatchQueue.main.async {
+                    let eventDetail = self.viewModel.eventDetail
                     let newEvent = EKEvent(eventStore: self.store)
-                    newEvent.title = "New event"
-                    newEvent.startDate = Date()
-                    newEvent.endDate = Date()
-                    
+                    newEvent.title = eventDetail?.event?.title
+                    newEvent.startDate = Date() //eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom().getDateFormattedDateFromString()
+                    newEvent.endDate = Date() //eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFrom().getDateFormattedDateFromString()
+                    newEvent.calendar = self.store.defaultCalendarForNewEvents
+
                     let vc = EKEventViewController()
                     vc.delegate = self
                     vc.event = newEvent
                     let navVC = UINavigationController(rootViewController: vc)
                     self.present(navVC, animated: true)
-                    
                 }
+            }  else {
             }
             
         })
         
+        
     }
     
     func btnBookTicket() {
-        let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC
-        self.navigationController?.pushViewController(view!, animated: true)
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
@@ -342,9 +350,35 @@ extension EventDetailVC {
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
+    
+    func btnShowMapAction() {
+        let view = createView(storyboard: .home, storyboardID: .EventMapVC) as! EventMapVC
+        let eventLocation = self.viewModel.eventDetail?.eventLocation
+        print("---------", eventLocation?.latitude)
+        print("---------", eventLocation?.longitude)
+        view.latitude =  eventLocation?.latitude ?? 00.0
+        view.longitude =  eventLocation?.longitude ?? 00.0
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+
+    @objc func btnShareAction(_ sender: UIButton) {
+//        let text = "This is some text that I want to share."
+//        let textToShare = [ text ]
+        let image = UIImage(named: "Image")
+        let imageToShare = [ image! ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+
 }
 
-//MARK: - PageControl
+// MARK: - PageControl
 extension EventDetailVC {
     func toSetPageControll() {
         pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
@@ -363,25 +397,31 @@ extension EventDetailVC {
     }
 }
 
-//MARK:- UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
-extension EventDetailVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+//MARK: - UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         var imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
-        if imgCount == 0 {
-            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil {
+        if imgCount == 0{
+            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil{
                 return 1
             }
             return 0
-        } else {
+        }else{
             return imgCount
         }
+        
+        
+        
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventImageCell", for: indexPath) as! EventImageCell
         cell.setData(index: indexPath.row, eventDetail: self.viewModel.eventDetail)
@@ -392,9 +432,11 @@ extension EventDetailVC: UICollectionViewDataSource, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
 }
 //MARK: - EKEventViewDelegate
 extension EventDetailVC: EKEventViewDelegate {
@@ -407,8 +449,9 @@ extension EventDetailVC: EKEventViewDelegate {
 
 
 //MARK: - NavigationBarViewDelegate
-extension EventDetailVC: NavigationBarViewDelegate {
+extension EventDetailVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
- }
+    
+}
