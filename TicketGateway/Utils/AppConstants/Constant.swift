@@ -49,6 +49,8 @@ enum StoryboardIdentifier: String {
     case ViewMoreEventsVC
     case EventBookingTicketVC
     case EventBookingTicketOnApplyCouponVC
+    case EventPromoCodeVC
+    case EventMapVC
     case EventBookingTicketAddOnsVC
     case EventBookingOrderSummaryVC
     case EventBookingPaymentMethodVC

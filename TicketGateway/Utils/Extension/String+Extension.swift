@@ -35,7 +35,7 @@ extension String {
     }
     
     
-    func getDateFormattedFrom() -> String{
+    func getDateFormattedFrom() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
@@ -47,7 +47,7 @@ extension String {
         return dateString
     }
     
-    func getDateFormattedFromTo() -> String{
+    func getDateFormattedFromTo() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
@@ -72,4 +72,18 @@ extension String {
         return dateString
     }
     
+    func getDateFormattedDateFromString() -> Date {
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "MMM d"
+        let date = dateFormatter.date(from: self)!
+        dateFormatter.dateFormat = "MMM d"
+        dateFormatter.locale = tempLocale // reset the locale
+        let dateString = dateFormatter.string(from: date)
+        let mainDate = dateFormatter.date(from: dateString) ?? Date()
+        return mainDate
+    }
+    
+   
 }

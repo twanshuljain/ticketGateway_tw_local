@@ -25,6 +25,8 @@
 		180A07F929ED7D990088C03A /* TabBar_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A07F829ED7D990088C03A /* TabBar_VC.swift */; };
 		180A07FB29ED83FB0088C03A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A07FA29ED83FB0088C03A /* HomeVC.swift */; };
 		180BA5002A5FDC6200639651 /* ViewMoreEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BA4FF2A5FDC6200639651 /* ViewMoreEventsViewModel.swift */; };
+		1817A8162A712EFF00278512 /* EventPromoCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */; };
+		1817A8182A725A2F00278512 /* EventMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817A8172A725A2F00278512 /* EventMapVC.swift */; };
 		181EBF102A31C64D0044C734 /* Pods_TicketGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5A94928E066BE89280A148 /* Pods_TicketGateway.framework */; };
 		1821FDE22A30A80800BD4AB6 /* RefundOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDE12A30A80800BD4AB6 /* RefundOptionsVC.swift */; };
 		1821FDE42A30A86D00BD4AB6 /* ReviewRefundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDE32A30A86D00BD4AB6 /* ReviewRefundVC.swift */; };
@@ -147,6 +149,7 @@
 		188CE1B32A1367EA00BCEC76 /* TicketAddInOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CE1B12A1367EA00BCEC76 /* TicketAddInOrderCell.swift */; };
 		188CE1B42A1367EA00BCEC76 /* TicketAddInOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188CE1B22A1367EA00BCEC76 /* TicketAddInOrderCell.xib */; };
 		188CE1BE2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */; };
+		188D48192A73A86500ED2D5E /* OrganizersandArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */; };
 		1892EE1C29E5492300AD7CC7 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1B29E5492300AD7CC7 /* UIView+Extension.swift */; };
 		1892EE1E29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1D29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift */; };
 		1892EE2029E54A7900AD7CC7 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1F29E54A7900AD7CC7 /* LoginVC.swift */; };
@@ -427,6 +430,8 @@
 		180A07F829ED7D990088C03A /* TabBar_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar_VC.swift; sourceTree = "<group>"; };
 		180A07FA29ED83FB0088C03A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		180BA4FF2A5FDC6200639651 /* ViewMoreEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsViewModel.swift; sourceTree = "<group>"; };
+		1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeVC.swift; sourceTree = "<group>"; };
+		1817A8172A725A2F00278512 /* EventMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapVC.swift; sourceTree = "<group>"; };
 		1821FDE12A30A80800BD4AB6 /* RefundOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundOptionsVC.swift; sourceTree = "<group>"; };
 		1821FDE32A30A86D00BD4AB6 /* ReviewRefundVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRefundVC.swift; sourceTree = "<group>"; };
 		1821FDE52A30A90F00BD4AB6 /* ReviewRefundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRefundTableViewCell.swift; sourceTree = "<group>"; };
@@ -541,6 +546,7 @@
 		188CE1B12A1367EA00BCEC76 /* TicketAddInOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketAddInOrderCell.swift; sourceTree = "<group>"; };
 		188CE1B22A1367EA00BCEC76 /* TicketAddInOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketAddInOrderCell.xib; sourceTree = "<group>"; };
 		188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingPaymentMethodVC.swift; sourceTree = "<group>"; };
+		188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizersandArtistViewModel.swift; sourceTree = "<group>"; };
 		1892EE1B29E5492300AD7CC7 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1892EE1D29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeLoginSignupVC.swift; sourceTree = "<group>"; };
 		1892EE1F29E54A7900AD7CC7 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -1290,6 +1296,8 @@
 			isa = PBXGroup;
 			children = (
 				18506D092A4412C200C3C64B /* Home.storyboard */,
+				1817A8172A725A2F00278512 /* EventMapVC.swift */,
+				1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -1586,6 +1594,7 @@
 			children = (
 				1861A2C92A44302600E13A5D /* MyFollowers */,
 				18FBC09D2A309238002CF129 /* Organizers_Artists_ListVC.swift */,
+				188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */,
 			);
 			path = Artists;
 			sourceTree = "<group>";
@@ -3069,8 +3078,10 @@
 				18FBC0CA2A309239002CF129 /* ManageSellTicketVC.swift in Sources */,
 				188A68042A0CF6EE00987BAD /* CustomStepper.swift in Sources */,
 				18F6F74529E982F5007B9513 /* OtpEmailVC.swift in Sources */,
+				188D48192A73A86500ED2D5E /* OrganizersandArtistViewModel.swift in Sources */,
 				18B2B22B2A04F2B9001DF3E5 /* EventCalenderCell.swift in Sources */,
 				185981392A2085A800ABDC51 /* MKGradientGenerator.swift in Sources */,
+				1817A8182A725A2F00278512 /* EventMapVC.swift in Sources */,
 				180187522A1B4486003308AE /* EventSearchCategoryCollectionList.swift in Sources */,
 				1892EE2229E54A8C00AD7CC7 /* SignUpVC.swift in Sources */,
 				18FBC0B92A309239002CF129 /* ManageOrderTableViewCell.swift in Sources */,
@@ -3132,6 +3143,7 @@
 				1861A2E72A447D7100E13A5D /* UIImage+Extension.swift in Sources */,
 				188B4D232A2878330048C3DB /* EventImageCell.swift in Sources */,
 				18717F902A2A1BE9002F36BC /* ExchangeTicketVC.swift in Sources */,
+				1817A8162A712EFF00278512 /* EventPromoCodeVC.swift in Sources */,
 				1861A2E12A4455D800E13A5D /* ManageSellAddBuyerViewModel.swift in Sources */,
 				18FBC0C22A309239002CF129 /* ManageEventEditProfileVC.swift in Sources */,
 				18FBC0DB2A309239002CF129 /* ManageMyEventCategoryCell.swift in Sources */,

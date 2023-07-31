@@ -73,8 +73,10 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
                         self.tblEvents.reloadData()
                     }
                 } else {
-                    SVProgressHUD.dismiss()
-                    self.showToast(message: showMessage)
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: showMessage)
+                    }
                 }
             })
         } else {

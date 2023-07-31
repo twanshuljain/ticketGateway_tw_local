@@ -14,6 +14,7 @@
 
 import UIKit
 import SideMenu
+import SVProgressHUD
 
 class Organizers_Artists_ListVC: UIViewController {
 
@@ -22,20 +23,23 @@ class Organizers_Artists_ListVC: UIViewController {
     @IBOutlet weak var btnSeeAllForSuggested: CustomButtonNormal!
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var btnSeeAll: CustomButtonNormal!
-    @IBOutlet weak var collVwTrending_Artists: suggestedOrganizerList!
+    @IBOutlet weak var collVwTrending_Artists: UICollectionView!
      @IBOutlet weak var tblSuggestedOrag_Art: UITableView!
     @IBOutlet weak var navigationView: NavigationBarView!
 
     // MARK: - Variable
     let viewModel = LoginNmberWithEmailViewModel()
+    let viewModelForOrganniser = OrganizersandArtistViewModel()
+    var organiserData = [Organizers]()
     let nameFormatter = PersonNameComponentsFormatter()
     var isFrom = ""
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        // Do any additional setup after loading the view.
+        collVwTrending_Artists.delegate = self
+        collVwTrending_Artists.dataSource = self
+        collVwTrending_Artists.register(UINib(nibName: "suggestedOrganizerCell", bundle: nil), forCellWithReuseIdentifier: "suggestedOrganizerCell")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -53,6 +57,37 @@ class Organizers_Artists_ListVC: UIViewController {
 
 // MARK: - Functions
 extension Organizers_Artists_ListVC {
+    
+    func callApiForOrganizersList(viewAll:Bool){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            SVProgressHUD.show()
+            viewModelForOrganniser.getOrganizersList { isTrue, messageShowToast in
+                if isTrue == true {
+                    SVProgressHUD.dismiss()
+                    DispatchQueue.main.async { [self] in
+                        
+                        self.collVwTrending_Artists.reloadData()
+                        
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    
+    
+
+    
     private func setup() {
         [self.btnSeeAll,btnSeeAllForSuggested].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -61,9 +96,9 @@ extension Organizers_Artists_ListVC {
         self.tblSuggestedOrag_Art.dataSource = self
         self.tblSuggestedOrag_Art.delegate = self
         self.tblSuggestedOrag_Art.reloadData()
-        self.collVwTrending_Artists.configure()
+       // self.collVwTrending_Artists.configure()
+        self.callApiForOrganizersList(viewAll: false)
         self.navigationView.delegateBarAction = self
-       
         self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
@@ -151,7 +186,7 @@ extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "Organizers_Artists_ListCell", for: indexPath) as? Organizers_Artists_ListCell)!
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "Organizers_Artists_ListCell", for: indexPath) as! Organizers_Artists_ListCell)
 //        let obj = self.viewModel.arrMail[indexPath.row]
 //        cell.lblName.text = obj.name
 //        cell.lblFollowers.text = obj.email
@@ -174,28 +209,41 @@ extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource 
 }
 
 // MARK: - UICollectionViewDataSource,UICollectionViewDelegate
-extension Organizers_Artists_ListVC : UICollectionViewDataSource ,UICollectionViewDelegate {
-    
+extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    
+
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 4
+        return viewModelForOrganniser.arrOrganizersListSideMenu?.count ?? 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestedOrganizerCell", for: indexPath)
-        // Configure the cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestedOrganizerCell", for: indexPath) as! suggestedOrganizerCell
+        if let data = viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row]{
+            cell.setData(organizerDetail: data)
+        }
         return cell
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize.init(width: collectionView.bounds.width/1.7, height: collectionView.bounds.height)
+    }
+     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let view = createView(storyboard: .profile, storyboardID: .ManageEventProfileVC)
+        self.navigationController?.pushViewController(view, animated: true)
+    }
+    
 }
 
 // MARK: - NavigationBarViewDelegate
-extension Organizers_Artists_ListVC : NavigationBarViewDelegate {
+extension Organizers_Artists_ListVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
