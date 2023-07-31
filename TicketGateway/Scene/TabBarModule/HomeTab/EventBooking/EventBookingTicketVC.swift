@@ -30,7 +30,6 @@ class EventBookingTicketVC: UIViewController {
     @IBOutlet weak var parentView: UIView!
     
     //MARK: - Variables
-    var isCheckedTerm_COndition = false
     var viewModel = EventBookingTicketViewModel()
     
     override func viewDidLoad() {
@@ -46,7 +45,7 @@ class EventBookingTicketVC: UIViewController {
 //MARK: - Functions
 extension EventBookingTicketVC {
     private func setup() {
-        self.isCheckedTerm_COndition = false
+        self.viewModel.isCheckedTerm_COndition = false
         self.setUi()
         self.tblEventTicketTypes.configure()
         self.tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
@@ -163,13 +162,13 @@ extension EventBookingTicketVC {
     }
     
     func btnCheckTermConditionAction(){
-        if isCheckedTerm_COndition == false
+        if viewModel.isCheckedTerm_COndition == false
         {
-            isCheckedTerm_COndition = true
+            viewModel.isCheckedTerm_COndition = true
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         }
         else {
-            isCheckedTerm_COndition = false
+            viewModel.isCheckedTerm_COndition = false
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         

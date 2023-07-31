@@ -19,4 +19,5 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var isCheckedTerm_COndition = false
     var totalTicketPrice = ""
     var feeStructure:FeeStructure?
+    var isAccessCodeAvailable = false
 }

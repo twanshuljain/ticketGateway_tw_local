@@ -1414,9 +1414,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
+                        <outlet property="accesCodeStackView" destination="DPX-yK-8jU" id="Tot-fF-XYw"/>
+                        <outlet property="accesCodeViewHeight" destination="OTU-LS-DJA" id="33j-Fj-Yj2"/>
                         <outlet property="btnAppliedCode" destination="lac-RW-EOa" id="GEM-1y-PUM"/>
                         <outlet property="btnCheckTermCondition" destination="84t-Za-ZOk" id="uWH-gS-1qw"/>
                         <outlet property="btnContinue" destination="T1g-Z6-0Ym" id="61y-AJ-ELj"/>
+                        <outlet property="btnDown" destination="Nlb-d1-YjL" id="Idm-ax-fvi"/>
                         <outlet property="imgApplyAccessCode" destination="Mcd-Gk-NPR" id="coY-1n-GiA"/>
                         <outlet property="lblAcceptedTermCon" destination="ecW-jx-dyF" id="d00-Ik-QUw"/>
                         <outlet property="lblAccessCode" destination="j6T-4v-mop" id="LxH-d6-etA"/>
@@ -4476,10 +4479,10 @@ TicketGateway fee is non refundable.</string>
             </objects>
             <point key="canvasLocation" x="4931" y="202"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Promo CodeVC-->
         <scene sceneID="J2J-0z-c1v">
             <objects>
-                <viewController id="Pcc-4z-9Nr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventPromoCodeVC" id="Pcc-4z-9Nr" customClass="EventPromoCodeVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HEv-dp-QQZ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4732,10 +4735,10 @@ TicketGateway fee is non refundable.</string>
             </objects>
             <point key="canvasLocation" x="3574.8091603053435" y="1272.5352112676057"/>
         </scene>
-        <!--View Controller-->
+        <!--Event MapVC-->
         <scene sceneID="Oxj-BU-d0X">
             <objects>
-                <viewController id="gG1-pQ-aOZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventMapVC" id="gG1-pQ-aOZ" customClass="EventMapVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mq3-HN-upX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

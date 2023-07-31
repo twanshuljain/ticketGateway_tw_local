@@ -44,8 +44,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     
     //MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
-    var isCheckedTerm_COndition = false
-    var isAccessCodeAvailable = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,7 +153,7 @@ extension EventBookingTicketOnApplyCouponVC {
     
     func btnDownAction() {
         
-        if isAccessCodeAvailable {
+        if viewModel.isAccessCodeAvailable {
             accesCodeViewHeight.constant = 300
             accesCodeStackView.isHidden = false
            // isAccessCodeAvailable = false
@@ -165,7 +164,7 @@ extension EventBookingTicketOnApplyCouponVC {
 //            isAccessCodeAvailable = true
             btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
         }
-        isAccessCodeAvailable = !isAccessCodeAvailable
+        viewModel.isAccessCodeAvailable = !viewModel.isAccessCodeAvailable
     }
    
 }

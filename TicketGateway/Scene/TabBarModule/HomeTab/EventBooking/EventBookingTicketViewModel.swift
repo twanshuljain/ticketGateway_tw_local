@@ -18,6 +18,7 @@ import Foundation
 
 final class EventBookingTicketViewModel{
     //MARK: - Variables
+    var isCheckedTerm_COndition = false
     var ticketId = ""
     var eventDetail:EventDetail?
     var arrTicketList : [EventTicket]?
