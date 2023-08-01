@@ -21,14 +21,12 @@ class EventBookingTicketAddOnsVC: UIViewController {
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblAddOn: UITableView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
-    
+    @IBOutlet weak var parentView:UIView!
     
     // MARK: - Variables
-    var addOnTableData = ["Tshirt_ip", "Tshirt_ip", "Tshirt_ip", "Tshirt_ip"]
+   
     let viewModel = EventTiclketAddOnViewModel()
-    var lblNumberOfCount = 0
-    var totalTicketPrice = ""
-    var feeStructure:FeeStructure?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,23 +41,23 @@ extension EventBookingTicketAddOnsVC {
     func callAddOnApi() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getAddOnTicketList(complition: { isTrue, showMessage in
                 if isTrue {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.tblAddOn.reloadData()
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: showMessage)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -86,7 +84,7 @@ extension EventBookingTicketAddOnsVC {
     }
     
     func setData(){
-        self.lblTotalTicketPrice.text = self.totalTicketPrice
+        self.lblTotalTicketPrice.text = "CA$ \(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
     }
 }
 
@@ -101,8 +99,9 @@ extension EventBookingTicketAddOnsVC {
         }
     }
     func btnContinueAction() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC{
-            view.viewModel.feeStructure = self.feeStructure
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.feeStructure = self.viewModel.feeStructure
             self.navigationController?.pushViewController(view, animated: true)
         }
         
@@ -139,33 +138,46 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         cell.vwStepper.btnPlus.addTarget(self, action: #selector(PlusButtonPressed), for: .touchUpInside)
         cell.vwStepper.btnMinus.addTarget(self, action: #selector(MinustButtonPressed), for: .touchUpInside)
         return cell
-        
-        
-        
-        
     }
     
-    //MARK: - OFFLINE
     @objc func PlusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
+        let data = viewModel.arrAddOnTicketList?[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
         let value =  cell.vwStepper.lblCount.text ?? ""
-        self.lblNumberOfCount = Int(value) ?? 0
-        self.lblNumberOfCount = self.lblNumberOfCount + 1
-        cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+        self.viewModel.lblNumberOfCount = Int(value) ?? 0
+        if viewModel.lblNumberOfCount < viewModel.arrAddOnTicketList?[sender.tag].addOnMaximumQuantity ?? 0 {
+            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount + 1
+            self.viewModel.eventDetail?.event?.eventTicketFinalPrice += Double(data?.addOnTicketPrice ?? 0)
+            //self.finalPrice += data?.ticketPrice ?? 0
+            cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
+//            arrAddOnTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
+//            self.selectedArrTicketList = self.arrAddOnTicketList ?? [EventTicket]()
+//
+            self.setData()
+        }
     }
-
+    
     @objc func MinustButtonPressed(_ sender: UIButton) {
-         let indexPath = IndexPath(row: sender.tag, section: 0)
+        let data = viewModel.arrAddOnTicketList?[sender.tag]
+        let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
         let value =  cell.vwStepper.lblCount.text ?? ""
-        self.lblNumberOfCount = Int(value) ?? 0
-        if self.lblNumberOfCount > 0 {
-            self.lblNumberOfCount = self.lblNumberOfCount - 1
-            cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+        self.viewModel.lblNumberOfCount = Int(value) ?? 0
+        if self.viewModel.lblNumberOfCount > 0 {
+            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount - 1
+         //   self.finalPrice -= data?.ticketPrice ?? 0
+            self.viewModel.eventDetail?.event?.eventTicketFinalPrice -= Double(data?.addOnTicketPrice ?? 0)
+            cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
+        //    arrAddOnTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
+        //    self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
+            
+          self.setData()
         } else {
             cell.vwStepper.lblCount.text = "0"
+       //     arrAddOnTicketList?[sender.tag].selectedTicketQuantity = 0
+       //     self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
         }
     }
     @objc func btnInfoAction(sender: UIButton){
@@ -193,5 +205,13 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
 extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func navigationRightButtonAction() {
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.feeStructure = self.viewModel.feeStructure
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
 }

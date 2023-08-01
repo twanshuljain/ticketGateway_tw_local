@@ -20,13 +20,13 @@ class TicketTypeListTableView: UITableView {
 
 //MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
-    var updatedPrice: ((Int) -> Void)?
+    var updatedPrice: ((Double) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
     var arrTicketList:[EventTicket]?
     var selectedArrTicketList = [EventTicket]()
 //    var maxStepperCount: Int = 10
-    var finalPrice = 0
+    var finalPrice = 0.0
     func configure() {
         self.register(UINib(nibName: "TicketTypesCell", bundle: nil), forCellReuseIdentifier: "TicketTypesCell")
         self.delegate = self
@@ -48,9 +48,9 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
             cell.setData(event: arrTicketList[indexPath.row])
         }
 
-        if  self.selectedArrTicketList.indices.contains(indexPath.row){
-            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
-        }
+//        if  self.selectedArrTicketList.indices.contains(indexPath.row){
+//            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
+//        }
         
  // MARK: - OFFLINE
 //        if indexPath.row == 0 {
@@ -132,7 +132,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         self.lblNumberOfCount = Int(value) ?? 0
         if lblNumberOfCount < arrTicketList?[sender.tag].ticketMaximumQuantity ?? 0 {
             self.lblNumberOfCount = self.lblNumberOfCount + 1
-            self.finalPrice += data?.ticketPrice ?? 0
+            self.finalPrice += Double(data?.ticketPrice ?? 0)
             //(lblNumberOfCount * (data?.ticketPrice ?? 0))
             cell.vwStepper.lblCount.text = String(lblNumberOfCount)
             arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
@@ -150,7 +150,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         self.lblNumberOfCount = Int(value) ?? 0
         if self.lblNumberOfCount > 0 {
             self.lblNumberOfCount = self.lblNumberOfCount - 1
-            self.finalPrice -= data?.ticketPrice ?? 0
+            self.finalPrice -= Double(data?.ticketPrice ?? 0)
             //(lblNumberOfCount * (data?.ticketPrice ?? 0))
             cell.vwStepper.lblCount.text = String(lblNumberOfCount)
             arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount

@@ -9,6 +9,7 @@ import Foundation
 
 final class EventBookingOrderSummaryVieModel{
     // MARK: - Variables
+    var eventDetail:EventDetail?
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""
 }

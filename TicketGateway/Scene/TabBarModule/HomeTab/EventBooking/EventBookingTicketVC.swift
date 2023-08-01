@@ -50,6 +50,7 @@ extension EventBookingTicketVC {
         self.tblEventTicketTypes.configure()
         self.tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
         self.tblEventTicketTypes.updatedPrice = { price in
+            self.viewModel.eventDetail?.event?.eventTicketFinalPrice = price
             self.lblTotalTicketPrice.text = "CA$ \(price)"
         }
         self.navigationView.delegateBarAction = self
@@ -176,6 +177,7 @@ extension EventBookingTicketVC {
     
    func btnContinueAction() {
        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
+           view.viewModel.eventDetail = self.viewModel.eventDetail
            view.viewModel.totalTicketPrice = self.lblTotalTicketPrice.text ?? ""
            view.viewModel.feeStructure = self.viewModel.feeStructure
            self.navigationController?.pushViewController(view, animated: true)

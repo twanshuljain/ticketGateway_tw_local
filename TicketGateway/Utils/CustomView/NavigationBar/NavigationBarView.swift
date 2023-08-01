@@ -16,7 +16,12 @@ import UIKit
 
 protocol NavigationBarViewDelegate {
     func navigationBackAction()
-    // optional func navigationRightButtonAction()
+    func navigationRightButtonAction()
+}
+
+extension NavigationBarViewDelegate {
+    func navigationBackAction() {}
+    func navigationRightButtonAction() {}
 }
 
 
@@ -92,7 +97,7 @@ extension NavigationBarView {
         //   delegateBarAction?.navigationRightButtonAction?()
     }
     private func btnSkipButtonClick() {
-        //   delegateBarAction?.navigationRightButtonAction?()
+        delegateBarAction?.navigationRightButtonAction()
     }
 }
 extension UIView
