@@ -22,7 +22,7 @@ class ViewMoreEventsVC: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var navigationView: NavigationBarView!
-    
+    @IBOutlet weak var parentView:UIView!
    
     var viewModel = ViewMoreEventsViewModel()
 
@@ -90,27 +90,27 @@ extension ViewMoreEventsVC{
     func funcCallApiForLocation(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getEventApiForWeekendEvents(viewAll:true,complition: { isTrue, messageShowToast in
                 
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
-                    if let itemWeekend = self.viewModel.arrData?.itemsWeekend{
+                    self.parentView.stopLoading()
+                   // if let itemWeekend = self.viewModel.arrData?.itemsWeekend{
                         DispatchQueue.main.async {
                             self.tblView.reloadData()
                         }
-                    }
+                 //   }
                     
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -120,27 +120,29 @@ extension ViewMoreEventsVC{
     func funcCallApi(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getEventApiForWeekendEvents(viewAll:true,complition: { isTrue, messageShowToast in
                 
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
-                    if let itemWeekend = self.viewModel.arrData?.itemsWeekend{
+                    self.parentView.stopLoading()
+                    self.viewModel.itemsWeekend = self.viewModel.itemsWeekend.removeDuplicates()
                         DispatchQueue.main.async {
+                            self.tblView.tableFooterView = nil
+                            self.tblView.tableFooterView?.isHidden = true
                             self.tblView.reloadData()
                         }
-                    }
+                    
                     
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -149,25 +151,28 @@ extension ViewMoreEventsVC{
     func funcCallApiForOnlineEvents(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getEventApiForOnlineEvents(viewAll:true,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
-                    if let itemsVirtual = self.viewModel.arrData?.itemsVirtual{
+                    self.parentView.stopLoading()
+                  //  if let itemsVirtual = self.viewModel.arrData?.itemsVirtual{
+                        self.viewModel.itemsVirtual = self.viewModel.itemsVirtual.removeDuplicates()
                         DispatchQueue.main.async {
+                            self.tblView.tableFooterView = nil
+                            self.tblView.tableFooterView?.isHidden = true
                             self.tblView.reloadData()
                         }
-                    }
+                   // }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -177,25 +182,28 @@ extension ViewMoreEventsVC{
     func funcCallApiForPopularEvents(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getEventApiForPopularEvents(viewAll:true,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
-                    if let itemsPopular = self.viewModel.arrData?.itemsPopular{
+                    self.parentView.stopLoading()
+                   // if let itemsPopular = self.viewModel.arrData?.itemsPopular{
+                    self.viewModel.itemsPopular = self.viewModel.itemsPopular.removeDuplicates()
                         DispatchQueue.main.async {
+                            self.tblView.tableFooterView = nil
+                            self.tblView.tableFooterView?.isHidden = true
                             self.tblView.reloadData()
                         }
-                    }
+                  //  }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -205,25 +213,28 @@ extension ViewMoreEventsVC{
     func funcCallApiForFreeEvents(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getEventApiForFreeEvents(viewAll:true,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
-                    if let itemsFree = self.viewModel.arrData?.itemsFree{
+                    self.parentView.stopLoading()
+                   // if let itemsFree = self.viewModel.arrData?.itemsFree{
+                    self.viewModel.itemsFree = self.viewModel.itemsFree.removeDuplicates()
                         DispatchQueue.main.async {
+                            self.tblView.tableFooterView = nil
+                            self.tblView.tableFooterView?.isHidden = true
                             self.tblView.reloadData()
                         }
-                    }
+                   // }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -232,25 +243,28 @@ extension ViewMoreEventsVC{
     func funcCallApiForUpcomingEvents(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            parentView.showLoading(centreToView: self.view)
             viewModel.getEventApiForUpcomingEvents(viewAll:true,complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
-                        if let itemsUpcoming = self.viewModel.arrData?.itemsUpcoming{
+                    self.parentView.stopLoading()
+                   //     if let itemsUpcoming = self.viewModel.arrData?.itemsUpcoming{
+                            self.viewModel.itemsUpcoming = self.viewModel.itemsUpcoming.removeDuplicates()
                             DispatchQueue.main.async {
+                                self.tblView.tableFooterView = nil
+                                self.tblView.tableFooterView?.isHidden = true
                                 self.tblView.reloadData()
                             }
-                        }
+                 //       }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.parentView.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -260,19 +274,62 @@ extension ViewMoreEventsVC{
     @objc func loadData() {
         // Make network call to fetch data for currentPage
         self.viewModel.currentPage += 1
-        viewModel.refreshControl.endRefreshing()
         
+        // print("this is the last cell")
+         let spinner = UIActivityIndicatorView(style: .gray)
+         spinner.startAnimating()
+         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
         switch self.viewModel.arrEventCategory[self.viewModel.index] {
         case .weekend:
-            self.funcCallApi()
+            if self.viewModel.itemsWeekend.count != self.viewModel.totalPage{
+                self.tblView.tableFooterView = spinner
+                self.tblView.tableFooterView?.isHidden = false
+                self.funcCallApi()
+            }else{
+                self.tblView.tableFooterView = nil
+                self.tblView.tableFooterView?.isHidden = true
+            }
         case .online:
-            self.funcCallApiForOnlineEvents()
+            if self.viewModel.itemsVirtual.count != self.viewModel.totalPage{
+                self.tblView.tableFooterView = spinner
+                self.tblView.tableFooterView?.isHidden = false
+                self.funcCallApiForOnlineEvents()
+            }else{
+                self.tblView.tableFooterView = nil
+                self.tblView.tableFooterView?.isHidden = true
+            }
         case .popular:
-            self.funcCallApiForPopularEvents()
+            if self.viewModel.itemsPopular.count != self.viewModel.totalPage{
+                self.tblView.tableFooterView = spinner
+                self.tblView.tableFooterView?.isHidden = false
+                self.funcCallApiForPopularEvents()
+            }else{
+                self.tblView.tableFooterView = nil
+                self.tblView.tableFooterView?.isHidden = true
+            }
+            
         case .free:
-           self.funcCallApiForFreeEvents()
+            if self.viewModel.itemsFree.count != self.viewModel.totalPage{
+                self.tblView.tableFooterView = spinner
+                self.tblView.tableFooterView?.isHidden = false
+                self.funcCallApiForFreeEvents()
+            }else{
+                self.tblView.tableFooterView = nil
+                self.tblView.tableFooterView?.isHidden = true
+            }
+            
+          
         case .upcoming:
-            self.funcCallApiForUpcomingEvents()
+            if self.viewModel.itemsUpcoming.count != self.viewModel.totalPage{
+                self.tblView.tableFooterView = spinner
+                self.tblView.tableFooterView?.isHidden = false
+                self.funcCallApiForUpcomingEvents()
+            }else{
+                self.tblView.tableFooterView = nil
+                self.tblView.tableFooterView?.isHidden = true
+            }
+            
+           
         default:
             break;
         }
@@ -284,15 +341,15 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.viewModel.arrEventCategory[self.viewModel.index] {
         case .weekend:
-            return self.viewModel.arrData?.itemsWeekend?.count ?? 0
+            return self.viewModel.itemsWeekend.count
         case .online:
-            return self.viewModel.arrData?.itemsVirtual?.count ?? 0
+            return self.viewModel.itemsVirtual.count
         case .popular:
-            return self.viewModel.arrData?.itemsPopular?.count ?? 0
+            return self.viewModel.itemsPopular.count
         case .free:
-            return self.viewModel.arrData?.itemsFree?.count ?? 0
+            return self.viewModel.itemsFree.count
         case .upcoming:
-            return self.viewModel.arrData?.itemsUpcoming?.count ?? 0
+            return self.viewModel.itemsUpcoming.count
         default:
             return 0
         }
@@ -303,28 +360,28 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .weekend:
-                if let data = self.viewModel.arrData?.itemsWeekend, data.indices.contains(indexPath.row){
-                    cell.getEvent = data[indexPath.row]
+                if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
+                    cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
                 }
             case .online:
-                if let data = self.viewModel.arrData?.itemsVirtual, data.indices.contains(indexPath.row){
-                    cell.getEvent = data[indexPath.row]
+                if self.viewModel.itemsVirtual.indices.contains(indexPath.row){
+                    cell.getEvent = self.viewModel.itemsVirtual[indexPath.row]
                 }
             case .popular:
-                if let data = self.viewModel.arrData?.itemsPopular, data.indices.contains(indexPath.row){
-                    cell.getEvent = data[indexPath.row]
+                if self.viewModel.itemsPopular.indices.contains(indexPath.row){
+                    cell.getEvent = self.viewModel.itemsPopular[indexPath.row]
                 }
             case .free:
-                if let data = self.viewModel.arrData?.itemsFree, data.indices.contains(indexPath.row){
-                    cell.getEvent = data[indexPath.row]
+                if self.viewModel.itemsFree.indices.contains(indexPath.row){
+                    cell.getEvent = self.viewModel.itemsFree[indexPath.row]
                 }
             case .upcoming:
-                if let data = self.viewModel.arrData?.itemsUpcoming, data.indices.contains(indexPath.row){
-                    cell.getEvent = data[indexPath.row]
+                if self.viewModel.itemsUpcoming.indices.contains(indexPath.row){
+                    cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
                 }
             default:
-                if let data = self.viewModel.arrData?.itemsWeekend, data.indices.contains(indexPath.row){
-                    cell.getEvent = data[indexPath.row]
+                if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
+                    cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
                 }
             }
             
@@ -369,14 +426,6 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         let lastRowIndex = tblView.numberOfRows(inSection: lastSectionIndex) - 1
         if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
             self.loadData()
-            
-           // print("this is the last cell")
-            let spinner = UIActivityIndicatorView(style: .gray)
-            spinner.startAnimating()
-            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
-
-            self.tblView.tableFooterView = spinner
-            self.tblView.tableFooterView?.isHidden = false
         }
     }
     

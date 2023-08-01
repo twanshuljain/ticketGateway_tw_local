@@ -98,7 +98,7 @@ extension EventBookingOrderSummaryVC {
         let serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees ?? 0)
         let processingCharge = Double((self.viewModel.feeStructure?.processingFees ?? "0")) ?? 0.0
         let facilityCharge = Double(self.viewModel.feeStructure?.facilityFees ?? 0)
-        let subTotal = Double(self.viewModel.totalTicketPrice ) ?? 0.0
+        let subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
         self.lblServiceChargeValue.text = "CA$ \(serviceCharge)"
         self.lblProcessingFeeValue.text = "CA$ \(processingCharge)"
         self.lblfacilityFeeValue.text = "CA$ \(facilityCharge)"

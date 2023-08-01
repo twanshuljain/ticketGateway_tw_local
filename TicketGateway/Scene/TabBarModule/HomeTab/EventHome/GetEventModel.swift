@@ -147,6 +147,7 @@ enum DateOccurrence: String, Codable {
 // MARK: - Event
 struct Event: Codable, Hashable, Equatable {
     var id: Int?
+    var eventTicketFinalPrice = 0.0
     var customizeWebLink: String?
     var isShowRemainingTickets: Bool?
     var ticketID: Int?

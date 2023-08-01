@@ -15,13 +15,18 @@
 
 import Foundation
 class EventTiclketAddOnViewModel {
-    
+    var addOnTableData = ["Tshirt_ip", "Tshirt_ip", "Tshirt_ip", "Tshirt_ip"]
+    var lblNumberOfCount = 0
+    var totalTicketPrice = ""
+    var feeStructure:FeeStructure?
     var ticketId = ""
+    var eventDetail:EventDetail?
     var arrAddOnTicketList: [EventTicketAddOnResponseModel]?
+    var selectedArrTicketList = [EventTicket]()
     
     func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
         // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
-        var getURL = APIName.getAddOnList.rawValue + "4" + "/"
+        var getURL = APIName.getAddOnList.rawValue + "\(self.eventDetail?.event?.id ?? 0)" + "/"
         APIHandler.shared.executeRequestWith(apiName: .getAddOnList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicketAddOnResponseModel]>, Error>) in
             switch result {
             case .success(let response):

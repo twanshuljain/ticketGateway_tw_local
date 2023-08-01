@@ -30,6 +30,10 @@ class EventPromoCodeVC: UIViewController {
     @IBOutlet weak var lblPromoCodeAppliedDescription: UILabel!
     // MARK: - Variables
     let isPromoCodeApplied: Bool = false
+    var eventDetail:EventDetail?
+    var feeStructure:FeeStructure?
+    var selectedArrTicketList = [EventTicket]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
@@ -93,9 +97,15 @@ extension EventPromoCodeVC {
     func btnApplyAction() {
     }
     func btnSkipAction() {
+        let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
+        view?.viewModel.eventDetail = self.eventDetail
+        view?.viewModel.feeStructure = self.feeStructure
+        self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnContinueAction() {
         let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
+        view?.viewModel.eventDetail = self.eventDetail
+        view?.viewModel.feeStructure = self.feeStructure
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
