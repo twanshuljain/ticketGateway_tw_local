@@ -6,6 +6,7 @@
 // swiftlint: disable line_length
 
 import UIKit
+import SDWebImage
 class ManageEventProfileVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var lblCompleteProfile: UILabel!
@@ -23,6 +24,9 @@ class ManageEventProfileVC: UIViewController {
     @IBOutlet weak var viewTotalProgress: FBProgressView!
     // MARK: - Varibale
     var isComingFromOranizer = false
+    var isForSideMenuOrSetting = false
+    var name: String = ""
+    var imageUrl: URL?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -35,9 +39,34 @@ extension ManageEventProfileVC {
         if isComingFromOranizer {
             self.navigationView.btnBack.isHidden = false
             self.navigationView.imgBack.isHidden = false
+            self.lblName.text = name
+            self.btnEditProfile.isHidden = true
+            self.btnSelectProfile.isHidden = true
+            self.lblCompleteProfile.isHidden = true
+            self.lblYourCompleteProfile.isHidden = true
+            self.viewTotalProgress.isHidden = true
+            self.lblAboutSince.isHidden = true
+            self.lblAboutSinceDate.isHidden = true
+            self.imgProfile.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+            
         } else {
-            self.navigationView.btnBack.isHidden = true
-            self.navigationView.imgBack.isHidden = true
+            if isForSideMenuOrSetting {
+                self.navigationView.btnBack.isHidden = false
+                self.navigationView.imgBack.isHidden = false
+            } else {
+                self.navigationView.btnBack.isHidden = true
+                self.navigationView.imgBack.isHidden = true
+            }
+           // self.navigationView.btnBack.isHidden = true
+          //  self.navigationView.imgBack.isHidden = true
+            self.lblName.text = "Rebacca"
+            self.btnEditProfile.isHidden = false
+            self.btnSelectProfile.isHidden = false
+            self.lblCompleteProfile.isHidden = false
+            self.lblYourCompleteProfile.isHidden = false
+            self.viewTotalProgress.isHidden = false
+            self.lblAboutSince.isHidden = false
+            self.lblAboutSinceDate.isHidden = false
         }
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = PROFILE
@@ -62,13 +91,15 @@ extension ManageEventProfileVC {
         [self.btnEditProfile, self.btnSelectProfile].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        //  self.funcSetProfile()
+     //   self.funcSetProfile()
     }
     func funcSetProfile() {
         self.lblName.text = objAppShareData.userAuth?.fullName
         self.lblEmail.text = objAppShareData.userAuth?.email
-        self.lblAddress.text = objAppShareData.userAuth?.accessToken
+        self.lblAddress.text = objAppShareData.userAuth?.number
     }
+    
+    
 }
 
 // MARK: - Actions

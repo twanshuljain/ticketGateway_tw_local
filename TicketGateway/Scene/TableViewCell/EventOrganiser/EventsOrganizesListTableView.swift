@@ -44,7 +44,7 @@ class EventsOrganizesListTableView: UITableView {
     var selectedDevice = ""
     var isFromDeselected = false
     var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .Home
-    var delegateViewMore:EventsOrganizesListTableViewProtocol?
+    var delegateViewMore: EventsOrganizesListTableViewProtocol?
     
     var arrDataCategorySearch = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
@@ -129,6 +129,10 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
+            cell.btnLike.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
+            cell.btnLike.setImage(UIImage(named: "favSele_ip"), for: .selected)
+            cell.btnLike.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
+            cell.btnShare.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
             if self.isComingFrom == .Home{
                 
                 switch self.arrEventCategory[indexPath.section] {
@@ -313,6 +317,15 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         default:
             break;
         }
+    }
+    
+    @objc func btnLikeAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @objc func btnShareAction(_ sender: UIButton) {
+           
+        
     }
     
 }

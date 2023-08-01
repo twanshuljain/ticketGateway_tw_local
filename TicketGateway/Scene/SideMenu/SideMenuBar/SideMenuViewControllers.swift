@@ -25,7 +25,7 @@ class SideMenuViewControllers: UIViewController{
     @IBOutlet weak var lblProfileview : UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: SideMenuList!
-   
+    
     //MARK: - Variables
     var menu =  [SideMenuModel]()
     
@@ -34,8 +34,8 @@ class SideMenuViewControllers: UIViewController{
         self.setUi()
         self.tblList.configure()
         self.setUpTableView()
-     //   self.funcSetProfile()
-        //self.addTapGesture()
+        //   self.funcSetProfile()
+        self.addTapGesture()
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,9 +52,9 @@ extension SideMenuViewControllers{
             lblProfileview.text = "Login"
             self.addTapGesture()
             btnChangeProfile.setImage(UIImage(named: "chevron-right_ip"), for: .normal)
-           
+            
         } else {
-            lblName.text = "fnghgg"
+            lblName.text = "Rebacca Young"
             lblProfileview.text = "Profile View"
         }
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
@@ -66,18 +66,23 @@ extension SideMenuViewControllers{
     func addTapGesture(){
         let gesture = UITapGestureRecognizer.init(target: self, action: #selector(navigateToProfile(_ :)))
         self.lblProfileview.addGestureRecognizer(gesture)
-      }
-      @objc func navigateToProfile(_ sender: UITapGestureRecognizer) {
-          objSceneDelegate.showLogin_Signup()
-          UserDefaultManager.share.clearAllUserDataAndModel()
-          // handling code
-//           if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC{
-//             vc.isComingFromOranizer = true
-//             self.navigationController?.pushViewController(vc, animated: false)
-//           }
-          
-          
-         }
+    }
+    @objc func navigateToProfile(_ sender: UITapGestureRecognizer) {
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            objSceneDelegate.showLogin_Signup()
+            UserDefaultManager.share.clearAllUserDataAndModel()
+        } else {
+            // handling code
+            if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
+                vc.isComingFromOranizer = false
+                vc.isForSideMenuOrSetting = true 
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
+            
+        }
+        
+        
+    }
     
     func setUpTableView(){
         self.tblList.isFromManageEvent = false
@@ -198,19 +203,19 @@ extension SideMenuViewControllers{
 //MARK: - Actions
 extension SideMenuViewControllers{
     @IBAction func changeProfile(_ sender: Any) {
-       if self.tblList.isFromManageEvent == false
+        if self.tblList.isFromManageEvent == false
         {
-           self.btnChangeProfile.setTitle("CHANGE INTO USER", for: .normal)
-           self.tblList.isFromManageEvent = true
-           self.tblList.isFromManageEventProfile = false
-           self.tblList.configure()
-           self.tblList.reloadData()
-       } else {
-           self.btnChangeProfile.setTitle("CHANGE INTO ORGANISER", for: .normal)
-           self.tblList.isFromManageEvent = false
-           self.tblList.isFromManageEventProfile = false
-           self.tblList.configure()
-           self.tblList.reloadData()
-       }
+            self.btnChangeProfile.setTitle("CHANGE INTO USER", for: .normal)
+            self.tblList.isFromManageEvent = true
+            self.tblList.isFromManageEventProfile = false
+            self.tblList.configure()
+            self.tblList.reloadData()
+        } else {
+            self.btnChangeProfile.setTitle("CHANGE INTO ORGANISER", for: .normal)
+            self.tblList.isFromManageEvent = false
+            self.tblList.isFromManageEventProfile = false
+            self.tblList.configure()
+            self.tblList.reloadData()
+        }
     }
 }

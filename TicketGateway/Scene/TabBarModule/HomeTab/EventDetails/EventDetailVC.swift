@@ -120,7 +120,9 @@ extension EventDetailVC {
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
-        navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .normal)
+        navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .selected)
+        navigationView.btnSecRight.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
+        navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
         btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
         btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
@@ -345,10 +347,8 @@ extension EventDetailVC {
                     let eventDetail = self.viewModel.eventDetail
                     let newEvent = EKEvent(eventStore: self.store)
                     newEvent.title = eventDetail?.event?.title
-                    newEvent.startDate = Date() //eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom().getDateFormattedDateFromString()
-                    newEvent.endDate = Date() //eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFrom().getDateFormattedDateFromString()
-                    newEvent.calendar = self.store.defaultCalendarForNewEvents
-
+                    newEvent.startDate =  eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString()
+                    newEvent.endDate =  eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString()
                     let vc = EKEventViewController()
                     vc.delegate = self
                     vc.event = newEvent
@@ -383,11 +383,12 @@ extension EventDetailVC {
     }
 
     @objc func btnShareAction(_ sender: UIButton) {
-//        let text = "This is some text that I want to share."
-//        let textToShare = [ text ]
-        let image = UIImage(named: "Image")
-        let imageToShare = [ image! ]
-        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        let eventDetail = self.viewModel.eventDetail
+        let text =  "Event Name:\(eventDetail?.event?.title ?? "") + Location: \( eventDetail?.eventLocation?.eventAddress ?? "")"
+        let textToShare = [ text ]
+//        let image = UIImage(named: "Image")
+//        let imageToShare = [ image! ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
         // exclude some activity types from the list (optional)
@@ -395,6 +396,10 @@ extension EventDetailVC {
         
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    @objc func btnLikeAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
     }
 
 }

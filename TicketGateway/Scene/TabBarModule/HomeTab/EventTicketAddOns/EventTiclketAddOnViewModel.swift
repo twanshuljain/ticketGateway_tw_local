@@ -21,7 +21,7 @@ class EventTiclketAddOnViewModel {
     
     func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
         // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
-        var getURL = APIName.getAddOnList.rawValue + "4" + "/"
+        var getURL = APIName.getAddOnList.rawValue + "2" + "/"
         APIHandler.shared.executeRequestWith(apiName: .getAddOnList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicketAddOnResponseModel]>, Error>) in
             switch result {
             case .success(let response):

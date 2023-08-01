@@ -47,7 +47,8 @@ extension ManageEventSettingVC {
                 self.navitem.image = UIImage.init(named: "settings")
             }else{
                 self.navitem.title = "Profile"
-                let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC)
+                let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
+                vc.isComingFromOranizer = false
                 self.navigationController?.viewControllers = [vc]
                 self.navigationController?.pushViewController(vc, animated: false)
             }
@@ -90,9 +91,10 @@ extension ManageEventSettingVC {
 // MARK: - Actions
 extension ManageEventSettingVC {
     @IBAction func btnArrow(_ sender: Any) {
-        let view = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC
-        view?.isComingFromOranizer = true
-        self.navigationController?.pushViewController(view!, animated: true)
+        let view = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
+        view.isComingFromOranizer = false
+        view.isForSideMenuOrSetting = true
+        self.navigationController?.pushViewController(view, animated: true)
     }
 }
 // MARK: - UITabBarDelegate, UITableViewDataSource

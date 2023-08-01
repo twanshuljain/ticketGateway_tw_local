@@ -17,7 +17,9 @@ import SVProgressHUD
 
 
 
-class HomeVC: UIViewController{
+class HomeVC: UIViewController {
+
+    
     
     //MARK: - IBOutlets
     @IBOutlet weak var heightOfCollectionView: NSLayoutConstraint!
@@ -28,12 +30,12 @@ class HomeVC: UIViewController{
     @IBOutlet weak var tblEvents: EventsOrganizesListTableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var collvwSuggestedOrganisation: suggestedOrganizerList!
-    @IBOutlet weak var tableParentView:UIView!
-    @IBOutlet weak var collectionParentView:UIView!
-    @IBOutlet weak var parentView:UIView!
+    @IBOutlet weak var tableParentView: UIView!
+    @IBOutlet weak var collectionParentView: UIView!
+    @IBOutlet weak var parentView: UIView!
     
     //MARK: - Variables
-    var isMenuOpened:Bool = false
+    var isMenuOpened: Bool = false
     var viewModel = HomeDashBoardViewModel()
     private let eventCategoryViewModel = GetEventCategoryViewModel()
     
@@ -52,7 +54,7 @@ class HomeVC: UIViewController{
 
 
 //MARK: - UITextFieldDelegate
-extension HomeVC : UITextFieldDelegate {
+extension HomeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
         self.navigationController?.pushViewController(view!, animated: true)
@@ -61,7 +63,7 @@ extension HomeVC : UITextFieldDelegate {
 }
 //MARK: - Functions
 extension HomeVC {
-    func setUp(){
+    func setUp() {
         self.setUi()
         self.collvwSuggestedOrganisation.configure()
         self.tblEvents.delegateViewMore = self
@@ -402,12 +404,20 @@ extension HomeVC: CustomSearchMethodsDelegate {
     
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
+        view?.delegate = self
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
 
-//MARK: - EventsOrganizesListTableViewProtocol
-extension HomeVC:EventsOrganizesListTableViewProtocol{
+// MARK: -
+extension HomeVC: SendLocation {
+    func toSendLocation(location: String) {
+        vwSearchBar.lblAddress.text = location
+    }
+}
+
+// MARK: - EventsOrganizesListTableViewProtocol
+extension HomeVC: EventsOrganizesListTableViewProtocol{
     func tapActionOfViewMoreEvents(index: Int) {
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
         view?.viewModel.index = index

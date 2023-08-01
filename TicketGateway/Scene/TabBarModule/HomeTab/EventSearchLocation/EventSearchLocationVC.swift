@@ -14,6 +14,10 @@
 import UIKit
 import SideMenu
 
+protocol SendLocation: AnyObject {
+    func toSendLocation(location: String)
+}
+
 class EventSearchLocationVC: UIViewController {
     
     //MARK: - IBOutlets
@@ -24,6 +28,9 @@ class EventSearchLocationVC: UIViewController {
     @IBOutlet weak var lblNearBy: UILabel!
     @IBOutlet weak var lblBrowingIn: UILabel!
     @IBOutlet weak var tblList: UITableView!
+    //MARK: - Variables
+    let locationData = ["Toronto", "Indore","ggd", "fhff","cbhfe", "chfh"]
+    weak var delegate: SendLocation?
     
     
     override func viewDidLoad() {
@@ -40,35 +47,45 @@ class EventSearchLocationVC: UIViewController {
 
 // MARK: - Functions
 extension EventSearchLocationVC{
-    private func setUp(){
+    private func setUp() {
         self.tblList.dataSource = self
         self.tblList.delegate = self
         self.tblList.reloadData()
     }
-    
-    private func setUI(){
+    private func setUI() {
         [self.lblNearBy,self.lblOnlineEvents,self.lblBrowingIn].forEach{
-            $0.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
+            $0.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
             $0.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
         [self.lblNearByDiscripation,self.lblOnlineEventDis].forEach{
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        
+    }
+    @objc func buttonPressed(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            self.delegate?.toSendLocation(location: locationData[sender.tag])
+        }
     }
 }
 
 // MARK: - TableView Delegate
 extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return locationData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as!SearchLocationCell
+        let data = locationData[indexPath.row]
+        cell.lblTittle.text = data
+        cell.btnCheck.tag = indexPath.row
+        cell.btnCheck.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        cell.btnCheck.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .selected)
+        cell.btnCheck.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         return cell
-      
+   
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,11 +95,7 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-    
-    @objc func buttonPressed(_ sender: UIButton) {
-        
-    }
-    
+  
 }
 
 //MARK: - UITextFieldDelegate

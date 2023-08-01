@@ -234,9 +234,16 @@ extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width/1.7, height: collectionView.bounds.height)
     }
-     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let view = createView(storyboard: .profile, storyboardID: .ManageEventProfileVC)
+         let data = viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row]
+        let view = createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
+        view.isComingFromOranizer = true
+        if let name = data?.name {
+            view.name = name
+        }
+        if let url = URL(string: APIHandler.shared.baseURL + (data?.profileImage ?? "")) {
+            view.imageUrl = url
+        }
         self.navigationController?.pushViewController(view, animated: true)
     }
     

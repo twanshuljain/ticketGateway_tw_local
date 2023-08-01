@@ -18,6 +18,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnLike: UIButton!
+    @IBOutlet weak var btnShare: UIButton!
     
     var getEvent:GetEventModel?{
         didSet{
