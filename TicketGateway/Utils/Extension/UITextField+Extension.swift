@@ -16,7 +16,7 @@ import Foundation
 import UIKit
 
 extension UITextField {
-    var placeholder: String? {
+    var placeholder1: String? {
         get {
             attributedPlaceholder?.string
         }

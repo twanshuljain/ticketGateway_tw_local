@@ -28,6 +28,10 @@ protocol EventsOrganizesListTableViewProtocol{
     func tapActionOfViewMoreEvents(index:Int)
 }
 
+protocol ActivityController {
+    func toShowActivityController(index: Int)
+}
+
 class EventsOrganizesListTableView: UITableView {
     var arrData = [GetEventModel]()
     var arrDataa = [GetEventModel]()
@@ -45,7 +49,7 @@ class EventsOrganizesListTableView: UITableView {
     var isFromDeselected = false
     var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .Home
     var delegateViewMore: EventsOrganizesListTableViewProtocol?
-    
+    var delegateShareAction: ActivityController?
     var arrDataCategorySearch = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
     
@@ -54,6 +58,10 @@ class EventsOrganizesListTableView: UITableView {
         self.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         self.delegate = self
         self.dataSource = self
+    }
+    
+    @objc func btnShareAction(_ sender: UIButton) {
+        self.delegateShareAction?.toShowActivityController(index: sender.tag)
     }
 }
 
@@ -160,6 +168,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                     if arrDataaUpcoming.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaUpcoming[indexPath.row]
                     }
+               
                 }
             }else if self.isComingFrom == .EventSearch {
                 if isFromSearch {
@@ -215,6 +224,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             case .upcoming:
                 label.text = "Upcoming Events"
                 return headerView
+           
             }
         }
         return nil
@@ -323,9 +333,6 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         sender.isSelected = !sender.isSelected
     }
     
-    @objc func btnShareAction(_ sender: UIButton) {
-           
-        
-    }
+    
     
 }

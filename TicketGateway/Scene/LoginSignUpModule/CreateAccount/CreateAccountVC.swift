@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import TweeTextField
 class CreateAccountVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
@@ -28,11 +29,18 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var btnSelectCountry: UIButton!
+    @IBOutlet weak var lblErrFullName: UILabel!
+    @IBOutlet weak var lblErrMobileNumber: UILabel!
+    @IBOutlet weak var lblErrPassword: UILabel!
+    @IBOutlet weak var lblErrConfirmPassword: UILabel!
     // MARK: - Variable
     let viewModel = CreateAccountViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        [txtFullName, txtPassword, txtConfirmPassword, txtMobileNumber].forEach {
+            $0?.addTarget(self, action: #selector(textFieldErrorMsg(_:)), for: .allEditingEvents)
+        }
     }
 }
 // MARK: - Functions
@@ -76,7 +84,8 @@ extension CreateAccountVC {
             self.btnEyeCPasswordAction()
         case btnEyePassword:
             self.btnEyePasswordAction()
-        case btnSelectCountry: self.btnSelectCountryAction()
+        case btnSelectCountry:
+            self.btnSelectCountryAction()
         default:
             break
         }
@@ -177,7 +186,7 @@ extension CreateAccountVC: NavigationBarViewDelegate {
 }
 
 // MARK: -  Country Code
-extension CreateAccountVC :RSCountrySelectedDelegate  {
+extension CreateAccountVC: RSCountrySelectedDelegate  {
     func setIntialUiDesign() {
         // Defoult Country
         // UI Changes---
@@ -220,4 +229,58 @@ extension CreateAccountVC :RSCountrySelectedDelegate  {
         self.viewModel.strCountryName = country.country_name
         self.txtMobileNumber.becomeFirstResponder()
     }
+}
+// MARK: -
+extension CreateAccountVC {
+    
+    @objc func textFieldErrorMsg(_ sender: UITextField) {
+        switch sender {
+        case txtFullName:
+            self.fullNameErrorMsg()
+        case txtPassword:
+            self.passwordErrorMsg()
+        case txtConfirmPassword:
+            self.confirmErrorMsg()
+        case txtMobileNumber:
+            self.mobileErrMsg()
+        default:
+            break
+        }
+     
+    }
+    
+    func fullNameErrorMsg() {
+         if txtFullName.text == "" {
+             lblErrFullName.isHidden = false
+        } else {
+            lblErrFullName.isHidden = true
+        }
+    }
+   
+    
+    func passwordErrorMsg() {
+        if txtPassword.text == "" {
+            lblErrPassword.isHidden = false
+        } else {
+            lblErrPassword.isHidden = true
+        }
+    }
+    
+    func confirmErrorMsg() {
+        if txtConfirmPassword.text == "" {
+            lblConfirmPassword.isHidden = false
+            
+        } else {
+            lblConfirmPassword.isHidden = true
+        }
+    }
+    
+    func mobileErrMsg() {
+        if txtMobileNumber.text == "" {
+            lblErrMobileNumber.isHidden = false
+        } else {
+            lblErrMobileNumber.isHidden = true
+        }
+    }
+    
 }

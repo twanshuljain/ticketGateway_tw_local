@@ -75,14 +75,18 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var organizersView: UIView!
     @IBOutlet weak var suggestionsForYouView: UIView!
     
-    //MARK: - Variables
+    @IBOutlet weak var vwOrganiserMainView: setBorderView!
+    
+    // MARK: - Variables
     var viewModel = EventDetailViewModel()
     let store = EKEventStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.isLiked = viewModel.eventDetail?.isLike ?? false
         self.funcCallApi()
         self.setUp()
+        self.addTapGestureToOrganiserView()
     }
 }
 
@@ -90,6 +94,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
 extension EventDetailVC {
     func setUp(){
         self.setUi()
+        self.tblSuggestedEvent.delegateShareAction = self
         self.collvwEventImages.reloadData()
         self.txtDate.delegate = self
         self.txtLocation.delegate = self
@@ -120,8 +125,8 @@ extension EventDetailVC {
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
-        navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .selected)
-        navigationView.btnSecRight.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
+//        self.navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .selected)
+        self.navigationView.btnSecRight.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
         navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
         btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
@@ -135,7 +140,23 @@ extension EventDetailVC {
         self.dropDown()
     }
     
-    func funcCallApi(){
+    func addTapGestureToOrganiserView() {
+        let gesture = UITapGestureRecognizer.init(target: self, action: #selector(navigateToProfileForOrganiser(_:)))
+        self.vwOrganiserMainView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func navigateToProfileForOrganiser(_ sender: UITapGestureRecognizer) {
+        let eventDetail = self.viewModel.eventDetail
+        if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
+            vc.isComingFromOranizer = true
+            vc.name = eventDetail?.organizer?.name ?? ""
+            if let url = URL(string: eventDetail?.organizer?.profileImage ?? "") {
+                vc.imageUrl = url
+            }
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+      func funcCallApi(){
         if let eventId = self.viewModel.eventId{
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {
@@ -181,10 +202,10 @@ extension EventDetailVC {
     func funcCallApiForEventCategory(categoryId:Int){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self.tblSuggestedEvent.isHidden = true
+                vwEventName.showLoading(centreToView: self.view)
             }
-            vwEventName.showLoading(centreToView: self.view)
             viewModel.GetEventSuggestedCategory(categoryId: categoryId) { isTrue, messageShowToast in
                 if isTrue == true {
                     self.vwEventName.stopLoading()
@@ -339,28 +360,72 @@ extension EventDetailVC {
             break
         }
     }
+    func a() {
+        var dateComponents = DateComponents()
+            dateComponents.year = 2020
+            dateComponents.month = 1
+            dateComponents.day = 1
+            dateComponents.hour = 10
+            dateComponents.minute = 30
+            let startDate = Calendar.current.date(from: dateComponents)
+            dateComponents.hour = 11
+            let endDate = Calendar.current.date(from: dateComponents)
+        let event: EKEvent = EKEvent(eventStore: self.store)
+            event.title = "Concours de coinchée"
+            event.startDate = startDate
+            event.endDate = endDate
+            event.notes = "Cantine scolaire de Goupillières"
+      //  event.calendar = self.store.eventStore.defaultCalendarForNewEvents
+    }
+    private func getCurrentDateComponent(date: Date) -> DateComponents {
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.day, .month, .year, .hour, .minute], from: Date())
+       return components
+    }
     
     func addToCalenAction() {
-        store.requestAccess(to: .event, completion: { sucess, err in
-            if sucess, err == nil {
-                DispatchQueue.main.async {
-                    let eventDetail = self.viewModel.eventDetail
-                    let newEvent = EKEvent(eventStore: self.store)
-                    newEvent.title = eventDetail?.event?.title
-                    newEvent.startDate =  eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString()
-                    newEvent.endDate =  eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString()
-                    let vc = EKEventViewController()
-                    vc.delegate = self
-                    vc.event = newEvent
-                    let navVC = UINavigationController(rootViewController: vc)
-                    self.present(navVC, animated: true)
+        DispatchQueue.main.async {
+            self.store.requestAccess(to: .event, completion: { sucess, err in
+                if sucess, err == nil {
+                    DispatchQueue.main.async {
+                        var identifier: String?
+                        let eventDetail = self.viewModel.eventDetail
+                        let newEvent = EKEvent(eventStore: self.store)
+                        newEvent.title = eventDetail?.event?.title
+                        let sDate = eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString("dd MMM yyyy hh:mm")
+                        let startDateComponent = self.getCurrentDateComponent(date: sDate ?? Date())
+                        var dateComponents = DateComponents()
+                        dateComponents.year = startDateComponent.year
+                        dateComponents.month = startDateComponent.month
+                        dateComponents.day = startDateComponent.day
+                        dateComponents.hour = startDateComponent.hour
+                        dateComponents.minute = startDateComponent.minute
+                        let startDate = Calendar.current.date(from: dateComponents)
+                        newEvent.startDate =  startDate
+                        newEvent.endDate =  eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString()
+                        
+                        let vc = EKEventViewController()
+                        vc.delegate = self
+                        vc.event = newEvent
+                        let navVC = UINavigationController(rootViewController: vc)
+                        self.present(navVC, animated: true)
+                        
+                        do {
+                            try self.store.save(newEvent, span: .thisEvent, commit: true)
+                            identifier = newEvent.eventIdentifier
+                            print("Saved event with ID: \(String(describing: newEvent.eventIdentifier))")
+                            // The event gets created and the ID is printed to the console but at a time when the whole function already has returned (nil)
+                        } catch let error as NSError {
+                            print("Failed to save event with error: \(error)")
+                        }
+                    }
+                    
+                }  else {
+                    
                 }
-            }  else {
-            }
-            
-        })
-        
-        
+                
+            })
+        }
     }
     
     func btnBookTicket() {
@@ -390,18 +455,29 @@ extension EventDetailVC {
 //        let imageToShare = [ image! ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        
         // exclude some activity types from the list (optional)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
     }
     
     @objc func btnLikeAction(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        viewModel.isLiked = !viewModel.isLiked
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+           {
+          //  parentView.showLoading(centreToView: self.view)
+            let eventId = self.viewModel.eventDetail?.event?.id ?? 0
+            viewModel.favouriteApi(likeStatus:  viewModel.isLiked, eventId: eventId, complition: { isTrue, messageShowToast in
+                DispatchQueue.main.async {
+                    let image =  self.viewModel.isLiked ? UIImage(named: "favSele_ip") : UIImage(named: "favUnSele_ip")
+                        self.navigationView.btnSecRight.setImage(image, for: .normal)
+                }
+            })
+        } else {
+                self.showToast(message: ValidationConstantStrings.networkLost)
+        }
+        
     }
-
 }
 
 // MARK: - PageControl
@@ -472,6 +548,25 @@ extension EventDetailVC: EKEventViewDelegate {
     
     
 }
+//MARK: -
+extension EventDetailVC:  ActivityController {
+    func toShowActivityController(index: Int) {
+                let image = UIImage(named: "Image")
+                let imageToShare = [ image! ]
+                let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        //  tblEvents.delegateShareAction = self
+                // exclude some activity types from the list (optional)
+                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+       
+                // present the view controller
+                self.present(activityViewController, animated: true, completion: nil)
+    }
+  
+}
+
+
+
 
 
 //MARK: - NavigationBarViewDelegate

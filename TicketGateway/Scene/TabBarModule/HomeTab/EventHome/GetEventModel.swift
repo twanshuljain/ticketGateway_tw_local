@@ -15,6 +15,7 @@ enum EventCategories:String{
     case popular = "Popular Events"
     case free = "Free Events"
     case upcoming = "Upcoming Events"
+   
 }
 
 // MARK: - GetEventModel

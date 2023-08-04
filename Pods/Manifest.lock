@@ -9,6 +9,7 @@ PODS:
   - SideMenu (6.5.0)
   - SwiftAlgorithms (1.0.0)
   - SwiftLint (0.52.4)
+  - TweeTextField (1.6.4)
 
 DEPENDENCIES:
   - AdvancedPageControl
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - iOSDropDown
   - SideMenu
   - SwiftLint
+  - TweeTextField
 
 SPEC REPOS:
   trunk:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - SideMenu
     - SwiftAlgorithms
     - SwiftLint
+    - TweeTextField
 
 SPEC CHECKSUMS:
   AdvancedPageControl: 39e3b32b00b2d324c534f8e17cc6c5be9abe84b7
@@ -36,7 +39,8 @@ SPEC CHECKSUMS:
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
+  TweeTextField: 726de695eead9784f7ed02e22f6944bfcfcca07a
 
-PODFILE CHECKSUM: 7a827c884d9d27c6728edb262409dd8a108d65a0
+PODFILE CHECKSUM: 77deb64596dd57db7aa85f446d43cc98190ff4f5
 
 COCOAPODS: 1.12.1

@@ -10,6 +10,7 @@ target 'TicketGateway' do
   pod 'Charts'
   pod 'Cosmos'
   pod 'SwiftLint'
+  pod 'TweeTextField'
   
 # Pods for TicketGateway
 

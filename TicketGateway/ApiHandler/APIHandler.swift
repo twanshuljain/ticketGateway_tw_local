@@ -45,6 +45,7 @@ public enum APIName: String {
     case getAddOnList = "events/ticket-add-on-list/"
     
     case GetFeeStructure = "default/data/fee/structure/get/"
+    case favoriteEvents = "events/like/unlike/"
 }
 public enum GroupApiName: String {
     case auth = "auth"

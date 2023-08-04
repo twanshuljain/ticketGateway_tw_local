@@ -17,11 +17,13 @@ import Foundation
 final class EventDetailViewModel{
     
     //MARK: - Variables
-    var eventDetail:EventDetail?
+    var eventDetail: EventDetail?
     var eventId:Int?
     var suggestedEventCategoryId:Int?
     var selectedArrTicketList = [EventTicket]()
     var arrEventData : [GetEventModel] = [GetEventModel]()
+    var eventDetailForFavourite: EventDetail?
+    var isLiked: Bool = false
     
 }
 
@@ -72,4 +74,26 @@ extension EventDetailViewModel{
             }
         }
     }
+    
+    func favouriteApi(likeStatus: Bool,eventId:Int, complition: @escaping (Bool, String) -> Void) {
+        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<EventDetail>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        self.eventDetailForFavourite = response.data
+                        print("---------", self.eventDetailForFavourite)
+                        
+                    }
+                    complition(true, response.message ?? "")
+                } else {
+                    complition(false, response.message ?? "Error message")
+                }
+            case .failure(let error):
+                complition(false, "\(error)")
+            }
+        }
+    }
+    
 }

@@ -8,11 +8,12 @@
 
 import UIKit
 import SVProgressHUD
+import TweeTextField
 class LoginVC: UIViewController{
   //MARK: - Outlets
-    @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var txtNumber: UITextField!
+    @IBOutlet weak var txtEmail: TweeAttributedTextField!
+    @IBOutlet weak var txtPassword: TweeAttributedTextField!
+    @IBOutlet weak var txtNumber: TweeAttributedTextField!
     @IBOutlet weak var vwFaceBook: UIView!
     @IBOutlet weak var vwGoogle: UIView!
     @IBOutlet weak var vwApple: UIView!
@@ -65,6 +66,10 @@ extension LoginVC {
         self.lblMobileNumber.text = MOBILE_NUMBER
         self.lblPleaseEnterMobileNumber.text = PLEASE_ENTER_YOUR_MOBILE_NUMBER_DDESCRIPTION
         self.lblDontHaveAnAccount.text = DONT_HAVE_AN_ACCOUNT
+        [txtEmail, txtPassword, txtNumber].forEach {
+            $0?.addTarget(self, action: #selector(textFieldErrorMsg(_:)), for: .allEditingEvents)
+        }
+        
     }
     private func setup() {
         self.viewModel.countries = self.jsonSerial()
@@ -261,7 +266,7 @@ extension LoginVC: UITextFieldDelegate {
 }
 
 // MARK: - Country Code
-extension LoginVC:  RSCountrySelectedDelegate {
+extension LoginVC: RSCountrySelectedDelegate {
     func setIntialUiDesign() {
         self.txtNumber.addDoneButtonOnKeyboard()
         // Defoult Country
@@ -305,4 +310,54 @@ extension LoginVC:  RSCountrySelectedDelegate {
         self.viewModel.strCountryName = country.country_name
         self.txtNumber.becomeFirstResponder()
     }
+}
+//MARK: -
+extension LoginVC {
+    
+    @objc func textFieldErrorMsg(_ sender: UITextField) {
+        switch sender {
+        case txtEmail:
+            self.emailError()
+        case txtPassword:
+            self.passwordError()
+        case txtNumber:
+            self.numberError()
+        default:
+            break
+        }
+     
+    }
+    
+    
+    func emailError() {
+        if txtEmail.text == "" {
+            txtEmail.infoTextColor = .red
+            txtEmail.infoFontSize = 12.0
+            txtEmail.showInfo("Enter your email", animated: true)
+        } else {
+            txtEmail.infoTextColor = .clear
+        }
+    }
+   
+    
+    func passwordError() {
+        if txtPassword.text == "" {
+            txtPassword.infoTextColor = .red
+            txtPassword.infoFontSize = 12.0
+            txtPassword.showInfo("Enter your password", animated: true)
+        } else {
+            txtPassword.infoTextColor = .clear
+        }
+    }
+  
+    func numberError() {
+        if txtNumber.text == "" {
+            txtNumber.infoTextColor = .clear
+            txtNumber.infoFontSize = 12.0
+            txtNumber.showInfo("Enter your mobile number", animated: true)
+        } else {
+            txtNumber.infoTextColor = .clear
+        }
+    }
+  
 }

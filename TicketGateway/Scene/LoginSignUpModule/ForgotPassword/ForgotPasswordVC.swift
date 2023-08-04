@@ -8,12 +8,13 @@
 
 import UIKit
 import SVProgressHUD
+import TweeTextField
 
 class ForgotPasswordVC: UIViewController {
 // MARK: - Outlets
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
-    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtEmail: TweeAttributedTextField!
     @IBOutlet weak var lblHeadingDescription: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
 // MARK: - Variable
@@ -30,12 +31,16 @@ extension ForgotPasswordVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         txtEmail.delegate = self
+        txtEmail.addTarget(self, action: #selector(textFldErrorMsg(_:)), for: .allEditingEvents)
        self.btnContinue.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
         self.btnContinue.setImage(UIImage(named: RIGHT_ARROW_ICON), for: .normal)
         self.navigationView.lblTitle.text = FORGOT_PASSWORD
         self.navigationView.btnBack.isHidden = false
+        self.navigationView.vwBorder.isHidden = false
         self.navigationView.delegateBarAction = self
         self.lblHeadingDescription.text = DONT_WORRY
+        self.lblEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Email ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        
     }
 }
 // MARK: - Actions
@@ -104,7 +109,28 @@ extension ForgotPasswordVC: UITextFieldDelegate {
         return true
     }
 }
-// MARK: -  NavigationBarViewDelegate
+// MARK: -
+extension ForgotPasswordVC {
+    
+        @objc func textFldErrorMsg(_ sender: UITextField) {
+            if txtEmail.text == "" {
+                txtEmail.infoTextColor = .red
+                txtEmail.infoFontSize = 12.0
+                txtEmail.showInfo("Enter your email", animated: true)
+            } else {
+                txtEmail.infoTextColor = .clear
+            }
+        }
+    
+}
+
+
+
+
+
+
+
+// MARK: - NavigationBarViewDelegate
 extension ForgotPasswordVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

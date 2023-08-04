@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+
 class ManageEventProfileVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var lblCompleteProfile: UILabel!
@@ -53,6 +54,8 @@ extension ManageEventProfileVC {
             if isForSideMenuOrSetting {
                 self.navigationView.btnBack.isHidden = false
                 self.navigationView.imgBack.isHidden = false
+                self.lblName.text = name
+                   self.imgProfile.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
             } else {
                 self.navigationView.btnBack.isHidden = true
                 self.navigationView.imgBack.isHidden = true

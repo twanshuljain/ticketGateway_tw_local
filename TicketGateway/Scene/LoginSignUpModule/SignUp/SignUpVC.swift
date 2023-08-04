@@ -6,10 +6,11 @@
 // swiftlint: disable line_length
 import UIKit
 import SVProgressHUD
+import TweeTextField
 
 class SignUpVC: UIViewController {
     // MARK: - Outlets
-    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtEmail: TweeAttributedTextField!
     @IBOutlet weak var vwEmail: UIView!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnSignUp: CustomButtonGradiant!
@@ -45,6 +46,7 @@ extension SignUpVC {
         self.txtEmail.delegate = self
         self.btnSignUp.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
         self.btnSignUp.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
+        self.txtEmail.addTarget(self, action: #selector(textFldErrorMsg(_:)), for: .allEditingEvents)
         self.setUI()
     }
     private func setUI() {
@@ -161,4 +163,17 @@ extension SignUpVC: UITextFieldDelegate {
         }
         return true
     }
+}
+// MARK: -
+extension SignUpVC {
+        @objc func textFldErrorMsg(_ sender: UITextField) {
+            if txtEmail.text == "" {
+                txtEmail.infoTextColor = .red
+                txtEmail.infoFontSize = 12.0
+                txtEmail.showInfo("Enter your email", animated: true)
+            } else {
+                txtEmail.infoTextColor = .clear
+            }
+        }
+
 }

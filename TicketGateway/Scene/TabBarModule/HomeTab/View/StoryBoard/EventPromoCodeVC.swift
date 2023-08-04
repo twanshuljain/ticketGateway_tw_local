@@ -12,7 +12,6 @@
 // swiftlint: disable function_parameter_count
 // swiftlint: disable type_name
 import UIKit
-
 class EventPromoCodeVC: UIViewController {
     
     // MARK: - Outlets

@@ -44,6 +44,7 @@ class HomeVC: UIViewController {
         self.setUp()
      // self.funcCallApi(viewAll: false)
         self.funcCallApi()
+        self.tblEvents.delegateShareAction = self
         // self.apiCall()
     }
     
@@ -115,9 +116,7 @@ extension HomeVC {
         self.lblSuggestedOrganised.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.btnViewAllForSuggestedOrganised.setTitles(text: SEE_ALL, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
       }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfNearOrganisedEvent.constant = tblEvents.contentSize.height
         
     }
@@ -424,4 +423,21 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
     }
+}
+
+
+extension HomeVC: ActivityController {
+    func toShowActivityController(index: Int) {
+                let image = UIImage(named: "Image")
+                let imageToShare = [ image! ]
+                let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        //  tblEvents.delegateShareAction = self
+                // exclude some activity types from the list (optional)
+                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+       
+                // present the view controller
+                self.present(activityViewController, animated: true, completion: nil)
+    }
+  
 }

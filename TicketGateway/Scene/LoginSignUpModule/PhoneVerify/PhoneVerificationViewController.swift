@@ -3,9 +3,23 @@
 //  TicketGateway
 //
 //  Created by Apple on 04/07/23.
+// swiftlint: disable file_length
+// swiftlint: disable type_body_length
+// swiftlint: disable force_cast
+// swiftlint: disable function_body_length
 // swiftlint: disable line_length
+// swiftlint: disable identifier_name
+// swiftlint: disable function_parameter_count
+// swiftlint: disable type_name
+
 import UIKit
 import SVProgressHUD
+enum IsComingFrom {
+    case Login
+    case OrderSummary
+    case Home
+}
+
 class PhoneVerificationViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var txtNumber: UITextField!
@@ -17,6 +31,7 @@ class PhoneVerificationViewController: UIViewController {
     @IBOutlet weak var vwNumber: UIView!
     // MARK: - Variable
     var viewModel = SignInViewModel()
+    var isComingFrom: IsComingFrom  = .Login
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -53,12 +68,16 @@ extension PhoneVerificationViewController {
         self.navigationController?.present(storyBoard ?? UIViewController(), animated: true, completion: nil)
     }
     @IBAction func btnContinueAction(_ sender: UIButton) {
-        let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
-        let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)
-        objAppShareData.dicToHoldDataOnSignUpModule = obj
-        view?.isComingFromLogin = false
-        view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        
+       
+            
+            let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
+            let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)
+            objAppShareData.dicToHoldDataOnSignUpModule = obj
+            view?.isComingFromLogin = false
+            view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
+            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+       
     }
 }
 

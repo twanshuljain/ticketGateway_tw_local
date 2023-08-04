@@ -99,7 +99,7 @@ extension Organizers_Artists_ListVC {
        // self.collVwTrending_Artists.configure()
         self.callApiForOrganizersList(viewAll: false)
         self.navigationView.delegateBarAction = self
-        self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
+      //  self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
@@ -235,7 +235,8 @@ extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionVie
         return CGSize.init(width: collectionView.bounds.width/1.7, height: collectionView.bounds.height)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         let data = viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row]
+        
+        let data = viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row]
         let view = createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
         view.isComingFromOranizer = true
         if let name = data?.name {
@@ -252,8 +253,9 @@ extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionVie
 // MARK: - NavigationBarViewDelegate
 extension Organizers_Artists_ListVC: NavigationBarViewDelegate {
     func navigationBackAction() {
-        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
-        present(menu, animated: true, completion: nil)
+//        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
+//        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
+//        present(menu, animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
   }
 }

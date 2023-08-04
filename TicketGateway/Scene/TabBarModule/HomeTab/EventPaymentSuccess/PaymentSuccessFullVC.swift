@@ -59,7 +59,7 @@ extension PaymentSuccessFullVC {
             btnBrowseMorwEvents.setTitle("Retry Payment", for: .normal)
         } else {
             lblThankYou.text = "Thank You!"
-            imgThankYou.image = UIImage(named: "Done_ip")
+           // imgThankYou.image = UIImage(named: "Done_ip")
             btnViewMyTicket.isHidden = false
             btnBrowseMorwEvents.setTitle("Browse more events", for: .normal)
         }
