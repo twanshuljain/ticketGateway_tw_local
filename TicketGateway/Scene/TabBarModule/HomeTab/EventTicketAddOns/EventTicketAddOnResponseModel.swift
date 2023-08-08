@@ -35,6 +35,7 @@ struct EventTicketAddOnResponseModel: Codable {
     var updatedAt: String?
     var ticketID: Int?
     var ticketName: String?
+    var selectedTicketQuantity: Int?
 
     enum CodingKeys: String, CodingKey {
         case groupTicketID = "group_ticket_id"

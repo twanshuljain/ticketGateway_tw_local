@@ -106,6 +106,14 @@ extension EventBookingOrderSummaryVC {
         var total = serviceCharge + processingCharge + facilityCharge + subTotal
         self.lblTotalAmtValue.text = "CA$ \(total)"
         
+        
+        
+        self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
+        self.tblAddOnEtcThings.selectedAddOnList = self.viewModel.selectedAddOnList
+        DispatchQueue.main.async {
+            self.tblAddedTickets.reloadData()
+            self.tblAddOnEtcThings.reloadData()
+        }
     }
     
 }

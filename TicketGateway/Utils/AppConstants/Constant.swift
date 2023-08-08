@@ -129,6 +129,35 @@ enum StoryboardIdentifier: String {
   
 }
 
+enum PaymentError {
+   
+    case cardholderName
+    case cardNumber
+    case expiryDate
+    case cvv
+    case cardNumberLenghtShort
+    case nameMinCharactorCount
+    
+
+    var value:String {
+        switch self {
+        case .cardholderName:
+            return "Please enter cardholder name."
+        case .cardNumber:
+            return "Please enter card number."
+        case .expiryDate:
+            return "Please enter expiry date."
+        case .cvv:
+            return "Please enter cvv."
+        case .cardNumberLenghtShort:
+            return "Card number should not be less 16 digits"
+        case .nameMinCharactorCount:
+            return "Full name contain atleast 3 characters"
+        }
+    }
+    
+}
+
 
 public extension Notification.Name {
      static let didUpdateWorkoutData = Notification.Name(rawValue: "didUpdateWorkoutData")
@@ -139,6 +168,9 @@ public extension Notification.Name {
 let GOOGLE_CLIENT_ID = "1090307909671-o90bdqh5777lnkgqk9mugturu85d524g.apps.googleusercontent.com"
 let TITLE_LOGIN = "Login"
 let TITLE_CONTINUE = "Continue"
+
+let STRIPE_PUBLISH_KEY = "pk_test_WUFLfpw1GDQk1k14iO90JbAx00ujBjHe6m"
+let STRIPE_SECRET_KEY = "sk_test_51FlbBdAzj89HkZFlgU9eCHTk9rWlyfu0Y9Q4Nxz8QPE5kirWckckTTK7ZRuBDp4CWMlypBwenC7lMzHZrZKa8aSw00OWLIFgLZ"
 
 let FINISH = "Finish"
 let NEXT = "Next"

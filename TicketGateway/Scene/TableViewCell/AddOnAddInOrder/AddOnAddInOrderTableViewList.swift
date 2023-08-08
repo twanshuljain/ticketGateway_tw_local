@@ -8,6 +8,7 @@
 import UIKit
 class AddOnAddInOrderTableViewList: UITableView {
 // MARK: - VARIABLES
+    var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
@@ -19,17 +20,40 @@ class AddOnAddInOrderTableViewList: UITableView {
 }
 // MARK: - TableView Delegate
 extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return selectedAddOnList.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 20))
+        let label = UILabel()
+        label.frame = CGRect.init(x: 5, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
+        label.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        label.textColor = UIColor.setColor(colorType: .placeHolder)
+        headerView.addSubview(label)
+        label.text = "Add ons"
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as! AddOnAddInOrderCell
-        if indexPath.row == 3-1 {
-            cell.vwDottedLine.isHidden = false
-        } else {
-            cell.vwDottedLine.isHidden = true
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as? AddOnAddInOrderCell{
+            cell.setData(addOnData: self.selectedAddOnList[indexPath.row])
+            if indexPath.row == 3-1 {
+                cell.vwDottedLine.isHidden = false
+            } else {
+                cell.vwDottedLine.isHidden = true
+            }
+            return cell
         }
-        return cell
+        return UITableViewCell()
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell

@@ -45,6 +45,14 @@ public enum APIName: String {
     case getAddOnList = "events/ticket-add-on-list/"
     
     case GetFeeStructure = "default/data/fee/structure/get/"
+    
+    
+    
+    //STRIPE
+    case CreateStripeCustomer = "payment/stripe/create-customer/"
+    case AddCardForUser = "payment/add-card/"
+    case CreateCheckout = "payment/checkout/"
+    case CreateCharge = "payment/stripe/create-charge/"
 }
 public enum GroupApiName: String {
     case auth = "auth"
@@ -58,7 +66,7 @@ class APIHandler: NSObject {
     static var shared = APIHandler()
     private override init() {}
     private let session = URLSession.shared
-    let baseURL = "http://3.145.128.211/"
+    let baseURL = "http://18.118.114.2/"
     private let boundary = "Boundary-\(NSUUID().uuidString)"
     
     
