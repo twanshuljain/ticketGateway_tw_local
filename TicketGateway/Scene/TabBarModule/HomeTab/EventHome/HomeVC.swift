@@ -393,11 +393,7 @@ extension HomeVC {
     
     func funcCallFavoriteApi() {
         if Reachability.isConnectedToNetwork() {
-            viewModel.favouriteApiForHome(likeStatus:  viewModel.isLiked, eventId: eventId, complition: { isTrue, messageShowToast in
-                DispatchQueue.main.async {
-        
-                }
-            })
+            
         }
     }
  

@@ -11,6 +11,7 @@ target 'TicketGateway' do
   pod 'Cosmos'
  # pod 'SwiftLint'
   pod 'Stripe'
+  pod 'TweeTextField'
   
 # Pods for TicketGateway
 
