@@ -46,6 +46,11 @@ public enum APIName: String {
     
     case GetFeeStructure = "default/data/fee/structure/get/"
     case favoriteEvents = "events/like/unlike/"
+    //STRIPE
+    case CreateStripeCustomer = "payment/stripe/create-customer/"
+    case AddCardForUser = "payment/add-card/"
+    case CreateCheckout = "payment/checkout/"
+    case CreateCharge = "payment/stripe/create-charge/"
 }
 public enum GroupApiName: String {
     case auth = "auth"

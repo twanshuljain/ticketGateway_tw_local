@@ -176,7 +176,8 @@ extension EventBookingTicketVC {
     }
     
    func btnContinueAction() {
-       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
+       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC {
+           view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
            view.viewModel.eventDetail = self.viewModel.eventDetail
            view.viewModel.totalTicketPrice = self.lblTotalTicketPrice.text ?? ""
            view.viewModel.feeStructure = self.viewModel.feeStructure

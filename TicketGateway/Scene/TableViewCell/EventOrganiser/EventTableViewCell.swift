@@ -64,11 +64,11 @@ class EventTableViewCell: UITableViewCell {
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAddress.textColor = UIColor.setColor(colorType: .headinglbl)
         
-        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblDate.textColor = UIColor.setColor(colorType: .headinglbl)
-        self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTime.textColor = UIColor.setColor(colorType: .headinglbl)
-        self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
        
     }

@@ -182,8 +182,9 @@ extension EventBookingPaymentMethodVC {
     }
     
    func btnContinueAction() {
-       let view = self.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC
-       self.navigationController?.pushViewController(view!, animated: true)
+       self.viewModel.createCustomer(vc: self)
+//       let view = self.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC
+//       self.navigationController?.pushViewController(view!, animated: true)
     }
     
     func setGradientBackground( viewadd : UIView) {

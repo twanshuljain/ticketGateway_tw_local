@@ -247,6 +247,8 @@
 		18BC2EE52A52978500FB427E /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */; };
 		18BC9F9B2A53EE5900863CD5 /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */; };
 		18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */; };
+		18CDDDBA2A80D194002C58FB /* StripeClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CDDDB92A80D194002C58FB /* StripeClasses.swift */; };
+		18CDDDBC2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CDDDBB2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift */; };
 		18D361412A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */; };
 		18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA75302A4AFD5700113541 /* FilterViewController.swift */; };
 		18DF185A2A3CA0CA00E89AB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DF18592A3CA0CA00E89AB5 /* Main.storyboard */; };
@@ -653,6 +655,8 @@
 		18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsVC.swift; sourceTree = "<group>"; };
+		18CDDDB92A80D194002C58FB /* StripeClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeClasses.swift; sourceTree = "<group>"; };
+		18CDDDBB2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingPaymentMethodModel.swift; sourceTree = "<group>"; };
 		18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTiclketAddOnViewModel.swift; sourceTree = "<group>"; };
 		18DA75302A4AFD5700113541 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		18DF18592A3CA0CA00E89AB5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -954,6 +958,7 @@
 		182A829D2A42C5F400346F35 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				18CDDDB82A80D181002C58FB /* StripeClasses */,
 				18A6D0DB29E91CB800D6210E /* Validation */,
 				187734E129E7FF7100E26B65 /* AppConstants */,
 				182A829F2A42C68300346F35 /* CustomView */,
@@ -1225,6 +1230,7 @@
 			children = (
 				188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */,
 				182B9FAE2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift */,
+				18CDDDBB2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift */,
 			);
 			path = EventBookingPaymentMethod;
 			sourceTree = "<group>";
@@ -2137,6 +2143,14 @@
 			path = ViewMoreEvents;
 			sourceTree = "<group>";
 		};
+		18CDDDB82A80D181002C58FB /* StripeClasses */ = {
+			isa = PBXGroup;
+			children = (
+				18CDDDB92A80D194002C58FB /* StripeClasses.swift */,
+			);
+			path = StripeClasses;
+			sourceTree = "<group>";
+		};
 		18DA752F2A4AFD3700113541 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2901,7 +2915,7 @@
 		};
 		18F1BBA52A669815008C183C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -2912,7 +2926,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
 		};
@@ -3187,6 +3201,7 @@
 				18FBC0FC2A309239002CF129 /* CostumeCartViewController.swift in Sources */,
 				187DB4AD2A4DA7D200F0B019 /* OtherBrandLeaderCollectionViewCell.swift in Sources */,
 				18F6F73C29E957E3007B9513 /* UIViewController+Extension.swift in Sources */,
+				18CDDDBA2A80D194002C58FB /* StripeClasses.swift in Sources */,
 				185062862A553E1900BC3EC5 /* CancelThisEventViewModel.swift in Sources */,
 				18F5A4D62A4EB01D00CA18F7 /* ScanQRVC.swift in Sources */,
 				188A67F82A0CEF6B00987BAD /* EventBookingTicketVC.swift in Sources */,
@@ -3231,6 +3246,7 @@
 				18FBC0D92A309239002CF129 /* PeopleCollectionList.swift in Sources */,
 				18FBC0A62A309239002CF129 /* NotificationTableViewList.swift in Sources */,
 				185062842A553E0B00BC3EC5 /* CancelThisEventVC.swift in Sources */,
+				18CDDDBC2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift in Sources */,
 				18FBC0CB2A309239002CF129 /* ManageSellAddBuyerVC.swift in Sources */,
 				1859813B2A2085A800ABDC51 /* MKRingProgressLayer.swift in Sources */,
 				18FBC0B22A309239002CF129 /* Reward_LoyaltyPointsVC.swift in Sources */,

@@ -18,8 +18,9 @@
 import UIKit
 
 class TicketAddInOrderTableViewList: UITableView {
-   
-//MARK: - VARIABLES
+    
+    //MARK: - VARIABLES
+    var selectedArrTicketList = [EventTicket]()
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
@@ -34,20 +35,21 @@ class TicketAddInOrderTableViewList: UITableView {
 // MARK: - TableView Delegate
 extension TicketAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return selectedArrTicketList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketAddInOrderCell") as! TicketAddInOrderCell
-          return cell
-        
-        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketAddInOrderCell") as? TicketAddInOrderCell{
+            cell.setData(ticketData: selectedArrTicketList[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
-
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
-         self.tableDidSelectAtIndex?(indexPath.row)
-         self.reloadData()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
+        self.tableDidSelectAtIndex?(indexPath.row)
+        self.reloadData()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -58,10 +60,10 @@ extension TicketAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSou
         
     }
     
-
-
+    
+    
     @objc func PlusButtonPressed(_ sender: UIButton) {
-       print(sender.tag)
+        print(sender.tag)
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
         let value =  cell.vwStepper.lblCount.text ?? ""
@@ -71,7 +73,7 @@ extension TicketAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSou
     }
     
     @objc func MinustButtonPressed(_ sender: UIButton) {
-         let indexPath = IndexPath(row: sender.tag, section: 0)
+        let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
@@ -82,5 +84,5 @@ extension TicketAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSou
             cell.vwStepper.lblCount.text = "0"
         }
     }
- 
+    
 }

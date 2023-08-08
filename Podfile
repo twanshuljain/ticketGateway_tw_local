@@ -9,8 +9,8 @@ target 'TicketGateway' do
   pod 'AdvancedPageControl'
   pod 'Charts'
   pod 'Cosmos'
-  pod 'SwiftLint'
-  pod 'TweeTextField'
+ # pod 'SwiftLint'
+  pod 'Stripe'
   
 # Pods for TicketGateway
 

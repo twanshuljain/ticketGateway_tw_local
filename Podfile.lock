@@ -7,9 +7,28 @@ PODS:
   - Cosmos (23.0.0)
   - iOSDropDown (0.4.0)
   - SideMenu (6.5.0)
+  - Stripe (23.12.0):
+    - StripeApplePay (= 23.12.0)
+    - StripeCore (= 23.12.0)
+    - StripePayments (= 23.12.0)
+    - StripePaymentsUI (= 23.12.0)
+    - StripeUICore (= 23.12.0)
+  - StripeApplePay (23.12.0):
+    - StripeCore (= 23.12.0)
+  - StripeCore (23.12.0)
+  - StripePayments (23.12.0):
+    - StripeCore (= 23.12.0)
+    - StripePayments/Stripe3DS2 (= 23.12.0)
+  - StripePayments/Stripe3DS2 (23.12.0):
+    - StripeCore (= 23.12.0)
+  - StripePaymentsUI (23.12.0):
+    - StripeCore (= 23.12.0)
+    - StripePayments (= 23.12.0)
+    - StripeUICore (= 23.12.0)
+  - StripeUICore (23.12.0):
+    - StripeCore (= 23.12.0)
   - SwiftAlgorithms (1.0.0)
   - SwiftLint (0.52.4)
-  - TweeTextField (1.6.4)
 
 DEPENDENCIES:
   - AdvancedPageControl
@@ -17,8 +36,8 @@ DEPENDENCIES:
   - Cosmos
   - iOSDropDown
   - SideMenu
+  - Stripe
   - SwiftLint
-  - TweeTextField
 
 SPEC REPOS:
   trunk:
@@ -27,9 +46,14 @@ SPEC REPOS:
     - Cosmos
     - iOSDropDown
     - SideMenu
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripePayments
+    - StripePaymentsUI
+    - StripeUICore
     - SwiftAlgorithms
     - SwiftLint
-    - TweeTextField
 
 SPEC CHECKSUMS:
   AdvancedPageControl: 39e3b32b00b2d324c534f8e17cc6c5be9abe84b7
@@ -37,10 +61,15 @@ SPEC CHECKSUMS:
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   iOSDropDown: ce9daa584eaa5567cafc1b633e3cc7eb6d9cea42
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  Stripe: 15fad81ffb8d553d77ff504a6d50d47b9028bed0
+  StripeApplePay: 871274acfa7a96650ea8a697c288c54b8288fb6e
+  StripeCore: 7b08fd286e8f8f5336eb725bc7ed1d2a4705cdc4
+  StripePayments: 081e01e73762852ccf3e662202d5dd4107634058
+  StripePaymentsUI: 3dae7fed9b148b2749dff622ece45f9b441b88ce
+  StripeUICore: 4a76fa59cab679e1b2fe1ad37d6b08c5bf2ada54
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
-  TweeTextField: 726de695eead9784f7ed02e22f6944bfcfcca07a
 
-PODFILE CHECKSUM: 77deb64596dd57db7aa85f446d43cc98190ff4f5
+PODFILE CHECKSUM: 20cf7093634e05a7e40a11f232cf39c596fc379c
 
 COCOAPODS: 1.12.1

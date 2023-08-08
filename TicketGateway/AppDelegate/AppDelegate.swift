@@ -11,7 +11,8 @@ import SVProgressHUD
 import GoogleSignIn
 import FacebookCore
 import Firebase
-
+import Stripe
+import Stripe
 
 
 
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+        STPAPIClient.shared.publishableKey = STRIPE_PUBLISH_KEY
         window = UIWindow(frame: UIScreen.main.bounds)
        
         if #available(iOS 13.0, *) {

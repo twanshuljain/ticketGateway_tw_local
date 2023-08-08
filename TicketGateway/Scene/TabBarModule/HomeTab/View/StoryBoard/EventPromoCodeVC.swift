@@ -99,12 +99,14 @@ extension EventPromoCodeVC {
         let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
         view?.viewModel.eventDetail = self.eventDetail
         view?.viewModel.feeStructure = self.feeStructure
+        view?.viewModel.selectedArrTicketList = selectedArrTicketList
         self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnContinueAction() {
         let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
         view?.viewModel.eventDetail = self.eventDetail
         view?.viewModel.feeStructure = self.feeStructure
+        view?.viewModel.selectedArrTicketList = selectedArrTicketList
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }

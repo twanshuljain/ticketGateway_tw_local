@@ -527,6 +527,7 @@ extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventImageCell", for: indexPath) as! EventImageCell
+        self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.indices.contains(indexPath.row)
         cell.setData(index: indexPath.row, eventDetail: self.viewModel.eventDetail)
         //  cell.imgEvents.cornerRadius = 10
         return cell

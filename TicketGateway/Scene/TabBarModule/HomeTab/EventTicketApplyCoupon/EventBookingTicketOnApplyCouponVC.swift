@@ -126,6 +126,7 @@ extension EventBookingTicketOnApplyCouponVC {
     
    func btnContinueAction() {
        let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
+       view.selectedArrTicketList = self.viewModel.selectedArrTicketList
        view.eventDetail = self.viewModel.eventDetail
        view.feeStructure = self.viewModel.feeStructure
        self.navigationController?.pushViewController(view, animated: true)

@@ -22,6 +22,21 @@ class TicketAddInOrderCell: UITableViewCell {
         self.setUi()
     }
 
+    func setData(ticketData:EventTicket?) {
+        if let ticketData = ticketData {
+            if let selectedTicketQuantity = ticketData.selectedTicketQuantity{
+                lblTittle.text = " + " + "\(ticketData.ticketName ?? "")" + "*" + " \(selectedTicketQuantity) "
+                lblAmtValue.text = "CA$ \(Double(ticketData.ticketPrice ?? 0) * Double(selectedTicketQuantity))"
+            }else{
+                lblTittle.text = " + " + "\(ticketData.ticketName ?? "")"
+                lblAmtValue.text = "CA$ \(Double(ticketData.ticketPrice ?? 0))"
+            }
+            lblTittleDis.isHidden = true
+            lblDiscount.isHidden = true
+            lblDiscountValue.isHidden = true
+        }
+        
+    }
    
     
     func setUi(){

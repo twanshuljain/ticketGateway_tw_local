@@ -300,6 +300,9 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     // set height for footer
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if self.isComingFrom == .Home{
+            if self.arrEventCategory[section] == .nearByLocation{
+                return 0
+            }
             return 40
         }else{
             return 0
