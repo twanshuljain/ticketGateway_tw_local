@@ -22,6 +22,7 @@ class EventTableViewCell: UITableViewCell {
     
     var getEvent:GetEventModel?{
         didSet{
+            btnLike.isSelected = getEvent?.isLikedEvent ?? false
             self.lblTitle.text = getEvent?.event?.title ?? ""
             self.lblPrice.text = "$ \(getEvent?.ticketOnwards ?? 0) onwards"
             self.lblAddress.text = getEvent?.location?.eventAddress ?? ""

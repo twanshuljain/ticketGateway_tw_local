@@ -59,7 +59,7 @@ class APIHandler: NSObject {
     static var shared = APIHandler()
     private override init() {}
     private let session = URLSession.shared
-    let baseURL = "http://3.145.128.211/"
+    let baseURL = "http://18.118.114.2/"
     private let boundary = "Boundary-\(NSUUID().uuidString)"
     
     

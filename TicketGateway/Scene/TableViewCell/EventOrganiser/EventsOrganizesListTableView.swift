@@ -32,6 +32,10 @@ protocol ActivityController {
     func toShowActivityController(index: Int)
 }
 
+protocol FavouriteAction {
+    func toCallFavouriteaApi(action: Bool, indexPath: IndexPath)
+}
+
 class EventsOrganizesListTableView: UITableView {
     var arrData = [GetEventModel]()
     var arrDataa = [GetEventModel]()
@@ -50,6 +54,7 @@ class EventsOrganizesListTableView: UITableView {
     var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .Home
     var delegateViewMore: EventsOrganizesListTableViewProtocol?
     var delegateShareAction: ActivityController?
+    var delegateLikeaction: FavouriteAction?
     var arrDataCategorySearch = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
     
@@ -63,6 +68,13 @@ class EventsOrganizesListTableView: UITableView {
     @objc func btnShareAction(_ sender: UIButton) {
         self.delegateShareAction?.toShowActivityController(index: sender.tag)
     }
+
+    @objc func btnLikeAction(_ sender: UIButton) {
+        
+        sender.isSelected = !sender.isSelected
+    }
+    
+    
 }
 
 // MARK: - TableView Delegate
@@ -137,7 +149,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-            cell.btnLike.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
+            cell.btnLike.addTarget(self, action: #selector(btnLikeAction(_ :)), for: .touchUpInside)
+          //  cell.btnLike.tag = indexPath
             cell.btnLike.setImage(UIImage(named: "favSele_ip"), for: .selected)
             cell.btnLike.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
             cell.btnShare.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
@@ -147,6 +160,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 case .nearByLocation:
                     if arrDataCategorySearch.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataCategorySearch[indexPath.row]
+                        
                     }
                 case .weekend:
                     if arrDataaWeekend.indices.contains(indexPath.row){
@@ -168,9 +182,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                     if arrDataaUpcoming.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaUpcoming[indexPath.row]
                     }
-               
                 }
-            }else if self.isComingFrom == .EventSearch {
+            } else if self.isComingFrom == .EventSearch {
                 if isFromSearch {
                   if arrSearchData.indices.contains(indexPath.row) {
                     cell.getEvent = self.arrSearchData[indexPath.row]
@@ -231,6 +244,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
 //         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
 //             if arrEventCategory.indices.contains(indexPath.section){
 //                 switch self.arrEventCategory[indexPath.section] {
@@ -328,11 +342,6 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             break;
         }
     }
-    
-    @objc func btnLikeAction(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-    }
-    
-    
+   
     
 }

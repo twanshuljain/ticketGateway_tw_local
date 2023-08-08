@@ -52,9 +52,10 @@ extension SideMenuViewControllers{
             lblProfileview.text = "Login"
             self.addTapGesture()
             btnChangeProfile.setImage(UIImage(named: "chevron-right_ip"), for: .normal)
+            btnChangeProfile.setTitle("", for: .normal)
             
         } else {
-            lblName.text = "Rebacca Young"
+            lblName.text = objAppShareData.userAuth?.fullName
             lblProfileview.text = "Profile View"
         }
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)

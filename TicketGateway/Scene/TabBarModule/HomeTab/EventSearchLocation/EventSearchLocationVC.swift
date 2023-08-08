@@ -29,19 +29,31 @@ class EventSearchLocationVC: UIViewController {
     @IBOutlet weak var lblBrowingIn: UILabel!
     @IBOutlet weak var tblList: UITableView!
     //MARK: - Variables
-    let locationData = ["Toronto", "Indore","ggd", "fhff","cbhfe", "chfh"]
+    
     weak var delegate: SendLocation?
-    
-    
+    var countriesModel = [CountryInfo]()
+    var countries = [[String: String]]()
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         self.setUp()
         self.setUI()
+        addCountries()
         self.vwSearchBar.delegate = self
         self.vwSearchBar.vwLocation.isHidden = true
         self.vwSearchBar.txtSearch.attributedPlaceholder = NSAttributedString(string: FIND_EVENT_IN, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .placeHolder)])
         self.vwSearchBar.txtSearch.delegate = self
         self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
+    }
+    
+    func addCountries() {
+        self.countries = self.jsonSerial()
+        for country in countries {
+            let name = country["name"] ?? ""
+            let countryinfo = CountryInfo(country_code: "", dial_code: "", country_name: name)
+            countriesModel.append(countryinfo)
+        }
+         tblList.reloadData()
     }
 }
 
@@ -65,7 +77,7 @@ extension EventSearchLocationVC{
     @objc func buttonPressed(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            self.delegate?.toSendLocation(location: locationData[sender.tag])
+            self.delegate?.toSendLocation(location: countriesModel[sender.tag].country_name                                                                             )
         }
     }
 }
@@ -73,13 +85,14 @@ extension EventSearchLocationVC{
 // MARK: - TableView Delegate
 extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationData.count
+      //  return countries.count
+        return countriesModel.count//locationData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as!SearchLocationCell
-        let data = locationData[indexPath.row]
-        cell.lblTittle.text = data
+        let countryName = countriesModel[indexPath.row].country_name//locationData[indexPath.row]
+        cell.lblTittle.text = countryName
         cell.btnCheck.tag = indexPath.row
         cell.btnCheck.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         cell.btnCheck.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .selected)
@@ -113,4 +126,9 @@ extension EventSearchLocationVC: CustomSearchMethodsDelegate {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
+}
+// MARK: -
+extension EventSearchLocationVC: RSCountrySelectedDelegate {
+    func RScountrySelected(countrySelected country: CountryInfo) { }
+   
 }

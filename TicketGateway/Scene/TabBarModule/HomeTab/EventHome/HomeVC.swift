@@ -45,6 +45,8 @@ class HomeVC: UIViewController {
      // self.funcCallApi(viewAll: false)
         self.funcCallApi()
         self.tblEvents.delegateShareAction = self
+        self.collvwSuggestedOrganisation.delegateOrgansierToProfile = self
+        
         // self.apiCall()
     }
     
@@ -388,6 +390,17 @@ extension HomeVC {
             }
         }
     }
+    
+    func funcCallFavoriteApi() {
+        if Reachability.isConnectedToNetwork() {
+            viewModel.favouriteApiForHome(likeStatus:  viewModel.isLiked, eventId: eventId, complition: { isTrue, messageShowToast in
+                DispatchQueue.main.async {
+        
+                }
+            })
+        }
+    }
+ 
 }
 
 //MARK: - CustomSearchMethodsDelegate
@@ -440,4 +453,18 @@ extension HomeVC: ActivityController {
                 self.present(activityViewController, animated: true, completion: nil)
     }
   
+}
+
+// MARK: -
+extension HomeVC: NavigateToProfile {
+    func tapActionOrganiser(index: Int, data: Organizers) {
+        if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
+            vc.isComingFromOranizer = true
+            vc.name = data.name ?? ""
+            if let url = URL(string: APIHandler.shared.baseURL + (data.profileImage ?? "")) {
+                vc.imageUrl = url
+            }
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
 }

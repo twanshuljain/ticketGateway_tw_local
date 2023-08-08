@@ -75,7 +75,7 @@ extension EventDetailViewModel{
         }
     }
     
-    func favouriteApi(likeStatus: Bool,eventId:Int, complition: @escaping (Bool, String) -> Void) {
+    func favouriteApi(likeStatus: Bool, eventId:Int, complition: @escaping (Bool, String) -> Void) {
         let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
         APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {

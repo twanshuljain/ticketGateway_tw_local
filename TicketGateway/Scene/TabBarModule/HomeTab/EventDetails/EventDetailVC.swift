@@ -474,6 +474,7 @@ extension EventDetailVC {
                 }
             })
         } else {
+            
                 self.showToast(message: ValidationConstantStrings.networkLost)
         }
         

@@ -88,6 +88,7 @@ extension SignUpVC {
         }
     }
     func btnSkipAction() {
+        UserDefaultManager.share.guestUserLogin(value: true, key: .isGuestLogin)
         objSceneDelegate.showTabBar()
     }
     func btnLoginAction() {

@@ -23,6 +23,8 @@ final class HomeDashBoardViewModel {
     var arrSearchCategoryData = [GetEventModel]()
     var arrEventData = GetEvent()
     var arrEventCategory = [EventCategories]()
+    var arrForFavouriteeEvenst = EventDetail()
+    var isLiked: Bool = false
     var dispatchGroup = DispatchGroup.init()
     var dispatchGroup1 = DispatchGroup.init()
     var dispatchGroup2 = DispatchGroup.init()
@@ -288,6 +290,29 @@ extension HomeDashBoardViewModel {
         }
     }
     
+    
+    func favouriteApiForHome(likeStatus: Bool, eventId:Int, complition: @escaping (Bool, String) -> Void) {
+        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<EventDetail>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let data = response.data {
+                            self.arrForFavouriteeEvenst = data
+                        }
+                         
+                        
+                    }
+                    complition(true, response.message ?? "")
+                } else {
+                    complition(false, response.message ?? "Error message")
+                }
+            case .failure(let error):
+                complition(false, "\(error)")
+            }
+        }
+    }
     
     
 }

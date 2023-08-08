@@ -62,7 +62,8 @@ extension ManageEventProfileVC {
             }
            // self.navigationView.btnBack.isHidden = true
           //  self.navigationView.imgBack.isHidden = true
-            self.lblName.text = "Rebacca"
+            self.lblName.text = objAppShareData.userAuth?.fullName
+            self.lblEmail.text = objAppShareData.userAuth?.email
             self.btnEditProfile.isHidden = false
             self.btnSelectProfile.isHidden = false
             self.lblCompleteProfile.isHidden = false

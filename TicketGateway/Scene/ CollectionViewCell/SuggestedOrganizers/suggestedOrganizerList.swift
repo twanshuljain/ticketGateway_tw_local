@@ -13,12 +13,17 @@
 // swiftlint: disable type_name
 // swiftlint: disable vertical_whitespace
 import UIKit
-
 private let reuseIdentifier = "Cell"
+protocol NavigateToProfile {
+    func tapActionOrganiser(index:Int, data: Organizers)
+}
 
 class suggestedOrganizerList: UICollectionView {
-    var arrOrganizersList:[Organizers]?
     
+    
+    var arrOrganizersList:[Organizers]?
+    var delegateOrgansierToProfile: NavigateToProfile?
+   
     func configure() {
         self.register(UINib(nibName: "suggestedOrganizerCell", bundle: nil), forCellWithReuseIdentifier: "suggestedOrganizerCell")
         self.delegate = self
@@ -48,6 +53,10 @@ extension suggestedOrganizerList : UICollectionViewDataSource ,UICollectionViewD
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width/1.7, height: collectionView.bounds.height - 30.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.delegateOrgansierToProfile?.tapActionOrganiser(index: indexPath.row, data: (arrOrganizersList?[indexPath.row])! )
     }
 
 }
