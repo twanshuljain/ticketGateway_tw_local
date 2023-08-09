@@ -431,6 +431,7 @@ extension EventDetailVC {
     func btnBookTicket() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.eventId = self.viewModel.eventId
             view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             self.navigationController?.pushViewController(view, animated: true)

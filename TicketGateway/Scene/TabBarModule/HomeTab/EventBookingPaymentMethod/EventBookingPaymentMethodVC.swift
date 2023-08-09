@@ -13,6 +13,7 @@
 // swiftlint: disable cyclomatic_complexity
 // swiftlint: disable shorthand_operator
 import UIKit
+import iOSDropDown
 
 class EventBookingPaymentMethodVC: UIViewController {
     
@@ -46,7 +47,8 @@ class EventBookingPaymentMethodVC: UIViewController {
     @IBOutlet weak var txtCVV: UITextField!
     @IBOutlet weak var txtExpiryDate: UITextField!
     @IBOutlet weak var btnRightArrow: UIButton!
-    
+    @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var lblTotalTicketPrice :DropDown!
     
     //MARK: - Variables
     
@@ -120,6 +122,15 @@ extension EventBookingPaymentMethodVC {
         self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
         self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
         self.setGradientBackground(viewadd: UIView())
+        
+        
+        self.lblTotalTicketPrice.text = "CA$ \(self.viewModel.totalTicketPrice)"
+//        self.txtCardName.text = "Saurabh"
+//        self.txtCardNumber.text = "4242424242424242"
+//        self.txtExpiryDate.text = "12/2025"
+//        self.txtCVV.text = "123"
+//        self.viewModel.selectedMonth = "12"
+//        self.viewModel.selectedYear = "2025"
     }
     
 }
@@ -182,7 +193,10 @@ extension EventBookingPaymentMethodVC {
     }
     
    func btnContinueAction() {
-       self.viewModel.createCustomer(vc: self)
+       let validate = self.viewModel.checkValidations(vc: self)
+       if validate{
+           self.viewModel.createCustomer(vc: self)
+       }
 //       let view = self.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC
 //       self.navigationController?.pushViewController(view!, animated: true)
     }

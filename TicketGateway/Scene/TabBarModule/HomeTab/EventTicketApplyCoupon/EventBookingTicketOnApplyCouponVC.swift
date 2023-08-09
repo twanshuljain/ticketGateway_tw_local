@@ -176,19 +176,20 @@ extension EventBookingTicketOnApplyCouponVC {
             break
         }
     }
-    
-    func btnContinueAction() {
-        let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
-        view.selectedArrTicketList = self.viewModel.selectedArrTicketList
-        view.eventDetail = self.viewModel.eventDetail
-        view.feeStructure = self.viewModel.feeStructure
-        self.navigationController?.pushViewController(view, animated: true)
-        
-        //       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
-        //           view.totalTicketPrice = self.viewModel.totalTicketPrice
-        //           view.feeStructure = self.viewModel.feeStructure
-        //           self.navigationController?.pushViewController(view, animated: true)
-        //       }
+
+   func btnContinueAction() {
+       let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
+       view.selectedArrTicketList = self.viewModel.selectedArrTicketList
+       view.eventId = self.viewModel.eventId
+       view.eventDetail = self.viewModel.eventDetail
+       view.feeStructure = self.viewModel.feeStructure
+       self.navigationController?.pushViewController(view, animated: true)
+       
+//       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+//           view.totalTicketPrice = self.viewModel.totalTicketPrice
+//           view.feeStructure = self.viewModel.feeStructure
+//           self.navigationController?.pushViewController(view, animated: true)
+//       }
     }
     func btnAppliedCodeAction() {
        

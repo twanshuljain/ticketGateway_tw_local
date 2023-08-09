@@ -115,7 +115,7 @@ extension EventBookingOrderSummaryVC {
         self.lblTotalAmtValue.text = "CA$ \(total)"
         
         
-        
+        self.viewModel.totalTicketPrice = "\(total)"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
         self.tblAddOnEtcThings.selectedAddOnList = self.viewModel.selectedAddOnList
         DispatchQueue.main.async {
@@ -136,11 +136,18 @@ extension EventBookingOrderSummaryVC {
         }
     }
     func btnContinueAction() {
-        let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as! PhoneVerificationViewController
-        view.isComingFrom = .OrderSummary
-        self.navigationController?.pushViewController(view, animated: true)
-//        let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
-//        self.navigationController?.pushViewController(view!, animated: true)
+        //        let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as! PhoneVerificationViewController
+        //        view.isComingFrom = .OrderSummary
+        //        self.navigationController?.pushViewController(view, animated: true)
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+            view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.feeStructure = self.viewModel.feeStructure
+            view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
 }
 //MARK: - NavigationBarViewDelegate

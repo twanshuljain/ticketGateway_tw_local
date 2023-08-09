@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wY1-pO-8wJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wY1-pO-8wJ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -1902,7 +1902,7 @@ TicketGateway Balance  </string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6k6-9T-lSV">
                                 <rect key="frame" x="0.0" y="1235" width="393" height="182"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wz1-bk-VO9">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wz1-bk-VO9">
                                         <rect key="frame" x="193" y="15" width="180" height="35"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gtk-mo-hFu" customClass="GradientView" customModule="TicketGateway" customModuleProvider="target">
@@ -2006,7 +2006,7 @@ TicketGateway Balance  </string>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pdM-gd-diM">
-                                        <rect key="frame" x="20" y="15" width="153" height="47"/>
+                                        <rect key="frame" x="20" y="15" width="353" height="47"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-down" translatesAutoresizingMaskIntoConstraints="NO" id="o5w-DZ-oAf">
                                                 <rect key="frame" x="5" y="13.666666666666742" width="20" height="20"/>
@@ -2016,7 +2016,7 @@ TicketGateway Balance  </string>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CA$100" placeholder="All organizers" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xh2-y2-Wyj" customClass="DropDown">
-                                                <rect key="frame" x="40" y="0.0" width="113" height="47"/>
+                                                <rect key="frame" x="40" y="0.0" width="313" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -2039,7 +2039,7 @@ TicketGateway Balance  </string>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZK-BH-75T">
-                                                <rect key="frame" x="0.0" y="0.0" width="153" height="47"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="47"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             </button>
                                         </subviews>
@@ -2047,7 +2047,6 @@ TicketGateway Balance  </string>
                                         <constraints>
                                             <constraint firstItem="Xh2-y2-Wyj" firstAttribute="leading" secondItem="pdM-gd-diM" secondAttribute="leading" constant="40" id="6b0-Lb-FaI"/>
                                             <constraint firstItem="Xh2-y2-Wyj" firstAttribute="top" secondItem="pdM-gd-diM" secondAttribute="top" id="CX2-yP-L88"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="EKB-75-LkH"/>
                                             <constraint firstItem="PZK-BH-75T" firstAttribute="top" secondItem="pdM-gd-diM" secondAttribute="top" id="Jlo-5n-WQK"/>
                                             <constraint firstAttribute="bottom" secondItem="Xh2-y2-Wyj" secondAttribute="bottom" id="Rkl-O3-1MT"/>
                                             <constraint firstAttribute="trailing" secondItem="Xh2-y2-Wyj" secondAttribute="trailing" id="V1i-sA-lX8"/>
@@ -2056,7 +2055,6 @@ TicketGateway Balance  </string>
                                             <constraint firstItem="PZK-BH-75T" firstAttribute="leading" secondItem="pdM-gd-diM" secondAttribute="leading" id="eYR-nN-CoM"/>
                                             <constraint firstAttribute="trailing" secondItem="PZK-BH-75T" secondAttribute="trailing" id="ld8-2t-QXJ"/>
                                             <constraint firstItem="o5w-DZ-oAf" firstAttribute="leading" secondItem="pdM-gd-diM" secondAttribute="leading" constant="5" id="oWF-vl-OHE"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="q6F-in-nsh"/>
                                             <constraint firstAttribute="height" constant="47" id="qHf-Vh-yD8"/>
                                         </constraints>
                                     </view>
@@ -2070,11 +2068,12 @@ TicketGateway Balance  </string>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="wz1-bk-VO9" firstAttribute="leading" secondItem="pdM-gd-diM" secondAttribute="trailing" constant="20" id="4yY-XS-VAe"/>
                                     <constraint firstItem="4gX-2i-PF8" firstAttribute="leading" secondItem="6k6-9T-lSV" secondAttribute="leading" id="5iP-O1-DjZ"/>
                                     <constraint firstAttribute="trailing" secondItem="4gX-2i-PF8" secondAttribute="trailing" id="81t-Qd-lrU"/>
+                                    <constraint firstItem="wz1-bk-VO9" firstAttribute="leading" secondItem="6k6-9T-lSV" secondAttribute="leading" constant="193" id="8fH-oB-aM8"/>
                                     <constraint firstItem="4gX-2i-PF8" firstAttribute="top" secondItem="6k6-9T-lSV" secondAttribute="top" id="BXP-gJ-jIb"/>
                                     <constraint firstAttribute="trailing" secondItem="rBl-yt-hIn" secondAttribute="trailing" constant="20" id="EjW-ol-9iY"/>
+                                    <constraint firstAttribute="trailing" secondItem="pdM-gd-diM" secondAttribute="trailing" constant="20" id="JOX-ka-85g"/>
                                     <constraint firstAttribute="trailing" secondItem="NcT-Id-8zr" secondAttribute="trailing" constant="20" id="Ry3-yq-8Gd"/>
                                     <constraint firstItem="rBl-yt-hIn" firstAttribute="leading" secondItem="6k6-9T-lSV" secondAttribute="leading" constant="20" id="cUX-Ji-n59"/>
                                     <constraint firstAttribute="bottom" secondItem="rBl-yt-hIn" secondAttribute="bottom" constant="5" id="eop-S6-0I9"/>
@@ -2242,7 +2241,9 @@ TicketGateway Balance  </string>
                         <outlet property="lblPayWithCard" destination="wba-Ih-3s1" id="cmN-EE-sC9"/>
                         <outlet property="lblPayWithDigitalWAllet" destination="c1M-5F-exS" id="hqn-pu-Vm7"/>
                         <outlet property="lblTittleBalance" destination="0gV-eD-Hk2" id="kRs-Xu-Bm8"/>
+                        <outlet property="lblTotalTicketPrice" destination="Xh2-y2-Wyj" id="QPY-BC-1iu"/>
                         <outlet property="navigationView" destination="wOa-ll-zcD" id="9Ph-AR-MeC"/>
+                        <outlet property="parentView" destination="LnK-33-ImH" id="uaI-rq-S8M"/>
                         <outlet property="picker_monthYear" destination="svh-0v-r81" id="A2I-ak-OW4"/>
                         <outlet property="txtCVV" destination="2ov-JS-9LL" id="mNP-5o-tvV"/>
                         <outlet property="txtCardName" destination="DBy-OI-Q2t" id="wBY-0V-jL2"/>
@@ -2512,7 +2513,7 @@ TicketGateway Balance  </string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hcw-i6-Jia">
-                                <rect key="frame" x="0.0" y="119" width="393" height="648"/>
+                                <rect key="frame" x="0.0" y="119" width="393" height="650"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfr-LA-liI">
                                         <rect key="frame" x="0.0" y="65" width="393" height="65"/>
@@ -2646,7 +2647,7 @@ TicketGateway Balance  </string>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-8R-SK0" customClass="EventsOrganizesListTableView" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="130" width="393" height="518"/>
+                                        <rect key="frame" x="0.0" y="130" width="393" height="520"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -3132,7 +3133,7 @@ TicketGateway Balance  </string>
                                                                         </constraints>
                                                                     </view>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="LCx-QB-zB4">
-                                                                        <rect key="frame" x="0.0" y="154.99999999999994" width="393" height="314.99999999999994"/>
+                                                                        <rect key="frame" x="0.0" y="154.99999999999994" width="393" height="315"/>
                                                                         <subviews>
                                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GND-al-NiG">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="95"/>

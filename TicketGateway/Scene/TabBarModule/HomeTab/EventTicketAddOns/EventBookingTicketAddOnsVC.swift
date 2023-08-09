@@ -104,6 +104,7 @@ extension EventBookingTicketAddOnsVC {
             view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
+            view.viewModel.eventId = self.viewModel.eventId
             self.navigationController?.pushViewController(view, animated: true)
         }
         
@@ -213,6 +214,7 @@ extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
+            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
             self.navigationController?.pushViewController(view, animated: true)
         }
     }

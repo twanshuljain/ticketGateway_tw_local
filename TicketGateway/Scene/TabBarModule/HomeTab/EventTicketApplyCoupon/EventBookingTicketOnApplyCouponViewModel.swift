@@ -24,6 +24,7 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var selectedArrTicketList = [EventTicket]()
     var arrDataForAccessCode = [EventTicket]()
     var ticketId = ""
+    var eventId:Int?
 }
  
 extension EventBookingTicketOnApplyCouponViewModel {
