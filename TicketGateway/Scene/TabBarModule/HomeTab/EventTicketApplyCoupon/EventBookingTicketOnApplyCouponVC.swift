@@ -41,31 +41,81 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var accesCodeViewHeight: NSLayoutConstraint!
     @IBOutlet weak var accesCodeStackView: UIStackView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
-    
+    @IBOutlet weak var enterAccessCodeBgView: UIView!
     //MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        // Do any additional setup after loading the view.
+        self.setNavigationData()
+        self.apiCallForAccessCode()
+       
     }
-
+    
 }
 
 //MARK: - Functions
 extension EventBookingTicketOnApplyCouponVC {
+    
+    func apiCallForAccessCode() {
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            //  self.view.showLoading(centreToView: UIView())
+            viewModel.applyAccessCode(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    // self.view.stopLoading()
+                    DispatchQueue.main.async {
+                        self.tblEventTicketTypes.isFromAccessCode = true
+                        self.tblEventTicketTypes.arrDataAccessCode = self.viewModel.arrDataForAccessCode
+                        self.lblAppliedAccessCodeDIs.isHidden = false
+                        self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .tgGreen)
+                        self.imgApplyAccessCode.isHidden = false
+                        self.enterAccessCodeBgView.borderColor = UIColor.setColor(colorType: .tgBlue)
+                        self.btnAppliedCode.setTitles(text: "Applied", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour:UIColor.setColor(colorType: .btnDarkBlue))
+                        self.tblEventTicketTypes.reloadData()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        //  self.view.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                //  self.parentView.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    
+    
+    func setNavigationData(){
+        self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
+        
+        let dateTime = "\(viewModel.eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" + " • " + "\(viewModel.eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
+        self.navigationView.lblDiscripation.text = dateTime
+        
+       self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
+        
+    }
+      
     private func setup() {
         self.setUi()
         self.tblEventTicketTypes.configure()
+        self.tblEventTicketTypes.updatedPrice = { price in
+            self.viewModel.eventDetail?.event?.eventTicketFinalPrice = price
+            self.lblTotalTicketPrice.text = "CA$ \(price)"
+        }
         self.navigationView.delegateBarAction = self
-          self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
+      //  self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.isHidden = false
-        self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
-          self.navigationView.btnBack.isHidden = false
+       // self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
+        self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-          self.navigationView.delegateBarAction = self
+        self.navigationView.delegateBarAction = self
         self.tblEventTicketTypes.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblHeight.constant = self.tblEventTicketTypes.contentSize.height
         [self.btnContinue, self.btnAppliedCode, self.btnCheckTermCondition, self.btnDown].forEach {
@@ -75,13 +125,18 @@ extension EventBookingTicketOnApplyCouponVC {
         self.txtAccessCode.autocorrectionType = .no
         
         self.setData()
-     }
+    }
     
     func setData(){
         self.lblTotalTicketPrice.text = self.viewModel.totalTicketPrice
     }
     
     func setUi(){
+        self.lblAppliedAccessCodeDIs.isHidden = true
+        self.imgApplyAccessCode.isHidden = true
+        self.enterAccessCodeBgView.borderColor = UIColor.setColor(colorType: .borderColor)
+        self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .lblTextPara)
+        
         self.lblAcceptedTermCon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -89,22 +144,20 @@ extension EventBookingTicketOnApplyCouponVC {
         self.lblRefund.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblClickingonCOntinue.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
-        
         self.lblAccessCode.font = UIFont.setFont(fontType: .regular, fontSize: .nineteen)
         self.lblAccessCode.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAppliedAccessCodeDIs.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblAppliedAccessCodeDIs.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         
-        btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        btnAppliedCode.setTitles(text: APPLIED, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
+        btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
+        btnAppliedCode.setTitles(text: "Apply", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
-        
-     }
+    }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
         
-   }
+    }
 }
 
 //MARK: - Actions
@@ -124,23 +177,24 @@ extension EventBookingTicketOnApplyCouponVC {
         }
     }
     
-   func btnContinueAction() {
-       let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
-       view.selectedArrTicketList = self.viewModel.selectedArrTicketList
-       view.eventDetail = self.viewModel.eventDetail
-       view.feeStructure = self.viewModel.feeStructure
-       self.navigationController?.pushViewController(view, animated: true)
-       
-//       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
-//           view.totalTicketPrice = self.viewModel.totalTicketPrice
-//           view.feeStructure = self.viewModel.feeStructure
-//           self.navigationController?.pushViewController(view, animated: true)
-//       }
+    func btnContinueAction() {
+        let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
+        view.selectedArrTicketList = self.viewModel.selectedArrTicketList
+        view.eventDetail = self.viewModel.eventDetail
+        view.feeStructure = self.viewModel.feeStructure
+        self.navigationController?.pushViewController(view, animated: true)
+        
+        //       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+        //           view.totalTicketPrice = self.viewModel.totalTicketPrice
+        //           view.feeStructure = self.viewModel.feeStructure
+        //           self.navigationController?.pushViewController(view, animated: true)
+        //       }
     }
     func btnAppliedCodeAction() {
-         
-     }
-
+       
+        
+    }
+    
     func btnCheckTermConditionAction(){
         if viewModel.isCheckedTerm_COndition == false
         {
@@ -155,21 +209,20 @@ extension EventBookingTicketOnApplyCouponVC {
     }
     
     func btnDownAction() {
-        
         if viewModel.isAccessCodeAvailable {
             accesCodeViewHeight.constant = 300
             accesCodeStackView.isHidden = false
-           // isAccessCodeAvailable = false
+            // isAccessCodeAvailable = false
             btnDown.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
         } else {
             accesCodeViewHeight.constant = 40
             accesCodeStackView.isHidden = true
-//            isAccessCodeAvailable = true
+            //            isAccessCodeAvailable = true
             btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
         }
         viewModel.isAccessCodeAvailable = !viewModel.isAccessCodeAvailable
     }
-   
+    
 }
 
 // MARK: - TextField Delegate
@@ -178,27 +231,27 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
         
         var copystring  = ""
         if textField == self.txtAccessCode{
-           print(string)
-
+            print(string)
+            
             if string.count > 1{
                 if let theString = UIPasteboard.general.string {
-                       print("String is \(theString)")
-                       copystring  =  theString.replacingOccurrences(of: " ", with: "")
+                    print("String is \(theString)")
+                    copystring  =  theString.replacingOccurrences(of: " ", with: "")
                     if copystring.count >= 9
                     {
-                       self.txtAccessCode.text = String(copystring.prefix(20))
+                        self.txtAccessCode.text = String(copystring.prefix(20))
                     }
                     else
                     {
                         self.txtAccessCode.text = String(copystring)
                     }
                     return false
-                       //UIPasteboard.general.string = ""
+                    //UIPasteboard.general.string = ""
                 }
             }
             else
             if (range.location == 0 && string == " ") {
-                        return false
+                return false
             }
             else if string == " "
             {
@@ -208,7 +261,7 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
             let maxLength = 20
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
-                currentString.replacingCharacters(in: range, with: string) as NSString
+            currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         }
         return true
@@ -218,7 +271,7 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
 //MARK: - NavigationBarViewDelegate
 extension EventBookingTicketOnApplyCouponVC : NavigationBarViewDelegate {
     func navigationBackAction() {
-    self.navigationController?.popViewController(animated: true)
-  }
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 

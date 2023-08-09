@@ -22,4 +22,38 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var feeStructure :FeeStructure?
     var isAccessCodeAvailable = false
     var selectedArrTicketList = [EventTicket]()
+    var arrDataForAccessCode = [EventTicket]()
+    var ticketId = ""
+}
+ 
+extension EventBookingTicketOnApplyCouponViewModel {
+    func applyAccessCode(complition: @escaping (Bool,String) -> Void ) {
+     //   guard let eventId = self.eventDetail?.event?.id else {return}
+        let accessCode = "MOON"
+        let eventId = 34
+//       // var getURL = APIName.ApplyAccessCode.rawValue + "\(34)" + "/"
+      // var getURL = APIName.ApplyAccessCode.rawValue + "\(eventId)" + "/"
+//       // var getURL = APIName.GetTicketList.rawValue + "12" + "/"
+        let param = AccessCodeRequestModel(eventId: eventId, access_code: accessCode)
+        APIHandler.shared.executeRequestWith(apiName: .ApplyAccessCode, parameters: param, methodType: .POST, getURL: APIName.ApplyAccessCode.rawValue, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
+            switch result {
+            case .success(let response):
+               // defer { self.dispatchGroup.leave() }
+                if response.status_code == 200 {
+                    if let data = response.data{
+                        self.arrDataForAccessCode = data
+                        print("---------------arrDataForAccessCode", self.arrDataForAccessCode )
+                        //self.arrTicketList?.append(contentsOf: data)
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+              //  defer { self.dispatchGroup.leave() }
+                complition(false,"\(error)")
+            }
+        }
+    }
 }

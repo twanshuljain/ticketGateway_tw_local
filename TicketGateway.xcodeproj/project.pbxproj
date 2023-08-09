@@ -45,6 +45,7 @@
 		182B9FAF2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B9FAE2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift */; };
 		182B9FB12A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */; };
 		1830586E2A41D917007A3931 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830586D2A41D917007A3931 /* UIImageView+Extension.swift */; };
+		1836838B2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836838A2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift */; };
 		183A26302A4335F000DC97E3 /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */; };
 		183A26342A43367D00DC97E3 /* AddOnAddInOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */; };
 		183A26352A43367D00DC97E3 /* AddOnAddInOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183A26332A43367D00DC97E3 /* AddOnAddInOrderCell.xib */; };
@@ -456,6 +457,7 @@
 		182B9FAE2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingPaymentMethodViewModel.swift; sourceTree = "<group>"; };
 		182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketOnApplyCouponViewModel.swift; sourceTree = "<group>"; };
 		1830586D2A41D917007A3931 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		1836838A2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketOnApplyCouponRequestModel.swift; sourceTree = "<group>"; };
 		183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
 		183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnAddInOrderCell.swift; sourceTree = "<group>"; };
 		183A26332A43367D00DC97E3 /* AddOnAddInOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOnAddInOrderCell.xib; sourceTree = "<group>"; };
@@ -1115,6 +1117,14 @@
 			path = " CollectionViewCell";
 			sourceTree = "<group>";
 		};
+		1836838C2A82727E00D238FA /* EventPromoCode */ = {
+			isa = PBXGroup;
+			children = (
+				1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */,
+			);
+			path = EventPromoCode;
+			sourceTree = "<group>";
+		};
 		183A262D2A431E5A00DC97E3 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
@@ -1138,6 +1148,7 @@
 			isa = PBXGroup;
 			children = (
 				18506D072A4412C200C3C64B /* View */,
+				1836838C2A82727E00D238FA /* EventPromoCode */,
 				180A07F129ED758C0088C03A /* EventTicketAddOns */,
 				184B79192A4410DA00577B26 /* EventSearchLocation */,
 				184B79182A4410B800577B26 /* EventPaymentSuccess */,
@@ -1240,6 +1251,7 @@
 			children = (
 				18692AF02A0E2A8400ADB5A5 /* EventBookingTicketOnApplyCouponVC.swift */,
 				182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */,
+				1836838A2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift */,
 			);
 			path = EventTicketApplyCoupon;
 			sourceTree = "<group>";
@@ -1317,7 +1329,6 @@
 			children = (
 				18506D092A4412C200C3C64B /* Home.storyboard */,
 				1817A8172A725A2F00278512 /* EventMapVC.swift */,
-				1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -3294,6 +3305,7 @@
 				18B636A929F7B6B600DC14B8 /* LoginNmberWithEmailVC.swift in Sources */,
 				186FB94A2A402AF8002B0E5C /* WelcomeViewModel.swift in Sources */,
 				18FBC0AB2A309239002CF129 /* TransactionsListCell.swift in Sources */,
+				1836838B2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift in Sources */,
 				18F5A4C52A4EA55900CA18F7 /* SelectTicketTypeVC.swift in Sources */,
 				18A338DC2A4D8BD700D7C194 /* ContactDetailsTableViewCell.swift in Sources */,
 				1821FDF12A30B5E800BD4AB6 /* RequestRefundTableViewCell.swift in Sources */,

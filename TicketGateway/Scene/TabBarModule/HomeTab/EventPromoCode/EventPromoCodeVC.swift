@@ -28,7 +28,7 @@ class EventPromoCodeVC: UIViewController {
     @IBOutlet weak var lblPromoCodeApplied: UILabel!
     @IBOutlet weak var lblPromoCodeAppliedDescription: UILabel!
     // MARK: - Variables
-    let isPromoCodeApplied: Bool = false
+    let isPromoCodeApplied: Bool = true
     var eventDetail:EventDetail?
     var feeStructure:FeeStructure?
     var selectedArrTicketList = [EventTicket]()
@@ -51,6 +51,7 @@ extension EventPromoCodeVC {
             vwPromoCodeAppliedView.isHidden = true
             vwApplyPromoCode.isHidden = false
         }
+        
         self.lblPromoCode.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblPromoCode.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblApplyPromoCode.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
