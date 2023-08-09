@@ -102,6 +102,7 @@ extension HomeDashBoardViewModel {
         
         APIHandler.shared.executeRequestWith(apiName: .GetEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
             switch result {
+                
             case .success(let response):
                 defer { self.dispatchGroup.leave() }
                 if response.status_code == 200 {
