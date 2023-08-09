@@ -32,7 +32,7 @@ class AddOnAddInOrderCell: UITableViewCell {
     func setData(addOnData:EventTicketAddOnResponseModel?) {
         if let addOnData = addOnData{
             if let selectedTicketQuantity = addOnData.selectedTicketQuantity{
-                lblTittle.text = " + " + "\(addOnData.ticketName ?? "")" + "*" + " \(selectedTicketQuantity) "
+                lblTittle.text = " + " + "\(addOnData.addOnName ?? "")" + "*" + " \(selectedTicketQuantity) "
                 lblTittleValue.text = "CA$ \(Double(addOnData.addOnTicketPrice ?? 0) * Double(selectedTicketQuantity))"
             }else{
                 lblTittle.text = " + " + "\(addOnData.ticketName ?? "")"

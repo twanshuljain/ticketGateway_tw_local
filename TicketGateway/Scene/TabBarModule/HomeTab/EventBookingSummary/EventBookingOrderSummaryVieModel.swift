@@ -15,6 +15,7 @@ final class EventBookingOrderSummaryVieModel{
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
+    var eventId:Int?
 }
 
 extension EventBookingOrderSummaryVieModel{

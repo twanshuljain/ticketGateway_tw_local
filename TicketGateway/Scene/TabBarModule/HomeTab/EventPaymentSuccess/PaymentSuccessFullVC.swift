@@ -22,10 +22,14 @@ class PaymentSuccessFullVC: UIViewController {
     @IBOutlet weak var navigationView: NavigationBarView!
     //MARK: - Varibales
     var isTransactionFailed: Bool = false
+    var createCharge:CreateCharge?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
         self.setUi()
+        self.setData()
     }
 }
 //MARK: - Functions
@@ -51,6 +55,13 @@ extension PaymentSuccessFullVC {
         self.btnNeedHelp.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnNeedHelp.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
     }
+    
+    func setData(){
+        self.lbl1Ticket.text = ""
+        self.lblCADPrice.text = "CA$ \(self.createCharge?.amountTotal ?? 0)"
+        self.lblTicketForOrder.text = "Ticket for Order Id #\(self.createCharge?.transactionID ?? "") has been sent to sample@gmail.com"
+    }
+    
     func setUi() {
         if isTransactionFailed {
             lblThankYou.text = "Transaction Failed"
@@ -97,10 +108,17 @@ extension PaymentSuccessFullVC {
             break
         }
     }
-    func btnGoTopMyAccountAction() {}
-    func btnBrowseMorwEventsAction() {}
-    func btnNeedHelpAction() {}
+    func btnGoTopMyAccountAction() {
+        self.navigationController?.popToRootViewController(animated: false)
+    }
+    func btnBrowseMorwEventsAction() {
+        self.navigationController?.popToRootViewController(animated: false)
+    }
+    func btnNeedHelpAction() {
+        self.navigationController?.popToRootViewController(animated: false)
+    }
     func btnViewMyTicketAction() {
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }
 //MARK: - NavigationBarViewDelegate

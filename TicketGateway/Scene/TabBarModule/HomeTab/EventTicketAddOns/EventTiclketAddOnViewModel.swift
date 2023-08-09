@@ -24,6 +24,7 @@ class EventTiclketAddOnViewModel {
     var arrAddOnTicketList: [EventTicketAddOnResponseModel]?
     var selectedArrTicketList = [EventTicket]()
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
+    var eventId:Int?
     
     func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
         // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"

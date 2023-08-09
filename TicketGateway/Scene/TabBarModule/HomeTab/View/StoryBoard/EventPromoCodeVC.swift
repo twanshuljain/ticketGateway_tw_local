@@ -32,6 +32,7 @@ class EventPromoCodeVC: UIViewController {
     var eventDetail:EventDetail?
     var feeStructure:FeeStructure?
     var selectedArrTicketList = [EventTicket]()
+    var eventId:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +101,7 @@ extension EventPromoCodeVC {
         view?.viewModel.eventDetail = self.eventDetail
         view?.viewModel.feeStructure = self.feeStructure
         view?.viewModel.selectedArrTicketList = selectedArrTicketList
+        view?.viewModel.eventId = self.eventId
         self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnContinueAction() {
@@ -107,6 +109,7 @@ extension EventPromoCodeVC {
         view?.viewModel.eventDetail = self.eventDetail
         view?.viewModel.feeStructure = self.feeStructure
         view?.viewModel.selectedArrTicketList = selectedArrTicketList
+        view?.viewModel.eventId = self.eventId
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }

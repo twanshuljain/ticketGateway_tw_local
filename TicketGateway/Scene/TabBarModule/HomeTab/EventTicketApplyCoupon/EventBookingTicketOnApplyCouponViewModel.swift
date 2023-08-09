@@ -22,4 +22,5 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var feeStructure :FeeStructure?
     var isAccessCodeAvailable = false
     var selectedArrTicketList = [EventTicket]()
+    var eventId:Int?
 }

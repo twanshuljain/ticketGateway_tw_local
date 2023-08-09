@@ -21,6 +21,7 @@ final class EventBookingTicketViewModel{
     var isCheckedTerm_COndition = false
     var ticketId = ""
     var eventDetail:EventDetail?
+    var eventId:Int?
     var arrTicketList : [EventTicket]?
     var selectedArrTicketList = [EventTicket]()
     var feeStructure:FeeStructure?

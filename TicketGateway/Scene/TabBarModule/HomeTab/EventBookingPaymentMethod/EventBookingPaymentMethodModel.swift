@@ -57,12 +57,15 @@ struct CreateCheckoutReq: Codable {
     var orderType: String?
     var ticketIDS: [CheckoutTicketID]?
     var addonList: [CheckoutAddonList]?
+    var totalUserLoyaltyPoint, totalUserSpentAmount: String?
 
     enum CodingKeys: String, CodingKey {
         case eventID = "event_id"
         case orderType = "order_type"
         case ticketIDS = "ticket_ids"
         case addonList = "addon_list"
+        case totalUserLoyaltyPoint = "total_user_loyalty_point"
+        case totalUserSpentAmount = "total_user_spent_amount"
     }
 }
 
@@ -80,12 +83,16 @@ struct CheckoutAddonList: Codable {
 struct CheckoutTicketID: Codable {
     var ticketType, ticketName: String?
     var baseTicketID, quantity: Int?
+    var ticketPrice:Int?
+    var ticketCurrency:String?
 
     enum CodingKeys: String, CodingKey {
         case ticketType = "ticket_type"
         case ticketName = "ticket_name"
         case baseTicketID = "base_ticket_id"
         case quantity
+        case ticketPrice = "ticket_price"
+        case ticketCurrency = "ticket_currency"
     }
 }
 
