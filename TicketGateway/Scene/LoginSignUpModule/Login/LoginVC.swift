@@ -68,9 +68,7 @@ extension LoginVC {
         self.lblMobileNumber.text = MOBILE_NUMBER
         self.lblPleaseEnterMobileNumber.text = PLEASE_ENTER_YOUR_MOBILE_NUMBER_DDESCRIPTION
         self.lblDontHaveAnAccount.text = DONT_HAVE_AN_ACCOUNT
-        [txtEmail, txtPassword, txtNumber].forEach {
-            $0?.addTarget(self, action: #selector(textFieldErrorMsg(_:)), for: .allEditingEvents)
-        }
+        
         
     }
     private func setup() {
@@ -159,6 +157,9 @@ extension LoginVC {
         objSceneDelegate.showTabBar()
     }
     func btnLoginAction() {
+//        [txtEmail, txtPassword, txtNumber].forEach {
+//            $0?.addTarget(self, action: #selector(textFieldErrorMsg(_:)), for: .allEditingEvents)
+//        }
         print("Login Tapped")
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {

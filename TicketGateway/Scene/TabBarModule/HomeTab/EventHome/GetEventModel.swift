@@ -55,6 +55,11 @@ struct GetEvent: Codable {
 }
 
 // MARK: - GetEventModel
+struct SearchModel: Codable,Equatable {
+    let items: [GetEventModel]?
+    
+}
+// MARK: - GetEventModel
 struct GetEventModel: Codable,Equatable {
   var event: Event?
   var locationType: String?

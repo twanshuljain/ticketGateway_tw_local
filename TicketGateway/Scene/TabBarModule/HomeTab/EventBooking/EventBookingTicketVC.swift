@@ -176,15 +176,20 @@ extension EventBookingTicketVC {
     }
     
    func btnContinueAction() {
-       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC {
-           view.viewModel.eventId = self.viewModel.eventId
-           view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
-           view.viewModel.eventDetail = self.viewModel.eventDetail
-           view.viewModel.totalTicketPrice = self.lblTotalTicketPrice.text ?? ""
-           view.viewModel.feeStructure = self.viewModel.feeStructure
-           view.viewModel.defaultTicket = self.viewModel.arrTicketList ?? []
-           
-           self.navigationController?.pushViewController(view, animated: true)
+       if viewModel.isCheckedTerm_COndition == true {
+           if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC {
+               view.viewModel.eventId = self.viewModel.eventId
+               view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
+               view.viewModel.eventDetail = self.viewModel.eventDetail
+               view.viewModel.totalTicketPrice = self.lblTotalTicketPrice.text ?? ""
+               view.viewModel.feeStructure = self.viewModel.feeStructure
+               view.viewModel.defaultTicket = self.viewModel.arrTicketList ?? []
+               
+               self.navigationController?.pushViewController(view, animated: true)
+           } else {
+               self.showToast(message: "Please Accept Terms and Condition")
+           }
+       
        }
     }
 }

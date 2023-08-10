@@ -144,12 +144,19 @@ extension EventBookingTicketOnApplyCouponVC {
     }
 
    func btnContinueAction() {
-       let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
-       view.selectedArrTicketList = self.viewModel.selectedArrTicketList
-       view.eventId = self.viewModel.eventId
-       view.eventDetail = self.viewModel.eventDetail
-       view.feeStructure = self.viewModel.feeStructure
-       self.navigationController?.pushViewController(view, animated: true)
+       if viewModel.isCheckedTerm_COndition == true {
+           let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
+           view.selectedArrTicketList = self.viewModel.selectedArrTicketList
+           view.eventId = self.viewModel.eventId
+           view.eventDetail = self.viewModel.eventDetail
+           view.feeStructure = self.viewModel.feeStructure
+           self.navigationController?.pushViewController(view, animated: true)
+       } else {
+           self.showToast(message: "Please Accept Terms and Condition")
+
+       }
+       
+       
        
 //       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
 //           view.totalTicketPrice = self.viewModel.totalTicketPrice
@@ -217,7 +224,7 @@ extension EventBookingTicketOnApplyCouponVC {
         } else {
             accesCodeViewHeight.constant = 40
             accesCodeStackView.isHidden = true
-            //            isAccessCodeAvailable = true
+           
             btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
         }
         viewModel.isAccessCodeAvailable = !viewModel.isAccessCodeAvailable

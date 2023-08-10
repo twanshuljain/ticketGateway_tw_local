@@ -28,10 +28,15 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
     @IBOutlet weak var collVwEvent: EventSearchCategoryCollectionList!
     @IBOutlet weak var btnSortByRelevence: UIButton!
     @IBOutlet weak var txtSortByRelevance: DropDown!
+    @IBOutlet weak var vwCollectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var vwSortByRelevanceHeight: NSLayoutConstraint!
+    
     // MARK: - Variables
     private let viewModel = GetEventCategoryViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.vwCollectionViewHeight.constant = 0
+        self.vwSortByRelevanceHeight.constant = 0
         self.vwBlack.isHidden =  true
         self.vwSearchBar.delegate = self
         self.vwSearchBar.vwLocation.isHidden = true
@@ -108,7 +113,8 @@ extension EventSearchHomeVC {
         case btnFIlter:
             self.btnFilterAction()
         case btnShowResult:
-            self.btnShowResultAction()
+            break
+           // self.btnShowResultAction()
         case btnSortByRelevence:
             self.btnSortByRelevenceAction()
         default:
@@ -125,36 +131,36 @@ extension EventSearchHomeVC {
         self.txtSortByRelevance.showList()
     }
     func btnShowResultAction() {
-        self.collVwEvent.collVwDidSelectAtIndex = { obj in
-            self.callEventSearchCategoryApi(category: "\(obj.name ?? "")")
-            self.tblEvents.isFromSearch = false
-            self.vwSearchBar.txtSearch.resignFirstResponder()
-            self.tblEvents.reloadData()
-        }
-        self.vwBlack.isHidden =  true
+//        self.collVwEvent.collVwDidSelectAtIndex = { obj in
+//            self.callEventSearchCategoryApi(category: "\(obj.name ?? "")")
+//            self.tblEvents.isFromSearch = false
+//            self.vwSearchBar.txtSearch.resignFirstResponder()
+//            self.tblEvents.reloadData()
+//        }
+//        self.vwBlack.isHidden =  true
     }
-    func callEventSearchCategoryApi(category: String) {
-        if Reachability.isConnectedToNetwork() // check internet connectivity
-        {
-            SVProgressHUD.show()
-            viewModel.getEventSearchCategoryApi(category: category, complition: { isTrue, showMessage in
-                if isTrue {
-                    SVProgressHUD.dismiss()
-                    self.tblEvents.arrDataCategorySearch = self.viewModel.arrSearchCategoryData
-                } else {
-                    DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
-                        self.showToast(message: showMessage)
-                    }
-                }
-            })
-        } else {
-            DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
-                self.showToast(message: ValidationConstantStrings.networkLost)
-            }
-        }
-    }
+//    func callEventSearchCategoryApi(category: String) {
+//        if Reachability.isConnectedToNetwork() // check internet connectivity
+//        {
+//            SVProgressHUD.show()
+//            viewModel.getEventSearchCategoryApi(category: category, complition: { isTrue, showMessage in
+//                if isTrue {
+//                    SVProgressHUD.dismiss()
+//                    self.tblEvents.arrDataCategorySearch = self.viewModel.arrSearchCategoryData
+//                } else {
+//                    DispatchQueue.main.async {
+//                        SVProgressHUD.dismiss()
+//                        self.showToast(message: showMessage)
+//                    }
+//                }
+//            })
+//        } else {
+//            DispatchQueue.main.async {
+//                SVProgressHUD.dismiss()
+//                self.showToast(message: ValidationConstantStrings.networkLost)
+//            }
+//        }
+//    }
 }
 
 // MARK: - CustomSearchMethodsDelegate

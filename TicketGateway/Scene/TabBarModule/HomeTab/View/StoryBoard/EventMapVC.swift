@@ -15,6 +15,7 @@ class EventMapVC: UIViewController {
     //MARK: - Varibles
     var latitude = Double()
     var longitude = Double()
+    var location = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setMap()
@@ -34,6 +35,7 @@ extension EventMapVC {
         let annotation = MKPointAnnotation()
         let centerCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         annotation.coordinate = centerCoordinate
+        annotation.title = location
         mapView.addAnnotation(annotation)
     }
     

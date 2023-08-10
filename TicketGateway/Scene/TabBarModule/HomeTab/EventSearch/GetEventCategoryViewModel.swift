@@ -106,12 +106,12 @@ extension GetEventCategoryViewModel {
     
     func getEventSearchApi(searchText: String, complition: @escaping (Bool,String) -> Void ) {
         let parameters =  GetEventSearch(search_key: searchText)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventSearch, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .GetEventSearch, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<SearchModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
                   //  DispatchQueue.main.async {
-                        if let searchData = response.data {
+                    if let searchData = response.data?.items {
                             self.arrSearchData = searchData
                             print("----------------",self.arrSearchData)
                         }
