@@ -43,6 +43,7 @@ class LoginVC: UIViewController{
     @IBOutlet weak var lblMobileNumber: UILabel!
     @IBOutlet weak var lblPleaseEnterMobileNumber: UILabel!
     @IBOutlet weak var lblDontHaveAnAccount: UILabel!
+    @IBOutlet weak var vwBtnSkipView: UIView!
     // MARK: - Variable
     var viewModel = SignInViewModel()
     let viewModelSocialSignIN = SocialSignInVC()
@@ -60,6 +61,7 @@ class LoginVC: UIViewController{
 // MARK: - Functions
 extension LoginVC {
     func setUI() {
+        self.vwBtnSkipView.isHidden = true
         self.lblSignIn.text = LBL_SIGN_IN
         self.lblSignInWith.text = LBL_OR_SIGNIN_WITH
         self.lblEmail.text = EMAIL

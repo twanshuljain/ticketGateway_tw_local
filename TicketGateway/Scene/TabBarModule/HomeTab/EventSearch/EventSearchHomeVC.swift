@@ -35,6 +35,7 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
         self.vwBlack.isHidden =  true
         self.vwSearchBar.delegate = self
         self.vwSearchBar.vwLocation.isHidden = true
+        self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
         self.collVwEvent.configure()
         self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.EventSearch)
         self.collVwEvent.isFromCategory = true
@@ -159,9 +160,10 @@ extension EventSearchHomeVC {
 // MARK: - CustomSearchMethodsDelegate
 extension EventSearchHomeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
-        present(menu, animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+//        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
+//        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
+//        present(menu, animated: true, completion: nil)
     }
     func rightButtonPressed(_ sender: UIButton) {
         print("hello")

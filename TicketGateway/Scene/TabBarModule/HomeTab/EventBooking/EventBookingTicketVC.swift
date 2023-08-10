@@ -182,6 +182,8 @@ extension EventBookingTicketVC {
            view.viewModel.eventDetail = self.viewModel.eventDetail
            view.viewModel.totalTicketPrice = self.lblTotalTicketPrice.text ?? ""
            view.viewModel.feeStructure = self.viewModel.feeStructure
+           view.viewModel.defaultTicket = self.viewModel.arrTicketList ?? []
+           
            self.navigationController?.pushViewController(view, animated: true)
        }
     }

@@ -43,7 +43,8 @@ extension WelComeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         cell.btnNext.tag = indexPath.row
         cell.btnSkip.addTarget(self, action: #selector(skipBtn), for: .touchUpInside)
         cell.btnNext.addTarget(self, action: #selector(nextBtn), for: .touchUpInside)
-        if self.viewModel.arrSliderImages.count-1 == indexPath.row {
+        print(indexPath.row)
+        if self.viewModel.arrSliderImages.count-1 == indexPath.last {
             cell.btnNext.setTitle(FINISH, for: .normal)
         } else {
             cell.btnNext.setTitle(NEXT, for: .normal)
@@ -51,7 +52,7 @@ extension WelComeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         if self.viewModel.arrSliderImages.count-1 == indexPath.row || indexPath.row == 0 {
             cell.btnSkip.isHidden = true
         } else {
-            cell.btnSkip.isHidden = false
+            cell.btnSkip.isHidden = true
         }
         return cell
     }
@@ -63,10 +64,10 @@ extension WelComeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         return CGSize(width: cellWidth, height: cellHeight)
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.viewModel.currentIndex = indexPath.row
+        self.viewModel.currentIndex = indexPath.row + 1
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.currentIndex = indexPath.row
-        self.viewModel.setPageController()
+        self.viewModel.currentIndex = indexPath.row + 1
+        //self.viewModel.setPageController()
     }
 }

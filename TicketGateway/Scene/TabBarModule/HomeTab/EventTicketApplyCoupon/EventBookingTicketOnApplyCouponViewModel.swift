@@ -23,15 +23,16 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var isAccessCodeAvailable = false
     var selectedArrTicketList = [EventTicket]()
     var arrDataForAccessCode = [EventTicket]()
+    var defaultTicket = [EventTicket]()
     var ticketId = ""
     var eventId:Int?
 }
  
 extension EventBookingTicketOnApplyCouponViewModel {
-    func applyAccessCode(complition: @escaping (Bool,String) -> Void ) {
-     //   guard let eventId = self.eventDetail?.event?.id else {return}
-        let accessCode = "MOON"
-        let eventId = 34
+    func applyAccessCode(accessCode:String,complition: @escaping (Bool,String) -> Void ) {
+      // guard let eventId = self.eventDetail?.event?.id else {return}
+        //let accessCode = "MOON"
+       let eventId = 34
 //       // var getURL = APIName.ApplyAccessCode.rawValue + "\(34)" + "/"
       // var getURL = APIName.ApplyAccessCode.rawValue + "\(eventId)" + "/"
 //       // var getURL = APIName.GetTicketList.rawValue + "12" + "/"

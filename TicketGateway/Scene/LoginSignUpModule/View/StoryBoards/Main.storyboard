@@ -863,6 +863,7 @@
                         <outlet property="txtNumber" destination="BJ3-80-wjX" id="D4F-MU-ehg"/>
                         <outlet property="txtPassword" destination="CAT-mg-6EI" id="7Yt-Qy-ZZa"/>
                         <outlet property="vwApple" destination="w82-70-uvv" id="kYx-qL-SZ1"/>
+                        <outlet property="vwBtnSkipView" destination="HMJ-3M-o7f" id="9NR-cD-oFm"/>
                         <outlet property="vwContent" destination="vvQ-EJ-3IG" id="mhx-bl-blJ"/>
                         <outlet property="vwEmail" destination="vkt-5R-TsX" id="MKh-pd-JJj"/>
                         <outlet property="vwFaceBook" destination="cpS-h3-mev" id="Iii-fa-SZ9"/>

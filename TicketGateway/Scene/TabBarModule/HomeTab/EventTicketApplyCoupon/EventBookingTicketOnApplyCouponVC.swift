@@ -50,47 +50,15 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
         super.viewDidLoad()
         self.setup()
         self.setNavigationData()
-        self.apiCallForAccessCode()
-       
+        txtAccessCode.isUserInteractionEnabled = true
+        tblEventTicketTypes.arrTicketList = viewModel.defaultTicket
+
     }
     
 }
 
 //MARK: - Functions
 extension EventBookingTicketOnApplyCouponVC {
-    
-    func apiCallForAccessCode() {
-        if Reachability.isConnectedToNetwork() //check internet connectivity
-        {
-            //  self.view.showLoading(centreToView: UIView())
-            viewModel.applyAccessCode(complition: { isTrue, messageShowToast in
-                if isTrue == true {
-                    // self.view.stopLoading()
-                    DispatchQueue.main.async {
-                        self.tblEventTicketTypes.isFromAccessCode = true
-                        self.tblEventTicketTypes.arrDataAccessCode = self.viewModel.arrDataForAccessCode
-                        self.lblAppliedAccessCodeDIs.isHidden = false
-                        self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .tgGreen)
-                        self.imgApplyAccessCode.isHidden = false
-                        self.enterAccessCodeBgView.borderColor = UIColor.setColor(colorType: .tgBlue)
-                        self.btnAppliedCode.setTitles(text: "Applied", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour:UIColor.setColor(colorType: .btnDarkBlue))
-                        self.tblEventTicketTypes.reloadData()
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        //  self.view.stopLoading()
-                        self.showToast(message: messageShowToast)
-                    }
-                }
-            })
-        } else {
-            DispatchQueue.main.async {
-                //  self.parentView.stopLoading()
-                self.showToast(message: ValidationConstantStrings.networkLost)
-            }
-        }
-    }
-    
     
     func setNavigationData(){
         self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
@@ -110,9 +78,7 @@ extension EventBookingTicketOnApplyCouponVC {
             self.lblTotalTicketPrice.text = "CA$ \(price)"
         }
         self.navigationView.delegateBarAction = self
-      //  self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.isHidden = false
-       // self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.delegateBarAction = self
@@ -192,6 +158,39 @@ extension EventBookingTicketOnApplyCouponVC {
 //       }
     }
     func btnAppliedCodeAction() {
+        
+       
+            if Reachability.isConnectedToNetwork() //check internet connectivity
+            {
+                //  self.view.showLoading(centreToView: UIView())
+                viewModel.applyAccessCode(accessCode: txtAccessCode.text ?? "",complition: { isTrue, messageShowToast in
+                    if isTrue == true {
+                        // self.view.stopLoading()
+                        DispatchQueue.main.async {
+                            self.tblEventTicketTypes.isFromAccessCode = true
+                            self.viewModel.defaultTicket.append(contentsOf: self.viewModel.arrDataForAccessCode)
+                            self.tblEventTicketTypes.arrDataAccessCode = self.viewModel.defaultTicket
+                            self.lblAppliedAccessCodeDIs.isHidden = false
+                            self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .tgGreen)
+                            self.imgApplyAccessCode.isHidden = false
+                            self.enterAccessCodeBgView.borderColor = UIColor.setColor(colorType: .tgBlue)
+                            self.btnAppliedCode.setTitles(text: "Applied", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour:UIColor.setColor(colorType: .btnDarkBlue))
+                            self.tblEventTicketTypes.reloadData()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            //  self.view.stopLoading()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    //  self.parentView.stopLoading()
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
+            }
+        
        
         
     }

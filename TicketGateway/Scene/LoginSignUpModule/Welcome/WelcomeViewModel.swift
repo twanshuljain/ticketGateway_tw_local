@@ -31,15 +31,18 @@ extension WelcomeViewModel {
          }
         if self.currentIndex == 1 {
              self.currentIndex = 2
-             let rect = self.wlcmVC?.cvSlider.layoutAttributesForItem(at: IndexPath(row: 2, section: 0))?.frame
+            let rect = self.wlcmVC?.cvSlider.layoutAttributesForItem(at: IndexPath(row: 1, section: 0))?.frame.self
              self.wlcmVC?.cvSlider.frame = self.wlcmVC?.view.bounds ?? .zero
              self.wlcmVC?.cvSlider.scrollRectToVisible(rect!, animated: false)
          } else if self.currentIndex == 2 {
+             self.currentIndex = 3
+             let rect = self.wlcmVC?.cvSlider.layoutAttributesForItem(at: IndexPath(row: 2, section: 0))?.frame.self
+              self.wlcmVC?.cvSlider.frame = self.wlcmVC?.view.bounds ?? .zero
+              self.wlcmVC?.cvSlider.scrollRectToVisible(rect!, animated: false)
+         } else {
              if let view = self.wlcmVC?.createView(storyboard: .main, storyboardID: .WelcomeLoginSignupVC) {
                  self.wlcmVC?.navigationController?.pushViewController(view, animated: true)
              }
-         } else {
-           //  self.currentIndex = self.currentIndex + 1
          }
     }
 }
