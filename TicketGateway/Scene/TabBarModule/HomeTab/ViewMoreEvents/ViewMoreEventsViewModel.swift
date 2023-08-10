@@ -15,6 +15,11 @@
 
 import UIKit
 
+enum IsComingFromForViewMore{
+    case Home
+    case EventDetail
+}
+
 final class ViewMoreEventsViewModel {
     
     //MARK: - Variables
@@ -24,13 +29,15 @@ final class ViewMoreEventsViewModel {
     var currentPage = 1
     var totalPage = 1
     let refreshControl = UIRefreshControl()
-    
+    var isComingFrom = IsComingFromForViewMore.Home
+    var categoryId:Int?
     var itemsWeekend = [GetEventModel]()
     var itemsVirtual = [GetEventModel]()
     var itemsPopular = [GetEventModel]()
     var itemsFree = [GetEventModel]()
     var itemsUpcoming = [GetEventModel]()
     var itemsLocation = [GetEventModel]()
+    var itemsSuggestedEvents = [GetEventModel]()
 }
 
 //MARK: - Functions
@@ -56,6 +63,31 @@ extension ViewMoreEventsViewModel {
                 }
             case .failure(let error):
                 complition(false,"\(error)")
+            }
+        }
+    }
+    
+    func GetEventSuggestedCategory(viewAll:Bool, complition: @escaping (Bool,String) -> Void ) {
+        let parameters = GetEventRequest(limit: "10", page: "\(self.currentPage)")
+        if let suggestedEventCategoryId = categoryId{
+            let url = APIName.GetEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"
+            APIHandler.shared.executeRequestWith(apiName: .GetEventSuggestedCategoryList, parameters: parameters, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+                switch result {
+                case .success(let response):
+                    if response.status_code == 200 {
+                        if let data = response.data, let items = data.items{
+                                //self.arrData = data
+                                self.totalPage = response.data?.total ?? 0
+                                self.itemsSuggestedEvents.append(contentsOf: items)
+                            complition(true, response.message ?? "")
+                        }
+                        complition(true, response.message ?? "")
+                    }else{
+                        complition(false,response.message ?? "error message")
+                    }
+                case .failure(let error):
+                    complition(false,"\(error)")
+                }
             }
         }
     }

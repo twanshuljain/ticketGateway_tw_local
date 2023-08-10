@@ -16,6 +16,10 @@ import UIKit
 import SideMenu
 import SVProgressHUD
 
+protocol ViewMoreEventsVCProtocol:class{
+    func reloadView(eventId:Int?)
+}
+
 class ViewMoreEventsVC: UIViewController {
     
     //MARK: - IBOutlets
@@ -25,6 +29,7 @@ class ViewMoreEventsVC: UIViewController {
     @IBOutlet weak var parentView:UIView!
    
     var viewModel = ViewMoreEventsViewModel()
+    weak var  delegate : ViewMoreEventsVCProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,60 +67,75 @@ extension ViewMoreEventsVC{
     }
     
     func setData(){
-        switch self.viewModel.arrEventCategory[self.viewModel.index] {
-        case .nearByLocation:
-            navigationView.lblTitle.text = "Events near Toronto"
-            self.funcCallApiForLocation()
-        case .weekend:
-            navigationView.lblTitle.text = "This Weekend"
-            self.funcCallApi()
-        case .online:
-            navigationView.lblTitle.text = "Online Events"
-            self.funcCallApiForOnlineEvents()
-        case .popular:
-            navigationView.lblTitle.text = "Popular Events"
-            self.funcCallApiForPopularEvents()
-        case .free:
-            navigationView.lblTitle.text = "Free Events"
-           self.funcCallApiForFreeEvents()
-        case .upcoming:
-            navigationView.lblTitle.text = "Upcoming Events"
-            self.funcCallApiForUpcomingEvents()
-        default:
-            break;
+        if self.viewModel.isComingFrom == .Home{
+            switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .nearByLocation:
+                navigationView.lblTitle.text = "Events near Toronto"
+                self.funcCallApiForLocation()
+            case .weekend:
+                navigationView.lblTitle.text = "This Weekend"
+                self.funcCallApi()
+            case .online:
+                navigationView.lblTitle.text = "Online Events"
+                self.funcCallApiForOnlineEvents()
+            case .popular:
+                navigationView.lblTitle.text = "Popular Events"
+                self.funcCallApiForPopularEvents()
+            case .free:
+                navigationView.lblTitle.text = "Free Events"
+               self.funcCallApiForFreeEvents()
+            case .upcoming:
+                navigationView.lblTitle.text = "Upcoming Events"
+                self.funcCallApiForUpcomingEvents()
+            default:
+                break;
+            }
+        }else{
+            navigationView.lblTitle.text = "Suggested Events"
+            self.funcCallApiForSuggestedEvents()
         }
+
     }
     
     
     func navigateToDetail(index:IndexPath){
         let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
-        switch self.viewModel.arrEventCategory[self.viewModel.index] {
-        case .nearByLocation:
-            if self.viewModel.itemsLocation.indices.contains(index.row){
-                view?.viewModel.eventId = self.viewModel.itemsLocation[index.row].event?.id
+        
+        if self.viewModel.isComingFrom == .Home{
+            switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .nearByLocation:
+                if self.viewModel.itemsLocation.indices.contains(index.row){
+                    view?.viewModel.eventId = self.viewModel.itemsLocation[index.row].event?.id
+                }
+            case .weekend:
+                if self.viewModel.itemsWeekend.indices.contains(index.row){
+                    view?.viewModel.eventId = self.viewModel.itemsWeekend[index.row].event?.id
+                }
+            case .online:
+                if self.viewModel.itemsVirtual.indices.contains(index.row){
+                    view?.viewModel.eventId = self.viewModel.itemsVirtual[index.row].event?.id
+                }
+            case .popular:
+                if self.viewModel.itemsPopular.indices.contains(index.row){
+                    view?.viewModel.eventId = self.viewModel.itemsPopular[index.row].event?.id
+                }
+            case .free:
+                if self.viewModel.itemsFree.indices.contains(index.row){
+                    view?.viewModel.eventId = self.viewModel.itemsFree[index.row].event?.id
+                }
+            case .upcoming:
+                if self.viewModel.itemsUpcoming.indices.contains(index.row){
+                    view?.viewModel.eventId = self.viewModel.itemsUpcoming[index.row].event?.id
+                }
             }
-        case .weekend:
-            if self.viewModel.itemsWeekend.indices.contains(index.row){
-                view?.viewModel.eventId = self.viewModel.itemsWeekend[index.row].event?.id
+            self.navigationController?.pushViewController(view!, animated: true)
+        }else{
+            if self.viewModel.itemsSuggestedEvents.indices.contains(index.row){
+                self.delegate?.reloadView(eventId: self.viewModel.itemsSuggestedEvents[index.row].event?.id)
             }
-        case .online:
-            if self.viewModel.itemsVirtual.indices.contains(index.row){
-                view?.viewModel.eventId = self.viewModel.itemsVirtual[index.row].event?.id
-            }
-        case .popular:
-            if self.viewModel.itemsPopular.indices.contains(index.row){
-                view?.viewModel.eventId = self.viewModel.itemsPopular[index.row].event?.id
-            }
-        case .free:
-            if self.viewModel.itemsFree.indices.contains(index.row){
-                view?.viewModel.eventId = self.viewModel.itemsFree[index.row].event?.id
-            }
-        case .upcoming:
-            if self.viewModel.itemsUpcoming.indices.contains(index.row){
-                view?.viewModel.eventId = self.viewModel.itemsUpcoming[index.row].event?.id
-            }
+            self.navigationController?.popViewController(animated: false)
         }
-        self.navigationController?.pushViewController(view!, animated: true)
+        
     }
     
     func funcCallApiForLocation(){
@@ -133,6 +153,41 @@ extension ViewMoreEventsVC{
                             self.tblView.reloadData()
                         }
                  //   }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        self.parentView.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.parentView.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    
+    func funcCallApiForSuggestedEvents(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            parentView.showLoading(centreToView: self.view)
+            viewModel.GetEventSuggestedCategory(viewAll:true,complition: { isTrue, messageShowToast in
+                
+                if isTrue == true {
+                    self.parentView.stopLoading()
+                    let data = self.viewModel.itemsSuggestedEvents
+                    //self.viewModel.itemsWeekend.removeAll()
+                 //   self.viewModel.itemsWeekend = data.removeDuplicates()
+                    
+                   // self.viewModel.itemsWeekend = self.viewModel.itemsWeekend.removeDuplicates()
+                        DispatchQueue.main.async {
+                            self.tblView.tableFooterView = nil
+                            self.tblView.tableFooterView?.isHidden = true
+                            self.tblView.reloadData()
+                        }
+                    
                     
                 } else {
                     DispatchQueue.main.async {
@@ -336,68 +391,81 @@ extension ViewMoreEventsVC{
          let spinner = UIActivityIndicatorView(style: .gray)
          spinner.startAnimating()
          spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
-        switch self.viewModel.arrEventCategory[self.viewModel.index] {
-        case .nearByLocation:
-            if self.viewModel.itemsLocation.count != self.viewModel.totalPage{
-                self.tblView.tableFooterView = spinner
-                self.tblView.tableFooterView?.isHidden = false
-                self.funcCallApiForLocation()
-            }else{
-                self.tblView.tableFooterView = nil
-                self.tblView.tableFooterView?.isHidden = true
-            }
-        case .weekend:
-            if self.viewModel.itemsWeekend.count != self.viewModel.totalPage{
-                self.tblView.tableFooterView = spinner
-                self.tblView.tableFooterView?.isHidden = false
-                self.funcCallApi()
-            }else{
-                self.tblView.tableFooterView = nil
-                self.tblView.tableFooterView?.isHidden = true
-            }
-        case .online:
-            if self.viewModel.itemsVirtual.count != self.viewModel.totalPage{
-                self.tblView.tableFooterView = spinner
-                self.tblView.tableFooterView?.isHidden = false
-                self.funcCallApiForOnlineEvents()
-            }else{
-                self.tblView.tableFooterView = nil
-                self.tblView.tableFooterView?.isHidden = true
-            }
-        case .popular:
-            if self.viewModel.itemsPopular.count != self.viewModel.totalPage{
-                self.tblView.tableFooterView = spinner
-                self.tblView.tableFooterView?.isHidden = false
-                self.funcCallApiForPopularEvents()
-            }else{
-                self.tblView.tableFooterView = nil
-                self.tblView.tableFooterView?.isHidden = true
+        if self.viewModel.isComingFrom == .Home{
+            
+            switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .nearByLocation:
+                if self.viewModel.itemsLocation.count != self.viewModel.totalPage{
+                    self.tblView.tableFooterView = spinner
+                    self.tblView.tableFooterView?.isHidden = false
+                    self.funcCallApiForLocation()
+                }else{
+                    self.tblView.tableFooterView = nil
+                    self.tblView.tableFooterView?.isHidden = true
+                }
+            case .weekend:
+                if self.viewModel.itemsWeekend.count != self.viewModel.totalPage{
+                    self.tblView.tableFooterView = spinner
+                    self.tblView.tableFooterView?.isHidden = false
+                    self.funcCallApi()
+                }else{
+                    self.tblView.tableFooterView = nil
+                    self.tblView.tableFooterView?.isHidden = true
+                }
+            case .online:
+                if self.viewModel.itemsVirtual.count != self.viewModel.totalPage{
+                    self.tblView.tableFooterView = spinner
+                    self.tblView.tableFooterView?.isHidden = false
+                    self.funcCallApiForOnlineEvents()
+                }else{
+                    self.tblView.tableFooterView = nil
+                    self.tblView.tableFooterView?.isHidden = true
+                }
+            case .popular:
+                if self.viewModel.itemsPopular.count != self.viewModel.totalPage{
+                    self.tblView.tableFooterView = spinner
+                    self.tblView.tableFooterView?.isHidden = false
+                    self.funcCallApiForPopularEvents()
+                }else{
+                    self.tblView.tableFooterView = nil
+                    self.tblView.tableFooterView?.isHidden = true
+                }
+                
+            case .free:
+                if self.viewModel.itemsFree.count != self.viewModel.totalPage{
+                    self.tblView.tableFooterView = spinner
+                    self.tblView.tableFooterView?.isHidden = false
+                    self.funcCallApiForFreeEvents()
+                }else{
+                    self.tblView.tableFooterView = nil
+                    self.tblView.tableFooterView?.isHidden = true
+                }
+                
+                
+            case .upcoming:
+                if self.viewModel.itemsUpcoming.count != self.viewModel.totalPage{
+                    self.tblView.tableFooterView = spinner
+                    self.tblView.tableFooterView?.isHidden = false
+                    self.funcCallApiForUpcomingEvents()
+                }else{
+                    self.tblView.tableFooterView = nil
+                    self.tblView.tableFooterView?.isHidden = true
+                }
+                
+                
+            default:
+                break;
             }
             
-        case .free:
-            if self.viewModel.itemsFree.count != self.viewModel.totalPage{
+        }else{
+            if self.viewModel.itemsSuggestedEvents.count != self.viewModel.totalPage{
                 self.tblView.tableFooterView = spinner
                 self.tblView.tableFooterView?.isHidden = false
-                self.funcCallApiForFreeEvents()
+                self.funcCallApiForSuggestedEvents()
             }else{
                 self.tblView.tableFooterView = nil
                 self.tblView.tableFooterView?.isHidden = true
             }
-            
-          
-        case .upcoming:
-            if self.viewModel.itemsUpcoming.count != self.viewModel.totalPage{
-                self.tblView.tableFooterView = spinner
-                self.tblView.tableFooterView?.isHidden = false
-                self.funcCallApiForUpcomingEvents()
-            }else{
-                self.tblView.tableFooterView = nil
-                self.tblView.tableFooterView?.isHidden = true
-            }
-            
-           
-        default:
-            break;
         }
     }
 }
@@ -405,58 +473,66 @@ extension ViewMoreEventsVC{
 // MARK: - TableView Delegate
 extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch self.viewModel.arrEventCategory[self.viewModel.index] {
-        case .nearByLocation:
-            return self.viewModel.itemsLocation.count
-        case .weekend:
-            return self.viewModel.itemsWeekend.count
-        case .online:
-            return self.viewModel.itemsVirtual.count
-        case .popular:
-            return self.viewModel.itemsPopular.count
-        case .free:
-            return self.viewModel.itemsFree.count
-        case .upcoming:
-            return self.viewModel.itemsUpcoming.count
-        default:
-            return 0
+        if self.viewModel.isComingFrom == .Home{
+            switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .nearByLocation:
+                return self.viewModel.itemsLocation.count
+            case .weekend:
+                return self.viewModel.itemsWeekend.count
+            case .online:
+                return self.viewModel.itemsVirtual.count
+            case .popular:
+                return self.viewModel.itemsPopular.count
+            case .free:
+                return self.viewModel.itemsFree.count
+            case .upcoming:
+                return self.viewModel.itemsUpcoming.count
+            default:
+                return 0
+            }
+        }else{
+            return  self.viewModel.itemsSuggestedEvents.count
         }
-       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-            switch self.viewModel.arrEventCategory[self.viewModel.index] {
-            case .nearByLocation:
-                if self.viewModel.itemsLocation.indices.contains(indexPath.row){
-                    cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
+            if self.viewModel.isComingFrom == .Home{
+                switch self.viewModel.arrEventCategory[self.viewModel.index] {
+                case .nearByLocation:
+                    if self.viewModel.itemsLocation.indices.contains(indexPath.row){
+                        cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
+                    }
+                case .weekend:
+                    if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
+                        cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
+                    }
+                case .online:
+                    if self.viewModel.itemsVirtual.indices.contains(indexPath.row){
+                        cell.getEvent = self.viewModel.itemsVirtual[indexPath.row]
+                    }
+                case .popular:
+                    if self.viewModel.itemsPopular.indices.contains(indexPath.row){
+                        cell.getEvent = self.viewModel.itemsPopular[indexPath.row]
+                    }
+                case .free:
+                    if self.viewModel.itemsFree.indices.contains(indexPath.row){
+                        cell.getEvent = self.viewModel.itemsFree[indexPath.row]
+                    }
+                case .upcoming:
+                    if self.viewModel.itemsUpcoming.indices.contains(indexPath.row){
+                        cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
+                    }
+                default:
+                    if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
+                        cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
+                    }
                 }
-            case .weekend:
-                if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
-                    cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
-                }
-            case .online:
-                if self.viewModel.itemsVirtual.indices.contains(indexPath.row){
-                    cell.getEvent = self.viewModel.itemsVirtual[indexPath.row]
-                }
-            case .popular:
-                if self.viewModel.itemsPopular.indices.contains(indexPath.row){
-                    cell.getEvent = self.viewModel.itemsPopular[indexPath.row]
-                }
-            case .free:
-                if self.viewModel.itemsFree.indices.contains(indexPath.row){
-                    cell.getEvent = self.viewModel.itemsFree[indexPath.row]
-                }
-            case .upcoming:
-                if self.viewModel.itemsUpcoming.indices.contains(indexPath.row){
-                    cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
-                }
-            default:
-                if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
-                    cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
+            }else{
+                if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
+                    cell.getEvent =  self.viewModel.itemsSuggestedEvents[indexPath.row]
                 }
             }
-            
             
             
             return cell

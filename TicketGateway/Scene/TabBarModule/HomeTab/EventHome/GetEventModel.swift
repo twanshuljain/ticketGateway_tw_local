@@ -21,6 +21,7 @@ enum EventCategories:String{
 // MARK: - GetEventModel
 struct GetEvent: Codable {
     var items: [GetEventModel]?
+    var itemsSuggestedEvents: [GetEventModel]?
     var itemsLocation: [GetEventModel]?
     var itemsWeekend: [GetEventModel]?
     var itemsVirtual: [GetEventModel]?

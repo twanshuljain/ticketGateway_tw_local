@@ -67,6 +67,8 @@ class APIHandler: NSObject {
     private override init() {}
     private let session = URLSession.shared
     let baseURL = "http://3.19.250.147/"
+    let previousBaseURL = "http://18.224.21.11/"
+    let s3URL = "https://tw-staging-media.s3.us-east-2.amazonaws.com/"
     private let boundary = "Boundary-\(NSUUID().uuidString)"
     
     

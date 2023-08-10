@@ -438,17 +438,28 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
 
 
 extension HomeVC: ActivityController {
-    func toShowActivityController(index: Int) {
-                let image = UIImage(named: "Image")
-                let imageToShare = [ image! ]
-                let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-                activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        //  tblEvents.delegateShareAction = self
-                // exclude some activity types from the list (optional)
-                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-       
-                // present the view controller
-                self.present(activityViewController, animated: true, completion: nil)
+    func toShowActivityController(eventDetail: GetEventModel) {
+        var objectsToShare = [Any]()
+        
+        if let eventTitle = eventDetail.event?.title{
+               objectsToShare.append(eventTitle)
+           }
+        
+        if let eventDesc = eventDetail.event?.eventDescription{
+            objectsToShare.append(eventDesc)
+        }
+
+        if let shareImageObj = UIImage(named: "Image"){
+            objectsToShare.append(shareImageObj)
+        }
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+//  tblEvents.delegateShareAction = self
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
     }
   
 }

@@ -20,15 +20,15 @@ class EventImageCell: UICollectionViewCell {
        if eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.indices.contains(index) ?? false{
             if let imageUrl = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?[index]{
                 if let imageUrl = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?[index]{
-                    if imageUrl.contains(APIHandler.shared.baseURL){
-                        let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.baseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                        if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                    if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                        let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                        if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
                             self.imgEvents.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                         }else{
                             self.imgEvents.image = UIImage(named: "homeDas")
                         }
                     }else{
-                        if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                        if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
                             self.imgEvents.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                         }else{
                             self.imgEvents.image = UIImage(named: "homeDas")
@@ -44,6 +44,26 @@ class EventImageCell: UICollectionViewCell {
                     self.imgEvents.image = UIImage(named: "homeDas")
                 }
             }
-        }
+       }else{
+           if let imageUrl = eventDetail?.eventCoverImageObj?.eventCoverImage{
+               if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                   let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                   if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                       self.imgEvents.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                   }else{
+                       self.imgEvents.image = UIImage(named: "homeDas")
+                   }
+               }else{
+                   if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                       self.imgEvents.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                   }else{
+                       self.imgEvents.image = UIImage(named: "homeDas")
+                   }
+               }
+ 
+           } else {
+               self.imgEvents.image = UIImage(named: "homeDas")
+           }
+       }
     }
 }
