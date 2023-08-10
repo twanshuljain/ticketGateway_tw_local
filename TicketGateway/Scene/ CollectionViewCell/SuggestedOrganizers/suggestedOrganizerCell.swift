@@ -35,8 +35,8 @@ class suggestedOrganizerCell: UICollectionViewCell {
         self.lblFollowers.text = "\(organizerDetail.followers ?? 0) followers "
         
         if let imageUrl = organizerDetail.profileImage{
-            if imageUrl.contains(APIHandler.shared.baseURL){
-                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.baseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
                     self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                 }else{

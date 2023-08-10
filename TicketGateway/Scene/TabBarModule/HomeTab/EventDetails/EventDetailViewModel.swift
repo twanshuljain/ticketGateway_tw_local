@@ -52,15 +52,16 @@ extension EventDetailViewModel{
     }
     
     func GetEventSuggestedCategory(categoryId:Int?, complition: @escaping (Bool,String) -> Void ) {
+        let parameters = GetEventRequest(limit: "3", page: "1")
         if let suggestedEventCategoryId = categoryId{
             let url = APIName.GetEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"
-            APIHandler.shared.executeRequestWith(apiName: .GetEventSuggestedCategoryList, parameters: EmptyModel?.none, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+            APIHandler.shared.executeRequestWith(apiName: .GetEventSuggestedCategoryList, parameters: parameters, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
                 switch result {
                 case .success(let response):
                     if response.status_code == 200 {
                         print("response....",response)
                         DispatchQueue.main.async {
-                            self.arrEventData = response.data ?? [GetEventModel]()
+                            self.arrEventData = response.data?.items ?? [GetEventModel]()
                             print(self.arrEventData)
                             complition(true, response.message ?? "")
                         }

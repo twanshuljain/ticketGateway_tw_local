@@ -83,18 +83,23 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.isLiked = viewModel.eventDetail?.isLike ?? false
-        self.funcCallApi()
-        self.setUp()
-        self.addTapGestureToOrganiserView()
+        self.loadData()
     }
 }
 
 //MARK: - Functions
 extension EventDetailVC {
+    func loadData(){
+        viewModel.isLiked = viewModel.eventDetail?.isLike ?? false
+        self.funcCallApi()
+        self.setUp()
+        self.addTapGestureToOrganiserView()
+    }
+    
     func setUp(){
         self.setUi()
         self.tblSuggestedEvent.delegateShareAction = self
+        self.tblSuggestedEvent.delegateViewMore = self
         self.collvwEventImages.reloadData()
         self.txtDate.delegate = self
         self.txtLocation.delegate = self
@@ -294,8 +299,8 @@ extension EventDetailVC {
         self.lblOrganiserName_Company.text = eventDetail?.organizer?.name ?? ""
         self.lblFollowers.text = "\(eventDetail?.organizer?.followers ?? 0)  followers"
         if let imageUrl = eventDetail?.organizer?.profileImage {
-            if imageUrl.contains(APIHandler.shared.baseURL){
-                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.baseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
                     self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                 }else{
@@ -445,6 +450,7 @@ extension EventDetailVC {
         print("---------", eventLocation?.longitude)
         view.latitude =  eventLocation?.latitude ?? 00.0
         view.longitude =  eventLocation?.longitude ?? 00.0
+        view.location = eventLocation?.eventAddress ?? ""
         self.navigationController?.pushViewController(view, animated: true)
     }
 
@@ -521,14 +527,10 @@ extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,U
         }else{
             return imgCount
         }
-        
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventImageCell", for: indexPath) as! EventImageCell
-        self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.indices.contains(indexPath.row)
         cell.setData(index: indexPath.row, eventDetail: self.viewModel.eventDetail)
         //  cell.imgEvents.cornerRadius = 10
         return cell
@@ -552,24 +554,41 @@ extension EventDetailVC: EKEventViewDelegate {
     
 }
 //MARK: -
-extension EventDetailVC:  ActivityController {
-    func toShowActivityController(index: Int) {
-                let image = UIImage(named: "Image")
-                let imageToShare = [ image! ]
-                let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-                activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        //  tblEvents.delegateShareAction = self
-                // exclude some activity types from the list (optional)
-                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-       
-                // present the view controller
-                self.present(activityViewController, animated: true, completion: nil)
+extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtocol{
+    func toShowActivityController(eventDetail: GetEventModel) {
+        let image:UIImage = UIImage(named: "Image")!
+        let eventTitle:String = eventDetail.event?.title ?? ""
+        let evenDesc:String = eventDetail.event?.eventDescription ?? ""
+        let dataToShare:[Any] = [eventTitle, evenDesc, image]
+        let activityViewController = UIActivityViewController(activityItems: dataToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+//  tblEvents.delegateShareAction = self
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func tapActionOfViewMoreEvents(index: Int) {
+        let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
+        view?.viewModel.isComingFrom = .EventDetail
+        view?.delegate = self
+        view?.viewModel.categoryId = self.viewModel.suggestedEventCategoryId
+        //view?.viewModel.index = index
+        //view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
+        self.navigationController?.pushViewController(view!, animated: true)
     }
   
 }
 
-
-
+//MARK: - ViewMoreEventsVCProtocol
+extension EventDetailVC: ViewMoreEventsVCProtocol{
+    func reloadView(eventId: Int?) {
+        self.viewModel.eventId = eventId
+        self.loadData()
+    }
+}
 
 
 //MARK: - NavigationBarViewDelegate

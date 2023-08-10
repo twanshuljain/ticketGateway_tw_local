@@ -29,7 +29,7 @@ protocol EventsOrganizesListTableViewProtocol{
 }
 
 protocol ActivityController {
-    func toShowActivityController(index: Int)
+    func toShowActivityController(eventDetail:GetEventModel)
 }
 
 protocol FavouriteAction {
@@ -57,6 +57,7 @@ class EventsOrganizesListTableView: UITableView {
     var delegateLikeaction: FavouriteAction?
     var arrDataCategorySearch = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
+    var shareEvent:GetEventModel?
     
     func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
         self.isComingFrom = isComingFrom
@@ -65,9 +66,43 @@ class EventsOrganizesListTableView: UITableView {
         self.dataSource = self
     }
     
-    @objc func btnShareAction(_ sender: UIButton) {
-        self.delegateShareAction?.toShowActivityController(index: sender.tag)
+    func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
+        print("IndexPath : \(indexPath.row)")
+        if self.isComingFrom == .Home{
+            
+            switch self.arrEventCategory[indexPath.section] {
+            case .nearByLocation:
+                if arrDataCategorySearch.indices.contains(indexPath.row){
+                    self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataCategorySearch[indexPath.row])
+                    
+                }
+            case .weekend:
+                if arrDataaWeekend.indices.contains(indexPath.row){
+                    self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaWeekend[indexPath.row])
+                }
+            case .online:
+                if arrDataaVirtual.indices.contains(indexPath.row){
+                    self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaVirtual[indexPath.row])
+                }
+            case .popular:
+                if arrDataaPopular.indices.contains(indexPath.row){
+                    self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaPopular[indexPath.row])
+                }
+            case .free:
+                if arrDataaFree.indices.contains(indexPath.row){
+                    self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaFree[indexPath.row])
+                }
+            case .upcoming:
+                if arrDataaUpcoming.indices.contains(indexPath.row){
+                    self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaUpcoming[indexPath.row])
+                }
+            }
+        }
     }
+    
+//    @objc func btnShareAction(_ sender: UIButton) {
+//        self.delegateShareAction?.toShowActivityController(index: sender.tag)
+//    }
 
     @objc func btnLikeAction(_ sender: UIButton) {
         
@@ -140,6 +175,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 return 5
             }else{
                 return self.arrData.count
+                //return 3
             }
         }else if self.isComingFrom == .EventSearch {
             ///return arrDataCategorySearch.count
@@ -154,7 +190,12 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
           //  cell.btnLike.tag = indexPath
             cell.btnLike.setImage(UIImage(named: "favSele_ip"), for: .selected)
             cell.btnLike.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
-            cell.btnShare.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
+            cell.btnShare.mk_addTapHandler { (btn) in
+                 print("You can use here also directly : \(indexPath.row)")
+                 self.btnShareActionTapped(btn: btn, indexPath: indexPath)
+            }
+            
+            //cell.btnShare.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
             if self.isComingFrom == .Home{
                 
                 switch self.arrEventCategory[indexPath.section] {
@@ -265,20 +306,19 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     // set view for footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        let button = CustomButtonNormal()
+        button.frame = CGRect.init(x: 16, y: 0, width: footerView.frame.width, height: footerView.frame.height)
+        footerView.addSubview(button)
+        button.setTitles(text: "View more events", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
+        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
+        button.addRightIcon(image: UIImage(named: "ri8Blue"))
+        button.tag = section
+        
+        let separatorView = UIView(frame: CGRect.init(x: 25, y: 45, width: tableView.frame.width - 50, height: 1))
+        footerView.addSubview(separatorView)
+        separatorView.backgroundColor = UIColor.setColor(colorType: .placeHolder)
         if self.isComingFrom == .Home{
-            let footerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
-            let button = CustomButtonNormal()
-            button.frame = CGRect.init(x: 16, y: 0, width: footerView.frame.width, height: footerView.frame.height)
-            footerView.addSubview(button)
-            button.setTitles(text: "View more events", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
-            button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-            button.addRightIcon(image: UIImage(named: "ri8Blue"))
-            button.tag = section
-            
-            let separatorView = UIView(frame: CGRect.init(x: 25, y: 45, width: tableView.frame.width - 50, height: 1))
-            footerView.addSubview(separatorView)
-            separatorView.backgroundColor = UIColor.setColor(colorType: .placeHolder)
-            
             switch self.arrEventCategory[section] {
             case .nearByLocation:
                 return footerView
@@ -294,8 +334,11 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 return footerView
             
             }
+        }else if self.isComingFrom == .EventDetail{
+            return footerView
+        }else{
+            return nil
         }
-        return nil
     }
 
     // set height for footer
@@ -305,13 +348,15 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 return 40
             }
             return 40
+        }else if self.isComingFrom == .EventDetail{
+            return 40
         }else{
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("in \(indexPath.row)")
+       // print("in \(indexPath.row)")
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -323,28 +368,33 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func buttonPressed(sender: UIButton) {
-        switch self.arrEventCategory[sender.tag] {
-        case .nearByLocation:
+        if self.isComingFrom == .Home{
+            switch self.arrEventCategory[sender.tag] {
+            case .nearByLocation:
+                self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+                print(sender.tag)
+            case .weekend:
+                self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+                print(sender.tag)
+            case .online:
+                print(sender.tag)
+                self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+            case .popular:
+                print(sender.tag)
+                self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+            case .free:
+                print(sender.tag)
+                self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+            case .upcoming:
+                print(sender.tag)
+                self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+            default:
+                break;
+            }
+        }else if self.isComingFrom == .EventDetail{
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-            print(sender.tag)
-        case .weekend:
-            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-            print(sender.tag)
-        case .online:
-            print(sender.tag)
-            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-        case .popular:
-            print(sender.tag)
-            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-        case .free:
-            print(sender.tag)
-            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-        case .upcoming:
-            print(sender.tag)
-            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
-        default:
-            break;
         }
+
     }
    
     

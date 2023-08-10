@@ -15,6 +15,7 @@ class EventMapVC: UIViewController {
     //MARK: - Varibles
     var latitude = Double()
     var longitude = Double()
+    var location = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setMap()
