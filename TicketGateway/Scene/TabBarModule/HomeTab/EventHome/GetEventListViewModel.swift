@@ -98,20 +98,25 @@ extension HomeDashBoardViewModel {
     
     func getEventAsPerLocation(category:String? = "", countryName:String? = "", sortBy:SortBy? = .None, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
-        let parameters =  GetEventSearchByCategoryRequest(countryName: countryName)
+        let parameters =  GetEventSearchByCategoryRequest(countryName: countryName, limit: "3", page: "1")
         
-        APIHandler.shared.executeRequestWith(apiName: .GetEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .GetEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup.leave() }
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
-                        if let categorySearchData = response.data {
-                            self.arrSearchCategoryData = categorySearchData
-                            print("----------------",self.arrSearchCategoryData)
-                            if categorySearchData.count != 0{
+                        if var data = response.data, let items = data.items{
+                            //data.unique{$0.event!.id! == $1.event!.id! }
+                            self.arrEventData = data
+                            self.arrEventData.itemsLocation = items
+                            self.arrSearchCategoryData = items
+                            if items.count != 0{
                                 self.arrEventCategory.append(.nearByLocation)
                             }
+                           // self.arrEventDataa.append(data.itemsWeekend!)
+                           // self.arrEventData1.append(contentsOf: data.itemsWeekend!)
+                          //  print("COUNT>>>",self.arrEventDataa.count)
                         }
                         complition(true, response.message ?? "")
                     }

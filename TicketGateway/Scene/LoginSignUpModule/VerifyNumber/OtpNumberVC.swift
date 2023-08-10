@@ -134,47 +134,47 @@ extension OtpNumberVC {
             let otp = "\(self.txtOtp1.text ?? "")" + "\(self.txtOtp2.text ?? "")" + "\(self.txtOtp3.text ?? "")" + "\(self.txtOtp4.text ?? "")"
             self.viewModel.otp = otp
             
-            // REMOVE WHEN API IS WORKING
-            if isComingFromLogin{
-                let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
-                view.viewModel?.arrMail.append(EmailListUser(name: "", email: ""))
-                self.navigationController?.pushViewController(view, animated: true)
-            }else{
-                let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
-                self.navigationController?.pushViewController(view!, animated: true)
-            }
+//            // REMOVE WHEN API IS WORKING
+//            if isComingFromLogin{
+//                let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
+//                view.viewModel?.arrMail.append(EmailListUser(name: "", email: ""))
+//                self.navigationController?.pushViewController(view, animated: true)
+//            }else{
+//                let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
+//                self.navigationController?.pushViewController(view!, animated: true)
+//            }
             
        //     ------------------------------------
     //        TO BE DONE WHEN API IS WORKING
-//            if Reachability.isConnectedToNetwork(){
-//                SVProgressHUD.show()
-//                viewModel.signUpVerifyNumberAPI(complition: { isTrue, messageShowToast  in
-//                    if isTrue == true {
-//                        SVProgressHUD.dismiss()
-//                        DispatchQueue.main.async {
-//                            let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
-//                            view.strMessage = "Your number has been verified successfully!"
-//                            view.closerForBack = { istrue in
-//                                if istrue ==  true
-//                                {
-//                                    let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
-//                                    view.viewModel?.arrMail = self.viewModel.arrMail
-//                                    self.navigationController?.pushViewController(view, animated: true)
-//                                }
-//                            }
-//                            view.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
-//                            self.present(view, animated: true)
-//                        }
-//                    } else {
-//                        DispatchQueue.main.async {
-//                            SVProgressHUD.dismiss()
-//                            self.showToast(message: messageShowToast)
-//                        }
-//                    }
-//                })
-//            }else {
-//                self.showToast(message: ValidationConstantStrings.networkLost)
-//            }
+            if Reachability.isConnectedToNetwork(){
+                SVProgressHUD.show()
+                viewModel.signUpVerifyNumberAPI(complition: { isTrue, messageShowToast  in
+                    if isTrue == true {
+                        SVProgressHUD.dismiss()
+                        DispatchQueue.main.async {
+                            let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
+                            view.strMessage = "Your number has been verified successfully!"
+                            view.closerForBack = { istrue in
+                                if istrue ==  true
+                                {
+                                    let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
+                                    view.viewModel?.arrMail = self.viewModel.arrMail
+                                    self.navigationController?.pushViewController(view, animated: true)
+                                }
+                            }
+                            view.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
+                            self.present(view, animated: true)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            }else {
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
         }
     }
 }

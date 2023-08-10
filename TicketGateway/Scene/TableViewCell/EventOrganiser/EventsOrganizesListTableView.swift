@@ -119,6 +119,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //            }
             if self.arrEventCategory[section] == .nearByLocation{
                 return self.arrDataCategorySearch.count
+               // return self.arrDataCategorySearch.count
             }else if self.arrEventCategory[section] == .weekend{
                 return self.arrDataaWeekend.count
             }else if self.arrEventCategory[section] == .online{
@@ -280,7 +281,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             
             switch self.arrEventCategory[section] {
             case .nearByLocation:
-                return nil
+                return footerView
             case .weekend:
                 return footerView
             case .online:
@@ -301,7 +302,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if self.isComingFrom == .Home{
             if self.arrEventCategory[section] == .nearByLocation{
-                return 0
+                return 40
             }
             return 40
         }else{
@@ -324,7 +325,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     @objc func buttonPressed(sender: UIButton) {
         switch self.arrEventCategory[sender.tag] {
         case .nearByLocation:
-            //self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
+            self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
             print(sender.tag)
         case .weekend:
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)

@@ -21,6 +21,7 @@ enum EventCategories:String{
 // MARK: - GetEventModel
 struct GetEvent: Codable {
     var items: [GetEventModel]?
+    var itemsLocation: [GetEventModel]?
     var itemsWeekend: [GetEventModel]?
     var itemsVirtual: [GetEventModel]?
     var itemsPopular: [GetEventModel]?
@@ -55,31 +56,68 @@ struct GetEvent: Codable {
 
 // MARK: - GetEventModel
 struct GetEventModel: Codable,Equatable {
-    var event: Event?
-    var locationType: String?
-    var coverImage: CoverImage?
-    var location: Location?
-    var date: DateClass?
-    var likeCountData: LikeCountData?
-    var eventLikes: Int?
-    var isLikedEvent: Bool?
-    var ticketOnwards: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case event
-        case locationType = "location_type"
-        case coverImage = "cover_image"
-        case location, date
-        case likeCountData = "like_count_data"
-        case eventLikes = "event_likes"
-        case isLikedEvent = "is_liked_event"
-        case ticketOnwards = "ticket_onwards"
+  var event: Event?
+  var locationType: String?
+  var coverImage: CoverImage?
+  var location: Location?
+  var date: DateClass?
+  var dates: DateClass?
+  var eventDate:DateClass?
+  var likeCountData: LikeCountData?
+  var eventLikes: Int?
+  var isLikedEvent: Bool?
+  var ticketOnwards: Int?
+  enum CodingKeys: String, CodingKey {
+    case event
+    case locationType = "location_type"
+    case coverImage = "cover_image"
+    case location, date, dates
+    case eventDate = "event_date"
+    case likeCountData = "like_count_data"
+    case eventLikes = "event_likes"
+    case isLikedEvent = "is_liked_event"
+    case ticketOnwards = "ticket_onwards"
+  }
+  static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {
+    return lhs.event?.id == rhs.event?.id
+  }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let precisionValue = try container.decodeIfPresent(DateClass.self, forKey: .date) {
+            date = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(DateClass.self, forKey: .dates) {
+            date = precisionValue
+        }
+        
+        if let precisionValue = try container.decodeIfPresent(DateClass.self, forKey: .eventDate) {
+            date = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(Event.self, forKey: .event) {
+            event = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(CoverImage.self, forKey: .coverImage) {
+            coverImage = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(Location.self, forKey: .location) {
+            location = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(LikeCountData.self, forKey: .likeCountData) {
+            likeCountData = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(Int.self, forKey: .eventLikes) {
+            eventLikes = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(Bool.self, forKey: .isLikedEvent) {
+            isLikedEvent = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(Int.self, forKey: .ticketOnwards) {
+            ticketOnwards = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(String.self, forKey: .locationType) {
+            locationType = precisionValue
+        }
     }
-    
-    static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {
-        return lhs.event?.id == rhs.event?.id
-    }
-    
 }
 
 //struct GetEventCategory:Codable{

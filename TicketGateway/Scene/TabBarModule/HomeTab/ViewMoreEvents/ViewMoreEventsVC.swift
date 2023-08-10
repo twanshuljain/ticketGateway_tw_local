@@ -65,7 +65,7 @@ extension ViewMoreEventsVC{
         switch self.viewModel.arrEventCategory[self.viewModel.index] {
         case .nearByLocation:
             navigationView.lblTitle.text = "Events near Toronto"
-            //self.funcCallApi()
+            self.funcCallApiForLocation()
         case .weekend:
             navigationView.lblTitle.text = "This Weekend"
             self.funcCallApi()
@@ -87,15 +87,48 @@ extension ViewMoreEventsVC{
     }
     
     
+    func navigateToDetail(index:IndexPath){
+        let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
+        switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .nearByLocation:
+            if self.viewModel.itemsLocation.indices.contains(index.row){
+                view?.viewModel.eventId = self.viewModel.itemsLocation[index.row].event?.id
+            }
+        case .weekend:
+            if self.viewModel.itemsWeekend.indices.contains(index.row){
+                view?.viewModel.eventId = self.viewModel.itemsWeekend[index.row].event?.id
+            }
+        case .online:
+            if self.viewModel.itemsVirtual.indices.contains(index.row){
+                view?.viewModel.eventId = self.viewModel.itemsVirtual[index.row].event?.id
+            }
+        case .popular:
+            if self.viewModel.itemsPopular.indices.contains(index.row){
+                view?.viewModel.eventId = self.viewModel.itemsPopular[index.row].event?.id
+            }
+        case .free:
+            if self.viewModel.itemsFree.indices.contains(index.row){
+                view?.viewModel.eventId = self.viewModel.itemsFree[index.row].event?.id
+            }
+        case .upcoming:
+            if self.viewModel.itemsUpcoming.indices.contains(index.row){
+                view?.viewModel.eventId = self.viewModel.itemsUpcoming[index.row].event?.id
+            }
+        }
+        self.navigationController?.pushViewController(view!, animated: true)
+    }
+    
     func funcCallApiForLocation(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
-            viewModel.getEventApiForWeekendEvents(viewAll:true,complition: { isTrue, messageShowToast in
+            viewModel.getEventAsPerLocation(viewAll:true, countryName: "Toronto", complition: { isTrue, messageShowToast in
                 
                 if isTrue == true {
                     self.parentView.stopLoading()
-                   // if let itemWeekend = self.viewModel.arrData?.itemsWeekend{
+                    let data = self.viewModel.itemsLocation
+                    //self.viewModel.itemsLocation.removeAll()
+                 //   self.viewModel.itemsLocation = data.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.reloadData()
                         }
@@ -125,7 +158,11 @@ extension ViewMoreEventsVC{
                 
                 if isTrue == true {
                     self.parentView.stopLoading()
-                    self.viewModel.itemsWeekend = self.viewModel.itemsWeekend.removeDuplicates()
+                    let data = self.viewModel.itemsWeekend
+                    //self.viewModel.itemsWeekend.removeAll()
+                 //   self.viewModel.itemsWeekend = data.removeDuplicates()
+                    
+                   // self.viewModel.itemsWeekend = self.viewModel.itemsWeekend.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
                             self.tblView.tableFooterView?.isHidden = true
@@ -156,7 +193,12 @@ extension ViewMoreEventsVC{
                 if isTrue == true {
                     self.parentView.stopLoading()
                   //  if let itemsVirtual = self.viewModel.arrData?.itemsVirtual{
-                        self.viewModel.itemsVirtual = self.viewModel.itemsVirtual.removeDuplicates()
+                    
+                    let data = self.viewModel.itemsVirtual
+                   // self.viewModel.itemsVirtual.removeAll()
+                    //self.viewModel.itemsVirtual = data.removeDuplicates()
+                    
+                     //   self.viewModel.itemsVirtual = self.viewModel.itemsVirtual.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
                             self.tblView.tableFooterView?.isHidden = true
@@ -187,7 +229,12 @@ extension ViewMoreEventsVC{
                 if isTrue == true {
                     self.parentView.stopLoading()
                    // if let itemsPopular = self.viewModel.arrData?.itemsPopular{
-                    self.viewModel.itemsPopular = self.viewModel.itemsPopular.removeDuplicates()
+                    let data = self.viewModel.itemsPopular
+                    print("self.viewModel.itemsPopular Before",self.viewModel.itemsPopular.count)
+                    //self.viewModel.itemsPopular.removeAll()
+                   // self.viewModel.itemsPopular = data.removeDuplicates()
+                    print("self.viewModel.itemsPopular After",self.viewModel.itemsPopular.count)
+                    //self.viewModel.itemsPopular = self.viewModel.itemsPopular.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
                             self.tblView.tableFooterView?.isHidden = true
@@ -218,7 +265,12 @@ extension ViewMoreEventsVC{
                 if isTrue == true {
                     self.parentView.stopLoading()
                    // if let itemsFree = self.viewModel.arrData?.itemsFree{
-                    self.viewModel.itemsFree = self.viewModel.itemsFree.removeDuplicates()
+                    
+                    let data = self.viewModel.itemsFree
+                   // self.viewModel.itemsFree.removeAll()
+                //    self.viewModel.itemsFree = data.removeDuplicates()
+                    
+                    //self.viewModel.itemsFree = self.viewModel.itemsFree.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
                             self.tblView.tableFooterView?.isHidden = true
@@ -248,7 +300,12 @@ extension ViewMoreEventsVC{
                 if isTrue == true {
                     self.parentView.stopLoading()
                    //     if let itemsUpcoming = self.viewModel.arrData?.itemsUpcoming{
-                            self.viewModel.itemsUpcoming = self.viewModel.itemsUpcoming.removeDuplicates()
+                    
+                    let data = self.viewModel.itemsUpcoming
+                  //  self.viewModel.itemsUpcoming.removeAll()
+                //    self.viewModel.itemsUpcoming = data.removeDuplicates()
+                    
+                         //   self.viewModel.itemsUpcoming = self.viewModel.itemsUpcoming.removeDuplicates()
                             DispatchQueue.main.async {
                                 self.tblView.tableFooterView = nil
                                 self.tblView.tableFooterView?.isHidden = true
@@ -280,6 +337,15 @@ extension ViewMoreEventsVC{
          spinner.startAnimating()
          spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
         switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .nearByLocation:
+            if self.viewModel.itemsLocation.count != self.viewModel.totalPage{
+                self.tblView.tableFooterView = spinner
+                self.tblView.tableFooterView?.isHidden = false
+                self.funcCallApiForLocation()
+            }else{
+                self.tblView.tableFooterView = nil
+                self.tblView.tableFooterView?.isHidden = true
+            }
         case .weekend:
             if self.viewModel.itemsWeekend.count != self.viewModel.totalPage{
                 self.tblView.tableFooterView = spinner
@@ -340,6 +406,8 @@ extension ViewMoreEventsVC{
 extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.viewModel.arrEventCategory[self.viewModel.index] {
+        case .nearByLocation:
+            return self.viewModel.itemsLocation.count
         case .weekend:
             return self.viewModel.itemsWeekend.count
         case .online:
@@ -359,6 +427,10 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .nearByLocation:
+                if self.viewModel.itemsLocation.indices.contains(indexPath.row){
+                    cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
+                }
             case .weekend:
                 if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
                     cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
@@ -429,6 +501,9 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigateToDetail(index: indexPath)
+    }
     
 }
 //MARK: - CustomSearchMethodsDelegate
