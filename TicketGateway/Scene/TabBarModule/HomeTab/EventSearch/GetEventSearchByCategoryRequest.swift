@@ -26,12 +26,15 @@ struct GetEventSearchByCategoryRequest: Codable {
     var category: String?
     var countryName:String?
     var sortBy:String?
-    
+    var limit: String?
+    var page: String?
     
     enum CodingKeys: String, CodingKey {
         case category = "category"
         case countryName = "country_name"
         case sortBy = "sort_by"
+        case limit
+        case page
     }
 }
 

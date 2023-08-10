@@ -18,9 +18,6 @@ import SVProgressHUD
 
 
 class HomeVC: UIViewController {
-
-    
-    
     //MARK: - IBOutlets
     @IBOutlet weak var heightOfCollectionView: NSLayoutConstraint!
     @IBOutlet weak var heightOfNearOrganisedEvent: NSLayoutConstraint!
@@ -158,7 +155,12 @@ extension HomeVC {
             viewModel.getEventAsPerLocation(countryName: "Toronto", complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
-                        self.tblEvents.arrDataCategorySearch = self.viewModel.arrSearchCategoryData
+                    if let itemsLocation = self.viewModel.arrEventData.itemsLocation{
+                        self.viewModel.semaphore.wait()
+                        self.tblEvents.arrDataCategorySearch = []
+                        self.tblEvents.arrDataCategorySearch.append(contentsOf: itemsLocation)
+                        self.viewModel.semaphore.signal()
+                    }
                 } else {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
