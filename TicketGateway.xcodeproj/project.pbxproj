@@ -54,6 +54,7 @@
 		183A263C2A4336FC00DC97E3 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */; };
 		183A263E2A43375600DC97E3 /* EventsOrganizesListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */; };
 		183D52542A459932005CAABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183D52532A459932005CAABC /* GoogleService-Info.plist */; };
+		1848541D2A850D1F0007798B /* AddToCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848541C2A850D1F0007798B /* AddToCalendar.swift */; };
 		184888B52A31FBF800D36B3E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B42A31FBF800D36B3E /* FirebaseAnalytics */; };
 		184888B72A31FBF800D36B3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B62A31FBF800D36B3E /* FirebaseAuth */; };
 		184888B92A31FBF800D36B3E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B82A31FBF800D36B3E /* FirebaseCrashlytics */; };
@@ -467,6 +468,7 @@
 		183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsOrganizesListTableView.swift; sourceTree = "<group>"; };
 		183D52532A459932005CAABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1848541C2A850D1F0007798B /* AddToCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCalendar.swift; sourceTree = "<group>"; };
 		184B79132A440F9600577B26 /* EventBookingTicketAddOnsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketAddOnsVC.swift; sourceTree = "<group>"; };
 		184D046029EE7F430008B825 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 		184D046229EE7F500008B825 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
@@ -978,6 +980,7 @@
 				18A73DFF29EED210007365CB /* VerifyPopupVC.swift */,
 				18A8497429EE6AEC00F92BCD /* CountryCodeList */,
 				185981332A2085A800ABDC51 /* RingProgressClasses */,
+				1848541C2A850D1F0007798B /* AddToCalendar.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -3270,6 +3273,7 @@
 				18FBC0B32A309239002CF129 /* MyRefundVC.swift in Sources */,
 				186D49C62A374FCA008CBB4B /* FAQTableviewCell.swift in Sources */,
 				18717F962A2A1BE9002F36BC /* MyTicketVC.swift in Sources */,
+				1848541D2A850D1F0007798B /* AddToCalendar.swift in Sources */,
 				18F6AEEE2A42C7CA00500678 /* CustomSearchBar.swift in Sources */,
 				1821FDE72A30A90F00BD4AB6 /* ReviewRefundTableViewCell.swift in Sources */,
 				1850628F2A55409400BC3EC5 /* ZoomViewController.swift in Sources */,

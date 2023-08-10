@@ -61,9 +61,9 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         
      
         
-//        if  self.selectedArrTicketList.indices.contains(indexPath.row){
-//            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
-//        }
+        if  self.selectedArrTicketList.indices.contains(indexPath.row){
+            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
+        }
         
  // MARK: - OFFLINE
 //        if indexPath.row == 0 {

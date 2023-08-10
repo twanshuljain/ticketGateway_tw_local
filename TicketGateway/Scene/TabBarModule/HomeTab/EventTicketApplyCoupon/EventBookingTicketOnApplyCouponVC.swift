@@ -51,6 +51,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
         self.setup()
         self.setNavigationData()
         txtAccessCode.isUserInteractionEnabled = true
+        tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
         tblEventTicketTypes.arrTicketList = viewModel.defaultTicket
 
     }
@@ -145,12 +146,21 @@ extension EventBookingTicketOnApplyCouponVC {
 
    func btnContinueAction() {
        if viewModel.isCheckedTerm_COndition == true {
+           /*
            let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
            view.selectedArrTicketList = self.viewModel.selectedArrTicketList
            view.eventId = self.viewModel.eventId
            view.eventDetail = self.viewModel.eventDetail
            view.feeStructure = self.viewModel.feeStructure
            self.navigationController?.pushViewController(view, animated: true)
+            */
+           if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+               view.viewModel.eventDetail = self.viewModel.eventDetail
+               view.viewModel.feeStructure = self.viewModel.feeStructure
+               view.viewModel.selectedArrTicketList = viewModel.selectedArrTicketList
+               view.viewModel.eventId = self.viewModel.eventId
+               self.navigationController?.pushViewController(view, animated: true)
+           }
        } else {
            self.showToast(message: "Please Accept Terms and Condition")
 

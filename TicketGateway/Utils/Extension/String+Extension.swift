@@ -102,6 +102,21 @@ extension String {
         
     }
     
+    func convertToDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(abbreviation: "GMT")
+        let result = formatter.date(from: self) ?? Date()
+        return result
+      }
+      func convertStringToDateForTime() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        let result = formatter.date(from: self) ?? Date()
+        return result
+      }
     
     func getFormattedTime() -> String{
         let dateFormatter = DateFormatter()

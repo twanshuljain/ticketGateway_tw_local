@@ -388,49 +388,45 @@ extension EventDetailVC {
        return components
     }
     
+    
     func addToCalenAction() {
-        DispatchQueue.main.async {
-            self.store.requestAccess(to: .event, completion: { sucess, err in
-                if sucess, err == nil {
-                    DispatchQueue.main.async {
-                        var identifier: String?
-                        let eventDetail = self.viewModel.eventDetail
-                        let newEvent = EKEvent(eventStore: self.store)
-                        newEvent.title = eventDetail?.event?.title
-                        let sDate = eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString("dd MMM yyyy hh:mm")
-                        let startDateComponent = self.getCurrentDateComponent(date: sDate ?? Date())
-                        var dateComponents = DateComponents()
-                        dateComponents.year = startDateComponent.year
-                        dateComponents.month = startDateComponent.month
-                        dateComponents.day = startDateComponent.day
-                        dateComponents.hour = startDateComponent.hour
-                        dateComponents.minute = startDateComponent.minute
-                        let startDate = Calendar.current.date(from: dateComponents)
-                        newEvent.startDate =  startDate
-                        newEvent.endDate =  eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFrom("dd MMM yyyy").getDateFormattedDateFromString()
-                        
-                        let vc = EKEventViewController()
-                        vc.delegate = self
-                        vc.event = newEvent
-                        let navVC = UINavigationController(rootViewController: vc)
-                        self.present(navVC, animated: true)
-                        
-                        do {
-                            try self.store.save(newEvent, span: .thisEvent, commit: true)
-                            identifier = newEvent.eventIdentifier
-                            print("Saved event with ID: \(String(describing: newEvent.eventIdentifier))")
-                            // The event gets created and the ID is printed to the console but at a time when the whole function already has returned (nil)
-                        } catch let error as NSError {
-                            print("Failed to save event with error: \(error)")
-                        }
-                    }
-                    
-                }  else {
-                    
-                }
-                
-            })
-        }
+        let eventObject = viewModel.eventDetail?.eventDateObj
+        print("startDate", eventObject?.eventStartDate as Any)
+        print("endDate", eventObject?.eventEndDate as Any)
+        print("startTime", eventObject?.eventStartTime as Any)
+        print("endTime", eventObject?.eventEndTime as Any)
+        let startDateTime = self.combineDateWithTime(
+            date: eventObject?.eventStartDate?.convertToDate() ?? Date(),
+            time: eventObject?.eventStartTime?.convertStringToDateForTime() ?? Date()
+        )
+        let endDateTime = self.combineDateWithTime(
+            date: eventObject?.eventEndDate?.convertToDate() ?? Date(),
+            time: eventObject?.eventEndTime?.convertStringToDateForTime() ?? Date()
+        )
+        AddToCalendar.shared.startDate = startDateTime ?? Date()
+        AddToCalendar.shared.endDate = endDateTime ?? Date()
+        AddToCalendar.shared.title = "Event Test"
+        AddToCalendar.shared.addEvent(success: { _, _ in
+            print("on success event add")
+        }, failure: { _ in
+            print("on failure")
+        })
+    }
+    func combineDateWithTime(date: Date, time: Date) -> Date? {
+        print("DATE:---:", date)
+        print("TIME:---:", time)
+        var calendar = NSCalendar.autoupdatingCurrent
+        calendar.locale = Locale(identifier: "en_US_POSIX")
+        calendar.timeZone = TimeZone(abbreviation: "GMT") ?? .current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        let timeComponents = calendar.dateComponents([.hour, .minute], from: time)
+        var mergedComponents = DateComponents()
+        mergedComponents.year = dateComponents.year
+        mergedComponents.month = dateComponents.month
+        mergedComponents.day = dateComponents.day
+        mergedComponents.hour = timeComponents.hour
+        mergedComponents.minute = timeComponents.minute
+        return calendar.date(from: mergedComponents)
     }
     
     func btnBookTicket() {
@@ -556,16 +552,58 @@ extension EventDetailVC: EKEventViewDelegate {
 //MARK: -
 extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtocol{
     func toShowActivityController(eventDetail: GetEventModel) {
-        let image:UIImage = UIImage(named: "Image")!
-        let eventTitle:String = eventDetail.event?.title ?? ""
-        let evenDesc:String = eventDetail.event?.eventDescription ?? ""
-        let dataToShare:[Any] = [eventTitle, evenDesc, image]
-        let activityViewController = UIActivityViewController(activityItems: dataToShare, applicationActivities: nil)
+        var objectsToShare = [Any]()
+        var shareImageObj = UIImage(named: "homeDas")
+        
+        if let eventTitle = eventDetail.event?.title{
+            var title = "Event Title:- " + eventTitle
+            objectsToShare.append(title)
+        }
+        
+        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+        var date = "Event Date:- " + eventDate
+        objectsToShare.append(date)
+        
+        
+        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
+        var time = "Event Time:- " + eventEndDate
+        objectsToShare.append(time)
+        
+        
+        if let eventDesc = eventDetail.event?.eventDescription{
+            var desc = "Event Description:- " + eventDesc
+            objectsToShare.append(eventDesc)
+        }else{
+            var desc = "Event Description:- No Description available for this event"
+            objectsToShare.append(desc)
+        }
+        
+        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
+            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    objectsToShare.append("Check this image: - \(url)")
+                    objectsToShare.append("Check this image: - \(url)")
+                }else{
+                    objectsToShare.append(shareImageObj)
+                }
+            }else{
+                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    objectsToShare.append("Check this image: - \(url)")
+                }else{
+                    objectsToShare.append(shareImageObj)
+                }
+            }
+
+        } else {
+            objectsToShare.append(shareImageObj)
+        }
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-//  tblEvents.delegateShareAction = self
+        //  tblEvents.delegateShareAction = self
         // exclude some activity types from the list (optional)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-
+        
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
     }
