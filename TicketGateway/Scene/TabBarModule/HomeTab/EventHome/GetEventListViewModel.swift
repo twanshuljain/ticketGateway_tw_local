@@ -297,25 +297,26 @@ extension HomeDashBoardViewModel {
     }
     
     
-    func favouriteApiForHome(likeStatus: Bool, eventId:Int, complition: @escaping (Bool, String) -> Void) {
+    func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
         let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
-        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<EventDetail>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
-                            self.arrForFavouriteeEvenst = data
+//                            self.arrForFavouriteeEvenst = data
+                            print("response of like api****", response)
                         }
                          
                         
                     }
-                    complition(true, response.message ?? "")
+//                    complition(true, response.message ?? "")
                 } else {
-                    complition(false, response.message ?? "Error message")
+//                    complition(false, response.message ?? "Error message")
                 }
-            case .failure(let error):
-                complition(false, "\(error)")
+            case .failure: break
+//                complition(false, "\(error)")
             }
         }
     }

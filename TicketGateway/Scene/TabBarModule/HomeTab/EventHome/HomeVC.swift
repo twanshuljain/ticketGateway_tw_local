@@ -463,8 +463,20 @@ extension HomeVC: ActivityController {
     }
   
 }
-
-// MARK: -
+extension HomeVC: FavouriteAction {
+    func toCallFavouriteaApi(eventDetail: GetEventModel) {
+        self.tblEvents.delegateLikeAction = self
+        print("at delegate method in home vc")
+//        var isLiked = !(eventDetail.isLiked ?? false)
+        print("eventDetail.isLiked", eventDetail.isLiked ?? false)
+        print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
+        viewModel.favouriteApiForHome(
+            likeStatus: eventDetail.isLiked ?? false,
+            eventId: eventDetail.event?.id ?? 0
+        )
+    }
+}
+// MARK: - 
 extension HomeVC: NavigateToProfile {
     func tapActionOrganiser(index: Int, data: Organizers) {
         if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {

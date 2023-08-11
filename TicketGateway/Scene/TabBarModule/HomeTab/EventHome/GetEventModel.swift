@@ -15,7 +15,7 @@ enum EventCategories:String{
     case popular = "Popular Events"
     case free = "Free Events"
     case upcoming = "Upcoming Events"
-   
+    
 }
 
 // MARK: - GetEventModel
@@ -62,31 +62,32 @@ struct SearchModel: Codable,Equatable {
 }
 // MARK: - GetEventModel
 struct GetEventModel: Codable,Equatable {
-  var event: Event?
-  var locationType: String?
-  var coverImage: CoverImage?
-  var location: Location?
-  var date: DateClass?
-  var dates: DateClass?
-  var eventDate:DateClass?
-  var likeCountData: LikeCountData?
-  var eventLikes: Int?
-  var isLikedEvent: Bool?
-  var ticketOnwards: Int?
-  enum CodingKeys: String, CodingKey {
-    case event
-    case locationType = "location_type"
-    case coverImage = "cover_image"
-    case location, date, dates
-    case eventDate = "event_date"
-    case likeCountData = "like_count_data"
-    case eventLikes = "event_likes"
-    case isLikedEvent = "is_liked_event"
-    case ticketOnwards = "ticket_onwards"
-  }
-  static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {
-    return lhs.event?.id == rhs.event?.id
-  }
+    var event: Event?
+    var locationType: String?
+    var coverImage: CoverImage?
+    var location: Location?
+    var date: DateClass?
+    var dates: DateClass?
+    var eventDate:DateClass?
+    var likeCountData: LikeCountData?
+    var eventLikes: Int?
+    var isLikedEvent: Bool?
+    var ticketOnwards: Int?
+    var isLiked: Bool?
+    enum CodingKeys: String, CodingKey {
+        case event
+        case locationType = "location_type"
+        case coverImage = "cover_image"
+        case location, date, dates
+        case eventDate = "event_date"
+        case likeCountData = "like_count_data"
+        case eventLikes = "event_likes"
+        case isLikedEvent = "is_liked_event"
+        case ticketOnwards = "ticket_onwards"
+    }
+    static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {
+        return lhs.event?.id == rhs.event?.id
+    }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let precisionValue = try container.decodeIfPresent(DateClass.self, forKey: .date) {
@@ -140,7 +141,7 @@ struct CoverImage: Codable {
     var eventCoverImage: String?
     var eventAdditionalCoverImages: [String]?
     var eventID: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case eventCoverImage = "event_cover_image"
@@ -152,31 +153,31 @@ struct CoverImage: Codable {
 // MARK: - DateClass
 struct DateClass: Codable {
     var id: Int?
-   // var eventEndCount, monthRepeatDateOrDay: JSONNull?
+    // var eventEndCount, monthRepeatDateOrDay: JSONNull?
     var displayStartTime: Bool?
     var eventID: Int?
     var eventEndDate: String?
     var eventEndTime: String?
     var eventTimeZoneID: Int?
     var isRecurring: Bool?
-   // var weeklyOccurs: [JSONAny]?
+    // var weeklyOccurs: [JSONAny]?
     var dateOccurrence: DateOccurrence?
     var displayEndTime: Bool?
     var eventStartDate: String?
     var eventStartTime: String?
     var eventLanguageID: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
-       // case eventEndCount = "event_end_count"
-       // case monthRepeatDateOrDay = "month_repeat_date_or_day"
+        // case eventEndCount = "event_end_count"
+        // case monthRepeatDateOrDay = "month_repeat_date_or_day"
         case displayStartTime = "display_start_time"
         case eventID = "event_id"
         case eventEndDate = "event_end_date"
         case eventEndTime = "event_end_time"
         case eventTimeZoneID = "event_time_zone_id"
         case isRecurring = "is_recurring"
-     //   case weeklyOccurs = "weekly_occurs"
+        //   case weeklyOccurs = "weekly_occurs"
         case dateOccurrence = "date_occurrence"
         case displayEndTime = "display_end_time"
         case eventStartDate = "event_start_date"
@@ -204,19 +205,19 @@ struct Event: Codable, Hashable, Equatable {
     var visitorCount: Int?
     var eventDescription: String?
     var scheduleEventDate: String?
-  //  var eventAdditionalImageID: JSONNull?
+    //  var eventAdditionalImageID: JSONNull?
     var updatedAt: String?
     var eventPassword: String?
     var formSteps: Int?
-  //  var scheduleEventTime: JSONNull?
+    //  var scheduleEventTime: JSONNull?
     var eventOrganizerID: Int?
     var createdBy: String?
     var isVirtual, isEmailInvitation: Bool?
     var eventTypeID, userID: Int?
- //   var eventLinks: JSONNull?
+    //   var eventLinks: JSONNull?
     var isPasswordProtected: Bool?
     var eventCategoryID: Int?
-  //  var updatedBy, documentLinks: JSONNull?
+    //  var updatedBy, documentLinks: JSONNull?
     var isShowOrganizerProfile: Bool?
     var eventSubCategoryID: Int?
     var isActive, isPublic: Bool?
@@ -225,7 +226,7 @@ struct Event: Codable, Hashable, Equatable {
     static func ==(left:Event, right:Event) -> Bool {
         return left.id == right.id
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case customizeWebLink = "customize_web_link"
@@ -239,22 +240,22 @@ struct Event: Codable, Hashable, Equatable {
         case visitorCount = "visitor_count"
         case eventDescription = "event_description"
         case scheduleEventDate = "schedule_event_date"
-       // case eventAdditionalImageID = "event_additional_image_id"
+        // case eventAdditionalImageID = "event_additional_image_id"
         case updatedAt = "updated_at"
         case eventPassword = "event_password"
         case formSteps = "form_steps"
-       // case scheduleEventTime = "schedule_event_time"
+        // case scheduleEventTime = "schedule_event_time"
         case eventOrganizerID = "event_organizer_id"
         case createdBy = "created_by"
         case isVirtual = "is_virtual"
         case isEmailInvitation = "is_email_invitation"
         case eventTypeID = "event_type_id"
         case userID = "user_id"
-       // case eventLinks = "event_links"
+        // case eventLinks = "event_links"
         case isPasswordProtected = "is_password_protected"
         case eventCategoryID = "event_category_id"
-       // case updatedBy = "updated_by"
-      //  case documentLinks = "document_links"
+        // case updatedBy = "updated_by"
+        //  case documentLinks = "document_links"
         case isShowOrganizerProfile = "is_show_organizer_profile"
         case eventSubCategoryID = "event_sub_category_id"
         case isActive = "is_active"
@@ -270,52 +271,52 @@ struct Event: Codable, Hashable, Equatable {
 // MARK: - Location
 struct Location: Codable {
     var isVirtual: Bool?
-   // var additionalCoverImage, virtualExternalDocument, toBeAnnouncedAddress: JSONNull?
+    // var additionalCoverImage, virtualExternalDocument, toBeAnnouncedAddress: JSONNull?
     var isAdditionalSettings: Bool?
-  //  var virtualTitleImage, addDetailsDescription: JSONNull?
+    //  var virtualTitleImage, addDetailsDescription: JSONNull?
     var eventID: Int?
     var eventAddress: String?
- //   var virtualTitleVideo: JSONNull?
+    //   var virtualTitleVideo: JSONNull?
     var isToBeAnnounced: Bool?
     var latitude: Double?
-  //  var virtualImages, eventCountry: JSONNull?
+    //  var virtualImages, eventCountry: JSONNull?
     var longitude: Double?
     var virtualEventHostLink: String?
- //   var eventState, virtualLiveVideoURL, virtualVideoLinks, eventCity: JSONNull?
+    //   var eventState, virtualLiveVideoURL, virtualVideoLinks, eventCity: JSONNull?
     var id: Int?
- //   var locationDescription: JSONNull?
+    //   var locationDescription: JSONNull?
     var virtualVideoUrls: String?
     var isAddressField: Bool?
     var virtualEventTitle: String?
- //   var virtualLinkTitle: JSONNull?
-
+    //   var virtualLinkTitle: JSONNull?
+    
     enum CodingKeys: String, CodingKey {
         case isVirtual = "is_virtual"
-      //  case additionalCoverImage = "additional_cover_image"
-     //   case virtualExternalDocument = "virtual_external_document"
-     //   case toBeAnnouncedAddress = "to_be_announced_address"
+        //  case additionalCoverImage = "additional_cover_image"
+        //   case virtualExternalDocument = "virtual_external_document"
+        //   case toBeAnnouncedAddress = "to_be_announced_address"
         case isAdditionalSettings = "is_additional_settings"
-    //    case virtualTitleImage = "virtual_title_image"
-    //    case addDetailsDescription = "add_details_description"
+        //    case virtualTitleImage = "virtual_title_image"
+        //    case addDetailsDescription = "add_details_description"
         case eventID = "event_id"
         case eventAddress = "event_address"
-    //    case virtualTitleVideo = "virtual_title_video"
+        //    case virtualTitleVideo = "virtual_title_video"
         case isToBeAnnounced = "is_to_be_announced"
         case latitude
-    //    case virtualImages = "virtual_images"
-    //    case eventCountry = "event_country"
+        //    case virtualImages = "virtual_images"
+        //    case eventCountry = "event_country"
         case longitude
         case virtualEventHostLink = "virtual_event_host_link"
-    //    case eventState = "event_state"
-    //    case virtualLiveVideoURL = "virtual_live_video_url"
-    //    case virtualVideoLinks = "virtual_video_links"
-    //    case eventCity = "event_city"
+        //    case eventState = "event_state"
+        //    case virtualLiveVideoURL = "virtual_live_video_url"
+        //    case virtualVideoLinks = "virtual_video_links"
+        //    case eventCity = "event_city"
         case id
-    //    case locationDescription = "location_description"
+        //    case locationDescription = "location_description"
         case virtualVideoUrls = "virtual_video_urls"
         case isAddressField = "is_address_field"
         case virtualEventTitle = "virtual_event_title"
-    //    case virtualLinkTitle = "virtual_link_title"
+        //    case virtualLinkTitle = "virtual_link_title"
     }
 }
 
@@ -323,7 +324,7 @@ struct Location: Codable {
 struct LikeCountData: Codable {
     var isLiked: Bool?
     var likeCount: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case isLiked = "is_liked"
         case likeCount = "like_count"
@@ -337,7 +338,7 @@ struct Organizers: Codable {
     var createdAt, updatedAt, name, profileImage: String?
     var userID, followers: Int?
     var isFollow: Bool?
-
+    
     enum CodingKeys: String, CodingKey {
         case isActive = "is_active"
         case createdAt = "created_at"

@@ -131,7 +131,7 @@ extension EventDetailVC {
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
 //        self.navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .selected)
-        self.navigationView.btnSecRight.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
+     self.navigationView.btnSecRight.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
         navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
         btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
@@ -276,6 +276,7 @@ extension EventDetailVC {
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
+        self.navigationView.btnSecRight.isSelected = eventDetail?.isLike ?? false
         self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
