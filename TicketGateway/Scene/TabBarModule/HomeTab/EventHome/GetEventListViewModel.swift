@@ -302,6 +302,7 @@ extension HomeDashBoardViewModel {
         APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
             switch result {
             case .success(let response):
+                print("success like api")
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
@@ -315,8 +316,10 @@ extension HomeDashBoardViewModel {
                 } else {
 //                    complition(false, response.message ?? "Error message")
                 }
-            case .failure: break
+            case .failure(let error):
 //                complition(false, "\(error)")
+                print("error", error)
+                print("failure like api ")
             }
         }
     }

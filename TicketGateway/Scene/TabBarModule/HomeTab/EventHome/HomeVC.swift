@@ -38,10 +38,11 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUp()
+        
      // self.funcCallApi(viewAll: false)
-        self.funcCallApi()
+//        self.funcCallApi()
         self.tblEvents.delegateShareAction = self
+        self.tblEvents.delegateLikeAction = self
         self.collvwSuggestedOrganisation.delegateOrgansierToProfile = self
         
         // self.apiCall()
@@ -49,6 +50,8 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.funcCallApi()
+        self.setUp()
     }
 }
 
@@ -463,17 +466,23 @@ extension HomeVC: ActivityController {
     }
   
 }
-extension HomeVC: FavouriteAction {
-    func toCallFavouriteaApi(eventDetail: GetEventModel) {
-        self.tblEvents.delegateLikeAction = self
-        print("at delegate method in home vc")
-//        var isLiked = !(eventDetail.isLiked ?? false)
-        print("eventDetail.isLiked", eventDetail.isLiked ?? false)
-        print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
-        viewModel.favouriteApiForHome(
-            likeStatus: eventDetail.isLiked ?? false,
-            eventId: eventDetail.event?.id ?? 0
-        )
+extension HomeVC: FavouriteAction {    
+    func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
+        if isForLocation {
+            print("eventDetail.isLiked", eventDetail.isLikedEvent ?? false)
+            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
+            viewModel.favouriteApiForHome(
+                likeStatus: eventDetail.isLikedEvent ?? false,
+                eventId: eventDetail.event?.id ?? 0
+            )
+        } else {
+            print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
+            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
+            viewModel.favouriteApiForHome(
+                likeStatus: eventDetail.likeCountData?.isLiked ?? false,
+                eventId: eventDetail.event?.id ?? 0
+            )
+        }
     }
 }
 // MARK: - 

@@ -83,15 +83,19 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadData()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.funcCallApi()
     }
 }
 
 //MARK: - Functions
 extension EventDetailVC {
     func loadData(){
-        viewModel.isLiked = viewModel.eventDetail?.isLike ?? false
-        self.funcCallApi()
+//        viewModel.isLiked = viewModel.eventDetail?.isLike ?? false
+//        self.funcCallApi()
         self.setUp()
         self.addTapGestureToOrganiserView()
     }
@@ -131,7 +135,8 @@ extension EventDetailVC {
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
 //        self.navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .selected)
-     self.navigationView.btnSecRight.setImage(UIImage(named: "favUnSele_ip"), for: .normal)
+        print("viewModel.eventDetail?.isLike", viewModel.eventDetail?.isLike)
+        self.navigationView.btnSecRight.setImage(UIImage(named: (viewModel.eventDetail?.isLike ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
         navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
         btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
@@ -172,6 +177,7 @@ extension EventDetailVC {
                         DispatchQueue.main.async {
                             self.collvwEventImages.reloadData()
                             self.setData()
+                            self.loadData()
                         }
                         DispatchQueue.main.async {
                             if self.viewModel.eventDetail?.is_multi_location == true {
@@ -276,7 +282,7 @@ extension EventDetailVC {
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
-        self.navigationView.btnSecRight.isSelected = eventDetail?.isLike ?? false
+//        self.navigationView.btnSecRight.isSelected = eventDetail?.isLike ?? false
         self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
@@ -470,14 +476,14 @@ extension EventDetailVC {
     }
     
     @objc func btnLikeAction(_ sender: UIButton) {
-        viewModel.isLiked = !viewModel.isLiked
+        viewModel.eventDetail?.isLike?.toggle()
         if Reachability.isConnectedToNetwork() //check internet connectivity
            {
           //  parentView.showLoading(centreToView: self.view)
             let eventId = self.viewModel.eventDetail?.event?.id ?? 0
-            viewModel.favouriteApi(likeStatus:  viewModel.isLiked, eventId: eventId, complition: { isTrue, messageShowToast in
+            viewModel.favouriteApi(likeStatus: viewModel.eventDetail?.isLike ?? false, eventId: eventId, complition: { isTrue, messageShowToast in
                 DispatchQueue.main.async {
-                    let image =  self.viewModel.isLiked ? UIImage(named: "favSele_ip") : UIImage(named: "favUnSele_ip")
+                    let image =  (self.viewModel.eventDetail?.isLike ?? false) ? UIImage(named: "favSele_ip") : UIImage(named: "favUnSele_ip")
                         self.navigationView.btnSecRight.setImage(image, for: .normal)
                 }
             })

@@ -33,7 +33,7 @@ protocol ActivityController {
 }
 
 protocol FavouriteAction {
-    func toCallFavouriteaApi(eventDetail:GetEventModel)
+    func toCallFavouriteaApi(eventDetail:GetEventModel, isForLocation: Bool)
 }
 
 class EventsOrganizesListTableView: UITableView {
@@ -105,38 +105,38 @@ class EventsOrganizesListTableView: UITableView {
             switch self.arrEventCategory[indexPath.section] {
             case .nearByLocation:
                 if arrDataCategorySearch.indices.contains(indexPath.row) {
-                    arrDataCategorySearch[indexPath.row].isLiked?.toggle()
-                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataCategorySearch[indexPath.row])
+                    arrDataCategorySearch[indexPath.row].likeCountData?.isLiked?.toggle()
+                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataCategorySearch[indexPath.row], isForLocation: true)
                     
                 }
             case .weekend:
                 if arrDataaWeekend.indices.contains(indexPath.row){
-                    arrDataaWeekend[indexPath.row].isLiked?.toggle()
-                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaWeekend[indexPath.row])
+                    arrDataaWeekend[indexPath.row].likeCountData?.isLiked?.toggle()
+                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaWeekend[indexPath.row], isForLocation: false)
                 }
             case .online:
                 if arrDataaVirtual.indices.contains(indexPath.row){
-                    arrDataaVirtual[indexPath.row].isLiked?.toggle()
-                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaVirtual[indexPath.row])
+                    arrDataaVirtual[indexPath.row].likeCountData?.isLiked?.toggle()
+                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaVirtual[indexPath.row], isForLocation: false)
                 }
             case .popular:
                 if arrDataaPopular.indices.contains(indexPath.row){
-                    arrDataaPopular[indexPath.row].isLiked?.toggle()
-                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaPopular[indexPath.row])
+                    arrDataaPopular[indexPath.row].likeCountData?.isLiked?.toggle()
+                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaPopular[indexPath.row], isForLocation: false)
                 }
             case .free:
                 if arrDataaFree.indices.contains(indexPath.row){
-                    arrDataaFree[indexPath.row].isLiked?.toggle()
-                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaFree[indexPath.row])
+                    arrDataaFree[indexPath.row].likeCountData?.isLiked?.toggle()
+                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaFree[indexPath.row], isForLocation: false)
                 }
             case .upcoming:
                 if arrDataaUpcoming.indices.contains(indexPath.row){
-                    arrDataaUpcoming[indexPath.row].isLiked?.toggle()
-                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaUpcoming[indexPath.row])
+                    arrDataaUpcoming[indexPath.row].likeCountData?.isLiked?.toggle()
+                    self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaUpcoming[indexPath.row], isForLocation: false)
                 }
             }
         }
-        
+        self.reloadData()
     }
     
 //    @objc func btnShareAction(_ sender: UIButton) {
@@ -243,58 +243,53 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 case .nearByLocation:
                     if arrDataCategorySearch.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataCategorySearch[indexPath.row]
-                        arrDataCategorySearch[indexPath.row].isLiked = arrDataCategorySearch[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
-//
-
-//                        cell.btnLike
-                        
+//                        arrDataCategorySearch[indexPath.row].isLiked = arrDataCategorySearch[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].isLikedEvent ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .weekend:
                     if arrDataaWeekend.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaWeekend[indexPath.row]
-                        arrDataaWeekend[indexPath.row].isLiked = arrDataaWeekend[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrDataaWeekend[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
-
+//                        arrDataaWeekend[indexPath.row].isLiked = arrDataaWeekend[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrDataaWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .online:
                     if arrDataaVirtual.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaVirtual[indexPath.row]
-                        arrDataaVirtual[indexPath.row].isLiked = arrDataaVirtual[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrDataaVirtual[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                        arrDataaVirtual[indexPath.row].isLiked = arrDataaVirtual[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrDataaVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
 
                     }
                 case .popular:
                     if arrDataaPopular.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaPopular[indexPath.row]
-                        arrDataaPopular[indexPath.row].isLiked = arrDataaPopular[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrDataaPopular[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                        arrDataaPopular[indexPath.row].isLiked = arrDataaPopular[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrDataaPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .free:
                     if arrDataaFree.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaFree[indexPath.row]
-                        arrDataaFree[indexPath.row].isLiked = arrDataaFree[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrDataaFree[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                        arrDataaFree[indexPath.row].isLiked = arrDataaFree[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrDataaFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .upcoming:
                     if arrDataaUpcoming.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaUpcoming[indexPath.row]
-                        arrDataaUpcoming[indexPath.row].isLiked = arrDataaUpcoming[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrDataaUpcoming[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                        arrDataaUpcoming[indexPath.row].isLiked = arrDataaUpcoming[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrDataaUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 }
             } else if self.isComingFrom == .EventSearch {
                 if isFromSearch {
                     if arrSearchData.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrSearchData[indexPath.row]
-                        arrSearchData[indexPath.row].isLiked = arrSearchData[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrSearchData[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                        arrSearchData[indexPath.row].isLiked = arrSearchData[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrSearchData[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 } else {
                     if arrDataCategorySearch.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrDataCategorySearch[indexPath.row]
-                        arrDataCategorySearch[indexPath.row].isLiked = arrDataCategorySearch[indexPath.row].isLikedEvent
-                        cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                        arrDataCategorySearch[indexPath.row].isLiked = arrDataCategorySearch[indexPath.row].likeCountData?.isLiked
+                        cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 }
                 //    if arrDataCategorySearch.indices.contains(indexPath.row) {
@@ -303,8 +298,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
               }else{
                   if arrData.indices.contains(indexPath.row){
                       cell.getEvent = self.arrData[indexPath.row]
-                      arrData[indexPath.row].isLiked = arrData[indexPath.row].isLikedEvent
-                      cell.btnLike.setImage(UIImage(named: (arrData[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                      arrData[indexPath.row].isLiked = arrData[indexPath.row].likeCountData?.isLiked
+                      cell.btnLike.setImage(UIImage(named: (arrData[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                   }
             }
             cell.cellConfiguration()
