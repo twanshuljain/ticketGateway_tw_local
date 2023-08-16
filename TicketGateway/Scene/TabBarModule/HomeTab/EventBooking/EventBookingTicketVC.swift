@@ -202,7 +202,7 @@ extension EventBookingTicketVC : NavigationBarViewDelegate {
 
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: EventDetailVC.self) {
-                (controller as! EventDetailVC).viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
+                //(controller as! EventDetailVC).viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
                 self.navigationController!.popToViewController(controller, animated: true)
                 break
             }

@@ -31,7 +31,7 @@ final class EventBookingTicketViewModel{
 //MARK: - Functions
 extension EventBookingTicketViewModel{
     func getEventTicketList(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
+        var getURL = APIName.GetTicketList.rawValue + "\(self.eventId ?? 0)" + "/"
        // var getURL = APIName.GetTicketList.rawValue + "12" + "/"
         APIHandler.shared.executeRequestWith(apiName: .GetTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
             switch result {

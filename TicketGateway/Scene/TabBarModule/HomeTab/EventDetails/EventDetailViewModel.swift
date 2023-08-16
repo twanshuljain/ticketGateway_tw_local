@@ -24,7 +24,7 @@ final class EventDetailViewModel{
     var arrEventData : [GetEventModel] = [GetEventModel]()
     var eventDetailForFavourite: EventDetail?
     var isLiked: Bool = false
-    
+    var isFollow:FollowUnfollow = .unfollow
 }
 
 
@@ -97,4 +97,25 @@ extension EventDetailViewModel{
         }
     }
     
+    func followUnFollowApi(organizerId:Int, complition: @escaping (Bool, String) -> Void) {
+        let api = APIName.followUnfollow.rawValue + "\(organizerId)"
+        let param = FavoriteRequestModel(event_id: eventId, like_status: true)
+        APIHandler.shared.executeRequestWith(apiName: .followUnfollow, parameters: param, methodType: .POST, getURL: api, authRequired: true, authTokenString: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        self.eventDetailForFavourite = response.data
+                        print("---------", self.eventDetailForFavourite)
+                        
+                    }
+                    complition(true, response.message ?? "")
+                } else {
+                    complition(false, response.message ?? "Error message")
+                }
+            case .failure(let error):
+                complition(false, "\(error)")
+            }
+        }
+    }
 }

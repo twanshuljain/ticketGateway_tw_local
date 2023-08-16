@@ -20,6 +20,11 @@
 
 import Foundation
 
+enum FollowUnfollow:String{
+    case follow = "Successfully followed"
+    case unfollow = "Successfully unfollowed"
+}
+
 // MARK: - Welcome
 struct GetEventDetail: Codable {
     var data: EventDetail?
@@ -222,6 +227,7 @@ struct DataEventType: Codable {
 
 // MARK: - Organizer
 struct Organizer: Codable {
+    var id:Int?
     var bio: String?
     var isActive: Bool?
     var eventDescription, createdAt, updatedAt, facebookID: String?
@@ -233,6 +239,7 @@ struct Organizer: Codable {
     var followers: Int?
 
     enum CodingKeys: String, CodingKey {
+        case id
         case bio
         case isActive = "is_active"
         case eventDescription = "event_description"

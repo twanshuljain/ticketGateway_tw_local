@@ -77,6 +77,9 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var vwOrganiserMainView: setBorderView!
     
+    @IBOutlet weak var pageConrtrolEventImagesHt:NSLayoutConstraint!
+    @IBOutlet weak var pageControllerParentView:UIView!
+    
     // MARK: - Variables
     var viewModel = EventDetailViewModel()
     let store = EKEventStore()
@@ -286,9 +289,9 @@ extension EventDetailVC {
         self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
         
         //ABOUt US
-        if (eventDetail?.event?.eventDescription != "") && (eventDetail?.event?.eventDescription != nil){
+        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
             self.aboutView.isHidden = false
-            self.lblAboutDiscripation.text = eventDetail?.event?.eventDescription ?? ""
+            self.lblAboutDiscripation.text = eventDetail?.organizer?.eventDescription ?? ""
             
         }else{
             self.aboutView.isHidden = true
@@ -353,6 +356,8 @@ extension EventDetailVC {
             self.btnBookTicket()
         case btnReadMore:
             self.addToCalenAction()
+        case btnFollowing:
+            self.addFollowingAction()
         case btnShowMap:
             self.btnShowMapAction()
         case btnAddToCalender:
@@ -390,28 +395,48 @@ extension EventDetailVC {
     
     
     func addToCalenAction() {
-        let eventObject = viewModel.eventDetail?.eventDateObj
-        print("startDate", eventObject?.eventStartDate as Any)
-        print("endDate", eventObject?.eventEndDate as Any)
-        print("startTime", eventObject?.eventStartTime as Any)
-        print("endTime", eventObject?.eventEndTime as Any)
-        let startDateTime = self.combineDateWithTime(
-            date: eventObject?.eventStartDate?.convertToDate() ?? Date(),
-            time: eventObject?.eventStartTime?.convertStringToDateForTime() ?? Date()
-        )
-        let endDateTime = self.combineDateWithTime(
-            date: eventObject?.eventEndDate?.convertToDate() ?? Date(),
-            time: eventObject?.eventEndTime?.convertStringToDateForTime() ?? Date()
-        )
-        AddToCalendar.shared.startDate = startDateTime ?? Date()
-        AddToCalendar.shared.endDate = endDateTime ?? Date()
-        AddToCalendar.shared.title = "Event Test"
-        AddToCalendar.shared.addEvent(success: { _, _ in
-            print("on success event add")
-        }, failure: { _ in
-            print("on failure")
-        })
-    }
+        DispatchQueue.main.async {
+          self.store.requestAccess(to: .event, completion: { sucess, err in
+            if sucess, err == nil {
+              DispatchQueue.main.async {
+                var identifier: String?
+                let newEvent = EKEvent(eventStore: self.store)
+                let eventObject = self.viewModel.eventDetail?.eventDateObj
+                print("startDate", eventObject?.eventStartDate as Any)
+                print("endDate", eventObject?.eventEndDate as Any)
+                print("startTime", eventObject?.eventStartTime as Any)
+                print("endTime", eventObject?.eventEndTime as Any)
+                let startDateTime = self.combineDateWithTime(
+                  date: eventObject?.eventStartDate?.convertToDate() ?? Date(),
+                  time: eventObject?.eventStartTime?.convertStringToDateForTime() ?? Date()
+                )
+                let endDateTime = self.combineDateWithTime(
+                  date: eventObject?.eventEndDate?.convertToDate() ?? Date(),
+                  time: eventObject?.eventEndTime?.convertStringToDateForTime() ?? Date()
+                )
+                newEvent.title = self.viewModel.eventDetail?.event?.title
+                newEvent.startDate = startDateTime
+                newEvent.endDate = endDateTime
+                let vc = EKEventViewController()
+                vc.delegate = self
+                vc.event = newEvent
+                let navVC = UINavigationController(rootViewController: vc)
+                self.present(navVC, animated: true)
+                do {
+                  try self.store.save(newEvent, span: .thisEvent, commit: true)
+                  identifier = newEvent.eventIdentifier
+                  print("Saved event with ID: \(String(describing: newEvent.eventIdentifier))")
+                  // The event gets created and the ID is printed to the console but at a time when the whole function already has returned (nil)
+                } catch let error as NSError {
+                  print("Failed to save event with error: \(error)")
+                }
+              }
+            } else {
+            }
+          })
+        }
+      }
+    
     func combineDateWithTime(date: Date, time: Date) -> Date? {
         print("DATE:---:", date)
         print("TIME:---:", time)
@@ -430,12 +455,51 @@ extension EventDetailVC {
     }
     
     func btnBookTicket() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
+//        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
+//            view.viewModel.eventDetail = self.viewModel.eventDetail
+//            view.viewModel.eventId = self.viewModel.eventId
+//            view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
+//           // view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+//            self.navigationController?.pushViewController(view, animated: true)
+//        }
+        
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.eventId = self.viewModel.eventId
             view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
-            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+           // view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             self.navigationController?.pushViewController(view, animated: true)
+        }
+    }
+    
+    func addFollowingAction() {
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            if let organizerId = self.viewModel.eventDetail?.organizer?.id{
+                vwEventName.showLoading(centreToView: self.view)
+                viewModel.followUnFollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
+                    if isTrue{
+                        DispatchQueue.main.async {
+                            self.vwEventName.stopLoading()
+                            if messageShowToast == self.viewModel.isFollow.rawValue{
+                                self.btnFollowing.setTitle("Following", for: .normal)
+                            }else{
+                                self.btnFollowing.setTitle("UnFollowing", for: .normal)
+                            }
+                        }
+                    }else{
+                        DispatchQueue.main.async {
+                            self.vwEventName.stopLoading()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    self.vwEventName.stopLoading()
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
+            }
         }
     }
     
@@ -487,14 +551,31 @@ extension EventDetailVC {
 // MARK: - PageControl
 extension EventDetailVC {
     func toSetPageControll() {
-        pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
-                                                           space: 16.0,
-                                                           indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
-                                                           dotsColor: UIColor.setColor(colorType: .placeHolder),
-                                                           isBordered: false,
-                                                           borderWidth: 0.0,
-                                                           indicatorBorderColor: .clear,
-                                                           indicatorBorderWidth: 0.0)
+        
+        if (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages == nil) || (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 0){
+           self.pageControllerParentView.isHidden = false
+           // pageConrtrolEventImagesHt.constant = 0
+            pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
+                                                               space: 16.0,
+                                                               indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                               dotsColor: UIColor.setColor(colorType: .placeHolder),
+                                                               isBordered: false,
+                                                               borderWidth: 0.0,
+                                                               indicatorBorderColor: .clear,
+                                                               indicatorBorderWidth: 0.0)
+        }else{
+            self.pageControllerParentView.isHidden = true
+            //pageConrtrolEventImagesHt.constant = 20
+            pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
+                                                               space: 16.0,
+                                                               indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
+                                                               dotsColor: UIColor.setColor(colorType: .placeHolder),
+                                                               isBordered: false,
+                                                               borderWidth: 0.0,
+                                                               indicatorBorderColor: .clear,
+                                                               indicatorBorderWidth: 0.0)
+        }
+ 
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offSet = scrollView.contentOffset.x

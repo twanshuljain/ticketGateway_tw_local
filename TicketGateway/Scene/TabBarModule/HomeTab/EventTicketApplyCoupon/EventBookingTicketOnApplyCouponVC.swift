@@ -42,6 +42,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var accesCodeStackView: UIStackView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var enterAccessCodeBgView: UIView!
+    @IBOutlet weak var parentView: UIView!
     //MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
     
@@ -50,10 +51,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
         super.viewDidLoad()
         self.setup()
         self.setNavigationData()
-        txtAccessCode.isUserInteractionEnabled = true
-        tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
-        tblEventTicketTypes.arrTicketList = viewModel.defaultTicket
-
+        self.apiCall()
     }
     
 }
@@ -91,6 +89,12 @@ extension EventBookingTicketOnApplyCouponVC {
         self.txtAccessCode.delegate = self
         self.txtAccessCode.autocorrectionType = .no
         
+        
+        txtAccessCode.isUserInteractionEnabled = true
+        tblEventTicketTypes.finalPrice = Double(self.viewModel.totalTicketPrice) ?? 0.0
+        tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
+        tblEventTicketTypes.arrTicketList = viewModel.defaultTicket
+        
         self.setData()
     }
     
@@ -125,6 +129,60 @@ extension EventBookingTicketOnApplyCouponVC {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
         
     }
+    
+    func apiCall(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            parentView.showLoading(centreToView: self.view)
+            self.viewModel.dispatchGroup.enter()
+            viewModel.getEventTicketList(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    self.parentView.stopLoading()
+                    DispatchQueue.main.async {
+                        self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
+                         self.tblEventTicketTypes.reloadData()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.parentView.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.parentView.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+        
+        self.viewModel.dispatchGroup.notify(queue: .main) {
+            self.apiCallForFeeStructure()
+        }
+    }
+    
+    func apiCallForFeeStructure() {
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            parentView.showLoading(centreToView: self.view)
+            viewModel.getEventTicketFeeStructure(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    self.parentView.stopLoading()
+                    print(self.viewModel.feeStructure)
+                } else {
+                    DispatchQueue.main.async {
+                        self.parentView.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.parentView.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
 }
 
 //MARK: - Actions
@@ -157,7 +215,7 @@ extension EventBookingTicketOnApplyCouponVC {
            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
                view.viewModel.eventDetail = self.viewModel.eventDetail
                view.viewModel.feeStructure = self.viewModel.feeStructure
-               view.viewModel.selectedArrTicketList = viewModel.selectedArrTicketList
+               view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
                view.viewModel.eventId = self.viewModel.eventId
                self.navigationController?.pushViewController(view, animated: true)
            }
