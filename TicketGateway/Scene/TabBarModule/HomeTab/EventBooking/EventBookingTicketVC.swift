@@ -184,12 +184,10 @@ extension EventBookingTicketVC {
                view.viewModel.totalTicketPrice = self.lblTotalTicketPrice.text ?? ""
                view.viewModel.feeStructure = self.viewModel.feeStructure
                view.viewModel.defaultTicket = self.viewModel.arrTicketList ?? []
-               
                self.navigationController?.pushViewController(view, animated: true)
-           } else {
-               self.showToast(message: "Please Accept Terms and Condition")
            }
-       
+       } else {
+           self.showToast(message: "Please Accept Terms and Condition")
        }
     }
 }
@@ -204,7 +202,7 @@ extension EventBookingTicketVC : NavigationBarViewDelegate {
 
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: EventDetailVC.self) {
-                (controller as! EventDetailVC).viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
+                //(controller as! EventDetailVC).viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
                 self.navigationController!.popToViewController(controller, animated: true)
                 break
             }

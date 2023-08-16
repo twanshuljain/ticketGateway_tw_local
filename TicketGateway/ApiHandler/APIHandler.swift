@@ -46,6 +46,8 @@ public enum APIName: String {
     
     case GetFeeStructure = "default/data/fee/structure/get/"
     case favoriteEvents = "events/like/unlike/"
+    case followUnfollow = "organizer/follow-unfollow/"
+    
     //STRIPE
     case CreateStripeCustomer = "payment/stripe/create-customer/"
     case AddCardForUser = "payment/add-card/"
@@ -72,11 +74,15 @@ class APIHandler: NSObject {
     private let boundary = "Boundary-\(NSUUID().uuidString)"
     
     
-    func executeRequestWith<T: Decodable, U: Encodable>(of type: T.Type = T.self, apiName: APIName, parameters: U?, methodType: MethodType, getURL: String? = "",  authRequired: Bool = true, complition: @escaping(Result<ResponseModal<T>, Error>) -> Void) {
+    func executeRequestWith<T: Decodable, U: Encodable>(of type: T.Type = T.self, apiName: APIName, parameters: U?, methodType: MethodType, getURL: String? = "",  authRequired: Bool = true, authTokenString:Bool? = false, complition: @escaping(Result<ResponseModal<T>, Error>) -> Void) {
         
         var finalURL = baseURL + apiName.rawValue
         
         if methodType == .GET{
+            if let URL = getURL, URL != ""  {
+                finalURL = baseURL + URL
+            }
+        }else if methodType == .POST && apiName == .followUnfollow{
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
@@ -130,6 +136,19 @@ class APIHandler: NSObject {
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        /*
+         if authTokenString == true{
+            if let token = userModel?.accessToken {
+                request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
+             }
+         }else{
+             if authRequired, let token = userModel?.accessToken {
+                 print("userModel?.accessToken........ ",userModel!.accessToken! )
+                 request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
+             }
+         }
+         */
+        
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         
         if authRequired, let token = userModel?.accessToken {
@@ -168,7 +187,7 @@ class APIHandler: NSObject {
                         complition(.failure(message))
                     } else {
                         let message = response?.url?.lastPathComponent
-                        complition(.failure("API \(message ?? "") Invlid Response."))
+                        complition(.failure("API \(message ?? "") Invalid Response."))
                     }
                 } else if httpStatusCode == 200, let data = data {
                     do {
@@ -181,8 +200,6 @@ class APIHandler: NSObject {
                         catch{
                             print(error)
                         }
-                        
-                        
                     } catch {
                         debugPrint(data)
                         complition(.failure("Something went wrong"))
