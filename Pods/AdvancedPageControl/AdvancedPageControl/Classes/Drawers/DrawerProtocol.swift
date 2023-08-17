@@ -20,7 +20,7 @@ public class AdvancedPageControlDrawerParentWithIndicator: AdvancedPageControlDr
     var indicatorBorderColor: UIColor
     var indicatorBorderWidth: CGFloat
     var indicatorColor: UIColor
-    public init(numberOfPages: Int = UserDefaults.standard.value(forKey: "NumberOfPage") as! Int,
+    public init(numberOfPages: Int = UserDefaults.standard.value(forKey: "NumberOfPage") as? Int ?? 1,
                 height: CGFloat? = 8,
                 width: CGFloat? = 8,
                 space: CGFloat? = 12,
@@ -62,7 +62,7 @@ public class AdvancedPageControlDrawerParent {
     var isBordered: Bool
     var borderColor: UIColor
     var borderWidth: CGFloat
-    public init(numberOfPages: Int = UserDefaults.standard.value(forKey: "NumberOfPage") as! Int,
+    public init(numberOfPages: Int = UserDefaults.standard.value(forKey: "NumberOfPage") as? Int ?? 1,
                 height: CGFloat? = 16,
                 width: CGFloat? = 16,
                 space: CGFloat? = 16,
