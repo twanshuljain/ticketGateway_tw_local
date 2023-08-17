@@ -115,6 +115,7 @@ extension EventDetailVC {
     func setUp(){
         self.setUi()
         self.tblSuggestedEvent.delegateShareAction = self
+        self.tblSuggestedEvent.delegateLikeAction = self
         self.tblSuggestedEvent.delegateViewMore = self
         self.collvwEventImages.reloadData()
         self.txtDate.delegate = self
@@ -732,12 +733,41 @@ extension EventDetailVC: ViewMoreEventsVCProtocol{
     }
 }
 
-
 //MARK: - NavigationBarViewDelegate
 extension EventDetailVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.delegate?.updateData()
         self.navigationController?.popViewController(animated: true)
     }
-    
+}
+
+//MARK: - NavigationBarViewDelegate
+extension EventDetailVC : FavouriteAction {
+    func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
+        print("eventDetail.isLiked", eventDetail.isLiked ?? false)
+        print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
+        favouriteApiForHome(
+            likeStatus: eventDetail.likeCountData?.isLiked ?? false,
+            eventId: eventDetail.event?.id ?? 0
+        )
+    }
+    func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
+        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
+            switch result {
+            case .success(let response):
+                print("success like api")
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let data = response.data {
+                            print("response of like api****", response)
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("error", error)
+                print("failure like api ")
+            }
+        }
+    }
 }

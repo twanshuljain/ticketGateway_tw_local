@@ -33,13 +33,13 @@ class ViewMoreEventsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
+        self.setData()
         //self.viewModel.refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         //tblView.refreshControl = self.viewModel.refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setData()
     }
 
 }
@@ -127,6 +127,7 @@ extension ViewMoreEventsVC{
                     view?.viewModel.eventId = self.viewModel.itemsUpcoming[index.row].event?.id
                 }
             }
+            view?.delegate = self
             self.navigationController?.pushViewController(view!, animated: true)
         }else{
             if self.viewModel.itemsSuggestedEvents.indices.contains(index.row){
@@ -532,16 +533,12 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                         cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
-//                default:
-//                    if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
-//                        cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
-//                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
-//                    }
                 }
             } else {
                 if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
                     cell.getEvent =  self.viewModel.itemsSuggestedEvents[indexPath.row]
-                    cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                    print("viewModel.itemsSuggestedEvents[indexPath.row].isLikedEvent", viewModel.itemsSuggestedEvents[indexPath.row].isLiked)
+                    cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                 }
             }
             return cell
@@ -582,6 +579,11 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                     viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked?.toggle()
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsUpcoming[indexPath.row], isForLocation: false)
                 }
+            }
+        } else if viewModel.isComingFrom == .EventDetail {
+            if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
+                viewModel.itemsSuggestedEvents[indexPath.row].isLiked?.toggle()
+                viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsSuggestedEvents[indexPath.row], isForLocation: false)
             }
         }
         self.tblView.reloadData()
@@ -651,6 +653,19 @@ extension ViewMoreEventsVC : UITextFieldDelegate {
         self.navigationController?.pushViewController(view!, animated: true)
     }
     
+}
+extension ViewMoreEventsVC: EventDetailVCProtocol {
+    func updateData() {
+        self.viewModel.itemsWeekend.removeAll()
+        self.viewModel.itemsVirtual.removeAll()
+        self.viewModel.itemsPopular.removeAll()
+        self.viewModel.itemsFree.removeAll()
+        self.viewModel.itemsUpcoming.removeAll()
+        self.viewModel.itemsLocation.removeAll()
+        self.viewModel.itemsSuggestedEvents.removeAll()
+        self.setUp()
+        self.setData()
+    }
 }
 //MARK: - NavigationBarViewDelegate
 extension ViewMoreEventsVC : NavigationBarViewDelegate {

@@ -137,6 +137,10 @@ class EventsOrganizesListTableView: UITableView {
             }
         } else {
             // Suggestions Event
+            if arrData.indices.contains(indexPath.row){
+                arrData[indexPath.row].isLiked?.toggle()
+                self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrData[indexPath.row], isForLocation: true)
+            }
         }
         self.reloadData()
     }

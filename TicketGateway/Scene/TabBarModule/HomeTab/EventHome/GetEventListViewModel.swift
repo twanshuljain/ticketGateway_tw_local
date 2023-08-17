@@ -287,15 +287,9 @@ extension HomeDashBoardViewModel {
                         if let data = response.data {
                             print("response of like api****", response)
                         }
-                         
-                        
                     }
-//                    complition(true, response.message ?? "")
-                } else {
-//                    complition(false, response.message ?? "Error message")
                 }
             case .failure(let error):
-//                complition(false, "\(error)")
                 print("error", error)
                 print("failure like api ")
             }

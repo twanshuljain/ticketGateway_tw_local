@@ -69,11 +69,11 @@ struct GetEventModel: Codable,Equatable {
     var date: DateClass?
     var dates: DateClass?
     var eventDate:DateClass?
-    var likeCountData: LikeCountData?
+    var likeCountData: LikeCountData? // for all except location and suggestion event api
     var eventLikes: Int?
-    var isLikedEvent: Bool?
+    var isLikedEvent: Bool? // for location event api
     var ticketOnwards: Int?
-    var isLiked: Bool?
+    var isLiked: Bool? // for suggestion event api
     enum CodingKeys: String, CodingKey {
         case event
         case locationType = "location_type"
