@@ -192,7 +192,7 @@ class APIHandler: NSObject {
                 } else if httpStatusCode == 200, let data = data {
                     do {
                         let JSON = self.nsdataToJSON(data: data as NSData)
-                 print("----------------",JSON)
+                 print("----------------JSON in APIClient",JSON)
                         do {
                             let responseModel = try JSONDecoder().decode(ResponseModal<T>.self, from: data)
                             complition(.success(responseModel))

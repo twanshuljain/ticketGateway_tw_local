@@ -41,8 +41,7 @@ final class ViewMoreEventsViewModel {
 }
 
 //MARK: - Functions
-extension ViewMoreEventsViewModel {
-    
+extension ViewMoreEventsViewModel: FavouriteAction {
     func getEventAsPerLocation(viewAll:Bool, category:String? = "", countryName:String? = "", sortBy:SortBy? = .None, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
         let parameters =  viewAll == true ? GetEventSearchByCategoryRequest(countryName: countryName, limit: "10", page: "\(self.currentPage)") : GetEventSearchByCategoryRequest(countryName: countryName)
@@ -219,6 +218,39 @@ extension ViewMoreEventsViewModel {
         }
     }
     
-    
-    
+    func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
+        if isForLocation {
+            print("eventDetail.isLiked", eventDetail.isLikedEvent ?? false)
+            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
+            favouriteApiForHome(
+                likeStatus: eventDetail.isLikedEvent ?? false,
+                eventId: eventDetail.event?.id ?? 0
+            )
+        } else {
+            print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
+            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
+            favouriteApiForHome(
+                likeStatus: eventDetail.likeCountData?.isLiked ?? false,
+                eventId: eventDetail.event?.id ?? 0
+            )
+        }
+    }
+    func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
+        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let data = response.data {
+                            print("success like api")
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("error", error)
+                print("failure like api ")
+            }
+        }
+    }
 }

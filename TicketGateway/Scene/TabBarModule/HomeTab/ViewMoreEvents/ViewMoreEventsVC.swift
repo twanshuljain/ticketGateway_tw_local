@@ -16,7 +16,7 @@ import UIKit
 import SideMenu
 import SVProgressHUD
 
-protocol ViewMoreEventsVCProtocol:class{
+protocol ViewMoreEventsVCProtocol: class {
     func reloadView(eventId:Int?)
 }
 
@@ -27,9 +27,8 @@ class ViewMoreEventsVC: UIViewController {
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var parentView:UIView!
-   
     var viewModel = ViewMoreEventsViewModel()
-    weak var  delegate : ViewMoreEventsVCProtocol?
+    weak var delegate : ViewMoreEventsVCProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -497,49 +496,96 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-            if self.viewModel.isComingFrom == .Home{
+            cell.selectionStyle = .none
+            cell.btnLike.mk_addTapHandler { (btn) in
+                 self.btnLikeActionTapped(btn: btn, indexPath: indexPath)
+            }
+            if self.viewModel.isComingFrom == .Home {
                 switch self.viewModel.arrEventCategory[self.viewModel.index] {
                 case .nearByLocation:
                     if self.viewModel.itemsLocation.indices.contains(indexPath.row){
                         cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].isLikedEvent ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .weekend:
                     if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
                         cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .online:
                     if self.viewModel.itemsVirtual.indices.contains(indexPath.row){
                         cell.getEvent = self.viewModel.itemsVirtual[indexPath.row]
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .popular:
                     if self.viewModel.itemsPopular.indices.contains(indexPath.row){
                         cell.getEvent = self.viewModel.itemsPopular[indexPath.row]
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .free:
                     if self.viewModel.itemsFree.indices.contains(indexPath.row){
                         cell.getEvent = self.viewModel.itemsFree[indexPath.row]
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .upcoming:
                     if self.viewModel.itemsUpcoming.indices.contains(indexPath.row){
                         cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
-                default:
-                    if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
-                        cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
-                    }
+//                default:
+//                    if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
+//                        cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
+//                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//                    }
                 }
-            }else{
+            } else {
                 if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
                     cell.getEvent =  self.viewModel.itemsSuggestedEvents[indexPath.row]
+                    cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                 }
             }
-            
-            
             return cell
         }
         return UITableViewCell()
     }
-    
+    func btnLikeActionTapped(btn:UIButton, indexPath: IndexPath) {
+        print("IndexPath row : \(indexPath.row)")
+        if viewModel.isComingFrom == .Home {
+            switch viewModel.arrEventCategory[viewModel.index] {
+            case .nearByLocation:
+                if viewModel.itemsLocation.indices.contains(indexPath.row) {
+                    viewModel.itemsLocation[indexPath.row].isLikedEvent?.toggle()
+                    viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsLocation[indexPath.row], isForLocation: true)
+                }
+            case .weekend:
+                if viewModel.itemsWeekend.indices.contains(indexPath.row){
+                    viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked?.toggle()
+                    viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsWeekend[indexPath.row], isForLocation: false)
+                }
+            case .online:
+                if viewModel.itemsVirtual.indices.contains(indexPath.row){
+                    viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked?.toggle()
+                    viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsVirtual[indexPath.row], isForLocation: false)
+                }
+            case .popular:
+                if viewModel.itemsPopular.indices.contains(indexPath.row){
+                    viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked?.toggle()
+                    viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsPopular[indexPath.row], isForLocation: false)
+                }
+            case .free:
+                if viewModel.itemsFree.indices.contains(indexPath.row){
+                    viewModel.itemsFree[indexPath.row].likeCountData?.isLiked?.toggle()
+                    viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsFree[indexPath.row], isForLocation: false)
+                }
+            case .upcoming:
+                if viewModel.itemsUpcoming.indices.contains(indexPath.row){
+                    viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked?.toggle()
+                    viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsUpcoming[indexPath.row], isForLocation: false)
+                }
+            }
+        }
+        self.tblView.reloadData()
+    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        switch self.viewModel.arrEventCategory[self.viewModel.index] {
 //        case .weekend:
@@ -580,7 +626,6 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navigateToDetail(index: indexPath)
     }
-    
 }
 //MARK: - CustomSearchMethodsDelegate
 extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
@@ -612,5 +657,4 @@ extension ViewMoreEventsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
 }

@@ -84,6 +84,7 @@ struct GetEventModel: Codable,Equatable {
         case eventLikes = "event_likes"
         case isLikedEvent = "is_liked_event"
         case ticketOnwards = "ticket_onwards"
+        case isLiked = "is_like"
     }
     static func == (lhs: GetEventModel, rhs: GetEventModel) -> Bool {
         return lhs.event?.id == rhs.event?.id
@@ -123,6 +124,9 @@ struct GetEventModel: Codable,Equatable {
         }
         if let precisionValue = try container.decodeIfPresent(String.self, forKey: .locationType) {
             locationType = precisionValue
+        }
+        if let precisionValue = try container.decodeIfPresent(Bool.self, forKey: .isLiked) {
+            isLiked = precisionValue
         }
     }
 }

@@ -38,7 +38,7 @@ extension EventDetailViewModel{
                     print("response....",response)
                     DispatchQueue.main.async {
                         self.eventDetail = response.data ?? EventDetail()
-                        print("--------------------",self.eventDetail)
+                        print("--------------------",self.eventDetail as Any)
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
@@ -84,8 +84,6 @@ extension EventDetailViewModel{
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         self.eventDetailForFavourite = response.data
-                        print("---------", self.eventDetailForFavourite)
-                        
                     }
                     complition(true, response.message ?? "")
                 } else {
