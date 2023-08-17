@@ -35,7 +35,7 @@ public enum APIName: String {
     case GetEventDetail = "events/detail/"
     case GetEventCategoryList = "events/category/list/"
     case GetEventSubCategoryList =  "events/sub/category/list/"
-    case GetEventSuggestedCategoryList = "events/category/"
+    case GetEventSuggestedCategoryList = "events/suggestion/" //"events/category/"
     case GetOrganizersList = "organizer/featured-organizer/list/"
     
     case GetEventSearchByCategory = "events/event/search/category/"

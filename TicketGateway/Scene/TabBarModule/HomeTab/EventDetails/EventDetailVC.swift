@@ -130,7 +130,8 @@ extension EventDetailVC {
         self.navigationView.btnRight.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        btnAddToCalender.setTitles(text: "Add to Calender", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
+        btnAddToCalender.setTitles(text: "Add ", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
+        btnAddToCalender.addRightIcon(image: UIImage.init(named: "calendar_blue"))
         btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         
@@ -649,20 +650,20 @@ extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtoc
         }
         
         let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        var date = "Event Date:- " + eventDate
+        var date = "\nEvent Date:- " + eventDate
         objectsToShare.append(date)
         
         
         let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
-        var time = "Event Time:- " + eventEndDate
+        var time = "\nEvent Time:- " + eventEndDate
         objectsToShare.append(time)
         
         
         if let eventDesc = eventDetail.event?.eventDescription{
-            var desc = "Event Description:- " + eventDesc
+            var desc = "\nEvent Description:- " + eventDesc
             objectsToShare.append(eventDesc)
         }else{
-            var desc = "Event Description:- No Description available for this event"
+            var desc = "\nEvent Description:- No Description available for this event"
             objectsToShare.append(desc)
         }
         
@@ -670,14 +671,13 @@ extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtoc
             if imageUrl.contains(APIHandler.shared.previousBaseURL){
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
-                    objectsToShare.append("Check this image: - \(url)")
-                    objectsToShare.append("Check this image: - \(url)")
+                    objectsToShare.append("\n Check this image: - \(url)")
                 }else{
                     objectsToShare.append(shareImageObj)
                 }
             }else{
                 if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
-                    objectsToShare.append("Check this image: - \(url)")
+                    objectsToShare.append("\n Check this image: - \(url)")
                 }else{
                     objectsToShare.append(shareImageObj)
                 }

@@ -49,7 +49,12 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
         [self.btnReset, self.btnShowResult, self.btnSortByRelevence, self.btnFIlter,].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        self.tblEvents.tableDidSelectAtIndex = { _ in
+        self.tblEvents.tableDidSelectAtIndex = {  index in
+            let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
+            if self.viewModel.arrSearchData.indices.contains(index.row){
+                view?.viewModel.eventId = self.viewModel.arrSearchData[index.row].event?.id
+                self.navigationController?.pushViewController(view!, animated: true)
+            }
         }
         self.collVwEvent.collVwDidSelectAtIndex = { obj in
             print("--------------------------------------------",obj)

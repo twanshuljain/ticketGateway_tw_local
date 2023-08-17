@@ -99,7 +99,16 @@ extension EventBookingTicketAddOnsVC {
         }
     }
     func btnContinueAction() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+//        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+//            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+//            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+//            view.viewModel.eventDetail = self.viewModel.eventDetail
+//            view.viewModel.feeStructure = self.viewModel.feeStructure
+//            view.viewModel.eventId = self.viewModel.eventId
+//            self.navigationController?.pushViewController(view, animated: true)
+//        }
+        
+        if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
             view.viewModel.eventDetail = self.viewModel.eventDetail

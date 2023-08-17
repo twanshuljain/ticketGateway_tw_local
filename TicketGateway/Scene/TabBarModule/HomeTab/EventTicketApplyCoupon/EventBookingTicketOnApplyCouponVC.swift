@@ -40,6 +40,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var btnDown: UIButton!
     @IBOutlet weak var accesCodeViewHeight: NSLayoutConstraint!
     @IBOutlet weak var accesCodeStackView: UIStackView!
+    @IBOutlet weak var enterAccesCodeStackView: UIStackView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var enterAccessCodeBgView: UIView!
     @IBOutlet weak var parentView: UIView!
@@ -285,12 +286,14 @@ extension EventBookingTicketOnApplyCouponVC {
     
     func btnDownAction() {
         if viewModel.isAccessCodeAvailable {
+            enterAccesCodeStackView.isHidden = false
             accesCodeViewHeight.constant = 300
             accesCodeStackView.isHidden = false
             // isAccessCodeAvailable = false
             btnDown.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
         } else {
-            accesCodeViewHeight.constant = 40
+            enterAccesCodeStackView.isHidden = true
+            accesCodeViewHeight.constant = 50
             accesCodeStackView.isHidden = true
            
             btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)

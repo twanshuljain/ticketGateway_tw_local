@@ -16,10 +16,4 @@ import Foundation
 struct FavoriteRequestModel: Codable {
     var event_id: Int?
     var like_status: Bool?
-    
-    enum CodingKeys: String, CodingKey {
-        case event_id = "event_type"
-        case like_status = "like_status"
-        
-    }
 }

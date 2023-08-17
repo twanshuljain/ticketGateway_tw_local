@@ -29,6 +29,8 @@ class PhoneVerificationViewController: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var vwNumber: UIView!
+    @IBOutlet weak var btnChangeNumber:UIButton!
+    
     // MARK: - Variable
     var viewModel = SignInViewModel()
     var isComingFrom: IsComingFrom  = .Login
@@ -68,22 +70,28 @@ extension PhoneVerificationViewController {
         self.navigationController?.present(storyBoard ?? UIViewController(), animated: true, completion: nil)
     }
     @IBAction func btnContinueAction(_ sender: UIButton) {
+        let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
+        let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)
+        objAppShareData.dicToHoldDataOnSignUpModule = obj
+        view?.isComingFromLogin = false
+        view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
         
-       
-            
-            let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
-            let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)
-            objAppShareData.dicToHoldDataOnSignUpModule = obj
-            view?.isComingFromLogin = false
-            view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
-            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
-       
+    }
+    
+    @IBAction func btnChangeNumberAction(_ sender:UIButton){
+        
     }
 }
 
 // MARK: - RSCountrySelectedDelegate
 extension PhoneVerificationViewController: RSCountrySelectedDelegate {
     func setIntialUiDesign() {
+        if isComingFrom == .OrderSummary{
+            btnChangeNumber.isHidden = false
+        }else{
+            btnChangeNumber.isHidden = true
+        }
         self.txtNumber.addDoneButtonOnKeyboard()
         // Defoult Country
         // UI Changes---
