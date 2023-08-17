@@ -25,7 +25,24 @@ class AppShareData {
     // NewVariable
     var dicToHoldDataOnSignUpModule : DataHoldOnSignUpProcessModel?
     var userAuth = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+    
     func saveNumOfPage(numOfPage: Int) {
         UserDefaults.standard.set(numOfPage, forKey: numOfPageKey)
+    }
+    
+    func setRootToHomeVCAndMoveToFAQ(){
+        guard let objHomeViewController = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {
+            return
+        }
+       let navigationController = UINavigationController(rootViewController: objHomeViewController)
+       navigationController.isNavigationBarHidden = true
+       //selectedTabBarIndex = selectedIndex
+       UIApplication.shared.windows.first?.rootViewController = navigationController
+       UIApplication.shared.windows.first?.makeKeyAndVisible()
+        
+        guard let objFAQController = UIStoryboard.init(name: "SideMenu", bundle: nil).instantiateViewController(withIdentifier: "FAQVC") as? FAQVC else {
+            return
+        }
+        navigationController.pushViewController(objFAQController, animated: false)
     }
 }

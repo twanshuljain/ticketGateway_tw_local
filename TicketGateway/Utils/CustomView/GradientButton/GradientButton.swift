@@ -115,4 +115,19 @@ class CustomButtonNormalWithBorder: UIButton {
         self.borderColor = borderColour
         self.setTitle(text, for: .normal)
     }
+    
+    func addRightIcon(image: UIImage?) {
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        addSubview(imageView)
+        let length = CGFloat(20)
+        titleEdgeInsets.right += length
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 8),
+            imageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+            imageView.widthAnchor.constraint(equalToConstant: length),
+            imageView.heightAnchor.constraint(equalToConstant: length)
+        ])
+    }
 }

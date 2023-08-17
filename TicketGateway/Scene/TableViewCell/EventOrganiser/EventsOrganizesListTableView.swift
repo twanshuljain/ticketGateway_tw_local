@@ -105,7 +105,7 @@ class EventsOrganizesListTableView: UITableView {
             switch self.arrEventCategory[indexPath.section] {
             case .nearByLocation:
                 if arrDataCategorySearch.indices.contains(indexPath.row) {
-                    arrDataCategorySearch[indexPath.row].likeCountData?.isLiked?.toggle()
+                    arrDataCategorySearch[indexPath.row].isLikedEvent?.toggle()
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataCategorySearch[indexPath.row], isForLocation: true)
                     
                 }

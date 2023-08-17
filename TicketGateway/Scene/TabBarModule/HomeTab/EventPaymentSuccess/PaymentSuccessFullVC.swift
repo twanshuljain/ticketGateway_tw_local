@@ -41,16 +41,16 @@ extension PaymentSuccessFullVC {
         self.navigationView.vwBorder.isHidden = false
         self.btnBrowseMorwEvents.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnBrowseMorwEvents.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        [self.btnBrowseMorwEvents,self.btnViewMyTicket,btnBrowseMorwEvents,btnGoTopMyAccount].forEach {
+        [self.btnBrowseMorwEvents,self.btnViewMyTicket,btnBrowseMorwEvents,btnGoTopMyAccount,btnNeedHelp].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.btnViewMyTicket.titleLabel?.text = VIEW_MY_TICKETS
         self.btnViewMyTicket.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnViewMyTicket.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
-        self.btnGoTopMyAccount.titleLabel?.text = GO_TO_MY_ACCOUNT
+        self.btnGoTopMyAccount.setTitle(BROWSE_EVENTS, for: .normal)
         self.btnGoTopMyAccount.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnGoTopMyAccount.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.btnNeedHelp.titleLabel?.text = NEED_HELP_CONTACT_US
+        self.btnNeedHelp.setTitle(NEED_HELP_CHECK_FAQs, for: .normal)
         self.btnNeedHelp.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnNeedHelp.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnNeedHelp.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
@@ -72,7 +72,7 @@ extension PaymentSuccessFullVC {
             lblThankYou.text = "Thank You!"
            // imgThankYou.image = UIImage(named: "Done_ip")
             btnViewMyTicket.isHidden = false
-            btnBrowseMorwEvents.setTitle("Browse more events", for: .normal)
+            btnBrowseMorwEvents.setTitle("Go to my tickets", for: .normal)
         }
         lblThankYou.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFour)
         lblThankYou.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -115,7 +115,7 @@ extension PaymentSuccessFullVC {
         self.navigationController?.popToRootViewController(animated: false)
     }
     func btnNeedHelpAction() {
-        self.navigationController?.popToRootViewController(animated: false)
+        AppShareData.sharedObject().setRootToHomeVCAndMoveToFAQ()
     }
     func btnViewMyTicketAction() {
         self.navigationController?.popToRootViewController(animated: false)

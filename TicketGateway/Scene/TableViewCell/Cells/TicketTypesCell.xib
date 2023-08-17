@@ -20,16 +20,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fS-WJ-avQ">
-                        <rect key="frame" x="0.0" y="10" width="316" height="293"/>
+                        <rect key="frame" x="10" y="10" width="296" height="293"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="clX-eB-U6Z">
-                                <rect key="frame" x="0.0" y="0.0" width="316" height="293"/>
+                                <rect key="frame" x="0.0" y="0.0" width="296" height="293"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdZ-28-BFW">
-                                        <rect key="frame" x="0.0" y="0.0" width="316" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="296" height="80"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K02-1h-WiM" customClass="CustomStepper" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="186" y="17.666666666666671" width="120" height="45"/>
+                                                <rect key="frame" x="166" y="17.666666666666671" width="120" height="45"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="fYk-dM-RJ0"/>
@@ -37,16 +37,16 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="jjR-0H-vbB">
-                                                <rect key="frame" x="10" y="15" width="166" height="50"/>
+                                                <rect key="frame" x="10" y="15" width="146" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Admission" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg7-Na-W1S">
-                                                        <rect key="frame" x="0.0" y="0.0" width="166" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="146" height="20.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0v-Bg-eMd">
-                                                        <rect key="frame" x="0.0" y="29.666666666666664" width="166" height="20.333333333333336"/>
+                                                        <rect key="frame" x="0.0" y="29.666666666666664" width="146" height="20.333333333333336"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -66,10 +66,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blR-LT-Vt0">
-                                        <rect key="frame" x="0.0" y="98" width="316" height="82"/>
+                                        <rect key="frame" x="0.0" y="98" width="296" height="82"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-fc-uXp">
-                                                <rect key="frame" x="0.0" y="0.0" width="316" height="1"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="1"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="b9x-DF-HUo"/>
@@ -93,10 +93,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruI-h3-a99">
-                                        <rect key="frame" x="0.0" y="198" width="316" height="95"/>
+                                        <rect key="frame" x="0.0" y="198" width="296" height="95"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Op-tR-ED1">
-                                                <rect key="frame" x="10" y="0.0" width="296" height="1"/>
+                                                <rect key="frame" x="10" y="0.0" width="276" height="1"/>
                                                 <color key="backgroundColor" name="BorderLineColour"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="KB4-a3-I2G"/>
@@ -170,8 +170,8 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="6fS-WJ-avQ" secondAttribute="bottom" constant="10" id="7eg-Rl-hwM"/>
                     <constraint firstItem="6fS-WJ-avQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Ycv-9D-YcW"/>
-                    <constraint firstItem="6fS-WJ-avQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uGw-Ij-CUC"/>
-                    <constraint firstAttribute="trailing" secondItem="6fS-WJ-avQ" secondAttribute="trailing" id="vn4-YN-b6V"/>
+                    <constraint firstItem="6fS-WJ-avQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uGw-Ij-CUC"/>
+                    <constraint firstAttribute="trailing" secondItem="6fS-WJ-avQ" secondAttribute="trailing" constant="10" id="vn4-YN-b6V"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
