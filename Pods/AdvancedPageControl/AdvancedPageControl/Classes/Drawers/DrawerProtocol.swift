@@ -20,13 +20,13 @@ public class AdvancedPageControlDrawerParentWithIndicator: AdvancedPageControlDr
     var indicatorBorderColor: UIColor
     var indicatorBorderWidth: CGFloat
     var indicatorColor: UIColor
-    public init(numberOfPages: Int? = 5,
-                height: CGFloat? = 12,
-                width: CGFloat? = 12,
+    public init(numberOfPages: Int = UserDefaults.standard.value(forKey: "NumberOfPage") as! Int,
+                height: CGFloat? = 8,
+                width: CGFloat? = 8,
                 space: CGFloat? = 12,
                 raduis: CGFloat? = 6,
                 currentItem: CGFloat? = 0,
-                indicatorColor: UIColor? = .white,
+                indicatorColor: UIColor? = UIColor.black,
                 dotsColor: UIColor? = UIColor.lightGray,
                 isBordered: Bool = false,
                 borderColor: UIColor = .white,
@@ -62,19 +62,19 @@ public class AdvancedPageControlDrawerParent {
     var isBordered: Bool
     var borderColor: UIColor
     var borderWidth: CGFloat
-
-    public init(numberOfPages: Int? = 5,
+    public init(numberOfPages: Int = UserDefaults.standard.value(forKey: "NumberOfPage") as! Int,
                 height: CGFloat? = 16,
                 width: CGFloat? = 16,
                 space: CGFloat? = 16,
                 raduis: CGFloat? = 16,
                 currentItem: CGFloat? = 0,
                 dotsColor: UIColor? = UIColor.lightGray,
+                indicatorColor:UIColor? = UIColor.black,
                 isBordered: Bool = false,
                 borderColor: UIColor = .white,
                 borderWidth: CGFloat = 1)
     {
-        self.numberOfPages = numberOfPages!
+        self.numberOfPages = numberOfPages
         self.space = space!
         radius = raduis!
         self.currentItem = currentItem!

@@ -86,7 +86,8 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Imp line to set drawer at initial
+        pageConrtrolEventImages.drawer = ScaleDrawer()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -334,7 +335,6 @@ extension EventDetailVC {
         }else{
             self.tagsView.isHidden = true
         }
-        self.toSetPageControll()
         self.dropDown()
     }
     
@@ -558,36 +558,21 @@ extension EventDetailVC {
 // MARK: - PageControl
 extension EventDetailVC {
     func toSetPageControll() {
-        
-        if (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages == nil) || (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 0){
-           self.pageControllerParentView.isHidden = false
-           // pageConrtrolEventImagesHt.constant = 0
-            pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
-                                                               space: 16.0,
-                                                               indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
-                                                               dotsColor: UIColor.setColor(colorType: .placeHolder),
-                                                               isBordered: false,
-                                                               borderWidth: 0.0,
-                                                               indicatorBorderColor: .clear,
-                                                               indicatorBorderWidth: 0.0)
-        }else{
+        if (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages == nil) ||
+            (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 0) ||
+            (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 1) {
+            self.pageControllerParentView.isHidden = false
+        } else {
+            let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+            AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
+            pageConrtrolEventImages.drawer = ScaleDrawer(numberOfPages: numberOfPage)
             self.pageControllerParentView.isHidden = true
-            //pageConrtrolEventImagesHt.constant = 20
-            pageConrtrolEventImages.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0,
-                                                               space: 16.0,
-                                                               indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
-                                                               dotsColor: UIColor.setColor(colorType: .placeHolder),
-                                                               isBordered: false,
-                                                               borderWidth: 0.0,
-                                                               indicatorBorderColor: .clear,
-                                                               indicatorBorderWidth: 0.0)
         }
- 
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offSet = scrollView.contentOffset.x
         let width = scrollView.frame.width
-        pageConrtrolEventImages.setPageOffset(offSet / width)
+        pageConrtrolEventImages.setPage(Int(round(offSet / width)))
     }
 }
 

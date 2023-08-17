@@ -460,9 +460,3 @@ let SEARCH_UNSELECT_ICON = "SearchUnselect_ip"
 let SEARCH_SELECTED_ICON = "Searchselected_ip"
 let DOWNLOAD_WHITE_ICON = "downloadwhite_ip"
 let CHECK_RIGHT_ICON = "checkRi8"
-
-
-
-
-
-

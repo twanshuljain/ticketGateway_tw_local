@@ -10,6 +10,8 @@ import Foundation
 
 let objAppShareData = AppShareData.sharedObject()
 class AppShareData {
+    // MARK: All Properties
+    private var numOfPageKey: String = "NumberOfPage"
     //MARK: - Shared object
     private static var sharedManager: AppShareData = {
         let manager = AppShareData()
@@ -23,4 +25,7 @@ class AppShareData {
     // NewVariable
     var dicToHoldDataOnSignUpModule : DataHoldOnSignUpProcessModel?
     var userAuth = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+    func saveNumOfPage(numOfPage: Int) {
+        UserDefaults.standard.set(numOfPage, forKey: numOfPageKey)
+    }
 }
