@@ -38,9 +38,8 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-     // self.funcCallApi(viewAll: false)
-//        self.funcCallApi()
+        self.funcCallApi()
+        self.setUp()
         self.tblEvents.delegateShareAction = self
         self.tblEvents.delegateLikeAction = self
         self.collvwSuggestedOrganisation.delegateOrgansierToProfile = self
@@ -50,8 +49,7 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.funcCallApi()
-        self.setUp()
+        
     }
 }
 
@@ -75,40 +73,48 @@ extension HomeVC {
             self.navigationController?.popViewController(animated: true)
         }
         self.tblEvents.tableDidSelectAtIndex = {  index in
-            let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
-            switch self.viewModel.arrEventCategory[index.section] {
-            case .nearByLocation:
-                if self.viewModel.arrSearchCategoryData.indices.contains(index.row){
-                    view?.viewModel.eventId = self.viewModel.arrSearchCategoryData[index.row].event?.id
-                }
-            case .weekend:
-                if self.viewModel.arrDataaWeekend.indices.contains(index.row){
-                    view?.viewModel.eventId = self.viewModel.arrDataaWeekend[index.row].event?.id
-                }
-            case .online:
-                if self.viewModel.arrDataaVirtual.indices.contains(index.row){
-                    view?.viewModel.eventId = self.viewModel.arrDataaVirtual[index.row].event?.id
-                }
-            case .popular:
-                if self.viewModel.arrDataaPopular.indices.contains(index.row){
-                    view?.viewModel.eventId = self.viewModel.arrDataaPopular[index.row].event?.id
-                }
-            case .free:
-                if self.viewModel.arrDataaFree.indices.contains(index.row){
-                    view?.viewModel.eventId = self.viewModel.arrDataaFree[index.row].event?.id
-                }
-            case .upcoming:
-                if self.viewModel.arrDataaUpcoming.indices.contains(index.row){
-                    view?.viewModel.eventId = self.viewModel.arrDataaUpcoming[index.row].event?.id
-                }
-            }
-            self.navigationController?.pushViewController(view!, animated: true)
+            self.navigateToDetailVc(index: index)
+
         }
         //self.tblEvents.reloadData()
         self.tblEvents.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.heightOfNearOrganisedEvent.constant = self.tblEvents.contentSize.height
         self.vwSearchBar.delegate = self
         self.vwSearchBar.txtSearch.delegate = self
+    }
+    
+    func navigateToDetailVc(index:IndexPath){
+        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
+            if self.viewModel.arrEventCategory.indices.contains(index.section){
+                switch self.viewModel.arrEventCategory[index.section] {
+                case .nearByLocation:
+                    if self.viewModel.arrSearchCategoryData.indices.contains(index.row){
+                        view.viewModel.eventId = self.viewModel.arrSearchCategoryData[index.row].event?.id
+                    }
+                case .weekend:
+                    if self.viewModel.arrDataaWeekend.indices.contains(index.row){
+                        view.viewModel.eventId = self.viewModel.arrDataaWeekend[index.row].event?.id
+                    }
+                case .online:
+                    if self.viewModel.arrDataaVirtual.indices.contains(index.row){
+                        view.viewModel.eventId = self.viewModel.arrDataaVirtual[index.row].event?.id
+                    }
+                case .popular:
+                    if self.viewModel.arrDataaPopular.indices.contains(index.row){
+                        view.viewModel.eventId = self.viewModel.arrDataaPopular[index.row].event?.id
+                    }
+                case .free:
+                    if self.viewModel.arrDataaFree.indices.contains(index.row){
+                        view.viewModel.eventId = self.viewModel.arrDataaFree[index.row].event?.id
+                    }
+                case .upcoming:
+                    if self.viewModel.arrDataaUpcoming.indices.contains(index.row){
+                        view.viewModel.eventId = self.viewModel.arrDataaUpcoming[index.row].event?.id
+                    }
+                }
+                self.funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
+            }
+        }
     }
     
     func setUi(){
@@ -401,6 +407,40 @@ extension HomeVC {
             
         }
     }
+    
+    func funcCallApiForEventDetail(eventId:Int?, view: EventDetailVC){
+        if let eventId = eventId{
+          if Reachability.isConnectedToNetwork() //check internet connectivity
+          {
+              parentView.showLoading(centreToView: self.view)
+              self.viewModel.dispatchGroup6.enter()
+              viewModel.GetEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
+                  if isTrue == true {
+                      self.parentView.stopLoading()
+                     // }
+                  } else {
+                      DispatchQueue.main.async {
+                          self.parentView.stopLoading()
+                          self.showToast(message: messageShowToast)
+                      }
+                  }
+              })
+          } else {
+              DispatchQueue.main.async {
+                  self.parentView.stopLoading()
+                  self.showToast(message: ValidationConstantStrings.networkLost)
+              }
+          }
+            
+            self.viewModel.dispatchGroup6.notify(queue: .main) {
+                let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+                AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
+                view.viewModel.eventDetail = self.viewModel.eventDetail
+                view.delegate = self
+                self.navigationController?.pushViewController(view, animated: false)
+            }
+      }
+  }
  
 }
 
@@ -497,6 +537,20 @@ extension HomeVC: ActivityController {
         self.present(activityViewController, animated: true, completion: nil)
     }
   
+}
+extension HomeVC: EventDetailVCProtocol{
+    func updateData() {
+        self.viewModel.arrSearchCategoryData.removeAll()
+        //self.viewModel.arrEventData = nil
+        self.viewModel.arrEventCategory.removeAll()
+        self.viewModel.arrDataaWeekend.removeAll()
+        self.viewModel.arrDataaVirtual.removeAll()
+        self.viewModel.arrDataaPopular.removeAll()
+        self.viewModel.arrDataaFree.removeAll()
+        self.viewModel.arrDataaUpcoming.removeAll()
+        self.funcCallApi()
+        self.setUp()
+    }
 }
 extension HomeVC: FavouriteAction {    
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {

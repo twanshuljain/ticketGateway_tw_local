@@ -22,6 +22,10 @@ import SVProgressHUD
 import SDWebImage
 import EventKitUI
 
+protocol EventDetailVCProtocol:class{
+    func updateData()
+}
+
 class EventDetailVC: UIViewController, UITextFieldDelegate{
     
     //MARK: - IBOutlets
@@ -79,19 +83,23 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var pageConrtrolEventImagesHt:NSLayoutConstraint!
     @IBOutlet weak var pageControllerParentView:UIView!
+    @IBOutlet weak var pageConrtrolEventTop:NSLayoutConstraint!
     
     // MARK: - Variables
     var viewModel = EventDetailViewModel()
+    weak var delegate : EventDetailVCProtocol?
     let store = EKEventStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Imp line to set drawer at initial
         pageConrtrolEventImages.drawer = ScaleDrawer()
+        self.funcCallApi()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.funcCallApi()
+        
     }
 }
 
@@ -172,47 +180,68 @@ extension EventDetailVC {
         }
     }
       func funcCallApi(){
-        if let eventId = self.viewModel.eventId{
-            if Reachability.isConnectedToNetwork() //check internet connectivity
-            {
-                vwEventName.showLoading(centreToView: self.view)
-                viewModel.GetEventDetailApi(complition: { isTrue, messageShowToast in
-                    if isTrue == true {
-                        self.vwEventName.stopLoading()
-                        DispatchQueue.main.async {
-                            self.collvwEventImages.reloadData()
-                            self.setData()
-                            self.loadData()
-                        }
-                        DispatchQueue.main.async {
-                            if self.viewModel.eventDetail?.is_multi_location == true {
-                                self.dateAndLocationStackView.isHidden = false
-                               self.vwStackHeight.constant = 155
-                            } else {
-                                self.dateAndLocationStackView.isHidden = true
-                                self.vwStackHeight.constant = 0
+          if self.viewModel.eventDetail != nil {
+              DispatchQueue.main.async {
+                  self.collvwEventImages.reloadData()
+                  self.setData()
+                  self.loadData()
+                  if self.viewModel.eventDetail?.is_multi_location == true {
+                      self.dateAndLocationStackView.isHidden = false
+                     self.vwStackHeight.constant = 155
+                  } else {
+                      self.dateAndLocationStackView.isHidden = true
+                      self.vwStackHeight.constant = 0
 
+                  }
+              }
+              
+              if let eventCategoryId = self.viewModel.eventDetail?.event?.eventCategoryID{
+                  self.viewModel.suggestedEventCategoryId = eventCategoryId
+                  self.funcCallApiForEventCategory(categoryId: eventCategoryId)
+              }
+          }else{
+              if self.viewModel.eventId != nil{
+                if Reachability.isConnectedToNetwork() //check internet connectivity
+                {
+                    vwEventName.showLoading(centreToView: self.view)
+                    viewModel.GetEventDetailApi(complition: { isTrue, messageShowToast in
+                        if isTrue == true {
+                            self.vwEventName.stopLoading()
+                            DispatchQueue.main.async {
+                                let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+                                AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
+                                self.collvwEventImages.reloadData()
+                                self.setData()
+                                self.loadData()
+                                if self.viewModel.eventDetail?.is_multi_location == true {
+                                    self.dateAndLocationStackView.isHidden = false
+                                   self.vwStackHeight.constant = 155
+                                } else {
+                                    self.dateAndLocationStackView.isHidden = true
+                                    self.vwStackHeight.constant = 0
+
+                                }
+                            }
+                            
+                            if let eventCategoryId = self.viewModel.eventDetail?.event?.eventCategoryID{
+                                self.viewModel.suggestedEventCategoryId = eventCategoryId
+                                self.funcCallApiForEventCategory(categoryId: eventCategoryId)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.vwEventName.stopLoading()
+                                self.showToast(message: messageShowToast)
                             }
                         }
-                        
-                        if let eventCategoryId = self.viewModel.eventDetail?.event?.eventCategoryID{
-                            self.viewModel.suggestedEventCategoryId = eventCategoryId
-                            self.funcCallApiForEventCategory(categoryId: eventCategoryId)
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.vwEventName.stopLoading()
-                            self.showToast(message: messageShowToast)
-                        }
+                    })
+                } else {
+                    DispatchQueue.main.async {
+                        self.vwEventName.stopLoading()
+                        self.showToast(message: ValidationConstantStrings.networkLost)
                     }
-                })
-            } else {
-                DispatchQueue.main.async {
-                    self.vwEventName.stopLoading()
-                    self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
-        }
+          }
     }
     
     func funcCallApiForEventCategory(categoryId:Int){
@@ -562,8 +591,10 @@ extension EventDetailVC {
         if (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages == nil) ||
             (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 0) ||
             (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 1) {
+            self.pageConrtrolEventTop.constant = 0
             self.pageControllerParentView.isHidden = false
         } else {
+            self.pageConrtrolEventTop.constant = 10
             let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
             AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
             pageConrtrolEventImages.drawer = ScaleDrawer(numberOfPages: numberOfPage)
@@ -705,6 +736,7 @@ extension EventDetailVC: ViewMoreEventsVCProtocol{
 //MARK: - NavigationBarViewDelegate
 extension EventDetailVC : NavigationBarViewDelegate {
     func navigationBackAction() {
+        self.delegate?.updateData()
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -18,12 +18,9 @@ import UIKit
 final class HomeDashBoardViewModel {
     
     //MARK: - Variables
-    var arrEventDataa : [[GetEventModel]] = [[GetEventModel]]()
-    var arrEventData1 : [GetEventModel] = [GetEventModel]()
     var arrSearchCategoryData = [GetEventModel]()
     var arrEventData = GetEvent()
     var arrEventCategory = [EventCategories]()
-    var arrForFavouriteeEvenst = EventDetail()
     var isLiked: Bool = false
     var dispatchGroup = DispatchGroup.init()
     var dispatchGroup1 = DispatchGroup.init()
@@ -31,6 +28,7 @@ final class HomeDashBoardViewModel {
     var dispatchGroup3 = DispatchGroup.init()
     var dispatchGroup4 = DispatchGroup.init()
     var dispatchGroup5 = DispatchGroup.init()
+    var dispatchGroup6 = DispatchGroup.init()
     
     let semaphore = DispatchSemaphore(value: 1)
     var arrOrganizersList : [Organizers]?
@@ -40,6 +38,8 @@ final class HomeDashBoardViewModel {
     var arrDataaPopular = [GetEventModel]()
     var arrDataaFree = [GetEventModel]()
     var arrDataaUpcoming = [GetEventModel]()
+    var eventId:Int?
+    var eventDetail: EventDetail?
 }
 
 // MARK: - Functions
@@ -59,9 +59,6 @@ extension HomeDashBoardViewModel {
                             //self.arrEventData = data
                            // self.arrEventData.itemsWeekend = items
                             self.arrDataaWeekend = data
-                           // self.arrEventDataa.append(data.itemsWeekend!)
-                           // self.arrEventData1.append(contentsOf: data.itemsWeekend!)
-                          //  print("COUNT>>>",self.arrEventDataa.count)
                         }
                         
                        // print(self.arrEventData)
@@ -115,9 +112,6 @@ extension HomeDashBoardViewModel {
                             if items.count != 0{
                                 self.arrEventCategory.append(.nearByLocation)
                             }
-                           // self.arrEventDataa.append(data.itemsWeekend!)
-                           // self.arrEventData1.append(contentsOf: data.itemsWeekend!)
-                          //  print("COUNT>>>",self.arrEventDataa.count)
                         }
                         complition(true, response.message ?? "")
                     }
@@ -147,9 +141,6 @@ extension HomeDashBoardViewModel {
                             if items.count != 0{
                                 self.arrEventCategory.append(.weekend)
                             }
-                           // self.arrEventDataa.append(data.itemsWeekend!)
-                           // self.arrEventData1.append(contentsOf: data.itemsWeekend!)
-                          //  print("COUNT>>>",self.arrEventDataa.count)
                         }
                         complition(true, response.message ?? "")
                     }
@@ -181,9 +172,6 @@ extension HomeDashBoardViewModel {
                             if items.count != 0{
                                 self.arrEventCategory.append(.online)
                             }
-                           // self.arrEventDataa.append(data.itemsVirtual!)
-                           // self.arrEventData1.append(contentsOf: data.itemsVirtual!)
-                          //  print("COUNT>>>",self.arrEventDataa.count)
                         }
                         complition(true, response.message ?? "")
                     }
@@ -214,9 +202,6 @@ extension HomeDashBoardViewModel {
                             if items.count != 0{
                                 self.arrEventCategory.append(.popular)
                             }
-                           // self.arrEventDataa.append(data.itemsPopular!)
-                          //  self.arrEventData1.append(contentsOf: data.itemsPopular!)
-                          //  print("COUNT>>>",self.arrEventDataa.count)
                         }
                         complition(true, response.message ?? "")
                     }
@@ -247,9 +232,6 @@ extension HomeDashBoardViewModel {
                             if items.count != 0{
                                 self.arrEventCategory.append(.free)
                             }
-                            //self.arrEventDataa.append(data.itemsFree!)
-                           // self.arrEventData1.append(contentsOf: data.itemsFree!)
-                         //   print("COUNT>>>",self.arrEventDataa.count)
                         }
                         complition(true, response.message ?? "")
                     }
@@ -279,9 +261,6 @@ extension HomeDashBoardViewModel {
                             if items.count != 0{
                                 self.arrEventCategory.append(.upcoming)
                             }
-//                            self.arrEventDataa.append(data.itemsUpcoming!)
-//                            self.arrEventData1.append(contentsOf: data.itemsUpcoming!)
-//                            print("COUNT>>>",self.arrEventDataa.count)
                         }
                         complition(true, response.message ?? "")
                     }
@@ -306,7 +285,6 @@ extension HomeDashBoardViewModel {
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
-//                            self.arrForFavouriteeEvenst = data
                             print("response of like api****", response)
                         }
                          
@@ -324,5 +302,28 @@ extension HomeDashBoardViewModel {
         }
     }
     
+    func GetEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
+        let url = APIName.GetEventDetail.rawValue + "\(eventId)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    defer { self.dispatchGroup6.leave() }
+                    print("response....",response)
+                    DispatchQueue.main.async {
+                        self.eventDetail = response.data ?? EventDetail()
+                        print("--------------------",self.eventDetail)
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                defer { self.dispatchGroup6.leave() }
+                complition(false,"\(error)")
+            }
+        }
+    }
     
 }
