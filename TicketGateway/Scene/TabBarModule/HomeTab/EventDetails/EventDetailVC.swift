@@ -95,7 +95,6 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
         // Imp line to set drawer at initial
         pageConrtrolEventImages.drawer = ScaleDrawer()
         self.funcCallApi()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -660,27 +659,27 @@ extension EventDetailVC: EKEventViewDelegate {
 extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtocol{
     func toShowActivityController(eventDetail: GetEventModel) {
         var objectsToShare = [Any]()
-        var shareImageObj = UIImage(named: "homeDas")
+        let shareImageObj = UIImage(named: "homeDas")
         
         if let eventTitle = eventDetail.event?.title{
-            var title = "Event Title:- " + eventTitle
+            let title = "Event Title:- " + eventTitle
             objectsToShare.append(title)
         }
         
         let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        var date = "\nEvent Date:- " + eventDate
+        let date = "\nEvent Date:- " + eventDate
         objectsToShare.append(date)
         
         
         let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
-        var time = "\nEvent Time:- " + eventEndDate
+        let time = "\nEvent Time:- " + eventEndDate
         objectsToShare.append(time)
         
         
         if let eventDesc = eventDetail.event?.eventDescription{
-            var desc = "\nEvent Description:- " + eventDesc
+            var _ = "\nEvent Description:- " + eventDesc
             objectsToShare.append(eventDesc)
-        }else{
+        } else {
             var desc = "\nEvent Description:- No Description available for this event"
             objectsToShare.append(desc)
         }
@@ -691,18 +690,17 @@ extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtoc
                 if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
                     objectsToShare.append("\n Check this image: - \(url)")
                 }else{
-                    objectsToShare.append(shareImageObj)
+                    objectsToShare.append(shareImageObj as Any)
                 }
-            }else{
+            } else {
                 if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
                     objectsToShare.append("\n Check this image: - \(url)")
-                }else{
-                    objectsToShare.append(shareImageObj)
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
                 }
             }
-
         } else {
-            objectsToShare.append(shareImageObj)
+            objectsToShare.append(shareImageObj as Any)
         }
         let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
@@ -727,10 +725,15 @@ extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtoc
 }
 
 //MARK: - ViewMoreEventsVCProtocol
-extension EventDetailVC: ViewMoreEventsVCProtocol{
-    func reloadView(eventId: Int?) {
-        self.viewModel.eventId = eventId
-        self.loadData()
+extension EventDetailVC: ViewMoreEventsVCProtocol {
+    func reloadView(eventId: Int?, isEventDetailApiCall: Bool?) {
+        if (isEventDetailApiCall ?? false) {
+            viewModel.eventDetail = nil
+            funcCallApi()
+        } else {
+            self.viewModel.eventId = eventId
+            self.loadData()
+        }
     }
 }
 

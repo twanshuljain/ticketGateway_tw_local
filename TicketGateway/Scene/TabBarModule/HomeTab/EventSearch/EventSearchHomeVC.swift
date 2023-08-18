@@ -30,14 +30,17 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
     @IBOutlet weak var txtSortByRelevance: DropDown!
     @IBOutlet weak var vwCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var vwSortByRelevanceHeight: NSLayoutConstraint!
-    
+    weak var delegate : EventDetailVCProtocol?
     // MARK: - Variables
     private let viewModel = GetEventCategoryViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.isLikedAnyEvent = false
         self.vwCollectionViewHeight.constant = 0
         self.vwSortByRelevanceHeight.constant = 0
         self.vwBlack.isHidden =  true
+        self.tblEvents.delegateLikeAction = self
+        self.tblEvents.delegateShareAction = self
         self.vwSearchBar.delegate = self
         self.vwSearchBar.vwLocation.isHidden = true
         self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
@@ -171,10 +174,10 @@ extension EventSearchHomeVC {
 // MARK: - CustomSearchMethodsDelegate
 extension EventSearchHomeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
+        if viewModel.isLikedAnyEvent {
+            self.delegate?.updateData()
+        }
         self.navigationController?.popViewController(animated: true)
-//        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-//        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
-//        present(menu, animated: true, completion: nil)
     }
     func rightButtonPressed(_ sender: UIButton) {
         print("hello")
@@ -198,4 +201,89 @@ extension EventSearchHomeVC: CustomSearchMethodsDelegate {
         return UICollectionViewCompositionalLayout(section: .init(group: group))
     }
 }
- 
+extension EventSearchHomeVC: FavouriteAction {
+    func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
+        viewModel.isLikedAnyEvent = true
+        print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
+        print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
+        favouriteApiForHome(
+            likeStatus: eventDetail.isLikedEvent ?? false,
+            eventId: eventDetail.event?.id ?? 0
+        )
+    }
+    func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
+        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
+            switch result {
+            case .success(let response):
+                print("success like api")
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let data = response.data {
+                            print("response of like api****", response)
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("error", error)
+                print("failure like api ")
+            }
+        }
+    }
+}
+extension EventSearchHomeVC: ActivityController {
+    func toShowActivityController(eventDetail: GetEventModel) {
+        var objectsToShare = [Any]()
+        let shareImageObj = UIImage(named: "homeDas")
+        
+        if let eventTitle = eventDetail.event?.title{
+            let title = "Event Title:- " + eventTitle
+            objectsToShare.append(title)
+        }
+        
+        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+        let date = "\nEvent Date:- " + eventDate
+        objectsToShare.append(date)
+        
+        
+        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
+        let time = "\nEvent Time:- " + eventEndDate
+        objectsToShare.append(time)
+        
+        
+        if let eventDesc = eventDetail.event?.eventDescription{
+            var _ = "\nEvent Description:- " + eventDesc
+            objectsToShare.append(eventDesc)
+        } else {
+            let desc = "\nEvent Description:- No Description available for this event"
+            objectsToShare.append(desc)
+        }
+        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
+            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    objectsToShare.append("\n Check this image: - \(url)")
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            } else {
+                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    objectsToShare.append("\n Check this image: - \(url)")
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            }
+        } else {
+            objectsToShare.append(shareImageObj as Any)
+        }
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        //  tblEvents.delegateShareAction = self
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+  
+}

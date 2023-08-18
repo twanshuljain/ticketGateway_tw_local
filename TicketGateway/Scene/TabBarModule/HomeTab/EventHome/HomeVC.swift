@@ -58,6 +58,7 @@ class HomeVC: UIViewController {
 extension HomeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
+        view?.delegate = self
         self.navigationController?.pushViewController(view!, animated: true)
     }
     
@@ -473,6 +474,7 @@ extension HomeVC: SendLocation {
 extension HomeVC: EventsOrganizesListTableViewProtocol{
     func tapActionOfViewMoreEvents(index: Int) {
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
+        view?.updateHomeScreenDelegate = self
         view?.viewModel.index = index
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
@@ -501,7 +503,7 @@ extension HomeVC: ActivityController {
         
         
         if let eventDesc = eventDetail.event?.eventDescription{
-            var desc = "\nEvent Description:- " + eventDesc
+            var _ = "\nEvent Description:- " + eventDesc
             objectsToShare.append(eventDesc)
         }else{
             var desc = "\nEvent Description:- No Description available for this event"

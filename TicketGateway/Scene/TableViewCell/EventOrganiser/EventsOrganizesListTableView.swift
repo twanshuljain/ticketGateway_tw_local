@@ -97,6 +97,16 @@ class EventsOrganizesListTableView: UITableView {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaUpcoming[indexPath.row])
                 }
             }
+        } else if isComingFrom == .EventDetail {
+            // Suggestions Event
+            if arrData.indices.contains(indexPath.row){
+                self.delegateShareAction?.toShowActivityController(eventDetail: self.arrData[indexPath.row])
+            }
+        } else if isComingFrom == .EventSearch {
+            // For Serach Screen
+            if arrSearchData.indices.contains(indexPath.row){
+                self.delegateShareAction?.toShowActivityController(eventDetail: self.arrSearchData[indexPath.row])
+            }
         }
     }
     func btnLikeActionTapped(btn:UIButton, indexPath:IndexPath) {
@@ -135,11 +145,17 @@ class EventsOrganizesListTableView: UITableView {
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaUpcoming[indexPath.row], isForLocation: false)
                 }
             }
-        } else {
+        } else if isComingFrom == .EventDetail {
             // Suggestions Event
             if arrData.indices.contains(indexPath.row){
                 arrData[indexPath.row].isLiked?.toggle()
                 self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrData[indexPath.row], isForLocation: true)
+            }
+        } else if isComingFrom == .EventSearch {
+            // For Serach Screen
+            if arrSearchData.indices.contains(indexPath.row) {
+                arrSearchData[indexPath.row].isLikedEvent?.toggle()
+                self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrSearchData[indexPath.row], isForLocation: true)
             }
         }
         self.reloadData()
@@ -282,7 +298,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 if isFromSearch {
                     if arrSearchData.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrSearchData[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (arrSearchData[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (arrSearchData[indexPath.row].isLikedEvent ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 } else {
                     if arrDataCategorySearch.indices.contains(indexPath.row) {

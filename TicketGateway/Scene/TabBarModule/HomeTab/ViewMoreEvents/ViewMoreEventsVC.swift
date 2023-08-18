@@ -17,7 +17,7 @@ import SideMenu
 import SVProgressHUD
 
 protocol ViewMoreEventsVCProtocol: class {
-    func reloadView(eventId:Int?)
+    func reloadView(eventId:Int?, isEventDetailApiCall: Bool?)
 }
 
 class ViewMoreEventsVC: UIViewController {
@@ -29,7 +29,8 @@ class ViewMoreEventsVC: UIViewController {
     @IBOutlet weak var parentView:UIView!
     var viewModel = ViewMoreEventsViewModel()
     weak var delegate : ViewMoreEventsVCProtocol?
-
+    weak var updateHomeScreenDelegate: (EventDetailVCProtocol)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -129,9 +130,12 @@ extension ViewMoreEventsVC{
             }
             view?.delegate = self
             self.navigationController?.pushViewController(view!, animated: true)
-        }else{
-            if self.viewModel.itemsSuggestedEvents.indices.contains(index.row){
-                self.delegate?.reloadView(eventId: self.viewModel.itemsSuggestedEvents[index.row].event?.id)
+        } else {
+            if self.viewModel.itemsSuggestedEvents.indices.contains(index.row) {
+                self.delegate?.reloadView(
+                    eventId: self.viewModel.itemsSuggestedEvents[index.row].event?.id,
+                    isEventDetailApiCall: false
+                )
             }
             self.navigationController?.popViewController(animated: false)
         }
@@ -451,13 +455,8 @@ extension ViewMoreEventsVC{
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
-                
-                
-            default:
-                break;
             }
-            
-        }else{
+        } else {
             if self.viewModel.itemsSuggestedEvents.count != self.viewModel.totalPage{
                 self.tblView.tableFooterView = spinner
                 self.tblView.tableFooterView?.isHidden = false
@@ -487,10 +486,8 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                 return self.viewModel.itemsFree.count
             case .upcoming:
                 return self.viewModel.itemsUpcoming.count
-            default:
-                return 0
             }
-        }else{
+        } else {
             return  self.viewModel.itemsSuggestedEvents.count
         }
     }
@@ -500,6 +497,10 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             cell.btnLike.mk_addTapHandler { (btn) in
                  self.btnLikeActionTapped(btn: btn, indexPath: indexPath)
+            }
+            cell.btnShare.mk_addTapHandler { (btn) in
+                 print("You can use here also directly : \(indexPath.row)")
+                 self.btnShareActionTapped(btn: btn, indexPath: indexPath)
             }
             if self.viewModel.isComingFrom == .Home {
                 switch self.viewModel.arrEventCategory[self.viewModel.index] {
@@ -537,13 +538,48 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             } else {
                 if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
                     cell.getEvent =  self.viewModel.itemsSuggestedEvents[indexPath.row]
-                    print("viewModel.itemsSuggestedEvents[indexPath.row].isLikedEvent", viewModel.itemsSuggestedEvents[indexPath.row].isLiked)
                     cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                 }
             }
             return cell
         }
         return UITableViewCell()
+    }
+    func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
+        print("IndexPath : \(indexPath.row)")
+        if viewModel.isComingFrom == .Home {
+            switch viewModel.arrEventCategory[viewModel.index] {
+            case .nearByLocation:
+                if viewModel.itemsLocation.indices.contains(indexPath.row){
+                    toShowActivityController(eventDetail: viewModel.itemsLocation[indexPath.row])
+                }
+            case .weekend:
+                if viewModel.itemsWeekend.indices.contains(indexPath.row){
+                    toShowActivityController(eventDetail: viewModel.itemsWeekend[indexPath.row])
+                }
+            case .online:
+                if viewModel.itemsVirtual.indices.contains(indexPath.row){
+                    toShowActivityController(eventDetail: viewModel.itemsVirtual[indexPath.row])
+                }
+            case .popular:
+                if viewModel.itemsPopular.indices.contains(indexPath.row){
+                    toShowActivityController(eventDetail: viewModel.itemsPopular[indexPath.row])
+                }
+            case .free:
+                if viewModel.itemsFree.indices.contains(indexPath.row){
+                    toShowActivityController(eventDetail: viewModel.itemsFree[indexPath.row])
+                }
+            case .upcoming:
+                if viewModel.itemsUpcoming.indices.contains(indexPath.row){
+                    toShowActivityController(eventDetail: viewModel.itemsUpcoming[indexPath.row])
+                }
+            }
+        } else if viewModel.isComingFrom == .EventDetail {
+            // Suggestions Event
+            if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
+                toShowActivityController(eventDetail: viewModel.itemsSuggestedEvents[indexPath.row])
+            }
+        }
     }
     func btnLikeActionTapped(btn:UIButton, indexPath: IndexPath) {
         print("IndexPath row : \(indexPath.row)")
@@ -671,5 +707,67 @@ extension ViewMoreEventsVC: EventDetailVCProtocol {
 extension ViewMoreEventsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
+        // For API calling at HomeScreen when user comeback from MoreEventList Screen
+        self.updateHomeScreenDelegate?.updateData()
+        // For API calling of event detail when user come back from MoreEventList Screen
+        self.delegate?.reloadView(eventId: 0, isEventDetailApiCall: true)
     }
+}
+extension ViewMoreEventsVC: ActivityController {
+    func toShowActivityController(eventDetail: GetEventModel) {
+        var objectsToShare = [Any]()
+        let shareImageObj = UIImage(named: "homeDas")
+        
+        if let eventTitle = eventDetail.event?.title{
+            let title = "Event Title:- " + eventTitle
+            objectsToShare.append(title)
+        }
+        
+        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+        let date = "\nEvent Date:- " + eventDate
+        objectsToShare.append(date)
+        
+        
+        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
+        let time = "\nEvent Time:- " + eventEndDate
+        objectsToShare.append(time)
+        
+        
+        if let eventDesc = eventDetail.event?.eventDescription{
+            var _ = "\nEvent Description:- " + eventDesc
+            objectsToShare.append(eventDesc)
+        } else {
+            var desc = "\nEvent Description:- No Description available for this event"
+            objectsToShare.append(desc)
+        }
+        
+        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
+            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    objectsToShare.append("\n Check this image: - \(url)")
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            }else{
+                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    objectsToShare.append("\n Check this image: - \(url)")
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            }
+
+        } else {
+            objectsToShare.append(shareImageObj as Any)
+        }
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        //  tblEvents.delegateShareAction = self
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+  
 }
