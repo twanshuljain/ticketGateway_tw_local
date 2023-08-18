@@ -125,6 +125,7 @@ extension EventDetailVC {
         self.tblSuggestedEvent.tableDidSelectAtIndex = { index in
             if self.viewModel.arrEventData.indices.contains(index.row){
                 self.viewModel.eventId = self.viewModel.arrEventData[index.row].event?.id
+                self.viewModel.eventDetail = nil
                 self.funcCallApi()
                 self.setUp()
                 self.scrollView.setContentOffset(.zero, animated: false)
