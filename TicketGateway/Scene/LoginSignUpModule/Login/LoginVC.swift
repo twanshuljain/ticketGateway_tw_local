@@ -47,6 +47,9 @@ class LoginVC: UIViewController{
     // MARK: - Variable
     var viewModel = SignInViewModel()
     let viewModelSocialSignIN = SocialSignInVC()
+    var isComingFrom: IsComingFrom  = .Login
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = SignInViewModel(loginVC: self)
@@ -176,6 +179,7 @@ extension LoginVC {
                                 let obj =   DataHoldOnSignUpProcessModel.init(strEmail: self.txtEmail.text ?? "", strNumber:   self.txtNumber.text ?? "" , strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)
                                  objAppShareData.dicToHoldDataOnSignUpModule = obj
                                 view?.isComingFromLogin = true
+                                view?.isComingFrom = self.isComingFrom
                                 view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
                                 self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
                             }

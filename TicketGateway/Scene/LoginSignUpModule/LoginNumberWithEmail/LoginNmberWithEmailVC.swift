@@ -21,6 +21,8 @@ class LoginNmberWithEmailVC: UIViewController, NavigationBarViewDelegate {
     @IBOutlet weak var lblSelectEmail: UILabel!
     // MARK: - Variable
     var viewModel: LoginNmberWithEmailViewModel?
+    var isComingFrom: IsComingFrom  = .Login
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = LoginNmberWithEmailViewModel(loginVC: self)
@@ -69,7 +71,11 @@ extension LoginNmberWithEmailVC {
                 if isTrue == true {
                     DispatchQueue.main.async {
                         SVProgressHUD.dismiss()
-                        objSceneDelegate.showTabBar()
+                        if self.isComingFrom == .Login{
+                            objSceneDelegate.showTabBar()
+                        }else{
+                            
+                        }
                     }
                 } else {
                     DispatchQueue.main.async {

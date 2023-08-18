@@ -36,6 +36,7 @@ class OtpNumberVC: UIViewController {
     let viewModel =  NumberVerifyViewModel()
     let viewModelResendOtp = SignInViewModel()
     var isComingFromLogin = true
+    var isComingFrom: IsComingFrom  = .Login
    
      override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,6 +159,7 @@ extension OtpNumberVC {
                                 if istrue ==  true
                                 {
                                     let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
+                                    view.isComingFrom = self.isComingFrom
                                     view.viewModel?.arrMail = self.viewModel.arrMail
                                     self.navigationController?.pushViewController(view, animated: true)
                                 }
