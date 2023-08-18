@@ -24,6 +24,8 @@ public enum APIName: String {
     case signInNumber = "auth/user/login/mobile/"
     case verifyEmailOtp = "auth/verify-otp/"
     case verifyNumberOtp = "auth/user/login/mobile/otp/verify/"
+    case checkoutVerifyNumberOtp = "payment/checkout/verify-otp/"
+    case checkoutVerifyResendOtp = "payment/checkout/resend-otp/"
     case registerUser = "auth/register/"
     case signInUser = "auth/user/login/"
     case signInUserByNumberEmail = "auth/user/mobile-linked/email/login/"

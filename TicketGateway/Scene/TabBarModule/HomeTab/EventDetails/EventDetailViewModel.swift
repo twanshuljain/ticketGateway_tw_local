@@ -96,7 +96,7 @@ extension EventDetailViewModel{
     }
     
     func followUnFollowApi(organizerId:Int, complition: @escaping (Bool, String) -> Void) {
-        let api = APIName.followUnfollow.rawValue + "\(organizerId)"
+        let api = APIName.followUnfollow.rawValue + "\(organizerId)/"
         let param = FavoriteRequestModel(event_id: eventId, like_status: true)
         APIHandler.shared.executeRequestWith(apiName: .followUnfollow, parameters: param, methodType: .POST, getURL: api, authRequired: true, authTokenString: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {

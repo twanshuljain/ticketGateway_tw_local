@@ -47,4 +47,21 @@ extension NumberVerifyViewModel {
             }
         }
     }
+    
+    
+    func checkoutVerifyOTP(complition: @escaping (Bool, String) -> Void) {
+        let param = NumberVerifyRequest( otp: otp, cell_phone: objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")
+        APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyNumberOtp, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    complition(true, response.message ?? "")
+                } else {
+                    complition(false, response.message ?? "Error message")
+                }
+            case .failure(let error):
+                complition(false, "\(error)")
+            }
+        }
+    }
 }

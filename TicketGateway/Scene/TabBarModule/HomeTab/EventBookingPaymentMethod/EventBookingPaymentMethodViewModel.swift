@@ -171,12 +171,13 @@ extension EventBookingPaymentMethodViewModel{
                 view.isComingFrom = .OrderSummary
                 view.viewModel.number = userModel?.number ?? ""
                 
-                view.otpVerified = { verified in
+                view.otpVerified = { verified, message in
                     if verified{
                         self.createCharge(vc: vc)
+                    }else{
+                        vc.showAlertController(message: message)
                     }
                 }
-                
                 vc.navigationController?.pushViewController(view, animated: true)
             }
         }

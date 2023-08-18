@@ -17,6 +17,6 @@ struct SignInAuthModel: Codable {
         case email
         case accessToken = "access_token"
         case refreshToken = "refresh_token"
-        case number
+        case number = "cell_phone"
     }
 }

@@ -95,4 +95,21 @@ extension SignInViewModel {
             }
         }
     }
+    
+    func checkoutVerifyResendOTP(complition: @escaping (Bool,String) -> Void ) {
+        //let paramForNumber = SignInForNumberRequest(cellphone: number)
+        APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyResendOtp, parameters: EmptyModel?.none, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
+                switch result {
+                case .success(let response):
+                    if response.status_code == 200 {
+                        complition(true, response.message ?? "")
+                    } else {
+                        complition(false,response.message ?? "error message")
+                    }
+                case .failure(let error):
+                    complition(false, "\(error)")
+                }
+            }
+        
+    }
 }

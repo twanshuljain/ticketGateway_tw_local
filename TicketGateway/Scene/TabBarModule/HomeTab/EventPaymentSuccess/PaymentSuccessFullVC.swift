@@ -23,6 +23,7 @@ class PaymentSuccessFullVC: UIViewController {
     //MARK: - Varibales
     var isTransactionFailed: Bool = false
     var createCharge:CreateCharge?
+    var selectedArrTicketList = [EventTicket]()
     
     
     override func viewDidLoad() {
@@ -35,8 +36,9 @@ class PaymentSuccessFullVC: UIViewController {
 //MARK: - Functions
 extension PaymentSuccessFullVC {
     func setUp(){
-        self.navigationView.btnBack.isHidden = false
-        self.navigationView.delegateBarAction = self
+        self.navigationView.btnBack.isHidden = true
+        self.navigationView.imgBack.isHidden = true
+        //self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = PAYMENT_SUCCESSFULL
         self.navigationView.vwBorder.isHidden = false
         self.btnBrowseMorwEvents.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -57,9 +59,17 @@ extension PaymentSuccessFullVC {
     }
     
     func setData(){
-        self.lbl1Ticket.text = ""
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        if selectedArrTicketList.count == 0{
+            self.lbl1Ticket.text = "Ticket with amount"
+        }else if selectedArrTicketList.count == 1{
+            self.lbl1Ticket.text = "1 Ticket(S) with amount "
+        }else{
+            self.lbl1Ticket.text = "\(selectedArrTicketList.count) Ticket(S) with amount"
+        }
+       
         self.lblCADPrice.text = "CA$ \(self.createCharge?.amountTotal ?? 0)"
-        self.lblTicketForOrder.text = "Ticket for Order Id #\(self.createCharge?.transactionID ?? "") has been sent to sample@gmail.com"
+        self.lblTicketForOrder.text = "Transaction Id for Order is #\(self.createCharge?.transactionID ?? "") has been sent to \(userModel?.email ?? "")"
     }
     
     func setUi() {
@@ -121,9 +131,9 @@ extension PaymentSuccessFullVC {
         self.navigationController?.popToRootViewController(animated: false)
     }
 }
-//MARK: - NavigationBarViewDelegate
-extension PaymentSuccessFullVC : NavigationBarViewDelegate {
-    func navigationBackAction() {
-        self.navigationController?.popViewController(animated: true)
-    }
-}
+////MARK: - NavigationBarViewDelegate
+//extension PaymentSuccessFullVC : NavigationBarViewDelegate {
+//    func navigationBackAction() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
+//}
