@@ -37,6 +37,7 @@ class OtpNumberVC: UIViewController {
     let viewModelResendOtp = SignInViewModel()
     var isComingFromLogin = true
     var isComingFrom: IsComingFrom  = .Login
+    var otpVerified: ((Bool) -> Void)?
    
      override func viewDidLoad() {
         super.viewDidLoad()

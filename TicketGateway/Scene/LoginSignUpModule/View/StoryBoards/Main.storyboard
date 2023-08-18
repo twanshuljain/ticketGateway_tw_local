@@ -1295,7 +1295,7 @@
                                 <rect key="frame" x="0.0" y="70" width="414" height="666"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-hk-3Mg">
-                                        <rect key="frame" x="66" y="25" width="282" height="88"/>
+                                        <rect key="frame" x="66" y="25" width="282" height="65.333333333333329"/>
                                         <subviews>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have sent a verification code to" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aka-3m-wAE">
                                                 <rect key="frame" x="0.0" y="0.0" width="282" height="22.666666666666668"/>
@@ -1304,15 +1304,15 @@
                                                 <color key="textColor" name="Headinglbl"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1-202-555-0108" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEF-H7-vCY">
-                                                <rect key="frame" x="72.666666666666671" y="32.666666666666671" width="136.66666666666663" height="22.666666666666671"/>
+                                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEF-H7-vCY">
+                                                <rect key="frame" x="141" y="32.666666666666671" width="0.0" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" name="Headinglbl"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="will apply auto to the field" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqe-sv-5I7">
-                                                <rect key="frame" x="38.666666666666686" y="65.333333333333343" width="205" height="22.666666666666671"/>
+                                                <rect key="frame" x="38.666666666666686" y="42.666666666666657" width="205" height="22.666666666666671"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" name="Headinglbl"/>
@@ -1321,7 +1321,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-0K-5ZE">
-                                        <rect key="frame" x="112" y="143" width="190" height="40"/>
+                                        <rect key="frame" x="112" y="120.33333333333334" width="190" height="40"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EhH-6S-Yq1" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -1371,7 +1371,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pve-Sk-8Bt">
-                                        <rect key="frame" x="67" y="208" width="280" height="72.666666666666686"/>
+                                        <rect key="frame" x="67" y="185.33333333333334" width="280" height="72.666666666666657"/>
                                         <subviews>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive OTP in 00:00s" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI9-1v-kjb">
                                                 <rect key="frame" x="24.333333333333329" y="0.0" width="231.33333333333337" height="22.666666666666668"/>
@@ -1381,7 +1381,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lwx-ug-IgI">
-                                                <rect key="frame" x="75" y="32.666666666666686" width="130" height="40"/>
+                                                <rect key="frame" x="75" y="32.666666666666657" width="130" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poV-EX-rDI">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
@@ -1439,7 +1439,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEK-sF-qNU" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="305.66666666666669" width="364" height="50"/>
+                                        <rect key="frame" x="25" y="283" width="364" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="2Cz-8y-b1W"/>

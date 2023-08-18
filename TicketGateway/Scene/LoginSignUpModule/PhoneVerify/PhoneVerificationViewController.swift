@@ -74,6 +74,7 @@ extension PhoneVerificationViewController {
         let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)
         objAppShareData.dicToHoldDataOnSignUpModule = obj
         view?.isComingFromLogin = false
+        view?.isComingFrom = self.isComingFrom
         view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
         self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
         
