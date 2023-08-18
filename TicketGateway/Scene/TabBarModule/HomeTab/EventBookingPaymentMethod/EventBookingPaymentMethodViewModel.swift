@@ -143,20 +143,42 @@ extension EventBookingPaymentMethodViewModel{
             DispatchQueue.main.async {
                 vc.parentView.showLoading(centreToView: vc.view)
             }
-           StripeClasses.sharedInstance.createCheckout(eventId: eventId, orderType: "ticket", totalUserLoyaltyPoint: "123", totalUserSpentAmount: "1234", ticketIDs: ticketIDs, addOnList: addOnList, controller: vc, complition: { response, isTrue, message in
-               if isTrue == true  && response != nil{
-                   DispatchQueue.main.async {
-                       vc.parentView.stopLoading()
-                   }
-                   self.checkoutId = response?.checkoutID ?? ""
-                   self.createCharge(vc: vc)
-               }else{
-                   DispatchQueue.main.async {
-                       vc.parentView.stopLoading()
-                       vc.showAlertController(message: message)
-                   }
-               }
-           })
+            StripeClasses.sharedInstance.createCheckout(eventId: eventId, orderType: "ticket", totalUserLoyaltyPoint: "123", totalUserSpentAmount: "1234", ticketIDs: ticketIDs, addOnList: addOnList, controller: vc, complition: { response, isTrue, message in
+                if isTrue == true  && response != nil{
+                    DispatchQueue.main.async {
+                        vc.parentView.stopLoading()
+                    }
+                    self.checkoutId = response?.checkoutID ?? ""
+                    self.otpVerify(vc: vc)
+                    //self.createCharge(vc: vc)
+                }else{
+                    DispatchQueue.main.async {
+                        vc.parentView.stopLoading()
+                        vc.showAlertController(message: message)
+                    }
+                }
+            })
+        }
+    }
+    
+    func otpVerify(vc:EventBookingPaymentMethodVC){
+        DispatchQueue.main.async {
+            if let view = vc.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
+                let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+                let obj =   DataHoldOnSignUpProcessModel.init(strEmail: userModel?.email ?? "", strNumber: userModel?.number ?? "", strStatus: "", strDialCountryCode: "", strCountryCode: "")
+                objAppShareData.dicToHoldDataOnSignUpModule = obj
+                view.isComingFromLogin = false
+                view.isComingFrom = .OrderSummary
+                view.viewModel.number = userModel?.number ?? ""
+                
+                view.otpVerified = { verified in
+                    if verified{
+                        self.createCharge(vc: vc)
+                    }
+                }
+                
+                vc.navigationController?.pushViewController(view, animated: true)
+            }
         }
     }
     
