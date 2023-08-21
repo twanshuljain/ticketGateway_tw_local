@@ -24,7 +24,6 @@ final class EventDetailViewModel{
     var arrEventData : [GetEventModel] = [GetEventModel]()
     var eventDetailForFavourite: EventDetail?
     var isLiked: Bool = false
-    var isFollow:FollowUnfollow = .unfollow
 }
 
 

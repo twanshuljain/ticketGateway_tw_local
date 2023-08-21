@@ -153,7 +153,6 @@ extension EventDetailVC {
         self.navigationView.btnSecRight.setImage(UIImage(named: (viewModel.eventDetail?.isLike ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
         navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
-        btnFollowing.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
         btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
         btnBookTickets.addLeftIcon(image: UIImage(named: "ticketBlack"))
         [self.btnFollowing, self.btnReadMore, self.btnAddToCalender, self.btnShowMap,
@@ -317,15 +316,21 @@ extension EventDetailVC {
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
-//        self.navigationView.btnSecRight.isSelected = eventDetail?.isLike ?? false
         self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
-        if let isFollow = eventDetail?.isFollow{
-            if isFollow{
-                self.viewModel.isFollow = .follow
-                self.btnFollowing.setTitle("Following", for: .normal)
-            }else{
-                self.viewModel.isFollow = .unfollow
-                self.btnFollowing.setTitle("UnFollowing", for: .normal)
+        print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
+        if let isFollow = eventDetail?.isFollow {
+            if isFollow {
+                self.btnFollowing.setTitles(
+                    text: "Following",
+                    font: UIFont.boldSystemFont(ofSize: 15),
+                    tintColour: .black
+                )
+            } else {
+                self.btnFollowing.setTitles(
+                    text: "Follow",
+                    font: UIFont.boldSystemFont(ofSize: 15),
+                    tintColour: .black
+                )
             }
         }
         self.lblEventName.text = eventDetail?.event?.title ?? ""
@@ -446,7 +451,6 @@ extension EventDetailVC {
           self.store.requestAccess(to: .event, completion: { sucess, err in
             if sucess, err == nil {
               DispatchQueue.main.async {
-                var identifier: String?
                 let newEvent = EKEvent(eventStore: self.store)
                 let eventObject = self.viewModel.eventDetail?.eventDateObj
                 print("startDate", eventObject?.eventStartDate as Any)
@@ -471,7 +475,6 @@ extension EventDetailVC {
                 self.present(navVC, animated: true)
                 do {
                   try self.store.save(newEvent, span: .thisEvent, commit: true)
-                  identifier = newEvent.eventIdentifier
                   print("Saved event with ID: \(String(describing: newEvent.eventIdentifier))")
                   // The event gets created and the ID is printed to the console but at a time when the whole function already has returned (nil)
                 } catch let error as NSError {
@@ -522,19 +525,19 @@ extension EventDetailVC {
     func addFollowingAction() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            if let organizerId = self.viewModel.eventDetail?.organizer?.id{
+            if let organizerId = self.viewModel.eventDetail?.organizer?.id {
                 vwEventName.showLoading(centreToView: self.view)
                 viewModel.followUnFollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
-                    if isTrue{
+                    if isTrue {
                         DispatchQueue.main.async {
                             self.vwEventName.stopLoading()
-                            if messageShowToast == self.viewModel.isFollow.rawValue{
+                            if messageShowToast == FollowUnfollow.follow.rawValue {
                                 self.btnFollowing.setTitle("Following", for: .normal)
-                            }else{
-                                self.btnFollowing.setTitle("UnFollowing", for: .normal)
+                            } else {
+                                self.btnFollowing.setTitle("Follow", for: .normal)
                             }
                         }
-                    }else{
+                    } else {
                         DispatchQueue.main.async {
                             self.vwEventName.stopLoading()
                             self.showToast(message: messageShowToast)
