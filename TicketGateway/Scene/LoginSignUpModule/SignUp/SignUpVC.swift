@@ -46,7 +46,8 @@ extension SignUpVC {
         self.txtEmail.delegate = self
         self.btnSignUp.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
         self.btnSignUp.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
-        self.txtEmail.addTarget(self, action: #selector(textFldErrorMsg(_:)), for: .allEditingEvents)
+        // NOTE:- Error message label not required as we are showing toast on continue button
+//        self.txtEmail.addTarget(self, action: #selector(textFldErrorMsg(_:)), for: .allEditingEvents)
         self.setUI()
     }
     private func setUI() {

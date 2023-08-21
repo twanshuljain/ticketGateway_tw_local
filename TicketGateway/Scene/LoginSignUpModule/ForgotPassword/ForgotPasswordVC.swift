@@ -31,7 +31,8 @@ extension ForgotPasswordVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         txtEmail.delegate = self
-        txtEmail.addTarget(self, action: #selector(textFldErrorMsg(_:)), for: .allEditingEvents)
+        // Error message label not required as we are showing toast on continue button
+//        txtEmail.addTarget(self, action: #selector(textFldErrorMsg(_:)), for: .allEditingEvents)
        self.btnContinue.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
         self.btnContinue.setImage(UIImage(named: RIGHT_ARROW_ICON), for: .normal)
         self.navigationView.lblTitle.text = FORGOT_PASSWORD
