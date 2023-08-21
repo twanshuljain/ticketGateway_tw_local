@@ -86,7 +86,7 @@ class Validation {
             return(
                 text.isEmpty ? true :
                     text.count < 8 ? true : false,
-                text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword : ValidationConstantStrings.invalidConfirmPassword)
+                text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword : ValidationConstantStrings.invalidPassword)
         case .name:
             return( text.isEmpty ? true :
                         text.count < 2 ? true : false,

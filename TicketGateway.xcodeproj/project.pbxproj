@@ -94,6 +94,7 @@
 		1861A2E72A447D7100E13A5D /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861A2E62A447D7100E13A5D /* UIImage+Extension.swift */; };
 		1861A2E92A447DB300E13A5D /* UITabBarController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861A2E82A447DB300E13A5D /* UITabBarController+Extension.swift */; };
 		18692AF12A0E2A8400ADB5A5 /* EventBookingTicketOnApplyCouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18692AF02A0E2A8400ADB5A5 /* EventBookingTicketOnApplyCouponVC.swift */; };
+		186A108A2A9378A900FD0AFC /* PhoneVerifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A10892A9378A900FD0AFC /* PhoneVerifyViewModel.swift */; };
 		186ADE342A7B942600F590FD /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186ADE332A7B942500F590FD /* SkyFloatingLabelTextField.swift */; };
 		186D49C42A374FBD008CBB4B /* FAQTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186D49C32A374FBD008CBB4B /* FAQTableviewCell.xib */; };
 		186D49C62A374FCA008CBB4B /* FAQTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D49C52A374FCA008CBB4B /* FAQTableviewCell.swift */; };
@@ -505,6 +506,7 @@
 		1861A2E62A447D7100E13A5D /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		1861A2E82A447DB300E13A5D /* UITabBarController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Extension.swift"; sourceTree = "<group>"; };
 		18692AF02A0E2A8400ADB5A5 /* EventBookingTicketOnApplyCouponVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketOnApplyCouponVC.swift; sourceTree = "<group>"; };
+		186A10892A9378A900FD0AFC /* PhoneVerifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerifyViewModel.swift; sourceTree = "<group>"; };
 		186ADE332A7B942500F590FD /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		186D49C32A374FBD008CBB4B /* FAQTableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAQTableviewCell.xib; sourceTree = "<group>"; };
 		186D49C52A374FCA008CBB4B /* FAQTableviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQTableviewCell.swift; sourceTree = "<group>"; };
@@ -2150,6 +2152,7 @@
 			isa = PBXGroup;
 			children = (
 				18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */,
+				186A10892A9378A900FD0AFC /* PhoneVerifyViewModel.swift */,
 			);
 			path = PhoneVerify;
 			sourceTree = "<group>";
@@ -3170,6 +3173,7 @@
 				18B521A02A4B02DA00719C4A /* FilterSectionTableViewCell.swift in Sources */,
 				1801CD562A4EE697007DA967 /* FeedBackTableViewCell.swift in Sources */,
 				18FBC0F32A309239002CF129 /* OrderDetailTableViewCell.swift in Sources */,
+				186A108A2A9378A900FD0AFC /* PhoneVerifyViewModel.swift in Sources */,
 				185981302A2083A800ABDC51 /* ProgressView.swift in Sources */,
 				1892EE2029E54A7900AD7CC7 /* LoginVC.swift in Sources */,
 				18B636AD29F7B76100DC14B8 /* LoginNmberWithEmailCell.swift in Sources */,

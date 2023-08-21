@@ -86,6 +86,18 @@ extension OtpNumberVC {
 //            }
 //        }
   //  }
+    
+    func navigateToPaymentVc(){
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+            view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.feeStructure = self.viewModel.feeStructure
+            view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+            self.navigationController?.pushViewController(view, animated: true)
+        }
+    }
 }
 
 // MARK: - Actions
@@ -159,12 +171,31 @@ extension OtpNumberVC {
         if self.txtOtp1.text ?? "" == "" || self.txtOtp2.text ?? "" == "" || self.txtOtp3.text ?? "" == "" || self.txtOtp4.text ?? "" == "" {
             self.showToast(message: PLEASE_ENTER_OTP)
         } else {
-            if self.isComingFrom == .OrderSummary{
+            if self.isComingFrom == .OrderSummary && UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin){
                 if Reachability.isConnectedToNetwork(){
                     SVProgressHUD.show()
-                    viewModel.checkoutVerifyOTP(complition: { isTrue, messageShowToast  in
+                    viewModel.checkoutVerifyOTP(isComingFrom: self.isComingFrom, complition: { isTrue, messageShowToast  in
                         if isTrue == true {
-                            SVProgressHUD.dismiss()
+                            DispatchQueue.main.async {
+                                SVProgressHUD.dismiss()
+                                self.navigateToPaymentVc()
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                SVProgressHUD.dismiss()
+                                self.showToast(message: messageShowToast)
+                            }
+                        }
+                    })
+                }else {
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
+            }else if self.isComingFrom == .OrderSummary{
+                if Reachability.isConnectedToNetwork(){
+                    SVProgressHUD.show()
+                    viewModel.checkoutVerifyOTP(isComingFrom: isComingFrom, complition: { isTrue, messageShowToast  in
+                        SVProgressHUD.dismiss()
+                        if isTrue == true {
                             self.otpVerified?(true, messageShowToast)
                         } else {
                             self.otpVerified?(false, messageShowToast)

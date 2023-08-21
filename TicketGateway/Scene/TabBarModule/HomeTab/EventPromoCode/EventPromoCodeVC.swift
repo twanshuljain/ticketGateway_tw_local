@@ -40,10 +40,10 @@ class EventPromoCodeVC: UIViewController {
 // MARK: - FUNCTIONS
 extension EventPromoCodeVC {
     func setUpTableView() {
-        self.promoCodeTableView.register(UINib(nibName: "TicketTypesCell", bundle: nil), forCellReuseIdentifier: "TicketTypesCell")
-        self.promoCodeTableView.delegate = self
-        self.promoCodeTableView.dataSource = self
-        self.promoCodeTableView.reloadData()
+//        self.promoCodeTableView.register(UINib(nibName: "TicketTypesCell", bundle: nil), forCellReuseIdentifier: "TicketTypesCell")
+//        self.promoCodeTableView.delegate = self
+//        self.promoCodeTableView.dataSource = self
+//        self.promoCodeTableView.reloadData()
     }
     
     func setFont() {
