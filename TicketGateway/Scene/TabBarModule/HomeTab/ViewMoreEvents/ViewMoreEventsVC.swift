@@ -392,15 +392,15 @@ extension ViewMoreEventsVC{
         self.viewModel.currentPage += 1
         
         // print("this is the last cell")
-         let spinner = UIActivityIndicatorView(style: .gray)
-         spinner.startAnimating()
-         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
+//         let spinner = UIActivityIndicatorView(style: .gray)
+//         spinner.startAnimating()
+//         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
         if self.viewModel.isComingFrom == .Home{
             
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .nearByLocation:
                 if self.viewModel.itemsLocation.count != self.viewModel.totalPage{
-                    self.tblView.tableFooterView = spinner
+                    //self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForLocation()
                 }else{
@@ -409,7 +409,7 @@ extension ViewMoreEventsVC{
                 }
             case .weekend:
                 if self.viewModel.itemsWeekend.count != self.viewModel.totalPage{
-                    self.tblView.tableFooterView = spinner
+                   // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApi()
                 }else{
@@ -418,7 +418,7 @@ extension ViewMoreEventsVC{
                 }
             case .online:
                 if self.viewModel.itemsVirtual.count != self.viewModel.totalPage{
-                    self.tblView.tableFooterView = spinner
+                   // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForOnlineEvents()
                 }else{
@@ -427,7 +427,7 @@ extension ViewMoreEventsVC{
                 }
             case .popular:
                 if self.viewModel.itemsPopular.count != self.viewModel.totalPage{
-                    self.tblView.tableFooterView = spinner
+                  //  self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForPopularEvents()
                 }else{
@@ -437,7 +437,7 @@ extension ViewMoreEventsVC{
                 
             case .free:
                 if self.viewModel.itemsFree.count != self.viewModel.totalPage{
-                    self.tblView.tableFooterView = spinner
+                   // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForFreeEvents()
                 }else{
@@ -448,7 +448,7 @@ extension ViewMoreEventsVC{
                 
             case .upcoming:
                 if self.viewModel.itemsUpcoming.count != self.viewModel.totalPage{
-                    self.tblView.tableFooterView = spinner
+                   // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForUpcomingEvents()
                 }else{
@@ -458,7 +458,7 @@ extension ViewMoreEventsVC{
             }
         } else {
             if self.viewModel.itemsSuggestedEvents.count != self.viewModel.totalPage{
-                self.tblView.tableFooterView = spinner
+               // self.tblView.tableFooterView = spinner
                 self.tblView.tableFooterView?.isHidden = false
                 self.funcCallApiForSuggestedEvents()
             }else{

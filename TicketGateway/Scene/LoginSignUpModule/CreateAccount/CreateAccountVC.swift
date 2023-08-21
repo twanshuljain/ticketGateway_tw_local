@@ -38,9 +38,10 @@ class CreateAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        [txtFullName, txtPassword, txtConfirmPassword, txtMobileNumber].forEach {
-            $0?.addTarget(self, action: #selector(textFieldErrorMsg(_:)), for: .allEditingEvents)
-        }
+        // NOTE:- Error message label not required as we are showing toast on continue button
+//        [txtFullName, txtPassword, txtConfirmPassword, txtMobileNumber].forEach {
+//            $0?.addTarget(self, action: #selector(textFieldErrorMsg(_:)), for: .allEditingEvents)
+//        }
     }
 }
 // MARK: - Functions
@@ -125,7 +126,8 @@ extension CreateAccountVC {
                     if isTrue == true {
                         SVProgressHUD.dismiss()
                         DispatchQueue.main.async {
-                            objSceneDelegate.showTabBar()
+                            //objSceneDelegate.showTabBar()
+                            objSceneDelegate.showLogin()
                         }
                     } else {
                         DispatchQueue.main.async {

@@ -319,6 +319,15 @@ extension EventDetailVC {
         let eventDetail = self.viewModel.eventDetail
 //        self.navigationView.btnSecRight.isSelected = eventDetail?.isLike ?? false
         self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
+        if let isFollow = eventDetail?.isFollow{
+            if isFollow{
+                self.viewModel.isFollow = .follow
+                self.btnFollowing.setTitle("Following", for: .normal)
+            }else{
+                self.viewModel.isFollow = .unfollow
+                self.btnFollowing.setTitle("UnFollowing", for: .normal)
+            }
+        }
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
         self.lblDate.text = ("\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")")

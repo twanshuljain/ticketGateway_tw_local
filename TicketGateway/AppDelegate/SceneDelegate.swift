@@ -87,6 +87,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
+    }
+    
+    func showLogin(){
+        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "WelcomeLoginSignupNav") as? UINavigationController
+        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        
+        navigationController!.viewControllers = [rootViewController]
+        
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
         
         
         
