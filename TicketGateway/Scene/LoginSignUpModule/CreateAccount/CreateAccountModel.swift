@@ -26,6 +26,7 @@ struct UserAccountModel: Codable {
     var isAdminTourCompleted: Bool?
     var updatedBy: String?
     var isVerify: Bool?
+    var accessToken : String?
     enum CodingKeys: String, CodingKey {
         case title
         case homePhone = "home_phone"
@@ -48,5 +49,6 @@ struct UserAccountModel: Codable {
         case isAdminTourCompleted = "is_admin_tour_completed"
         case updatedBy = "updated_by"
         case isVerify = "is_verify"
+        case accessToken = "access_token"
     }
 }
