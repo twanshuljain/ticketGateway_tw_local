@@ -30,9 +30,12 @@ class PhoneVerificationViewController: UIViewController {
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var vwNumber: UIView!
     @IBOutlet weak var btnChangeNumber:UIButton!
+    @IBOutlet weak var vwEmail:UIView!
+    @IBOutlet weak var txtEmail:UITextField!
     
     // MARK: - Variable
-    var viewModel = SignInViewModel()
+    var signInViewModel = SignInViewModel()
+    var viewModel = PhoneVerifyViewModel()
     var isComingFrom: IsComingFrom  = .Login
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +51,19 @@ extension PhoneVerificationViewController {
         navigationView.delegateBarAction = self
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        self.viewModel.countries = self.jsonSerial()
+        self.signInViewModel.countries = self.jsonSerial()
         self.imgCountry.image = nil
         self.txtNumber.delegate = self
         self.vwNumber.layer.cornerRadius = 5
         self.vwNumber.layer.borderWidth = 0.5
         self.vwNumber.layer.borderColor = UIColor.lightGray.cgColor
         self.txtNumber.text = ""
-        self.viewModel.isForEmail = false
+        
+        self.vwEmail.layer.cornerRadius = 5
+        self.vwEmail.layer.borderWidth = 0.5
+        self.vwEmail.layer.borderColor = UIColor.lightGray.cgColor
+        self.txtEmail.text = ""
+        self.signInViewModel.isForEmail = false
     }
 }
 
@@ -65,19 +73,63 @@ extension PhoneVerificationViewController {
         self.view.endEditing(true)
         let storyBoard = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as? RSCountryPickerController
         storyBoard?.RScountryDelegate = self
-        storyBoard?.strCheckCountry = self.viewModel.strCountryName
+        storyBoard?.strCheckCountry = self.signInViewModel.strCountryName
         storyBoard?.modalPresentationStyle = .fullScreen
         self.navigationController?.present(storyBoard ?? UIViewController(), animated: true, completion: nil)
     }
     @IBAction func btnContinueAction(_ sender: UIButton) {
-        let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
-        let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)
-        objAppShareData.dicToHoldDataOnSignUpModule = obj
-        view?.isComingFromLogin = false
-        view?.isComingFrom = self.isComingFrom
-        view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
-        
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            if self.isComingFrom == .OrderSummary{
+                viewModel.emailAddress = self.txtEmail.text ?? ""
+                viewModel.mobileNumber = self.txtNumber.text ?? ""
+                let isValidate = viewModel.validateUserInput
+                if isValidate.isValid {
+                    if Reachability.isConnectedToNetwork(){
+                        SVProgressHUD.show()
+                        let param = ValidateForNumberRequest(cell_phone: self.txtNumber.text ?? "", email: self.txtEmail.text ?? "")
+                        signInViewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
+                            if isTrue == true {
+                                DispatchQueue.main.async { [self] in
+                                    SVProgressHUD.dismiss()
+                                    let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
+                                    let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.signInViewModel.strCountryCode)
+                                    objAppShareData.dicToHoldDataOnSignUpModule = obj
+                                    view?.isComingFromLogin = false
+                                    view?.isComingFrom = self.isComingFrom
+                                    view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
+                                    view?.viewModel.eventId = self.viewModel.eventId
+                                    view?.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
+                                    view?.viewModel.eventDetail = self.viewModel.eventDetail
+                                    view?.viewModel.feeStructure = self.viewModel.feeStructure
+                                    view?.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+                                    view?.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+                                    self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+                                }
+                            }
+                            else {
+                                DispatchQueue.main.async {
+                                    SVProgressHUD.dismiss()
+                                    self.showToast(message: messageShowToast)
+                                }
+                            }
+                        }
+                    } else {
+                        self.showToast(message: ValidationConstantStrings.networkLost)
+                    }
+                } else {
+                    SVProgressHUD.dismiss()
+                    self.showToast(message: isValidate.errorMessage)
+                }
+            }
+        }else{
+            let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
+            let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text ?? "", strCountryCode: self.signInViewModel.strCountryCode)
+            objAppShareData.dicToHoldDataOnSignUpModule = obj
+            view?.isComingFromLogin = false
+            view?.isComingFrom = self.isComingFrom
+            view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
+            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        }
     }
     
     @IBAction func btnChangeNumberAction(_ sender:UIButton){
@@ -89,9 +141,20 @@ extension PhoneVerificationViewController {
 extension PhoneVerificationViewController: RSCountrySelectedDelegate {
     func setIntialUiDesign() {
         if isComingFrom == .OrderSummary{
-            btnChangeNumber.isHidden = false
+            if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+                btnChangeNumber.isHidden = true
+            }else{
+                btnChangeNumber.isHidden = false
+            }
         }else{
             btnChangeNumber.isHidden = true
+        }
+        
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        if userModel?.accessToken  == nil || userModel?.accessToken == ""{
+            self.vwEmail.isHidden = false
+        }else{
+            self.vwEmail.isHidden = true
         }
         self.txtNumber.addDoneButtonOnKeyboard()
         // Defoult Country
@@ -102,15 +165,15 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
-            let arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+            let arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
             if arr.count>0 {
                 let country = arr[0]
-                self.viewModel.strCountryDialCode = country.dial_code
+                self.signInViewModel.strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code
-                self.viewModel.strCountryCode = country.country_code
-                self.viewModel.strCountryName = country.country_name
+                self.signInViewModel.strCountryCode = country.country_code
+                self.signInViewModel.strCountryName = country.country_name
                 self.lblDialCountryCode.text = country.dial_code
-                self.viewModel.strCountryCode = country.country_code
+                self.signInViewModel.strCountryCode = country.country_code
                 let imagePath = "CountryPicker.bundle/\( country.country_code).png"
                 self.imgCountry.image = UIImage(named: imagePath)
             }
@@ -119,20 +182,20 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
         }
     }
     func collectCountries() {
-        for country in viewModel.countries {
+        for country in signInViewModel.countries {
             let code = country["code"] ?? ""
             let name = country["name"] ?? ""
             let dailcode = country["dial_code"] ?? ""
-            viewModel.RScountriesModel.append(CountryInfo(country_code: code, dial_code: dailcode, country_name: name))
+            signInViewModel.RScountriesModel.append(CountryInfo(country_code: code, dial_code: dailcode, country_name: name))
         }
     }
     func RScountrySelected(countrySelected country: CountryInfo) {
         let imagePath = "CountryPicker.bundle/\(country.country_code).png"
         self.imgCountry.image = UIImage(named: imagePath)
-        self.viewModel.strCountryDialCode = country.dial_code
+        self.signInViewModel.strCountryDialCode = country.dial_code
         self.lblDialCountryCode.text = country.dial_code
-        self.viewModel.strCountryCode = country.country_code
-        self.viewModel.strCountryName = country.country_name
+        self.signInViewModel.strCountryCode = country.country_code
+        self.signInViewModel.strCountryName = country.country_name
         self.txtNumber.becomeFirstResponder()
     }
 }
@@ -147,7 +210,7 @@ extension PhoneVerificationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         if textField == txtNumber {
-            viewModel.number = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            signInViewModel.number = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
         }
         return true
     }

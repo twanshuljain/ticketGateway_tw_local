@@ -18,3 +18,9 @@ struct SignInForNumberRequest: Codable {
 struct SignInNumberWithEmailRequest: Codable {
     let email: String?
 }
+
+
+struct ValidateForNumberRequest: Codable {
+    var cell_phone: String?
+    var email: String?
+}

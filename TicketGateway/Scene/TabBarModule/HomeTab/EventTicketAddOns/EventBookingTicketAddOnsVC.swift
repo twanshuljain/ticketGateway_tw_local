@@ -135,7 +135,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         if let ticketPrice = data?.addOnTicketPrice {
             cell.lblPrice.text = "$\(ticketPrice)"
         }
-        if let imgString = data?.addOnLogo?[0] {
+        if let imgString = data?.addOnLogo?.first {
             let urlString = URL(string: imgString)
             cell.imgImage.sd_setImage(with: urlString)
         }

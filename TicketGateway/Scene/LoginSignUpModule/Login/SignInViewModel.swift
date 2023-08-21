@@ -112,4 +112,20 @@ extension SignInViewModel {
             }
         
     }
+    
+    func checkoutValidateUser(param: ValidateForNumberRequest,complition: @escaping (Bool,String) -> Void ) {
+        APIHandler.shared.executeRequestWith(apiName: .checkoutValidateUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
+                switch result {
+                case .success(let response):
+                    if response.status_code == 200 {
+                        complition(true, response.message ?? "")
+                    } else {
+                        complition(false,response.message ?? "error message")
+                    }
+                case .failure(let error):
+                    complition(false, "\(error)")
+                }
+            }
+        
+    }
 }

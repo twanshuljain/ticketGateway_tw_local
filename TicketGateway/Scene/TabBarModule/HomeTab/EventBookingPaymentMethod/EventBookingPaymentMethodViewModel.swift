@@ -175,7 +175,9 @@ extension EventBookingPaymentMethodViewModel{
                     if verified{
                         self.createCharge(vc: vc)
                     }else{
-                        vc.showAlertController(message: message)
+                        DispatchQueue.main.async {
+                            vc.showAlertController(message: message)
+                        }
                     }
                 }
                 vc.navigationController?.pushViewController(view, animated: true)

@@ -6,6 +6,6 @@
 // swiftlint: disable identifier_name
 import Foundation
 struct NumberVerifyRequest: Codable {
-    let otp: String
-    let cell_phone: String
+    var otp: String?
+    var cell_phone: String?
 }
