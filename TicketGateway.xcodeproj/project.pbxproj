@@ -250,6 +250,9 @@
 		18BC2EE52A52978500FB427E /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */; };
 		18BC9F9B2A53EE5900863CD5 /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */; };
 		18C7D8732A84D52800A2BE98 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7D8722A84D52800A2BE98 /* UIButton+Extension.swift */; };
+		18C952822A94CB7F00C9C02B /* MyOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C952812A94CB7F00C9C02B /* MyOrderModel.swift */; };
+		18C952842A94CF7200C9C02B /* GetMyOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C952832A94CF7200C9C02B /* GetMyOrderModel.swift */; };
+		18C952862A94E1FB00C9C02B /* MyOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C952852A94E1FB00C9C02B /* MyOrderViewModel.swift */; };
 		18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */; };
 		18CDDDBA2A80D194002C58FB /* StripeClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CDDDB92A80D194002C58FB /* StripeClasses.swift */; };
 		18CDDDBC2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CDDDBB2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift */; };
@@ -663,6 +666,9 @@
 		18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		18BC9F9A2A53EE5900863CD5 /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		18C7D8722A84D52800A2BE98 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		18C952812A94CB7F00C9C02B /* MyOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderModel.swift; sourceTree = "<group>"; };
+		18C952832A94CF7200C9C02B /* GetMyOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMyOrderModel.swift; sourceTree = "<group>"; };
+		18C952852A94E1FB00C9C02B /* MyOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderViewModel.swift; sourceTree = "<group>"; };
 		18CBE7A32A5EDDC7003CCC11 /* ViewMoreEventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsVC.swift; sourceTree = "<group>"; };
 		18CDDDB92A80D194002C58FB /* StripeClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeClasses.swift; sourceTree = "<group>"; };
 		18CDDDBB2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingPaymentMethodModel.swift; sourceTree = "<group>"; };
@@ -1347,6 +1353,9 @@
 			isa = PBXGroup;
 			children = (
 				18717F782A2A1BE9002F36BC /* MyOrderViewController.swift */,
+				18C952852A94E1FB00C9C02B /* MyOrderViewModel.swift */,
+				18C952812A94CB7F00C9C02B /* MyOrderModel.swift */,
+				18C952832A94CF7200C9C02B /* GetMyOrderModel.swift */,
 			);
 			path = MyOrders;
 			sourceTree = "<group>";
@@ -3112,6 +3121,7 @@
 				18A73DFE29EED1B1007365CB /* Image+Extensions.swift in Sources */,
 				189DD62829FBD3C9000804EB /* suggestedOrganizerList.swift in Sources */,
 				18233FB729E7C72500255BB7 /* WelComeCell.swift in Sources */,
+				18C952862A94E1FB00C9C02B /* MyOrderViewModel.swift in Sources */,
 				184B79142A440F9600577B26 /* EventBookingTicketAddOnsVC.swift in Sources */,
 				188CE1AE2A13678E00BCEC76 /* EventBookingOrderSummaryVC.swift in Sources */,
 				18F5A4BB2A4EA55900CA18F7 /* SearchTableViewCell.swift in Sources */,
@@ -3212,6 +3222,7 @@
 				189D7C812A13BEB600BDEE9A /* PaymentSuccessFullVC.swift in Sources */,
 				186FB94F2A4039FF002B0E5C /* SignUpRequest.swift in Sources */,
 				180187552A1B44CD003308AE /* EventSearchCategoryCell.swift in Sources */,
+				18C952822A94CB7F00C9C02B /* MyOrderModel.swift in Sources */,
 				18FBC1022A309239002CF129 /* NotificationVC.swift in Sources */,
 				1801874F2A1B4428003308AE /* EventSearchLocationVC.swift in Sources */,
 				18692AF12A0E2A8400ADB5A5 /* EventBookingTicketOnApplyCouponVC.swift in Sources */,
@@ -3251,6 +3262,7 @@
 				18F5A4C12A4EA55900CA18F7 /* FindRFIDViewModel.swift in Sources */,
 				18F6F74B29E98591007B9513 /* UITextField+Extension.swift in Sources */,
 				180BA5002A5FDC6200639651 /* ViewMoreEventsViewModel.swift in Sources */,
+				18C952842A94CF7200C9C02B /* GetMyOrderModel.swift in Sources */,
 				18F5A4C32A4EA55900CA18F7 /* ScanSummaryVC.swift in Sources */,
 				18717F8E2A2A1BE9002F36BC /* MyOrderViewController.swift in Sources */,
 				18717F8F2A2A1BE9002F36BC /* ContactOrganiserVC.swift in Sources */,

@@ -37,6 +37,7 @@ class MyOrderViewController: UIViewController {
     let tbleData = ["Upcoming_ip", "Upcoming_ip"]
     let myOrderTableData = ["costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip"]
     var isFromUpcoming : Bool = false
+    var viewModel: MyOrderViewModel = MyOrderViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
@@ -45,6 +46,9 @@ class MyOrderViewController: UIViewController {
         self.isFromUpcoming = true
         self.setNavigationView()
         self.setButtonBackground()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.myOrdersApiCall()
     }
 }
 // MARK: - UITableViewDataSource, UITableViewDelegate
