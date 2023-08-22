@@ -321,6 +321,31 @@
                                     <constraint firstAttribute="bottom" secondItem="Ks0-oy-Rvf" secondAttribute="bottom" constant="5" id="ks8-De-cOW"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NsA-EE-uhU">
+                                <rect key="frame" x="0.0" y="128.99999999999997" width="393" height="506.33333333333326"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_no_data_found" translatesAutoresizingMaskIntoConstraints="NO" id="LYc-bz-tHO">
+                                        <rect key="frame" x="127.66666666666669" y="215.33333333333331" width="138" height="76"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="138" id="2eG-Qp-dcR"/>
+                                            <constraint firstAttribute="height" constant="76" id="Fms-hl-EEH"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops!! No record found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCs-7p-fYF">
+                                        <rect key="frame" x="103.33333333333333" y="311.33333333333331" width="186.66666666666669" height="22.666666666666686"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="WCs-7p-fYF" firstAttribute="centerX" secondItem="LYc-bz-tHO" secondAttribute="centerX" id="6FZ-Vm-BXd"/>
+                                    <constraint firstItem="LYc-bz-tHO" firstAttribute="centerX" secondItem="NsA-EE-uhU" secondAttribute="centerX" id="R8w-Zf-85X"/>
+                                    <constraint firstItem="LYc-bz-tHO" firstAttribute="centerY" secondItem="NsA-EE-uhU" secondAttribute="centerY" id="ddW-Mc-vGn"/>
+                                    <constraint firstItem="WCs-7p-fYF" firstAttribute="top" secondItem="LYc-bz-tHO" secondAttribute="bottom" constant="20" id="knA-vi-IcJ"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xa-6v-jNk">
                                 <rect key="frame" x="0.0" y="635.33333333333337" width="393" height="182.66666666666663"/>
                                 <subviews>
@@ -438,12 +463,16 @@
                         <constraints>
                             <constraint firstItem="y40-6u-Aex" firstAttribute="trailing" secondItem="bCB-5y-EIp" secondAttribute="trailing" id="2AD-em-U2p"/>
                             <constraint firstItem="y40-6u-Aex" firstAttribute="bottom" secondItem="7xa-6v-jNk" secondAttribute="bottom" id="9E2-gh-P9p"/>
+                            <constraint firstItem="NsA-EE-uhU" firstAttribute="bottom" secondItem="vAJ-H2-5tZ" secondAttribute="bottom" id="Bjv-e1-URu"/>
                             <constraint firstItem="bCB-5y-EIp" firstAttribute="leading" secondItem="y40-6u-Aex" secondAttribute="leading" id="GxB-px-HOS"/>
                             <constraint firstAttribute="trailing" secondItem="vAJ-H2-5tZ" secondAttribute="trailing" id="KtY-ji-TfU"/>
+                            <constraint firstItem="NsA-EE-uhU" firstAttribute="top" secondItem="vAJ-H2-5tZ" secondAttribute="top" id="Mx9-yP-tiU"/>
                             <constraint firstItem="vAJ-H2-5tZ" firstAttribute="top" secondItem="bCB-5y-EIp" secondAttribute="bottom" id="PnC-ta-YJg"/>
                             <constraint firstItem="vAJ-H2-5tZ" firstAttribute="leading" secondItem="d5I-lU-ojx" secondAttribute="leading" id="U98-w7-lcJ"/>
                             <constraint firstItem="7xa-6v-jNk" firstAttribute="leading" secondItem="d5I-lU-ojx" secondAttribute="leading" id="dL5-tK-UPY"/>
+                            <constraint firstItem="NsA-EE-uhU" firstAttribute="trailing" secondItem="vAJ-H2-5tZ" secondAttribute="trailing" id="eQM-cc-HcD"/>
                             <constraint firstItem="bCB-5y-EIp" firstAttribute="top" secondItem="y40-6u-Aex" secondAttribute="top" id="hSr-qv-hta"/>
+                            <constraint firstItem="NsA-EE-uhU" firstAttribute="leading" secondItem="vAJ-H2-5tZ" secondAttribute="leading" id="iTs-9V-7OR"/>
                             <constraint firstItem="7xa-6v-jNk" firstAttribute="top" secondItem="vAJ-H2-5tZ" secondAttribute="bottom" id="pNm-ah-ic4"/>
                             <constraint firstItem="y40-6u-Aex" firstAttribute="trailing" secondItem="7xa-6v-jNk" secondAttribute="trailing" id="yL2-14-yb3"/>
                         </constraints>
@@ -452,6 +481,7 @@
                         <outlet property="btnContinue" destination="mDE-Zt-KVG" id="h8q-U3-SkB"/>
                         <outlet property="lblTotalTicketPrice" destination="W0c-vM-xI4" id="W9V-ue-azl"/>
                         <outlet property="navigationView" destination="bCB-5y-EIp" id="T44-KY-5cf"/>
+                        <outlet property="noDataFoundView" destination="NsA-EE-uhU" id="BLn-Yj-JNP"/>
                         <outlet property="parentView" destination="vAJ-H2-5tZ" id="epP-Pq-gsE"/>
                         <outlet property="tblAddOn" destination="Ks0-oy-Rvf" id="1vs-tr-2d0"/>
                     </connections>
@@ -1264,7 +1294,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Few Tickets Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZm-VH-K7K">
-                                                <rect key="frame" x="42.66666666666665" y="9.3333333333332558" width="127.33333333333331" height="16.333333333333329"/>
+                                                <rect key="frame" x="42.66666666666665" y="7.6666666666667442" width="127.33333333333331" height="19.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" name="btnDarkBlue"/>
                                                 <nil key="highlightedColor"/>
@@ -2946,7 +2976,7 @@ TicketGateway Balance  </string>
                                                                                         <constraint firstItem="aL9-du-PGW" firstAttribute="leading" secondItem="C6a-Uy-JmA" secondAttribute="leading" id="wqJ-yn-UZB"/>
                                                                                     </constraints>
                                                                                 </collectionViewCellContentView>
-                                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <size key="customSize" width="361" height="181.66666666666666"/>
                                                                                 <connections>
                                                                                     <outlet property="imgEvents" destination="aL9-du-PGW" id="3I0-s9-q8J"/>
@@ -4878,8 +4908,9 @@ TicketGateway fee is non refundable.</string>
         <image name="circlechevronUp_ip" width="24" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>
         <image name="done-blue_ip" width="24" height="24"/>
-        <image name="homeDas" width="343" height="165"/>
+        <image name="homeDas" width="96" height="96"/>
         <image name="home_un" width="24.333333969116211" height="24"/>
+        <image name="img_no_data_found" width="138" height="76"/>
         <image name="map-pin" width="22" height="22"/>
         <image name="map-pinGradiant" width="24" height="24"/>
         <image name="play-circleGradiant" width="24" height="24"/>
@@ -4937,9 +4968,6 @@ TicketGateway fee is non refundable.</string>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
