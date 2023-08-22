@@ -105,8 +105,6 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
 //MARK: - Functions
 extension EventDetailVC {
     func loadData(){
-//        viewModel.isLiked = viewModel.eventDetail?.isLike ?? false
-//        self.funcCallApi()
         self.setUp()
         self.addTapGestureToOrganiserView()
     }
@@ -148,8 +146,6 @@ extension EventDetailVC {
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
-//        self.navigationView.btnSecRight.setImage(UIImage(named: "favSele_ip"), for: .selected)
-        print("viewModel.eventDetail?.isLike", viewModel.eventDetail?.isLike)
         self.navigationView.btnSecRight.setImage(UIImage(named: (viewModel.eventDetail?.isLike ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
         navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
@@ -729,6 +725,7 @@ extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtoc
         view?.viewModel.isComingFrom = .EventDetail
         view?.delegate = self
         view?.viewModel.categoryId = self.viewModel.suggestedEventCategoryId
+        view?.viewModel.eventId = self.viewModel.eventId ?? 0
         //view?.viewModel.index = index
         //view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
@@ -740,12 +737,16 @@ extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtoc
 extension EventDetailVC: ViewMoreEventsVCProtocol {
     func reloadView(eventId: Int?, isEventDetailApiCall: Bool?) {
         if (isEventDetailApiCall ?? false) {
+            self.viewModel.eventId = eventId
             viewModel.eventDetail = nil
             funcCallApi()
-        } else {
-            self.viewModel.eventId = eventId
-            self.loadData()
+            self.scrollView.setContentOffset(.zero, animated: false)
         }
+//        else {
+//            print("in else ***** ")
+//            self.viewModel.eventId = eventId
+//            self.loadData()
+//        }
     }
 }
 

@@ -31,6 +31,7 @@ final class ViewMoreEventsViewModel {
     let refreshControl = UIRefreshControl()
     var isComingFrom = IsComingFromForViewMore.Home
     var categoryId:Int?
+    var eventId: Int = 0
     var itemsWeekend = [GetEventModel]()
     var itemsVirtual = [GetEventModel]()
     var itemsPopular = [GetEventModel]()
@@ -38,6 +39,7 @@ final class ViewMoreEventsViewModel {
     var itemsUpcoming = [GetEventModel]()
     var itemsLocation = [GetEventModel]()
     var itemsSuggestedEvents = [GetEventModel]()
+    var isLikedAnyEvent: Bool = false
 }
 
 //MARK: - Functions
@@ -237,6 +239,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     }
     func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
         let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        isLikedAnyEvent = true
         APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
             switch result {
             case .success(let response):

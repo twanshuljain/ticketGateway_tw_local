@@ -41,6 +41,7 @@ class ViewMoreEventsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.isLikedAnyEvent = false
     }
 
 }
@@ -130,11 +131,12 @@ extension ViewMoreEventsVC{
             }
             view?.delegate = self
             self.navigationController?.pushViewController(view!, animated: true)
-        } else {
+        } else if viewModel.isComingFrom == .EventDetail {
             if self.viewModel.itemsSuggestedEvents.indices.contains(index.row) {
+                // On Click of cell api should call
                 self.delegate?.reloadView(
                     eventId: self.viewModel.itemsSuggestedEvents[index.row].event?.id,
-                    isEventDetailApiCall: false
+                    isEventDetailApiCall: true
                 )
             }
             self.navigationController?.popViewController(animated: false)
@@ -709,10 +711,12 @@ extension ViewMoreEventsVC: EventDetailVCProtocol {
 extension ViewMoreEventsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
-        // For API calling at HomeScreen when user comeback from MoreEventList Screen
-        self.updateHomeScreenDelegate?.updateData()
-        // For API calling of event detail when user come back from MoreEventList Screen
-        self.delegate?.reloadView(eventId: 0, isEventDetailApiCall: true)
+        if viewModel.isLikedAnyEvent {
+            // For API calling at HomeScreen when user comeback from MoreEventList Screen
+            self.updateHomeScreenDelegate?.updateData()
+            // For API calling of event detail when user come back from MoreEventList Screen
+            self.delegate?.reloadView(eventId: viewModel.eventId, isEventDetailApiCall: true)
+        }
     }
 }
 extension ViewMoreEventsVC: ActivityController {
