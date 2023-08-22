@@ -15,6 +15,10 @@
 import UIKit
 import SDWebImage
 
+protocol suggestedOrganizerCellProtocol:class {
+    func followUnfollowAction(tag:Int)
+}
+
 class suggestedOrganizerCell: UICollectionViewCell {
     
 //MARK: - Outlets
@@ -23,6 +27,8 @@ class suggestedOrganizerCell: UICollectionViewCell {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblFollowers: UILabel!
     @IBOutlet weak var lblName: UILabel!
+    
+    weak var delegate:suggestedOrganizerCellProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +39,11 @@ class suggestedOrganizerCell: UICollectionViewCell {
     func setData(organizerDetail: Organizers){
         self.lblName.text = organizerDetail.name ?? ""
         self.lblFollowers.text = "\(organizerDetail.followers ?? 0) followers "
+        if organizerDetail.isFollow == true {
+            self.btnFollerwers.setTitle("Following", for: .normal)
+        } else {
+            self.btnFollerwers.setTitle("Follow", for: .normal)
+        }
         
         if let imageUrl = organizerDetail.profileImage{
             if imageUrl.contains(APIHandler.shared.previousBaseURL){
@@ -64,6 +75,8 @@ class suggestedOrganizerCell: UICollectionViewCell {
        
     }
     
-    
+    @IBAction func btnFollowUnfollowAction(_ sender:UIButton){
+        self.delegate?.followUnfollowAction(tag: sender.tag)
+    }
 
 }
