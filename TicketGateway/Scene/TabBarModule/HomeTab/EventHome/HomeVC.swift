@@ -550,6 +550,23 @@ extension HomeVC: EventDetailVCProtocol{
         self.viewModel.arrDataaPopular.removeAll()
         self.viewModel.arrDataaFree.removeAll()
         self.viewModel.arrDataaUpcoming.removeAll()
+        self.viewModel.arrOrganizersList?.removeAll()
+        
+        self.tblEvents.arrData.removeAll()
+        self.tblEvents.arrDataa.removeAll()
+        self.tblEvents.arrDataaFree.removeAll()
+        self.tblEvents.arrSearchData.removeAll()
+        self.tblEvents.arrDataaPopular.removeAll()
+        self.tblEvents.arrDataaVirtual.removeAll()
+        self.tblEvents.arrDataaWeekend.removeAll()
+        self.tblEvents.arrDataaUpcoming.removeAll()
+        self.tblEvents.arrEventCategory.removeAll()
+        self.tblEvents.arrDataCategorySearch.removeAll()
+        self.collvwSuggestedOrganisation.arrOrganizersList?.removeAll()
+        self.lblSuggestedOrganised.text = ""
+        tblEvents.reloadData()
+        collvwSuggestedOrganisation.reloadData()
+        
         self.funcCallApi()
         self.setUp()
     }

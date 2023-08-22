@@ -98,7 +98,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        viewModel.isLikedAnyEvent = false
     }
 }
 
@@ -752,7 +752,9 @@ extension EventDetailVC: ViewMoreEventsVCProtocol {
 //MARK: - NavigationBarViewDelegate
 extension EventDetailVC : NavigationBarViewDelegate {
     func navigationBackAction() {
-        self.delegate?.updateData()
+        if viewModel.isLikedAnyEvent {
+            self.delegate?.updateData()
+        }
         self.navigationController?.popViewController(animated: true)
     }
 }

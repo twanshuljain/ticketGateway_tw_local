@@ -24,6 +24,7 @@ final class EventDetailViewModel{
     var arrEventData : [GetEventModel] = [GetEventModel]()
     var eventDetailForFavourite: EventDetail?
     var isLiked: Bool = false
+    var isLikedAnyEvent: Bool = false
 }
 
 
@@ -77,6 +78,7 @@ extension EventDetailViewModel{
     
     func favouriteApi(likeStatus: Bool, eventId:Int, complition: @escaping (Bool, String) -> Void) {
         let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        isLikedAnyEvent = true
         APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
