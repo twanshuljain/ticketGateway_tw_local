@@ -35,7 +35,8 @@ class TicketTypesCell: UITableViewCell {
             self.vwForGroup.isHidden = true
             self.lblNoOfInGroup.text = ""
              self.lblSecAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
-            self.lblAmountWithAdditionCharge.text = "Incl. CA$10.00 Facility Fee"
+            //self.lblAmountWithAdditionCharge.text = "Incl. CA$10.00 Facility Fee"
+            self.lblAmountWithAdditionCharge.text = "(Incl. fees)"
             
             if let endDate = event.ticketSaleEndDate {
                self.lblDiscripation.text = "Sales end \(String(describing: endDate.getDateFormattedFromTo()))"

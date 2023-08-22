@@ -43,6 +43,7 @@ class HomeVC: UIViewController {
         self.tblEvents.delegateShareAction = self
         self.tblEvents.delegateLikeAction = self
         self.collvwSuggestedOrganisation.delegateOrgansierToProfile = self
+        self.collvwSuggestedOrganisation.followUnfollowDelegate = self
         
         // self.apiCall()
     }
@@ -591,7 +592,43 @@ extension HomeVC: FavouriteAction {
     }
 }
 // MARK: - 
-extension HomeVC: NavigateToProfile {
+extension HomeVC: NavigateToProfile, suggestedOrganizerListProtocol {
+    func followUnfollowAction(tag: Int) {
+        if let cell = self.collvwSuggestedOrganisation.cellForItem(at: IndexPath.init(row: tag, section: 0)) as? suggestedOrganizerCell{
+            if Reachability.isConnectedToNetwork() //check internet connectivity
+            {
+                if let organizerId = self.collvwSuggestedOrganisation.arrOrganizersList?[tag].userID {
+                    parentView.showLoading(centreToView: self.view)
+                    viewModel.followUnFollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
+                        if isTrue {
+                            DispatchQueue.main.async {
+                                self.parentView.stopLoading()
+                                self.collvwSuggestedOrganisation.arrOrganizersList?.removeAll()
+                                //self.collvwSuggestedOrganisation.reloadData()
+                                self.funcCallApiForOrganizersList(viewAll: false)
+//                                if messageShowToast == FollowUnfollow.follow.rawValue {
+//                                    cell.btnFollerwers.setTitle("Following", for: .normal)
+//                                } else {
+//                                    cell.btnFollerwers.setTitle("Follow", for: .normal)
+//                                }
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.parentView.stopLoading()
+                                self.showToast(message: messageShowToast)
+                            }
+                        }
+                    })
+                } else {
+                    DispatchQueue.main.async {
+                        self.parentView.stopLoading()
+                        self.showToast(message: ValidationConstantStrings.networkLost)
+                    }
+                }
+            }
+        }
+    }
+    
     func tapActionOrganiser(index: Int, data: Organizers) {
         if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
             vc.isComingFromOranizer = true

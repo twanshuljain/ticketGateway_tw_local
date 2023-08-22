@@ -687,11 +687,12 @@ extension ViewMoreEventsVC : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
         self.navigationController?.pushViewController(view!, animated: true)
-    }
-    
+    }   
 }
 extension ViewMoreEventsVC: EventDetailVCProtocol {
     func updateData() {
+        self.viewModel.currentPage = 1
+        self.viewModel.totalPage = 1
         self.viewModel.itemsWeekend.removeAll()
         self.viewModel.itemsVirtual.removeAll()
         self.viewModel.itemsPopular.removeAll()
@@ -701,6 +702,7 @@ extension ViewMoreEventsVC: EventDetailVCProtocol {
         self.viewModel.itemsSuggestedEvents.removeAll()
         self.setUp()
         self.setData()
+        self.tblView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
 }
 //MARK: - NavigationBarViewDelegate

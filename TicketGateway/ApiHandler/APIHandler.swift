@@ -43,7 +43,7 @@ public enum APIName: String {
     case GetEventSearchByCategory = "events/event/search/category/"
     case GetEventSearch = "events/event/search/category/?"
     
-    case GetTicketList = "events/ticket-list/"
+    case GetTicketList = "events/show-ticket/"
     case getAddOnList = "events/ticket-add-on-list/"
     
     case GetFeeStructure = "default/data/fee/structure/get/"

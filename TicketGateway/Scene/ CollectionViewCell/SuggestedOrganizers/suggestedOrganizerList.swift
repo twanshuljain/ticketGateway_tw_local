@@ -18,11 +18,14 @@ protocol NavigateToProfile {
     func tapActionOrganiser(index:Int, data: Organizers)
 }
 
+protocol suggestedOrganizerListProtocol:class {
+    func followUnfollowAction(tag:Int)
+}
 class suggestedOrganizerList: UICollectionView {
-    
     
     var arrOrganizersList:[Organizers]?
     var delegateOrgansierToProfile: NavigateToProfile?
+    weak var followUnfollowDelegate:suggestedOrganizerListProtocol?
    
     func configure() {
         self.register(UINib(nibName: "suggestedOrganizerCell", bundle: nil), forCellWithReuseIdentifier: "suggestedOrganizerCell")
@@ -47,6 +50,8 @@ extension suggestedOrganizerList : UICollectionViewDataSource ,UICollectionViewD
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestedOrganizerCell", for: indexPath) as! suggestedOrganizerCell
          if let data = self.arrOrganizersList?[indexPath.row]{
+             cell.delegate = self
+             cell.btnFollerwers.tag = indexPath.row
              cell.setData(organizerDetail: data)
          }
          return cell
@@ -59,4 +64,11 @@ extension suggestedOrganizerList : UICollectionViewDataSource ,UICollectionViewD
         self.delegateOrgansierToProfile?.tapActionOrganiser(index: indexPath.row, data: (arrOrganizersList?[indexPath.row])! )
     }
 
+}
+
+extension suggestedOrganizerList:suggestedOrganizerCellProtocol{
+    func followUnfollowAction(tag: Int) {
+        self.followUnfollowDelegate?.followUnfollowAction(tag: tag)
+    }
+    
 }

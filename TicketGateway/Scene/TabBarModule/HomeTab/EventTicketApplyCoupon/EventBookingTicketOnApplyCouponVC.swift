@@ -125,6 +125,8 @@ extension EventBookingTicketOnApplyCouponVC {
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         btnAppliedCode.setTitles(text: "Apply", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
+        
+        self.btnDownAction()
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
@@ -293,7 +295,7 @@ extension EventBookingTicketOnApplyCouponVC {
             btnDown.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
         } else {
             enterAccesCodeStackView.isHidden = true
-            accesCodeViewHeight.constant = 50
+            accesCodeViewHeight.constant = 55
             accesCodeStackView.isHidden = true
            
             btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
