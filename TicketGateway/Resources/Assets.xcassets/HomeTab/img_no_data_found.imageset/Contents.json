@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "video_icon.png",
+      "filename" : "Frame 1000001114.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Frame 1000001114@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Frame 1000001114@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

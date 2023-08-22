@@ -22,6 +22,7 @@ class EventBookingTicketAddOnsVC: UIViewController {
     @IBOutlet weak var tblAddOn: UITableView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var parentView:UIView!
+    @IBOutlet weak var noDataFoundView:UIView!
     
     // MARK: - Variables
    
@@ -46,6 +47,11 @@ extension EventBookingTicketAddOnsVC {
                 if isTrue {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
+                        if self.viewModel.arrAddOnTicketList?.count == 0{
+                            self.noDataFoundView.isHidden = false
+                        }else{
+                            self.noDataFoundView.isHidden = true
+                        }
                         self.tblAddOn.reloadData()
                     }
                 } else {
@@ -85,6 +91,11 @@ extension EventBookingTicketAddOnsVC {
     
     func setData(){
         self.lblTotalTicketPrice.text = "CA$ \(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
+        if self.viewModel.arrAddOnTicketList?.count == 0{
+            self.noDataFoundView.isHidden = false
+        }else{
+            self.noDataFoundView.isHidden = true
+        }
     }
 }
 
@@ -138,6 +149,12 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         if let imgString = data?.addOnLogo?.first {
             let urlString = URL(string: imgString)
             cell.imgImage.sd_setImage(with: urlString)
+            
+            if cell.imgImage.image == nil{
+                cell.imgImage.image = UIImage.init(named: "img_no_addOn_found")
+            }else{
+                cell.imgImage.sd_setImage(with: urlString)
+            }
         }
        
         
