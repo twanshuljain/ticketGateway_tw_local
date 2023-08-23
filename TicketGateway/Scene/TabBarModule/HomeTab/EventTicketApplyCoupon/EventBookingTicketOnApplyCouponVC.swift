@@ -215,12 +215,16 @@ extension EventBookingTicketOnApplyCouponVC {
            view.feeStructure = self.viewModel.feeStructure
            self.navigationController?.pushViewController(view, animated: true)
             */
-           if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
-               view.viewModel.eventDetail = self.viewModel.eventDetail
-               view.viewModel.feeStructure = self.viewModel.feeStructure
-               view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
-               view.viewModel.eventId = self.viewModel.eventId
-               self.navigationController?.pushViewController(view, animated: true)
+           if self.tblEventTicketTypes.selectedArrTicketList.count == 0{
+               self.showToast(message: "Please select ticket")
+           }else{
+               if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+                   view.viewModel.eventDetail = self.viewModel.eventDetail
+                   view.viewModel.feeStructure = self.viewModel.feeStructure
+                   view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
+                   view.viewModel.eventId = self.viewModel.eventId
+                   self.navigationController?.pushViewController(view, animated: true)
+               }
            }
        } else {
            self.showToast(message: "Please Accept Terms and Condition")

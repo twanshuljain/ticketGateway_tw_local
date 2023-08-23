@@ -146,32 +146,54 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                 let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
                 let value =  cell.vwStepper.lblCount.text ?? ""
                 self.lblNumberOfCount = Int(value) ?? 0
-                if lblNumberOfCount < arrDataAccessCode?[sender.tag].ticketMaximumQuantity ?? 0 {
-                    self.lblNumberOfCount = self.lblNumberOfCount + 1
+            self.lblNumberOfCount = self.lblNumberOfCount + 1
+                if lblNumberOfCount <= arrDataAccessCode?[sender.tag].ticketMaximumQuantity ?? 0 {
+                   // self.lblNumberOfCount = self.lblNumberOfCount + 1
                     self.finalPrice += Double(data?.ticketPrice ?? 0)
                     //(lblNumberOfCount * (data?.ticketPrice ?? 0))
                     cell.vwStepper.lblCount.text = String(lblNumberOfCount)
                     arrDataAccessCode?[sender.tag].selectedTicketQuantity = lblNumberOfCount
-                    self.selectedArrTicketList = self.arrDataAccessCode ?? [EventTicket]()
-                    
-                    self.updatedPrice?(finalPrice)
+                    if let data = arrDataAccessCode?[sender.tag]{
+                        let contains = self.selectedArrTicketList.contains { ticket in
+                            return ticket.ticketID == arrDataAccessCode?[sender.tag].ticketID
+                        }
+                        if !contains{
+                            self.selectedArrTicketList.append(data)
+                        }
+                        self.updatedPrice?(finalPrice)
+                    }
                 }
             
         } else {
-              let data = arrTicketList?[sender.tag]
+            let data = arrTicketList?[sender.tag]
             let indexPath = IndexPath(row: sender.tag, section: 0)
             let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
             let value =  cell.vwStepper.lblCount.text ?? ""
             self.lblNumberOfCount = Int(value) ?? 0
-            if lblNumberOfCount < arrTicketList?[sender.tag].ticketMaximumQuantity ?? 0 {
-                self.lblNumberOfCount = self.lblNumberOfCount + 1
+            self.lblNumberOfCount = self.lblNumberOfCount + 1
+            if lblNumberOfCount <= arrTicketList?[sender.tag].ticketMaximumQuantity ?? 0 {
+               // self.lblNumberOfCount = self.lblNumberOfCount + 1
                 self.finalPrice += Double(data?.ticketPrice ?? 0)
                 //(lblNumberOfCount * (data?.ticketPrice ?? 0))
                 cell.vwStepper.lblCount.text = String(lblNumberOfCount)
                 arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
-                self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
-                
-                self.updatedPrice?(finalPrice)
+                if let data = arrTicketList?[sender.tag]{
+                    let contains = self.selectedArrTicketList.contains { ticket in
+                        return ticket.uniqueTicketID == data.uniqueTicketID
+                    }
+                    if !contains{
+                        self.selectedArrTicketList.append(data)
+                    }else{
+                        let index = selectedArrTicketList.firstIndex { ticket in
+                            return ticket.uniqueTicketID == data.uniqueTicketID
+                        }
+                        
+                        if let index = index, selectedArrTicketList.indices.contains(index){
+                            self.selectedArrTicketList[index].selectedTicketQuantity = lblNumberOfCount
+                        }
+                    }
+                    self.updatedPrice?(finalPrice)
+                }
             }
         }
     }
@@ -183,21 +205,29 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                 let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
                 let value =  cell.vwStepper.lblCount.text ?? ""
                 self.lblNumberOfCount = Int(value) ?? 0
+            self.lblNumberOfCount = self.lblNumberOfCount - 1
                 if self.lblNumberOfCount > 0 {
-                    self.lblNumberOfCount = self.lblNumberOfCount - 1
+                    //self.lblNumberOfCount = self.lblNumberOfCount - 1
                     self.finalPrice -= Double(data?.ticketPrice ?? 0)
                     //(lblNumberOfCount * (data?.ticketPrice ?? 0))
                     cell.vwStepper.lblCount.text = String(lblNumberOfCount)
                     arrDataAccessCode?[sender.tag].selectedTicketQuantity = lblNumberOfCount
-                    self.selectedArrTicketList = self.arrDataAccessCode ?? [EventTicket]()
-                    
-                    self.updatedPrice?(finalPrice)
+                    if self.selectedArrTicketList.indices.contains(sender.tag){
+//                        self.selectedArrTicketList.removeAll { ticket in
+//                            return ticket.ticketID == arrDataAccessCode?[sender.tag].ticketID
+//                        }
+                        self.selectedArrTicketList.remove(at: sender.tag)
+                        self.updatedPrice?(finalPrice)
+                    }
                 } else {
                     cell.vwStepper.lblCount.text = "0"
                     arrDataAccessCode?[sender.tag].selectedTicketQuantity = 0
-                    self.selectedArrTicketList = self.arrDataAccessCode ?? [EventTicket]()
-                    
-                    //self.updatedPrice?(0)
+                   // self.selectedArrTicketList = self.arrDataAccessCode ?? [EventTicket]()
+                    if self.selectedArrTicketList.indices.contains(sender.tag){
+                        self.selectedArrTicketList.removeAll { ticket in
+                            return ticket.ticketID == arrDataAccessCode?[sender.tag].ticketID
+                        }
+                    }
                 }
             
         } else {
@@ -206,21 +236,43 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
             let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
             let value =  cell.vwStepper.lblCount.text ?? ""
             self.lblNumberOfCount = Int(value) ?? 0
+            self.lblNumberOfCount = self.lblNumberOfCount - 1
             if self.lblNumberOfCount > 0 {
-                self.lblNumberOfCount = self.lblNumberOfCount - 1
+               // self.lblNumberOfCount = self.lblNumberOfCount - 1
                 self.finalPrice -= Double(data?.ticketPrice ?? 0)
                 //(lblNumberOfCount * (data?.ticketPrice ?? 0))
                 cell.vwStepper.lblCount.text = String(lblNumberOfCount)
                 arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
-                self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
                 
-                self.updatedPrice?(finalPrice)
-            } else {
+                if let data = arrTicketList?[sender.tag]{
+                    let contains = self.selectedArrTicketList.contains { ticket in
+                        return ticket.uniqueTicketID == data.uniqueTicketID
+                    }
+                    
+                    if contains{
+                        let index = selectedArrTicketList.firstIndex { ticket in
+                            return ticket.uniqueTicketID == data.uniqueTicketID
+                        }
+                        if let index = index, selectedArrTicketList.indices.contains(index){
+                            self.selectedArrTicketList[index].selectedTicketQuantity = lblNumberOfCount
+                        }
+                    }
+                    self.updatedPrice?(finalPrice)
+                }
+            } else if self.lblNumberOfCount == 0{
                 cell.vwStepper.lblCount.text = "0"
+                self.finalPrice -= Double(data?.ticketPrice ?? 0)
                 arrTicketList?[sender.tag].selectedTicketQuantity = 0
-                self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
-                
-                //self.updatedPrice?(0)
+                //self.selectedArrTicketList = self.arrTicketList ?? [EventTicket]()
+                    self.selectedArrTicketList.removeAll { ticket in
+//                        if ticket.uniqueTicketID == arrTicketList?[sender.tag].uniqueTicketID{
+//                            self.finalPrice -= Double(data?.ticketPrice ?? 0)
+//                        }
+                        return ticket.uniqueTicketID == arrTicketList?[sender.tag].uniqueTicketID
+                    }
+                self.updatedPrice?(finalPrice)
+            }else{
+                cell.vwStepper.lblCount.text = "0"
             }
         }
     }
