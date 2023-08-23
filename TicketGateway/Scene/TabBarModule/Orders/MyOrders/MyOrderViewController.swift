@@ -48,7 +48,7 @@ class MyOrderViewController: UIViewController {
         self.setButtonBackground()
     }
     override func viewWillAppear(_ animated: Bool) {
-        getMyOrderApiCall()
+        getMyOrderApiCall(isFromUpcoming: true)
     }
 }
 // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -64,8 +64,10 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
 }
 // MARK: - Functions
 extension MyOrderViewController {
-    func getMyOrderApiCall() {
-        viewModel.myOrdersApiCall(completion: { isTrue, message in
+    func getMyOrderApiCall(isFromUpcoming: Bool) {
+        viewModel.myOrdersModel.filterBy = isFromUpcoming ? "upcoming" : "past"
+        viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel,
+                                  completion: { isTrue, message in
             if isTrue {
                 self.upComingTableView.reloadData()
             } else {
@@ -164,11 +166,13 @@ extension MyOrderViewController {
         self.isFromUpcoming = true
         self.setButtonBackground()
         self.pastView.isHidden = true
+        getMyOrderApiCall(isFromUpcoming: true)
     }
     func pastAction() {
         self.isFromUpcoming = false
         self.setButtonBackground()
-        self.pastView.isHidden = false
+        getMyOrderApiCall(isFromUpcoming: false)
+//        self.pastView.isHidden = false
     }
     func filterAction() {
         vwPopUp.isHidden = !vwPopUp.isHidden

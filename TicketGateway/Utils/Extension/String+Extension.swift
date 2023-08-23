@@ -142,6 +142,12 @@ extension String {
         let mainDate = dateFormatter.date(from: dateString) ?? Date()
         return mainDate
     }
-    
-   
+    func convertStringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        var date = dateFormatter.date(from: date) ?? Date()
+        return date
+    }
 }

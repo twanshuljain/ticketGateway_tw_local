@@ -10,28 +10,25 @@ import SDWebImage
 
 class UpcomingTableViewCell: UITableViewCell {
     
- //MARK: - OUTLETS
+    //MARK: - OUTLETS
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var btnSeeTickets: UIButton!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setFonts()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     var getTicket: GetMyOrderItem? {
         didSet {
             print("data set")
             self.lblTitle.text = getTicket?.eventTitle ?? ""
-            if let startDate = getTicket?.eventStartDate, let time = getTicket {
-                self.lblTime.text = "Mon, \(startDate.getDateFormattedFrom()) • "
+            if let startDate = getTicket?.eventStartDate {
+                self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
             }
             self.btnSeeTickets.setTitle("See Vouchers", for: .normal)
             if let imageUrl = getTicket?.coverImage?.eventCoverImage {
@@ -64,5 +61,12 @@ class UpcomingTableViewCell: UITableViewCell {
         self.btnSeeTickets.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSeeTickets.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
     }
-    
+    func getTime(strDate: String) -> String {
+        var date = strDate.convertStringToDate(date: strDate)
+        return date.getOnlyTimeFromDate(date: date)
+    }
+    func getWeekDay(strDate: String) -> String {
+        var date = strDate.convertStringToDate(date: strDate)
+        return date.getWeekDay(date: date) ?? "-"
+    }
 }
