@@ -50,7 +50,6 @@ struct StripeCreateUser: Codable {
     }
 }
 
-
 // MARK: - CreateCheckoutReq
 struct CreateCheckoutReq: Codable {
     var eventID: Int?
@@ -64,8 +63,8 @@ struct CreateCheckoutReq: Codable {
         case orderType = "order_type"
         case ticketIDS = "ticket_ids"
         case addonList = "addon_list"
-        case totalUserLoyaltyPoint = "total_user_loyalty_point"
-        case totalUserSpentAmount = "total_user_spent_amount"
+        case totalUserLoyaltyPoint = "user_loyalty_point"
+        case totalUserSpentAmount = "spent_amount"
     }
 }
 
@@ -81,12 +80,14 @@ struct CheckoutAddonList: Codable {
 
 // MARK: - TicketID
 struct CheckoutTicketID: Codable {
+    var ticketTypeId : Int?
     var ticketType, ticketName: String?
     var baseTicketID, quantity: Int?
     var ticketPrice:Int?
     var ticketCurrency:String?
 
     enum CodingKeys: String, CodingKey {
+        case ticketTypeId = "ticket_type_id"
         case ticketType = "ticket_type"
         case ticketName = "ticket_name"
         case baseTicketID = "base_ticket_id"
