@@ -96,9 +96,16 @@ extension SignInViewModel {
         }
     }
     
-    func checkoutVerifyResendOTP(complition: @escaping (Bool,String) -> Void ) {
-        //let paramForNumber = SignInForNumberRequest(cellphone: number)
-        APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyResendOtp, parameters: EmptyModel?.none, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
+    func checkoutVerifyResendOTP(userType: UserType,complition: @escaping (Bool,String) -> Void ) {
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        var authTokenString = userType == .new ? false : true
+        let paramForNumber:ValidateForNumberRequest?
+        if userType == .new{
+            paramForNumber = ValidateForNumberRequest(cell_phone: userModel?.number, email: userModel?.email)
+        }else{
+            paramForNumber = ValidateForNumberRequest()
+        }
+        APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyResendOtp, parameters: paramForNumber, methodType: .POST, authTokenString: authTokenString) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
                 case .success(let response):
                     if response.status_code == 200 {

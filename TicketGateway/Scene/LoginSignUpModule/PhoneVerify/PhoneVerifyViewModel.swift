@@ -29,4 +29,12 @@ extension PhoneVerifyViewModel{
         }
         return("", true)
     }
+    
+    var validateUserMobile: (errorMessage: String, isValid: Bool) {
+        if Validation.shared.textValidation(text: mobileNumber, validationType: .number).0 {
+            let errMsg = Validation.shared.textValidation(text: mobileNumber, validationType: .number).1
+            return (errMsg, false)
+        }
+        return("", true)
+    }
 }

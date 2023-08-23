@@ -14,6 +14,12 @@
 
 import UIKit
 import SVProgressHUD
+enum UserType {
+    case new
+    case existing
+    case changeNumber
+}
+
 enum IsComingFrom {
     case Login
     case OrderSummary
@@ -31,12 +37,16 @@ class PhoneVerificationViewController: UIViewController {
     @IBOutlet weak var vwNumber: UIView!
     @IBOutlet weak var btnChangeNumber:UIButton!
     @IBOutlet weak var vwEmail:UIView!
+    @IBOutlet weak var vwEmaiLabel:UIView!
     @IBOutlet weak var txtEmail:UITextField!
     
     // MARK: - Variable
     var signInViewModel = SignInViewModel()
     var viewModel = PhoneVerifyViewModel()
+    var userType: UserType  = .existing
+    var isChangeMobileNumberTap = false
     var isComingFrom: IsComingFrom  = .Login
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -78,82 +88,120 @@ extension PhoneVerificationViewController {
         self.navigationController?.present(storyBoard ?? UIViewController(), animated: true, completion: nil)
     }
     @IBAction func btnContinueAction(_ sender: UIButton) {
-        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
-            if self.isComingFrom == .OrderSummary{
-                viewModel.emailAddress = self.txtEmail.text ?? ""
-                viewModel.mobileNumber = self.txtNumber.text ?? ""
-                let isValidate = viewModel.validateUserInput
-                if isValidate.isValid {
-                    if Reachability.isConnectedToNetwork(){
-                        SVProgressHUD.show()
-                        let param = ValidateForNumberRequest(cell_phone: self.txtNumber.text ?? "", email: self.txtEmail.text ?? "")
-                        signInViewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
-                            if isTrue == true {
-                                DispatchQueue.main.async { [self] in
-                                    SVProgressHUD.dismiss()
-                                    let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
-                                    let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.signInViewModel.strCountryCode)
+        if (self.userType == .new) || (userType == .existing && self.isChangeMobileNumberTap == true){
+            viewModel.emailAddress = self.txtEmail.text ?? ""
+            viewModel.mobileNumber = self.txtNumber.text ?? ""
+            var isValidate = viewModel.validateUserInput
+            if (userType == .existing && self.isChangeMobileNumberTap == true){
+                isValidate = viewModel.validateUserMobile
+            }else{
+                isValidate = viewModel.validateUserInput
+            }
+            if isValidate.isValid {
+                if Reachability.isConnectedToNetwork(){
+                    SVProgressHUD.show()
+                    let number = "\(lblDialCountryCode.text ?? "")" + (self.txtNumber.text ?? "")
+                    let numberWithoutCode = self.txtNumber.text ?? ""
+                    let param = ValidateForNumberRequest(cell_phone: numberWithoutCode, email: self.txtEmail.text ?? "")
+                    signInViewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
+                        if isTrue == true {
+                            DispatchQueue.main.async { [self] in
+                                SVProgressHUD.dismiss()
+                                let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+                                UserDefaultManager.share.clearAllUserDataAndModel()
+                                let objUserModel = SignInAuthModel(id: userModel?.id, number: numberWithoutCode, fullName: userModel?.fullName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
+                                UserDefaultManager.share.storeModelToUserDefault(userData: objUserModel, key: .userAuthData)
+                                
+                                if let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
+                                    let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text ?? "", strCountryCode: self.signInViewModel.strCountryCode)
                                     objAppShareData.dicToHoldDataOnSignUpModule = obj
-                                    view?.isComingFromLogin = false
-                                    view?.isComingFrom = self.isComingFrom
-                                    view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
-                                    view?.viewModel.eventId = self.viewModel.eventId
-                                    view?.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
-                                    view?.viewModel.eventDetail = self.viewModel.eventDetail
-                                    view?.viewModel.feeStructure = self.viewModel.feeStructure
-                                    view?.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
-                                    view?.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
-                                    self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
-                                }
-                            }
-                            else {
-                                DispatchQueue.main.async {
-                                    SVProgressHUD.dismiss()
-                                    self.showToast(message: messageShowToast)
+                                    view.isComingFromLogin = false
+                                    view.isComingFrom = self.isComingFrom
+                                    view.userType = self.userType
+                                    view.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
+                                    view.viewModel.eventId = self.viewModel.eventId
+                                    view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
+                                    view.viewModel.eventDetail = self.viewModel.eventDetail
+                                    view.viewModel.feeStructure = self.viewModel.feeStructure
+                                    view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+                                    view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+                                    view.isChangeMobileNumberTap = self.isChangeMobileNumberTap
+                                    self.navigationController?.pushViewController(view, animated: true)
                                 }
                             }
                         }
-                    } else {
-                        self.showToast(message: ValidationConstantStrings.networkLost)
+                        else {
+                            DispatchQueue.main.async {
+                                SVProgressHUD.dismiss()
+                                self.showToast(message: messageShowToast)
+                            }
+                        }
                     }
                 } else {
-                    SVProgressHUD.dismiss()
-                    self.showToast(message: isValidate.errorMessage)
+                    self.showToast(message: ValidationConstantStrings.networkLost)
                 }
+            } else {
+                SVProgressHUD.dismiss()
+                self.showToast(message: isValidate.errorMessage)
             }
-        }else{
-            let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
-            let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text ?? "", strCountryCode: self.signInViewModel.strCountryCode)
-            objAppShareData.dicToHoldDataOnSignUpModule = obj
-            view?.isComingFromLogin = false
-            view?.isComingFrom = self.isComingFrom
-            view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
-            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        }else if userType == .existing && self.isChangeMobileNumberTap == false{
+            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+                view.viewModel.eventId = self.viewModel.eventId
+                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
+                view.viewModel.eventDetail = self.viewModel.eventDetail
+                view.viewModel.feeStructure = self.viewModel.feeStructure
+                view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+                view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+                self.navigationController?.pushViewController(view, animated: true)
+            }
         }
+        //        else{
+        //            let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
+        //            let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text ?? "", strCountryCode: self.signInViewModel.strCountryCode)
+        //            objAppShareData.dicToHoldDataOnSignUpModule = obj
+        //            view?.isComingFromLogin = false
+        //            view?.isComingFrom = self.isComingFrom
+        //            view?.viewModel.number = "\(lblDialCountryCode.text ?? "") " + "-" + (self.txtNumber.text ?? "")
+        //            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        //        }
     }
     
     @IBAction func btnChangeNumberAction(_ sender:UIButton){
-        
+        self.isChangeMobileNumberTap = true
+        self.txtNumber.text = ""
+        self.txtNumber.isUserInteractionEnabled = true
+        self.btnSelectCountry.isUserInteractionEnabled = true
+//        self.vwEmaiLabel.isHidden = false
+//        self.vwEmail.isHidden = false
     }
 }
 
 // MARK: - RSCountrySelectedDelegate
 extension PhoneVerificationViewController: RSCountrySelectedDelegate {
     func setIntialUiDesign() {
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         if isComingFrom == .OrderSummary{
-            if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            if self.userType == .new {
                 btnChangeNumber.isHidden = true
+                self.txtNumber.text = ""
+                self.txtNumber.isUserInteractionEnabled = true
+                self.btnSelectCountry.isUserInteractionEnabled = true
+                self.vwEmaiLabel.isHidden = false
+                self.vwEmail.isHidden = false
             }else{
                 btnChangeNumber.isHidden = false
+                self.txtNumber.text = userModel?.number
+                self.txtNumber.isUserInteractionEnabled = false
+                self.btnSelectCountry.isUserInteractionEnabled = false
+                self.vwEmaiLabel.isHidden = true
+                self.vwEmail.isHidden = true
             }
         }else{
             btnChangeNumber.isHidden = true
-        }
-        
-        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        if userModel?.accessToken  == nil || userModel?.accessToken == ""{
-            self.vwEmail.isHidden = false
-        }else{
+            self.txtNumber.text = ""
+            self.txtNumber.isUserInteractionEnabled = false
+            self.btnSelectCountry.isUserInteractionEnabled = false
+            self.vwEmaiLabel.isHidden = true
             self.vwEmail.isHidden = true
         }
         self.txtNumber.addDoneButtonOnKeyboard()

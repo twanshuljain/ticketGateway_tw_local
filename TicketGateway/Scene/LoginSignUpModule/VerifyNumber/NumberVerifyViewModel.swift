@@ -14,7 +14,7 @@ final class NumberVerifyViewModel {
     var otp: String = ""
     var arrMail: [EmailListUser] = [EmailListUser]()
     var countdownTimer: Timer!
-    var totalTime = 60
+    var totalTime = 20
     var otpNumVC: OtpNumberVC?
     var eventId:Int?
     var selectedArrTicketList : [EventTicket]?
@@ -58,20 +58,17 @@ extension NumberVerifyViewModel {
     
     func checkoutVerifyOTP(isComingFrom: IsComingFrom,complition: @escaping (Bool, String) -> Void) {
         var param : NumberVerifyRequest?
-//        if isComingFrom == .OrderSummary && UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin){
-//            let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-//            param = NumberVerifyRequest(otp: otp, cell_phone: userModel?.number ?? "")
-//        }else{
-//           param = NumberVerifyRequest(otp: otp, cell_phone: objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")
-//        }
-        param = NumberVerifyRequest(otp: otp, cell_phone: objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")
+        
+        let numberWithoutCode = objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? ""
+        let number = "\(objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")" + (objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")
+        param = NumberVerifyRequest(otp: otp, cell_phone: numberWithoutCode)
         APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyNumberOtp, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
                     if isComingFrom == .OrderSummary && UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin){
                         UserDefaultManager.share.clearAllUserDataAndModel()
-                        self.objUserModel = SignInAuthModel(id: response.data?.id, number: objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "", fullName: response.data?.fullName, email:  response.data?.email, accessToken:  response.data?.accessToken, refreshToken: response.data?.refreshToken)
+                        self.objUserModel = SignInAuthModel(id: response.data?.id, number: numberWithoutCode, fullName: response.data?.fullName, email:  response.data?.email, accessToken:  response.data?.accessToken, refreshToken: response.data?.refreshToken, strDialCountryCode: objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")
                         UserDefaultManager.share.storeModelToUserDefault(userData: self.objUserModel, key: .userAuthData)
                         UserDefaultManager.share.guestUserLogin(value: false, key: .isGuestLogin)
                     }

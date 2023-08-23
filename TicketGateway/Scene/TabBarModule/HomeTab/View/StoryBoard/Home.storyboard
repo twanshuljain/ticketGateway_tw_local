@@ -4904,7 +4904,7 @@ TicketGateway fee is non refundable.</string>
         <image name="arrow-down" width="24" height="24"/>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
-        <image name="chevron-down_ip" width="24.333333969116211" height="24"/>
+        <image name="chevron-down_ip" width="16" height="16"/>
         <image name="circlechevronUp_ip" width="24" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>
         <image name="done-blue_ip" width="24" height="24"/>

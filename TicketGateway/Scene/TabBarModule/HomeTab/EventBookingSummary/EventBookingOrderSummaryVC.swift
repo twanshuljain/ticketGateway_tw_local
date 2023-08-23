@@ -136,8 +136,13 @@ extension EventBookingOrderSummaryVC {
         }
     }
     func btnContinueAction() {
-        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+     //   if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
             if let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as? PhoneVerificationViewController{
+                if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+                    view.userType = .new
+                }else{
+                    view.userType = .existing
+                }
                 view.isComingFrom = .OrderSummary
                 view.viewModel.eventId = self.viewModel.eventId
                 view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
@@ -147,17 +152,17 @@ extension EventBookingOrderSummaryVC {
                 view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
                 self.navigationController?.pushViewController(view, animated: true)
             }
-        }else{
-            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
-                view.viewModel.eventId = self.viewModel.eventId
-                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
-                view.viewModel.eventDetail = self.viewModel.eventDetail
-                view.viewModel.feeStructure = self.viewModel.feeStructure
-                view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
-                view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
-                self.navigationController?.pushViewController(view, animated: true)
-            }
-        }
+//        }else{
+//            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+//                view.viewModel.eventId = self.viewModel.eventId
+//                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+//                view.viewModel.eventDetail = self.viewModel.eventDetail
+//                view.viewModel.feeStructure = self.viewModel.feeStructure
+//                view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+//                view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+//                self.navigationController?.pushViewController(view, animated: true)
+//            }
+//        }
     }
 }
 //MARK: - NavigationBarViewDelegate
