@@ -13,7 +13,10 @@ struct GetMyOrderResponse: Codable {
     var message: String?
     var error: String?
     enum CodingKeys: String, CodingKey {
+        case data = "data"
         case statusCode = "status_code"
+        case message = "message"
+        case error = "error"
     }
 }
 struct GetMyOrderData: Codable {
@@ -22,11 +25,18 @@ struct GetMyOrderData: Codable {
     var page: Int?
     var size: Int?
     var pages: Int?
+    enum CodingKeys: String, CodingKey {
+        case items = "items"
+        case total = "total"
+        case page = "page"
+        case size = "size"
+        case pages = "pages"
+    }
 }
 struct GetMyOrderItem: Codable {
     var eventTitle: String?
     var eventId: Int?
-    var coverImage: [MyOrderCoverImage]?
+    var coverImage: MyOrderCoverImage?
     var location: String?
     var eventStartDate: String?
     var eventEndDate: String?

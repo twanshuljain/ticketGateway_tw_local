@@ -48,23 +48,34 @@ class MyOrderViewController: UIViewController {
         self.setButtonBackground()
     }
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.myOrdersApiCall()
+        getMyOrderApiCall()
     }
 }
 // MARK: - UITableViewDataSource, UITableViewDelegate
 extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tbleData.count
+        return viewModel.myOrder.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell", for: indexPath) as! UpcomingTableViewCell
-        let data = tbleData[indexPath.row]
-        cell.imgImage.image = UIImage(named: data)
+        cell.getTicket = viewModel.myOrder[indexPath.row]
         return cell
     }
 }
 // MARK: - Functions
 extension MyOrderViewController {
+    func getMyOrderApiCall() {
+        viewModel.myOrdersApiCall(completion: { isTrue, message in
+            if isTrue {
+                self.upComingTableView.reloadData()
+            } else {
+                DispatchQueue.main.async {
+//                    self.parentView.stopLoading()
+                    self.showToast(message: message)
+                }
+            }
+        })
+    }
     func setNavigationView() {
         self.vwNavigationBar.lblTitle.text = MY_ORDERS
         self.vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)

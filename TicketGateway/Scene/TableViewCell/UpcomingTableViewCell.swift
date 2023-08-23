@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UpcomingTableViewCell: UITableViewCell {
     
@@ -25,7 +26,34 @@ class UpcomingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
+    var getTicket: GetMyOrderItem? {
+        didSet {
+            print("data set")
+            self.lblTitle.text = getTicket?.eventTitle ?? ""
+            if let startDate = getTicket?.eventStartDate, let time = getTicket {
+                self.lblTime.text = "Mon, \(startDate.getDateFormattedFrom()) • "
+            }
+            self.btnSeeTickets.setTitle("See Vouchers", for: .normal)
+            if let imageUrl = getTicket?.coverImage?.eventCoverImage {
+                if imageUrl.contains(APIHandler.shared.previousBaseURL) {
+                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl) {
+                        self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    } else {
+                        self.imgImage.image = UIImage(named: "homeDas")
+                    }
+                } else {
+                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl) {
+                        self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    } else {
+                        self.imgImage.image = UIImage(named: "homeDas")
+                    }
+                }
+            } else {
+                self.imgImage.image = UIImage(named: "homeDas")
+            }
+        }
+    }
     func setFonts() {
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

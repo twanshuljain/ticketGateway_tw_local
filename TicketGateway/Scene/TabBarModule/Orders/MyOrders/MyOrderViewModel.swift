@@ -8,7 +8,10 @@
 import Foundation
 final class MyOrderViewModel {
     // MARK: Custom Functions
-    func myOrdersApiCall() {
+    var myOrder: [GetMyOrderItem] = []
+    
+    // MARK: Custom Functions
+    func myOrdersApiCall(completion: @escaping (Bool, String) -> Void) {
         let param = MyOrdersModel(pageNumber: 1, pageLimit: 10, filterBy: "upcoming", searchText: "", sortBy: "all")
         APIHandler.shared.executeRequestWith(apiName: .myOrders, parameters: param, methodType: .GET) { (result: Result<ResponseModal<GetMyOrderData>, Error>) in
             switch result {
@@ -17,13 +20,15 @@ final class MyOrderViewModel {
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
-                            print("response of my order api****", response)
+                            self.myOrder = data.items ?? []
+                            completion(true, response.message ?? "")
                         }
                     }
                 }
             case .failure(let error):
                 print("error", error)
                 print("failure like api ")
+                completion(false, error as? String ?? "")
             }
         }
     }
