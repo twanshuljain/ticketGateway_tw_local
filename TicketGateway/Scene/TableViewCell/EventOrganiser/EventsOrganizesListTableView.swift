@@ -115,7 +115,7 @@ class EventsOrganizesListTableView: UITableView {
             switch self.arrEventCategory[indexPath.section] {
             case .nearByLocation:
                 if arrDataCategorySearch.indices.contains(indexPath.row) {
-                    arrDataCategorySearch[indexPath.row].isLikedEvent?.toggle()
+                    arrDataCategorySearch[indexPath.row].likeCountData?.isLiked?.toggle()
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataCategorySearch[indexPath.row], isForLocation: true)
                     
                 }
@@ -154,7 +154,7 @@ class EventsOrganizesListTableView: UITableView {
         } else if isComingFrom == .EventSearch {
             // For Serach Screen
             if arrSearchData.indices.contains(indexPath.row) {
-                arrSearchData[indexPath.row].isLikedEvent?.toggle()
+                arrSearchData[indexPath.row].likeCountData?.isLiked?.toggle()
                 self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrSearchData[indexPath.row], isForLocation: true)
             }
         }
@@ -265,7 +265,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 case .nearByLocation:
                     if arrDataCategorySearch.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataCategorySearch[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].isLikedEvent ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .weekend:
                     if arrDataaWeekend.indices.contains(indexPath.row){
@@ -298,7 +298,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 if isFromSearch {
                     if arrSearchData.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrSearchData[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (arrSearchData[indexPath.row].isLikedEvent ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (arrSearchData[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 } else {
                     if arrDataCategorySearch.indices.contains(indexPath.row) {

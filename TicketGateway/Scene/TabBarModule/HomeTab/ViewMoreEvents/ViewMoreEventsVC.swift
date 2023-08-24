@@ -509,7 +509,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                 case .nearByLocation:
                     if self.viewModel.itemsLocation.indices.contains(indexPath.row){
                         cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].isLikedEvent ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .weekend:
                     if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
@@ -589,7 +589,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             switch viewModel.arrEventCategory[viewModel.index] {
             case .nearByLocation:
                 if viewModel.itemsLocation.indices.contains(indexPath.row) {
-                    viewModel.itemsLocation[indexPath.row].isLikedEvent?.toggle()
+                    viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked?.toggle()
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsLocation[indexPath.row], isForLocation: true)
                 }
             case .weekend:
