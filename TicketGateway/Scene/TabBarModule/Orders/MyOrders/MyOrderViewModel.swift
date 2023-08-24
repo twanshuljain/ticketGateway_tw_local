@@ -8,12 +8,15 @@
 import Foundation
 final class MyOrderViewModel {
     // MARK: Custom Functions
-    var myOrder: [GetMyOrderItem] = []
-    var myOrdersModel: MyOrdersModel = MyOrdersModel()
+    var arrMyOrder: [GetMyOrderItem]?
+    var myOrdersModel: MyOrdersModel?
+    var totalPage: Int = 0
+    var isFromUpcoming: Bool = false
+    var upcomingCount: Int = 0
+    var pastCount: Int = 0 
     // MARK: Custom Functions
     func myOrdersApiCall(myOrdersModel: MyOrdersModel,
                          completion: @escaping (Bool, String) -> Void) {
-//        let param = MyOrdersModel(pageNumber: 1, pageLimit: 10, filterBy: "upcoming", searchText: "", sortBy: "all")
         APIHandler.shared.executeRequestWith(apiName: .myOrders, parameters: myOrdersModel, methodType: .GET) { (result: Result<ResponseModal<GetMyOrderData>, Error>) in
             switch result {
             case .success(let response):
@@ -21,14 +24,16 @@ final class MyOrderViewModel {
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
-                            self.myOrder = data.items ?? []
+                            self.arrMyOrder = [GetMyOrderItem]()
+                            self.arrMyOrder?.append(contentsOf: data.items!)
+                            self.totalPage = data.total ?? 0
                             completion(true, response.message ?? "")
                         }
                     }
                 }
             case .failure(let error):
                 print("error", error)
-                print("failure like api ")
+                print("failure my order api ")
                 completion(false, error as? String ?? "")
             }
         }

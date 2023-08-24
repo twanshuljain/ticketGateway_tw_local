@@ -28,6 +28,9 @@
 		1817A8162A712EFF00278512 /* EventPromoCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */; };
 		1817A8182A725A2F00278512 /* EventMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817A8172A725A2F00278512 /* EventMapVC.swift */; };
 		181EBF102A31C64D0044C734 /* Pods_TicketGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5A94928E066BE89280A148 /* Pods_TicketGateway.framework */; };
+		181FD44C2A976C3700CAA230 /* MyTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FD44B2A976C3700CAA230 /* MyTicketViewModel.swift */; };
+		181FD44E2A976C4400CAA230 /* MyTicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FD44D2A976C4400CAA230 /* MyTicketModel.swift */; };
+		181FD4512A976F7E00CAA230 /* SeeFullTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FD4502A976F7E00CAA230 /* SeeFullTicketViewModel.swift */; };
 		1821FDE22A30A80800BD4AB6 /* RefundOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDE12A30A80800BD4AB6 /* RefundOptionsVC.swift */; };
 		1821FDE42A30A86D00BD4AB6 /* ReviewRefundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDE32A30A86D00BD4AB6 /* ReviewRefundVC.swift */; };
 		1821FDE72A30A90F00BD4AB6 /* ReviewRefundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDE52A30A90F00BD4AB6 /* ReviewRefundTableViewCell.swift */; };
@@ -447,6 +450,9 @@
 		180BA4FF2A5FDC6200639651 /* ViewMoreEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreEventsViewModel.swift; sourceTree = "<group>"; };
 		1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeVC.swift; sourceTree = "<group>"; };
 		1817A8172A725A2F00278512 /* EventMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapVC.swift; sourceTree = "<group>"; };
+		181FD44B2A976C3700CAA230 /* MyTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketViewModel.swift; sourceTree = "<group>"; };
+		181FD44D2A976C4400CAA230 /* MyTicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketModel.swift; sourceTree = "<group>"; };
+		181FD4502A976F7E00CAA230 /* SeeFullTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFullTicketViewModel.swift; sourceTree = "<group>"; };
 		1821FDE12A30A80800BD4AB6 /* RefundOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundOptionsVC.swift; sourceTree = "<group>"; };
 		1821FDE32A30A86D00BD4AB6 /* ReviewRefundVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRefundVC.swift; sourceTree = "<group>"; };
 		1821FDE52A30A90F00BD4AB6 /* ReviewRefundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRefundTableViewCell.swift; sourceTree = "<group>"; };
@@ -1372,6 +1378,8 @@
 			isa = PBXGroup;
 			children = (
 				18717F802A2A1BE9002F36BC /* MyTicketVC.swift */,
+				181FD44B2A976C3700CAA230 /* MyTicketViewModel.swift */,
+				181FD44D2A976C4400CAA230 /* MyTicketModel.swift */,
 			);
 			path = MyTicket;
 			sourceTree = "<group>";
@@ -1380,6 +1388,7 @@
 			isa = PBXGroup;
 			children = (
 				18717F7B2A2A1BE9002F36BC /* SeeFullTicketVC.swift */,
+				181FD4502A976F7E00CAA230 /* SeeFullTicketViewModel.swift */,
 			);
 			path = FullTicket;
 			sourceTree = "<group>";
@@ -3087,6 +3096,7 @@
 				18FBC1032A309239002CF129 /* DeviceSettingVC.swift in Sources */,
 				18FBC0DC2A309239002CF129 /* TicketOverAllEstimateBarTableViewList.swift in Sources */,
 				18FBC0DE2A309239002CF129 /* ManageEventVC.swift in Sources */,
+				181FD4512A976F7E00CAA230 /* SeeFullTicketViewModel.swift in Sources */,
 				1861A2E32A4466F600E13A5D /* ManageEventEditProfileViewModel.swift in Sources */,
 				18FBC1082A309239002CF129 /* SideMenuCell.swift in Sources */,
 				18A6D0E529E92F3300D6210E /* SignInViewModel.swift in Sources */,
@@ -3198,6 +3208,7 @@
 				18FBC0A82A309239002CF129 /* NotificationCell.swift in Sources */,
 				18F88C392A25D61F005E7457 /* GetEventListViewModel.swift in Sources */,
 				18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */,
+				181FD44E2A976C4400CAA230 /* MyTicketModel.swift in Sources */,
 				18233FB529E7C5B000255BB7 /* WelComeVC.swift in Sources */,
 				1861A2B32A44157B00E13A5D /* FavouriteListTableView.swift in Sources */,
 				186D49CA2A375077008CBB4B /* FAQVC.swift in Sources */,
@@ -3258,6 +3269,7 @@
 				18B521A42A4B125400719C4A /* FilterSelectedTableViewCell.swift in Sources */,
 				1801CD5D2A4EFAF6007DA967 /* RatingCustomFooterView.swift in Sources */,
 				18B2B2242A04F18D001DF3E5 /* EventTagCell.swift in Sources */,
+				181FD44C2A976C3700CAA230 /* MyTicketViewModel.swift in Sources */,
 				18A73E0D29EFD651007365CB /* CommonEnum.swift in Sources */,
 				18F5A4C12A4EA55900CA18F7 /* FindRFIDViewModel.swift in Sources */,
 				18F6F74B29E98591007B9513 /* UITextField+Extension.swift in Sources */,

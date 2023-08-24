@@ -46,6 +46,7 @@ struct GetMyOrderItem: Codable {
         case coverImage = "cover_image"
         case eventStartDate = "event_start_date"
         case eventEndDate = "event_end_date"
+        case location = "location"
     }
 }
 struct MyOrderCoverImage: Codable {
@@ -57,5 +58,6 @@ struct MyOrderCoverImage: Codable {
         case eventId = "event_id"
         case eventAdditionalCoverImages = "event_additional_cover_images"
         case eventCoverImage = "event_cover_image"
+        case id = "id"
     }
 }

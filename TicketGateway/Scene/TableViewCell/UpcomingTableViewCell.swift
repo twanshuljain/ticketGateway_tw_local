@@ -62,11 +62,11 @@ class UpcomingTableViewCell: UITableViewCell {
         self.btnSeeTickets.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
     }
     func getTime(strDate: String) -> String {
-        var date = strDate.convertStringToDate(date: strDate)
+        let date = strDate.convertStringToDate(date: strDate)
         return date.getOnlyTimeFromDate(date: date)
     }
     func getWeekDay(strDate: String) -> String {
-        var date = strDate.convertStringToDate(date: strDate)
+        let date = strDate.convertStringToDate(date: strDate)
         return date.getWeekDay(date: date) ?? "-"
     }
 }

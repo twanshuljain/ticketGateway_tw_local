@@ -43,11 +43,15 @@ class SeeFullTicketVC: UIViewController {
     @IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var vwSeeLessDottedLine: UIView!
     @IBOutlet weak var vwRefundPolicyDottedLine: UIView!
+    var viewModel: SeeFullTicketViewModel = SeeFullTicketViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
         self.setNavigationBar()
         self.setUI()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setDataToComponents()
     }
 }
 // MARK: - Functions
@@ -56,6 +60,21 @@ extension SeeFullTicketVC {
         [self.btnGetARefund,self.btnSeeLessView,self.btnSaveTicketAsImage,self.btnAddAppToWallet,self.btnViewEventList].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
+    }
+    func setDataToComponents() {
+        lblEventName.text = viewModel.ticketDetails?.eventTitle ?? "-"
+        lblAddress.text = viewModel.ticketDetails?.location ?? "-"
+        if let startDate = viewModel.ticketDetails?.eventStartDate {
+            lblDateValue.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFromTo()) / \(getTime(strDate: startDate))"
+        }
+    }
+    func getTime(strDate: String) -> String {
+        let date = strDate.convertStringToDate(date: strDate)
+        return date.getOnlyTimeFromDate(date: date)
+    }
+    func getWeekDay(strDate: String) -> String {
+        let date = strDate.convertStringToDate(date: strDate)
+        return date.getWeekDay(date: date) ?? "-"
     }
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self

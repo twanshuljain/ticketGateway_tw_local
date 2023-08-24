@@ -627,31 +627,6 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         self.tblView.reloadData()
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        switch self.viewModel.arrEventCategory[self.viewModel.index] {
-//        case .weekend:
-//            if let data = self.viewModel.arrData?.itemsWeekend, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-//                self.loadData()
-//            }
-//        case .online:
-//            if let data = self.viewModel.arrData?.itemsVirtual, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-//                self.loadData()
-//            }
-//        case .popular:
-//            if let data = self.viewModel.arrData?.itemsPopular, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-//                self.loadData()
-//            }
-//        case .free:
-//            if let data = self.viewModel.arrData?.itemsFree, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-//                self.loadData()
-//            }
-//        case .upcoming:
-//            if let data = self.viewModel.arrData?.itemsUpcoming, indexPath.row == data.count - 1, self.viewModel.currentPage < self.viewModel.totalPage {
-//                self.loadData()
-//            }
-//        default:
-//            break;
-//        }
-        
         self.addLoader(indexPath: indexPath)
     }
     
