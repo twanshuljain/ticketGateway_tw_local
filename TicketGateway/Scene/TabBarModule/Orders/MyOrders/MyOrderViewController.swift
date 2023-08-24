@@ -54,11 +54,11 @@ class MyOrderViewController: UIViewController {
 // MARK: - UITableViewDataSource, UITableViewDelegate
 extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.arrMyOrder?.count ?? 0
+        return viewModel.arrMyOrder.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell", for: indexPath) as? UpcomingTableViewCell {
-            cell.getTicket = viewModel.arrMyOrder?[indexPath.row]
+            cell.getTicket = viewModel.arrMyOrder[indexPath.row]
             return cell
         }
         return UITableViewCell.init()
@@ -72,7 +72,7 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = self.createView(storyboard: .order, storyboardID: .MyTicketVC) as? MyTicketVC
-        viewController?.viewModel.ticketDetails = viewModel.arrMyOrder?[indexPath.row]
+        viewController?.viewModel.ticketDetails = viewModel.arrMyOrder[indexPath.row]
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
 }
@@ -86,10 +86,10 @@ extension MyOrderViewController {
                                       completion: { isTrue, message in
                 if isTrue {
                     if isFromUpcoming {
-                        self.viewModel.upcomingCount = self.viewModel.arrMyOrder?.count ?? 0
+                        self.viewModel.upcomingCount = self.viewModel.arrMyOrder.count
                         self.btnUpcoming.setTitle("Upcoming (\(self.viewModel.upcomingCount))", for: .normal)
                     } else {
-                        self.viewModel.pastCount = self.viewModel.arrMyOrder?.count ?? 0
+                        self.viewModel.pastCount = self.viewModel.arrMyOrder.count
                         self.btnPast.setTitle("Past (\(self.viewModel.pastCount))", for: .normal)
                     }
                     self.upComingTableView.reloadData()
@@ -137,6 +137,7 @@ extension MyOrderViewController {
     func setButtonsTitle() {
         self.btnUpcoming.setTitle("Upcoming", for: .normal)
         self.btnPast.setTitle("Past", for: .normal)
+        viewModel.arrMyOrder.removeAll()
     }
     func setFont() {
         segmentBgView.addBottomShadow()
@@ -202,12 +203,14 @@ extension MyOrderViewController {
         viewModel.isFromUpcoming = true
         setButtonBackground()
         pastView.isHidden = true
+        viewModel.arrMyOrder.removeAll()
         viewModel.myOrdersModel?.pageNumber = 1
         getMyOrderApiCall(isFromUpcoming: true)
     }
     func pastAction() {
         viewModel.isFromUpcoming = false
         setButtonBackground()
+        viewModel.arrMyOrder.removeAll()
         viewModel.myOrdersModel?.pageNumber = 1
         getMyOrderApiCall(isFromUpcoming: false)
     }
@@ -216,7 +219,7 @@ extension MyOrderViewController {
     }
     func loadData() {
         viewModel.myOrdersModel?.pageNumber += 1
-        if viewModel.arrMyOrder?.count != viewModel.totalPage {
+        if viewModel.arrMyOrder.count != viewModel.totalPage {
             print("viewModel.totalPage", viewModel.totalPage)
             print("load more data")
             getMyOrderApiCall(isFromUpcoming: viewModel.isFromUpcoming)
