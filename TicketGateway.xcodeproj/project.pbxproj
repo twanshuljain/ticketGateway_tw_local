@@ -260,6 +260,8 @@
 		18D361412A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */; };
 		18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA75302A4AFD5700113541 /* FilterViewController.swift */; };
 		18DF185A2A3CA0CA00E89AB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DF18592A3CA0CA00E89AB5 /* Main.storyboard */; };
+		18E2ECA12A977B30000F73F6 /* EventPromoCodeRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2ECA02A977B30000F73F6 /* EventPromoCodeRequestModel.swift */; };
+		18E2ECA32A977BDF000F73F6 /* EventPromoCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2ECA22A977BDF000F73F6 /* EventPromoCodeModel.swift */; };
 		18E8442729E4194300F6525A /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E8442629E4194300F6525A /* APIHandler.swift */; };
 		18E8442B29E419F800F6525A /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E8442A29E419F800F6525A /* FileUploader.swift */; };
 		18F0FBCF2A4040CA00F9768E /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */; };
@@ -676,6 +678,8 @@
 		18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTiclketAddOnViewModel.swift; sourceTree = "<group>"; };
 		18DA75302A4AFD5700113541 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		18DF18592A3CA0CA00E89AB5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		18E2ECA02A977B30000F73F6 /* EventPromoCodeRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeRequestModel.swift; sourceTree = "<group>"; };
+		18E2ECA22A977BDF000F73F6 /* EventPromoCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeModel.swift; sourceTree = "<group>"; };
 		18E8442629E4194300F6525A /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		18E8442A29E419F800F6525A /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
 		18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
@@ -1137,6 +1141,8 @@
 			children = (
 				1817A8152A712EFF00278512 /* EventPromoCodeVC.swift */,
 				18CF93F02A8CE3A000C9050B /* EventPromoCodeViewModel.swift */,
+				18E2ECA02A977B30000F73F6 /* EventPromoCodeRequestModel.swift */,
+				18E2ECA22A977BDF000F73F6 /* EventPromoCodeModel.swift */,
 			);
 			path = EventPromoCode;
 			sourceTree = "<group>";
@@ -3172,6 +3178,7 @@
 				18FBC0FF2A309239002CF129 /* AmountAddedSuccessfullyVC.swift in Sources */,
 				18F6AEF02A42C7E600500678 /* UIFont+Extension.swift in Sources */,
 				18F5A4C62A4EA55900CA18F7 /* SelectTicketTypeViewModel.swift in Sources */,
+				18E2ECA12A977B30000F73F6 /* EventPromoCodeRequestModel.swift in Sources */,
 				184D046529EE7FFF0008B825 /* RSCountryDialCode.swift in Sources */,
 				18F6F74129E959A7007B9513 /* Popover.swift in Sources */,
 				18FBC1012A309239002CF129 /* MyWalletVC.swift in Sources */,
@@ -3306,6 +3313,7 @@
 				18F5A4D42A4EB01D00CA18F7 /* ContactTableViewCell.swift in Sources */,
 				18B339B42A555C7500340E3E /* ManageEventSettingTableViewCell.swift in Sources */,
 				18F6F74329E982D1007B9513 /* CreateAccountVC.swift in Sources */,
+				18E2ECA32A977BDF000F73F6 /* EventPromoCodeModel.swift in Sources */,
 				18FBC0FD2A309239002CF129 /* CostumeFrontLineViewController.swift in Sources */,
 				187734E629E8324D00E26B65 /* GradientButton.swift in Sources */,
 				18FBC0C32A309239002CF129 /* ManageEventSellTicketTableViewList.swift in Sources */,
@@ -3530,7 +3538,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketGateway/TicketGateway.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5KQQ4NSG87;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3576,7 +3584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketGateway/TicketGateway.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5KQQ4NSG87;
 				GENERATE_INFOPLIST_FILE = YES;

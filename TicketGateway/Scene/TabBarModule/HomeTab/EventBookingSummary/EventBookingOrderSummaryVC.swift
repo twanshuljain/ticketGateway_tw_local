@@ -40,6 +40,8 @@ class EventBookingOrderSummaryVC: UIViewController {
     @IBOutlet weak var lblRefundDisc: UILabel!
     @IBOutlet weak var lblDiscouted: UILabel!
     @IBOutlet weak var lblDiscoutedValue: UILabel!
+    @IBOutlet weak var discountViewHt : NSLayoutConstraint!
+
     
     
     var viewModel = EventBookingOrderSummaryVieModel()
@@ -107,14 +109,29 @@ extension EventBookingOrderSummaryVC {
         let processingCharge = Double((self.viewModel.feeStructure?.processingFees ?? "0")) ?? 0.0
         let facilityCharge = Double(self.viewModel.feeStructure?.facilityFees ?? 0)
         let subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
+        let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
+        let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
+        
         self.lblServiceChargeValue.text = "CA$ \(serviceCharge)"
         self.lblProcessingFeeValue.text = "CA$ \(processingCharge)"
         self.lblfacilityFeeValue.text = "CA$ \(facilityCharge)"
         self.lblSubTotalValue.text = "CA$ \(subTotal)"
-        var total = serviceCharge + processingCharge + facilityCharge + subTotal
+        var total = 0.0
+        
+        
+        if discountValue != 0.0 && self.viewModel.discountType != nil{
+            total = serviceCharge + processingCharge + facilityCharge + discountedFinalPrice
+            self.lblDiscouted.isHidden = false
+            self.lblDiscoutedValue.isHidden = false
+            self.discountViewHt.constant = 40
+            self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(discountValue)%" : "- $\(discountValue)"
+        }else{
+            total = serviceCharge + processingCharge + facilityCharge + subTotal
+            self.lblDiscouted.isHidden = true
+            self.lblDiscoutedValue.isHidden = true
+            self.discountViewHt.constant = 0
+        }
         self.lblTotalAmtValue.text = "CA$ \(total)"
-        
-        
         self.viewModel.totalTicketPrice = "\(total)"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
         self.tblAddOnEtcThings.selectedAddOnList = self.viewModel.selectedAddOnList

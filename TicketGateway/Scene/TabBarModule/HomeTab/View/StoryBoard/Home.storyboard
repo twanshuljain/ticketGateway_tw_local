@@ -993,14 +993,23 @@
                                                                                             </userDefinedRuntimeAttribute>
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </textField>
+                                                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBb-ur-cwE">
+                                                                                        <rect key="frame" x="151" y="14" width="22" height="22"/>
+                                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                        <state key="normal" image="cross_ip"/>
+                                                                                    </button>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="8K1-Eh-le7" firstAttribute="top" secondItem="1ya-Np-Bm9" secondAttribute="top" id="0Uh-gK-MLF"/>
+                                                                                    <constraint firstItem="bBb-ur-cwE" firstAttribute="bottom" secondItem="Mcd-Gk-NPR" secondAttribute="bottom" id="1o8-bB-A51"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="8K1-Eh-le7" secondAttribute="trailing" id="JF0-Lx-WIg"/>
+                                                                                    <constraint firstItem="bBb-ur-cwE" firstAttribute="trailing" secondItem="Mcd-Gk-NPR" secondAttribute="trailing" id="KXn-Oa-s9p"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="8K1-Eh-le7" secondAttribute="bottom" id="PHx-N4-mK8"/>
                                                                                     <constraint firstItem="Mcd-Gk-NPR" firstAttribute="centerY" secondItem="1ya-Np-Bm9" secondAttribute="centerY" id="PJY-Ne-cBl"/>
+                                                                                    <constraint firstItem="bBb-ur-cwE" firstAttribute="leading" secondItem="Mcd-Gk-NPR" secondAttribute="leading" id="YCd-35-LAn"/>
                                                                                     <constraint firstAttribute="height" constant="50" id="YRY-z9-CQT"/>
+                                                                                    <constraint firstItem="bBb-ur-cwE" firstAttribute="top" secondItem="Mcd-Gk-NPR" secondAttribute="top" id="mKp-OL-8iu"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="Mcd-Gk-NPR" secondAttribute="trailing" constant="10" id="nD4-kZ-VPb"/>
                                                                                     <constraint firstItem="8K1-Eh-le7" firstAttribute="leading" secondItem="1ya-Np-Bm9" secondAttribute="leading" constant="10" id="pAi-Rp-xyF"/>
                                                                                 </constraints>
@@ -1462,6 +1471,7 @@
                         <outlet property="btnCheckTermCondition" destination="84t-Za-ZOk" id="uWH-gS-1qw"/>
                         <outlet property="btnContinue" destination="T1g-Z6-0Ym" id="61y-AJ-ELj"/>
                         <outlet property="btnDown" destination="Nlb-d1-YjL" id="Idm-ax-fvi"/>
+                        <outlet property="btnRemoveAccessCode" destination="bBb-ur-cwE" id="b80-gM-X50"/>
                         <outlet property="enterAccesCodeStackView" destination="Au6-uO-i7h" id="yq4-OW-JOn"/>
                         <outlet property="enterAccessCodeBgView" destination="1ya-Np-Bm9" id="Eia-jb-hvc"/>
                         <outlet property="imgApplyAccessCode" destination="Mcd-Gk-NPR" id="coY-1n-GiA"/>
@@ -4757,13 +4767,13 @@ TicketGateway fee is non refundable.</string>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-RF-Ikr">
                                                                                             <rect key="frame" x="0.0" y="15.333333333333332" width="325" height="44.666666666666671"/>
                                                                                             <subviews>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="20.333333333333332"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
                                                                                                     <rect key="frame" x="0.0" y="24.333333333333336" width="325" height="20.333333333333336"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
@@ -4904,8 +4914,9 @@ TicketGateway fee is non refundable.</string>
         <image name="arrow-down" width="24" height="24"/>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
-        <image name="chevron-down_ip" width="16" height="16"/>
+        <image name="chevron-down_ip" width="24.333333969116211" height="24"/>
         <image name="circlechevronUp_ip" width="24" height="24"/>
+        <image name="cross_ip" width="24.333333969116211" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>
         <image name="done-blue_ip" width="24" height="24"/>
         <image name="homeDas" width="96" height="96"/>
