@@ -119,11 +119,11 @@ extension OtpNumberVC {
         self.vwResend.isHidden = true
         if self.isComingFrom == .OrderSummary{
             if Reachability.isConnectedToNetwork(){
-                SVProgressHUD.show()
+                self.view.showLoading(centreToView: self.view)
                 viewModelResendOtp.checkoutVerifyResendOTP(userType: self.userType) { isTrue , messageShowToast in
                     if isTrue == true {
                         DispatchQueue.main.async { [self] in
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.viewModel.totalTime = 20
                             [self.txtOtp1,txtOtp2,txtOtp3,txtOtp4].forEach{$0?.text = ""}
                             self.startTimer()
@@ -132,7 +132,7 @@ extension OtpNumberVC {
                     }
                     else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }
@@ -142,11 +142,11 @@ extension OtpNumberVC {
             }
         }else{
             if Reachability.isConnectedToNetwork(){
-                SVProgressHUD.show()
+                self.view.showLoading(centreToView: self.view)
                 viewModelResendOtp.signInAPI { isTrue , messageShowToast in
                     if isTrue == true {
                         DispatchQueue.main.async { [self] in
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.viewModel.totalTime = 20
                             [self.txtOtp1,txtOtp2,txtOtp3,txtOtp4].forEach{$0?.text = ""}
                             self.startTimer()
@@ -155,7 +155,7 @@ extension OtpNumberVC {
                     }
                     else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }
@@ -176,16 +176,16 @@ extension OtpNumberVC {
             if self.isComingFrom == .OrderSummary{
                 if (self.userType == .new) || (self.userType == .existing && self.isChangeMobileNumberTap == true){
                     if Reachability.isConnectedToNetwork(){
-                        SVProgressHUD.show()
+                        self.view.showLoading(centreToView: self.view)
                         viewModel.checkoutVerifyOTP(isComingFrom: self.isComingFrom, complition: { isTrue, messageShowToast  in
                             if isTrue == true {
                                 DispatchQueue.main.async {
-                                    SVProgressHUD.dismiss()
+                                    self.view.stopLoading()
                                     self.navigateToPaymentVc()
                                 }
                             } else {
                                 DispatchQueue.main.async {
-                                    SVProgressHUD.dismiss()
+                                    self.view.stopLoading()
                                     self.showToast(message: messageShowToast)
                                 }
                             }
@@ -195,9 +195,11 @@ extension OtpNumberVC {
                     }
                 }else{
                     if Reachability.isConnectedToNetwork(){
-                        SVProgressHUD.show()
+                        self.view.showLoading(centreToView: self.view)
                         viewModel.checkoutVerifyOTP(isComingFrom: isComingFrom, complition: { isTrue, messageShowToast  in
-                            SVProgressHUD.dismiss()
+                            DispatchQueue.main.async {
+                                self.view.stopLoading()
+                            }
                             if isTrue == true {
                                 self.otpVerified?(true, messageShowToast)
                             } else {
@@ -222,11 +224,11 @@ extension OtpNumberVC {
                 //     ------------------------------------
                 //        TO BE DONE WHEN API IS WORKING
                 if Reachability.isConnectedToNetwork(){
-                    SVProgressHUD.show()
+                    self.view.showLoading(centreToView: self.view)
                     viewModel.signUpVerifyNumberAPI(complition: { isTrue, messageShowToast  in
                         if isTrue == true {
-                            SVProgressHUD.dismiss()
                             DispatchQueue.main.async {
+                                self.view.stopLoading()
                                 let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
                                 view.strMessage = "Your number has been verified successfully!"
                                 view.closerForBack = { istrue in
@@ -243,7 +245,7 @@ extension OtpNumberVC {
                             }
                         } else {
                             DispatchQueue.main.async {
-                                SVProgressHUD.dismiss()
+                                self.view.stopLoading()
                                 self.showToast(message: messageShowToast)
                             }
                         }

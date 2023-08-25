@@ -29,11 +29,11 @@ extension GetEventCategoryViewModel {
     func funcCallApi(vc:EventSearchHomeVC?){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            vc?.view.showLoading(centreToView: vc?.view ?? UIView())
             self.GetEventCategoryApi(complition: { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
                     DispatchQueue.main.async {
+                        vc?.view.stopLoading()
                         vc?.collVwEvent.arrData = self.arrCategoryData
                         vc?.collVwEventSubCategory.arrData = self.arrCategoryData
                         vc?.collVwEvent.reloadData()
@@ -41,14 +41,14 @@ extension GetEventCategoryViewModel {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        vc?.view.stopLoading()
                         vc?.showToast(message: messageShowToast)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                vc?.view.stopLoading()
                 vc?.showToast(message: ValidationConstantStrings.networkLost)
             }
         }

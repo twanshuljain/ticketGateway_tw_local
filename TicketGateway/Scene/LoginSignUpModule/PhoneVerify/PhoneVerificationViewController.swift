@@ -100,14 +100,14 @@ extension PhoneVerificationViewController {
             }
             if isValidate.isValid {
                 if Reachability.isConnectedToNetwork(){
-                    SVProgressHUD.show()
+                    self.view.showLoading(centreToView: self.view)
                     let number = "\(lblDialCountryCode.text ?? "")" + (self.txtNumber.text ?? "")
                     let numberWithoutCode = self.txtNumber.text ?? ""
                     let param = ValidateForNumberRequest(cell_phone: numberWithoutCode, email: self.txtEmail.text ?? "")
                     signInViewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
                         if isTrue == true {
                             DispatchQueue.main.async { [self] in
-                                SVProgressHUD.dismiss()
+                                self.view.stopLoading()
                                 let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
                                 UserDefaultManager.share.clearAllUserDataAndModel()
                                 let objUserModel = SignInAuthModel(id: userModel?.id, number: numberWithoutCode, fullName: userModel?.fullName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
@@ -133,7 +133,7 @@ extension PhoneVerificationViewController {
                         }
                         else {
                             DispatchQueue.main.async {
-                                SVProgressHUD.dismiss()
+                                self.view.stopLoading()
                                 self.showToast(message: messageShowToast)
                             }
                         }
@@ -142,7 +142,7 @@ extension PhoneVerificationViewController {
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             } else {
-                SVProgressHUD.dismiss()
+                self.view.stopLoading()
                 self.showToast(message: isValidate.errorMessage)
             }
         }else if userType == .existing && self.isChangeMobileNumberTap == false{

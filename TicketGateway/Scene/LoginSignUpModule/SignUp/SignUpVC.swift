@@ -107,11 +107,11 @@ extension SignUpVC {
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {
             if Reachability.isConnectedToNetwork() {
-                SVProgressHUD.show()
+                self.view.showLoading(centreToView: self.view)
                 viewModel.signUpEmailAPI(complition: { isTrue, messageShowToast in
                     if isTrue == true {
-                        SVProgressHUD.dismiss()
                         DispatchQueue.main.async {
+                            self.view.stopLoading()
                             let view = self.createView(storyboard: .main, storyboardID: .OtpEmailVC) as? OtpEmailVC
                             let obj =   DataHoldOnSignUpProcessModel.init(strEmail: self.txtEmail.text ?? "", strNumber: "", strStatus: "", strDialCountryCode: "", strCountryCode: "")
                             objAppShareData.dicToHoldDataOnSignUpModule = obj
@@ -120,20 +120,20 @@ extension SignUpVC {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }
                 })
             } else {
                 DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
+                    self.view.stopLoading()
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.view.stopLoading()
                 self.showToast(message: isValidate.errormessage)
             }
         }

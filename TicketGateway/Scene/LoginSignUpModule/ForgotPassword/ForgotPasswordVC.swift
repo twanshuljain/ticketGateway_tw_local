@@ -58,11 +58,11 @@ extension ForgotPasswordVC {
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {
             if Reachability.isConnectedToNetwork() {
-                SVProgressHUD.show()
+                self.view.showLoading(centreToView: self.view)
                 viewModel.forgotPasswordAPI { isTrue, messageShowToast in
                     if isTrue == true {
-                        SVProgressHUD.dismiss()
                         DispatchQueue.main.async {
+                            self.view.stopLoading()
                            // self.showToast(message: EMAIL_LINK_SENT)
                             let vc = self.createView(storyboard: .main, storyboardID: .EmailSentVC) as! EmailSentVC
                             vc.strForEmail = self.txtEmail.text ?? ""
@@ -80,7 +80,7 @@ extension ForgotPasswordVC {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }

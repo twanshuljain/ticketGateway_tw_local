@@ -167,11 +167,11 @@ extension LoginVC {
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {
             if Reachability.isConnectedToNetwork() {
-                SVProgressHUD.show()
+                self.view.showLoading(centreToView: self.view)
                 viewModel.signInAPI { isTrue, messageShowToast in
                     if isTrue == true {
                         DispatchQueue.main.async { [self] in
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             if self.viewModel.isFromNumberOrEmail == true {
                                 objSceneDelegate.showTabBar()
                             } else {
@@ -186,7 +186,7 @@ extension LoginVC {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }

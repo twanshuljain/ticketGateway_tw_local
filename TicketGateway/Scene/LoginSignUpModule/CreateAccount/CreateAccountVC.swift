@@ -121,29 +121,29 @@ extension CreateAccountVC {
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {
             if Reachability.isConnectedToNetwork() {
-                SVProgressHUD.show()
+                self.view.showLoading(centreToView: self.view)
                 viewModel.createAccountAPI(complition: { isTrue, messageShowToast in
                     if isTrue == true {
-                        SVProgressHUD.dismiss()
                         DispatchQueue.main.async {
                             //objSceneDelegate.showTabBar()
+                            self.view.stopLoading()
                             objSceneDelegate.showLogin()
                         }
                     } else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }
                 })
             } else {
                 DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
+                    self.view.stopLoading()
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
         } else {
-            SVProgressHUD.dismiss()
+            self.view.stopLoading()
             self.showToast(message: isValidate.errorMessage)
         }
     }
