@@ -17,6 +17,13 @@ extension Array {
             }
         }
     }
+    
+    mutating func appendAtBeginning(newItem : [Element]){
+        let copy = self
+        self = []
+        self.append(contentsOf: newItem)
+        self.append(contentsOf: copy)
+    }
 }
 extension Array where Element:Equatable {
     func removeDuplicates() -> [Element] {

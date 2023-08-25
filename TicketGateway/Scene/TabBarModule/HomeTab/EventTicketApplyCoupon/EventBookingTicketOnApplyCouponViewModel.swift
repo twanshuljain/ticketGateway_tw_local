@@ -43,7 +43,8 @@ extension EventBookingTicketOnApplyCouponViewModel {
                 if response.status_code == 200 {
                     if let data = response.data{
                         self.arrDataForAccessCode = data
-                        self.arrTicketList?.append(contentsOf: data)
+                        self.arrTicketList?.appendAtBeginning(newItem: data)
+                        //self.arrTicketList?.append(contentsOf: data)
                         print("---------------arrDataForAccessCode", self.arrDataForAccessCode)
                         print("---------------arrTicketList", self.arrTicketList)
                     }

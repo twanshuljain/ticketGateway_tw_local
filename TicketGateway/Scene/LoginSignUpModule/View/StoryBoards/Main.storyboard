@@ -2811,13 +2811,13 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-Cu-r5b">
                                                                     <rect key="frame" x="124" y="20.666666666666671" width="240" height="67"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7h2-Ws-znK">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Mobile number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7h2-Ws-znK">
                                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="22.666666666666668"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                                             <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the email account you want to login" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-e2-KnD">
+                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select the email account you want to login" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-e2-KnD">
                                                                             <rect key="frame" x="0.0" y="27.666666666666668" width="240" height="39.333333333333329"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
@@ -3115,7 +3115,7 @@ Sit sagittis ullamcorper ante.</string>
                                 <rect key="frame" x="0.0" y="70" width="414" height="666"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ckm-BG-0Ef">
-                                        <rect key="frame" x="25" y="20" width="364" height="340"/>
+                                        <rect key="frame" x="25" y="20" width="364" height="200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5i-Ux-3Fa">
                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="60"/>
@@ -3254,10 +3254,16 @@ Sit sagittis ullamcorper ante.</string>
                                                     <constraint firstAttribute="trailing" secondItem="ebV-Mt-Vns" secondAttribute="trailing" constant="10" id="keG-I7-jzP"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPX-8b-t1U">
-                                                <rect key="frame" x="0.0" y="210" width="364" height="60"/>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="duZ-Kc-sZE">
+                                        <rect key="frame" x="25" y="230" width="364" height="130"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H9i-cd-bno">
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="60"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Email" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAq-7m-FvR">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Email" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBn-Gr-evx">
                                                         <rect key="frame" x="0.0" y="38" width="364" height="17"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
@@ -3267,17 +3273,17 @@ Sit sagittis ullamcorper ante.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="GAq-7m-FvR" secondAttribute="trailing" id="06O-PK-cmX"/>
-                                                    <constraint firstAttribute="bottom" secondItem="GAq-7m-FvR" secondAttribute="bottom" constant="5" id="CnZ-pJ-QZR"/>
-                                                    <constraint firstItem="GAq-7m-FvR" firstAttribute="leading" secondItem="aPX-8b-t1U" secondAttribute="leading" id="FRu-nA-5OB"/>
-                                                    <constraint firstAttribute="height" constant="60" id="eyU-ic-aM0"/>
-                                                    <constraint firstItem="GAq-7m-FvR" firstAttribute="centerX" secondItem="aPX-8b-t1U" secondAttribute="centerX" id="oB3-Il-Ykp"/>
+                                                    <constraint firstItem="LBn-Gr-evx" firstAttribute="centerX" secondItem="H9i-cd-bno" secondAttribute="centerX" id="AIp-i1-8d6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="LBn-Gr-evx" secondAttribute="bottom" constant="5" id="EYC-7Q-ASb"/>
+                                                    <constraint firstItem="LBn-Gr-evx" firstAttribute="leading" secondItem="H9i-cd-bno" secondAttribute="leading" id="Ppl-RM-SGw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LBn-Gr-evx" secondAttribute="trailing" id="Q5M-pT-FPV"/>
+                                                    <constraint firstAttribute="height" constant="60" id="Zbn-6m-uc0"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yce-d8-ck4">
-                                                <rect key="frame" x="0.0" y="280" width="364" height="60"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEa-nG-FbT">
+                                                <rect key="frame" x="0.0" y="70" width="364" height="60"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NnS-p6-Pqy" customClass="TweeAttributedTextField" customModule="TweeTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n3a-8V-Fv9" customClass="TweeAttributedTextField" customModule="TweeTextField">
                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="EnterTxtFiled"/>
@@ -3287,11 +3293,11 @@ Sit sagittis ullamcorper ante.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="NnS-p6-Pqy" firstAttribute="leading" secondItem="yce-d8-ck4" secondAttribute="leading" id="5P0-Bd-8PC"/>
-                                                    <constraint firstAttribute="bottom" secondItem="NnS-p6-Pqy" secondAttribute="bottom" id="GCd-px-3tW"/>
-                                                    <constraint firstAttribute="height" constant="60" id="HzP-nE-dxk"/>
-                                                    <constraint firstAttribute="trailing" secondItem="NnS-p6-Pqy" secondAttribute="trailing" id="e99-dR-An9"/>
-                                                    <constraint firstItem="NnS-p6-Pqy" firstAttribute="top" secondItem="yce-d8-ck4" secondAttribute="top" id="jBb-N1-jpU"/>
+                                                    <constraint firstAttribute="height" constant="60" id="AXp-4D-rg0"/>
+                                                    <constraint firstAttribute="bottom" secondItem="n3a-8V-Fv9" secondAttribute="bottom" id="Jzl-9A-yaw"/>
+                                                    <constraint firstItem="n3a-8V-Fv9" firstAttribute="leading" secondItem="zEa-nG-FbT" secondAttribute="leading" id="dON-SW-FJF"/>
+                                                    <constraint firstItem="n3a-8V-Fv9" firstAttribute="top" secondItem="zEa-nG-FbT" secondAttribute="top" id="knc-Be-BYs"/>
+                                                    <constraint firstAttribute="trailing" secondItem="n3a-8V-Fv9" secondAttribute="trailing" id="vHV-b8-Oav"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3309,7 +3315,7 @@ Sit sagittis ullamcorper ante.</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kd-WV-Vtw">
-                                        <rect key="frame" x="283" y="365" width="106" height="30"/>
+                                        <rect key="frame" x="283" y="370" width="106" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="CiC-Gv-65m"/>
                                         </constraints>
@@ -3321,7 +3327,7 @@ Sit sagittis ullamcorper ante.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6S1-9O-GeG" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="411" width="364" height="50"/>
+                                        <rect key="frame" x="25" y="416" width="364" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="PZT-Go-Keq"/>
@@ -3334,13 +3340,16 @@ Sit sagittis ullamcorper ante.</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ckm-BG-0Ef" secondAttribute="trailing" constant="25" id="3sh-Dm-MZe"/>
-                                    <constraint firstItem="7Kd-WV-Vtw" firstAttribute="top" secondItem="Ckm-BG-0Ef" secondAttribute="bottom" constant="5" id="DJ6-Zb-5I8"/>
                                     <constraint firstItem="Ckm-BG-0Ef" firstAttribute="top" secondItem="sys-pd-ENg" secondAttribute="top" constant="20" id="MZA-6y-wPu"/>
+                                    <constraint firstItem="duZ-Kc-sZE" firstAttribute="leading" secondItem="Ckm-BG-0Ef" secondAttribute="leading" id="Nt1-2K-T7L"/>
                                     <constraint firstAttribute="trailing" secondItem="6S1-9O-GeG" secondAttribute="trailing" constant="25" id="TE9-R5-BLI"/>
                                     <constraint firstItem="Ckm-BG-0Ef" firstAttribute="leading" secondItem="sys-pd-ENg" secondAttribute="leading" constant="25" id="Ytj-hJ-ovr"/>
+                                    <constraint firstItem="duZ-Kc-sZE" firstAttribute="trailing" secondItem="Ckm-BG-0Ef" secondAttribute="trailing" id="jFv-od-zfD"/>
                                     <constraint firstItem="6S1-9O-GeG" firstAttribute="leading" secondItem="sys-pd-ENg" secondAttribute="leading" constant="25" id="jM0-Yc-2V9"/>
                                     <constraint firstItem="6S1-9O-GeG" firstAttribute="top" secondItem="7Kd-WV-Vtw" secondAttribute="bottom" constant="16" id="n7E-fz-s8c"/>
+                                    <constraint firstItem="duZ-Kc-sZE" firstAttribute="top" secondItem="Ckm-BG-0Ef" secondAttribute="bottom" constant="10" id="ojP-gT-9rK"/>
                                     <constraint firstItem="7Kd-WV-Vtw" firstAttribute="trailing" secondItem="Ckm-BG-0Ef" secondAttribute="trailing" id="sUT-Vu-Jdf"/>
+                                    <constraint firstItem="7Kd-WV-Vtw" firstAttribute="top" secondItem="duZ-Kc-sZE" secondAttribute="bottom" constant="10" id="uQd-ge-acm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -3363,10 +3372,10 @@ Sit sagittis ullamcorper ante.</string>
                         <outlet property="imgCountry" destination="61x-91-hRQ" id="G45-Ue-FDR"/>
                         <outlet property="lblDialCountryCode" destination="0YY-Wl-59W" id="wcW-cb-EBg"/>
                         <outlet property="navigationView" destination="XuZ-6X-3F2" id="wBm-8c-G2g"/>
-                        <outlet property="txtEmail" destination="NnS-p6-Pqy" id="V60-4o-qYp"/>
+                        <outlet property="txtEmail" destination="n3a-8V-Fv9" id="9Te-Td-pyD"/>
                         <outlet property="txtNumber" destination="ebV-Mt-Vns" id="CUp-vw-R6P"/>
-                        <outlet property="vwEmaiLabel" destination="aPX-8b-t1U" id="u0f-NL-vBJ"/>
-                        <outlet property="vwEmail" destination="yce-d8-ck4" id="9Dq-vO-5rN"/>
+                        <outlet property="vwEmaiLabel" destination="H9i-cd-bno" id="sHs-SO-tv7"/>
+                        <outlet property="vwEmail" destination="zEa-nG-FbT" id="coD-el-XWT"/>
                         <outlet property="vwNumber" destination="88F-fT-PO3" id="fuh-RS-aqg"/>
                     </connections>
                 </viewController>
