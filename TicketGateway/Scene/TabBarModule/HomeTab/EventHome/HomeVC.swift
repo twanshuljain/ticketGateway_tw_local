@@ -90,6 +90,8 @@ extension HomeVC {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
             if self.viewModel.arrEventCategory.indices.contains(index.section){
                 switch self.viewModel.arrEventCategory[index.section] {
+                case .noLocationData:
+                    print("No Data Found")
                 case .nearByLocation:
                     if self.viewModel.arrSearchCategoryData.indices.contains(index.row){
                         view.viewModel.eventId = self.viewModel.arrSearchCategoryData[index.row].event?.id
@@ -114,6 +116,7 @@ extension HomeVC {
                     if self.viewModel.arrDataaUpcoming.indices.contains(index.row){
                         view.viewModel.eventId = self.viewModel.arrDataaUpcoming[index.row].event?.id
                     }
+                
                 }
                 self.funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
             }

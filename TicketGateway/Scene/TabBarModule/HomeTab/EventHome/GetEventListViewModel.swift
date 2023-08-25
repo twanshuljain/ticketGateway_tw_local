@@ -112,6 +112,8 @@ extension HomeDashBoardViewModel {
                             self.arrSearchCategoryData = items
                             if items.count != 0{
                                 self.arrEventCategory.append(.nearByLocation)
+                            }else{
+                                self.arrEventCategory.append(.noLocationData)
                             }
                         }
                         complition(true, response.message ?? "")

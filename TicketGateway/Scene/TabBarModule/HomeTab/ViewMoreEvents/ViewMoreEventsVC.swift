@@ -104,6 +104,8 @@ extension ViewMoreEventsVC{
         
         if self.viewModel.isComingFrom == .Home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .noLocationData:
+                print("No Data Found")
             case .nearByLocation:
                 if self.viewModel.itemsLocation.indices.contains(index.row){
                     view?.viewModel.eventId = self.viewModel.itemsLocation[index.row].event?.id
@@ -400,6 +402,8 @@ extension ViewMoreEventsVC{
         if self.viewModel.isComingFrom == .Home{
             
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .noLocationData:
+                print("No Data Found")
             case .nearByLocation:
                 if self.viewModel.itemsLocation.count != self.viewModel.totalPage{
                     //self.tblView.tableFooterView = spinner
@@ -476,6 +480,9 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.viewModel.isComingFrom == .Home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
+            case .noLocationData:
+                print("No Data Found")
+                return 0
             case .nearByLocation:
                 return self.viewModel.itemsLocation.count
             case .weekend:
@@ -506,6 +513,8 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             }
             if self.viewModel.isComingFrom == .Home {
                 switch self.viewModel.arrEventCategory[self.viewModel.index] {
+                case .noLocationData:
+                    print("No Data Found")
                 case .nearByLocation:
                     if self.viewModel.itemsLocation.indices.contains(indexPath.row){
                         cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
@@ -551,6 +560,8 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         print("IndexPath : \(indexPath.row)")
         if viewModel.isComingFrom == .Home {
             switch viewModel.arrEventCategory[viewModel.index] {
+            case .noLocationData:
+                print("No Data Found")
             case .nearByLocation:
                 if viewModel.itemsLocation.indices.contains(indexPath.row){
                     toShowActivityController(eventDetail: viewModel.itemsLocation[indexPath.row])
@@ -587,6 +598,8 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         print("IndexPath row : \(indexPath.row)")
         if viewModel.isComingFrom == .Home {
             switch viewModel.arrEventCategory[viewModel.index] {
+            case .noLocationData:
+                print("No Data Found")
             case .nearByLocation:
                 if viewModel.itemsLocation.indices.contains(indexPath.row) {
                     viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked?.toggle()
