@@ -15,6 +15,7 @@ class MyTicketVC: UIViewController {
     @IBOutlet weak var vwDashedLine: UIView!
     @IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
+    var viewModel: MyTicketViewModel = MyTicketViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
@@ -91,8 +92,9 @@ extension MyTicketVC {
         }
     }
     func seeFullTicketAction() {
-        let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC)
-        self.navigationController?.pushViewController(seeFullTicketVC, animated: false)
+        let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC) as? SeeFullTicketVC
+        seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails
+        self.navigationController?.pushViewController(seeFullTicketVC!, animated: false)
     }
     func saveTicketAsImage() {
     }

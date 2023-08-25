@@ -22,4 +22,18 @@ extension Date {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss+00:00"
         return dateFormatter.string(from: self)
     }
+    func getOnlyTimeFromDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "hh:mm a" // output format
+        let time = dateFormatter.string(from: date)
+        return time
+    }
+    func getWeekDay(date: Date) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        return dateFormatter.string(from: date).capitalized
+    }
 }

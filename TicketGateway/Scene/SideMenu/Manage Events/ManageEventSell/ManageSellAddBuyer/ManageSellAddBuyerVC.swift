@@ -71,16 +71,42 @@ extension ManageSellAddBuyerVC {
     func setIntialUiDesign() {
         //Default Country
         //UI Changes---
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         self.imgCountry.image = nil
+//        if self.imgCountry.image == nil {
+//            let str = NSLocale.current.regionCode
+//            let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
+//            self.imgCountry.image = UIImage(named: imagePath)
+//            self.lblDialCountryCode.text = "+91"
+//            let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+//            if arr.count>0 {
+//                let country = arr[0]
+//                viewModel.strCountryDialCode = country.dial_code
+//                self.lblDialCountryCode.text = country.dial_code
+//                self.viewModel.strCountryCode = country.country_code
+//                self.viewModel.strCountryName = country.country_name
+//                self.lblDialCountryCode.text = country.dial_code
+//                self.viewModel.strCountryCode = country.country_code
+//                let imagePath = "CountryPicker.bundle/\( country.country_code).png"
+//                self.imgCountry.image = UIImage(named: imagePath)
+//            }
+//        } else {
+//        }
         if self.imgCountry.image == nil {
-            let str = NSLocale.current.regionCode
+            var str = ""
+            if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
+                str = userModel?.strDialCountryCode ?? ""
+            }else{
+                str = NSLocale.current.regionCode ?? ""
+            }
+            
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
             let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
             if arr.count>0 {
                 let country = arr[0]
-                viewModel.strCountryDialCode = country.dial_code
+                self.viewModel.strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code
                 self.viewModel.strCountryCode = country.country_code
                 self.viewModel.strCountryName = country.country_name
@@ -90,6 +116,7 @@ extension ManageSellAddBuyerVC {
                 self.imgCountry.image = UIImage(named: imagePath)
             }
         } else {
+            // noting to do
         }
     }
 }

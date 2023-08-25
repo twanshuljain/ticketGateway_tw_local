@@ -61,25 +61,24 @@ extension Organizers_Artists_ListVC {
     func callApiForOrganizersList(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            SVProgressHUD.show()
+            self.view.showLoading(centreToView: self.view)
             viewModelForOrganniser.getOrganizersList { isTrue, messageShowToast in
                 if isTrue == true {
-                    SVProgressHUD.dismiss()
                     DispatchQueue.main.async { [self] in
-                        
+                        self.view.stopLoading()
                         self.collVwTrending_Artists.reloadData()
                         
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.view.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
             }
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.view.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }

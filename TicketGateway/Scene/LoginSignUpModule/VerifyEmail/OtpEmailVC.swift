@@ -83,11 +83,11 @@ extension OtpEmailVC {
     }
     func btnResenOtpAction() {
         if Reachability.isConnectedToNetwork() {
-            SVProgressHUD.show()
+            self.view.showLoading(centreToView: self.view)
             viewModelResendOtp.signUpEmailAPI { isTrue, messageShowToast in
                 if isTrue == true {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.view.stopLoading()
                         [self.txtOtp1, self.txtOtp2, self.txtOtp3, self.txtOtp4].forEach {$0?.text = ""}
                         self.viewModel.totalTime = 60
                         self.startTimer()
@@ -95,7 +95,7 @@ extension OtpEmailVC {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.view.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }
@@ -114,11 +114,11 @@ extension OtpEmailVC {
             viewModel.otp = otp
             if isValidate.isValid {
                 if Reachability.isConnectedToNetwork() {
-                    SVProgressHUD.show()
+                    self.view.showLoading(centreToView: self.view)
                     viewModel.signUpVerifyEmailAPI(complition: { isTrue, messageShowToast  in
                         if isTrue == true {
-                            SVProgressHUD.dismiss()
                             DispatchQueue.main.async {
+                                self.view.stopLoading()
                                 let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
                                 view.strMessage = EMAIL_SENT_SUCCESSFULLY
                                 view.img = CHECK_RIGHT_ICON
@@ -135,7 +135,7 @@ extension OtpEmailVC {
                             }
                         } else {
                             DispatchQueue.main.async {
-                                SVProgressHUD.dismiss()
+                                self.view.stopLoading()
                                 self.showToast(message: messageShowToast)
                             }
                         }

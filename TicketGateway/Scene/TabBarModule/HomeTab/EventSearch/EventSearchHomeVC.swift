@@ -78,24 +78,24 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
     @objc func searchAction(_ sender: UITextField) {
         if Reachability.isConnectedToNetwork() // check internet connectivity
         {
-            SVProgressHUD.show()
+            self.view.showLoading(centreToView: self.view)
             viewModel.getEventSearchApi(searchText: sender.text ?? "", complition: { isTrue, showMessage in
                 if isTrue {
-                    SVProgressHUD.dismiss()
-                  DispatchQueue.main.async {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
                         self.tblEvents.arrSearchData = self.viewModel.arrSearchData
                         self.tblEvents.reloadData()
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.view.stopLoading()
                         self.showToast(message: showMessage)
                     }
                 }
             })
         } else {
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                self.view.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -207,7 +207,7 @@ extension EventSearchHomeVC: FavouriteAction {
         print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
         print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
         favouriteApiForHome(
-            likeStatus: eventDetail.isLikedEvent ?? false,
+            likeStatus: eventDetail.likeCountData?.isLiked ?? false,
             eventId: eventDetail.event?.id ?? 0
         )
     }

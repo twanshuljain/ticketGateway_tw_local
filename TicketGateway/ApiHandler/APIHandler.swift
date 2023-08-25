@@ -58,6 +58,10 @@ public enum APIName: String {
     case checkoutValidateUser = "payment/validate/checkout-user/"
     
     case ApplyAccessCode = "ticket/apply/access-code/"
+    case applyPromoCode = "ticket/apply/promo-code/"
+    
+    // Orders
+    case myOrders = "events/my/order/"
 }
 public enum GroupApiName: String {
     case auth = "auth"

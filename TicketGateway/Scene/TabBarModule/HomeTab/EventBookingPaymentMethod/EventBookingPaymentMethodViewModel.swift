@@ -129,7 +129,7 @@ extension EventBookingPaymentMethodViewModel{
         var ticketIDs = [CheckoutTicketID]()
         var addOnList = [CheckoutAddonList]()
         self.selectedArrTicketList.forEach { ticket in
-            let data = CheckoutTicketID.init(ticketType: ticket.ticketType ?? "", ticketName: ticket.ticketName ?? "", baseTicketID: ticket.ticketID ?? 0, quantity: ticket.selectedTicketQuantity ?? 0, ticketPrice: ticket.ticketPrice ?? 0, ticketCurrency: ticket.ticketCurrencyType ?? "")
+            let data = CheckoutTicketID.init(ticketTypeId: ticket.ticketTypeId,ticketType: ticket.ticketType ?? "", ticketName: ticket.ticketName ?? "", baseTicketID: ticket.ticketID ?? 0, quantity: ticket.selectedTicketQuantity ?? 0, ticketPrice: ticket.ticketPrice ?? 0, ticketCurrency: ticket.ticketCurrencyType ?? "")
             ticketIDs.append(data)
         }
         
@@ -165,11 +165,12 @@ extension EventBookingPaymentMethodViewModel{
         DispatchQueue.main.async {
             if let view = vc.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
                 let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-                let obj =   DataHoldOnSignUpProcessModel.init(strEmail: userModel?.email ?? "", strNumber: userModel?.number ?? "", strStatus: "", strDialCountryCode: "", strCountryCode: "")
+                let obj =   DataHoldOnSignUpProcessModel.init(strEmail: userModel?.email ?? "", strNumber: userModel?.number ?? "", strStatus: "", strDialCountryCode: userModel?.strDialCountryCode ?? "", strCountryCode: "")
                 objAppShareData.dicToHoldDataOnSignUpModule = obj
                 view.isComingFromLogin = false
                 view.isComingFrom = .OrderSummary
-                view.viewModel.number = userModel?.number ?? ""
+                let number = "\(userModel?.strDialCountryCode ?? "")" + (userModel?.number ?? "")
+                view.viewModel.number = number
                 
                 view.otpVerified = { verified, message in
                     if verified{

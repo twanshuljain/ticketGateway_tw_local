@@ -10,9 +10,10 @@ import UIKit
 struct SignInAuthModel: Codable {
     var id: Int?
     var number: String?
-    var fullName, email, accessToken, refreshToken: String?
+    var fullName, email, accessToken, refreshToken, strDialCountryCode: String?
     enum CodingKeys: String, CodingKey {
         case id
+        case strDialCountryCode
         case fullName = "full_name"
         case email
         case accessToken = "access_token"

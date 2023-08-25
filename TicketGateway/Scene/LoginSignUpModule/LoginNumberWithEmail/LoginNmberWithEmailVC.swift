@@ -66,11 +66,11 @@ extension LoginNmberWithEmailVC {
     }
     func btnContinueAction() {
         if Reachability.isConnectedToNetwork() {
-            SVProgressHUD.show()
+            self.view.showLoading(centreToView: self.view)
             viewModel?.signInAPI { isTrue, messageShowToast in
                 if isTrue == true {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.view.stopLoading()
                         if self.isComingFrom == .Login{
                             objSceneDelegate.showTabBar()
                         }else{
@@ -79,7 +79,7 @@ extension LoginNmberWithEmailVC {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
+                        self.view.stopLoading()
                         self.showToast(message: messageShowToast)
                     }
                 }

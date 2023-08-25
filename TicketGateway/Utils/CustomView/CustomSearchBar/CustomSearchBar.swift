@@ -52,6 +52,7 @@ class CustomSearchBar: UIView {
             super.init(coder: aDecoder)
             commonInit()
             txtSearch.attributedPlaceholder = NSAttributedString(string:searchTextPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .placeHolder)])
+            txtSearch.autocorrectionType = .no
             self.setUpView()
         }
         override init(frame: CGRect) {

@@ -47,15 +47,7 @@ extension EventPromoCodeVC {
     }
     
     func setFont() {
-        if viewModel.isPromoCodeApplied {
-            vwPromoCodeAppliedView.isHidden = false
-            vwApplyPromoCode.isHidden = true
-            btnSkip.isHidden = true
-        } else  {
-            vwPromoCodeAppliedView.isHidden = true
-            vwApplyPromoCode.isHidden = false
-        }
-        
+        self.setPromoApplyView()
         self.lblPromoCode.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblPromoCode.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblApplyPromoCode.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
@@ -71,6 +63,21 @@ extension EventPromoCodeVC {
         self.lblPromoCodeApplied.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblPromoCodeAppliedDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblPromoCodeAppliedDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
+    }
+    
+    func setPromoApplyView(){
+        if viewModel.isPromoCodeApplied {
+            vwPromoCodeAppliedView.isHidden = false
+            vwApplyPromoCode.isHidden = true
+            btnSkip.isHidden = true
+            self.lblPromoCodeApplied.text = (txtPromoCode.text ?? "") + "Applied"
+            self.lblPromoCodeAppliedDescription.text = "Your promocode \(txtPromoCode.text ?? "") is applied on specific tickets (VIP Admission & Group Tickets)"
+        } else  {
+            self.lblPromoCodeApplied.text = ""
+            self.lblPromoCodeAppliedDescription.text = ""
+            vwPromoCodeAppliedView.isHidden = true
+            vwApplyPromoCode.isHidden = false
+        }
     }
 }
 
@@ -99,6 +106,43 @@ extension EventPromoCodeVC {
         self.navigationController?.popViewController(animated: true)
     }
     func btnApplyAction() {
+        if let promoCode = txtPromoCode.text, (promoCode != nil && promoCode != ""){
+            if Reachability.isConnectedToNetwork()
+            {
+                self.view.showLoading(centreToView: self.view)
+                viewModel.applyPromoCode(promoCode: promoCode, complition: { isTrue, messageShowToast in
+                    if isTrue == true {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.viewModel.isPromoCodeApplied = true
+                            self.setPromoApplyView()
+                            self.viewModel.eventDetail?.event?.discountValue = Double(self.viewModel.promoCodeData?.discountValue ?? 0)
+                            let price = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
+                            if self.viewModel.discountType == .PERCENTAGE{
+                                let val = price * Double(self.viewModel.promoCodeData?.discountValue ?? 0)
+                                self.viewModel.eventDetail?.event?.discountedFinalPrice =  val / 100.0
+                            }else{
+                                self.viewModel.eventDetail?.event?.discountedFinalPrice = price - Double(self.viewModel.promoCodeData?.discountValue ?? 0)
+                            }
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.viewModel.isPromoCodeApplied = false
+                            self.setPromoApplyView()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    self.view.stopLoading()
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
+            }
+        }else{
+            self.showToast(message: "Please enter promocode")
+        }
     }
     func btnSkipAction() {
         //        let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC
@@ -131,99 +175,100 @@ extension EventPromoCodeVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.discountType = self.viewModel.discountType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
 }
 // MARK: - TableView Delegate
-extension EventPromoCodeVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.selectedArrTicketList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
-        cell.selectionStyle = .none
-        if viewModel.selectedArrTicketList.indices.contains(indexPath.row){
-            cell.setData(event: viewModel.selectedArrTicketList[indexPath.row])
-        }
-        
-        
-        
-        //        if  self.selectedArrTicketList.indices.contains(indexPath.row){
-        //            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
-        //        }
-        
-        cell.vwStepper.btnPlus.tag = indexPath.row
-        cell.vwStepper.btnMinus.tag = indexPath.row
-        cell.vwStepper.btnPlus.addTarget(self, action: #selector(PlusButtonPressed), for: .touchUpInside)
-        cell.vwStepper.btnMinus.addTarget(self, action: #selector(MinustButtonPressed), for: .touchUpInside)
-        
-        return cell
-        
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
-        //         self.tableDidSelectAtIndex?(indexPath.row)
-        //         self.reloadData()
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("in \(indexPath.row)")
-    }
-    
-    @objc func buttonPressed(_ sender: UIButton) {
-        
-    }
-    
-    // MARK: - ONLINE
-    @objc func PlusButtonPressed(_ sender: UIButton) {
-        let data = viewModel.selectedArrTicketList[sender.tag]
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = self.promoCodeTableView.cellForRow(at: indexPath) as! TicketTypesCell
-        let value =  cell.vwStepper.lblCount.text ?? ""
-        self.viewModel.lblNumberOfCount = Int(value) ?? 0
-        if viewModel.lblNumberOfCount < viewModel.selectedArrTicketList[sender.tag].ticketMaximumQuantity ?? 0 {
-            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount + 1
-            self.viewModel.finalPrice += Double(data.ticketPrice ?? 0)
-            cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
-            viewModel.selectedArrTicketList[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
-            self.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
-            
-            //self.updatedPrice?(viewModel.finalPrice)
-            
-            print("FINAL_PRICE:-",viewModel.finalPrice)
-        }
-        
-    }
-    
-    @objc func MinustButtonPressed(_ sender: UIButton) {
-        let data = viewModel.selectedArrTicketList[sender.tag]
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = self.promoCodeTableView.cellForRow(at: indexPath) as! TicketTypesCell
-        let value =  cell.vwStepper.lblCount.text ?? ""
-        self.viewModel.lblNumberOfCount = Int(value) ?? 0
-        if self.viewModel.lblNumberOfCount > 0 {
-            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount - 1
-            self.viewModel.finalPrice -= Double(data.ticketPrice ?? 0)
-            cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
-            viewModel.selectedArrTicketList[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
-            self.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
-//            self.updatedPrice?(viewModel.finalPrice)
-            print("FINAL_PRICE:-",viewModel.finalPrice)
-        } else {
-            cell.vwStepper.lblCount.text = "0"
-            viewModel.selectedArrTicketList[sender.tag].selectedTicketQuantity = 0
-            self.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
-            print("FINAL_PRICE:-",viewModel.finalPrice)
-        }
-    }
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
-    }
-    
-}
+//extension EventPromoCodeVC: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return viewModel.selectedArrTicketList.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
+//        cell.selectionStyle = .none
+//        if viewModel.selectedArrTicketList.indices.contains(indexPath.row){
+//            cell.setData(event: viewModel.selectedArrTicketList[indexPath.row])
+//        }
+//
+//
+//
+//        //        if  self.selectedArrTicketList.indices.contains(indexPath.row){
+//        //            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
+//        //        }
+//
+//        cell.vwStepper.btnPlus.tag = indexPath.row
+//        cell.vwStepper.btnMinus.tag = indexPath.row
+//        cell.vwStepper.btnPlus.addTarget(self, action: #selector(PlusButtonPressed), for: .touchUpInside)
+//        cell.vwStepper.btnMinus.addTarget(self, action: #selector(MinustButtonPressed), for: .touchUpInside)
+//
+//        return cell
+//
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
+//        //         self.tableDidSelectAtIndex?(indexPath.row)
+//        //         self.reloadData()
+//    }
+//
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        print("in \(indexPath.row)")
+//    }
+//
+//    @objc func buttonPressed(_ sender: UIButton) {
+//
+//    }
+//
+//    // MARK: - ONLINE
+//    @objc func PlusButtonPressed(_ sender: UIButton) {
+//        let data = viewModel.selectedArrTicketList[sender.tag]
+//        let indexPath = IndexPath(row: sender.tag, section: 0)
+//        let cell = self.promoCodeTableView.cellForRow(at: indexPath) as! TicketTypesCell
+//        let value =  cell.vwStepper.lblCount.text ?? ""
+//        self.viewModel.lblNumberOfCount = Int(value) ?? 0
+//        if viewModel.lblNumberOfCount < viewModel.selectedArrTicketList[sender.tag].ticketMaximumQuantity ?? 0 {
+//            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount + 1
+//            self.viewModel.finalPrice += Double(data.ticketPrice ?? 0)
+//            cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
+//            viewModel.selectedArrTicketList[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
+//            self.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+//
+//            //self.updatedPrice?(viewModel.finalPrice)
+//
+//            print("FINAL_PRICE:-",viewModel.finalPrice)
+//        }
+//
+//    }
+//
+//    @objc func MinustButtonPressed(_ sender: UIButton) {
+//        let data = viewModel.selectedArrTicketList[sender.tag]
+//        let indexPath = IndexPath(row: sender.tag, section: 0)
+//        let cell = self.promoCodeTableView.cellForRow(at: indexPath) as! TicketTypesCell
+//        let value =  cell.vwStepper.lblCount.text ?? ""
+//        self.viewModel.lblNumberOfCount = Int(value) ?? 0
+//        if self.viewModel.lblNumberOfCount > 0 {
+//            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount - 1
+//            self.viewModel.finalPrice -= Double(data.ticketPrice ?? 0)
+//            cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
+//            viewModel.selectedArrTicketList[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
+//            self.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+////            self.updatedPrice?(viewModel.finalPrice)
+//            print("FINAL_PRICE:-",viewModel.finalPrice)
+//        } else {
+//            cell.vwStepper.lblCount.text = "0"
+//            viewModel.selectedArrTicketList[sender.tag].selectedTicketQuantity = 0
+//            self.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+//            print("FINAL_PRICE:-",viewModel.finalPrice)
+//        }
+//    }
+//
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 180
+//    }
+//
+//}

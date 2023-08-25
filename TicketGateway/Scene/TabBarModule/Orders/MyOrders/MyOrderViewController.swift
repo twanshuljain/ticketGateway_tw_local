@@ -33,85 +33,139 @@ class MyOrderViewController: UIViewController {
     @IBOutlet weak var btnYear: UIButton!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var btnDate: UIButton!
+    @IBOutlet weak var parentView: UIView!
+    
     // MARK: - Variables
-    let tbleData = ["Upcoming_ip", "Upcoming_ip"]
-    let myOrderTableData = ["costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip", "costumeOrder_ip"]
-    var isFromUpcoming : Bool = false
+    var viewModel: MyOrderViewModel = MyOrderViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTableView()
-        self.setFont()
-        self.setUI()
-        self.isFromUpcoming = true
-        self.setNavigationView()
-        self.setButtonBackground()
+        setTableView()
+        setFont()
+        setUI()
+        setNavigationView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.isFromUpcoming = true
+        setButtonBackground()
+        setButtonsTitle()
+        getMyOrderApiCall(isFromUpcoming: true)
     }
 }
 // MARK: - UITableViewDataSource, UITableViewDelegate
 extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tbleData.count
+        return viewModel.arrMyOrder.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell", for: indexPath) as! UpcomingTableViewCell
-        let data = tbleData[indexPath.row]
-        cell.imgImage.image = UIImage(named: data)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell", for: indexPath) as? UpcomingTableViewCell {
+            cell.getTicket = viewModel.arrMyOrder[indexPath.row]
+            return cell
+        }
+        return UITableViewCell.init()
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastSectionIndex = tableView.numberOfSections - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            loadData()
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = self.createView(storyboard: .order, storyboardID: .MyTicketVC) as? MyTicketVC
+        viewController?.viewModel.ticketDetails = viewModel.arrMyOrder[indexPath.row]
+        self.navigationController?.pushViewController(viewController!, animated: true)
     }
 }
 // MARK: - Functions
 extension MyOrderViewController {
+    func getMyOrderApiCall(isFromUpcoming: Bool) {
+        if Reachability.isConnectedToNetwork() {
+            viewModel.myOrdersModel?.filterBy = isFromUpcoming ? "upcoming" : "past"
+            parentView.showLoading(centreToView: self.view)
+            viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel ?? MyOrdersModel(),
+                                      completion: { isTrue, message in
+                if isTrue {
+                    if isFromUpcoming {
+                        self.viewModel.upcomingCount = self.viewModel.arrMyOrder.count
+                        self.btnUpcoming.setTitle("Upcoming (\(self.viewModel.upcomingCount))", for: .normal)
+                    } else {
+                        self.viewModel.pastCount = self.viewModel.arrMyOrder.count
+                        self.btnPast.setTitle("Past (\(self.viewModel.pastCount))", for: .normal)
+                    }
+                    self.upComingTableView.reloadData()
+                    self.parentView.stopLoading()
+                } else {
+                    DispatchQueue.main.async {
+                        self.parentView.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.parentView.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
     func setNavigationView() {
-        self.vwNavigationBar.lblTitle.text = MY_ORDERS
-        self.vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
-        self.vwNavigationBar.btnBack.isHidden = false
-        self.vwNavigationBar.delegateBarAction = self
+        viewModel.myOrdersModel?.pageNumber = 1
+        vwNavigationBar.lblTitle.text = MY_ORDERS
+        vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
+        vwNavigationBar.btnBack.isHidden = false
+        vwNavigationBar.delegateBarAction = self
     }
     func setTableView() {
-        self.upComingTableView.separatorColor = .clear
+        upComingTableView.separatorColor = .clear
         upComingTableView.delegate = self
         upComingTableView.dataSource = self
         upComingTableView.register(UINib(nibName: "UpcomingTableViewCell", bundle: nil), forCellReuseIdentifier: "UpcomingTableViewCell")
     }
     func setButtonBackground() {
-        if isFromUpcoming == true {
-            self.btnUpcoming.setTitleColor(UIColor.init(named: "white"), for: .normal)
-            self.btnPast.setTitleColor(UIColor.init(named: "TGBlack"), for: .normal)
-            self.btnUpcoming.backgroundColor = UIColor.init(named: "TGBlack")
-            self.btnPast.backgroundColor = UIColor.init(named: "white")
+        if viewModel.isFromUpcoming {
+            btnUpcoming.setTitleColor(UIColor.init(named: "white"), for: .normal)
+            btnPast.setTitleColor(UIColor.init(named: "TGBlack"), for: .normal)
+            btnUpcoming.backgroundColor = UIColor.init(named: "TGBlack")
+            btnPast.backgroundColor = UIColor.init(named: "white")
         } else {
-            self.btnPast.setTitleColor(UIColor.init(named: "white"), for: .normal)
-            self.btnUpcoming.setTitleColor(UIColor.init(named: "TGBlack"), for: .normal)
-            self.btnPast.backgroundColor = UIColor.init(named: "TGBlack")
-            self.btnUpcoming.backgroundColor = UIColor.init(named: "white")
+            btnPast.setTitleColor(UIColor.init(named: "white"), for: .normal)
+            btnUpcoming.setTitleColor(UIColor.init(named: "TGBlack"), for: .normal)
+            btnPast.backgroundColor = UIColor.init(named: "TGBlack")
+            btnUpcoming.backgroundColor = UIColor.init(named: "white")
         }
     }
+    func setButtonsTitle() {
+        self.btnUpcoming.setTitle("Upcoming", for: .normal)
+        self.btnPast.setTitle("Past", for: .normal)
+        viewModel.arrMyOrder.removeAll()
+    }
     func setFont() {
-        self.segmentBgView.addBottomShadow()
-        self.vwPopUp.isHidden = true
-        self.lblYear.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblYear.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.btnUpcoming.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnPast.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.lblNoTicket.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.lblNoTicket.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.lblLookForSomething.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblLookForSomething.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.btnBrowseEvents.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnBrowseEvents.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
-        self.lblStillHavingTrouble.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblStillHavingTrouble.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.btnVisitHelpCenter.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnVisitHelpCenter.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
-        self.btnFilter.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.btnFilter.addLeftIcon(image: UIImage(named: FILTER))
-        self.lblMonth.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblMonth.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.lblPopYear.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblPopYear.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
+        segmentBgView.addBottomShadow()
+        vwPopUp.isHidden = true
+        lblYear.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+        lblYear.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblYear.isHidden = true
+        btnUpcoming.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        btnPast.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        lblNoTicket.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+        lblNoTicket.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        lblLookForSomething.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        lblLookForSomething.textColor = UIColor.setColor(colorType: .lblTextPara)
+        btnBrowseEvents.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        btnBrowseEvents.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
+        lblStillHavingTrouble.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        lblStillHavingTrouble.textColor = UIColor.setColor(colorType: .lblTextPara)
+        btnVisitHelpCenter.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        btnVisitHelpCenter.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
+        btnFilter.titleLabel?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        btnFilter.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
+        btnFilter.addLeftIcon(image: UIImage(named: FILTER))
+        lblMonth.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        lblMonth.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblPopYear.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        lblPopYear.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     func setUI () {
         [btnPast,btnUpcoming,btnFilter].forEach {
@@ -127,8 +181,8 @@ extension MyOrderViewController {
             print("TICKETS")
         case 1:
             let vc = self.createView(storyboard: .order, storyboardID: .SegmentCostumeVC)
-            self.segmentControl.selectedSegmentIndex = 0
-            self.navigationController?.pushViewController(vc, animated: false)
+            segmentControl.selectedSegmentIndex = 0
+            navigationController?.pushViewController(vc, animated: false)
         default:
             break
         }
@@ -136,27 +190,40 @@ extension MyOrderViewController {
     @objc func buttonPressed(sender: UIButton) {
         switch sender {
         case btnUpcoming:
-            self.upcomingAction()
+            upcomingAction()
         case btnPast:
-            self.pastAction()
+            pastAction()
         case btnFilter:
-            self.filterAction()
+            filterAction()
         default:
             break
         }
     }
     func upcomingAction() {
-        self.isFromUpcoming = true
-        self.setButtonBackground()
-        self.pastView.isHidden = true
+        viewModel.isFromUpcoming = true
+        setButtonBackground()
+        pastView.isHidden = true
+        viewModel.arrMyOrder.removeAll()
+        viewModel.myOrdersModel?.pageNumber = 1
+        getMyOrderApiCall(isFromUpcoming: true)
     }
     func pastAction() {
-        self.isFromUpcoming = false
-        self.setButtonBackground()
-        self.pastView.isHidden = false
+        viewModel.isFromUpcoming = false
+        setButtonBackground()
+        viewModel.arrMyOrder.removeAll()
+        viewModel.myOrdersModel?.pageNumber = 1
+        getMyOrderApiCall(isFromUpcoming: false)
     }
     func filterAction() {
         vwPopUp.isHidden = !vwPopUp.isHidden
+    }
+    func loadData() {
+        viewModel.myOrdersModel?.pageNumber += 1
+        if viewModel.arrMyOrder.count != viewModel.totalPage {
+            print("viewModel.totalPage", viewModel.totalPage)
+            print("load more data")
+            getMyOrderApiCall(isFromUpcoming: viewModel.isFromUpcoming)
+        }
     }
 }
 

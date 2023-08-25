@@ -457,15 +457,26 @@ extension UIView {
         return label.frame.height
     }
     static let loadingViewTag = 1938123987
+    static let loadingViewTag1 = 1938123986
     
     //func showLoading(parentView: UIView, style: UIActivityIndicatorView.Style = .large, color: UIColor? = nil, scale: CGFloat = 1) {
     func showLoading(centreToView: UIView) {
-        var style: UIActivityIndicatorView.Style = .large
-        var color: UIColor? =  UIColor.setColor(colorType: .tgBlue)
-        var scale: CGFloat =  0.9
-        
-        DispatchQueue.main.async {  [self] in
-            var loading = viewWithTag(UIView.loadingViewTag) as? UIActivityIndicatorView
+        DispatchQueue.main.async {  [weak self] in
+            guard let self = self else { return }
+            var loaderParentView = self.viewWithTag(UIView.loadingViewTag1)
+            if loaderParentView == nil {
+                loaderParentView = UIView()
+                
+            }
+            loaderParentView?.tag = 1938123986
+            loaderParentView!.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
+            self.addSubview(loaderParentView!)
+            let style: UIActivityIndicatorView.Style = .large
+            let color: UIColor? =  UIColor.setColor(colorType: .tgBlue)
+            let scale: CGFloat =  0.9
+            
+            
+            var loading = self.viewWithTag(UIView.loadingViewTag) as? UIActivityIndicatorView
             if loading == nil {
                 loading = UIActivityIndicatorView(style: style)
             }
@@ -473,12 +484,13 @@ extension UIView {
             if let color = color {
                 loading?.color = color
             }
+            loading?.tag = 1938123987
             loading?.contentScaleFactor = scale
             loading?.translatesAutoresizingMaskIntoConstraints = false
             loading?.startAnimating()
             loading?.hidesWhenStopped = true
             loading?.tag = UIView.loadingViewTag
-            addSubview(loading!)
+            loaderParentView?.addSubview(loading!)
             loading?.centerYAnchor.constraint(equalTo: centreToView.centerYAnchor).isActive = true
             loading?.centerXAnchor.constraint(equalTo: centreToView.centerXAnchor).isActive = true
         }
@@ -487,8 +499,10 @@ extension UIView {
     func stopLoading() {
         DispatchQueue.main.async { [self] in
             let loading = viewWithTag(UIView.loadingViewTag) as? UIActivityIndicatorView
+            let loadingParentView = viewWithTag(UIView.loadingViewTag1)
             loading?.stopAnimating()
             loading?.removeFromSuperview()
+            loadingParentView?.removeFromSuperview()
         }
     }
 }

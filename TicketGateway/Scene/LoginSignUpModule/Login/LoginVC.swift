@@ -167,11 +167,11 @@ extension LoginVC {
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {
             if Reachability.isConnectedToNetwork() {
-                SVProgressHUD.show()
+                self.view.showLoading(centreToView: self.view)
                 viewModel.signInAPI { isTrue, messageShowToast in
                     if isTrue == true {
                         DispatchQueue.main.async { [self] in
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             if self.viewModel.isFromNumberOrEmail == true {
                                 objSceneDelegate.showTabBar()
                             } else {
@@ -186,7 +186,7 @@ extension LoginVC {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                            self.view.stopLoading()
                             self.showToast(message: messageShowToast)
                         }
                     }
@@ -276,16 +276,23 @@ extension LoginVC: UITextFieldDelegate {
 // MARK: - Country Code
 extension LoginVC: RSCountrySelectedDelegate {
     func setIntialUiDesign() {
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         self.txtNumber.addDoneButtonOnKeyboard()
         // Defoult Country
          // UI Changes---
         self.imgCountry.image = nil
         if self.imgCountry.image == nil {
-            let str = NSLocale.current.regionCode
+            var str = ""
+            if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
+                str = userModel?.strDialCountryCode ?? ""
+            }else{
+                str = NSLocale.current.regionCode ?? ""
+            }
+            
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
-            let arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+            let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
             if arr.count>0 {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dial_code

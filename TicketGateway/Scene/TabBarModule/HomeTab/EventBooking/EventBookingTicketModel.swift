@@ -18,6 +18,7 @@ struct EventTicket: Codable {
     var ticketVisibility: String?
     var ticketDescription: String?
     var createdAt, ticketType: String?
+    var ticketTypeId : Int?
     var ticketMinimumQuantity: Int?
     var ticketSaleStartDate, updatedAt, ticketCurrencyType: String?
     var ticketMaximumQuantity: Int?
@@ -45,6 +46,7 @@ struct EventTicket: Codable {
         case ticketDescription = "ticket_description"
         case createdAt = "created_at"
         case ticketType = "ticket_type"
+        case ticketTypeId = "ticket_type_id"
         case ticketMinimumQuantity = "ticket_minimum_quantity"
         case ticketSaleStartDate = "ticket_sale_start_date"
         case updatedAt = "updated_at"

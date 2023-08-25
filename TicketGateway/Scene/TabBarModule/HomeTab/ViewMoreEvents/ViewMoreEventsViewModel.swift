@@ -222,10 +222,10 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
         if isForLocation {
-            print("eventDetail.isLiked", eventDetail.isLikedEvent ?? false)
+            print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
             print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
             favouriteApiForHome(
-                likeStatus: eventDetail.isLikedEvent ?? false,
+                likeStatus: eventDetail.likeCountData?.isLiked ?? false,
                 eventId: eventDetail.event?.id ?? 0
             )
         } else {

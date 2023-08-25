@@ -44,6 +44,8 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var enterAccessCodeBgView: UIView!
     @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var btnRemoveAccessCode : UIButton!
+    
     //MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
     
@@ -84,7 +86,7 @@ extension EventBookingTicketOnApplyCouponVC {
         self.navigationView.delegateBarAction = self
         self.tblEventTicketTypes.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblHeight.constant = self.tblEventTicketTypes.contentSize.height
-        [self.btnContinue, self.btnAppliedCode, self.btnCheckTermCondition, self.btnDown].forEach {
+        [self.btnContinue, self.btnAppliedCode, self.btnCheckTermCondition, self.btnDown, self.btnRemoveAccessCode].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.txtAccessCode.delegate = self
@@ -200,6 +202,8 @@ extension EventBookingTicketOnApplyCouponVC {
             self.btnCheckTermConditionAction()
         case btnDown:
             self.btnDownAction()
+        case btnRemoveAccessCode:
+            self.btnRemoveAccessCodeAction()
         default:
             break
         }
@@ -215,12 +219,16 @@ extension EventBookingTicketOnApplyCouponVC {
            view.feeStructure = self.viewModel.feeStructure
            self.navigationController?.pushViewController(view, animated: true)
             */
-           if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
-               view.viewModel.eventDetail = self.viewModel.eventDetail
-               view.viewModel.feeStructure = self.viewModel.feeStructure
-               view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
-               view.viewModel.eventId = self.viewModel.eventId
-               self.navigationController?.pushViewController(view, animated: true)
+           if self.tblEventTicketTypes.selectedArrTicketList.count == 0{
+               self.showToast(message: "Please select ticket")
+           }else{
+               if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+                   view.viewModel.eventDetail = self.viewModel.eventDetail
+                   view.viewModel.feeStructure = self.viewModel.feeStructure
+                   view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
+                   view.viewModel.eventId = self.viewModel.eventId
+                   self.navigationController?.pushViewController(view, animated: true)
+               }
            }
        } else {
            self.showToast(message: "Please Accept Terms and Condition")
@@ -241,24 +249,26 @@ extension EventBookingTicketOnApplyCouponVC {
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {
                 //  self.view.showLoading(centreToView: UIView())
+                self.viewModel.dispatchGroup1.enter()
                 viewModel.applyAccessCode(accessCode: txtAccessCode.text ?? "",complition: { isTrue, messageShowToast in
                     if isTrue == true {
-                        // self.view.stopLoading()
                         DispatchQueue.main.async {
-                            self.tblEventTicketTypes.isFromAccessCode = true
-                            self.viewModel.defaultTicket.append(contentsOf: self.viewModel.arrDataForAccessCode)
-                            self.tblEventTicketTypes.arrDataAccessCode = self.viewModel.defaultTicket
+                            self.lblAppliedAccessCodeDIs.text = "Access code applied"
+                            self.btnRemoveAccessCode.isHidden = false
                             self.lblAppliedAccessCodeDIs.isHidden = false
                             self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .tgGreen)
-                            self.imgApplyAccessCode.isHidden = false
+                            //self.imgApplyAccessCode.isHidden = false
+                            self.imgApplyAccessCode.isHidden = true
                             self.enterAccessCodeBgView.borderColor = UIColor.setColor(colorType: .tgBlue)
                             self.btnAppliedCode.setTitles(text: "Applied", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour:UIColor.setColor(colorType: .btnDarkBlue))
-                            self.tblEventTicketTypes.reloadData()
                         }
                     } else {
                         DispatchQueue.main.async {
                             //  self.view.stopLoading()
-                            self.showToast(message: messageShowToast)
+                            self.lblAppliedAccessCodeDIs.text = messageShowToast
+                            self.lblAppliedAccessCodeDIs.isHidden = false
+                            self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .tgRed)
+                            //self.showToast(message: messageShowToast)
                         }
                     }
                 })
@@ -269,6 +279,10 @@ extension EventBookingTicketOnApplyCouponVC {
                 }
             }
         
+        self.viewModel.dispatchGroup1.notify(queue: .main) {
+            self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
+            self.tblEventTicketTypes.reloadData()
+        }
        
         
     }
@@ -303,6 +317,19 @@ extension EventBookingTicketOnApplyCouponVC {
         viewModel.isAccessCodeAvailable = !viewModel.isAccessCodeAvailable
     }
     
+    func btnRemoveAccessCodeAction() {
+        self.lblAppliedAccessCodeDIs.text = ""
+        self.btnRemoveAccessCode.isHidden = true
+        self.lblAppliedAccessCodeDIs.isHidden = true
+        self.txtAccessCode.text = ""
+        btnAppliedCode.setTitles(text: "Apply", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
+        self.viewModel.arrDataForAccessCode?.forEach({ ticketData in
+            self.viewModel.arrTicketList?.removeAll(where: { $0.uniqueTicketID == ticketData.uniqueTicketID })
+        })
+        self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
+        self.tblEventTicketTypes.reloadData()
+    }
+    
 }
 
 // MARK: - TextField Delegate
@@ -312,7 +339,7 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
         var copystring  = ""
         if textField == self.txtAccessCode{
             print(string)
-            
+            self.lblAppliedAccessCodeDIs.text = ""
             if string.count > 1{
                 if let theString = UIPasteboard.general.string {
                     print("String is \(theString)")
