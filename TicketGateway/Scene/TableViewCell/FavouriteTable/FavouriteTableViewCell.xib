@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -123,13 +123,17 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MkH-wX-PA6">
-                        <rect key="frame" x="421" y="399" width="65" height="40"/>
+                        <rect key="frame" x="405" y="399" width="81" height="40"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_ip" translatesAutoresizingMaskIntoConstraints="NO" id="7Id-dU-gca">
-                                <rect key="frame" x="0.0" y="11.5" width="14" height="17"/>
+                                <rect key="frame" x="0.0" y="11" width="24" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="4Lt-WR-92e"/>
+                                    <constraint firstAttribute="width" constant="24" id="Snr-uF-8om"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsx-y9-btH">
-                                <rect key="frame" x="30" y="10" width="1" height="20"/>
+                                <rect key="frame" x="40" y="10" width="1" height="20"/>
                                 <color key="backgroundColor" name="PlaceHolder"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="LSR-dq-Jwm"/>
@@ -140,10 +144,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6u4-qE-Mzt">
-                                <rect key="frame" x="47" y="12" width="18" height="16"/>
+                                <rect key="frame" x="57" y="8" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="18" id="1r1-xx-6Ca"/>
-                                    <constraint firstAttribute="height" constant="16" id="ric-hr-sd7"/>
+                                    <constraint firstAttribute="width" constant="24" id="1r1-xx-6Ca"/>
+                                    <constraint firstAttribute="height" constant="24" id="ric-hr-sd7"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -208,14 +212,14 @@
                 <outlet property="lblTime" destination="GKX-44-UeM" id="4Rk-Kq-dtu"/>
                 <outlet property="lblTitle" destination="rfL-Ch-Kde" id="ZpX-pp-Zdd"/>
             </connections>
-            <point key="canvasLocation" x="110.86956521739131" y="123.54910714285714"/>
+            <point key="canvasLocation" x="214" y="101"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="cal_ip" width="16" height="17"/>
         <image name="clock_ip" width="17" height="17"/>
-        <image name="favSele_ip" width="18" height="16"/>
-        <image name="homeDas" width="343" height="165"/>
+        <image name="favSele_ip" width="36.5" height="36.5"/>
+        <image name="homeDas" width="96" height="96"/>
         <image name="location_ip" width="16" height="19"/>
         <image name="upload_ip" width="14" height="17"/>
         <namedColor name="BorderLineColour">

@@ -80,7 +80,7 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
 extension MyOrderViewController {
     func getMyOrderApiCall(isFromUpcoming: Bool) {
         if Reachability.isConnectedToNetwork() {
-            viewModel.myOrdersModel?.filterBy = isFromUpcoming ? "upcoming" : "past"
+//            viewModel.myOrdersModel?.filter_by = isFromUpcoming ? "upcoming" : "past"
             parentView.showLoading(centreToView: self.view)
             viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel ?? MyOrdersModel(),
                                       completion: { isTrue, message in
@@ -109,7 +109,7 @@ extension MyOrderViewController {
         }
     }
     func setNavigationView() {
-        viewModel.myOrdersModel?.pageNumber = 1
+        viewModel.myOrdersModel?.page = 1
         vwNavigationBar.lblTitle.text = MY_ORDERS
         vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
         vwNavigationBar.btnBack.isHidden = false
@@ -204,22 +204,22 @@ extension MyOrderViewController {
         setButtonBackground()
         pastView.isHidden = true
         viewModel.arrMyOrder.removeAll()
-        viewModel.myOrdersModel?.pageNumber = 1
+        viewModel.myOrdersModel?.page = 1
         getMyOrderApiCall(isFromUpcoming: true)
     }
     func pastAction() {
         viewModel.isFromUpcoming = false
         setButtonBackground()
         viewModel.arrMyOrder.removeAll()
-        viewModel.myOrdersModel?.pageNumber = 1
+        viewModel.myOrdersModel?.page = 1
         getMyOrderApiCall(isFromUpcoming: false)
     }
     func filterAction() {
         vwPopUp.isHidden = !vwPopUp.isHidden
     }
     func loadData() {
-        viewModel.myOrdersModel?.pageNumber += 1
-        if viewModel.arrMyOrder.count != viewModel.totalPage {
+        viewModel.myOrdersModel?.page += 1
+        if viewModel.arrMyOrder.count < viewModel.totalPage {
             print("viewModel.totalPage", viewModel.totalPage)
             print("load more data")
             getMyOrderApiCall(isFromUpcoming: viewModel.isFromUpcoming)

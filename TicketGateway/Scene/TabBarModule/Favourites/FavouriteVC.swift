@@ -11,7 +11,7 @@ import SideMenu
 class FavouriteVC: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
-    @IBOutlet weak var favouriteTableView: FavouriteListTableView!
+    @IBOutlet weak var favouriteTableView: UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var findEventCollectionView: UICollectionView!
     @IBOutlet weak var vwNoLikedEventView: UIView!
@@ -22,19 +22,34 @@ class FavouriteVC: UIViewController {
     @IBOutlet weak var lblVenuNoLikeEvent: UILabel!
     @IBOutlet weak var lblVenuDescription: UILabel!
     @IBOutlet weak var lblVenuSuggestionForYou: UILabel!
-    // MARK: - Variables
+    
+    // MARK: All Properties
+    var viewModel: FavouriteViewModel = FavouriteViewModel()
     let collectionData = ["Today", "Tomorrow", "This Week", "This Weekend"]
-    var isForVenue: Bool = false
+    var selectedDevice = ""
+    var isFromDeselected = false
+
+    // MARK: View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBar()
-        self.favouriteTableView.configure()
+        self.configure()
         self.setCollectionView()
         self.setFont()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        onAppearActions()
     }
 }
 // MARK: - Functions
 extension FavouriteVC {
+    func configure() {
+        favouriteTableView.register(UINib(nibName: "FavouriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavouriteTableViewCell")
+        favouriteTableView.separatorColor = UIColor.clear
+        favouriteTableView.delegate = self
+        favouriteTableView.dataSource = self
+        favouriteTableView.reloadData()
+    }
     func setFont() {
         let labels = [lblNoLikedEvent, lblFindEventNearYou, lblVenuNoLikeEvent]
         for label in labels {
@@ -61,24 +76,116 @@ extension FavouriteVC {
         findEventCollectionView.delegate = self
         findEventCollectionView.dataSource = self
     }
+    func getFavouriteList() {
+        if Reachability.isConnectedToNetwork() {
+            self.view.showLoading(centreToView: self.view)
+            viewModel.getFavouriteList(favouriteModel: viewModel.favouriteModel, completion: { isTrue, message in
+                if isTrue {
+                    DispatchQueue.main.async {
+                        self.favouriteTableView.reloadData()
+                        self.view.stopLoading()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    func getVenueList() {
+        if Reachability.isConnectedToNetwork() {
+            self.view.showLoading(centreToView: self.view)
+            viewModel.getVenueList(venueModel: viewModel.venueModel, completion: { isTrue, message in
+                if isTrue {
+                    DispatchQueue.main.async {
+                        self.favouriteTableView.reloadData()
+                        self.view.stopLoading()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    func onAppearActions() {
+        viewModel.arrFavouriteList.removeAll()
+        viewModel.arrVenueList.removeAll()
+        viewModel.venueModel.pageNumber = 1
+        viewModel.favouriteModel.page = 1
+        getFavouriteList()
+        getVenueList()
+    }
 }
 // MARK: - Actions
 extension FavouriteVC {
     @IBAction func actionSegmentController(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
-            isForVenue == false
-            // self.vwNoLikedEventView.isHidden = true
+            viewModel.isForVenue = false
+           // self.vwNoLikedEventView.isHidden = true
             self.vwVenueView.isHidden = true
             self.favouriteTableView.reloadData()
         case 1:
-            isForVenue == true
-            //  self.vwNoLikedEventView.isHidden = false
+            viewModel.isForVenue = true
+            // self.vwNoLikedEventView.isHidden = false
             self.vwVenueView.isHidden = false
             self.favouriteTableView.reloadData()
-            self.favouriteTableView.isFromVenue = "Venue"
         default:
             break
+        }
+    }
+    func loadMoreData() {
+        if viewModel.isForVenue {
+            if viewModel.arrVenueList.count < viewModel.totalPageVenue {
+                print("venue load more data")
+                viewModel.venueModel.pageNumber += 1
+                getVenueList()
+            }
+        } else {
+            if viewModel.arrFavouriteList.count < viewModel.totalPageEvent {
+                print("event load more data")
+                viewModel.favouriteModel.page += 1
+                getFavouriteList()
+            }
+        }
+    }
+}
+
+// MARK: - TableView Delegate
+extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.isForVenue ? viewModel.arrVenueList.count : viewModel.arrFavouriteList.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as! FavouriteTableViewCell
+        cell.getFavouriteData = viewModel.isForVenue ? viewModel.arrVenueList[indexPath.row] : viewModel.arrFavouriteList[indexPath.row]
+        cell.lblFavoriteDate.isHidden = viewModel.isForVenue
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      //  let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell") as! FavouriteTableViewCell
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("in \(indexPath.row)")
+        let lastSectionIndex = favouriteTableView.numberOfSections - 1
+        let lastRowIndex = favouriteTableView.numberOfRows(inSection: lastSectionIndex) - 1
+        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            self.loadMoreData()
         }
     }
 }

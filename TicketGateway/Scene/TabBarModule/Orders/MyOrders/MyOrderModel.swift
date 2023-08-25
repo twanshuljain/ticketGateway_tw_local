@@ -7,9 +7,9 @@
 
 import Foundation
 struct MyOrdersModel: Encodable {
-    var pageNumber: Int = 1
-    var pageLimit: Int = 10
-    var filterBy: String = "upcoming"
-    var searchText: String = ""
-    var sortBy: String = "all"
+    var page: Int = 1
+    var limit: Int = 10
+    var filter_by: String = ""
+    var search_query: String = ""
+    var sort_by: String = ""
 }

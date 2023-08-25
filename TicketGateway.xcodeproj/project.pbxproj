@@ -220,6 +220,9 @@
 		18A73E1629F00D9B007365CB /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E1529F00D9B007365CB /* ForgotPasswordModel.swift */; };
 		18A8497629EE6B0D00F92BCD /* RSCountryPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8497529EE6B0D00F92BCD /* RSCountryPickerController.swift */; };
 		18A8497829EE6B5A00F92BCD /* RSCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8497729EE6B5A00F92BCD /* RSCountryTableViewCell.swift */; };
+		18A84DA32A9891E9005DB31C /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A84DA22A9891E9005DB31C /* FavouriteViewModel.swift */; };
+		18A84DA52A9891F3005DB31C /* FavouriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A84DA42A9891F3005DB31C /* FavouriteModel.swift */; };
+		18A84DA72A98A7FE005DB31C /* GetFavouriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A84DA62A98A7FE005DB31C /* GetFavouriteModel.swift */; };
 		18AF9B9229E3E65800E4C70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF9B9129E3E65800E4C70E /* AppDelegate.swift */; };
 		18AF9B9429E3E65800E4C70E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF9B9329E3E65800E4C70E /* SceneDelegate.swift */; };
 		18AF9B9629E3E65800E4C70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF9B9529E3E65800E4C70E /* ViewController.swift */; };
@@ -637,6 +640,9 @@
 		18A73E1529F00D9B007365CB /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
 		18A8497529EE6B0D00F92BCD /* RSCountryPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSCountryPickerController.swift; sourceTree = "<group>"; };
 		18A8497729EE6B5A00F92BCD /* RSCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSCountryTableViewCell.swift; sourceTree = "<group>"; };
+		18A84DA22A9891E9005DB31C /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
+		18A84DA42A9891F3005DB31C /* FavouriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteModel.swift; sourceTree = "<group>"; };
+		18A84DA62A98A7FE005DB31C /* GetFavouriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFavouriteModel.swift; sourceTree = "<group>"; };
 		18AF9B8E29E3E65800E4C70E /* TicketGateway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketGateway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AF9B9129E3E65800E4C70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AF9B9329E3E65800E4C70E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1460,6 +1466,9 @@
 			children = (
 				18717F9D2A2A2158002F36BC /* View */,
 				18717FA72A2A2158002F36BC /* FavouriteVC.swift */,
+				18A84DA22A9891E9005DB31C /* FavouriteViewModel.swift */,
+				18A84DA42A9891F3005DB31C /* FavouriteModel.swift */,
+				18A84DA62A98A7FE005DB31C /* GetFavouriteModel.swift */,
 			);
 			path = Favourites;
 			sourceTree = "<group>";
@@ -3188,6 +3197,7 @@
 				18FBC0FF2A309239002CF129 /* AmountAddedSuccessfullyVC.swift in Sources */,
 				18F6AEF02A42C7E600500678 /* UIFont+Extension.swift in Sources */,
 				18F5A4C62A4EA55900CA18F7 /* SelectTicketTypeViewModel.swift in Sources */,
+				18A84DA52A9891F3005DB31C /* FavouriteModel.swift in Sources */,
 				18E2ECA12A977B30000F73F6 /* EventPromoCodeRequestModel.swift in Sources */,
 				184D046529EE7FFF0008B825 /* RSCountryDialCode.swift in Sources */,
 				18F6F74129E959A7007B9513 /* Popover.swift in Sources */,
@@ -3270,6 +3280,7 @@
 				18FBC0E32A309239002CF129 /* CostumeListTableView.swift in Sources */,
 				18A8497829EE6B5A00F92BCD /* RSCountryTableViewCell.swift in Sources */,
 				1821FDEA2A30B51A00BD4AB6 /* RequestRefundVC.swift in Sources */,
+				18A84DA32A9891E9005DB31C /* FavouriteViewModel.swift in Sources */,
 				18A73E0429EFBE76007365CB /* CheckInterNetConnectivity.swift in Sources */,
 				187E228E2A40711F003236EC /* CreateAccountRequest.swift in Sources */,
 				18717F892A2A1BE9002F36BC /* UpcomingTableViewCell.swift in Sources */,
@@ -3327,6 +3338,7 @@
 				18F6F74329E982D1007B9513 /* CreateAccountVC.swift in Sources */,
 				18E2ECA32A977BDF000F73F6 /* EventPromoCodeModel.swift in Sources */,
 				18FBC0FD2A309239002CF129 /* CostumeFrontLineViewController.swift in Sources */,
+				18A84DA72A98A7FE005DB31C /* GetFavouriteModel.swift in Sources */,
 				187734E629E8324D00E26B65 /* GradientButton.swift in Sources */,
 				18FBC0C32A309239002CF129 /* ManageEventSellTicketTableViewList.swift in Sources */,
 				18FBC0F62A309239002CF129 /* InstallmentTableViewCell.swift in Sources */,
