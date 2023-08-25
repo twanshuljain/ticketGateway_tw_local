@@ -71,7 +71,7 @@ extension ViewMoreEventsVC{
         if self.viewModel.isComingFrom == .Home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .nearByLocation:
-                navigationView.lblTitle.text = "Events near Toronto"
+                navigationView.lblTitle.text = "Events near \(self.viewModel.countryName)"
                 self.funcCallApiForLocation()
             case .weekend:
                 navigationView.lblTitle.text = "This Weekend"

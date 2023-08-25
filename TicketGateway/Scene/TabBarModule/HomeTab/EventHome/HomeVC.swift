@@ -70,6 +70,7 @@ extension HomeVC {
         self.setUi()
         self.collvwSuggestedOrganisation.configure()
         self.tblEvents.delegateViewMore = self
+        self.tblEvents.countryName = self.viewModel.countryName
         self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.Home)
         self.tblEvents.tableDidSelectAtIndex = { _ in
             self.navigationController?.popViewController(animated: true)
@@ -163,7 +164,7 @@ extension HomeVC {
         {
             parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup.enter()
-            viewModel.getEventAsPerLocation(countryName: "Toronto", complition: { isTrue, messageShowToast in
+            viewModel.getEventAsPerLocation(countryName: self.viewModel.countryName, complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
                     if let itemsLocation = self.viewModel.arrEventData.itemsLocation{
@@ -444,6 +445,35 @@ extension HomeVC {
       }
   }
  
+    func refreshData() {
+        self.viewModel.arrSearchCategoryData.removeAll()
+        //self.viewModel.arrEventData = nil
+        self.viewModel.arrEventCategory.removeAll()
+        self.viewModel.arrDataaWeekend.removeAll()
+        self.viewModel.arrDataaVirtual.removeAll()
+        self.viewModel.arrDataaPopular.removeAll()
+        self.viewModel.arrDataaFree.removeAll()
+        self.viewModel.arrDataaUpcoming.removeAll()
+        self.viewModel.arrOrganizersList?.removeAll()
+        
+        self.tblEvents.arrData.removeAll()
+        self.tblEvents.arrDataa.removeAll()
+        self.tblEvents.arrDataaFree.removeAll()
+        self.tblEvents.arrSearchData.removeAll()
+        self.tblEvents.arrDataaPopular.removeAll()
+        self.tblEvents.arrDataaVirtual.removeAll()
+        self.tblEvents.arrDataaWeekend.removeAll()
+        self.tblEvents.arrDataaUpcoming.removeAll()
+        self.tblEvents.arrEventCategory.removeAll()
+        self.tblEvents.arrDataCategorySearch.removeAll()
+        self.collvwSuggestedOrganisation.arrOrganizersList?.removeAll()
+        self.lblSuggestedOrganised.text = ""
+        tblEvents.reloadData()
+        collvwSuggestedOrganisation.reloadData()
+        
+        self.funcCallApi()
+        self.setUp()
+    }
 }
 
 //MARK: - CustomSearchMethodsDelegate
@@ -468,6 +498,8 @@ extension HomeVC: CustomSearchMethodsDelegate {
 extension HomeVC: SendLocation {
     func toSendLocation(location: String) {
         vwSearchBar.lblAddress.text = location
+        self.viewModel.countryName = location
+        self.refreshData()
     }
 }
 
@@ -477,6 +509,7 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
         view?.updateHomeScreenDelegate = self
         view?.viewModel.index = index
+        view?.viewModel.countryName = self.viewModel.countryName
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
     }
@@ -543,33 +576,7 @@ extension HomeVC: ActivityController {
 }
 extension HomeVC: EventDetailVCProtocol{
     func updateData() {
-        self.viewModel.arrSearchCategoryData.removeAll()
-        //self.viewModel.arrEventData = nil
-        self.viewModel.arrEventCategory.removeAll()
-        self.viewModel.arrDataaWeekend.removeAll()
-        self.viewModel.arrDataaVirtual.removeAll()
-        self.viewModel.arrDataaPopular.removeAll()
-        self.viewModel.arrDataaFree.removeAll()
-        self.viewModel.arrDataaUpcoming.removeAll()
-        self.viewModel.arrOrganizersList?.removeAll()
-        
-        self.tblEvents.arrData.removeAll()
-        self.tblEvents.arrDataa.removeAll()
-        self.tblEvents.arrDataaFree.removeAll()
-        self.tblEvents.arrSearchData.removeAll()
-        self.tblEvents.arrDataaPopular.removeAll()
-        self.tblEvents.arrDataaVirtual.removeAll()
-        self.tblEvents.arrDataaWeekend.removeAll()
-        self.tblEvents.arrDataaUpcoming.removeAll()
-        self.tblEvents.arrEventCategory.removeAll()
-        self.tblEvents.arrDataCategorySearch.removeAll()
-        self.collvwSuggestedOrganisation.arrOrganizersList?.removeAll()
-        self.lblSuggestedOrganised.text = ""
-        tblEvents.reloadData()
-        collvwSuggestedOrganisation.reloadData()
-        
-        self.funcCallApi()
-        self.setUp()
+        self.refreshData()
     }
 }
 extension HomeVC: FavouriteAction {    
