@@ -62,6 +62,7 @@ extension PhoneVerificationViewController {
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
         self.signInViewModel.countries = self.jsonSerial()
+        self.collectCountries()
         self.imgCountry.image = nil
         self.txtNumber.delegate = self
         self.vwNumber.layer.cornerRadius = 5
@@ -190,7 +191,12 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 self.vwEmail.isHidden = false
             }else{
                 btnChangeNumber.isHidden = false
-                self.txtNumber.text = userModel?.number
+                let number = userModel?.number
+                if number?.contains("+91") ?? false{
+                    self.txtNumber.text = userModel?.number?.replacingOccurrences(of: "+91", with: "")
+                }else{
+                    self.txtNumber.text = number
+                }
                 self.txtNumber.isUserInteractionEnabled = false
                 self.btnSelectCountry.isUserInteractionEnabled = false
                 self.vwEmaiLabel.isHidden = true
@@ -209,11 +215,17 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
         // UI Changes---
         self.imgCountry.image = nil
         if self.imgCountry.image == nil {
-            let str = NSLocale.current.regionCode
+            var str = ""
+            if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
+                str = userModel?.strDialCountryCode ?? ""
+            }else{
+                str = NSLocale.current.regionCode ?? ""
+            }
+            
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
-            let arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
+            let arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
             if arr.count>0 {
                 let country = arr[0]
                 self.signInViewModel.strCountryDialCode = country.dial_code
