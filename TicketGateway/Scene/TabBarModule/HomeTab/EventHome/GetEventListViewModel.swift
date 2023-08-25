@@ -42,6 +42,7 @@ final class HomeDashBoardViewModel {
     var eventDetail: EventDetail?
     var followUnfollow: EventDetail?
     var countryName = "Toronto"
+    var selectedIndexForCountry:Int?
 }
 
 // MARK: - Functions
