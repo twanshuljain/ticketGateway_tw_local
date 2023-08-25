@@ -3917,14 +3917,14 @@ TG fee is non-refundable.</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1148"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Q0t-9q-wPF" customClass="AddOnAddInOrderTableViewList" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="189.66666666666669" width="353" height="100"/>
+                                                        <rect key="frame" x="20" y="186" width="353" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="100" id="3VG-TE-Afo"/>
                                                         </constraints>
                                                     </tableView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7v-5a-cju">
-                                                        <rect key="frame" x="0.0" y="304.66666666666669" width="393" height="356.00000000000006"/>
+                                                        <rect key="frame" x="0.0" y="301" width="393" height="356"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="tat-jo-PSb">
                                                                 <rect key="frame" x="20" y="1" width="353" height="340"/>
@@ -3993,13 +3993,13 @@ TG fee is non-refundable.</string>
                                                                         <rect key="frame" x="0.0" y="80" width="353" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facility Fees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UD-h6-rtB">
-                                                                                <rect key="frame" x="0.0" y="9.9999999999999414" width="93.666666666666671" height="20.333333333333329"/>
+                                                                                <rect key="frame" x="0.0" y="9.9999999999999982" width="93.666666666666671" height="20.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CA$10.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7r-P0-FgE">
-                                                                                <rect key="frame" x="278.66666666666669" y="9.9999999999999414" width="74.333333333333314" height="20.333333333333329"/>
+                                                                                <rect key="frame" x="278.66666666666669" y="9.9999999999999982" width="74.333333333333314" height="20.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -4015,7 +4015,7 @@ TG fee is non-refundable.</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1W-qd-HzE">
-                                                                        <rect key="frame" x="0.0" y="119.99999999999994" width="353" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="120" width="353" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Processing Fees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b06-Wl-VoR">
                                                                                 <rect key="frame" x="0.0" y="9.9999999999999982" width="125" height="20.333333333333329"/>
@@ -4050,7 +4050,7 @@ TG fee is non-refundable.</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w0s-9d-3cM">
-                                                                        <rect key="frame" x="0.0" y="159.99999999999994" width="353" height="60"/>
+                                                                        <rect key="frame" x="0.0" y="160" width="353" height="60"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Y6-TT-tpm">
                                                                                 <rect key="frame" x="0.0" y="25" width="101" height="20.333333333333329"/>
@@ -4085,7 +4085,7 @@ TG fee is non-refundable.</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeU-1Z-Jap">
-                                                                        <rect key="frame" x="0.0" y="219.99999999999994" width="353" height="120"/>
+                                                                        <rect key="frame" x="0.0" y="220" width="353" height="120"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refund policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdp-xa-PBC">
                                                                                 <rect key="frame" x="0.0" y="20" width="353" height="20.333333333333329"/>
@@ -4140,12 +4140,6 @@ TicketGateway fee is non refundable.</string>
                                                             <constraint firstAttribute="height" constant="100" id="MWM-WR-nE1"/>
                                                         </constraints>
                                                     </tableView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Ons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dv-MC-Y6j">
-                                                        <rect key="frame" x="19.999999999999996" y="160" width="59.666666666666657" height="19.666666666666657"/>
-                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                        <color key="textColor" name="PlaceHolder"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSP-2e-XpK">
                                                         <rect key="frame" x="18" y="128" width="357" height="1"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4192,14 +4186,12 @@ TicketGateway fee is non refundable.</string>
                                                     <constraint firstItem="NSP-2e-XpK" firstAttribute="leading" secondItem="w1M-Lj-8lf" secondAttribute="leading" constant="18" id="OvT-k6-cCm"/>
                                                     <constraint firstAttribute="trailing" secondItem="FGZ-BR-83J" secondAttribute="trailing" constant="18" id="Rup-zv-ibj"/>
                                                     <constraint firstItem="U7v-5a-cju" firstAttribute="leading" secondItem="w1M-Lj-8lf" secondAttribute="leading" id="V4A-iv-39r"/>
-                                                    <constraint firstItem="Q0t-9q-wPF" firstAttribute="top" secondItem="8dv-MC-Y6j" secondAttribute="bottom" constant="10" id="aRM-No-ZP5"/>
-                                                    <constraint firstItem="8dv-MC-Y6j" firstAttribute="leading" secondItem="w1M-Lj-8lf" secondAttribute="leading" constant="20" id="asy-GB-Bik"/>
                                                     <constraint firstItem="FGZ-BR-83J" firstAttribute="top" secondItem="NSP-2e-XpK" secondAttribute="bottom" constant="7" id="bJn-eo-2tA"/>
                                                     <constraint firstItem="rPI-zK-8Wo" firstAttribute="top" secondItem="w1M-Lj-8lf" secondAttribute="top" constant="20" id="caq-Aj-zwg"/>
                                                     <constraint firstAttribute="trailing" secondItem="Q0t-9q-wPF" secondAttribute="trailing" constant="20" id="gBx-IV-r6P"/>
-                                                    <constraint firstItem="8dv-MC-Y6j" firstAttribute="top" secondItem="rPI-zK-8Wo" secondAttribute="bottom" constant="40" id="k8D-Pt-7Cm"/>
                                                     <constraint firstItem="U7v-5a-cju" firstAttribute="top" secondItem="Q0t-9q-wPF" secondAttribute="bottom" constant="15" id="r7w-v2-Hal"/>
                                                     <constraint firstItem="NSP-2e-XpK" firstAttribute="top" secondItem="rPI-zK-8Wo" secondAttribute="bottom" constant="8" id="rW9-lQ-FKn"/>
+                                                    <constraint firstItem="Q0t-9q-wPF" firstAttribute="top" secondItem="FGZ-BR-83J" secondAttribute="bottom" constant="10" id="uwh-rp-tbj"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -4292,6 +4284,7 @@ TicketGateway fee is non refundable.</string>
                     <connections>
                         <outlet property="btnContinue" destination="Kdr-bg-LAB" id="YHx-zW-QaM"/>
                         <outlet property="btnGoBack" destination="8Oa-Pl-GJw" id="Khb-Lx-33b"/>
+                        <outlet property="discountViewHt" destination="I3E-i8-oy2" id="3nv-pL-xdk"/>
                         <outlet property="heightOfAddOn" destination="3VG-TE-Afo" id="uG4-l2-qpf"/>
                         <outlet property="heightOfTickets" destination="MWM-WR-nE1" id="jFt-K0-Rd4"/>
                         <outlet property="lblContractOrganiser" destination="fS7-ff-xiG" id="fNy-YK-xCL"/>
@@ -4914,7 +4907,7 @@ TicketGateway fee is non refundable.</string>
         <image name="arrow-down" width="24" height="24"/>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
-        <image name="chevron-down_ip" width="24.333333969116211" height="24"/>
+        <image name="chevron-down_ip" width="16" height="16"/>
         <image name="circlechevronUp_ip" width="24" height="24"/>
         <image name="cross_ip" width="24.333333969116211" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>

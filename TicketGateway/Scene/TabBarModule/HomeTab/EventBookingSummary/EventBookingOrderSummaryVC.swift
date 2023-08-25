@@ -102,7 +102,12 @@ extension EventBookingOrderSummaryVC {
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height
-        self.heightOfAddOn.constant = tblAddOnEtcThings.contentSize.height
+        if self.viewModel.selectedAddOnList.count == 0{
+            self.heightOfAddOn.constant = 0
+        }else{
+            self.heightOfAddOn.constant = tblAddOnEtcThings.contentSize.height
+        }
+        
     }
     func setData() {
         let serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees ?? 0)
