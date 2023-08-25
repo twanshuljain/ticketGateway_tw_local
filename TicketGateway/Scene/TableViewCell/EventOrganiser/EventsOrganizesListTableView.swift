@@ -58,6 +58,7 @@ class EventsOrganizesListTableView: UITableView {
     var arrDataCategorySearch = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
     var shareEvent:GetEventModel?
+    var countryName = "Toronto"
     
     func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
         self.isComingFrom = isComingFrom
@@ -69,7 +70,6 @@ class EventsOrganizesListTableView: UITableView {
     func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
         print("IndexPath : \(indexPath.row)")
         if self.isComingFrom == .Home{
-            
             switch self.arrEventCategory[indexPath.section] {
             case .nearByLocation:
                 if arrDataCategorySearch.indices.contains(indexPath.row){
@@ -215,7 +215,6 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //            }
             if self.arrEventCategory[section] == .nearByLocation{
                 return self.arrDataCategorySearch.count
-               // return self.arrDataCategorySearch.count
             }else if self.arrEventCategory[section] == .weekend{
                 return self.arrDataaWeekend.count
             }else if self.arrEventCategory[section] == .online{
@@ -334,7 +333,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             
             switch self.arrEventCategory[section] {
             case .nearByLocation:
-                label.text = "Events Near Toronto"
+                label.text = "Events Near \(countryName)"
                 return headerView
             case .weekend:
                 label.text = "This Weekend"

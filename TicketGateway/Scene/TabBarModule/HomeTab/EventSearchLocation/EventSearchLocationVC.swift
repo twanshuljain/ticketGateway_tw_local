@@ -77,7 +77,7 @@ extension EventSearchLocationVC{
     @objc func buttonPressed(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            self.delegate?.toSendLocation(location: countriesModel[sender.tag].country_name                                                                             )
+            self.delegate?.toSendLocation(location: countriesModel[sender.tag].country_name)
         }
     }
 }
@@ -90,7 +90,7 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as!SearchLocationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
         let countryName = countriesModel[indexPath.row].country_name//locationData[indexPath.row]
         cell.lblTittle.text = countryName
         cell.btnCheck.tag = indexPath.row
