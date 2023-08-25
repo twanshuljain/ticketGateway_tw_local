@@ -339,7 +339,7 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
         var copystring  = ""
         if textField == self.txtAccessCode{
             print(string)
-            
+            self.lblAppliedAccessCodeDIs.text = ""
             if string.count > 1{
                 if let theString = UIPasteboard.general.string {
                     print("String is \(theString)")
