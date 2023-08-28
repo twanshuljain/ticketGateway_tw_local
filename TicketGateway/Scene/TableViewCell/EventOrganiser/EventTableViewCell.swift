@@ -19,9 +19,12 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var btnShare: UIButton!
+    @IBOutlet weak var viewNoData : UIView!
+    @IBOutlet weak var lblNoData : UILabel!
     
     var getEvent:GetEventModel?{
         didSet{
+            self.viewNoData.isHidden = true
             if getEvent?.likeCountData?.isLiked != nil{
                 btnLike.isSelected = getEvent?.likeCountData?.isLiked ?? false
             }else{
@@ -52,6 +55,11 @@ class EventTableViewCell: UITableViewCell {
                 self.imgImages.image = UIImage(named: "homeDas")
             }
         }
+    }
+    
+    func setNoDataFound(countryName:String){
+        self.viewNoData.isHidden = false
+        lblNoData.text = "No Events Found near \(countryName)"
     }
     
     override func awakeFromNib() {

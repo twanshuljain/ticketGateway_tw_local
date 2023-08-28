@@ -128,8 +128,8 @@ extension PaymentSuccessFullVC {
         AppShareData.sharedObject().setRootToHomeVCAndMoveToFAQ()
     }
     func btnViewMyTicketAction() {
-        self.navigationController?.popToRootViewController(animated: false)
         self.tabBarController?.selectedIndex = 1
+        self.navigationController?.popToRootViewController(animated: false)
         //self.navigationController?.popToRootViewController(animated: false)
     }
 }

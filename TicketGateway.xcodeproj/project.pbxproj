@@ -80,6 +80,8 @@
 		1853214C29E41F19005075BF /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1853214B29E41F19005075BF /* SDWebImageMapKit */; };
 		1853215129E42104005075BF /* ResponseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1853215029E42104005075BF /* ResponseModal.swift */; };
 		1853215429E421DF005075BF /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1853215329E421DF005075BF /* UserDefaults+Extension.swift */; };
+		1859074F2A9CB49E002444EB /* MyTicketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859074E2A9CB49E002444EB /* MyTicketRequest.swift */; };
+		185907512A9CB5C9002444EB /* MyTicketResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185907502A9CB5C9002444EB /* MyTicketResponseModel.swift */; };
 		1859812E2A1F9F3700ABDC51 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859812D2A1F9F3700ABDC51 /* ImagePickerManager.swift */; };
 		185981302A2083A800ABDC51 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859812F2A2083A800ABDC51 /* ProgressView.swift */; };
 		185981322A20840800ABDC51 /* FBProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185981312A20840800ABDC51 /* FBProgressView.xib */; };
@@ -270,6 +272,11 @@
 		18E2ECA32A977BDF000F73F6 /* EventPromoCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2ECA22A977BDF000F73F6 /* EventPromoCodeModel.swift */; };
 		18E8442729E4194300F6525A /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E8442629E4194300F6525A /* APIHandler.swift */; };
 		18E8442B29E419F800F6525A /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E8442A29E419F800F6525A /* FileUploader.swift */; };
+		18EA6CCE2A9C6FBA009C7E93 /* ContactOrganiserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6CCD2A9C6FBA009C7E93 /* ContactOrganiserViewModel.swift */; };
+		18EA6CD02A9C7013009C7E93 /* ContactOrganiserRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6CCF2A9C7013009C7E93 /* ContactOrganiserRequestModel.swift */; };
+		18EA6CD22A9C7571009C7E93 /* ContactOrganiserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6CD12A9C7571009C7E93 /* ContactOrganiserResponseModel.swift */; };
+		18EA6CD42A9C89CF009C7E93 /* ChangeNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6CD32A9C89CF009C7E93 /* ChangeNameViewModel.swift */; };
+		18EA6CD62A9C8AF1009C7E93 /* ChangeNameRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6CD52A9C8AF1009C7E93 /* ChangeNameRequestModel.swift */; };
 		18F0FBCF2A4040CA00F9768E /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */; };
 		18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354512A56CB66003597A6 /* EventDetailViewModel.swift */; };
 		18F354542A56D001003597A6 /* EventDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354532A56D001003597A6 /* EventDetailModel.swift */; };
@@ -502,6 +509,8 @@
 		18506D092A4412C200C3C64B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		1853215029E42104005075BF /* ResponseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModal.swift; sourceTree = "<group>"; };
 		1853215329E421DF005075BF /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		1859074E2A9CB49E002444EB /* MyTicketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketRequest.swift; sourceTree = "<group>"; };
+		185907502A9CB5C9002444EB /* MyTicketResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketResponseModel.swift; sourceTree = "<group>"; };
 		1859812D2A1F9F3700ABDC51 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		1859812F2A2083A800ABDC51 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		185981312A20840800ABDC51 /* FBProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBProgressView.xib; sourceTree = "<group>"; };
@@ -694,6 +703,11 @@
 		18E2ECA22A977BDF000F73F6 /* EventPromoCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeModel.swift; sourceTree = "<group>"; };
 		18E8442629E4194300F6525A /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		18E8442A29E419F800F6525A /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
+		18EA6CCD2A9C6FBA009C7E93 /* ContactOrganiserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactOrganiserViewModel.swift; sourceTree = "<group>"; };
+		18EA6CCF2A9C7013009C7E93 /* ContactOrganiserRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactOrganiserRequestModel.swift; sourceTree = "<group>"; };
+		18EA6CD12A9C7571009C7E93 /* ContactOrganiserResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactOrganiserResponseModel.swift; sourceTree = "<group>"; };
+		18EA6CD32A9C89CF009C7E93 /* ChangeNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewModel.swift; sourceTree = "<group>"; };
+		18EA6CD52A9C8AF1009C7E93 /* ChangeNameRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameRequestModel.swift; sourceTree = "<group>"; };
 		18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		18F354512A56CB66003597A6 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		18F354532A56D001003597A6 /* EventDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailModel.swift; sourceTree = "<group>"; };
@@ -1392,6 +1406,8 @@
 				18717F802A2A1BE9002F36BC /* MyTicketVC.swift */,
 				181FD44B2A976C3700CAA230 /* MyTicketViewModel.swift */,
 				181FD44D2A976C4400CAA230 /* MyTicketModel.swift */,
+				1859074E2A9CB49E002444EB /* MyTicketRequest.swift */,
+				185907502A9CB5C9002444EB /* MyTicketResponseModel.swift */,
 			);
 			path = MyTicket;
 			sourceTree = "<group>";
@@ -1441,6 +1457,8 @@
 			isa = PBXGroup;
 			children = (
 				18717F7D2A2A1BE9002F36BC /* ChangeNameVC.swift */,
+				18EA6CD32A9C89CF009C7E93 /* ChangeNameViewModel.swift */,
+				18EA6CD52A9C8AF1009C7E93 /* ChangeNameRequestModel.swift */,
 			);
 			path = ChangeName;
 			sourceTree = "<group>";
@@ -1449,6 +1467,9 @@
 			isa = PBXGroup;
 			children = (
 				18717F792A2A1BE9002F36BC /* ContactOrganiserVC.swift */,
+				18EA6CCD2A9C6FBA009C7E93 /* ContactOrganiserViewModel.swift */,
+				18EA6CCF2A9C7013009C7E93 /* ContactOrganiserRequestModel.swift */,
+				18EA6CD12A9C7571009C7E93 /* ContactOrganiserResponseModel.swift */,
 			);
 			path = ContactOrganiser;
 			sourceTree = "<group>";
@@ -3111,6 +3132,7 @@
 				18FBC1032A309239002CF129 /* DeviceSettingVC.swift in Sources */,
 				18FBC0DC2A309239002CF129 /* TicketOverAllEstimateBarTableViewList.swift in Sources */,
 				18FBC0DE2A309239002CF129 /* ManageEventVC.swift in Sources */,
+				18EA6CD62A9C8AF1009C7E93 /* ChangeNameRequestModel.swift in Sources */,
 				181FD4512A976F7E00CAA230 /* SeeFullTicketViewModel.swift in Sources */,
 				1861A2E32A4466F600E13A5D /* ManageEventEditProfileViewModel.swift in Sources */,
 				18FBC1082A309239002CF129 /* SideMenuCell.swift in Sources */,
@@ -3202,7 +3224,9 @@
 				184D046529EE7FFF0008B825 /* RSCountryDialCode.swift in Sources */,
 				18F6F74129E959A7007B9513 /* Popover.swift in Sources */,
 				18FBC1012A309239002CF129 /* MyWalletVC.swift in Sources */,
+				18EA6CD42A9C89CF009C7E93 /* ChangeNameViewModel.swift in Sources */,
 				18FBC0FE2A309239002CF129 /* AddAmountWalletVC.swift in Sources */,
+				18EA6CD22A9C7571009C7E93 /* ContactOrganiserResponseModel.swift in Sources */,
 				18A6D0E129E9220900D6210E /* String+Extension.swift in Sources */,
 				18FDDEDB2A2F016A008BEEF0 /* GetEventModel.swift in Sources */,
 				18FBC0E82A309239002CF129 /* AddOnTableViewCell.swift in Sources */,
@@ -3214,6 +3238,7 @@
 				185981302A2083A800ABDC51 /* ProgressView.swift in Sources */,
 				1892EE2029E54A7900AD7CC7 /* LoginVC.swift in Sources */,
 				18B636AD29F7B76100DC14B8 /* LoginNmberWithEmailCell.swift in Sources */,
+				18EA6CD02A9C7013009C7E93 /* ContactOrganiserRequestModel.swift in Sources */,
 				18FBC0F22A309239002CF129 /* DepositeTableViewCell.swift in Sources */,
 				18A338D82A4D8BA100D7C194 /* LeaderProfileTableViewCell.swift in Sources */,
 				18A338D02A4D634400D7C194 /* BandLeaderProfileViewModel.swift in Sources */,
@@ -3249,6 +3274,7 @@
 				1821FDF62A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift in Sources */,
 				189D7C812A13BEB600BDEE9A /* PaymentSuccessFullVC.swift in Sources */,
 				186FB94F2A4039FF002B0E5C /* SignUpRequest.swift in Sources */,
+				18EA6CCE2A9C6FBA009C7E93 /* ContactOrganiserViewModel.swift in Sources */,
 				180187552A1B44CD003308AE /* EventSearchCategoryCell.swift in Sources */,
 				18C952822A94CB7F00C9C02B /* MyOrderModel.swift in Sources */,
 				18FBC1022A309239002CF129 /* NotificationVC.swift in Sources */,
@@ -3374,6 +3400,7 @@
 				187734E329E7FFB100E26B65 /* Constant.swift in Sources */,
 				1861A2B42A44157B00E13A5D /* FavouriteTableViewCell.swift in Sources */,
 				18F0FBCF2A4040CA00F9768E /* SignInRequest.swift in Sources */,
+				185907512A9CB5C9002444EB /* MyTicketResponseModel.swift in Sources */,
 				189FAEC729F112AD00B8325A /* LogoutViewModel.swift in Sources */,
 				18B2B2272A04F1A8001DF3E5 /* EventTagList.swift in Sources */,
 				18FBC0FA2A309239002CF129 /* CostumeViewController.swift in Sources */,
@@ -3389,6 +3416,7 @@
 				18FBC0CE2A309239002CF129 /* AddCardVC.swift in Sources */,
 				183A263E2A43375600DC97E3 /* EventsOrganizesListTableView.swift in Sources */,
 				18A6D0E929E9319300D6210E /* DataPassOnSignUpProcessModel.swift in Sources */,
+				1859074F2A9CB49E002444EB /* MyTicketRequest.swift in Sources */,
 				182B9FAF2A73F9FC00358311 /* EventBookingPaymentMethodViewModel.swift in Sources */,
 				18FBC0D82A309239002CF129 /* ManageMyEventCateoryList.swift in Sources */,
 				18FBC0E92A309239002CF129 /* PhotosProductCollectionViewCell.swift in Sources */,
@@ -3490,7 +3518,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3544,7 +3572,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -3562,29 +3590,29 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketGateway/TicketGateway.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5KQQ4NSG87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TicketGateway/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TicketGateway;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access required.";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
-				INFOPLIST_KEY_NSLocationUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = .;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
-				INFOPLIST_KEY_NSRemindersUsageDescription = "";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "To use calendar for event reminder";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To access camera";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSLocationUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To access photo library.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "To use calendar for event reminder";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3608,29 +3636,29 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketGateway/TicketGateway.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5KQQ4NSG87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TicketGateway/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TicketGateway;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access required.";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
-				INFOPLIST_KEY_NSLocationUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = .;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
-				INFOPLIST_KEY_NSRemindersUsageDescription = "";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "To use calendar for event reminder";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To access camera";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSLocationUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To get nearby events";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To access photo library.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "To use calendar for event reminder";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

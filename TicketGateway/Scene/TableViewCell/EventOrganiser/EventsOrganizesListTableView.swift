@@ -58,6 +58,7 @@ class EventsOrganizesListTableView: UITableView {
     var arrDataCategorySearch = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
     var shareEvent:GetEventModel?
+    var countryName = "Toronto"
     
     func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
         self.isComingFrom = isComingFrom
@@ -69,8 +70,9 @@ class EventsOrganizesListTableView: UITableView {
     func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
         print("IndexPath : \(indexPath.row)")
         if self.isComingFrom == .Home{
-            
             switch self.arrEventCategory[indexPath.section] {
+            case .noLocationData:
+                print("No Location Data")
             case .nearByLocation:
                 if arrDataCategorySearch.indices.contains(indexPath.row){
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataCategorySearch[indexPath.row])
@@ -113,6 +115,8 @@ class EventsOrganizesListTableView: UITableView {
         print("IndexPath : \(indexPath.row)")
         if self.isComingFrom == .Home {
             switch self.arrEventCategory[indexPath.section] {
+            case .noLocationData:
+                print("No Location Data")
             case .nearByLocation:
                 if arrDataCategorySearch.indices.contains(indexPath.row) {
                     arrDataCategorySearch[indexPath.row].likeCountData?.isLiked?.toggle()
@@ -213,9 +217,10 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //            }else{
 //                return self.arrDataa.count
 //            }
-            if self.arrEventCategory[section] == .nearByLocation{
+            if self.arrEventCategory[section] == .noLocationData{
+                return 1
+            }else if self.arrEventCategory[section] == .nearByLocation{
                 return self.arrDataCategorySearch.count
-               // return self.arrDataCategorySearch.count
             }else if self.arrEventCategory[section] == .weekend{
                 return self.arrDataaWeekend.count
             }else if self.arrEventCategory[section] == .online{
@@ -262,6 +267,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             if self.isComingFrom == .Home{
                 
                 switch self.arrEventCategory[indexPath.section] {
+                case .noLocationData:
+                    cell.setNoDataFound(countryName: self.countryName)
                 case .nearByLocation:
                     if arrDataCategorySearch.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataCategorySearch[indexPath.row]
@@ -276,7 +283,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                     if arrDataaVirtual.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaVirtual[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataaVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
-
+                        
                     }
                 case .popular:
                     if arrDataaPopular.indices.contains(indexPath.row){
@@ -333,8 +340,10 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             
             
             switch self.arrEventCategory[section] {
+            case .noLocationData:
+                print("No Location Data")
             case .nearByLocation:
-                label.text = "Events Near Toronto"
+                label.text = "Events Near \(countryName)"
                 return headerView
             case .weekend:
                 label.text = "This Weekend"
@@ -392,6 +401,9 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         separatorView.backgroundColor = UIColor.setColor(colorType: .placeHolder)
         if self.isComingFrom == .Home{
             switch self.arrEventCategory[section] {
+            case .noLocationData:
+                print("No Location Data")
+                return nil
             case .nearByLocation:
                 return footerView
             case .weekend:

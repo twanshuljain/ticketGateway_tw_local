@@ -15,6 +15,7 @@ class ValidationConstantStrings: NSObject {
         static let emptyName = "Please enter full name"
         static let invalidName = "Please enter valid full name"
         static let invalidEmail = "The user email must be a valid email address"
+        static let emailInvalid = "The email must be a valid email"
         static let emailNotMatched = "Email and confirm email will be same"
         static let passwordNotMatch = "Password and confirm password are not same"
         static let emptyOtp = "OTP is required"

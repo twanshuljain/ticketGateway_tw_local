@@ -41,6 +41,8 @@ final class HomeDashBoardViewModel {
     var eventId:Int?
     var eventDetail: EventDetail?
     var followUnfollow: EventDetail?
+    var countryName = "Toronto"
+    var selectedIndexForCountry:Int?
 }
 
 // MARK: - Functions
@@ -97,7 +99,6 @@ extension HomeDashBoardViewModel {
     func getEventAsPerLocation(category:String? = "", countryName:String? = "", sortBy:SortBy? = .None, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
         let parameters =  GetEventSearchByCategoryRequest(countryName: countryName, limit: "3", page: "1")
-        
         APIHandler.shared.executeRequestWith(apiName: .GetEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
                 
@@ -112,6 +113,8 @@ extension HomeDashBoardViewModel {
                             self.arrSearchCategoryData = items
                             if items.count != 0{
                                 self.arrEventCategory.append(.nearByLocation)
+                            }else{
+                                self.arrEventCategory.append(.noLocationData)
                             }
                         }
                         complition(true, response.message ?? "")

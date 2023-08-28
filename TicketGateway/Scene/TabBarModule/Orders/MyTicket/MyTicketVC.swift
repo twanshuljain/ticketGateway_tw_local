@@ -75,6 +75,30 @@ extension MyTicketVC {
     func setUI() {
         self.btnSeeFullTicket.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
     }
+    
+    func apiCallForMyTicketList(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            self.view.showLoading(centreToView: self.view)
+            viewModel.getMyTicketList(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
 }
 
 // MARK: - Actions

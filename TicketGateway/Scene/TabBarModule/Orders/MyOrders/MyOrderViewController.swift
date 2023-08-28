@@ -58,7 +58,9 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell", for: indexPath) as? UpcomingTableViewCell {
-            cell.getTicket = viewModel.arrMyOrder[indexPath.row]
+            if viewModel.arrMyOrder.indices.contains(indexPath.row) {
+                cell.getTicket = viewModel.arrMyOrder[indexPath.row]
+            }
             return cell
         }
         return UITableViewCell.init()

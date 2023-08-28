@@ -66,6 +66,10 @@ public enum APIName: String {
     case myFavourite = "events/like/list/"
     // Get Venue Model
     case myVenue = "venue/like/list/"
+
+    case ContactOrganizer = "organizer/contact/form/"
+    case ChangeTicketName = "ticket/transfer/user-name/change/"
+    case GetMyTicketList = "ticket/my-ticket/list/"
 }
 public enum GroupApiName: String {
     case auth = "auth"

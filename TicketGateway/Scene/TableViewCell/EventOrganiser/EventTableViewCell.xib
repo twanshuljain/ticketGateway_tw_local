@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -159,9 +160,27 @@
                             <constraint firstAttribute="trailing" secondItem="6SV-Oi-BHW" secondAttribute="trailing" id="eac-PV-GmZ"/>
                         </constraints>
                     </stackView>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhK-TD-C8I">
+                        <rect key="frame" x="0.0" y="0.0" width="511" height="501"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Events Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-5J-aaY">
+                                <rect key="frame" x="181.5" y="238" width="148" height="25.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                <color key="textColor" name="TiitleColourDarkBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u7V-5J-aaY" firstAttribute="centerY" secondItem="GhK-TD-C8I" secondAttribute="centerY" id="UAZ-VO-b4z"/>
+                            <constraint firstItem="u7V-5J-aaY" firstAttribute="centerX" secondItem="GhK-TD-C8I" secondAttribute="centerX" id="cDE-W9-jWd"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="cWN-b5-e2L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="0Mu-TG-I7k"/>
+                    <constraint firstItem="GhK-TD-C8I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0xZ-SC-fP5"/>
+                    <constraint firstAttribute="trailing" secondItem="GhK-TD-C8I" secondAttribute="trailing" id="2de-i0-hJc"/>
                     <constraint firstAttribute="trailing" secondItem="cWN-b5-e2L" secondAttribute="trailing" constant="20" id="2sD-IJ-nDz"/>
                     <constraint firstItem="srN-ko-Zbh" firstAttribute="top" secondItem="XY8-mf-EXS" secondAttribute="bottom" constant="10" id="B3p-RN-pKy"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="duQ-Ep-6qF" secondAttribute="bottom" constant="10" id="EEi-SH-k6B"/>
@@ -175,12 +194,14 @@
                     <constraint firstItem="duQ-Ep-6qF" firstAttribute="top" secondItem="cWN-b5-e2L" secondAttribute="bottom" id="cJd-l1-7Fu"/>
                     <constraint firstItem="duQ-Ep-6qF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="fua-oC-MIO"/>
                     <constraint firstItem="rfL-Ch-Kde" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gSI-sf-7FX"/>
+                    <constraint firstItem="GhK-TD-C8I" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ncm-tn-jU4"/>
                     <constraint firstItem="srN-ko-Zbh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="npD-wK-1BC"/>
                     <constraint firstAttribute="trailingMargin" secondItem="XY8-mf-EXS" secondAttribute="trailing" constant="20" id="obE-x2-lN7"/>
                     <constraint firstAttribute="trailing" secondItem="9wi-79-tSi" secondAttribute="trailing" constant="15" id="rep-IT-a5i"/>
                     <constraint firstItem="XY8-mf-EXS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sEf-Ma-jVH"/>
                     <constraint firstItem="rfL-Ch-Kde" firstAttribute="top" secondItem="9wi-79-tSi" secondAttribute="bottom" constant="10" id="tFv-FI-HQk"/>
                     <constraint firstItem="9wi-79-tSi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tMO-dd-ezQ"/>
+                    <constraint firstAttribute="bottom" secondItem="GhK-TD-C8I" secondAttribute="bottom" id="xid-vX-L2X"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -190,9 +211,11 @@
                 <outlet property="imgImages" destination="9wi-79-tSi" id="Q7N-ug-QCq"/>
                 <outlet property="lblAddress" destination="6SV-Oi-BHW" id="KCZ-l7-rt6"/>
                 <outlet property="lblDate" destination="paI-oJ-FUD" id="Cgd-XK-Kp3"/>
+                <outlet property="lblNoData" destination="u7V-5J-aaY" id="Dnd-Iw-U1c"/>
                 <outlet property="lblPrice" destination="duQ-Ep-6qF" id="MMK-T0-DJu"/>
                 <outlet property="lblTime" destination="GKX-44-UeM" id="4Rk-Kq-dtu"/>
                 <outlet property="lblTitle" destination="rfL-Ch-Kde" id="ZpX-pp-Zdd"/>
+                <outlet property="viewNoData" destination="GhK-TD-C8I" id="swm-du-2uf"/>
             </connections>
             <point key="canvasLocation" x="110.86956521739131" y="123.54910714285714"/>
         </tableViewCell>
@@ -201,7 +224,7 @@
         <image name="cal_ip" width="16" height="17"/>
         <image name="clock_ip" width="17" height="17"/>
         <image name="favSele_ip" width="36.5" height="36.5"/>
-        <image name="homeDas" width="343" height="165"/>
+        <image name="homeDas" width="96" height="96"/>
         <image name="location_ip" width="16" height="19"/>
         <image name="share-2" width="22" height="22.5"/>
         <namedColor name="Headinglbl">
@@ -213,5 +236,8 @@
         <namedColor name="TiitleColourDarkBlue">
             <color red="0.043000001460313797" green="0.13699999451637268" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

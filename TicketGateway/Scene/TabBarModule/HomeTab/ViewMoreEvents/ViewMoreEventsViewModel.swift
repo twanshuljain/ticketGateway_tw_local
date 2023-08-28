@@ -40,6 +40,7 @@ final class ViewMoreEventsViewModel {
     var itemsLocation = [GetEventModel]()
     var itemsSuggestedEvents = [GetEventModel]()
     var isLikedAnyEvent: Bool = false
+    var countryName = "Toronto"
 }
 
 //MARK: - Functions

@@ -31,7 +31,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
         let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 20))
         let label = UILabel()
         label.frame = CGRect.init(x: 5, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
-        label.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+        label.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         label.textColor = UIColor.setColor(colorType: .placeHolder)
         headerView.addSubview(label)
         label.text = "Add ons"
