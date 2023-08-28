@@ -19,7 +19,7 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnLike: UIButton!
-    
+    var likeButtonPressed: (() -> ()) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
@@ -36,13 +36,13 @@ class FavouriteTableViewCell: UITableViewCell {
             if let imageUrl = getFavouriteData?.coverImage?.eventCoverImage {
                 if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl) {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                         self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                     } else {
                         self.imgImages.image = UIImage(named: "homeDas")
                     }
                 } else {
-                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl) {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                         self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                     } else {
                         self.imgImages.image = UIImage(named: "homeDas")
@@ -53,7 +53,9 @@ class FavouriteTableViewCell: UITableViewCell {
             }
         }
     }
-    
+    @IBAction func likeButtonAction(_ sender: UIButton) {
+        likeButtonPressed()
+    }
     func setUi(){
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

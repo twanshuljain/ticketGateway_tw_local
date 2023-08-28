@@ -725,13 +725,13 @@ extension ViewMoreEventsVC: ActivityController {
         if let imageUrl = eventDetail.coverImage?.eventCoverImage{
             if imageUrl.contains(APIHandler.shared.previousBaseURL){
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                     objectsToShare.append("\n Check this image: - \(url)")
                 } else {
                     objectsToShare.append(shareImageObj as Any)
                 }
             }else{
-                if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                     objectsToShare.append("\n Check this image: - \(url)")
                 } else {
                     objectsToShare.append(shareImageObj as Any)

@@ -228,7 +228,7 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
             } else if indexPath.section == arrData.count-1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "OrderDetailTableViewCell", for: indexPath) as!
                 OrderDetailTableViewCell
-                cell.btnContinue.addTarget(self, action: #selector(btnçontinue(sender:)), for: .touchUpInside)
+                cell.btnContinue.addTarget(self, action: #selector(btncontinue(sender:)), for: .touchUpInside)
                 cell.lblDescription.isHidden = true
                 return cell
                 
@@ -288,7 +288,7 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    @objc func btnçontinue(sender:UIButton)
+    @objc func btncontinue(sender:UIButton)
     {
         let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as? PhoneVerificationViewController
         self.navigationController?.pushViewController(view!, animated: true)

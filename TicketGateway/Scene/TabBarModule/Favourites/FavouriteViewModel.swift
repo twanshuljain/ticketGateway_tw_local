@@ -68,4 +68,25 @@ class FavouriteViewModel {
             }
         }
     }
+    func favouriteApiForHome(likeStatus: Bool,
+                             eventId: Int,
+                             completion: @escaping (Bool, String) -> Void) {
+        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let message = response.message {
+                            print("success like api")
+                            completion(true, message)
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("failure like api, Error:", error)
+                completion(false, error as? String ?? "")
+            }
+        }
+    }
 }

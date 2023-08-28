@@ -113,7 +113,6 @@ extension GetEventCategoryViewModel {
                   //  DispatchQueue.main.async {
                     if let searchData = response.data?.items {
                             self.arrSearchData = searchData
-                            print("----------------",self.arrSearchData)
                         }
                         complition(true, response.message ?? "")
                   //  }

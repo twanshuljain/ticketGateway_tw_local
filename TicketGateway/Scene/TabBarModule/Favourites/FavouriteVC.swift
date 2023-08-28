@@ -65,12 +65,12 @@ extension FavouriteVC {
         lblVenuSuggestionForYou.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
     func setNavigationBar() {
-        self.vwNavigationView.lblTitle.text = FAVOURITE
-        self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
-        self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.vwNavigationView.imgBack.image = UIImage(named: MENU_ICON)
-        self.vwNavigationView.btnBack.isHidden =  false
-        self.vwNavigationView.delegateBarAction = self
+        vwNavigationView.lblTitle.text = FAVOURITE
+        vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+        vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        vwNavigationView.imgBack.image = UIImage(named: MENU_ICON)
+        vwNavigationView.btnBack.isHidden =  false
+        vwNavigationView.delegateBarAction = self
     }
     func setCollectionView() {
         findEventCollectionView.delegate = self
@@ -125,7 +125,7 @@ extension FavouriteVC {
     func onAppearActions() {
         viewModel.arrFavouriteList.removeAll()
         viewModel.arrVenueList.removeAll()
-        viewModel.venueModel.pageNumber = 1
+        viewModel.venueModel.page = 1
         viewModel.favouriteModel.page = 1
         getFavouriteList()
         getVenueList()
@@ -153,7 +153,7 @@ extension FavouriteVC {
         if viewModel.isForVenue {
             if viewModel.arrVenueList.count < viewModel.totalPageVenue {
                 print("venue load more data")
-                viewModel.venueModel.pageNumber += 1
+                viewModel.venueModel.page += 1
                 getVenueList()
             }
         } else {
@@ -161,6 +161,41 @@ extension FavouriteVC {
                 print("event load more data")
                 viewModel.favouriteModel.page += 1
                 getFavouriteList()
+            }
+        }
+    }
+    func btnLikeAction(indexPath: IndexPath) {
+        let eventId = viewModel.isForVenue ? viewModel.arrVenueList[indexPath.row].eventId : viewModel.arrFavouriteList[indexPath.row].eventId
+        // API Calling for Dislike the Event
+        if Reachability.isConnectedToNetwork() {
+            self.view.showLoading(centreToView: self.view)
+            viewModel.favouriteApiForHome(
+                likeStatus: false,
+                eventId: eventId ?? 0,
+                completion: { isTrue, message in
+                    if isTrue {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            if self.viewModel.isForVenue {
+                                self.viewModel.arrVenueList.removeAll()
+                                self.getVenueList()
+                            } else {
+                                self.viewModel.arrFavouriteList.removeAll()
+                                self.getFavouriteList()
+                            }
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: message)
+                        }
+                    }
+                }
+            )
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
     }
@@ -175,6 +210,9 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as! FavouriteTableViewCell
         cell.getFavouriteData = viewModel.isForVenue ? viewModel.arrVenueList[indexPath.row] : viewModel.arrFavouriteList[indexPath.row]
         cell.lblFavoriteDate.isHidden = viewModel.isForVenue
+        cell.likeButtonPressed = {
+            self.btnLikeAction(indexPath: indexPath)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

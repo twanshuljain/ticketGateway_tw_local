@@ -34,13 +34,13 @@ class UpcomingTableViewCell: UITableViewCell {
             if let imageUrl = getTicket?.coverImage?.eventCoverImage {
                 if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl) {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                         self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                     } else {
                         self.imgImage.image = UIImage(named: "homeDas")
                     }
                 } else {
-                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl) {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                         self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                     } else {
                         self.imgImage.image = UIImage(named: "homeDas")

@@ -35,13 +35,13 @@ class EventTableViewCell: UITableViewCell {
             if let imageUrl = getEvent?.coverImage?.eventCoverImage{
                 if imageUrl.contains(APIHandler.shared.previousBaseURL){
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                         self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                     }else{
                         self.imgImages.image = UIImage(named: "homeDas")
                     }
                 }else{
-                    if let url = URL(string: APIHandler.shared.s3URL + imageUrl){
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL(){
                         self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                     }else{
                         self.imgImages.image = UIImage(named: "homeDas")
