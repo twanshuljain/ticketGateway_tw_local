@@ -21,6 +21,7 @@ class MyTicketVC: UIViewController {
         self.setFont()
         self.setNavigationBar()
         self.setUI()
+        self.apiCallForMyTicketList()
     }
     @objc func addActionSheet() {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
