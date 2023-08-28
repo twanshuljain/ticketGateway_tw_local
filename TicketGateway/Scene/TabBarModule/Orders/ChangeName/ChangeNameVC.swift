@@ -20,6 +20,9 @@ class ChangeNameVC: UIViewController {
     @IBOutlet weak var lblTicketNameChange: UILabel!
     @IBOutlet weak var btnSaveChanges: CustomButtonGradiant!
     @IBOutlet weak var btnCancel: UIButton!
+    
+    var viewModel = ChangeNameViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
@@ -57,17 +60,60 @@ extension ChangeNameVC {
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.lblFirstName.attributedText = getAttributedTextAction(attributedText: "*", firstString: FIRST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         self.lblLastName.attributedText = getAttributedTextAction(attributedText: "*", firstString: LAST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        
+        self.txtFirstName.text = viewModel.firstName
+        self.txtLastName.text = viewModel.lastName
+    }
+    
+    func apiCall(){
+        self.view.endEditing(true)
+        viewModel.firstName = self.txtFirstName.text ?? ""
+        viewModel.lastName = self.txtLastName.text ?? ""
+        
+        let isValidate = viewModel.validateInput
+        
+        if isValidate.isValid{
+            if Reachability.isConnectedToNetwork() //check internet connectivity
+            {
+                self.view.showLoading(centreToView: self.view)
+                viewModel.changeTicketName(complition: { isTrue, messageShowToast in
+                    if isTrue == true {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.navigateToManageSellTicketSuccessfully()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    self.view.stopLoading()
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
+            }
+        }else{
+            self.showToast(message: isValidate.errorMessage)
+        }
+    }
+    
+    func navigateToManageSellTicketSuccessfully(){
+        if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
+            view.strTittle = TICKET_NAME_CHANGED
+            view.strComplimentry = "1 Ticket(S) with amount $100.00"
+            view.strSummary = TICKET_NAME_SUCCESSFULLY_CHANGED
+            view.btnStr = OKAY
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
 }
 // MARK: - Actions
 extension ChangeNameVC {
     @IBAction func btnSaveChange(_ sender: Any) {
-        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        view?.strTittle = TICKET_NAME_CHANGED
-        view?.strComplimentry = "1 Ticket(S) with amount $100.00"
-        view?.strSummary = TICKET_NAME_SUCCESSFULLY_CHANGED
-        view?.btnStr = OKAY
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.apiCall()
     }
 }
 // MARK: - NavigationBarViewDelegate

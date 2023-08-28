@@ -21,8 +21,8 @@ class ContactOrganiserVC: UIViewController {
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var btnSendMessage: CustomButtonGradiant!
     // MARK: - Variables
-    var selectedReason: String?
-    var reasonList = ["Choose one", "Question about the event", "Question about my ticket"]
+    var viewModel = ContactOrganiserViewModel()
+    
         override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
@@ -64,6 +64,8 @@ extension ContactOrganiserVC {
         [btnSendMessage].forEach {
             $0?.addTarget(self, action: #selector(btnSendAction(sender:)), for: .touchUpInside)
         }
+        txtReason.delegate = self
+        txtReason.text = ""
     }
     func createPickerView() {
         let pickerView = UIPickerView()
@@ -83,16 +85,56 @@ extension ContactOrganiserVC {
     @objc func action() {
         view.endEditing(true)
     }
+    
+    func apiCall(){
+        self.view.endEditing(true)
+        viewModel.name = self.txtName.text ?? ""
+        viewModel.email = self.txtEmailAddress.text ?? ""
+        viewModel.message = self.txtMessage.text ?? ""
+        let isValidate = viewModel.validateInput
+        
+        if isValidate.isValid{
+            if Reachability.isConnectedToNetwork() //check internet connectivity
+            {
+                self.view.showLoading(centreToView: self.view)
+                viewModel.contactOrganizer(complition: { isTrue, messageShowToast in
+                    if isTrue == true {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.navigateToManageSellTicketSuccessfully()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    self.view.stopLoading()
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
+            }
+        }else{
+            self.showToast(message: isValidate.errorMessage)
+        }
+    }
+    
+    func navigateToManageSellTicketSuccessfully(){
+        if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
+            view.strTittle = CHANGE_ORGANISER
+            view.strComplimentry = ""
+            view.strSummary = MESSAGE_SUCCESSFULLY_SENT_TO_ORGANISER
+            view.btnStr = OKAY
+            self.navigationController?.pushViewController(view, animated: true)
+        }
+    }
 }
 // MARK: - Actions
 extension ContactOrganiserVC {
     @objc func btnSendAction(sender: UIButton) {
-        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        view?.strTittle = CHANGE_ORGANISER
-        view?.strComplimentry = ""
-        view?.strSummary = MESSAGE_SUCCESSFULLY_SENT_TO_ORGANISER
-        view?.btnStr = OKAY
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.apiCall()
     }
 }
 // MARK: - UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate
@@ -101,14 +143,14 @@ extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource, UITe
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return reasonList.count
+        return self.viewModel.reasonList.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return reasonList[row]
+        return self.viewModel.reasonList[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedReason = reasonList[row]
-        txtReason.text = selectedReason
+        self.viewModel.selectedReason = self.viewModel.reasonList[row]
+        self.txtReason.text = self.viewModel.selectedReason
 
     }
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -118,10 +160,14 @@ extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource, UITe
             pickerLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
             pickerLabel?.textAlignment = .center
         }
-        pickerLabel?.text = reasonList[row]
+        pickerLabel?.text = self.viewModel.reasonList[row]
         pickerLabel?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
 
         return pickerLabel!
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }
 // MARK: - NavigationBarViewDelegate

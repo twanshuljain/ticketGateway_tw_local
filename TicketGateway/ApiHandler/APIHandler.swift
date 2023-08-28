@@ -62,6 +62,9 @@ public enum APIName: String {
     
     // Orders
     case myOrders = "events/my/order/"
+    case ContactOrganizer = "organizer/contact/form/"
+    case ChangeTicketName = "ticket/transfer/user-name/change/"
+    case GetMyTicketList = "ticket/my-ticket/list/"
 }
 public enum GroupApiName: String {
     case auth = "auth"

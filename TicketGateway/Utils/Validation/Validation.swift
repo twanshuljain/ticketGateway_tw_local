@@ -101,6 +101,52 @@ class Validation {
                    text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
         }
     }
+    
+    func organizerInputValidation(text: String, validationType: InputValidation) -> (Bool, String) {
+        switch validationType {
+        case .email:
+            return(
+                text.isEmpty ? true: Validation.shared.isValidEmail(emaiId: text) == false ? true: false,
+                text.isEmpty ? ValidationConstantStrings.emptyEmail:ValidationConstantStrings.emailInvalid)
+        case .number:
+            return(
+                text.isEmpty ? true:
+                    text.count < 4 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyNumber:ValidationConstantStrings.invalidNumber)
+        case .password:
+            return(
+                text.isEmpty ? true :
+                    text.count < 4 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.invalidPassword)
+        case .newPassword:
+            return(
+                text.isEmpty ? true :
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyNewPassword : ValidationConstantStrings.invalidNewPassword)
+        case .currentPassword:
+            return(
+                text.isEmpty ? true :
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyCurrentPassword : ValidationConstantStrings.invalidCurrentPassword)
+        case .confirmPassword:
+            return(
+                text.isEmpty ? true :
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword : ValidationConstantStrings.invalidPassword)
+        case .name:
+            return( text.isEmpty ? true : false,
+                    text.isEmpty ? ValidationConstantStrings.emptyName : ValidationConstantStrings.invalidName)
+        case .description:
+            return( text.isEmpty ? true :
+                        text.count > 140 ? true : false,
+                    text.isEmpty ? "AppConstant.emptyDescription": "AppConstant.invalidDescription")
+        case .otp:
+            return(text.isEmpty ? true :
+                    text.count < 4 ? true : false,
+                   text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
+        }
+    }
+    
     func CompareValidation(fieldName: ValidationParam, compare: (CompareField: UITextField, CompareFieldTo: UITextField)? = nil) -> (Bool, String) {
         var valuess = fieldName.sorted(by: { (arg0, arg1) -> Bool in
             return arg0.value.priority < arg1.value.priority
