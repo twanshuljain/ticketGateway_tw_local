@@ -15,6 +15,8 @@ class FavouriteViewModel {
     var totalPageEvent: Int = 0
     var totalPageVenue: Int = 0
     var isForVenue: Bool = false
+    var eventDetail: EventDetail?
+    var dispatchGroup = DispatchGroup.init()
     // MARK: Custom Functions
     func getFavouriteList(favouriteModel: FavouriteModel,
                           completion: @escaping (Bool, String) -> Void) {
@@ -86,6 +88,29 @@ class FavouriteViewModel {
             case .failure(let error):
                 print("failure like api, Error:", error)
                 completion(false, error as? String ?? "")
+            }
+        }
+    }
+    func GetEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
+        let url = APIName.GetEventDetail.rawValue + "\(eventId)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    defer { self.dispatchGroup.leave() }
+                    print("response....",response)
+                    DispatchQueue.main.async {
+                        self.eventDetail = response.data ?? EventDetail()
+                        print("--------------------",self.eventDetail as Any)
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                defer { self.dispatchGroup.leave() }
+                complition(false,"\(error)")
             }
         }
     }

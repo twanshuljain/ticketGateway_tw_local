@@ -440,6 +440,7 @@ extension HomeVC {
             
             self.viewModel.dispatchGroup6.notify(queue: .main) {
                 let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+                // Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
                 AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
                 view.viewModel.eventDetail = self.viewModel.eventDetail
                 view.delegate = self

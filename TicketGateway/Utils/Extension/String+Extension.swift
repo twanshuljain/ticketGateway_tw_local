@@ -63,7 +63,7 @@ extension String {
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         if dateFormatter.date(from: self) == nil {
           dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
           let date = dateFormatter.date(from: self) ?? Date.init()
@@ -85,6 +85,7 @@ extension String {
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         if dateFormatter.date(from: self) == nil{
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             let date = dateFormatter.date(from: self) ?? Date.init()

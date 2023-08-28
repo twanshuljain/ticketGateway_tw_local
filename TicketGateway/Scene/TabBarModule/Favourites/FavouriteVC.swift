@@ -199,6 +199,47 @@ extension FavouriteVC {
             }
         }
     }
+    func navigateToDetailVc(index: IndexPath) {
+        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
+            if viewModel.arrFavouriteList.indices.contains(index.row) {
+                view.viewModel.eventId = viewModel.arrFavouriteList[index.row].eventId
+            }
+            funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
+        }
+    }
+    func funcCallApiForEventDetail(eventId:Int?, view: EventDetailVC) {
+        if let eventId = eventId {
+            if Reachability.isConnectedToNetwork() //check internet connectivity
+            {
+                self.view.showLoading(centreToView: self.view)
+                self.viewModel.dispatchGroup.enter()
+                viewModel.GetEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
+                    if isTrue == true {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    self.view.stopLoading()
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
+            }
+            self.viewModel.dispatchGroup.notify(queue: .main) {
+                let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+                // Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
+                AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
+                view.viewModel.eventDetail = self.viewModel.eventDetail
+                self.navigationController?.pushViewController(view, animated: false)
+            }
+        }
+    }
 }
 
 // MARK: - TableView Delegate
@@ -216,7 +257,7 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      //  let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell") as! FavouriteTableViewCell
+        navigateToDetailVc(index: indexPath)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")

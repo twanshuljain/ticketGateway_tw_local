@@ -138,6 +138,7 @@ enum PaymentError {
     case cardNumberLenghtShort
     case nameMinCharactorCount
     case cvvMin
+    case cardNumberMaxLength
     
 
     var value:String {
@@ -151,11 +152,13 @@ enum PaymentError {
         case .cvv:
             return "Please enter cvv."
         case .cardNumberLenghtShort:
-            return "Card number should not be less 16 digits"
+            return "Card number should not be less than 16 digits"
         case .nameMinCharactorCount:
             return "Full name contain atleast 3 characters"
         case .cvvMin:
             return "Please enter valid cvv"
+        case .cardNumberMaxLength:
+            return "Card number should not be more than 16 digits"
         }
     }
     

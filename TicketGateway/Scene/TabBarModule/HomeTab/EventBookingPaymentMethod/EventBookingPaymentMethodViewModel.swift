@@ -242,6 +242,9 @@ extension EventBookingPaymentMethodViewModel{
             vc.showAlertController(message: PaymentError.cvvMin.value)
             return false
             
+        } else if (cardNumber?.count ?? 0) > 16 {
+            vc.showAlertController(message: PaymentError.cardNumberMaxLength.value)
+            return false
         }
         
         return true
