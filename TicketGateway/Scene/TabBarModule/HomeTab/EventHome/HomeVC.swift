@@ -493,15 +493,19 @@ extension HomeVC: CustomSearchMethodsDelegate {
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         view?.delegate = self
+        if self.viewModel.selectedIndexForCountry != nil{
+            view?.selectedIndex = self.viewModel.selectedIndexForCountry
+        }
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
 
 // MARK: -
 extension HomeVC: SendLocation {
-    func toSendLocation(location: String) {
+    func toSendLocation(location: String, selectedIndex:Int) {
         vwSearchBar.lblAddress.text = location
         self.viewModel.countryName = location
+        self.viewModel.selectedIndexForCountry = selectedIndex
         self.refreshData()
     }
 }

@@ -15,7 +15,7 @@ import UIKit
 import SideMenu
 
 protocol SendLocation: AnyObject {
-    func toSendLocation(location: String)
+    func toSendLocation(location: String, selectedIndex:Int)
 }
 
 class EventSearchLocationVC: UIViewController {
@@ -32,6 +32,8 @@ class EventSearchLocationVC: UIViewController {
     
     weak var delegate: SendLocation?
     var countriesModel = [CountryInfo]()
+    var selecetdCountriesModel:CountryInfo?
+    var selectedIndex : Int?
     var countries = [[String: String]]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +77,13 @@ extension EventSearchLocationVC{
         }
     }
     @objc func buttonPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected {
-            self.delegate?.toSendLocation(location: countriesModel[sender.tag].country_name)
-        }
+//        sender.isSelected = !sender.isSelected
+//        if sender.isSelected {
+//            self.selecetdCountriesModel = countriesModel[sender.tag]
+//            self.selectedIndex = [sender.tag]
+//           // self.selectedIndex?.append(sender.tag)
+//            self.tblList.reloadData()
+//        }
     }
 }
 
@@ -93,16 +98,24 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
         let countryName = countriesModel[indexPath.row].country_name//locationData[indexPath.row]
         cell.lblTittle.text = countryName
+        cell.btnCheck.isUserInteractionEnabled = false
         cell.btnCheck.tag = indexPath.row
         cell.btnCheck.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        cell.btnCheck.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .selected)
-        cell.btnCheck.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
+        if  self.selectedIndex == indexPath.row{
+            cell.btnCheck.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
+        }else{
+            cell.btnCheck.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
+        }
         return cell
    
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
+       // let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
+        
+        self.selecetdCountriesModel = countriesModel[indexPath.row]
+        self.selectedIndex = indexPath.row
+        self.tblList.reloadData()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -119,6 +132,8 @@ extension EventSearchLocationVC: UITextFieldDelegate {
 //MARK: - CustomSearchMethodsDelegate
 extension EventSearchLocationVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
+        //countriesModel[sender.tag].country_name
+        self.delegate?.toSendLocation(location: selecetdCountriesModel?.country_name ?? "Toronto", selectedIndex: self.selectedIndex ?? 0)
         self.navigationController?.popViewController(animated: true)
     }
     
