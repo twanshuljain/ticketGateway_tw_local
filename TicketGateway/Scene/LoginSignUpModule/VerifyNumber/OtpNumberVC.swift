@@ -124,7 +124,7 @@ extension OtpNumberVC {
                     if isTrue == true {
                         DispatchQueue.main.async { [self] in
                             self.view.stopLoading()
-                            self.viewModel.totalTime = 20
+                            self.viewModel.totalTime = 60
                             [self.txtOtp1,txtOtp2,txtOtp3,txtOtp4].forEach{$0?.text = ""}
                             self.startTimer()
                             self.vwResend.isHidden = true
@@ -147,7 +147,7 @@ extension OtpNumberVC {
                     if isTrue == true {
                         DispatchQueue.main.async { [self] in
                             self.view.stopLoading()
-                            self.viewModel.totalTime = 20
+                            self.viewModel.totalTime = 60
                             [self.txtOtp1,txtOtp2,txtOtp3,txtOtp4].forEach{$0?.text = ""}
                             self.startTimer()
                             self.vwResend.isHidden = true

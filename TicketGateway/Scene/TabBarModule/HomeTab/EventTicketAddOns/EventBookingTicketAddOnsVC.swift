@@ -147,7 +147,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
             cell.lblPrice.text = "$\(ticketPrice)"
         }
         if let imgString = data?.addOnLogo?.first {
-            let urlString = URL(string: imgString)
+            let urlString = (APIHandler.shared.baseURL + imgString).getCleanedURL()
             cell.imgImage.sd_setImage(with: urlString)
             
             if cell.imgImage.image == nil{
@@ -237,10 +237,19 @@ extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
     }
     
     func navigationRightButtonAction() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+//        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+//            view.viewModel.eventDetail = self.viewModel.eventDetail
+//            view.viewModel.feeStructure = self.viewModel.feeStructure
+//            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+//            self.navigationController?.pushViewController(view, animated: true)
+//        }
+        
+        if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
+            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
-            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+            view.viewModel.eventId = self.viewModel.eventId
             self.navigationController?.pushViewController(view, animated: true)
         }
     }

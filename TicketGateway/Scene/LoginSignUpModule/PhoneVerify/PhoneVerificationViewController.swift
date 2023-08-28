@@ -268,9 +268,17 @@ extension PhoneVerificationViewController: UITextFieldDelegate {
         return false
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let charsLimit = 12
+        
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         if textField == txtNumber {
             signInViewModel.number = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            let startingLength = textField.text?.count ?? 0
+            let lengthToAdd = string.count
+            let lengthToReplace =  range.length
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= charsLimit
         }
         return true
     }

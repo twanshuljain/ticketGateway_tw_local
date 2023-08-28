@@ -67,7 +67,7 @@ extension EventBookingOrderSummaryVC {
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         btnGoBack.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         btnGoBack.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        [self.btnContinue].forEach {
+        [self.btnContinue, self.btnGoBack].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.tblAddedTickets.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
@@ -153,6 +153,8 @@ extension EventBookingOrderSummaryVC {
         switch sender {
         case btnContinue:
             self.btnContinueAction()
+        case btnGoBack:
+            self.navigationController?.popViewController(animated: true)
         default:
             break
         }

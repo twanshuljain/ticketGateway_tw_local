@@ -283,8 +283,6 @@ extension EventBookingTicketOnApplyCouponVC {
             self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
             self.tblEventTicketTypes.reloadData()
         }
-       
-        
     }
     
     func btnCheckTermConditionAction(){
@@ -306,13 +304,12 @@ extension EventBookingTicketOnApplyCouponVC {
             accesCodeViewHeight.constant = 300
             accesCodeStackView.isHidden = false
             // isAccessCodeAvailable = false
-            btnDown.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
+            btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
         } else {
             enterAccesCodeStackView.isHidden = true
             accesCodeViewHeight.constant = 55
             accesCodeStackView.isHidden = true
-           
-            btnDown.setImage(UIImage(named: "circlechevronUp_ip"), for: .normal)
+            btnDown.setImage(UIImage(named: "circleChevron-down_ip"), for: .normal)
         }
         viewModel.isAccessCodeAvailable = !viewModel.isAccessCodeAvailable
     }

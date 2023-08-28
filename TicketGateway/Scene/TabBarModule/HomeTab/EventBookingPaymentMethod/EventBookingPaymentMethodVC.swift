@@ -319,12 +319,12 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+        let cardNumberLimit = 16
         if string == "" {
             return true
         }
         if textField == txtCVV{
-            let maxLength = 4
+            let maxLength = 3
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
@@ -335,9 +335,13 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
         }else if textField == txtCardNumber{
             viewModel.previousTextFieldContent = textField.text;
             viewModel.previousSelection = textField.selectedTextRange;
+        
+            let startingLength = textField.text?.count ?? 0
+            let lengthToAdd = string.count
+            let lengthToReplace =  range.length
+            let newLength = startingLength + lengthToAdd - lengthToReplace
             
-            
-            return true
+            return newLength <= cardNumberLimit
         }else if textField == txtCardName{
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =

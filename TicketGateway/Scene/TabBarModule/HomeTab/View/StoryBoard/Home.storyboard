@@ -792,7 +792,7 @@
                                                     <constraint firstAttribute="width" constant="20" id="lYH-IV-QU5"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CA$0" placeholder="All organizers" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAE-to-qDh" customClass="DropDown">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CA$0" placeholder="CA$0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAE-to-qDh" customClass="DropDown">
                                                 <rect key="frame" x="40" y="0.0" width="313" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
@@ -935,7 +935,7 @@
                                                                     <constraint firstAttribute="width" constant="24" id="LvI-zn-Nh6"/>
                                                                 </constraints>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" image="circlechevronUp_ip"/>
+                                                                <state key="normal" image="circleChevron-down_ip"/>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6T-4v-mop">
                                                                 <rect key="frame" x="20" y="10" width="283" height="40"/>
@@ -1366,7 +1366,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="y3a-hD-EQo"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CA$0" placeholder="All organizers" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mda-N7-kmW" customClass="DropDown">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CA$0" placeholder="CA$0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mda-N7-kmW" customClass="DropDown">
                                                 <rect key="frame" x="40" y="0.0" width="313" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
@@ -2056,7 +2056,7 @@ TicketGateway Balance  </string>
                                                     <constraint firstAttribute="width" constant="20" id="kOc-yH-s5h"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CA$100" placeholder="All organizers" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xh2-y2-Wyj" customClass="DropDown">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CA$0" placeholder="CA$0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xh2-y2-Wyj" customClass="DropDown">
                                                 <rect key="frame" x="40" y="0.0" width="313" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
@@ -4923,7 +4923,7 @@ TicketGateway fee is non refundable.</string>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
         <image name="chevron-down_ip" width="16" height="16"/>
-        <image name="circlechevronUp_ip" width="24" height="24"/>
+        <image name="circleChevron-down_ip" width="24" height="24"/>
         <image name="cross_ip" width="24.333333969116211" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>
         <image name="done-blue_ip" width="24" height="24"/>
