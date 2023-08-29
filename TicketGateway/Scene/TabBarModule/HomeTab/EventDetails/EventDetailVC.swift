@@ -332,7 +332,7 @@ extension EventDetailVC {
         self.lblDate.text = ("\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")")
         self.lblTime.text = ("\(eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")")
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
-        self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
+      //  self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
         self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
         
         //ABOUt US
