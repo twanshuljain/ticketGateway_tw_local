@@ -147,7 +147,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                 let value =  cell.vwStepper.lblCount.text ?? ""
                 self.lblNumberOfCount = Int(value) ?? 0
             self.lblNumberOfCount = self.lblNumberOfCount + 1
-                if lblNumberOfCount <= arrDataAccessCode?[sender.tag].ticketMaximumQuantity ?? 0 {
+                if lblNumberOfCount <= arrDataAccessCode?[sender.tag].ticketQuantity ?? 0 {
                    // self.lblNumberOfCount = self.lblNumberOfCount + 1
                     self.finalPrice += Double(data?.ticketPrice ?? 0)
                     //(lblNumberOfCount * (data?.ticketPrice ?? 0))
@@ -171,7 +171,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
             let value =  cell.vwStepper.lblCount.text ?? ""
             self.lblNumberOfCount = Int(value) ?? 0
             self.lblNumberOfCount = self.lblNumberOfCount + 1
-            if lblNumberOfCount <= arrTicketList?[sender.tag].ticketMaximumQuantity ?? 0 {
+            if lblNumberOfCount <= arrTicketList?[sender.tag].ticketQuantity ?? 0 {
                // self.lblNumberOfCount = self.lblNumberOfCount + 1
                 self.finalPrice += Double(data?.ticketPrice ?? 0)
                 //(lblNumberOfCount * (data?.ticketPrice ?? 0))

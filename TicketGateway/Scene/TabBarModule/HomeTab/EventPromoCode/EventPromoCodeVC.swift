@@ -70,8 +70,14 @@ extension EventPromoCodeVC {
             vwPromoCodeAppliedView.isHidden = false
             vwApplyPromoCode.isHidden = true
             btnSkip.isHidden = true
-            self.lblPromoCodeApplied.text = (txtPromoCode.text ?? "") + "Applied"
-            self.lblPromoCodeAppliedDescription.text = "Your promocode \(txtPromoCode.text ?? "") is applied on specific tickets (VIP Admission & Group Tickets)"
+            self.lblPromoCodeApplied.text = (txtPromoCode.text ?? "") + " Applied"
+//            if self.viewModel.discountType == .PERCENTAGE{
+//              self.viewModel.selectedArrTicketList.map({ $0.ticketName })
+//            }else{
+//
+//            }
+//            self.lblPromoCodeAppliedDescription.text = "Your promocode \(txtPromoCode.text ?? "") is applied on specific tickets (VIP Admission & Group Tickets)"
+            self.lblPromoCodeAppliedDescription.text = "Your promocode \(txtPromoCode.text ?? "") is applied on your order total"
         } else  {
             self.lblPromoCodeApplied.text = ""
             self.lblPromoCodeAppliedDescription.text = ""
