@@ -162,7 +162,10 @@ class EventsOrganizesListTableView: UITableView {
                 self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrSearchData[indexPath.row], isForLocation: true)
             }
         }
-        self.reloadData()
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if !(UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
+            self.reloadData()
+        }
     }
     
 //    @objc func btnShareAction(_ sender: UIButton) {

@@ -595,6 +595,11 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func btnLikeActionTapped(btn:UIButton, indexPath: IndexPath) {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
+            self.showToast(message: Unable_To_LikeFollow)
+            return
+        }
         print("IndexPath row : \(indexPath.row)")
         if viewModel.isComingFrom == .Home {
             switch viewModel.arrEventCategory[viewModel.index] {

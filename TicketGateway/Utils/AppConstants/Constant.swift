@@ -387,7 +387,7 @@ let Popular_Events = "Popular Events"
 let Free_Events = "Free Events"
 let Upcoming_Events = "Upcoming Events"
 let Events_Near_Toronto = "Events Near Toronto"
-
+let Unable_To_LikeFollow = "Please log in into the app to Like the Event/Follow the organizer."
 
 //MARK: - IMAGE Constant
 let RIGHT_BUTTON_ICON = "rightOnButton"

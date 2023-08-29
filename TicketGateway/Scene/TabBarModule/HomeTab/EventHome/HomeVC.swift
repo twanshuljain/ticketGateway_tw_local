@@ -589,6 +589,11 @@ extension HomeVC: EventDetailVCProtocol{
 }
 extension HomeVC: FavouriteAction {    
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
+            self.showToast(message: Unable_To_LikeFollow)
+            return
+        }
         if isForLocation {
             print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
             print("eventDetail.event?.id", eventDetail.event?.id ?? 0)

@@ -32,7 +32,7 @@ class EventTableViewCell: UITableViewCell {
             }
             self.lblTitle.text = getEvent?.event?.title ?? ""
             self.lblPrice.text = "$ \(getEvent?.ticketOnwards ?? 0) onwards"
-            self.lblAddress.text = getEvent?.location?.eventAddress ?? "-"
+            self.lblAddress.text = getEvent?.locationType == "VIRTUAL" ? "Virtual Event" : getEvent?.locationType == "MULTIPLE" ? "Multi Location" : (getEvent?.location?.eventAddress ?? "-")
             self.lblDate.text = "  " + "\(getEvent?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getEvent?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
             self.lblTime.text = "  " + "\(getEvent?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getEvent?.date?.eventEndTime?.getFormattedTime() ?? "")"
             if let imageUrl = getEvent?.coverImage?.eventCoverImage{
@@ -88,5 +88,7 @@ class EventTableViewCell: UITableViewCell {
     func cellConfiguration() {
         
     }
-    
+//    func getLocation(address) -> String {
+//
+//    }
 }

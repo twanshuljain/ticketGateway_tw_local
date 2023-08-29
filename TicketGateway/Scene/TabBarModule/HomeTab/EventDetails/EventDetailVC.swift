@@ -673,9 +673,13 @@ extension EventDetailVC {
     }
     
     @objc func btnLikeAction(_ sender: UIButton) {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            self.showToast(message: Unable_To_LikeFollow)
+            return
+        }
         viewModel.eventDetail?.isLike?.toggle()
-        if Reachability.isConnectedToNetwork() //check internet connectivity
-           {
+        if Reachability.isConnectedToNetwork() { //check internet connectivity
           //  parentView.showLoading(centreToView: self.view)
             let eventId = self.viewModel.eventDetail?.event?.id ?? 0
             viewModel.favouriteApi(likeStatus: viewModel.eventDetail?.isLike ?? false, eventId: eventId, complition: { isTrue, messageShowToast in
@@ -685,10 +689,8 @@ extension EventDetailVC {
                 }
             })
         } else {
-            
-                self.showToast(message: ValidationConstantStrings.networkLost)
+            self.showToast(message: ValidationConstantStrings.networkLost)
         }
-        
     }
 }
 
@@ -810,6 +812,11 @@ extension EventDetailVC : NavigationBarViewDelegate {
 //MARK: - NavigationBarViewDelegate
 extension EventDetailVC : FavouriteAction {
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
+            self.showToast(message: Unable_To_LikeFollow)
+            return
+        }
         print("eventDetail.isLiked", eventDetail.isLiked ?? false)
         print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
         favouriteApiForHome(
