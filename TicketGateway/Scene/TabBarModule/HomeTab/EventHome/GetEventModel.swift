@@ -200,6 +200,7 @@ struct Event: Codable, Hashable, Equatable {
     var id: Int?
     var discountedFinalPrice = 0.0
     var eventTicketFinalPrice = 0.0
+    var addOnTicketFinalPrice = 0.0
     var discountValue = 0.0
     var customizeWebLink: String?
     var isShowRemainingTickets: Bool?

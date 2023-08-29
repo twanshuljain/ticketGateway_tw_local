@@ -14,7 +14,7 @@ final class NumberVerifyViewModel {
     var otp: String = ""
     var arrMail: [EmailListUser] = [EmailListUser]()
     var countdownTimer: Timer!
-    var totalTime = 20
+    var totalTime = 60
     var otpNumVC: OtpNumberVC?
     var eventId:Int?
     var selectedArrTicketList : [EventTicket]?
