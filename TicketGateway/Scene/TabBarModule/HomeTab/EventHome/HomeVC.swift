@@ -648,9 +648,8 @@ extension HomeVC: NavigateToProfile, suggestedOrganizerListProtocol {
         if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
             vc.isComingFromOranizer = true
             vc.name = data.name ?? ""
-            if let url = URL(string: APIHandler.shared.baseURL + (data.profileImage ?? "")) {
-                vc.imageUrl = url
-            }
+            let url = (data.profileImage ?? "")
+            vc.imageUrl = url
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }

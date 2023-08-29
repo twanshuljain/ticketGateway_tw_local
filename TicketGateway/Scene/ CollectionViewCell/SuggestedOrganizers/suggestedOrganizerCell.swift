@@ -48,13 +48,13 @@ class suggestedOrganizerCell: UICollectionViewCell {
         if let imageUrl = organizerDetail.profileImage{
             if imageUrl.contains(APIHandler.shared.previousBaseURL){
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                 }else{
                     self.imgProfile.image = UIImage(named: "homeDas")
                 }
             }else{
-                if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                 }else{
                     self.imgProfile.image = UIImage(named: "homeDas")

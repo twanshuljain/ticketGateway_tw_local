@@ -27,7 +27,8 @@ class ManageEventProfileVC: UIViewController {
     var isComingFromOranizer = false
     var isForSideMenuOrSetting = false
     var name: String = ""
-    var imageUrl: URL?
+    var imageUrl: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -48,14 +49,14 @@ extension ManageEventProfileVC {
             self.viewTotalProgress.isHidden = true
             self.lblAboutSince.isHidden = true
             self.lblAboutSinceDate.isHidden = true
-            self.imgProfile.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+            self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (imageUrl ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
             
         } else {
             if isForSideMenuOrSetting {
                 self.navigationView.btnBack.isHidden = false
                 self.navigationView.imgBack.isHidden = false
                 self.lblName.text = name
-                   self.imgProfile.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                   self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (imageUrl ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
             } else {
                 self.navigationView.btnBack.isHidden = true
                 self.navigationView.imgBack.isHidden = true

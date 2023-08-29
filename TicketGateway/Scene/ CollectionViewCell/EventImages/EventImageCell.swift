@@ -38,7 +38,7 @@ class EventImageCell: UICollectionViewCell {
                     self.imgEvents.image = UIImage(named: "homeDas")
                 }
             }else{
-                if let imageUrl = eventDetail?.eventCoverImageObj?.eventCoverImage, let url = URL(string: APIHandler.shared.baseURL + imageUrl) {
+                if let imageUrl = eventDetail?.eventCoverImageObj?.eventCoverImage, let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgEvents.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                 } else {
                     self.imgEvents.image = UIImage(named: "homeDas")

@@ -241,9 +241,8 @@ extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionVie
         if let name = data?.name {
             view.name = name
         }
-        if let url = URL(string: APIHandler.shared.baseURL + (data?.profileImage ?? "")) {
-            view.imageUrl = url
-        }
+        let url = (data?.profileImage ?? "")
+        view.imageUrl = url
         self.navigationController?.pushViewController(view, animated: true)
     }
     

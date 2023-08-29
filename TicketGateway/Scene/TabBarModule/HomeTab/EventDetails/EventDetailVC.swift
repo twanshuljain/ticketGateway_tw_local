@@ -169,9 +169,7 @@ extension EventDetailVC {
         if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
             vc.isComingFromOranizer = true
             vc.name = eventDetail?.organizer?.name ?? ""
-            if let url = URL(string: eventDetail?.organizer?.profileImage ?? "") {
-                vc.imageUrl = url
-            }
+            vc.imageUrl = eventDetail?.organizer?.profileImage ?? ""
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }
@@ -353,13 +351,13 @@ extension EventDetailVC {
         if let imageUrl = eventDetail?.organizer?.profileImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL){
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                 }else{
                     self.imgOrganiser.image = UIImage(named: "profile")
                 }
             }else{
-                if let url = URL(string: APIHandler.shared.baseURL + imageUrl){
+                if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
                 }else{
                     self.imgOrganiser.image = UIImage(named: "profile")
@@ -393,6 +391,61 @@ extension EventDetailVC {
         txtLocation.didSelect{(selectedText , index ,id) in
             self.txtLocation.text = "\(selectedText)"
         }
+    }
+    
+    func shareEventDetailData(eventDetail: GetEventModel){
+        var objectsToShare = [Any]()
+        let shareImageObj = UIImage(named: "homeDas")
+        
+        if let eventTitle = eventDetail.event?.title{
+            let title = "Event Title:- " + eventTitle
+            objectsToShare.append(title)
+        }
+        
+        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+        let date = "\nEvent Date:- " + eventDate
+        objectsToShare.append(date)
+        
+        
+        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
+        let time = "\nEvent Time:- " + eventEndDate
+        objectsToShare.append(time)
+        
+        
+        if let eventDesc = eventDetail.event?.eventDescription{
+            var _ = "\nEvent Description:- " + eventDesc
+            objectsToShare.append(eventDesc)
+        } else {
+            var desc = "\nEvent Description:- No Description available for this event"
+            objectsToShare.append(desc)
+        }
+        
+        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
+            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                    objectsToShare.append("\n Check this image: - \(url)")
+                }else{
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            } else {
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                    objectsToShare.append("\n Check this image: - \(url)")
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            }
+        } else {
+            objectsToShare.append(shareImageObj as Any)
+        }
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        //  tblEvents.delegateShareAction = self
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 
@@ -532,6 +585,9 @@ extension EventDetailVC {
                             } else {
                                 self.btnFollowing.setTitle("Follow", for: .normal)
                             }
+                            // For refresh the followers count we call the API of detail view
+                            self.viewModel.eventDetail = nil
+                            self.funcCallApi()
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -552,8 +608,6 @@ extension EventDetailVC {
     func btnShowMapAction() {
         let view = createView(storyboard: .home, storyboardID: .EventMapVC) as! EventMapVC
         let eventLocation = self.viewModel.eventDetail?.eventLocation
-        print("---------", eventLocation?.latitude)
-        print("---------", eventLocation?.longitude)
         view.latitude =  eventLocation?.latitude ?? 00.0
         view.longitude =  eventLocation?.longitude ?? 00.0
         view.location = eventLocation?.eventAddress ?? ""
@@ -561,17 +615,61 @@ extension EventDetailVC {
     }
 
     @objc func btnShareAction(_ sender: UIButton) {
-        let eventDetail = self.viewModel.eventDetail
-        let text =  "Event Name:\(eventDetail?.event?.title ?? "") + Location: \( eventDetail?.eventLocation?.eventAddress ?? "")"
-        let textToShare = [ text ]
-//        let image = UIImage(named: "Image")
-//        let imageToShare = [ image! ]
-        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
+        if let eventDetail = self.viewModel.eventDetail{
+            
+            var objectsToShare = [Any]()
+            let shareImageObj = UIImage(named: "homeDas")
+            
+            if let eventTitle = eventDetail.event?.title{
+                let title = "Event Title:- " + eventTitle
+                objectsToShare.append(title)
+            }
+            
+            let eventDate = " " + "\(eventDetail.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+            let date = "\nEvent Date:- " + eventDate
+            objectsToShare.append(date)
+            
+            
+            let eventEndDate = " " + "\(eventDetail.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")"
+            let time = "\nEvent Time:- " + eventEndDate
+            objectsToShare.append(time)
+            
+            
+            if let eventDesc = eventDetail.event?.eventDescription{
+                var _ = "\nEvent Description:- " + eventDesc
+                objectsToShare.append(eventDesc)
+            } else {
+                var desc = "\nEvent Description:- No Description available for this event"
+                objectsToShare.append(desc)
+            }
+            
+            if let imageUrl = eventDetail.eventCoverImageObj?.eventCoverImage {
+                if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                        objectsToShare.append("\n Check this image: - \(url)")
+                    }else{
+                        objectsToShare.append(shareImageObj as Any)
+                    }
+                } else {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                        objectsToShare.append("\n Check this image: - \(url)")
+                    } else {
+                        objectsToShare.append(shareImageObj as Any)
+                    }
+                }
+            } else {
+                objectsToShare.append(shareImageObj as Any)
+            }
+            let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+            //  tblEvents.delegateShareAction = self
+            // exclude some activity types from the list (optional)
+            activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+            
+            // present the view controller
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     @objc func btnLikeAction(_ sender: UIButton) {
@@ -666,58 +764,7 @@ extension EventDetailVC: EKEventViewDelegate {
 //MARK: -
 extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtocol{
     func toShowActivityController(eventDetail: GetEventModel) {
-        var objectsToShare = [Any]()
-        let shareImageObj = UIImage(named: "homeDas")
-        
-        if let eventTitle = eventDetail.event?.title{
-            let title = "Event Title:- " + eventTitle
-            objectsToShare.append(title)
-        }
-        
-        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        let date = "\nEvent Date:- " + eventDate
-        objectsToShare.append(date)
-        
-        
-        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
-        let time = "\nEvent Time:- " + eventEndDate
-        objectsToShare.append(time)
-        
-        
-        if let eventDesc = eventDetail.event?.eventDescription{
-            var _ = "\nEvent Description:- " + eventDesc
-            objectsToShare.append(eventDesc)
-        } else {
-            var desc = "\nEvent Description:- No Description available for this event"
-            objectsToShare.append(desc)
-        }
-        
-        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
-            if imageUrl.contains(APIHandler.shared.previousBaseURL){
-                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                }else{
-                    objectsToShare.append(shareImageObj as Any)
-                }
-            } else {
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                } else {
-                    objectsToShare.append(shareImageObj as Any)
-                }
-            }
-        } else {
-            objectsToShare.append(shareImageObj as Any)
-        }
-        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        //  tblEvents.delegateShareAction = self
-        // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
+        self.shareEventDetailData(eventDetail: eventDetail)
     }
     
     func tapActionOfViewMoreEvents(index: Int) {
