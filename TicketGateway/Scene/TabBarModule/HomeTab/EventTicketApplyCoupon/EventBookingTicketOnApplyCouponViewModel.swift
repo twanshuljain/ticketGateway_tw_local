@@ -30,6 +30,8 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var dispatchGroup:DispatchGroup = DispatchGroup()
     let semaphore = DispatchSemaphore(value: 1)
     var dispatchGroup1 = DispatchGroup.init()
+    var dispatchGroup2 = DispatchGroup.init()
+    var arrAddOnTicketList: [EventTicketAddOnResponseModel]?
 }
  
 extension EventBookingTicketOnApplyCouponViewModel {
@@ -90,9 +92,32 @@ extension EventBookingTicketOnApplyCouponViewModel {
         APIHandler.shared.executeRequestWith(apiName: .GetFeeStructure, parameters: EmptyModel?.none, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<FeeStructure>, Error>) in
             switch result {
             case .success(let response):
+                defer { self.dispatchGroup2.leave() }
                 if response.status_code == 200 {
                     if let data = response.data{
                         self.feeStructure = data
+                        complition(true, response.message ?? "")
+                    }
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                defer { self.dispatchGroup2.leave() }
+                complition(false,"\(error)")
+            }
+        }
+    }
+    
+    func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
+        // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
+        var getURL = APIName.getAddOnList.rawValue + "\(self.eventDetail?.event?.id ?? 0)" + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getAddOnList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicketAddOnResponseModel]>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    if let data = response.data{
+                        self.arrAddOnTicketList = data
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")

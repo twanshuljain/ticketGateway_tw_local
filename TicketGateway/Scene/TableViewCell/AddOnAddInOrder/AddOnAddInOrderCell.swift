@@ -33,9 +33,11 @@ class AddOnAddInOrderCell: UITableViewCell {
         if let addOnData = addOnData{
             if let selectedTicketQuantity = addOnData.selectedTicketQuantity{
                 lblTittle.text = " + " + "\(addOnData.addOnName ?? "")" + "*" + " \(selectedTicketQuantity) "
+               // lblTittle.text = "Ticket details " + "(" + " \(selectedTicketQuantity) " + " \(addOnData.addOnName ?? "") " + ")"
                 lblTittleValue.text = "CA$ \(Double(addOnData.addOnTicketPrice ?? 0) * Double(selectedTicketQuantity))"
             }else{
                 lblTittle.text = " + " + "\(addOnData.ticketName ?? "")"
+                //lblTittle.text = "Ticket details " + "(" + "\(addOnData.ticketName ?? "")" + ")"
                 lblTittleValue.text = "CA$ \(Double(addOnData.addOnTicketPrice ?? 0))"
             }
             
