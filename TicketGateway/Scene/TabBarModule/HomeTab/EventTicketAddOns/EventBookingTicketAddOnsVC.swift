@@ -36,6 +36,11 @@ class EventBookingTicketAddOnsVC: UIViewController {
         self.callAddOnApi()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.eventDetail?.event?.eventTicketFinalPrice = self.viewModel.totalTicketPriceWithAddOn
+    }
 }
 // MARK: - Functions
 extension EventBookingTicketAddOnsVC {
@@ -170,25 +175,63 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
     }
     
     @objc func PlusButtonPressed(_ sender: UIButton) {
-       print(sender.tag)
+//       print(sender.tag)
+//        let data = viewModel.arrAddOnTicketList?[sender.tag]
+//        let indexPath = IndexPath(row: sender.tag, section: 0)
+//        let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
+//        let value =  cell.vwStepper.lblCount.text ?? ""
+//        self.viewModel.lblNumberOfCount = Int(value) ?? 0
+//        if viewModel.lblNumberOfCount < viewModel.arrAddOnTicketList?[sender.tag].addOnMaximumQuantity ?? 0 {
+//            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount + 1
+//            self.viewModel.eventDetail?.event?.eventTicketFinalPrice += Double(data?.addOnTicketPrice ?? 0)
+//            //self.finalPrice += data?.ticketPrice ?? 0
+//            cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
+//            self.viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
+//            self.viewModel.selectedAddOnList = self.viewModel.arrAddOnTicketList ?? [EventTicketAddOnResponseModel]()
+////
+//            self.setData()
+//        }
+        
+        
+        
         let data = viewModel.arrAddOnTicketList?[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.viewModel.lblNumberOfCount = Int(value) ?? 0
-        if viewModel.lblNumberOfCount < viewModel.arrAddOnTicketList?[sender.tag].addOnMaximumQuantity ?? 0 {
-            self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount + 1
+        self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount + 1
+        if viewModel.lblNumberOfCount <= viewModel.arrAddOnTicketList?[sender.tag].addOnMaximumQuantity ?? 0 {
             self.viewModel.eventDetail?.event?.eventTicketFinalPrice += Double(data?.addOnTicketPrice ?? 0)
-            //self.finalPrice += data?.ticketPrice ?? 0
+            self.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
             cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
             self.viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
-            self.viewModel.selectedAddOnList = self.viewModel.arrAddOnTicketList ?? [EventTicketAddOnResponseModel]()
-//
-            self.setData()
+            if let data = self.viewModel.arrAddOnTicketList?[sender.tag]{
+                let contains = self.viewModel.selectedAddOnList.contains { ticket in
+                    return ticket.ticketID == data.ticketID
+                }
+                if !contains{
+                    self.viewModel.selectedAddOnList.append(data)
+                }else{
+                    let index = self.viewModel.selectedAddOnList.firstIndex { ticket in
+                        return ticket.ticketID == data.ticketID
+                    }
+                    
+                    if let index = index, self.viewModel.selectedAddOnList.indices.contains(index){
+                        self.viewModel.selectedAddOnList[index].selectedTicketQuantity = viewModel.lblNumberOfCount
+                    }
+                }
+                self.setData()
+              //  self.updatedPrice?(finalPrice)
+            }
         }
+        
+        
+        
     }
     
     @objc func MinustButtonPressed(_ sender: UIButton) {
+        /*
+         
         let data = viewModel.arrAddOnTicketList?[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
@@ -208,6 +251,53 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
             self.viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = 0
             self.viewModel.selectedAddOnList = self.viewModel.arrAddOnTicketList ?? [EventTicketAddOnResponseModel]()
         }
+         
+         */
+        
+        
+     let data = viewModel.arrAddOnTicketList?[sender.tag]
+     let indexPath = IndexPath(row: sender.tag, section: 0)
+     let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
+     let value =  cell.vwStepper.lblCount.text ?? ""
+        self.viewModel.lblNumberOfCount = Int(value) ?? 0
+        self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount - 1
+     if self.viewModel.lblNumberOfCount > 0 {
+         self.viewModel.eventDetail?.event?.eventTicketFinalPrice -= Double(data?.addOnTicketPrice ?? 0)
+         self.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
+         cell.vwStepper.lblCount.text = String(self.viewModel.lblNumberOfCount)
+         viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = self.viewModel.lblNumberOfCount
+         
+         if let data = viewModel.arrAddOnTicketList?[sender.tag]{
+             let contains = self.viewModel.selectedAddOnList.contains { ticket in
+                 return ticket.ticketID == data.ticketID
+             }
+             
+             if contains{
+                 let index = self.viewModel.selectedAddOnList.firstIndex { ticket in
+                     return ticket.ticketID == data.ticketID
+                 }
+                 if let index = index, self.viewModel.selectedAddOnList.indices.contains(index){
+                     self.viewModel.selectedAddOnList[index].selectedTicketQuantity = self.viewModel.lblNumberOfCount
+                 }
+             }
+             self.setData()
+         }
+     } else if self.viewModel.lblNumberOfCount == 0{
+         cell.vwStepper.lblCount.text = "0"
+         self.viewModel.eventDetail?.event?.eventTicketFinalPrice -= Double(data?.addOnTicketPrice ?? 0)
+         self.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
+         viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = 0
+         self.viewModel.selectedAddOnList.removeAll { ticket in
+                 return ticket.ticketID == viewModel.arrAddOnTicketList?[sender.tag].ticketID
+             }
+         self.setData()
+     }else{
+         cell.vwStepper.lblCount.text = "0"
+     }
+        
+        
+        
+        
     }
     @objc func btnInfoAction(sender: UIButton){
         let data = viewModel.arrAddOnTicketList?[sender.tag]
@@ -246,7 +336,8 @@ extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
         
         if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
-            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+            view.viewModel.selectedAddOnList = []
+            self.viewModel.eventDetail?.event?.eventTicketFinalPrice = self.viewModel.totalTicketPriceWithoutAddOn
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.eventId = self.viewModel.eventId

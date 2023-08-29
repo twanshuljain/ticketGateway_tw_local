@@ -17,6 +17,8 @@ import Foundation
 class EventTiclketAddOnViewModel {
     var addOnTableData = ["Tshirt_ip", "Tshirt_ip", "Tshirt_ip", "Tshirt_ip"]
     var lblNumberOfCount = 0
+    var totalTicketPriceWithoutAddOn = 0.0
+    var totalTicketPriceWithAddOn = 0.0
     var totalTicketPrice = ""
     var feeStructure:FeeStructure?
     var ticketId = ""

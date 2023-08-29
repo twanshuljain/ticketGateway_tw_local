@@ -224,6 +224,8 @@ extension EventBookingTicketOnApplyCouponVC {
            }else{
                if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
                    view.viewModel.eventDetail = self.viewModel.eventDetail
+                   view.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
+                   view.viewModel.totalTicketPriceWithoutAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
                    view.viewModel.feeStructure = self.viewModel.feeStructure
                    view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
                    view.viewModel.eventId = self.viewModel.eventId
