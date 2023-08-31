@@ -98,7 +98,7 @@ class APIHandler: NSObject {
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
-        }else if methodType == .POST && apiName == .followUnfollow{
+        }else if (methodType == .POST && apiName == .followUnfollow) || (methodType == .POST && apiName == .ChangeTicketName){
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }

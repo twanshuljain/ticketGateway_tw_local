@@ -27,6 +27,8 @@ class ChangeNameVC: UIViewController {
         super.viewDidLoad()
         self.setNavigationView()
         self.setFont()
+        self.createPickerView()
+        self.dismissPickerView()
     }
 }
 // MARK: - Functions
@@ -63,6 +65,28 @@ extension ChangeNameVC {
         
         self.txtFirstName.text = viewModel.firstName
         self.txtLastName.text = viewModel.lastName
+        txtSelectTickte.delegate = self
+        txtSelectTickte.text = ""
+    }
+    
+    func createPickerView() {
+        let pickerView = UIPickerView()
+        pickerView.backgroundColor = UIColor.setColor(colorType: .white)
+        pickerView.delegate = self
+        txtSelectTickte.inputView = pickerView
+    }
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        //      let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.action))
+        let button = UIBarButtonItem(title: DONE, style: .plain, target: self, action: #selector(self.action))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        txtSelectTickte.inputAccessoryView = toolBar
+    }
+    
+    @objc func action() {
+        view.endEditing(true)
     }
     
     func apiCall(){
@@ -103,7 +127,7 @@ extension ChangeNameVC {
     func navigateToManageSellTicketSuccessfully(){
         if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
             view.strTittle = TICKET_NAME_CHANGED
-            view.strComplimentry = "1 Ticket(S) with amount $100.00"
+            view.strComplimentry = "\(self.viewModel.selectedTicket?.quantity ?? 1) Ticket(S) with amount $\(self.viewModel.selectedTicket?.ticketPrice ?? 0)"
             view.strSummary = TICKET_NAME_SUCCESSFULLY_CHANGED
             view.btnStr = OKAY
             self.navigationController?.pushViewController(view, animated: true)
@@ -114,6 +138,41 @@ extension ChangeNameVC {
 extension ChangeNameVC {
     @IBAction func btnSaveChange(_ sender: Any) {
         self.apiCall()
+    }
+}
+
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate
+extension ChangeNameVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.viewModel.myTicket?.items?.compactMap({ $0.ticketName }).count ?? 0
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.viewModel.myTicket?.items?.compactMap({ $0.ticketName })[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.viewModel.selectedTicket = self.viewModel.myTicket?.items?[row]
+        self.txtSelectTickte.text = self.viewModel.selectedTicket?.ticketName ?? ""
+        self.txtFirstName.text = self.viewModel.selectedTicket?.nameOnTicket?.getSeparatedFirstName()
+        self.txtLastName.text = self.viewModel.selectedTicket?.nameOnTicket?.getSeparatedLastName()
+    }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel: UILabel? = (view as? UILabel)
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+            pickerLabel?.textAlignment = .center
+        }
+        pickerLabel?.text = self.viewModel.myTicket?.items?.compactMap({ $0.ticketName })[row]
+        pickerLabel?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+
+        return pickerLabel!
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }
 // MARK: - NavigationBarViewDelegate

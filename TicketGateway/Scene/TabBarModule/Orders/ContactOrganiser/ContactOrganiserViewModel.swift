@@ -37,6 +37,7 @@ extension ContactOrganiserViewModel{
     func contactOrganizer(complition: @escaping (Bool,String) -> Void ) {
         let param = ContactOrganiserRequestModel(name: name, email: email ,reason: selectedReason, message: message, organizerId: oranizerId)
         APIHandler.shared.executeRequestWith(apiName: .ContactOrganizer, parameters: param, methodType: .POST, getURL: APIName.ApplyAccessCode.rawValue, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .ContactOrganizer, parameters: param, methodType: .POST, getURL: APIName.ApplyAccessCode.rawValue, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

@@ -18,8 +18,9 @@ class ContactOrganiserVC: UIViewController {
     @IBOutlet weak var btnDropDown: UIButton!
     @IBOutlet weak var txtReason: UITextField!
     @IBOutlet weak var lblMessage: UILabel!
-    @IBOutlet weak var txtMessage: UITextField!
+    @IBOutlet weak var txtView:PlaceholderTextView!
     @IBOutlet weak var btnSendMessage: CustomButtonGradiant!
+    
     // MARK: - Variables
     var viewModel = ContactOrganiserViewModel()
     
@@ -41,7 +42,7 @@ extension ContactOrganiserVC {
         self.vwNavigationView.lblTitle.text = CONTACT_ORGANISER
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-            }
+    }
     func setFont() {
         self.lblSunburnReload.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblSunburnReload.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -50,7 +51,7 @@ extension ContactOrganiserVC {
             lbl?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
             lbl?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        let txtflds = [txtName, txtEmailAddress, txtReason, txtMessage]
+        let txtflds = [txtName, txtEmailAddress, txtReason]
         for txtfld in txtflds {
             txtfld?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             txtfld?.textColor = UIColor.setColor(colorType: .headinglbl)
@@ -90,7 +91,7 @@ extension ContactOrganiserVC {
         self.view.endEditing(true)
         viewModel.name = self.txtName.text ?? ""
         viewModel.email = self.txtEmailAddress.text ?? ""
-        viewModel.message = self.txtMessage.text ?? ""
+        viewModel.message = self.txtView.text ?? ""
         let isValidate = viewModel.validateInput
         
         if isValidate.isValid{
