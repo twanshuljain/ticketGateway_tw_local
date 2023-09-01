@@ -33,6 +33,12 @@ class TransferTicketTableViewCell: UITableViewCell {
 
     }
     
+    func setData(data:MyTicket){
+        lblTicketIdValue.text = "\(data.ticketID ?? 0)"
+        lblNameOnTicketValue.text = data.nameOnTicket ?? ""
+        
+    }
+    
     func setFont() {
         let lbls = [lblTicketId,  lblNameOnTicket, lblTransferredTo]
         for lbl in lbls {

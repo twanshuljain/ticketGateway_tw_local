@@ -24,7 +24,15 @@ struct MyTicket: Codable {
     var quantity, ticketTypeID, baseTicketID: Int?
     var date: String?
     var eventStartDate: String?
-    var orderNumber : String?
+    var orderNumber, qrcodeBase64Data: String?
+    var isExpanded: Bool? = false
+    
+    init() {
+    }
+    
+    init(isExpanded: Bool) {
+        self.isExpanded = isExpanded
+    }
 
     enum CodingKeys: String, CodingKey {
         case ticketName = "ticket_name"
@@ -41,5 +49,6 @@ struct MyTicket: Codable {
         case date
         case eventStartDate = "event_start_date"
         case orderNumber = "order_number"
+        case qrcodeBase64Data = "qrcode_base64_data"
     }
 }

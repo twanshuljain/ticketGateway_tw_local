@@ -26,8 +26,13 @@ class MyTicketVC: UIViewController {
     @objc func addActionSheet() {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         actionsheet.addAction(UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC)
-            self.navigationController?.pushViewController(transferTicketVC, animated: true)
+            if let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC) as? TransferTicketVC{
+                transferTicketVC.viewModel.ticketDetails = self.viewModel.ticketDetails
+                transferTicketVC.viewModel.eventDetail = self.viewModel.eventDetail
+                transferTicketVC.viewModel.myTicket = self.viewModel.myTicket
+                self.navigationController?.pushViewController(transferTicketVC, animated: true)
+            }
+            
         }))
         actionsheet.addAction(UIAlertAction(title: "Exchange ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             let exchangeTicketVC = self.createView(storyboard: .order, storyboardID: .ExchangeTicketVC)
