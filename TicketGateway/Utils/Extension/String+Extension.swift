@@ -183,4 +183,27 @@ extension String {
         }
         return nil
     }
+    
+    func getSeparatedFirstName() -> String{
+        var firstName = ""
+        var components = self.components(separatedBy: " ")
+        if components.count > 0 {
+         firstName = components.removeFirst()
+         let lastName = components.joined(separator: " ")
+         debugPrint(firstName)
+        }
+        
+        return firstName
+    }
+    
+    func getSeparatedLastName() -> String{
+        var lastName = ""
+        var components = self.components(separatedBy: " ")
+        if components.count > 0 {
+         let firstName = components.removeFirst()
+         lastName = components.joined(separator: " ")
+         debugPrint(lastName)
+        }
+        return lastName
+    }
 }

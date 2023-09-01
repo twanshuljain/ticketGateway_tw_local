@@ -34,14 +34,18 @@ class MyTicketVC: UIViewController {
             self.navigationController?.pushViewController(exchangeTicketVC, animated: true)
         }))
         actionsheet.addAction(UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC)
-            self.navigationController?.pushViewController(changeNameVC, animated: true)
+            if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC{
+                changeNameVC.viewModel.myTicket = self.viewModel.myTicket
+                self.navigationController?.pushViewController(changeNameVC, animated: true)
+            }
         }))
         actionsheet.addAction(UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
         }))
         actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC)
-            self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
+            if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
+                contactOrganiserVC.viewModel.oranizerId = self.viewModel.eventDetail?.organizer?.id ?? 0
+                self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
+            }
         }))
         actionsheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (action) -> Void in
         }))
@@ -80,6 +84,7 @@ extension MyTicketVC {
     func apiCallForMyTicketList(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
+            self.viewModel.dispatchGroup1.enter()
             self.view.showLoading(centreToView: self.view)
             viewModel.getMyTicketList(complition: { isTrue, messageShowToast in
                 if isTrue == true {
@@ -93,10 +98,40 @@ extension MyTicketVC {
                     }
                 }
             })
+            self.viewModel.dispatchGroup1.notify(queue: .main) {
+                self.funcCallApiForEventDetail(eventId: self.viewModel.ticketDetails?.eventId)
+            }
+            
         } else {
             DispatchQueue.main.async {
                 self.view.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    
+    func funcCallApiForEventDetail(eventId:Int?){
+        if let eventId = eventId{
+            if Reachability.isConnectedToNetwork() //check internet connectivity
+            {
+                self.view.showLoading(centreToView: self.view)
+                viewModel.GetEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
+                    if isTrue == true {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: messageShowToast)
+                        }
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    self.view.stopLoading()
+                    self.showToast(message: ValidationConstantStrings.networkLost)
+                }
             }
         }
     }
@@ -119,6 +154,8 @@ extension MyTicketVC {
     func seeFullTicketAction() {
         let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC) as? SeeFullTicketVC
         seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails
+        seeFullTicketVC?.viewModel.eventDetail = viewModel.eventDetail
+        seeFullTicketVC?.viewModel.myTicket = viewModel.myTicket
         self.navigationController?.pushViewController(seeFullTicketVC!, animated: false)
     }
     func saveTicketAsImage() {
