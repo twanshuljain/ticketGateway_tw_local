@@ -102,6 +102,18 @@ extension String {
         }
         
     }
+    func changeDateFormate() -> String {
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"
+        dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
+        let date = dateFormatter.date(from: self) ?? Date.init()
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.locale = tempLocale // reset the locale
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
     
     func convertToDate() -> Date {
         let formatter = DateFormatter()
@@ -149,6 +161,13 @@ extension String {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         var date = dateFormatter.date(from: date) ?? Date()
+        return date
+    }
+    func convertStringToDateForProfile(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"
+        let date = dateFormatter.date(from: date) ?? Date()
         return date
     }
     func getCleanedURL() -> URL? {

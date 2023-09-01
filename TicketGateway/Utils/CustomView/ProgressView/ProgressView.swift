@@ -60,16 +60,16 @@ class FBProgressView: UIView {
         ringView.addSubview(ringProgressView)
     }
     
-    func setProgress(_ progress: Double,
+    func setProgress(_ progress: Int,
       startColor: UIColor = UIColor(named: "EndGradient")!,
                      endColor: UIColor = UIColor(named: "EndGradient")! ,
                      progressWidth: CGFloat = 5.0) {
         ringProgressView.startColor = startColor
         ringProgressView.endColor = endColor
         ringProgressView.ringWidth = progressWidth
-        ringProgressView.progress = progress / 100.0
+        ringProgressView.progress = Double(progress) / 100.0
         lblProgressPercent.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
-        lblProgressPercent.text = "\(69)%"
+        lblProgressPercent.text = "\(progress)%"
     }
     
     @IBAction private func btnAction(_ sender: Any) {

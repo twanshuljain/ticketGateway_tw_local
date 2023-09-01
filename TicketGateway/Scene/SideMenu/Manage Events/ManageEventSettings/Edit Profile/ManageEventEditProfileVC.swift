@@ -35,7 +35,9 @@ class ManageEventEditProfileVC: UIViewController {
     // MARK: - Variable
     let viewModel = ManageEventEditProfileViewModel()
     let createAccountViewModel = CreateAccountViewModel()
-    
+    var name: String = ""
+    var number: String = ""
+    var email: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,9 +105,33 @@ extension ManageEventEditProfileVC {
     }
     
     func funcSetProfile(){
-        self.txtFullName.text = objAppShareData.userAuth?.fullName
-        self.txtEmailAddress.text = objAppShareData.userAuth?.email
-        self.txtMobileNumber.text = objAppShareData.userAuth?.number
+//        self.txtFullName.text = objAppShareData.userAuth?.fullName
+//        self.txtEmailAddress.text = objAppShareData.userAuth?.email
+//        self.txtMobileNumber.text = objAppShareData.userAuth?.number
+        self.txtFullName.text = name
+        self.txtEmailAddress.text = email
+        self.txtMobileNumber.text = number
+    }
+    func updateUserProfileData() {
+        if Reachability.isConnectedToNetwork() {
+            self.view.showLoading(centreToView: self.view)
+            self.viewModel.updateUserProfileData(complition: { isTrue, message in
+                if isTrue {
+                    self.view.stopLoading()
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
     }
 }
 // MARK: - Actions
@@ -115,7 +141,7 @@ extension ManageEventEditProfileVC {
         case btnContinue:
             self.btnContinueAction()
         case btnCancel:
-            self.btnContinueAction()
+            self.btnCancelAction()
         case btnSelectCountry:
             self.btnSelectCountryAction()
         default:
@@ -127,7 +153,9 @@ extension ManageEventEditProfileVC {
     }
     
     func btnContinueAction() {
-        self.navigationController?.popViewController(animated: true)
+        // API call for Update user profile data
+        viewModel.updateUserModel.name = self.txtFullName.text ?? ""
+        updateUserProfileData()
     }
     func btnSelectCountryAction(){
         self.view.endEditing(true)

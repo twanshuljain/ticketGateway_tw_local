@@ -30,6 +30,13 @@ extension Date {
         let time = dateFormatter.string(from: date)
         return time
     }
+    func getOnlyTimeFromDateForProfile(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "hh:mm a" // output format
+        let time = dateFormatter.string(from: date)
+        return time
+    }
     func getWeekDay(date: Date) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE"

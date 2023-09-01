@@ -23,15 +23,19 @@ class ManageEventProfileVC: UIViewController {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var viewTotalProgress: FBProgressView!
+    
     // MARK: - Varibale
     var isComingFromOranizer = false
     var isForSideMenuOrSetting = false
     var name: String = ""
     var imageUrl: String?
-    
+    var viewModel: ManageEventProfileViewModel = ManageEventProfileViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        getUserProfileData()
     }
 }
 // MARK: - Functions
@@ -56,14 +60,14 @@ extension ManageEventProfileVC {
                 self.navigationView.btnBack.isHidden = false
                 self.navigationView.imgBack.isHidden = false
                 self.lblName.text = name
-                   self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (imageUrl ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (imageUrl ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
             } else {
                 self.navigationView.btnBack.isHidden = true
                 self.navigationView.imgBack.isHidden = true
             }
            // self.navigationView.btnBack.isHidden = true
           //  self.navigationView.imgBack.isHidden = true
-            self.lblName.text = objAppShareData.userAuth?.fullName
+//            self.lblName.text = objAppShareData.userAuth?.fullName
             self.lblEmail.text = objAppShareData.userAuth?.email
             self.btnEditProfile.isHidden = false
             self.btnSelectProfile.isHidden = false
@@ -96,15 +100,69 @@ extension ManageEventProfileVC {
         [self.btnEditProfile, self.btnSelectProfile].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-     //   self.funcSetProfile()
     }
     func funcSetProfile() {
-        self.lblName.text = objAppShareData.userAuth?.fullName
-        self.lblEmail.text = objAppShareData.userAuth?.email
-        self.lblAddress.text = objAppShareData.userAuth?.number
+        let userData = viewModel.getUserProfileData.userData
+        self.lblName.text = userData?.fullName ?? "-"
+        self.lblEmail.text = userData?.email ?? "-"
+        self.imageUrl = userData?.image ?? "-"
+        self.lblAddress.text = userData?.country ?? "NA"
+        self.lblProfileType.text = userData?.role ?? "PROMOTER"
+        self.lblAboutSinceDate.text = "\(getTime(strDate: userData?.createdAt ?? ""))"
+        self.lblYourCompleteProfile.text = "Your profile is \(viewModel.getUserProfileData.profileCompletePercentage ?? 1)% complete."
+        self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (imageUrl ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.highPriority)
+        self.viewTotalProgress.setProgress(viewModel.getUserProfileData.profileCompletePercentage ?? 1)
     }
-    
-    
+    @objc func getTime(strDate: String) -> String {
+        let date = strDate.convertStringToDateForProfile(date: strDate)
+        let time = date.getOnlyTimeFromDateForProfile(date: date)
+        var dateAndTime: String = ""
+        dateAndTime = "\(strDate.changeDateFormate()) | \(time)"
+        return dateAndTime
+    }
+    // Get User Profile API Calling
+    func getUserProfileData() {
+        if Reachability.isConnectedToNetwork() {
+            self.view.showLoading(centreToView: self.view)
+            self.viewModel.getUserProfileData(complition: { isTrue, message in
+                if isTrue {
+                    self.view.stopLoading()
+                    self.funcSetProfile()
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    func updateUserProfileData() {
+        if Reachability.isConnectedToNetwork() {
+            self.view.showLoading(centreToView: self.view)
+            self.viewModel.updateUserProfileData(complition: { isTrue, message in
+                if isTrue {
+                    self.view.stopLoading()
+                    self.getUserProfileData()
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
 }
 
 // MARK: - Actions
@@ -121,15 +179,20 @@ extension ManageEventProfileVC {
     }
     func btnEditAction() {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventEditProfileVC) as? ManageEventEditProfileVC
+        view?.name = viewModel.getUserProfileData.userData?.fullName ?? "-"
+        view?.number = viewModel.getUserProfileData.userData?.cellPhone ?? "-"
+        view?.email = viewModel.getUserProfileData.userData?.email ?? "-"
         self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnSelectAction() {
         ImagePickerManager().pickImage(self) {image in
-            let zoomParcelVc = self.createView(storyboard: .profile, storyboardID: .ZoomViewController) as? ZoomViewController
-            zoomParcelVc?.imgProfile = image
-            if let zoomParcelVc = zoomParcelVc {
-                self.navigationController?.pushViewController(zoomParcelVc, animated: true)
-            }
+            self.viewModel.updateUserModel.image = image
+            self.updateUserProfileData()
+//            let zoomParcelVc = self.createView(storyboard: .profile, storyboardID: .ZoomViewController) as? ZoomViewController
+//            zoomParcelVc?.imgProfile = image
+//            if let zoomParcelVc = zoomParcelVc {
+//                self.navigationController?.pushViewController(zoomParcelVc, animated: true)
+//            }
             // self.imgProfile.image = image
         }
     }

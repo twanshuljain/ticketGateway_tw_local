@@ -12,6 +12,7 @@ let objAppShareData = AppShareData.sharedObject()
 class AppShareData {
     // MARK: All Properties
     private var numOfPageKey: String = "NumberOfPage"
+    private let session = URLSession.shared
     //MARK: - Shared object
     private static var sharedManager: AppShareData = {
         let manager = AppShareData()
@@ -44,5 +45,100 @@ class AppShareData {
             return
         }
         navigationController.pushViewController(objFAQController, animated: false)
+    }
+    func updateUserProfile(isForImage: Bool = false, methodType: MethodType, parameters: UpdateUserModel, completion: @escaping (Result<GetUserProfileModel, Error>) -> Void) {
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        guard let requestURL = URL(string: "http://3.21.114.70/auth/user/update/profile/") else {
+            completion(.failure("invalid url"))
+            return
+        }
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = methodType.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        
+        if let token = userModel?.accessToken {
+            print("userModel?.accessToken........ ",userModel!.accessToken! )
+            request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
+        }
+        if isForImage {
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        } else {
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+            request.setValue(NSLocalizedString("lang", comment: ""), forHTTPHeaderField:"Accept-Language")
+        }
+        var body = Data()
+        if !isForImage {
+            // User name update
+            let param = ["full_name": parameters.name]
+            let postString = getPostString(params: param)
+            request.httpBody = postString.data(using: .utf8)
+        } else {
+            // Image field
+            let image = parameters.image // Replace with your actual image
+            guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+                print("Error converting image to data")
+                return
+            }
+            body.append("--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.png\"\r\n")
+            body.append("Content-Type: image/png\r\n\r\n")
+            body.append(imageData)
+            body.append("\r\n")
+            body.append("--\(boundary)--\r\n")
+            request.httpBody = body
+        }
+        session.dataTask(with: request) { data, response, error in
+            var httpStatusCode = 0
+            if let httpResponse = response as? HTTPURLResponse {
+                httpStatusCode = httpResponse.statusCode
+            }
+            if error != nil {
+                completion(.failure(error?.localizedDescription ?? "Something went wrong"))
+            } else {
+                if httpStatusCode == 401 {
+                    // Refresh Token
+                    if let fbData = data {
+                        let message = String(decoding: fbData, as: UTF8.self)
+                        completion(.failure(message))
+                    } else {
+                        let message = response?.url?.lastPathComponent
+                        completion(.failure("API \(message ?? "") Invalid Response."))
+                    }
+                } else if httpStatusCode == 200, let data = data {
+                    let JSON = self.nsdataToJSON(data: data as NSData)
+                    print("----------------JSON in APIClient",JSON as Any)
+                    do {
+                        let responseModel = try JSONDecoder().decode(GetUserProfileModel.self, from: data)
+                        completion(.success(responseModel))
+                    }
+                    catch{
+                        print(error)
+                    }
+                } else {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                        completion(.failure(json["message"] as? String ?? "something went wrong"))
+                    } catch {
+                        completion(.failure("Unable to get json."))
+                    }
+                }
+            }
+        }.resume()
+    }
+    func nsdataToJSON(data: NSData) -> AnyObject? {
+        do {
+            return try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as AnyObject
+        } catch let myJSONError {
+            debugPrint(myJSONError)
+        }
+        return nil
+    }
+    func getPostString(params:[String:Any]) -> String {
+        var data = [String]()
+        for(key, value) in params {
+            data.append(key + "=\(value)")
+        }
+        return data.map { String($0) }.joined(separator: "&")
     }
 }

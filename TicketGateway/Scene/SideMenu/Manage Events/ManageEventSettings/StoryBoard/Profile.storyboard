@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lOh-6Z-ebl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lOh-6Z-ebl">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -513,7 +513,7 @@
                                                                             </imageView>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYb-4f-e15">
+                                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYb-4f-e15">
                                                                         <rect key="frame" x="0.0" y="0.0" width="95.666666666666671" height="40"/>
                                                                     </button>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHP-oO-LFg" userLabel="ViewDor">
@@ -556,8 +556,8 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qun-OO-s0m" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="112.66666666666664" y="5" width="220.33333333333337" height="40"/>
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qun-OO-s0m" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                <rect key="frame" x="8" y="5" width="325" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="dNB-6f-hGS"/>
                                                                 </constraints>
@@ -579,10 +579,10 @@
                                                         <constraints>
                                                             <constraint firstItem="qun-OO-s0m" firstAttribute="centerY" secondItem="z0s-jh-iV2" secondAttribute="centerY" id="4KU-aM-K6j"/>
                                                             <constraint firstItem="6vj-Yz-BLd" firstAttribute="centerY" secondItem="z0s-jh-iV2" secondAttribute="centerY" id="BUQ-be-WSe"/>
-                                                            <constraint firstItem="qun-OO-s0m" firstAttribute="leading" secondItem="6vj-Yz-BLd" secondAttribute="trailing" constant="12" id="HHc-pv-0Yv"/>
                                                             <constraint firstAttribute="height" constant="50" id="auE-bk-sAM"/>
                                                             <constraint firstItem="6vj-Yz-BLd" firstAttribute="leading" secondItem="z0s-jh-iV2" secondAttribute="leading" constant="5" id="auV-mf-4kK"/>
                                                             <constraint firstAttribute="trailing" secondItem="qun-OO-s0m" secondAttribute="trailing" constant="20" id="hdH-pF-Lzk"/>
+                                                            <constraint firstItem="qun-OO-s0m" firstAttribute="leading" secondItem="z0s-jh-iV2" secondAttribute="leading" constant="8" id="orz-lU-e7H"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -608,7 +608,7 @@
                                                         <color key="textColor" name="Headinglbl"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivB-dr-Wc5" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivB-dr-Wc5" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="29" width="353" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="3QS-V4-IfA"/>

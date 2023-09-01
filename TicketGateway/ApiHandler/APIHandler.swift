@@ -70,6 +70,10 @@ public enum APIName: String {
     case ContactOrganizer = "organizer/contact/form/"
     case ChangeTicketName = "ticket/transfer/user-name/change/"
     case GetMyTicketList = "ticket/my-ticket/list/"
+    
+    // Profile Tab
+    case getUserProfileData = "auth/me/"
+    case updateUserProfileData = "auth/user/update/profile/"
 }
 public enum GroupApiName: String {
     case auth = "auth"
@@ -231,8 +235,57 @@ class APIHandler: NSObject {
             }
         }.resume()
     }
-    
-    
+    func getUserProfile(methodType: MethodType, completion: @escaping (Result<GetUserProfileModel, Error>) -> Void) {
+        guard let requestURL = URL(string: "http://3.21.114.70/auth/me/") else {
+            completion(.failure("invalid url"))
+            return
+        }
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = methodType.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        if let token = userModel?.accessToken {
+            print("userModel?.accessToken........ ",userModel!.accessToken! )
+            request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
+        }
+        session.dataTask(with: request) { data, response, error in
+            var httpStatusCode = 0
+            if let httpResponse = response as? HTTPURLResponse {
+                httpStatusCode = httpResponse.statusCode
+            }
+            if error != nil {
+                completion(.failure(error?.localizedDescription ?? "Something went wrong"))
+            } else {
+                if httpStatusCode == 401 {
+                    // Refresh Token
+                    if let fbData = data {
+                        let message = String(decoding: fbData, as: UTF8.self)
+                        completion(.failure(message))
+                    } else {
+                        let message = response?.url?.lastPathComponent
+                        completion(.failure("API \(message ?? "") Invalid Response."))
+                    }
+                } else if httpStatusCode == 200, let data = data {
+                    let JSON = self.nsdataToJSON(data: data as NSData)
+                    print("----------------JSON in APIClient",JSON as Any)
+                    do {
+                        let responseModel = try JSONDecoder().decode(GetUserProfileModel.self, from: data)
+                        completion(.success(responseModel))
+                    }
+                    catch{
+                        print(error)
+                    }
+                } else {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                        completion(.failure(json["message"] as? String ?? "something went wrong"))
+                    } catch {
+                        completion(.failure("Unable to get json."))
+                    }
+                }
+            }
+        }.resume()
+    }
     // Api Calling//etc called
     func executeClientRequestWith<U: Encodable>(apiName: String, parameters: U?, methodType: MethodType, authRequired: Bool = true, complition: @escaping(Data?, Error?) -> Void) {
         SVProgressHUD.show()
