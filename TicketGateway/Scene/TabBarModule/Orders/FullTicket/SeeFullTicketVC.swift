@@ -33,7 +33,7 @@ class SeeFullTicketVC: UIViewController {
     @IBOutlet weak var btnViewEventList: UIButton!
     @IBOutlet weak var lblOrganizer: UILabel!
     @IBOutlet weak var lblOrganizerName: UILabel!
-    @IBOutlet weak var btnFollowing: UIButton!
+    @IBOutlet weak var btnFollowing: CustomButtonGradiant!
     @IBOutlet weak var lblRefundPolicy: UILabel!
     @IBOutlet weak var lblRefundPolicyDays: UILabel!
     @IBOutlet weak var lblPolicyExpired: UILabel!
@@ -49,9 +49,7 @@ class SeeFullTicketVC: UIViewController {
         self.setFont()
         self.setNavigationBar()
         self.setUI()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        setDataToComponents()
+        self.setData()
     }
 }
 // MARK: - Functions
@@ -59,13 +57,6 @@ extension SeeFullTicketVC {
     func setUI() {
         [self.btnGetARefund,self.btnSeeLessView,self.btnSaveTicketAsImage,self.btnAddAppToWallet,self.btnViewEventList].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        }
-    }
-    func setDataToComponents() {
-        lblEventName.text = viewModel.ticketDetails?.eventTitle ?? "-"
-        lblAddress.text = viewModel.ticketDetails?.location ?? "-"
-        if let startDate = viewModel.ticketDetails?.eventStartDate {
-            lblDateValue.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFromTo()) / \(getTime(strDate: startDate))"
         }
     }
     func getTime(strDate: String) -> String {
@@ -154,6 +145,57 @@ extension SeeFullTicketVC {
         self.btnFollowing.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnFollowing.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblPolicyExpired.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
+    }
+    
+    
+    func setData(){
+        let eventDetail = self.viewModel.eventDetail
+      //  lblEventName.text = viewModel.ticketDetails?.eventTitle ?? "-"
+      //  lblAddress.text = viewModel.ticketDetails?.location ?? "-"
+        
+       
+        self.lblEventName.text = eventDetail?.event?.title ?? ""
+        self.lblGeneralAdmission.text = viewModel.myTicket?.items?.first?.ticketName ?? ""
+        if let startDate = viewModel.ticketDetails?.eventStartDate {
+            lblDateValue.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFromTo()) / \(getTime(strDate: startDate))"
+        }
+       
+        self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
+        lblOrderNumberValue.text = "#\(viewModel.myTicket?.items?.first?.orderNumber ?? "")"
+        
+        //ABOUt US
+        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
+            self.lblEventSummary.isHidden = false
+            self.lblEventSummary.text = eventDetail?.organizer?.eventDescription ?? ""
+            
+        }else{
+            self.lblEventSummary.isHidden  = true
+            self.lblEventSummary.text = ""
+        }
+        
+        //ORGANIZER
+        self.lblOrganizerName.text = eventDetail?.organizer?.name ?? ""
+        
+        //FOLLOW/UNFOLLOW
+        print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
+        if let isFollow = eventDetail?.isFollow {
+            if isFollow {
+                self.btnFollowing.setTitles(
+                    text: "Following",
+                    font: UIFont.boldSystemFont(ofSize: 15),
+                    tintColour: .black
+                )
+            } else {
+                self.btnFollowing.setTitles(
+                    text: "Follow",
+                    font: UIFont.boldSystemFont(ofSize: 15),
+                    tintColour: .black
+                )
+            }
+        }
+        
+        //REFUND
+        self.lblRefundPolicyDays.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
     }
 }
 

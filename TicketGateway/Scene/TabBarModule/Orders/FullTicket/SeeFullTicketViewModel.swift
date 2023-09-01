@@ -8,4 +8,6 @@
 import Foundation
 class SeeFullTicketViewModel {
     var ticketDetails: GetMyOrderItem?
+    var eventDetail: EventDetail?
+    var myTicket:MyTicketList?
 }

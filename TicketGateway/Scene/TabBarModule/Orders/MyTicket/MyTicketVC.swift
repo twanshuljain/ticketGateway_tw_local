@@ -154,6 +154,8 @@ extension MyTicketVC {
     func seeFullTicketAction() {
         let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC) as? SeeFullTicketVC
         seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails
+        seeFullTicketVC?.viewModel.eventDetail = viewModel.eventDetail
+        seeFullTicketVC?.viewModel.myTicket = viewModel.myTicket
         self.navigationController?.pushViewController(seeFullTicketVC!, animated: false)
     }
     func saveTicketAsImage() {

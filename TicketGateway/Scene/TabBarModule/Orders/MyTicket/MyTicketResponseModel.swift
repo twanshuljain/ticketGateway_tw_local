@@ -24,6 +24,7 @@ struct MyTicket: Codable {
     var quantity, ticketTypeID, baseTicketID: Int?
     var date: String?
     var eventStartDate: String?
+    var orderNumber : String?
 
     enum CodingKeys: String, CodingKey {
         case ticketName = "ticket_name"
@@ -39,5 +40,6 @@ struct MyTicket: Codable {
         case baseTicketID = "base_ticket_id"
         case date
         case eventStartDate = "event_start_date"
+        case orderNumber = "order_number"
     }
 }
