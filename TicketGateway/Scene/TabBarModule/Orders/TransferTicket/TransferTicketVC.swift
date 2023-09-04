@@ -19,8 +19,11 @@ class TransferTicketVC: UIViewController {
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var tblTransferTicketTableView: UITableView!
     // MARK: - Variables
-    var arrData = [ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false)]
-    let tblData = ["334566", "565656", "56656456", "5645645" ]
+    var viewModel = TransferTicketViewModel()
+    //var arrData = [ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false)]
+   // let tblData = ["334566", "565656", "56656456", "5645645" ]
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
@@ -48,56 +51,70 @@ extension  TransferTicketVC {
         self.tblTransferTicketTableView.register(UINib(nibName: "TransferTicketHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TransferTicketHeaderView")
     }
     @objc func navigateButton(_ sender: UIButton) {
-        let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC)
-        self.navigationController?.pushViewController(continueToTransferVC, animated: true)
+        if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC{
+            continueToTransferVC.viewModel.ticketDetails = self.viewModel.ticketDetails
+            continueToTransferVC.viewModel.eventDetail = self.viewModel.eventDetail
+            continueToTransferVC.viewModel.myTicket = self.viewModel.myTicket?.items?[sender.tag]
+            self.navigationController?.pushViewController(continueToTransferVC, animated: true)
+        }
     }
 }
 // MARK: - Actions
 extension  TransferTicketVC {
     @objc func buttonPressed(_ sender: UIButton) {
-        let obj = arrData[sender.tag]
-        print(arrData[sender.tag])
-        if obj.isExpanded == false {
-            obj.isExpanded = true
+        if self.viewModel.myTicket?.items?[sender.tag].isExpanded == false {
+            self.viewModel.myTicket?.items?[sender.tag].isExpanded = true
         } else {
-            obj.isExpanded = false
+            self.viewModel.myTicket?.items?[sender.tag].isExpanded = false
         }
-        print("value", arrData)
         self.tblTransferTicketTableView.reloadData()
     }
 }
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension TransferTicketVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return arrData.count
+        return self.viewModel.myTicket?.items?.count ?? 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arrData[section].isExpanded == true {
+        if self.viewModel.myTicket?.items?[section].isExpanded == true {
             return 1
         } else {
             return 0
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TransferTicketTableViewCell", for: indexPath) as! TransferTicketTableViewCell
-        let data = tblData[indexPath.row]
-        cell.lblTicketIdValue.text = data
-        cell.btnContinueToTransfer.addTarget(self, action: #selector(navigateButton(_:)), for: .touchUpInside)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TransferTicketTableViewCell", for: indexPath) as? TransferTicketTableViewCell{
+            if self.viewModel.myTicket?.items?.indices.contains(indexPath.section) ?? false{
+                if let data = self.viewModel.myTicket?.items?[indexPath.section]{
+                    cell.btnContinueToTransfer.tag = indexPath.section
+                    cell.setData(data: data)
+                    cell.btnContinueToTransfer.addTarget(self, action: #selector(navigateButton(_:)), for: .touchUpInside)
+                }
+                return cell
+            }
+        }
+        return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerview = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TransferTicketHeaderView") as! TransferTicketHeaderView
-        headerview.btnUp.tag = section
-        headerview.btnUp.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        let obj = arrData[section]
-        if obj.isExpanded == true {
-            headerview.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_UP_ICON), for: .normal)
-            headerview.headerBottomLine.isHidden = true
-        } else {
-            headerview.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_DOWN_ICON), for: .normal)
-            headerview.headerBottomLine.isHidden = false
+        if let headerview = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TransferTicketHeaderView") as? TransferTicketHeaderView{
+            headerview.btnUp.tag = section
+            headerview.btnUp.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+            if self.viewModel.myTicket?.items?.indices.contains(section) ?? false{
+                if let obj = self.viewModel.myTicket?.items?[section]{
+                    headerview.setData(data: obj)
+                    if obj.isExpanded == true {
+                        headerview.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_UP_ICON), for: .normal)
+                        headerview.headerBottomLine.isHidden = true
+                    } else {
+                        headerview.btnUp.setImage(UIImage(named: CIRCLE_CHEVRON_DOWN_ICON), for: .normal)
+                        headerview.headerBottomLine.isHidden = false
+                    }
+                    return headerview
+                }
+            }
         }
-        return headerview
+        return nil
+        
     }
 }
 // MARK: - NavigationBarViewDelegate

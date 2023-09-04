@@ -19,6 +19,12 @@ class TransferTicketHeaderView: UITableViewHeaderFooterView {
         super.awakeFromNib()
         self.setFont()
     }
+    
+    func setData(data:MyTicket){
+        lblTicketTitle.text = data.ticketName ?? ""
+        lblPrice.text = "$\(data.ticketPrice ?? 0)"
+        
+    }
    
     func setFont() {
         self.lblTicketTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)

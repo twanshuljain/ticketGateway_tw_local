@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreImage
 
 extension String {
     public func trim() -> String {
@@ -102,6 +103,55 @@ extension String {
         }
         
     }
+    
+    func getDayFormattedFromTo() -> String {
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
+        if dateFormatter.date(from: self) == nil{
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "EEE"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }else{
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "EEE"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }
+        
+    }
+    
+    func getDateFormattedISOFromTo() -> String {
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX"
+        dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
+        if dateFormatter.date(from: self) == nil{
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }else{
+            let date = dateFormatter.date(from: self) ?? Date.init()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            dateFormatter.locale = tempLocale // reset the locale
+            let dateString = dateFormatter.string(from: date)
+            return dateString
+        }
+        
+    }
+    
+    
+    
     func changeDateFormate() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -205,5 +255,23 @@ extension String {
          debugPrint(lastName)
         }
         return lastName
+    }
+    
+
+    func generateQRCode(qrCodeImageView:UIImageView) -> UIImage? {
+        if let data = Data(base64Encoded: self) {
+            let qrFilter = CIFilter(name: "CIQRCodeGenerator")
+            qrFilter?.setValue(data, forKey: "inputMessage")
+
+            if let qrImage = qrFilter?.outputImage {
+                let scaleX = qrCodeImageView.frame.size.width / qrImage.extent.size.width
+                let scaleY = qrCodeImageView.frame.size.height / qrImage.extent.size.height
+                let transformedImage = qrImage.transformed(by: CGAffineTransform(scaleX: scaleX, y: scaleY))
+
+                return UIImage(ciImage: transformedImage)
+            }
+        }
+
+        return nil
     }
 }

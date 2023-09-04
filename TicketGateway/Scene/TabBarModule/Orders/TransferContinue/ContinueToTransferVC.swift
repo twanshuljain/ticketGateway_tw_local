@@ -23,11 +23,17 @@ class ContinueToTransferVC: UIViewController {
     @IBOutlet weak var lblOnceTicketTransfer: UILabel!
     @IBOutlet weak var btnTransferTicket: CustomButtonGradiant!
     @IBOutlet weak var btnCancel: UIButton!
+    
+    // MARK: - Variables
+    var viewModel = ContinueToTransferViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
         self.btnTransferTicket.addTarget(self, action: #selector(showAlert(_:)), for: .touchUpInside)
         self.setNavigationView()
+        self.setData()
     }
     @objc func showAlert (_ sender: UIButton) {
         self.showAlert(title: TRANSFER_TICKETS, message: "Are you sure to transfer ticket to mangesh@ticketgateway.com.", complition: {_ in
@@ -73,6 +79,24 @@ extension ContinueToTransferVC {
         self.lblEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         self.lblConfirmEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: CONFIRM_EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
     }
+    
+    func setData(){
+        self.txtNameOnTicket.isUserInteractionEnabled = false
+        self.txtNameOnTicket.text = self.viewModel.myTicket?.nameOnTicket ?? ""
+    }
+}
+// MARK: - Actions
+extension ContinueToTransferVC {
+    
+    @IBAction func btnChangeNumberAction(_ sender:UIButton){
+        self.txtNameOnTicket.isUserInteractionEnabled = true
+    }
+    
+    @IBAction func btnTransferTicketAction(_ sender:UIButton){
+        
+    }
+    
+    
 }
 // MARK: - NavigationBarViewDelegate
 extension ContinueToTransferVC: NavigationBarViewDelegate {
