@@ -66,7 +66,7 @@ extension suggestedOrganizerList : UICollectionViewDataSource ,UICollectionViewD
 
 }
 
-extension suggestedOrganizerList:suggestedOrganizerCellProtocol{
+extension suggestedOrganizerList: SuggestedOrganizerCellProtocol{
     func followUnfollowAction(tag: Int) {
         self.followUnfollowDelegate?.followUnfollowAction(tag: tag)
     }

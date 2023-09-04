@@ -35,7 +35,9 @@ class ManageEventProfileVC: UIViewController {
         self.setUp()
     }
     override func viewWillAppear(_ animated: Bool) {
-        getUserProfileData()
+        if !isComingFromOranizer {
+            getUserProfileData()
+        }
     }
 }
 // MARK: - Functions

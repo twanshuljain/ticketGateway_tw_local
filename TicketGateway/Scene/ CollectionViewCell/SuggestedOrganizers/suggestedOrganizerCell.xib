@@ -78,7 +78,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnn-PN-PG2" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="25" y="185.66666666666666" width="190" height="40"/>
+                                <rect key="frame" x="10" y="185.66666666666666" width="220" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Aoi-HC-Nd4"/>
                                 </constraints>
@@ -98,9 +98,9 @@
                             <constraint firstAttribute="trailing" secondItem="vGS-aS-Gnr" secondAttribute="trailing" constant="25" id="c23-zb-1gN"/>
                             <constraint firstItem="oWC-2V-Fl8" firstAttribute="top" secondItem="fAw-nq-k2d" secondAttribute="top" constant="12.5" id="fKu-Yd-Rv9"/>
                             <constraint firstItem="vGS-aS-Gnr" firstAttribute="centerX" secondItem="fAw-nq-k2d" secondAttribute="centerX" id="jOs-WU-eJa"/>
-                            <constraint firstItem="Mnn-PN-PG2" firstAttribute="leading" secondItem="fAw-nq-k2d" secondAttribute="leading" constant="25" id="nra-v0-rul"/>
+                            <constraint firstItem="Mnn-PN-PG2" firstAttribute="leading" secondItem="fAw-nq-k2d" secondAttribute="leading" constant="10" id="nra-v0-rul"/>
                             <constraint firstItem="vGS-aS-Gnr" firstAttribute="top" secondItem="oWC-2V-Fl8" secondAttribute="bottom" constant="10" id="rMw-bP-aVM"/>
-                            <constraint firstAttribute="trailing" secondItem="Mnn-PN-PG2" secondAttribute="trailing" constant="25" id="zAV-nd-SXI"/>
+                            <constraint firstAttribute="trailing" secondItem="Mnn-PN-PG2" secondAttribute="trailing" constant="10" id="zAV-nd-SXI"/>
                         </constraints>
                     </view>
                 </subviews>

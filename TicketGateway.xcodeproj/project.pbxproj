@@ -57,6 +57,7 @@
 		183A263C2A4336FC00DC97E3 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */; };
 		183A263E2A43375600DC97E3 /* EventsOrganizesListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */; };
 		183D52542A459932005CAABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183D52532A459932005CAABC /* GoogleService-Info.plist */; };
+		18463E082AA1F9160074B1C6 /* GetOrganizerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */; };
 		1848541D2A850D1F0007798B /* AddToCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848541C2A850D1F0007798B /* AddToCalendar.swift */; };
 		184888B52A31FBF800D36B3E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B42A31FBF800D36B3E /* FirebaseAnalytics */; };
 		184888B72A31FBF800D36B3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B62A31FBF800D36B3E /* FirebaseAuth */; };
@@ -493,6 +494,7 @@
 		183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsOrganizesListTableView.swift; sourceTree = "<group>"; };
 		183D52532A459932005CAABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOrganizerListModel.swift; sourceTree = "<group>"; };
 		1848541C2A850D1F0007798B /* AddToCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCalendar.swift; sourceTree = "<group>"; };
 		184B79132A440F9600577B26 /* EventBookingTicketAddOnsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketAddOnsVC.swift; sourceTree = "<group>"; };
 		184D046029EE7F430008B825 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
@@ -1697,6 +1699,7 @@
 				1861A2C92A44302600E13A5D /* MyFollowers */,
 				18FBC09D2A309238002CF129 /* Organizers_Artists_ListVC.swift */,
 				188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */,
+				18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */,
 			);
 			path = Artists;
 			sourceTree = "<group>";
@@ -3370,6 +3373,7 @@
 				18F5A4D42A4EB01D00CA18F7 /* ContactTableViewCell.swift in Sources */,
 				18B339B42A555C7500340E3E /* ManageEventSettingTableViewCell.swift in Sources */,
 				18F6F74329E982D1007B9513 /* CreateAccountVC.swift in Sources */,
+				18463E082AA1F9160074B1C6 /* GetOrganizerListModel.swift in Sources */,
 				18E2ECA32A977BDF000F73F6 /* EventPromoCodeModel.swift in Sources */,
 				18FBC0FD2A309239002CF129 /* CostumeFrontLineViewController.swift in Sources */,
 				18A84DA72A98A7FE005DB31C /* GetFavouriteModel.swift in Sources */,

@@ -357,6 +357,9 @@ struct Organizers: Codable {
         case followers
         case isFollow = "is_follow"
     }
+    mutating func changeIsFollow(isFollow: Bool) {
+        self.isFollow = isFollow
+    }
 }
 
 

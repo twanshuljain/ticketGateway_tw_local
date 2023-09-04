@@ -15,7 +15,7 @@
 import UIKit
 import SDWebImage
 
-protocol suggestedOrganizerCellProtocol:class {
+protocol SuggestedOrganizerCellProtocol:class {
     func followUnfollowAction(tag:Int)
 }
 
@@ -27,9 +27,9 @@ class suggestedOrganizerCell: UICollectionViewCell {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblFollowers: UILabel!
     @IBOutlet weak var lblName: UILabel!
-    
-    weak var delegate:suggestedOrganizerCellProtocol?
-    
+    var isFromOrganizationSection: Bool = false
+    weak var delegate:SuggestedOrganizerCellProtocol?
+    var followButtonDidTap: ((_ sender: UIButton) -> Void) = {sender in }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
@@ -76,6 +76,9 @@ class suggestedOrganizerCell: UICollectionViewCell {
     }
     
     @IBAction func btnFollowUnfollowAction(_ sender:UIButton){
+        if isFromOrganizationSection {
+            followButtonDidTap(sender)
+        }
         self.delegate?.followUnfollowAction(tag: sender.tag)
     }
 
