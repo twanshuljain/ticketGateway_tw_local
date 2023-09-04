@@ -71,6 +71,7 @@ public enum APIName: String {
     case ContactOrganizer = "organizer/contact/form/"
     case ChangeTicketName = "ticket/transfer/user-name/change/"
     case GetMyTicketList = "ticket/my-ticket/list/"
+    case TransferTicket = "ticket/transfer/"
     
     // Profile Tab
     case getUserProfileData = "auth/me/"
@@ -103,7 +104,7 @@ class APIHandler: NSObject {
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
-        }else if (methodType == .POST && apiName == .followUnfollow) || (methodType == .POST && apiName == .ChangeTicketName){
+        }else if methodType == .POST && (apiName == .followUnfollow || apiName == .ChangeTicketName || apiName == .TransferTicket){
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
