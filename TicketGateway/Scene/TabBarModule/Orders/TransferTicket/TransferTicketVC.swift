@@ -28,7 +28,6 @@ class TransferTicketVC: UIViewController {
         super.viewDidLoad()
         self.setTableView()
         self.setNavigationView()
-        self.setData()
     }
 }
 // MARK: - Functions
@@ -52,11 +51,12 @@ extension  TransferTicketVC {
         self.tblTransferTicketTableView.register(UINib(nibName: "TransferTicketHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TransferTicketHeaderView")
     }
     @objc func navigateButton(_ sender: UIButton) {
-        let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC)
-        self.navigationController?.pushViewController(continueToTransferVC, animated: true)
-    }
-    
-    func setData(){
+        if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC{
+            continueToTransferVC.viewModel.ticketDetails = self.viewModel.ticketDetails
+            continueToTransferVC.viewModel.eventDetail = self.viewModel.eventDetail
+            continueToTransferVC.viewModel.myTicket = self.viewModel.myTicket?.items?[sender.tag]
+            self.navigationController?.pushViewController(continueToTransferVC, animated: true)
+        }
     }
 }
 // MARK: - Actions
@@ -86,6 +86,7 @@ extension TransferTicketVC: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TransferTicketTableViewCell", for: indexPath) as? TransferTicketTableViewCell{
             if self.viewModel.myTicket?.items?.indices.contains(indexPath.section) ?? false{
                 if let data = self.viewModel.myTicket?.items?[indexPath.section]{
+                    cell.btnContinueToTransfer.tag = indexPath.section
                     cell.setData(data: data)
                     cell.btnContinueToTransfer.addTarget(self, action: #selector(navigateButton(_:)), for: .touchUpInside)
                 }

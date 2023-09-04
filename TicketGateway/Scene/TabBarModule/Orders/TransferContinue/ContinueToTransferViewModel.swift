@@ -1,14 +1,14 @@
 //
-//  TransferTicketViewModel.swift
+//  ContinueToTransferViewModel.swift
 //  TicketGateway
 //
-//  Created by Apple on 01/09/23.
+//  Created by Apple on 04/09/23.
 //
 
 import Foundation
-class TransferTicketViewModel {
+class ContinueToTransferViewModel {
     // MARK: - Variables
     var ticketDetails: GetMyOrderItem?
     var eventDetail: EventDetail?
-    var myTicket:MyTicketList?
+    var myTicket:MyTicket?
 }
