@@ -278,28 +278,6 @@ extension HomeDashBoardViewModel {
             }
         }
     }
-    
-    
-    func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
-        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
-        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
-            switch result {
-            case .success(let response):
-                print("success like api")
-                if response.status_code == 200 {
-                    DispatchQueue.main.async {
-                        if let data = response.data {
-                            print("response of like api****", response)
-                        }
-                    }
-                }
-            case .failure(let error):
-                print("error", error)
-                print("failure like api ")
-            }
-        }
-    }
-    
     func GetEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
         let url = APIName.GetEventDetail.rawValue + "\(eventId)"  + "/"
         APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
@@ -320,28 +298,6 @@ extension HomeDashBoardViewModel {
             case .failure(let error):
                 defer { self.dispatchGroup6.leave() }
                 complition(false,"\(error)")
-            }
-        }
-    }
-    
-    func followUnFollowApi(organizerId:Int, complition: @escaping (Bool, String) -> Void) {
-        let api = APIName.followUnfollow.rawValue + "\(organizerId)/"
-       // let param = FavoriteRequestModel(event_id: eventId, like_status: true)
-        APIHandler.shared.executeRequestWith(apiName: .followUnfollow, parameters: EmptyModel?.none, methodType: .POST, getURL: api, authRequired: true, authTokenString: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
-            switch result {
-            case .success(let response):
-                if response.status_code == 200 {
-                    DispatchQueue.main.async {
-                        self.followUnfollow = response.data
-                        print("---------", self.followUnfollow)
-                        
-                    }
-                    complition(true, response.message ?? "")
-                } else {
-                    complition(false, response.message ?? "Error message")
-                }
-            case .failure(let error):
-                complition(false, "\(error)")
             }
         }
     }

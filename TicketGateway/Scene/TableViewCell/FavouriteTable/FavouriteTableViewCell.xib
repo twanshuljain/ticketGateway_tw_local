@@ -125,13 +125,19 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MkH-wX-PA6">
                         <rect key="frame" x="405" y="399" width="81" height="40"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_ip" translatesAutoresizingMaskIntoConstraints="NO" id="7Id-dU-gca">
-                                <rect key="frame" x="0.0" y="11" width="24" height="18"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2Q-Jo-IKt">
+                                <rect key="frame" x="0.0" y="8" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="4Lt-WR-92e"/>
-                                    <constraint firstAttribute="width" constant="24" id="Snr-uF-8om"/>
+                                    <constraint firstAttribute="height" constant="24" id="8BP-kO-9Ly"/>
+                                    <constraint firstAttribute="width" constant="24" id="xjZ-QY-kg9"/>
                                 </constraints>
-                            </imageView>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="upload_ip"/>
+                                <connections>
+                                    <action selector="shareButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iRE-jU-gKD"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsx-y9-btH">
                                 <rect key="frame" x="40" y="10" width="1" height="20"/>
                                 <color key="backgroundColor" name="PlaceHolder"/>
@@ -207,6 +213,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnLike" destination="6u4-qE-Mzt" id="gqC-sp-Ipw"/>
+                <outlet property="btnShare" destination="K2Q-Jo-IKt" id="a6T-6X-QBe"/>
                 <outlet property="imgImages" destination="9wi-79-tSi" id="Q7N-ug-QCq"/>
                 <outlet property="lblAddress" destination="6SV-Oi-BHW" id="KCZ-l7-rt6"/>
                 <outlet property="lblDate" destination="paI-oJ-FUD" id="Cgd-XK-Kp3"/>

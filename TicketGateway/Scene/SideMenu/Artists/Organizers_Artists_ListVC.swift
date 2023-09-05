@@ -196,9 +196,8 @@ extension Organizers_Artists_ListVC {
         }
     func suggestedFollowButtonAction(organizerId: Int, isSuccess: (@escaping (String) -> Void)) {
         if Reachability.isConnectedToNetwork() { //check internet connectivity
-//            let organizerId = viewModelForOrganniser.arrSuggestedOrganizers[indexPath.row].id ?? 0
             self.view.showLoading(centreToView: self.view)
-            viewModelForOrganniser.followUnFollowApi(
+            AppShareData().commanFollowUnfollowApi(
                 organizerId: organizerId,
                 complition: { isTrue, messageShowToast in
                     if isTrue {

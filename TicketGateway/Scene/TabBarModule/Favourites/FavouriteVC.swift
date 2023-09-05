@@ -130,6 +130,17 @@ extension FavouriteVC {
         getFavouriteList()
         getVenueList()
     }
+    func shareEventDetailData(eventDetail: GetFavouriteItem) {
+        self.shareEventDetailData(
+            eventStartDate: "-",
+            eventEndDate: "-",
+            eventCoverImage: eventDetail.coverImage?.eventCoverImage,
+            eventTitle: eventDetail.eventTitle,
+            eventStartTime: "-",
+            eventEndTime: "-",
+            eventDescription: nil
+        )
+    }
 }
 // MARK: - Actions
 extension FavouriteVC {
@@ -169,7 +180,7 @@ extension FavouriteVC {
         // API Calling for Dislike the Event
         if Reachability.isConnectedToNetwork() {
             self.view.showLoading(centreToView: self.view)
-            viewModel.favouriteApiForHome(
+            AppShareData().commanEventLikeApiCall(
                 likeStatus: false,
                 eventId: eventId ?? 0,
                 completion: { isTrue, message in
@@ -253,6 +264,10 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
         cell.lblFavoriteDate.isHidden = viewModel.isForVenue
         cell.likeButtonPressed = {
             self.btnLikeAction(indexPath: indexPath)
+        }
+        cell.shareButtonPressed = {
+            let eventDetail = self.viewModel.isForVenue ? self.viewModel.arrVenueList[indexPath.row] : self.viewModel.arrFavouriteList[indexPath.row]
+            self.shareEventDetailData(eventDetail: eventDetail)
         }
         return cell
     }

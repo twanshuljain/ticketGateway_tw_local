@@ -19,7 +19,9 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnLike: UIButton!
+    @IBOutlet weak var btnShare: UIButton!
     var likeButtonPressed: (() -> ()) = {}
+    var shareButtonPressed: (() -> ()) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
@@ -55,6 +57,9 @@ class FavouriteTableViewCell: UITableViewCell {
     }
     @IBAction func likeButtonAction(_ sender: UIButton) {
         likeButtonPressed()
+    }
+    @IBAction func shareButtonAction(_ sender: UIButton) {
+        shareButtonPressed()
     }
     func setUi(){
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)

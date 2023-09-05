@@ -46,20 +46,4 @@ class OrganizersandArtistViewModel {
             }
         }
     }
-    func followUnFollowApi(organizerId:Int, complition: @escaping (Bool, String) -> Void) {
-        let api = APIName.followUnfollow.rawValue + "\(organizerId)/"
-        APIHandler.shared.executeRequestWith(apiName: .followUnfollow, parameters: EmptyModel?.none, methodType: .POST, getURL: api, authRequired: true, authTokenString: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
-            switch result {
-            case .success(let response):
-                if response.status_code == 200 {
-                    print("Follow api success")
-                    complition(true, response.message ?? "")
-                } else {
-                    complition(false, response.message ?? "Error message")
-                }
-            case .failure(let error):
-                complition(false, "\(error)")
-            }
-        }
-    }
 }

@@ -241,6 +241,7 @@ class APIHandler: NSObject {
             completion(.failure("invalid url"))
             return
         }
+        print("requestURL", requestURL)
         var request = URLRequest(url: requestURL)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

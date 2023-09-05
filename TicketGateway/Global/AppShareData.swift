@@ -52,6 +52,7 @@ class AppShareData {
             completion(.failure("invalid url"))
             return
         }
+        print("requestURL", requestURL)
         var request = URLRequest(url: requestURL)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -140,5 +141,48 @@ class AppShareData {
             data.append(key + "=\(value)")
         }
         return data.map { String($0) }.joined(separator: "&")
+    }
+    // MARK: Comman Like/Dislike API Functions
+    func commanEventLikeApiCall(
+        likeStatus: Bool,
+        eventId: Int,
+        completion: @escaping (Bool, String) -> Void
+    ) {
+        print("eventId:- \(eventId), likeStatus:- \(likeStatus)")
+        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let message = response.message {
+                            print("success like api")
+                            completion(true, message)
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("failure like api, Error:", error)
+                completion(false, error as? String ?? "")
+            }
+        }
+    }
+    // MARK: Comman Follow/Unfollow API Functions
+    func commanFollowUnfollowApi(organizerId: Int, complition: @escaping (Bool, String) -> Void) {
+        let api = APIName.followUnfollow.rawValue + "\(organizerId)/"
+        print("organizerId:- \(organizerId)")
+        APIHandler.shared.executeRequestWith(apiName: .followUnfollow, parameters: EmptyModel?.none, methodType: .POST, getURL: api, authRequired: true, authTokenString: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    print("Follow api success")
+                    complition(true, response.message ?? "")
+                } else {
+                    complition(false, response.message ?? "Error message")
+                }
+            case .failure(let error):
+                complition(false, "\(error)")
+            }
+        }
     }
 }

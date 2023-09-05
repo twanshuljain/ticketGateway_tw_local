@@ -199,6 +199,64 @@ extension UIViewController {
         //     let hours: Int = totalSeconds / 3600
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    func shareEventDetailData(
+        eventStartDate: String,
+        eventEndDate: String,
+        eventCoverImage: String?,
+        eventTitle: String?,
+        eventStartTime: String,
+        eventEndTime: String,
+        eventDescription: String?
+    ) {
+        var objectsToShare = [Any]()
+        let shareImageObj = UIImage(named: "homeDas")
+        if let eventTitle = eventTitle {
+            let title = "Event Title:- " + eventTitle
+            objectsToShare.append(title)
+        }
+        
+        let eventDate = " " + "\(eventStartDate.getDateFormattedFrom())" +  " " + "to" + " " + "\(eventEndDate.getDateFormattedFromTo())"
+        let date = "\nEvent Date:- " + eventDate
+        objectsToShare.append(date)
+        
+        let eventEndDate = " " + "\(eventStartTime.getFormattedTime())" +  " " + "-" + " " + "\(eventEndTime.getFormattedTime())"
+        let time = "\nEvent Time:- " + eventEndDate
+        objectsToShare.append(time)
+        
+        if let eventDesc = eventDescription {
+            let finalDesc = "\nEvent Description:- " + eventDesc
+            objectsToShare.append(finalDesc)
+        } else {
+            let desc = "\nEvent Description:- No Description available for this event"
+            objectsToShare.append(desc)
+        }
+        
+        if let imageUrl = eventCoverImage {
+            if imageUrl.contains(APIHandler.shared.previousBaseURL) {
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                    objectsToShare.append("\n Check this image: - \(url)")
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            } else {
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                    objectsToShare.append("\n Check this image: - \(url)")
+                } else {
+                    objectsToShare.append(shareImageObj as Any)
+                }
+            }
+        } else {
+            objectsToShare.append(shareImageObj as Any)
+        }
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        //  tblEvents.delegateShareAction = self
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook]
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
 }
 extension URL {
     /// Returns a new URL by adding the query items, or nil if the URL doesn't support it.

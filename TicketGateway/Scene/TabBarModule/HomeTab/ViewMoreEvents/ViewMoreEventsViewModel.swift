@@ -222,39 +222,12 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     }
     
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
-        if isForLocation {
-            print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
-            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
-            favouriteApiForHome(
-                likeStatus: eventDetail.likeCountData?.isLiked ?? false,
-                eventId: eventDetail.event?.id ?? 0
-            )
-        } else {
-            print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
-            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
-            favouriteApiForHome(
-                likeStatus: eventDetail.likeCountData?.isLiked ?? false,
-                eventId: eventDetail.event?.id ?? 0
-            )
-        }
-    }
-    func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
-        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
         isLikedAnyEvent = true
-        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
-            switch result {
-            case .success(let response):
-                if response.status_code == 200 {
-                    DispatchQueue.main.async {
-                        if let data = response.data {
-                            print("success like api")
-                        }
-                    }
-                }
-            case .failure(let error):
-                print("error", error)
-                print("failure like api ")
+        AppShareData().commanEventLikeApiCall(
+            likeStatus: eventDetail.likeCountData?.isLiked ?? false,
+            eventId: eventDetail.event?.id ?? 0,
+            completion: { _,_ in
             }
-        }
+        )
     }
 }

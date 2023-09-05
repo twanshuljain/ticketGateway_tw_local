@@ -393,59 +393,16 @@ extension EventDetailVC {
         }
     }
     
-    func shareEventDetailData(eventDetail: GetEventModel){
-        var objectsToShare = [Any]()
-        let shareImageObj = UIImage(named: "homeDas")
-        
-        if let eventTitle = eventDetail.event?.title{
-            let title = "Event Title:- " + eventTitle
-            objectsToShare.append(title)
-        }
-        
-        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        let date = "\nEvent Date:- " + eventDate
-        objectsToShare.append(date)
-        
-        
-        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
-        let time = "\nEvent Time:- " + eventEndDate
-        objectsToShare.append(time)
-        
-        
-        if let eventDesc = eventDetail.event?.eventDescription{
-            var _ = "\nEvent Description:- " + eventDesc
-            objectsToShare.append(eventDesc)
-        } else {
-            var desc = "\nEvent Description:- No Description available for this event"
-            objectsToShare.append(desc)
-        }
-        
-        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
-            if imageUrl.contains(APIHandler.shared.previousBaseURL){
-                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                }else{
-                    objectsToShare.append(shareImageObj as Any)
-                }
-            } else {
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                } else {
-                    objectsToShare.append(shareImageObj as Any)
-                }
-            }
-        } else {
-            objectsToShare.append(shareImageObj as Any)
-        }
-        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        //  tblEvents.delegateShareAction = self
-        // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
+    func shareEventDetailData(eventDetail: GetEventModel) {
+        self.shareEventDetailData(
+            eventStartDate: eventDetail.eventDate?.eventStartDate ?? "",
+            eventEndDate: eventDetail.eventDate?.eventEndDate ?? "",
+            eventCoverImage: eventDetail.coverImage?.eventCoverImage,
+            eventTitle: eventDetail.event?.title,
+            eventStartTime: eventDetail.eventDate?.eventStartTime ?? "",
+            eventEndTime: eventDetail.eventDate?.eventEndDate ?? "",
+            eventDescription: eventDetail.event?.eventDescription
+        )
     }
 }
 
@@ -572,11 +529,10 @@ extension EventDetailVC {
     }
     
     func addFollowingAction() {
-        if Reachability.isConnectedToNetwork() //check internet connectivity
-        {
+        if Reachability.isConnectedToNetwork() { //check internet connectivity
             if let organizerId = self.viewModel.eventDetail?.organizer?.id {
                 vwEventName.showLoading(centreToView: self.view)
-                viewModel.followUnFollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
+                AppShareData().commanFollowUnfollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
                     if isTrue {
                         DispatchQueue.main.async {
                             self.vwEventName.stopLoading()
@@ -616,59 +572,15 @@ extension EventDetailVC {
 
     @objc func btnShareAction(_ sender: UIButton) {
         if let eventDetail = self.viewModel.eventDetail{
-            
-            var objectsToShare = [Any]()
-            let shareImageObj = UIImage(named: "homeDas")
-            
-            if let eventTitle = eventDetail.event?.title{
-                let title = "Event Title:- " + eventTitle
-                objectsToShare.append(title)
-            }
-            
-            let eventDate = " " + "\(eventDetail.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-            let date = "\nEvent Date:- " + eventDate
-            objectsToShare.append(date)
-            
-            
-            let eventEndDate = " " + "\(eventDetail.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")"
-            let time = "\nEvent Time:- " + eventEndDate
-            objectsToShare.append(time)
-            
-            
-            if let eventDesc = eventDetail.event?.eventDescription{
-                var _ = "\nEvent Description:- " + eventDesc
-                objectsToShare.append(eventDesc)
-            } else {
-                var desc = "\nEvent Description:- No Description available for this event"
-                objectsToShare.append(desc)
-            }
-            
-            if let imageUrl = eventDetail.eventCoverImageObj?.eventCoverImage {
-                if imageUrl.contains(APIHandler.shared.previousBaseURL){
-                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                        objectsToShare.append("\n Check this image: - \(url)")
-                    }else{
-                        objectsToShare.append(shareImageObj as Any)
-                    }
-                } else {
-                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                        objectsToShare.append("\n Check this image: - \(url)")
-                    } else {
-                        objectsToShare.append(shareImageObj as Any)
-                    }
-                }
-            } else {
-                objectsToShare.append(shareImageObj as Any)
-            }
-            let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-            //  tblEvents.delegateShareAction = self
-            // exclude some activity types from the list (optional)
-            activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-            
-            // present the view controller
-            self.present(activityViewController, animated: true, completion: nil)
+            self.shareEventDetailData(
+                eventStartDate: eventDetail.eventDateObj?.eventStartDate ?? "",
+                eventEndDate: eventDetail.eventDateObj?.eventEndDate ?? "",
+                eventCoverImage: eventDetail.eventCoverImageObj?.eventCoverImage,
+                eventTitle: eventDetail.event?.title,
+                eventStartTime: eventDetail.eventDateObj?.eventStartTime ?? "",
+                eventEndTime: eventDetail.eventDateObj?.eventEndDate ?? "",
+                eventDescription: (eventDetail.event?.eventDescription == nil || eventDetail.event?.eventDescription == "") ? (eventDetail.organizer?.eventDescription) : (eventDetail.event?.eventDescription)
+            )
         }
     }
     
@@ -678,16 +590,20 @@ extension EventDetailVC {
             self.showToast(message: Unable_To_LikeFollow)
             return
         }
+        viewModel.isLikedAnyEvent = true
         viewModel.eventDetail?.isLike?.toggle()
         if Reachability.isConnectedToNetwork() { //check internet connectivity
-          //  parentView.showLoading(centreToView: self.view)
             let eventId = self.viewModel.eventDetail?.event?.id ?? 0
-            viewModel.favouriteApi(likeStatus: viewModel.eventDetail?.isLike ?? false, eventId: eventId, complition: { isTrue, messageShowToast in
-                DispatchQueue.main.async {
-                    let image =  (self.viewModel.eventDetail?.isLike ?? false) ? UIImage(named: "favSele_ip") : UIImage(named: "favUnSele_ip")
+            AppShareData().commanEventLikeApiCall(
+                likeStatus: viewModel.eventDetail?.isLike ?? false,
+                eventId: eventId,
+                completion: { isTrue, messageShowToast in
+                    DispatchQueue.main.async {
+                        let image =  (self.viewModel.eventDetail?.isLike ?? false) ? UIImage(named: "favSele_ip") : UIImage(named: "favUnSele_ip")
                         self.navigationView.btnSecRight.setImage(image, for: .normal)
+                    }
                 }
-            })
+            )
         } else {
             self.showToast(message: ValidationConstantStrings.networkLost)
         }
@@ -728,7 +644,7 @@ extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        var imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+        let imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
         if imgCount == 0{
             if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil{
                 return 1
@@ -817,30 +733,12 @@ extension EventDetailVC : FavouriteAction {
             self.showToast(message: Unable_To_LikeFollow)
             return
         }
-        print("eventDetail.isLiked", eventDetail.isLiked ?? false)
-        print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
-        favouriteApiForHome(
+        viewModel.isLikedAnyEvent = true
+        AppShareData().commanEventLikeApiCall(
             likeStatus: eventDetail.likeCountData?.isLiked ?? false,
-            eventId: eventDetail.event?.id ?? 0
-        )
-    }
-    func favouriteApiForHome(likeStatus: Bool, eventId:Int) {
-        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
-        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
-            switch result {
-            case .success(let response):
-                print("success like api")
-                if response.status_code == 200 {
-                    DispatchQueue.main.async {
-                        if let data = response.data {
-                            print("response of like api****", response)
-                        }
-                    }
-                }
-            case .failure(let error):
-                print("error", error)
-                print("failure like api ")
+            eventId: eventDetail.event?.id ?? 0,
+            completion: { isTrue, messageShowToast in
             }
-        }
+        )
     }
 }

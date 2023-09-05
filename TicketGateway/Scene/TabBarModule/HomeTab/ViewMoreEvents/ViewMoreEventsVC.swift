@@ -714,59 +714,14 @@ extension ViewMoreEventsVC : NavigationBarViewDelegate {
 }
 extension ViewMoreEventsVC: ActivityController {
     func toShowActivityController(eventDetail: GetEventModel) {
-        var objectsToShare = [Any]()
-        let shareImageObj = UIImage(named: "homeDas")
-        
-        if let eventTitle = eventDetail.event?.title{
-            let title = "Event Title:- " + eventTitle
-            objectsToShare.append(title)
-        }
-        
-        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        let date = "\nEvent Date:- " + eventDate
-        objectsToShare.append(date)
-        
-        
-        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
-        let time = "\nEvent Time:- " + eventEndDate
-        objectsToShare.append(time)
-        
-        
-        if let eventDesc = eventDetail.event?.eventDescription{
-            var _ = "\nEvent Description:- " + eventDesc
-            objectsToShare.append(eventDesc)
-        } else {
-            var desc = "\nEvent Description:- No Description available for this event"
-            objectsToShare.append(desc)
-        }
-        
-        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
-            if imageUrl.contains(APIHandler.shared.previousBaseURL){
-                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                } else {
-                    objectsToShare.append(shareImageObj as Any)
-                }
-            }else{
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                } else {
-                    objectsToShare.append(shareImageObj as Any)
-                }
-            }
-
-        } else {
-            objectsToShare.append(shareImageObj as Any)
-        }
-        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        //  tblEvents.delegateShareAction = self
-        // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
+        self.shareEventDetailData(
+            eventStartDate: eventDetail.eventDate?.eventStartDate ?? "",
+            eventEndDate: eventDetail.eventDate?.eventEndDate ?? "",
+            eventCoverImage: eventDetail.coverImage?.eventCoverImage,
+            eventTitle: eventDetail.event?.title,
+            eventStartTime: eventDetail.eventDate?.eventStartTime ?? "",
+            eventEndTime: eventDetail.eventDate?.eventEndDate ?? "",
+            eventDescription: eventDetail.event?.eventDescription
+        )
     }
-  
 }

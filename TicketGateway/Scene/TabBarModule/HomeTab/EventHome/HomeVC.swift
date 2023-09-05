@@ -526,59 +526,15 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
 
 extension HomeVC: ActivityController {
     func toShowActivityController(eventDetail: GetEventModel) {
-        var objectsToShare = [Any]()
-        var shareImageObj = UIImage(named: "homeDas")
-        
-        if let eventTitle = eventDetail.event?.title{
-            var title = "Event Title:- " + eventTitle
-            objectsToShare.append(title)
-        }
-        
-        let eventDate = " " + "\(eventDetail.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        var date = "\nEvent Date:- " + eventDate
-        objectsToShare.append(date)
-        
-        
-        let eventEndDate = " " + "\(eventDetail.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail.date?.eventEndTime?.getFormattedTime() ?? "")"
-        var time = "\nEvent Time:- " + eventEndDate
-        objectsToShare.append(time)
-        
-        
-        if let eventDesc = eventDetail.event?.eventDescription{
-            var _ = "\nEvent Description:- " + eventDesc
-            objectsToShare.append(eventDesc)
-        }else{
-            var desc = "\nEvent Description:- No Description available for this event"
-            objectsToShare.append(desc)
-        }
-        
-        if let imageUrl = eventDetail.coverImage?.eventCoverImage{
-            if imageUrl.contains(APIHandler.shared.previousBaseURL){
-                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                }else{
-                    objectsToShare.append(shareImageObj)
-                }
-            }else{
-                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    objectsToShare.append("\n Check this image: - \(url)")
-                }else{
-                    objectsToShare.append(shareImageObj)
-                }
-            }
-
-        } else {
-            objectsToShare.append(shareImageObj)
-        }
-        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        //  tblEvents.delegateShareAction = self
-        // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
+        self.shareEventDetailData(
+            eventStartDate: eventDetail.eventDate?.eventStartDate ?? "",
+            eventEndDate: eventDetail.eventDate?.eventEndDate ?? "",
+            eventCoverImage: eventDetail.coverImage?.eventCoverImage,
+            eventTitle: eventDetail.event?.title,
+            eventStartTime: eventDetail.eventDate?.eventStartTime ?? "",
+            eventEndTime: eventDetail.eventDate?.eventEndDate ?? "",
+            eventDescription: eventDetail.event?.eventDescription
+        )
     }
   
 }
@@ -594,43 +550,23 @@ extension HomeVC: FavouriteAction {
             self.showToast(message: Unable_To_LikeFollow)
             return
         }
-        if isForLocation {
-            print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
-            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
-            viewModel.favouriteApiForHome(
-                likeStatus: eventDetail.likeCountData?.isLiked ?? false,
-                eventId: eventDetail.event?.id ?? 0
-            )
-        } else {
-            print("eventDetail.isLiked", eventDetail.likeCountData?.isLiked ?? false)
-            print("eventDetail.event?.id", eventDetail.event?.id ?? 0)
-            viewModel.favouriteApiForHome(
-                likeStatus: eventDetail.likeCountData?.isLiked ?? false,
-                eventId: eventDetail.event?.id ?? 0
-            )
-        }
+        AppShareData().commanEventLikeApiCall(likeStatus: eventDetail.likeCountData?.isLiked ?? false, eventId: eventDetail.event?.id ?? 0, completion: { _,_ in
+        })
     }
 }
 // MARK: - 
 extension HomeVC: NavigateToProfile, suggestedOrganizerListProtocol {
     func followUnfollowAction(tag: Int) {
-        if let cell = self.collvwSuggestedOrganisation.cellForItem(at: IndexPath.init(row: tag, section: 0)) as? suggestedOrganizerCell{
-            if Reachability.isConnectedToNetwork() //check internet connectivity
-            {
+        if let cell = self.collvwSuggestedOrganisation.cellForItem(at: IndexPath.init(row: tag, section: 0)) as? suggestedOrganizerCell {
+            if Reachability.isConnectedToNetwork() { //check internet connectivity
                 if let organizerId = self.collvwSuggestedOrganisation.arrOrganizersList?[tag].userID {
                     parentView.showLoading(centreToView: self.view)
-                    viewModel.followUnFollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
+                    AppShareData().commanFollowUnfollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
                         if isTrue {
                             DispatchQueue.main.async {
                                 self.parentView.stopLoading()
                                 self.collvwSuggestedOrganisation.arrOrganizersList?.removeAll()
-                                //self.collvwSuggestedOrganisation.reloadData()
                                 self.funcCallApiForOrganizersList(viewAll: false)
-//                                if messageShowToast == FollowUnfollow.follow.rawValue {
-//                                    cell.btnFollerwers.setTitle("Following", for: .normal)
-//                                } else {
-//                                    cell.btnFollerwers.setTitle("Follow", for: .normal)
-//                                }
                             }
                         } else {
                             DispatchQueue.main.async {
