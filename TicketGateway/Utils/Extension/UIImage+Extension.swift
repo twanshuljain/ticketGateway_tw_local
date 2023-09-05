@@ -13,5 +13,16 @@ extension UIImage {
             self.draw(in: CGRect(origin: .zero, size: targetSize))
         }
     }
+    
+    /*
+     @brief decode image base64
+     */
+    static func decodeBase64(toImage strEncodeData: String!) -> UIImage {
+
+        if let decData = Data(base64Encoded: strEncodeData, options: .ignoreUnknownCharacters), strEncodeData.count > 0 {
+            return UIImage(data: decData)!
+        }
+        return UIImage()
+    }
 
 }

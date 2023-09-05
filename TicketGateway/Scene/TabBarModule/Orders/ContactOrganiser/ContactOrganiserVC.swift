@@ -30,6 +30,7 @@ class ContactOrganiserVC: UIViewController {
         self.setFont()
         self.createPickerView()
         self.dismissPickerView()
+        self.setData()
 
     }
 }
@@ -85,6 +86,10 @@ extension ContactOrganiserVC {
     }
     @objc func action() {
         view.endEditing(true)
+    }
+    
+    func setData(){
+        lblSunburnReload.text = (self.viewModel.eventDetail?.event?.title ?? "") + " - " + "\(self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")"
     }
     
     func apiCall(){

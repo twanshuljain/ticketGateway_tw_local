@@ -15,6 +15,8 @@ class MyTicketVC: UIViewController {
     @IBOutlet weak var vwDashedLine: UIView!
     @IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
+    @IBOutlet weak var imgQRCode: UIImageView!
+    
     var viewModel: MyTicketViewModel = MyTicketViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,7 @@ class MyTicketVC: UIViewController {
         }))
         actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
+                contactOrganiserVC.viewModel.eventDetail = self.viewModel.eventDetail
                 contactOrganiserVC.viewModel.oranizerId = self.viewModel.eventDetail?.organizer?.id ?? 0
                 self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
             }
@@ -86,6 +89,12 @@ extension MyTicketVC {
         self.btnSeeFullTicket.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
     }
     
+    func setData(){
+        if let base64String = self.viewModel.myTicket?.items?.first?.qrcodeBase64Data{
+            self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
+        }
+    }
+    
     func apiCallForMyTicketList(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -95,6 +104,7 @@ extension MyTicketVC {
                 if isTrue == true {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
+                        self.setData()
                     }
                 } else {
                     DispatchQueue.main.async {

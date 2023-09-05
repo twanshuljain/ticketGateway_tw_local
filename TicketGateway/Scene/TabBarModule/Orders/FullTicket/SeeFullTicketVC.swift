@@ -122,6 +122,7 @@ extension SeeFullTicketVC {
         }))
         actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
+                contactOrganiserVC.viewModel.eventDetail = self.viewModel.eventDetail
                 contactOrganiserVC.viewModel.oranizerId = self.viewModel.eventDetail?.organizer?.id ?? 0
                 self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
             }
@@ -184,9 +185,13 @@ extension SeeFullTicketVC {
         
         
         if let base64String = self.viewModel.myTicket?.items?.first?.qrcodeBase64Data{
-            if let qrCode = base64String.generateQRCode(qrCodeImageView: imgScanCode) {
-                imgScanCode.image = qrCode
-            }
+//            if let qrCode = base64String.generateQRCode(qrCodeImageView: imgScanCode) {
+//                imgScanCode.image = qrCode
+//            }
+            
+           // if let qrCodeImage = base64String.base64ToImage(){
+                imgScanCode.image = UIImage.decodeBase64(toImage: base64String)
+           // }
         }
         
         self.lblName.text = self.viewModel.myTicket?.items?.first?.nameOnTicket ?? ""

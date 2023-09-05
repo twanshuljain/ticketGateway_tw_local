@@ -31,19 +31,9 @@ class ContinueToTransferVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
-        self.btnTransferTicket.addTarget(self, action: #selector(showAlert(_:)), for: .touchUpInside)
+        //self.btnTransferTicket.addTarget(self, action: #selector(showAlert(_:)), for: .touchUpInside)
         self.setNavigationView()
         self.setData()
-    }
-    @objc func showAlert (_ sender: UIButton) {
-        self.showAlert(title: TRANSFER_TICKETS, message: "Are you sure to transfer ticket to mangesh@ticketgateway.com.", complition: {_ in
-            let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-            view?.strTittle = TICKET_TRANSFERRED
-            view?.strComplimentry = "1 Ticket(S) with amount $100.00"
-            view?.strSummary = "Ticket for Order Id #32916222 has been successfully transferred to mangesh@ticketgateway.com"
-            view?.btnStr = OKAY
-            self.navigationController?.pushViewController(view!, animated: true)
-        })
     }
 }
 
@@ -78,25 +68,103 @@ extension ContinueToTransferVC {
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.lblEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         self.lblConfirmEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: CONFIRM_EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.viewModel.isTCsChecked = false
+        self.btnCheck.setBackgroundImage(UIImage.init(named: "uncheck_ip"), for: .normal)
+        self.btnTransferTicket.isUserInteractionEnabled = false
+        self.btnTransferTicket.alpha = 0.5
+        self.btnCheck.cornerRadius = 2
+        self.btnCheck.borderWidth = 0.5
+        self.btnCheck.borderColor = .lightGray
     }
     
     func setData(){
         self.txtNameOnTicket.isUserInteractionEnabled = false
         self.txtNameOnTicket.text = self.viewModel.myTicket?.nameOnTicket ?? ""
     }
+    
+    func navigateToManageSellTicketSuccessfully(){
+        if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
+            view.strTittle = TICKET_TRANSFERRED
+            view.strComplimentry = "1 Ticket(S) with amount $\(self.viewModel.myTicket?.ticketPrice ?? 0)"
+            view.strSummary = "Ticket for Order Id #\(self.viewModel.myTicket?.orderNumber ?? "") has been successfully transferred to \(self.viewModel.email)"
+            view.btnStr = OKAY
+            self.navigationController?.pushViewController(view, animated: true)
+        }
+    }
+    
+    func apiTransferTicket(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            self.view.showLoading(centreToView: self.view)
+            viewModel.transferTicket(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.navigateToManageSellTicketSuccessfully()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
 }
 // MARK: - Actions
 extension ContinueToTransferVC {
+    func showAlert() {
+        self.showAlert(title: TRANSFER_TICKETS, message: "Are you sure to transfer ticket to \(self.viewModel.email).", complition: {_ in
+            self.apiTransferTicket()
+        })
+    }
     
     @IBAction func btnChangeNumberAction(_ sender:UIButton){
+        self.viewModel.isChangeName = true
         self.txtNameOnTicket.isUserInteractionEnabled = true
     }
     
     @IBAction func btnTransferTicketAction(_ sender:UIButton){
+        self.view.endEditing(true)
+        self.viewModel.mobileNumber = self.txtPhoneNumber.text ?? ""
+        self.viewModel.email = self.txtEmail.text ?? ""
+        self.viewModel.confirmEmail = self.txtConfirmEmail.text ?? ""
+        self.viewModel.fullName = self.txtNameOnTicket.text ?? ""
         
+        let isValidate = viewModel.validateInput
+        
+        if isValidate.isValid{
+            self.showAlert()
+        }else{
+            self.showToast(message: isValidate.errorMessage)
+        }
     }
     
-    
+    @IBAction func btnCheckTCAction(_ sender:UIButton){
+        self.viewModel.isTCsChecked = !self.viewModel.isTCsChecked
+        if self.viewModel.isTCsChecked{
+            self.btnCheck.cornerRadius = 2
+            self.btnCheck.borderWidth = 0.5
+            self.btnCheck.borderColor = .lightGray
+            self.btnCheck.setBackgroundImage(UIImage.init(named: "uncheck_ip"), for: .normal)
+            self.btnTransferTicket.isUserInteractionEnabled = false
+            self.btnTransferTicket.alpha = 0.5
+        }else{
+            self.btnCheck.cornerRadius = 0
+            self.btnCheck.borderWidth = 0
+            self.btnCheck.borderColor = .clear
+            self.btnCheck.setBackgroundImage(UIImage.init(named: "active_ip"), for: .normal)
+            self.btnTransferTicket.isUserInteractionEnabled = true
+            self.btnTransferTicket.alpha = 1
+        }
+        
+    }
 }
 // MARK: - NavigationBarViewDelegate
 extension ContinueToTransferVC: NavigationBarViewDelegate {

@@ -51,6 +51,7 @@
 		182B9FB12A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */; };
 		1830586E2A41D917007A3931 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830586D2A41D917007A3931 /* UIImageView+Extension.swift */; };
 		183622672AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183622662AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift */; };
+		183622692AA5CDDD00CE9FFC /* ContinueTransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183622682AA5CDDD00CE9FFC /* ContinueTransferRequest.swift */; };
 		1836838B2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836838A2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift */; };
 		183A26302A4335F000DC97E3 /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */; };
 		183A26342A43367D00DC97E3 /* AddOnAddInOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */; };
@@ -492,6 +493,7 @@
 		182B9FB02A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketOnApplyCouponViewModel.swift; sourceTree = "<group>"; };
 		1830586D2A41D917007A3931 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		183622662AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueToTransferViewModel.swift; sourceTree = "<group>"; };
+		183622682AA5CDDD00CE9FFC /* ContinueTransferRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueTransferRequest.swift; sourceTree = "<group>"; };
 		1836838A2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketOnApplyCouponRequestModel.swift; sourceTree = "<group>"; };
 		183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
 		183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnAddInOrderCell.swift; sourceTree = "<group>"; };
@@ -1453,6 +1455,7 @@
 			children = (
 				18717F7F2A2A1BE9002F36BC /* ContinueToTransferVC.swift */,
 				183622662AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift */,
+				183622682AA5CDDD00CE9FFC /* ContinueTransferRequest.swift */,
 			);
 			path = TransferContinue;
 			sourceTree = "<group>";
@@ -3146,6 +3149,7 @@
 				18F5A4D92A4EB01D00CA18F7 /* ManageEventCheckInVC.swift in Sources */,
 				18F5A4D82A4EB01D00CA18F7 /* AttendeeDetailsVC.swift in Sources */,
 				18FBC1092A309239002CF129 /* SideMenuViewControllers.swift in Sources */,
+				183622692AA5CDDD00CE9FFC /* ContinueTransferRequest.swift in Sources */,
 				18717F8B2A2A1BE9002F36BC /* ExchangeTableViewCell.swift in Sources */,
 				189DD61729FBABAC000804EB /* uiColour+Extensions.swift in Sources */,
 				18B384982A5C2FF300B47D9D /* Array+Extension.swift in Sources */,
