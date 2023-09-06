@@ -11,6 +11,7 @@ class MyTicketViewModel {
     var myTicket:MyTicketList?
     var eventDetail: EventDetail?
     var dispatchGroup1 = DispatchGroup.init()
+    var isFromPast = false
 }
 
 extension MyTicketViewModel{

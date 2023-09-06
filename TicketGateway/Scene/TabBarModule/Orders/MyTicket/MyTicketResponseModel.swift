@@ -25,7 +25,10 @@ struct MyTicket: Codable {
     var date: String?
     var eventStartDate: String?
     var orderNumber, qrcodeBase64Data: String?
+    var isTransfer: Bool?
+    var transferredEmail, transferredID: String?
     var isExpanded: Bool? = false
+
     
     init() {
     }
@@ -50,5 +53,8 @@ struct MyTicket: Codable {
         case eventStartDate = "event_start_date"
         case orderNumber = "order_number"
         case qrcodeBase64Data = "qrcode_base64_data"
+        case isTransfer = "is_transfer"
+        case transferredEmail = "transferred_email"
+        case transferredID = "transferred_id"
     }
 }

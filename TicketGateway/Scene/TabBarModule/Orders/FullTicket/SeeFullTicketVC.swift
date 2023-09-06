@@ -291,8 +291,22 @@ extension SeeFullTicketVC {
     }
     
     func viewEventListAction() {
-        let eventDetailStatusVC = self.createView(storyboard: .order, storyboardID: .EventDetailStatusVC)
-        self.navigationController?.pushViewController(eventDetailStatusVC, animated: true)
+        self.navigateToEventDetail()
+    }
+    
+    func navigateToEventDetail() {
+        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
+            view.viewModel.eventId = viewModel.myTicket?.items?.first?.eventID //TO BE CHANGED
+            let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+           //  Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
+            AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
+            view.viewModel.eventDetail = self.viewModel.eventDetail
+            view.viewModel.isFromPast = self.viewModel.isFromPast
+            self.navigationController?.pushViewController(view, animated: false)
+           // view.delegate = self
+            
+            //funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
+        }
     }
 }
 // MARK: - UITableViewDelegate,UITableViewDataSource

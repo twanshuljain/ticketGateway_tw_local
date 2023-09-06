@@ -1365,7 +1365,7 @@
                                                                             <constraint firstAttribute="height" constant="34" id="LW8-5a-5kB"/>
                                                                         </constraints>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                        <state key="normal" title="View Event Listing">
+                                                                        <state key="normal" title="View Event Detail">
                                                                             <color key="titleColor" name="TGBlue"/>
                                                                         </state>
                                                                     </button>
@@ -3433,7 +3433,7 @@
         <image name="Fire" width="12" height="16"/>
         <image name="Profile_ip" width="110" height="110"/>
         <image name="arrow-down" width="24" height="24"/>
-        <image name="chevron-down_ip" width="16" height="16"/>
+        <image name="chevron-down_ip" width="24" height="24"/>
         <image name="homeDas" width="96" height="96"/>
         <image name="popularTicket_ip" width="62" height="62.5"/>
         <image name="qr-code_ip" width="237" height="237"/>

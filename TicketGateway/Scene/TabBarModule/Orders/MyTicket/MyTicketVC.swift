@@ -171,6 +171,7 @@ extension MyTicketVC {
         seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails
         seeFullTicketVC?.viewModel.eventDetail = viewModel.eventDetail
         seeFullTicketVC?.viewModel.myTicket = viewModel.myTicket
+        seeFullTicketVC?.viewModel.isFromPast = self.viewModel.isFromPast
         self.navigationController?.pushViewController(seeFullTicketVC!, animated: false)
     }
     func saveTicketAsImage() {

@@ -9,7 +9,7 @@ import Foundation
 final class MyOrderViewModel {
     // MARK: Custom Functions
     var arrMyOrder: [GetMyOrderItem] = []
-    var myOrdersModel: MyOrdersModel?
+    var myOrdersModel = MyOrdersModel()
     var totalPage: Int = 0
     var isFromUpcoming: Bool = false
     var upcomingCount: Int = 0

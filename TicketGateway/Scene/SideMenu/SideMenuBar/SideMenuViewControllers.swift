@@ -16,6 +16,7 @@
 // swiftlint: disable type_name
 // swiftlint: disable duplicate_conditions
 import UIKit
+import SDWebImage
 
 class SideMenuViewControllers: UIViewController{
     
@@ -55,8 +56,10 @@ extension SideMenuViewControllers{
             btnChangeProfile.setTitle("", for: .normal)
             
         } else {
-            lblName.text = objAppShareData.userAuth?.fullName
+            var userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+            lblName.text = userModel?.fullName ?? ""
             lblProfileview.text = "Profile View"
+            self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (userModel?.image ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
         }
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

@@ -2856,11 +2856,18 @@ TicketGateway Balance  </string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc0-Ze-Xp3" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="70"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="xeS-vo-gC5"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEQ-Dx-tR4">
-                                <rect key="frame" x="0.0" y="119" width="393" height="1703"/>
+                                <rect key="frame" x="0.0" y="119" width="393" height="1701"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8T-hm-KOK">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1703"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1701"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojc-VJ-iJT">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1779"/>
@@ -3068,8 +3075,8 @@ TicketGateway Balance  </string>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4y-f8-82C">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="48.333333333333336"/>
                                                                                         <subviews>
-                                                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Date" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZTf-y7-YAl" customClass="DropDown">
-                                                                                                <rect key="frame" x="0.0" y="-0.66666666666674246" width="315" height="47"/>
+                                                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Date" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZTf-y7-YAl" customClass="DropDown">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="48.333333333333336"/>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                                                                 <textInputTraits key="textInputTraits"/>
                                                                                                 <userDefinedRuntimeAttributes>
@@ -3097,8 +3104,8 @@ TicketGateway Balance  </string>
                                                                                                     <constraint firstAttribute="height" constant="20" id="gOy-GC-Yz9"/>
                                                                                                 </constraints>
                                                                                             </imageView>
-                                                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fs-SM-nsy">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="298" height="47"/>
+                                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fs-SM-nsy">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="48.333333333333336"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                             </button>
@@ -3120,8 +3127,8 @@ TicketGateway Balance  </string>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQt-5u-O3c">
                                                                                         <rect key="frame" x="0.0" y="56.333333333333371" width="353" height="48.333333333333343"/>
                                                                                         <subviews>
-                                                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Location" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zoy-XF-kbu" customClass="DropDown">
-                                                                                                <rect key="frame" x="0.0" y="-0.33333333333337123" width="315" height="47"/>
+                                                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Location" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zoy-XF-kbu" customClass="DropDown">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="48.333333333333336"/>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                                                                 <textInputTraits key="textInputTraits"/>
                                                                                                 <userDefinedRuntimeAttributes>
@@ -3149,8 +3156,8 @@ TicketGateway Balance  </string>
                                                                                                     <constraint firstAttribute="width" constant="20" id="kK0-Wm-EjL"/>
                                                                                                 </constraints>
                                                                                             </imageView>
-                                                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZe-kN-aBd">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="298" height="47"/>
+                                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZe-kN-aBd">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="48.333333333333336"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                             </button>
@@ -3671,12 +3678,27 @@ TG fee is non-refundable.</string>
                                     <constraint firstAttribute="trailing" secondItem="a8T-hm-KOK" secondAttribute="trailing" id="qo0-TX-qAu"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc0-Ze-Xp3" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="70"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-Bd-AxY">
+                                <rect key="frame" x="0.0" y="1820" width="393" height="1"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="xeS-vo-gC5"/>
+                                    <constraint firstAttribute="height" constant="1" id="24T-OO-DPJ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShadow" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" systemColor="systemGray5Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="5" height="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mps-R4-apd">
                                 <rect key="frame" x="0.0" y="1822" width="393" height="95"/>
@@ -3699,9 +3721,8 @@ TG fee is non-refundable.</string>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFI-Ss-wLs" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="248" y="25" width="130" height="45"/>
+                                        <rect key="frame" x="248" y="25" width="130" height="38"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="E62-uJ-a2i"/>
                                             <constraint firstAttribute="width" constant="130" id="Uxo-eg-lfF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
@@ -3711,39 +3732,15 @@ TG fee is non-refundable.</string>
                                             <color key="titleColor" name="TiitleColourDarkBlue"/>
                                         </state>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-Bd-AxY">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="0.66666666666666663"/>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.80000000000000004" id="1Nw-GZ-2RF"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShadow" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" systemColor="systemGray5Color"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                <size key="value" width="5" height="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Xr4-kt-hxc" firstAttribute="leading" secondItem="Mps-R4-apd" secondAttribute="leading" constant="15" id="0Xi-cF-2jh"/>
                                     <constraint firstItem="Xr4-kt-hxc" firstAttribute="centerY" secondItem="Mps-R4-apd" secondAttribute="centerY" id="5Nr-aO-RAB"/>
-                                    <constraint firstItem="nFI-Ss-wLs" firstAttribute="centerY" secondItem="Mps-R4-apd" secondAttribute="centerY" id="9vU-Cm-SQC"/>
                                     <constraint firstAttribute="trailing" secondItem="nFI-Ss-wLs" secondAttribute="trailing" constant="15" id="B7g-kf-E0B"/>
-                                    <constraint firstItem="8aB-Bd-AxY" firstAttribute="leading" secondItem="Mps-R4-apd" secondAttribute="leading" id="FO5-J6-LTy"/>
-                                    <constraint firstAttribute="trailing" secondItem="8aB-Bd-AxY" secondAttribute="trailing" id="T8I-ie-vVW"/>
+                                    <constraint firstItem="nFI-Ss-wLs" firstAttribute="top" secondItem="Mps-R4-apd" secondAttribute="top" constant="25" id="GDb-0Q-mEa"/>
                                     <constraint firstItem="nFI-Ss-wLs" firstAttribute="leading" secondItem="Xr4-kt-hxc" secondAttribute="trailing" constant="10" id="cqd-Am-vvR"/>
-                                    <constraint firstItem="8aB-Bd-AxY" firstAttribute="top" secondItem="Mps-R4-apd" secondAttribute="top" id="hxv-iY-Z2X"/>
+                                    <constraint firstAttribute="height" constant="95" id="iM0-55-xL9"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -3753,13 +3750,15 @@ TG fee is non-refundable.</string>
                             <constraint firstItem="Wn5-5K-N1h" firstAttribute="trailing" secondItem="Mps-R4-apd" secondAttribute="trailing" id="00w-vW-aLa"/>
                             <constraint firstItem="nEQ-Dx-tR4" firstAttribute="top" secondItem="Wn5-5K-N1h" secondAttribute="top" constant="60" id="5un-2M-Beu"/>
                             <constraint firstItem="wc0-Ze-Xp3" firstAttribute="leading" secondItem="Wn5-5K-N1h" secondAttribute="leading" id="9x4-Se-AGH"/>
-                            <constraint firstItem="Mps-R4-apd" firstAttribute="top" secondItem="nEQ-Dx-tR4" secondAttribute="bottom" id="Cw2-hM-kcO"/>
+                            <constraint firstItem="Mps-R4-apd" firstAttribute="top" secondItem="nEQ-Dx-tR4" secondAttribute="bottom" constant="2" id="Ek4-Ld-Eie"/>
                             <constraint firstItem="Wn5-5K-N1h" firstAttribute="trailing" secondItem="nEQ-Dx-tR4" secondAttribute="trailing" id="FCc-aS-vqL"/>
                             <constraint firstItem="Mps-R4-apd" firstAttribute="leading" secondItem="Wn5-5K-N1h" secondAttribute="leading" id="GSg-ut-hnp"/>
-                            <constraint firstItem="Wn5-5K-N1h" firstAttribute="bottom" secondItem="nEQ-Dx-tR4" secondAttribute="bottom" constant="95" id="HHy-8r-goA"/>
+                            <constraint firstItem="8aB-Bd-AxY" firstAttribute="trailing" secondItem="Wn5-5K-N1h" secondAttribute="trailing" id="QA4-1G-p9a"/>
                             <constraint firstItem="wc0-Ze-Xp3" firstAttribute="top" secondItem="Wn5-5K-N1h" secondAttribute="top" id="Ryf-Dn-Mpc"/>
+                            <constraint firstItem="8aB-Bd-AxY" firstAttribute="top" secondItem="nEQ-Dx-tR4" secondAttribute="bottom" id="bpF-Nt-jjK"/>
                             <constraint firstItem="Wn5-5K-N1h" firstAttribute="trailing" secondItem="wc0-Ze-Xp3" secondAttribute="trailing" id="cPZ-ia-wyi"/>
                             <constraint firstItem="nEQ-Dx-tR4" firstAttribute="leading" secondItem="Wn5-5K-N1h" secondAttribute="leading" id="fY4-uU-wrU"/>
+                            <constraint firstItem="8aB-Bd-AxY" firstAttribute="leading" secondItem="Wn5-5K-N1h" secondAttribute="leading" id="w03-mM-w3t"/>
                             <constraint firstItem="Wn5-5K-N1h" firstAttribute="bottom" secondItem="Mps-R4-apd" secondAttribute="bottom" id="xlK-PF-5WS"/>
                         </constraints>
                     </view>
@@ -3768,6 +3767,7 @@ TG fee is non-refundable.</string>
                     <size key="freeformSize" width="393" height="2000"/>
                     <connections>
                         <outlet property="aboutView" destination="pev-ER-e4t" id="f41-mI-hj5"/>
+                        <outlet property="bottomView" destination="Mps-R4-apd" id="EZG-ra-6L9"/>
                         <outlet property="btnAddToCalender" destination="2bS-oh-f6l" id="jRg-GR-TZr"/>
                         <outlet property="btnBookTickets" destination="nFI-Ss-wLs" id="ZuS-6L-xuY"/>
                         <outlet property="btnFollowing" destination="YLB-9q-k12" id="R7v-LT-giN"/>
@@ -3779,6 +3779,7 @@ TG fee is non-refundable.</string>
                         <outlet property="collvwEventImages" destination="v1f-BX-7RV" id="Hht-NM-zHB"/>
                         <outlet property="dateAndLocationStackView" destination="Dv5-Fq-0B9" id="VIb-zG-q2z"/>
                         <outlet property="heightOfSuggestedOrganisedEvent" destination="b09-HQ-gQf" id="s3G-8F-hXF"/>
+                        <outlet property="htBottomView" destination="iM0-55-xL9" id="pSf-lH-fMA"/>
                         <outlet property="imgOrganiser" destination="KxH-y6-zNw" id="zFv-jV-3Lb"/>
                         <outlet property="lblAboutDiscripation" destination="Pho-R4-FUp" id="mxp-CX-sU7"/>
                         <outlet property="lblAboutOfEvent" destination="BFz-OR-aVI" id="ux4-UP-8vp"/>

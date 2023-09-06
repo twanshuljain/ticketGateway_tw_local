@@ -25,6 +25,7 @@ final class EventDetailViewModel{
     var eventDetailForFavourite: EventDetail?
     var isLiked: Bool = false
     var isLikedAnyEvent: Bool = false
+    var isFromPast = false
 }
 
 

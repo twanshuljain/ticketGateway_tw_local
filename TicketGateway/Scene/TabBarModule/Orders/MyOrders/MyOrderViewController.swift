@@ -59,7 +59,7 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell", for: indexPath) as? UpcomingTableViewCell {
             if viewModel.arrMyOrder.indices.contains(indexPath.row) {
-                cell.getTicket = viewModel.arrMyOrder[indexPath.row]
+                cell.setData(getTicket: viewModel.arrMyOrder[indexPath.row], isFaded: viewModel.isFromUpcoming == true ? false : true)
             }
             return cell
         }
@@ -75,6 +75,7 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = self.createView(storyboard: .order, storyboardID: .MyTicketVC) as? MyTicketVC
         viewController?.viewModel.ticketDetails = viewModel.arrMyOrder[indexPath.row]
+        viewController?.viewModel.isFromPast = viewModel.isFromUpcoming == true ? false : true
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
 }
@@ -82,7 +83,7 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
 extension MyOrderViewController {
     func getMyOrderApiCall(isFromUpcoming: Bool) {
         if Reachability.isConnectedToNetwork() {
-//            viewModel.myOrdersModel?.filter_by = isFromUpcoming ? "upcoming" : "past"
+            viewModel.myOrdersModel.filter_by = isFromUpcoming ? "upcoming" : "past"
             parentView.showLoading(centreToView: self.view)
             viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel ?? MyOrdersModel(),
                                       completion: { isTrue, message in
@@ -90,9 +91,11 @@ extension MyOrderViewController {
                     if isFromUpcoming {
                         self.viewModel.upcomingCount = self.viewModel.arrMyOrder.count
                         self.btnUpcoming.setTitle("Upcoming (\(self.viewModel.upcomingCount))", for: .normal)
+                        self.pastView.isHidden = self.viewModel.arrMyOrder.count == 0 ? false : true
                     } else {
                         self.viewModel.pastCount = self.viewModel.arrMyOrder.count
                         self.btnPast.setTitle("Past (\(self.viewModel.pastCount))", for: .normal)
+                        self.pastView.isHidden = self.viewModel.arrMyOrder.count == 0 ? false : true
                     }
                     self.upComingTableView.reloadData()
                     self.parentView.stopLoading()
@@ -111,7 +114,7 @@ extension MyOrderViewController {
         }
     }
     func setNavigationView() {
-        viewModel.myOrdersModel?.page = 1
+        viewModel.myOrdersModel.page = 1
         vwNavigationBar.lblTitle.text = MY_ORDERS
         vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
         vwNavigationBar.btnBack.isHidden = false
@@ -170,7 +173,7 @@ extension MyOrderViewController {
         lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     func setUI () {
-        [btnPast,btnUpcoming,btnFilter].forEach {
+        [btnPast,btnUpcoming,btnFilter,btnBrowseEvents].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         }
     }
@@ -197,6 +200,8 @@ extension MyOrderViewController {
             pastAction()
         case btnFilter:
             filterAction()
+        case btnBrowseEvents:
+            browseEventsAction()
         default:
             break
         }
@@ -204,23 +209,28 @@ extension MyOrderViewController {
     func upcomingAction() {
         viewModel.isFromUpcoming = true
         setButtonBackground()
-        pastView.isHidden = true
+        //pastView.isHidden = true
         viewModel.arrMyOrder.removeAll()
-        viewModel.myOrdersModel?.page = 1
+        viewModel.myOrdersModel.page = 1
         getMyOrderApiCall(isFromUpcoming: true)
     }
     func pastAction() {
         viewModel.isFromUpcoming = false
         setButtonBackground()
         viewModel.arrMyOrder.removeAll()
-        viewModel.myOrdersModel?.page = 1
+        viewModel.myOrdersModel.page = 1
         getMyOrderApiCall(isFromUpcoming: false)
     }
+    
+    func browseEventsAction(){
+        self.tabBarController?.selectedIndex = 0
+    }
+    
     func filterAction() {
         vwPopUp.isHidden = !vwPopUp.isHidden
     }
     func loadData() {
-        viewModel.myOrdersModel?.page += 1
+        viewModel.myOrdersModel.page += 1
         if viewModel.arrMyOrder.count < viewModel.totalPage {
             print("viewModel.totalPage", viewModel.totalPage)
             print("load more data")
