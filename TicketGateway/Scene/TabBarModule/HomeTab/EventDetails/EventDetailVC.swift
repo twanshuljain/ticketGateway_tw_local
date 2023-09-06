@@ -84,6 +84,8 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var pageConrtrolEventImagesHt:NSLayoutConstraint!
     @IBOutlet weak var pageControllerParentView:UIView!
     @IBOutlet weak var pageConrtrolEventTop:NSLayoutConstraint!
+    @IBOutlet weak var bottomView:UIView!
+    @IBOutlet weak var htBottomView:NSLayoutConstraint!
     
     // MARK: - Variables
     var viewModel = EventDetailViewModel()
@@ -157,6 +159,18 @@ extension EventDetailVC {
         }
         self.toSetPageControll()
         self.dropDown()
+        //self.bottomView.isHidden = viewModel.isFromPast
+        if viewModel.isFromPast{
+            lblPrice.isHidden = true
+            lblOnTicketGateway.isHidden = true
+            btnBookTickets.isHidden = true
+            htBottomView.constant = 0
+        }else{
+            lblPrice.isHidden = false
+            lblOnTicketGateway.isHidden = false
+            btnBookTickets.isHidden = false
+            htBottomView.constant = 95
+        }
     }
     
     func addTapGestureToOrganiserView() {

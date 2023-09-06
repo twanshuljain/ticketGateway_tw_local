@@ -18,6 +18,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="449" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YUb-3L-JWS">
+                        <rect key="frame" x="0.0" y="0.0" width="449" height="130"/>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NQ-hB-FHE">
                         <rect key="frame" x="0.0" y="10" width="449" height="110"/>
                         <subviews>
@@ -114,16 +117,30 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yom-WA-4Rd">
+                        <rect key="frame" x="0.0" y="0.0" width="449" height="130"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="yom-WA-4Rd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1ey-pI-xmU"/>
                     <constraint firstItem="6NQ-hB-FHE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ABb-eK-8Af"/>
+                    <constraint firstItem="YUb-3L-JWS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MHe-7S-osM"/>
+                    <constraint firstAttribute="bottom" secondItem="YUb-3L-JWS" secondAttribute="bottom" id="UZB-Qn-Ugb"/>
+                    <constraint firstAttribute="trailing" secondItem="YUb-3L-JWS" secondAttribute="trailing" id="Xmv-oB-UfZ"/>
                     <constraint firstAttribute="bottom" secondItem="6NQ-hB-FHE" secondAttribute="bottom" constant="10" id="ZRU-qZ-TSD"/>
+                    <constraint firstItem="yom-WA-4Rd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cOy-1M-XPz"/>
                     <constraint firstItem="6NQ-hB-FHE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="iaN-az-Mdg"/>
                     <constraint firstAttribute="trailing" secondItem="6NQ-hB-FHE" secondAttribute="trailing" id="lRy-O3-7VI"/>
+                    <constraint firstAttribute="trailing" secondItem="yom-WA-4Rd" secondAttribute="trailing" id="o9I-aK-Ifm"/>
+                    <constraint firstAttribute="bottom" secondItem="yom-WA-4Rd" secondAttribute="bottom" id="qqI-7c-Uq8"/>
+                    <constraint firstItem="YUb-3L-JWS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xcs-QZ-Abq"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="blackWhiteImgView" destination="YUb-3L-JWS" id="J1E-1z-ibR"/>
+                <outlet property="blackWhiteView" destination="6NQ-hB-FHE" id="bRx-e2-yti"/>
                 <outlet property="btnSeeTickets" destination="hbE-mc-1J2" id="RAb-5j-ci9"/>
                 <outlet property="imgImage" destination="MBq-Xn-T6u" id="wKa-Df-mRq"/>
                 <outlet property="lblTime" destination="JN2-jv-2ut" id="jPS-Lu-cvQ"/>

@@ -24,5 +24,27 @@ extension UIImage {
         }
         return UIImage()
     }
+    
+    func convertToGrayscale() -> UIImage? {
+        guard let cgImage = self.cgImage,
+              let colorSpace = CGColorSpace(name: CGColorSpace.linearGray) else {
+            return nil
+        }
+
+        let context = CIContext(options: nil)
+        let ciImage = CIImage(cgImage: cgImage)
+
+        if let filter = CIFilter(name: "CIColorControls") {
+            filter.setValue(ciImage, forKey: kCIInputImageKey)
+            filter.setValue(0.0, forKey: kCIInputSaturationKey)
+
+            if let outputImage = filter.outputImage,
+               let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
+                return UIImage(cgImage: cgImage)
+            }
+        }
+
+        return nil
+    }
 
 }

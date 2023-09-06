@@ -47,6 +47,7 @@ class LoginVC: UIViewController{
     // MARK: - Variable
     var viewModel = SignInViewModel()
     let viewModelSocialSignIN = SocialSignInVC()
+    var profileViewModel: ManageEventProfileViewModel = ManageEventProfileViewModel()
     var isComingFrom: IsComingFrom  = .Login
     
     
@@ -115,6 +116,21 @@ extension LoginVC {
             self.viewModel.isForEmail = false
         }
     }
+    
+    // Get User Profile API Calling
+    func getUserProfileData() {
+        if Reachability.isConnectedToNetwork() {
+            self.profileViewModel.getUserProfileData(complition: { isTrue, message in
+                DispatchQueue.main.async {
+                    objSceneDelegate.showTabBar()
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
 }
 // MARK: - Actions
 extension LoginVC {
@@ -173,7 +189,8 @@ extension LoginVC {
                         DispatchQueue.main.async { [self] in
                             self.view.stopLoading()
                             if self.viewModel.isFromNumberOrEmail == true {
-                                objSceneDelegate.showTabBar()
+                                self.getUserProfileData()
+                               // objSceneDelegate.showTabBar()
                             } else {
                                 let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
                                 let obj =   DataHoldOnSignUpProcessModel.init(strEmail: self.txtEmail.text ?? "", strNumber:   self.txtNumber.text ?? "" , strStatus: "", strDialCountryCode: self.lblDialCountryCode.text!, strCountryCode: self.viewModel.strCountryCode)

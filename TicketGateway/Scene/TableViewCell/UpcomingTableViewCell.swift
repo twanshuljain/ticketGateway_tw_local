@@ -15,6 +15,8 @@ class UpcomingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var btnSeeTickets: UIButton!
+    @IBOutlet weak var blackWhiteView : UIView!
+    @IBOutlet weak var blackWhiteImgView : UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,34 +26,57 @@ class UpcomingTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    var getTicket: GetMyOrderItem? {
-        didSet {
-            print("data set")
-            self.lblTitle.text = getTicket?.eventTitle ?? ""
-            if let startDate = getTicket?.eventStartDate {
-                self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
-            }
-            self.btnSeeTickets.setTitle("See Tickets", for: .normal)
-            if let imageUrl = getTicket?.coverImage?.eventCoverImage {
-                if imageUrl.contains(APIHandler.shared.previousBaseURL) {
-                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                        self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                    } else {
-                        self.imgImage.image = UIImage(named: "homeDas")
+    
+    
+    func setData(getTicket: GetMyOrderItem?, isFaded:Bool){
+        print("data set")
+        self.lblTitle.text = getTicket?.eventTitle ?? ""
+        if let startDate = getTicket?.eventStartDate {
+            self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
+        }
+        self.btnSeeTickets.setTitle("See Tickets", for: .normal)
+        if let imageUrl = getTicket?.coverImage?.eventCoverImage {
+            if imageUrl.contains(APIHandler.shared.previousBaseURL) {
+                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                    self.imgImage.sd_setImage(with: url) { image, error, cacheType, url in
+                        if error == nil{
+                            self.imgImage.image = image
+                        }else{
+                            self.imgImage.image = UIImage(named: "homeDas")
+                        }
+                        self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale() : self.imgImage.image
                     }
+                    //self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    //imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
                 } else {
-                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                        self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                    } else {
-                        self.imgImage.image = UIImage(named: "homeDas")
-                    }
+                    self.imgImage.image = UIImage(named: "homeDas")
+                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
                 }
             } else {
-                self.imgImage.image = UIImage(named: "homeDas")
+                if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                    self.imgImage.sd_setImage(with: url) { image, error, cacheType, url in
+                        if error == nil{
+                            self.imgImage.image = image
+                        }else{
+                            self.imgImage.image = UIImage(named: "homeDas")
+                        }
+                        self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale() : self.imgImage.image
+                    }
+                    
+//                    self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+//                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
+                } else {
+                    self.imgImage.image = UIImage(named: "homeDas")
+                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
+                }
             }
+        } else {
+            self.imgImage.image = UIImage(named: "homeDas")
+            imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
         }
     }
+
     func setFonts() {
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

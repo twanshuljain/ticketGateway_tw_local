@@ -18,6 +18,7 @@ final class ManageEventProfileViewModel {
                 print("response....",response)
                 DispatchQueue.main.async {
                     self.getUserProfileData = response
+                    self.updateProfile()
                     print("response.data", response as Any)
                     complition(true, "success")
                 }
@@ -39,5 +40,11 @@ final class ManageEventProfileViewModel {
                 complition(false,"\(error)")
             }
         }
+    }
+    
+    func updateProfile(){
+        var userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        userModel?.image = self.getUserProfileData.userData?.image ?? ""
+        UserDefaultManager.share.storeModelToUserDefault(userData: userModel, key: .userAuthData)
     }
 }
