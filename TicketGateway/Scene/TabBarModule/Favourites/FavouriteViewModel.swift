@@ -17,6 +17,9 @@ class FavouriteViewModel {
     var isForVenue: Bool = false
     var eventDetail: EventDetail?
     var dispatchGroup = DispatchGroup.init()
+    var arrSuggestionsList : [GetEventModel] = [GetEventModel]()
+    var eventScrollToValue = 0
+    var venueScrollToValue = 0
     // MARK: Custom Functions
     func getFavouriteList(favouriteModel: FavouriteModel,
                           completion: @escaping (Bool, String) -> Void) {

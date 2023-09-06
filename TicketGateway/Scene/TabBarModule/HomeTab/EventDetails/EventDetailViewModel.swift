@@ -60,12 +60,9 @@ extension EventDetailViewModel{
                 case .success(let response):
                     if response.status_code == 200 {
                         print("response....",response)
-                        DispatchQueue.main.async {
                             self.arrEventData = response.data?.items ?? [GetEventModel]()
                             print(self.arrEventData)
                             complition(true, response.message ?? "")
-                        }
-                        complition(true, response.message ?? "")
                     }else{
                         complition(false,response.message ?? "error message")
                     }

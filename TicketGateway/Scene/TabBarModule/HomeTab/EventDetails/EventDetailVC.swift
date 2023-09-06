@@ -644,7 +644,7 @@ extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        let imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+        var imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
         if imgCount == 0{
             if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil{
                 return 1

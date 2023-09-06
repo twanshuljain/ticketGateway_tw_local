@@ -31,11 +31,36 @@ class FavouriteTableViewCell: UITableViewCell {
         didSet {
             lblTitle.text = getFavouriteData?.eventTitle ?? "-"
             lblAddress.text = getFavouriteData?.location ?? "-"
+            btnLike.setImage(UIImage(named: "favSele_ip"), for: .normal)
 //            if let startDate = getFavouriteData?.eventStartDate {
 //                self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
 //            }
-            
             if let imageUrl = getFavouriteData?.coverImage?.eventCoverImage {
+                if imageUrl.contains(APIHandler.shared.previousBaseURL) {
+                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                        self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    } else {
+                        self.imgImages.image = UIImage(named: "homeDas")
+                    }
+                } else {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                        self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    } else {
+                        self.imgImages.image = UIImage(named: "homeDas")
+                    }
+                }
+            } else {
+                self.imgImages.image = UIImage(named: "homeDas")
+            }
+        }
+    }
+    var getSuggestionsData: GetEventModel? {
+        didSet {
+            lblTitle.text = getSuggestionsData?.event?.title ?? "-"
+            lblAddress.text = getSuggestionsData?.location?.eventAddress ?? "-"
+            btnLike.setImage(UIImage(named: (getSuggestionsData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+            if let imageUrl = getSuggestionsData?.coverImage?.eventCoverImage {
                 if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                     if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
