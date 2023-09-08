@@ -7,6 +7,7 @@
 // swiftlint: disable line_length
 import UIKit
 import CoreImage
+import SDWebImage
 
 class SeeFullTicketVC: UIViewController {
     // MARK: - IBOutlets
@@ -47,6 +48,7 @@ class SeeFullTicketVC: UIViewController {
     @IBOutlet weak var tblMyTicket : UITableView!
     @IBOutlet weak var heightOfMyTicket: NSLayoutConstraint!
     @IBOutlet weak var imgScanCode : UIImageView!
+    @IBOutlet weak var imgProfile: UIImageView!
     
     var viewModel: SeeFullTicketViewModel = SeeFullTicketViewModel()
     override func viewDidLoad() {
@@ -97,6 +99,11 @@ extension SeeFullTicketVC {
         self.vwNavigationView.btnRight.isHidden = false
         self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
         self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
+    }
+    func setProfile(){
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (userModel?.image ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+        self.imgProfile.cornerRadius = self.imgProfile.frame.width/2
     }
     @objc func addActionSheet() {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
@@ -179,12 +186,13 @@ extension SeeFullTicketVC {
     
     
     func setData(){
+        self.setProfile()
         let eventDetail = self.viewModel.eventDetail
       //  lblEventName.text = viewModel.ticketDetails?.eventTitle ?? "-"
       //  lblAddress.text = viewModel.ticketDetails?.location ?? "-"
         
         
-        if let base64String = self.viewModel.myTicket?.items?.first?.qrcodeBase64Data{
+        if let base64String = self.viewModel.myTicketList?.qrcodeBase64Data{
 //            if let qrCode = base64String.generateQRCode(qrCodeImageView: imgScanCode) {
 //                imgScanCode.image = qrCode
 //            }
@@ -194,18 +202,18 @@ extension SeeFullTicketVC {
            // }
         }
         
-        self.lblName.text = self.viewModel.myTicket?.items?.first?.nameOnTicket ?? ""
+        self.lblName.text = self.viewModel.myTicketList?.nameOnTicket ?? ""
         
         self.lblEventName.text = eventDetail?.event?.title ?? ""
         //((eventDetail?.event?.title ?? "") + " - " + "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFromTo() ?? "")")
-        //self.lblGeneralAdmission.text = viewModel.myTicket?.items?.first?.ticketName ?? ""
+        //self.lblGeneralAdmission.text = viewModel.myTicketList?.ticketName ?? ""
         
         if let startDate = eventDetail?.eventDateObj?.eventStartDate, let startTime =  eventDetail?.eventDateObj?.eventStartTime {
             lblDateValue.text = "\(startDate.getDayFormattedFromTo()), \(startDate.getDateFormattedFromTo()) / \(startTime.getFormattedTime())"
         }
        
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
-        lblOrderNumberValue.text = "#\(viewModel.myTicket?.items?.first?.orderNumber ?? "")"
+        lblOrderNumberValue.text = "#\(viewModel.myTicketList?.orderNumber ?? "")"
         
         //ABOUt US
         if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
@@ -246,15 +254,10 @@ extension SeeFullTicketVC {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfMyTicket.constant = tblMyTicket.contentSize.height
-        if self.viewModel.myTicket?.items == nil{
+        if self.viewModel.myTicketList == nil{
             self.heightOfMyTicket.constant = 0
         }else{
-            if let items = self.viewModel.myTicket?.items, items.count == 0{
-                //self.lblTicket
-                self.heightOfMyTicket.constant = 0
-            }else{
-                self.heightOfMyTicket.constant = tblMyTicket.contentSize.height
-            }
+            self.heightOfMyTicket.constant = tblMyTicket.contentSize.height
         }
     }
 }
@@ -296,7 +299,7 @@ extension SeeFullTicketVC {
     
     func navigateToEventDetail() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
-            view.viewModel.eventId = viewModel.myTicket?.items?.first?.eventID //TO BE CHANGED
+            view.viewModel.eventId = viewModel.myTicketList?.eventID //TO BE CHANGED
             let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
            //  Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
             AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
@@ -312,13 +315,18 @@ extension SeeFullTicketVC {
 // MARK: - UITableViewDelegate,UITableViewDataSource
 extension SeeFullTicketVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.myTicket?.items?.count ?? 0
+       // return self.viewModel.myTicket?.items?.count ?? 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MyTicketListingTableViewCell", for: indexPath) as? MyTicketListingTableViewCell{
-            if let data = self.viewModel.myTicket?.items?[indexPath.row]{
-                cell.setData(ticketData: data)
+//            if let data = self.viewModel.myTicket?.items?[indexPath.row]{
+//                cell.setData(ticketData: data)
+//            }
+            if let myTicketData = self.viewModel.myTicketList{
+                cell.setData(ticketData: myTicketData)
+
             }
             return cell
         }

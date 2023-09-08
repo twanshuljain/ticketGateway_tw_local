@@ -48,6 +48,7 @@ class MyOrderViewController: UIViewController {
         viewModel.isFromUpcoming = true
         setButtonBackground()
         setButtonsTitle()
+        self.resetPage()
         getMyOrderApiCall(isFromUpcoming: true)
     }
 }
@@ -114,12 +115,17 @@ extension MyOrderViewController {
         }
     }
     func setNavigationView() {
-        viewModel.myOrdersModel.page = 1
         vwNavigationBar.lblTitle.text = MY_ORDERS
         vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
         vwNavigationBar.btnBack.isHidden = false
         vwNavigationBar.delegateBarAction = self
     }
+    
+    func resetPage(){
+        viewModel.myOrdersModel.page = 1
+        viewModel.arrMyOrder.removeAll()
+    }
+    
     func setTableView() {
         upComingTableView.separatorColor = .clear
         upComingTableView.delegate = self
@@ -231,7 +237,7 @@ extension MyOrderViewController {
     }
     func loadData() {
         viewModel.myOrdersModel.page += 1
-        if viewModel.arrMyOrder.count < viewModel.totalPage {
+        if viewModel.arrMyOrder.count != viewModel.totalPage {
             print("viewModel.totalPage", viewModel.totalPage)
             print("load more data")
             getMyOrderApiCall(isFromUpcoming: viewModel.isFromUpcoming)

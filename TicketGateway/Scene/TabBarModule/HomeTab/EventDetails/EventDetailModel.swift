@@ -279,6 +279,70 @@ struct PaymentMode: Codable {
     }
 }
 
+
+// MARK: - MultiLocation
+struct MultiLocation: Codable {
+    var id: Int?
+    var latitude, longitude, eventAddress, locationType: String?
+    var eventCountry: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, latitude, longitude
+        case eventAddress = "event_address"
+        case locationType = "location_type"
+        case eventCountry = "event_country"
+    }
+}
+
+// MARK: - RecurringList
+struct RecurringList: Codable {
+    var eventOccurs: String?
+    var eventID: Int?
+    var isActive: Bool?
+    var weeklyDays: [String]?
+    var createdAt: String?
+    var eventShowDate: [String]?
+    var id: Int?
+    var onDays: String?
+    var updatedAt: String?
+    var startDate: Date?
+    var isShowDate: Bool?
+    var createdBy: String?
+    var endDate: Date?
+    var showDate, updatedBy: String?
+    var startTime: String?
+    var onWeek: String?
+    var eventTimeZoneID: Int?
+    var endTime: String?
+    var showName: String?
+    var eventLanguageID, eventLocationID: Int
+
+    enum CodingKeys: String, CodingKey {
+        case eventOccurs = "event_occurs"
+        case eventID = "event_id"
+        case isActive = "is_active"
+        case weeklyDays = "weekly_days"
+        case createdAt = "created_at"
+        case eventShowDate = "event_show_date"
+        case id
+        case onDays = "on_days"
+        case updatedAt = "updated_at"
+        case startDate = "start_date"
+        case isShowDate = "is_show_date"
+        case createdBy = "created_by"
+        case endDate = "end_date"
+        case showDate = "show_date"
+        case updatedBy = "updated_by"
+        case startTime = "start_time"
+        case onWeek = "on_week"
+        case eventTimeZoneID = "event_time_zone_id"
+        case endTime = "end_time"
+        case showName = "show_name"
+        case eventLanguageID = "event_language_id"
+        case eventLocationID = "event_location_id"
+    }
+}
+
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {

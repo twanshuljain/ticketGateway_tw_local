@@ -96,7 +96,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         // Imp line to set drawer at initial
         pageConrtrolEventImages.drawer = ScaleDrawer()
-        self.funcCallApi()
+        self.getMultiLocation()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -187,13 +187,75 @@ extension EventDetailVC {
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }
+    
+    
+    func getMultiLocation(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            vwEventName.showLoading(centreToView: self.view)
+            self.viewModel.dispatchGroup1.enter()
+            viewModel.GetMultiLocationList { isTrue, messageShowToast in
+                if isTrue == true {
+                    self.vwEventName.stopLoading()
+                    DispatchQueue.main.async {
+                        
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.vwEventName.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.vwEventName.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+        
+        self.viewModel.dispatchGroup1.notify(queue: .main) {
+            self.getRecurringList()
+        }
+    }
+    
+    func getRecurringList(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            vwEventName.showLoading(centreToView: self.view)
+            self.viewModel.dispatchGroup2.enter()
+            viewModel.GetRecurringList { isTrue, messageShowToast in
+                if isTrue == true {
+                    self.vwEventName.stopLoading()
+                    DispatchQueue.main.async {
+                        
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.vwEventName.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.vwEventName.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+        
+        self.viewModel.dispatchGroup2.notify(queue: .main) {
+            self.funcCallApi()
+        }
+    }
+    
       func funcCallApi(){
           if self.viewModel.eventDetail != nil {
               DispatchQueue.main.async {
                   self.collvwEventImages.reloadData()
                   self.setData()
                   self.loadData()
-                  if self.viewModel.eventDetail?.is_multi_location == true {
+                  if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
                       self.dateAndLocationStackView.isHidden = false
                      self.vwStackHeight.constant = 155
                   } else {
@@ -221,7 +283,7 @@ extension EventDetailVC {
                                 self.collvwEventImages.reloadData()
                                 self.setData()
                                 self.loadData()
-                                if self.viewModel.eventDetail?.is_multi_location == true {
+                                if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
                                     self.dateAndLocationStackView.isHidden = false
                                    self.vwStackHeight.constant = 155
                                 } else {
