@@ -35,6 +35,8 @@ public enum APIName: String {
     case GetEventList = "events/list/"
     case GetEventListCategoryWise = "events/filter-types/list/"
     case GetEventDetail = "events/detail/"
+    case GetMultiLocationList = "events/multilocation/list/"
+    case GetRecurringList = "events/recurring/list/"
     case GetEventCategoryList = "events/category/list/"
     case GetEventSubCategoryList =  "events/sub/category/list/"
     case GetEventSuggestedCategoryList = "events/suggestion/" //"events/category/"
@@ -71,6 +73,7 @@ public enum APIName: String {
     case ChangeTicketName = "ticket/transfer/user-name/change/"
     case GetMyTicketList = "ticket/my-ticket/list/"
     case TransferTicket = "ticket/transfer/"
+    case ResendTicketTransfer = "ticket/re-transfer/details/"
     
     // Profile Tab
     case getUserProfileData = "auth/me/"

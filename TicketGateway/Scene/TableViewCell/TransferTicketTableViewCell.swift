@@ -21,6 +21,8 @@ class TransferTicketTableViewCell: UITableViewCell {
     @IBOutlet weak var btnCopyEmail: UIButton!
     
     @IBOutlet weak var vwBottomLine: UIView!
+    @IBOutlet weak var emailStackView: UIView!
+    @IBOutlet weak var emailCopyStackView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,7 +38,17 @@ class TransferTicketTableViewCell: UITableViewCell {
     func setData(data:MyTicket){
         lblTicketIdValue.text = "\(data.ticketID ?? 0)"
         lblNameOnTicketValue.text = data.nameOnTicket ?? ""
+        lblTransferredToValue.text = data.transferredEmail ?? ""
         
+        if data.isTransfer ?? false{
+            self.emailStackView.isHidden = false
+            self.emailCopyStackView.isHidden = false
+            btnContinueToTransfer.setTitle("Resend", for: .normal)
+        }else{
+            self.emailStackView.isHidden = true
+            self.emailCopyStackView.isHidden = true
+            btnContinueToTransfer.setTitle("Continue to Transfer", for: .normal)
+        }
     }
     
     func setFont() {

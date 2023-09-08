@@ -26,7 +26,8 @@ struct MyTicket: Codable {
     var eventStartDate: String?
     var orderNumber, qrcodeBase64Data: String?
     var isTransfer: Bool?
-    var transferredEmail, transferredID: String?
+    var transferredEmail: String?
+    var transferredID: Int?
     var isExpanded: Bool? = false
 
     

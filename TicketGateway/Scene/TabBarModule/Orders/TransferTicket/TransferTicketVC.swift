@@ -51,11 +51,17 @@ extension  TransferTicketVC {
         self.tblTransferTicketTableView.register(UINib(nibName: "TransferTicketHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TransferTicketHeaderView")
     }
     @objc func navigateButton(_ sender: UIButton) {
-        if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC{
-            continueToTransferVC.viewModel.ticketDetails = self.viewModel.ticketDetails
-            continueToTransferVC.viewModel.eventDetail = self.viewModel.eventDetail
-            continueToTransferVC.viewModel.myTicket = self.viewModel.myTicket?.items?[sender.tag]
-            self.navigationController?.pushViewController(continueToTransferVC, animated: true)
+        if let data = self.viewModel.myTicket?.items?[sender.tag]{
+            if data.isTransfer ?? false{
+                
+            }else{
+                if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC{
+                    continueToTransferVC.viewModel.ticketDetails = self.viewModel.ticketDetails
+                    continueToTransferVC.viewModel.eventDetail = self.viewModel.eventDetail
+                    continueToTransferVC.viewModel.myTicket = self.viewModel.myTicket?.items?[sender.tag]
+                    self.navigationController?.pushViewController(continueToTransferVC, animated: true)
+                }
+            }
         }
     }
 }

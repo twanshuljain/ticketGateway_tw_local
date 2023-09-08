@@ -123,6 +123,8 @@
 		186FB9482A4026AA002B0E5C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FB9472A4026AA002B0E5C /* Date+Extension.swift */; };
 		186FB94A2A402AF8002B0E5C /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FB9492A402AF8002B0E5C /* WelcomeViewModel.swift */; };
 		186FB94F2A4039FF002B0E5C /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FB94E2A4039FF002B0E5C /* SignUpRequest.swift */; };
+		187057E42AA8B48000F434A6 /* MyTicketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187057E22AA8B48000F434A6 /* MyTicketCollectionViewCell.swift */; };
+		187057E52AA8B48000F434A6 /* MyTicketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187057E32AA8B48000F434A6 /* MyTicketCollectionViewCell.xib */; };
 		18717F832A2A1BE9002F36BC /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18717F6B2A2A1BE9002F36BC /* Order.storyboard */; };
 		18717F842A2A1BE9002F36BC /* TransferTicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18717F6D2A2A1BE9002F36BC /* TransferTicketTableViewCell.xib */; };
 		18717F852A2A1BE9002F36BC /* TransferTicketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18717F6E2A2A1BE9002F36BC /* TransferTicketHeaderView.xib */; };
@@ -562,6 +564,8 @@
 		186FB9472A4026AA002B0E5C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		186FB9492A402AF8002B0E5C /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		186FB94E2A4039FF002B0E5C /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		187057E22AA8B48000F434A6 /* MyTicketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketCollectionViewCell.swift; sourceTree = "<group>"; };
+		187057E32AA8B48000F434A6 /* MyTicketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTicketCollectionViewCell.xib; sourceTree = "<group>"; };
 		18717F6B2A2A1BE9002F36BC /* Order.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
 		18717F6D2A2A1BE9002F36BC /* TransferTicketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTicketTableViewCell.xib; sourceTree = "<group>"; };
 		18717F6E2A2A1BE9002F36BC /* TransferTicketHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTicketHeaderView.xib; sourceTree = "<group>"; };
@@ -1169,6 +1173,7 @@
 		183058732A41E1DC007A3931 /*  CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				187057E12AA8B43800F434A6 /* MyTicketCell */,
 				1861A2CE2A44318600E13A5D /* ManageEventCell */,
 				18FBC07E2A309238002CF129 /* CostumeType */,
 				18FBC07B2A309238002CF129 /* CostumeImage */,
@@ -1957,6 +1962,15 @@
 				186D49C32A374FBD008CBB4B /* FAQTableviewCell.xib */,
 			);
 			path = FAQ;
+			sourceTree = "<group>";
+		};
+		187057E12AA8B43800F434A6 /* MyTicketCell */ = {
+			isa = PBXGroup;
+			children = (
+				187057E22AA8B48000F434A6 /* MyTicketCollectionViewCell.swift */,
+				187057E32AA8B48000F434A6 /* MyTicketCollectionViewCell.xib */,
+			);
+			path = MyTicketCell;
 			sourceTree = "<group>";
 		};
 		18717F692A2A1BE9002F36BC /* View */ = {
@@ -2893,6 +2907,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187057E52AA8B48000F434A6 /* MyTicketCollectionViewCell.xib in Resources */,
 				18A0DC1F29E536E000D5CBDF /* Poppins-Black.ttf in Resources */,
 				18A0DC1329E536E000D5CBDF /* Poppins-ExtraLightItalic.ttf in Resources */,
 				18FBC0BB2A309239002CF129 /* RefundRequestTableViewCell.xib in Resources */,
@@ -3414,6 +3429,7 @@
 				18FBC0FD2A309239002CF129 /* CostumeFrontLineViewController.swift in Sources */,
 				18A84DA72A98A7FE005DB31C /* GetFavouriteModel.swift in Sources */,
 				187734E629E8324D00E26B65 /* GradientButton.swift in Sources */,
+				187057E42AA8B48000F434A6 /* MyTicketCollectionViewCell.swift in Sources */,
 				18FBC0C32A309239002CF129 /* ManageEventSellTicketTableViewList.swift in Sources */,
 				18FBC0F62A309239002CF129 /* InstallmentTableViewCell.swift in Sources */,
 				18E8442B29E419F800F6525A /* FileUploader.swift in Sources */,

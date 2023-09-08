@@ -10,19 +10,16 @@ import UIKit
 
 class MyTicketVC: UIViewController {
     // MARK: - IBOutlets
-    @IBOutlet weak var btnSeeFullTicket: CustomButtonNormal!
-    @IBOutlet weak var btnSaveTicketAsImage: CustomButtonNormal!
-    @IBOutlet weak var vwDashedLine: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
-    @IBOutlet weak var imgQRCode: UIImageView!
     
     var viewModel: MyTicketViewModel = MyTicketViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configure()
         self.setFont()
         self.setNavigationBar()
-        self.setUI()
         self.apiCallForMyTicketList()
     }
     @objc func addActionSheet() {
@@ -63,6 +60,12 @@ class MyTicketVC: UIViewController {
 
 // MARK: - Functions
 extension MyTicketVC {
+    func configure() {
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.register(UINib(nibName: "MyTicketCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyTicketCollectionViewCell")
+    }
+    
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
@@ -74,26 +77,16 @@ extension MyTicketVC {
         self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
     }
     func setFont() {
-        self.vwDashedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [6, 6])
-        self.btnSeeFullTicket.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnSeeFullTicket.titleLabel?.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.btnSeeFullTicket.addRightIcon(image: UIImage(named: CHEVRON_DOWN))
-        self.btnSaveTicketAsImage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnSaveTicketAsImage.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
-        self.btnSaveTicketAsImage.addLeftIcon(image: UIImage(named: DOWNLOAD_ICON_ORDER))
         self.btnAddAppToWallet.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnAddAppToWallet.titleLabel?.textColor = UIColor.setColor(colorType: .white)
         self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: APPLE_WALLET_ICON))
     }
-    func setUI() {
-        self.btnSeeFullTicket.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-    }
     
-    func setData(){
-        if let base64String = self.viewModel.myTicket?.items?.first?.qrcodeBase64Data{
-            self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
-        }
-    }
+//    func setData(){
+//        if let base64String = self.viewModel.myTicket?.items?.first?.qrcodeBase64Data{
+//            self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
+//        }
+//    }
     
     func apiCallForMyTicketList(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
@@ -104,7 +97,10 @@ extension MyTicketVC {
                 if isTrue == true {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
-                        self.setData()
+                        //self.setData()
+                        if self.viewModel.myTicket?.items?.count == 0{
+                            self.showToast(message: "No Tickets Found!!")
+                        }
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -114,6 +110,7 @@ extension MyTicketVC {
                 }
             })
             self.viewModel.dispatchGroup1.notify(queue: .main) {
+                self.collectionView.reloadData()
                 self.funcCallApiForEventDetail(eventId: self.viewModel.ticketDetails?.eventId)
             }
             
@@ -156,29 +153,72 @@ extension MyTicketVC {
 extension MyTicketVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
-        case btnSeeFullTicket:
-            self.seeFullTicketAction()
-        case btnSaveTicketAsImage:
-            break
         case btnAddAppToWallet:
             break
         default:
             break
         }
     }
-    func seeFullTicketAction() {
+    @objc func seeFullTicketAction(_ sender: UIButton) {
         let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC) as? SeeFullTicketVC
         seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails
         seeFullTicketVC?.viewModel.eventDetail = viewModel.eventDetail
-        seeFullTicketVC?.viewModel.myTicket = viewModel.myTicket
+        seeFullTicketVC?.viewModel.myTicketList = viewModel.myTicket?.items?[sender.tag]
         seeFullTicketVC?.viewModel.isFromPast = self.viewModel.isFromPast
         self.navigationController?.pushViewController(seeFullTicketVC!, animated: false)
     }
-    func saveTicketAsImage() {
+   @objc func saveTicketAsImage(_ sender: UIButton) {
+       if let cell = self.collectionView.cellForItem(at: IndexPath.init(row: sender.tag, section: 0)) as? MyTicketCollectionViewCell{
+           if let imageToSave =  cell.imgQRCode.image{
+               UIImageWriteToSavedPhotosAlbum(imageToSave, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+           }
+       }
     }
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+           if let error = error {
+               // Handle the error here, for example, show an alert to inform the user.
+               print("Error saving image: \(error.localizedDescription)")
+               self.showToast(message: "Error while image saving: \(error.localizedDescription)")
+           } else {
+               // Image saved successfully, you can show a success message to the user.
+               print("Image saved successfully!")
+               self.showToast(message: "Image saved successfully!")
+           }
+       }
     func addAppToWalletAction() {
+        
     }
 }
+// MARK: - NavigationBarViewDelegate
+extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewModel.myTicket?.items?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyTicketCollectionViewCell", for: indexPath) as? MyTicketCollectionViewCell{
+            cell.lblTicket.text = "Ticket \(indexPath.row+1) of \(self.viewModel.myTicket?.items?.count ?? 0)"
+            cell.btnSeeFullTicket.tag = indexPath.row
+            cell.btnSaveTicketAsImage.tag = indexPath.row
+            cell.btnSaveTicketAsImage.addTarget(self, action: #selector(saveTicketAsImage(_:)), for: .touchUpInside)
+            cell.btnSeeFullTicket.addTarget(self, action: #selector(seeFullTicketAction(_:)), for: .touchUpInside)
+            cell.btnSaveTicketAsImage.tag = indexPath.row
+            cell.btnSaveTicketAsImage.addTarget(self, action: #selector(saveTicketAsImage), for: .touchUpInside)
+            if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
+                cell.setData(myTicket: viewModel.myTicket?.items?[indexPath.row])
+            }
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize.init(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+}
+
+
 // MARK: - NavigationBarViewDelegate
 extension MyTicketVC: NavigationBarViewDelegate {
     func navigationBackAction() {

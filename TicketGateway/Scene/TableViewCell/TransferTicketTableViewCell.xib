@@ -44,7 +44,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5LK-2Q-Er4">
-                                        <rect key="frame" x="0.0" y="119.5" width="299" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="299" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name on ticket" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au9-h9-PmT">
                                                 <rect key="frame" x="0.0" y="0.0" width="115" height="20.5"/>
@@ -52,7 +52,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mangesh Yahoo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqi-G6-fDf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mangesh Yahoo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqi-G6-fDf">
                                                 <rect key="frame" x="177" y="0.0" width="122" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -60,28 +60,28 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tFu-fP-lAj">
-                                        <rect key="frame" x="0.0" y="140" width="299" height="0.0"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tFu-fP-lAj">
+                                        <rect key="frame" x="0.0" y="57" width="299" height="41"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transferred to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kw5-7z-Ram">
-                                                <rect key="frame" x="0.0" y="0.0" width="145.5" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="145.5" height="41"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mangesh@ticketgateway.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jy-BZ-Xgs">
-                                                <rect key="frame" x="153.5" y="0.0" width="145.5" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mangesh@ticketgateway.com" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jy-BZ-Xgs">
+                                                <rect key="frame" x="153.5" y="0.0" width="145.5" height="41"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QEa-dN-qCc">
-                                        <rect key="frame" x="0.0" y="140" width="299" height="0.0"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QEa-dN-qCc">
+                                        <rect key="frame" x="0.0" y="106" width="299" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCa-ga-v3f">
-                                                <rect key="frame" x="0.0" y="0.0" width="299" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="299" height="34"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Copy email">
                                                     <color key="titleColor" name="TGBlue"/>
@@ -135,6 +135,8 @@
             <connections>
                 <outlet property="btnContinueToTransfer" destination="jNk-uv-fDP" id="6Or-9x-EMi"/>
                 <outlet property="btnCopyEmail" destination="NCa-ga-v3f" id="T6R-ZG-k7M"/>
+                <outlet property="emailCopyStackView" destination="QEa-dN-qCc" id="8bJ-xB-Rdw"/>
+                <outlet property="emailStackView" destination="tFu-fP-lAj" id="Oqw-sT-U1c"/>
                 <outlet property="lblNameOnTicket" destination="au9-h9-PmT" id="hrc-b9-Ttl"/>
                 <outlet property="lblNameOnTicketValue" destination="aqi-G6-fDf" id="j7u-FT-Cqz"/>
                 <outlet property="lblTicketId" destination="9TS-cH-Igo" id="au3-ae-Rqi"/>

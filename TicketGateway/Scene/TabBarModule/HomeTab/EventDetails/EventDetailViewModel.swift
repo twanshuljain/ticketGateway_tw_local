@@ -26,6 +26,10 @@ final class EventDetailViewModel{
     var isLiked: Bool = false
     var isLikedAnyEvent: Bool = false
     var isFromPast = false
+    var multilocation:[MultiLocation]?
+    var recurringList:[RecurringList]?
+    var dispatchGroup1 = DispatchGroup()
+    var dispatchGroup2 = DispatchGroup()
 }
 
 
@@ -70,6 +74,46 @@ extension EventDetailViewModel{
                 case .failure(let error):
                     complition(false,"\(error)")
                 }
+            }
+        }
+    }
+    
+    func GetMultiLocationList(complition: @escaping (Bool,String) -> Void ) {
+        let url = APIName.GetMultiLocationList.rawValue + "\(eventId ?? 0)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .GetMultiLocationList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[MultiLocation]>, Error>) in
+            switch result {
+            case .success(let response):
+                defer { self.dispatchGroup1.leave() }
+                if response.status_code == 200 {
+                    print("response....",response)
+                        self.multilocation = response.data
+                        complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                defer { self.dispatchGroup1.leave() }
+                complition(false,"\(error)")
+            }
+        }
+    }
+    
+    func GetRecurringList(complition: @escaping (Bool,String) -> Void ) {
+        let url = APIName.GetRecurringList.rawValue + "\(eventId ?? 0)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .GetRecurringList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[RecurringList]>, Error>) in
+            switch result {
+            case .success(let response):
+                defer { self.dispatchGroup2.leave() }
+                if response.status_code == 200 {
+                    print("response....",response)
+                        self.recurringList = response.data
+                        complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                defer { self.dispatchGroup2.leave() }
+                complition(false,"\(error)")
             }
         }
     }
