@@ -7,6 +7,7 @@
 // swiftlint: disable line_length
 import UIKit
 import AVFoundation
+import SDWebImage
 
 class ScannerVC: UIViewController {
     // MARK: - Outlets
@@ -30,6 +31,7 @@ class ScannerVC: UIViewController {
     @IBOutlet weak var lblAccepted: UILabel!
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblRejected: UILabel!
+    @IBOutlet weak var imgProfileImage: UIImageView!
     // MARK: - Variables
     let viewModel = ScannerViewModel()
     override func viewDidLoad() {
@@ -37,6 +39,9 @@ class ScannerVC: UIViewController {
         self.setUI()
         self.setFont()
         self.getCameraPreview()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setUIAndGetScanDetail()
     }
 }
 // MARK: -
@@ -112,6 +117,26 @@ extension ScannerVC {
             $0?.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         }
     }
+    func dataSetAfterAPICall() {
+        lblAccepted.text = "Accepted : \(viewModel.getScanDetailData?.acceptedCount ?? 0)"
+        lblRejected.text = "Rejected : \(viewModel.getScanDetailData?.rejectedCount ?? 0)"
+        lblTotal.text = "Total : \(viewModel.getScanDetailData?.totalCount ?? 0)"
+    }
+    func setUIAndGetScanDetail() {
+        if let url = (APIHandler.shared.s3URL + viewModel.getScanTicketDetails.imageUrl).getCleanedURL() {
+            self.imgProfileImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+        } else {
+            self.imgProfileImage.image = UIImage(named: "homeDas")
+        }
+        // Here the data is being set to the model which we are bringing from the previous screen
+        viewModel.scanBarCodeModel.name = viewModel.getScanTicketDetails.name
+        viewModel.scanBarCodeModel.event_id = viewModel.getScanTicketDetails.eventId
+        viewModel.scanBarCodeModel.scan_ticket_types = viewModel.getScanTicketDetails.selectedTicketType
+        // Set Data to UI Components
+        self.lblSunburnReload.text = viewModel.getScanTicketDetails.eventName
+        self.lblDate.text = Date().convertToString()
+        getScanDetail()
+    }
     @objc func buttonPressed(sender: UIButton) {
         switch sender {
         case btnScan:
@@ -135,12 +160,16 @@ extension ScannerVC {
     func btnScanAction() {
     }
     func btnFindRfidAction() {
-        let findRFIDVc = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC)
-        self.navigationController?.pushViewController(findRFIDVc, animated: false)
+        if let findRFIDVc = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC) as? FindRFIDVC {
+            findRFIDVc.viewModel.getScanTicketDetails = viewModel.getScanTicketDetails
+            self.navigationController?.pushViewController(findRFIDVc, animated: false)
+        }
     }
     func btnSearchAction() {
-        let searchVc = createView(storyboard: .scanevent, storyboardID: .SearchVC)
-        self.navigationController?.pushViewController(searchVc, animated: false)
+        if let searchVc = createView(storyboard: .scanevent, storyboardID: .SearchVC) as? SearchVC {
+            searchVc.viewModel.getScanTicketDetails = viewModel.getScanTicketDetails
+            self.navigationController?.pushViewController(searchVc, animated: false)
+        }
     }
     func btnTicketAction() {
         for controller in self.navigationController!.viewControllers as Array {
@@ -180,6 +209,57 @@ extension ScannerVC {
         popUpVc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         self.present(popUpVc, animated: true)
     }
+    func getScanDetail() {
+        if Reachability.isConnectedToNetwork() { // check internet connectivity
+            self.view.showLoading(centreToView: self.view)
+            viewModel.getScanDetail(
+                complition: { isTrue, showMessage in
+                    if isTrue {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.dataSetAfterAPICall()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: showMessage)
+                        }
+                    }
+                }
+            )
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    func scanBarCode() {
+        if Reachability.isConnectedToNetwork() { // check internet connectivity
+            self.view.showLoading(centreToView: self.view)
+            viewModel.scanBarCodeApi(
+                complition: { isTrue, showMessage in
+                    if isTrue {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            // Get Updated Data after send QRid
+                            self.getScanDetail()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: showMessage)
+                        }
+                    }
+                }
+            )
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
 }
 // MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
@@ -193,7 +273,9 @@ extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     func receivedCodeForQR(qrcode: String) {
-        print(qrcode)
+        print("qrcode", qrcode)
+        viewModel.scanBarCodeModel.qrid = qrcode
+        scanBarCode()
     }
 }
 // MARK: - AlertAction

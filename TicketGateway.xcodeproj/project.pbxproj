@@ -53,6 +53,8 @@
 		183622672AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183622662AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift */; };
 		183622692AA5CDDD00CE9FFC /* ContinueTransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183622682AA5CDDD00CE9FFC /* ContinueTransferRequest.swift */; };
 		1836838B2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836838A2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift */; };
+		183813C22AA8B33700674952 /* ScanEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183813C12AA8B33700674952 /* ScanEventModel.swift */; };
+		183813C42AA8BDEA00674952 /* GetScanEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183813C32AA8BDEA00674952 /* GetScanEventModel.swift */; };
 		183A26302A4335F000DC97E3 /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */; };
 		183A26342A43367D00DC97E3 /* AddOnAddInOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */; };
 		183A26352A43367D00DC97E3 /* AddOnAddInOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183A26332A43367D00DC97E3 /* AddOnAddInOrderCell.xib */; };
@@ -61,6 +63,8 @@
 		183A263C2A4336FC00DC97E3 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */; };
 		183A263E2A43375600DC97E3 /* EventsOrganizesListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */; };
 		183D52542A459932005CAABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183D52532A459932005CAABC /* GoogleService-Info.plist */; };
+		18447DCD2AA9AFAB00DC4A80 /* GetScanDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18447DCC2AA9AFAB00DC4A80 /* GetScanDetailModel.swift */; };
+		18447DCF2AA9B2FC00DC4A80 /* ScanDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18447DCE2AA9B2FC00DC4A80 /* ScanDetailModel.swift */; };
 		18463E082AA1F9160074B1C6 /* GetOrganizerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */; };
 		1848541D2A850D1F0007798B /* AddToCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848541C2A850D1F0007798B /* AddToCalendar.swift */; };
 		184888B52A31FBF800D36B3E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B42A31FBF800D36B3E /* FirebaseAnalytics */; };
@@ -495,6 +499,8 @@
 		183622662AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueToTransferViewModel.swift; sourceTree = "<group>"; };
 		183622682AA5CDDD00CE9FFC /* ContinueTransferRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueTransferRequest.swift; sourceTree = "<group>"; };
 		1836838A2A8238F600D238FA /* EventBookingTicketOnApplyCouponRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketOnApplyCouponRequestModel.swift; sourceTree = "<group>"; };
+		183813C12AA8B33700674952 /* ScanEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEventModel.swift; sourceTree = "<group>"; };
+		183813C32AA8BDEA00674952 /* GetScanEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScanEventModel.swift; sourceTree = "<group>"; };
 		183A262F2A4335F000DC97E3 /* SearchLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
 		183A26322A43367D00DC97E3 /* AddOnAddInOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnAddInOrderCell.swift; sourceTree = "<group>"; };
 		183A26332A43367D00DC97E3 /* AddOnAddInOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOnAddInOrderCell.xib; sourceTree = "<group>"; };
@@ -503,6 +509,8 @@
 		183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsOrganizesListTableView.swift; sourceTree = "<group>"; };
 		183D52532A459932005CAABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18447DCC2AA9AFAB00DC4A80 /* GetScanDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScanDetailModel.swift; sourceTree = "<group>"; };
+		18447DCE2AA9B2FC00DC4A80 /* ScanDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDetailModel.swift; sourceTree = "<group>"; };
 		18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOrganizerListModel.swift; sourceTree = "<group>"; };
 		1848541C2A850D1F0007798B /* AddToCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCalendar.swift; sourceTree = "<group>"; };
 		184B79132A440F9600577B26 /* EventBookingTicketAddOnsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketAddOnsVC.swift; sourceTree = "<group>"; };
@@ -2329,6 +2337,8 @@
 			children = (
 				18F5A4A92A4EA55900CA18F7 /* ScanEventVC.swift */,
 				18F5A4AA2A4EA55900CA18F7 /* ScanEventViewModel.swift */,
+				183813C12AA8B33700674952 /* ScanEventModel.swift */,
+				183813C32AA8BDEA00674952 /* GetScanEventModel.swift */,
 			);
 			path = ScanEvent;
 			sourceTree = "<group>";
@@ -2363,8 +2373,10 @@
 		18F5A4B42A4EA55900CA18F7 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				18F5A4B52A4EA55900CA18F7 /* ScannerViewModel.swift */,
 				18F5A4B62A4EA55900CA18F7 /* ScannerVC.swift */,
+				18F5A4B52A4EA55900CA18F7 /* ScannerViewModel.swift */,
+				18447DCC2AA9AFAB00DC4A80 /* GetScanDetailModel.swift */,
+				18447DCE2AA9B2FC00DC4A80 /* ScanDetailModel.swift */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -3196,6 +3208,7 @@
 				189DD62829FBD3C9000804EB /* suggestedOrganizerList.swift in Sources */,
 				18233FB729E7C72500255BB7 /* WelComeCell.swift in Sources */,
 				18C952862A94E1FB00C9C02B /* MyOrderViewModel.swift in Sources */,
+				18447DCD2AA9AFAB00DC4A80 /* GetScanDetailModel.swift in Sources */,
 				184B79142A440F9600577B26 /* EventBookingTicketAddOnsVC.swift in Sources */,
 				188CE1AE2A13678E00BCEC76 /* EventBookingOrderSummaryVC.swift in Sources */,
 				18F5A4BB2A4EA55900CA18F7 /* SearchTableViewCell.swift in Sources */,
@@ -3207,6 +3220,7 @@
 				18F5A4C82A4EA55900CA18F7 /* ScannerVC.swift in Sources */,
 				18B2B22E2A04F2D1001DF3E5 /* EventCalenderList.swift in Sources */,
 				18AF9B9229E3E65800E4C70E /* AppDelegate.swift in Sources */,
+				183813C22AA8B33700674952 /* ScanEventModel.swift in Sources */,
 				18F354542A56D001003597A6 /* EventDetailModel.swift in Sources */,
 				18F6F74929E9832C007B9513 /* ForgotPasswordVC.swift in Sources */,
 				1850627F2A553DB200BC3EC5 /* SoldOutTicketVC.swift in Sources */,
@@ -3280,10 +3294,12 @@
 				18F88C392A25D61F005E7457 /* GetEventListViewModel.swift in Sources */,
 				18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */,
 				181FD44E2A976C4400CAA230 /* MyTicketModel.swift in Sources */,
+				183813C42AA8BDEA00674952 /* GetScanEventModel.swift in Sources */,
 				18233FB529E7C5B000255BB7 /* WelComeVC.swift in Sources */,
 				1861A2B32A44157B00E13A5D /* FavouriteListTableView.swift in Sources */,
 				186D49CA2A375077008CBB4B /* FAQVC.swift in Sources */,
 				18BC2EE52A52978500FB427E /* PlaceholderTextView.swift in Sources */,
+				18447DCF2AA9B2FC00DC4A80 /* ScanDetailModel.swift in Sources */,
 				18FBC0C52A309239002CF129 /* ManageEventSellTicketCell.swift in Sources */,
 				18F5A4B92A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift in Sources */,
 				182B9FB12A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift in Sources */,

@@ -14,7 +14,6 @@ class SelectTicketTypeVC: UIViewController {
     @IBOutlet weak var btnDone: CustomButtonGradiant!
 // MARK: - Variable
     let viewModel = SelectTicketTypeViewModel()
-    let tblData = ["Early Bird", "Free", "Request", "Hidden", "Request Ticket", "Ticket Type 1", "Ticket Type 2", "Ticket Type 3", "Ticket Type 4"]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationview()
@@ -28,33 +27,47 @@ class SelectTicketTypeVC: UIViewController {
 // MARK: -
 extension SelectTicketTypeVC {
     func setNavigationview() {
-        self.vwNavigationView.delegateBarAction = self
-         self.vwNavigationView.btnBack.isHidden = false
-         self.vwNavigationView.lblTitle.text = SELECT_TICKET_TYPE
-         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.vwNavigationView.vwBorder.isHidden = false
+        vwNavigationView.delegateBarAction = self
+        vwNavigationView.btnBack.isHidden = false
+        vwNavigationView.lblTitle.text = SELECT_TICKET_TYPE
+        vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        vwNavigationView.vwBorder.isHidden = false
     }
-        func setTableView() {
-        self.tblTicketTypeTablView.delegate = self
-        self.tblTicketTypeTablView.dataSource = self
+    func setTableView() {
+        viewModel.arrTicketTypeList = viewModel.getScanTicketDetails.availableTicketList
+        tblTicketTypeTablView.delegate = self
+        tblTicketTypeTablView.dataSource = self
     }
     func setFont() {
-        self.btnSelectAll.titleLabel?.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
-        self.btnSelectAll.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
-        self.btnDone.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnDone.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
+        btnSelectAll.titleLabel?.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        btnSelectAll.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
+        btnDone.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        btnDone.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
     }
 }
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension SelectTicketTypeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tblData.count
+        return viewModel.arrTicketTypeList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectTicketTypeTableviewCell", for: indexPath) as! SelectTicketTypeTableviewCell
-        let data = tblData[indexPath.row]
+        let data = viewModel.arrTicketTypeList[indexPath.row]
         cell.lblTicketType.text = data
+        if viewModel.isSelectAll {
+            cell.selectAllSwitchOn()
+        }
+        cell.switchButtonDidTap = { sender in
+            self.viewModel.isSelectAll = false
+            if sender.isOn {
+                self.viewModel.arrSelectedTicketTypeList.append(self.viewModel.arrTicketTypeList[indexPath.row])
+            } else {
+                self.viewModel.arrSelectedTicketTypeList.removeAll { str in
+                    return str == self.viewModel.arrTicketTypeList[indexPath.row]
+                }
+            }
+        }
         return cell
     }
 }
@@ -76,10 +89,16 @@ extension SelectTicketTypeVC {
         }
     }
     func btnDoneAction() {
-        let scannerVC = createView(storyboard: .scanevent, storyboardID: .ScannerVC)
-        self.navigationController?.pushViewController(scannerVC, animated: true)
+        print("selected Items:- ", viewModel.arrSelectedTicketTypeList)
+        viewModel.getScanTicketDetails.selectedTicketType = viewModel.arrSelectedTicketTypeList
+        let scannerVC = createView(storyboard: .scanevent, storyboardID: .ScannerVC) as? ScannerVC
+        scannerVC?.viewModel.getScanTicketDetails = viewModel.getScanTicketDetails
+        self.navigationController?.pushViewController(scannerVC ?? UIViewController(), animated: true)
     }
     func btnSelectAllAction() {
+        viewModel.isSelectAll = true
+        viewModel.arrSelectedTicketTypeList = viewModel.arrTicketTypeList
+        tblTicketTypeTablView.reloadData()
     }
 }
 // MARK: - NavigationBarViewDelegate

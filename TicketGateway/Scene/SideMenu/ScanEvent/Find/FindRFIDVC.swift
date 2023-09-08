@@ -6,6 +6,7 @@
 // swiftlint: disable force_cast
 
 import UIKit
+import SDWebImage
 
 class FindRFIDVC: UIViewController {
     // MARK: - Oulets
@@ -30,6 +31,7 @@ class FindRFIDVC: UIViewController {
     @IBOutlet weak var lblRejected: UILabel!
     @IBOutlet weak var connectedStackView: UIStackView!
     @IBOutlet weak var lblTickteVerified: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     // MARK: - Variables
     let viewModel = FindRFIDViewModel()
     override func viewDidLoad() {
@@ -78,6 +80,13 @@ extension FindRFIDVC {
         self.lblRejected.textColor = UIColor.setColor(colorType: .tgRed)
         lblTickteVerified.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         lblTickteVerified.textColor = UIColor.setColor(colorType: .lblTextPara)
+        lblSunburnReload.text = viewModel.getScanTicketDetails.eventName
+        lblDate.text = Date().convertToString()
+        if let url = (APIHandler.shared.s3URL + viewModel.getScanTicketDetails.imageUrl).getCleanedURL() {
+            self.profileImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+        } else {
+            self.profileImage.image = UIImage(named: "homeDas")
+        }
     }
 }
 // MARK: - Instance Method
@@ -102,14 +111,20 @@ extension FindRFIDVC {
         }
     }
     func btnScanAction() {
-        let scannerVC = createView(storyboard: .scanevent, storyboardID: .ScannerVC) as! ScannerVC
-        self.navigationController?.pushViewController(scannerVC, animated: false)
+        if let scannerVC = createView(storyboard: .scanevent, storyboardID: .ScannerVC) as? ScannerVC {
+            // Send data back to previous screen
+            scannerVC.viewModel.getScanTicketDetails = viewModel.getScanTicketDetails
+            self.navigationController?.pushViewController(scannerVC, animated: false)
+        }
     }
     func btnFindRfidAction() {
     }
     func btnSearchAction() {
-        let searchVC = createView(storyboard: .scanevent, storyboardID: .SearchVC)
-        self.navigationController?.pushViewController(searchVC, animated: false)
+        if let searchVC = createView(storyboard: .scanevent, storyboardID: .SearchVC) as? SearchVC {
+            // Send data back to previous screen
+            searchVC.viewModel.getScanTicketDetails = viewModel.getScanTicketDetails
+            self.navigationController?.pushViewController(searchVC, animated: false)
+        }
     }
     func btnTicketAction() {
         for controller in self.navigationController!.viewControllers as Array {

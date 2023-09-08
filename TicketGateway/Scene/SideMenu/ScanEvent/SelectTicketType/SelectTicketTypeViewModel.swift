@@ -7,4 +7,8 @@
 
 import Foundation
 class SelectTicketTypeViewModel {
+    var isSelectAll: Bool = false
+    var arrSelectedTicketTypeList: [String] = []
+    var getScanTicketDetails = GetScanTicketDetails()
+    var arrTicketTypeList: [String] = []
 }

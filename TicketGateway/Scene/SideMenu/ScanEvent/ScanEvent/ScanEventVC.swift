@@ -54,7 +54,7 @@ extension ScanEventVC {
 // MARK: - Instance Method
 extension ScanEventVC {
     func setUI() {
-        [self.btnContinue, self.btnHere, self.btnDissMiss, self.btnSecurePassword ].forEach {
+        [self.btnContinue, self.btnHere, self.btnDissMiss, self.btnSecurePassword].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         }
     }
@@ -73,8 +73,9 @@ extension ScanEventVC {
         }
     }
     func btnContinueAction() {
-        let selectTicketTypeVC = createView(storyboard: .scanevent, storyboardID: .SelectTicketTypeVC)
-        self.navigationController?.pushViewController(selectTicketTypeVC, animated: true)
+        viewModel.scanTicketModel.name = txtYourName.text ?? "-"
+        viewModel.scanTicketModel.scan_pin = txtEnterPin.text ?? "-"
+        scanTicketLogin()
     }
     func btnHereAction() {
     }
@@ -82,5 +83,41 @@ extension ScanEventVC {
         self.navigationController?.popViewController(animated: true)
     }
     func btnSecurePasswordAction() {
+        if self.txtEnterPin.isSecureTextEntry == false {
+            self.btnSecurePassword.setImage(UIImage(named: EYE_CLOSE), for: .normal)
+            self.txtEnterPin.isSecureTextEntry = true
+        } else {
+            self.btnSecurePassword.setImage(UIImage(named: EYE_OPEN), for: .normal)
+            self.txtEnterPin.isSecureTextEntry = false
+        }
+    }
+    func scanTicketLogin() {
+        if Reachability.isConnectedToNetwork() { // check internet connectivity
+            self.view.showLoading(centreToView: self.view)
+            viewModel.scanTicketApi(
+                scanTicketModel: viewModel.scanTicketModel,
+                complition: { isTrue, showMessage in
+                    if isTrue {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            let selectTicketTypeVC = self.createView(storyboard: .scanevent, storyboardID: .SelectTicketTypeVC) as? SelectTicketTypeVC
+                            self.viewModel.getScanTicketDetails.name = self.txtYourName.text ?? "-"
+                            selectTicketTypeVC?.viewModel.getScanTicketDetails = self.viewModel.getScanTicketDetails
+                            self.navigationController?.pushViewController(selectTicketTypeVC ?? UIViewController(), animated: true)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view.stopLoading()
+                            self.showToast(message: showMessage)
+                        }
+                    }
+                }
+            )
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
     }
 }

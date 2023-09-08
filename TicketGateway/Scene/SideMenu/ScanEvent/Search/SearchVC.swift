@@ -116,12 +116,18 @@ extension SearchVC {
         }
     }
     func btnScanAction() {
-        let view = createView(storyboard: .scanevent, storyboardID: .ScannerVC)
-        self.navigationController?.pushViewController(view, animated: false)
+        if let view = createView(storyboard: .scanevent, storyboardID: .ScannerVC) as? ScannerVC {
+            // Send data back to previous screen
+            view.viewModel.getScanTicketDetails = viewModel.getScanTicketDetails
+            self.navigationController?.pushViewController(view, animated: false)
+        }
     }
     func btnFindRfidAction() {
-        let view = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC)
-        self.navigationController?.pushViewController(view, animated: false)
+        if let view = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC) as? FindRFIDVC {
+            // Send data back to previous screen
+            view.viewModel.getScanTicketDetails = viewModel.getScanTicketDetails
+            self.navigationController?.pushViewController(view, animated: false)
+        }
     }
     func btnSearchAction() {
     }

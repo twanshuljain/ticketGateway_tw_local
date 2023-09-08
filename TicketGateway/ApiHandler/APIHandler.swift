@@ -65,7 +65,6 @@ public enum APIName: String {
     case myOrders = "events/my/order/"
     // Get Favourite List
     case myFavourite = "events/like/list/"
-    // Get Venue Model
     case myVenue = "venue/like/list/"
 
     case ContactOrganizer = "organizer/contact/form/"
@@ -76,6 +75,11 @@ public enum APIName: String {
     // Profile Tab
     case getUserProfileData = "auth/me/"
     case updateUserProfileData = "auth/user/update/profile/"
+    
+    // Scan Ticket
+    case scanTicket = "tgscan/login/"
+    case scanDetail = "tgscan/scan/detail"
+    case scanBarCode = "tgscan/scan/ticket/"
 }
 public enum GroupApiName: String {
     case auth = "auth"

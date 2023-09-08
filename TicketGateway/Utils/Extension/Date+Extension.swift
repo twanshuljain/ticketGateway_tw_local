@@ -43,4 +43,11 @@ extension Date {
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         return dateFormatter.string(from: date).capitalized
     }
+    func convertToString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let currentDate = Date()
+        let dateString = dateFormatter.string(from: currentDate)
+        return dateString
+    }
 }

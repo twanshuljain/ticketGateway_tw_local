@@ -17,6 +17,7 @@ class SearchViewModel: NSObject {
     var orderInfo: [SearchDummyData] = []
     var searchData: [SearchDummyData] = []
     var isFromSearchTxtField: Bool = false
+    var getScanTicketDetails = GetScanTicketDetails()
     var numberOfRows: Int {
         return isFromSearchTxtField ? searchData.count : orderInfo.count
     }
