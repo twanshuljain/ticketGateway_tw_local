@@ -29,7 +29,6 @@ class UpcomingTableViewCell: UITableViewCell {
     
     
     func setData(getTicket: GetMyOrderItem?, isFaded:Bool){
-        print("data set")
         self.lblTitle.text = getTicket?.eventTitle ?? ""
         if let startDate = getTicket?.eventStartDate {
             self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"

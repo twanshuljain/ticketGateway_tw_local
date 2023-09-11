@@ -36,9 +36,7 @@ class FavouriteVC: UIViewController {
         self.configure()
         self.setCollectionView()
         self.setFont()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        onAppearActions()
+        self.apiCall()
     }
 }
 // MARK: - Functions
@@ -75,6 +73,11 @@ extension FavouriteVC {
     func setCollectionView() {
         findEventCollectionView.delegate = self
         findEventCollectionView.dataSource = self
+    }
+    func apiCall() {
+        getFavouriteList()
+        getVenueList()
+        getSuggestionsList(categoryId: 3)
     }
     func getFavouriteList() {
         if Reachability.isConnectedToNetwork() {
@@ -121,16 +124,6 @@ extension FavouriteVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-    }
-    func onAppearActions() {
-        viewModel.arrFavouriteList.removeAll()
-        viewModel.arrVenueList.removeAll()
-        viewModel.arrSuggestionsList.removeAll()
-        viewModel.venueModel.page = 1
-        viewModel.favouriteModel.page = 1
-        getFavouriteList()
-        getVenueList()
-        getSuggestionsList(categoryId: 3)
     }
     func shareEventDetailData(eventDetail: GetFavouriteItem) {
         self.shareEventDetailData(
@@ -188,18 +181,28 @@ extension FavouriteVC {
         }
     }
     func btnLikeAction(indexPath: IndexPath) {
-        let eventId = viewModel.isForVenue ? viewModel.arrVenueList[indexPath.row].eventId : viewModel.arrFavouriteList[indexPath.row].eventId
+        var eventId: Int = 0
+        if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
+            eventId = viewModel.arrSuggestionsList[indexPath.row].event?.id ?? 0
+        } else if !viewModel.isForVenue {
+            eventId = viewModel.arrFavouriteList[indexPath.row].eventId ?? 0
+        } else {
+            eventId = viewModel.arrVenueList[indexPath.row].eventId ?? 0
+        }
         // API Calling for Dislike the Event
         if Reachability.isConnectedToNetwork() {
             self.view.showLoading(centreToView: self.view)
             AppShareData().commanEventLikeApiCall(
                 likeStatus: false,
-                eventId: eventId ?? 0,
+                eventId: eventId,
                 completion: { isTrue, message in
                     if isTrue {
                         DispatchQueue.main.async {
                             self.view.stopLoading()
-                            if self.viewModel.isForVenue {
+                            if self.viewModel.isForVenue && self.viewModel.arrVenueList.isEmpty {
+                                self.viewModel.arrSuggestionsList.removeAll()
+                                self.getSuggestionsList(categoryId: 3)
+                            } else if self.viewModel.isForVenue {
                                 self.viewModel.arrVenueList.removeAll()
                                 self.getVenueList()
                             } else {
@@ -222,10 +225,45 @@ extension FavouriteVC {
             }
         }
     }
+    func btnShareAction(index: Int) {
+        var eventDetail: GetFavouriteItem?
+        if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
+            let data = viewModel.arrSuggestionsList[index]
+            self.shareEventDetailData(
+                eventStartDate: data.date?.eventStartDate ?? "",
+                eventEndDate: data.date?.eventEndDate ?? "",
+                eventCoverImage: data.coverImage?.eventCoverImage ?? "",
+                eventTitle: data.event?.title ?? "",
+                eventStartTime: data.date?.eventStartTime ?? "",
+                eventEndTime: data.date?.eventEndTime ?? "",
+                eventDescription: data.event?.eventDescription
+            )
+        } else if !viewModel.isForVenue  {
+            eventDetail = viewModel.arrFavouriteList[index]
+            if let eventDetail = eventDetail {
+                self.shareEventDetailData(eventDetail: eventDetail)
+            }
+        } else {
+            eventDetail = viewModel.arrVenueList[index]
+            if let eventDetail = eventDetail {
+                self.shareEventDetailData(eventDetail: eventDetail)
+            }
+        }
+    }
     func navigateToDetailVc(index: IndexPath) {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
-            if viewModel.arrFavouriteList.indices.contains(index.row) {
-                view.viewModel.eventId = viewModel.arrFavouriteList[index.row].eventId
+            if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
+                if viewModel.arrSuggestionsList.indices.contains(index.row) {
+                    view.viewModel.eventId = viewModel.arrSuggestionsList[index.row].event?.id
+                }
+            } else if !viewModel.isForVenue {
+                if viewModel.arrFavouriteList.indices.contains(index.row) {
+                    view.viewModel.eventId = viewModel.arrFavouriteList[index.row].eventId
+                }
+            } else {
+                if viewModel.arrVenueList.indices.contains(index.row) {
+                    view.viewModel.eventId = viewModel.arrVenueList[index.row].eventId ?? 0
+                }
             }
             funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
         }
@@ -259,6 +297,7 @@ extension FavouriteVC {
                 // Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
                 AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
                 view.viewModel.eventDetail = self.viewModel.eventDetail
+                view.delegate = self
                 self.navigationController?.pushViewController(view, animated: false)
             }
         }
@@ -296,10 +335,10 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
             return self.viewModel.arrSuggestionsList.count
-        } else if viewModel.isForVenue == false {
-            return viewModel.isForVenue ? viewModel.arrVenueList.count : viewModel.arrFavouriteList.count
+        } else if !viewModel.isForVenue {
+            return viewModel.arrFavouriteList.count
         } else {
-            return 0
+            return viewModel.arrVenueList.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -308,26 +347,21 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
                 if viewModel.arrSuggestionsList.indices.contains(indexPath.row){
                     cell.getSuggestionsData = self.viewModel.arrSuggestionsList[indexPath.row]
                 }
-            } else if viewModel.isForVenue == false {
-                if viewModel.isForVenue {
-                    if viewModel.arrVenueList.indices.contains(indexPath.row){
-                        cell.getFavouriteData = viewModel.arrVenueList[indexPath.row]
-                    }
-                } else {
-                    if viewModel.arrFavouriteList.indices.contains(indexPath.row){
-                        cell.getFavouriteData =  viewModel.arrFavouriteList[indexPath.row]
-                    }
+            } else if !viewModel.isForVenue {
+                if viewModel.arrFavouriteList.indices.contains(indexPath.row){
+                    cell.getFavouriteData =  viewModel.arrFavouriteList[indexPath.row]
                 }
             } else {
-                return UITableViewCell()
+                if viewModel.arrVenueList.indices.contains(indexPath.row){
+                    cell.getFavouriteData = viewModel.arrVenueList[indexPath.row]
+                }
             }
             cell.lblFavoriteDate.isHidden = viewModel.isForVenue
             cell.likeButtonPressed = {
                 self.btnLikeAction(indexPath: indexPath)
             }
             cell.shareButtonPressed = {
-                let eventDetail = self.viewModel.isForVenue ? self.viewModel.arrVenueList[indexPath.row] : self.viewModel.arrFavouriteList[indexPath.row]
-                self.shareEventDetailData(eventDetail: eventDetail)
+                self.btnShareAction(index: indexPath.row)
             }
             return cell
         }
@@ -368,5 +402,18 @@ extension FavouriteVC: NavigationBarViewDelegate {
         let sideMenu = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sideMenu.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
+    }
+}
+extension FavouriteVC: EventDetailVCProtocol {
+    func updateData() {
+        viewModel.arrFavouriteList.removeAll()
+        viewModel.arrVenueList.removeAll()
+        viewModel.arrSuggestionsList.removeAll()
+        self.view.showLoading(centreToView: self.view)
+        viewModel.venueModel.page = 1
+        viewModel.favouriteModel.page = 1
+        getFavouriteList()
+        getVenueList()
+        getSuggestionsList(categoryId: 3)
     }
 }

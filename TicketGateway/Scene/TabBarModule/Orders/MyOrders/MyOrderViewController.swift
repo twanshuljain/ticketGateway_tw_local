@@ -86,7 +86,7 @@ extension MyOrderViewController {
         if Reachability.isConnectedToNetwork() {
             viewModel.myOrdersModel.filter_by = isFromUpcoming ? "upcoming" : "past"
             parentView.showLoading(centreToView: self.view)
-            viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel ?? MyOrdersModel(),
+            viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel,
                                       completion: { isTrue, message in
                 if isTrue {
                     if isFromUpcoming {

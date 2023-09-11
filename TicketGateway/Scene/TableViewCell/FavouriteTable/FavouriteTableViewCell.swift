@@ -59,6 +59,8 @@ class FavouriteTableViewCell: UITableViewCell {
         didSet {
             lblTitle.text = getSuggestionsData?.event?.title ?? "-"
             lblAddress.text = getSuggestionsData?.location?.eventAddress ?? "-"
+            lblDate.text = "\(getSuggestionsData?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getSuggestionsData?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+            lblTime.text = "\(getSuggestionsData?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getSuggestionsData?.date?.eventEndTime?.getFormattedTime() ?? "")"
             btnLike.setImage(UIImage(named: (getSuggestionsData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
             if let imageUrl = getSuggestionsData?.coverImage?.eventCoverImage {
                 if imageUrl.contains(APIHandler.shared.previousBaseURL) {
@@ -92,9 +94,9 @@ class FavouriteTableViewCell: UITableViewCell {
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAddress.textColor = UIColor.setColor(colorType: .headinglbl)
         
-        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblDate.textColor = UIColor.setColor(colorType: .headinglbl)
-        self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTime.textColor = UIColor.setColor(colorType: .headinglbl)
         self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

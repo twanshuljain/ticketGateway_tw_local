@@ -44,6 +44,9 @@ class MyTicketVC: UIViewController {
             }
         }))
         actionsheet.addAction(UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+            if let eventDetail = self.viewModel.eventDetail {
+                self.shareEventDetailData(eventDetail: eventDetail)
+            }
         }))
         actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
@@ -187,6 +190,17 @@ extension MyTicketVC {
        }
     func addAppToWalletAction() {
         
+    }
+    func shareEventDetailData(eventDetail: EventDetail) {
+        self.shareEventDetailData(
+            eventStartDate: eventDetail.eventDateObj?.eventStartDate ?? "",
+            eventEndDate: eventDetail.eventDateObj?.eventEndDate ?? "",
+            eventCoverImage: eventDetail.eventCoverImageObj?.eventCoverImage,
+            eventTitle: eventDetail.event?.title,
+            eventStartTime: eventDetail.eventDateObj?.eventStartTime ?? "",
+            eventEndTime: eventDetail.eventDateObj?.eventEndDate ?? "",
+            eventDescription: eventDetail.event?.eventDescription
+        )
     }
 }
 // MARK: - NavigationBarViewDelegate
