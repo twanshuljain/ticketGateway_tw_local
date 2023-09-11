@@ -52,9 +52,8 @@ extension ContinueToTransferViewModel{
     }
     
     func reSendTransferTicket(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.ResendTicketTransfer.rawValue + "\(self.ticketDetails?.eventId ?? 0)/"
-        let param = ContinueTransferRequest(cell_phone: self.mobileNumber, email: self.email, confirm_email: self.confirmEmail, full_name: self.fullName)
-        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
+        var getURL = APIName.ResendTicketTransfer.rawValue + "\(self.myTicket?.transferredID ?? 0)/"
+        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

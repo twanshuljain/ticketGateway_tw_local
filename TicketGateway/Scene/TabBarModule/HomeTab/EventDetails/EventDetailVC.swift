@@ -158,7 +158,9 @@ extension EventDetailVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.toSetPageControll()
-        self.dropDown()
+        if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+            self.dropDown()
+        }
         //self.bottomView.isHidden = viewModel.isFromPast
         if viewModel.isFromPast{
             lblPrice.isHidden = true
@@ -372,11 +374,11 @@ extension EventDetailVC {
         self.lblTime.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblRefundpolicyDisc.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblRefundpolicyDisc.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.lblDate.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        self.lblDate.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         self.lblDate.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.lblAddress.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        self.lblAddress.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         self.lblAddress.textColor = UIColor.setColor(colorType: .lblTextPara)
-        self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
+        self.lblRefundPolicy.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         self.lblRefundPolicy.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblPrice.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -404,10 +406,28 @@ extension EventDetailVC {
             }
         }
         self.lblEventName.text = eventDetail?.event?.title ?? ""
-        self.lblEventDate.text = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        self.lblDate.text = ("\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")")
-        self.lblTime.text = ("\(eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(eventDetail?.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")")
+        let startDate = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")"
+        let endDate = "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+        let startTime = "\(eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
+        let endTime = "\(eventDetail?.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")"
+        
+        self.lblEventDate.text = startDate +  " " + "-" + " " + endDate
+        self.lblDate.text = startDate +  " " + "to" + " " + endDate
+        self.lblTime.text = startTime +  " " + "-" + " " + endTime
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
+        
+        if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+            self.lblEventDate.isHidden = true
+            self.lblDate.isHidden = true
+            self.lblTime.isHidden = true
+            self.lblAddress.isHidden = true
+        }else{
+            self.lblEventDate.isHidden = false
+            self.lblDate.isHidden = false
+            self.lblTime.isHidden = false
+            self.lblAddress.isHidden = false
+            
+        }
       //  self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
         self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
         
@@ -450,20 +470,89 @@ extension EventDetailVC {
         }else{
             self.tagsView.isHidden = true
         }
-        self.dropDown()
+        if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+            self.dropDown()
+        }
+        
     }
     
     func dropDown(){
-        txtDate.optionArray = ["May 25 - May 30 6:00 AM - 7:00 AM", "May 25 - May 30 6:00 AM - 7:00 ", "May 25 - May 30 6:00 AM - 7:00 AM","May 25 - May 30 6:00 AM - 7:00 AM"]
+        //txtDate.optionArray = ["May 25 - May 30 6:00 AM - 7:00 AM", "May 25 - May 30 6:00 AM - 7:00 ", "May 25 - May 30 6:00 AM - 7:00 AM","May 25 - May 30 6:00 AM - 7:00 AM"]
         
-        txtDate.optionIds = [1,23,54,22]
+        txtDate.optionIds?.removeAll()
+        txtLocation.optionIds?.removeAll()
+        txtLocation.optionArray.removeAll()
+        txtDate.optionArray.removeAll()
+        
+        txtDate.optionIds = self.viewModel.recurringList?.compactMap({ $0.eventLocationID })
         txtDate.didSelect{(selectedText , index ,id) in
+            let inputString = selectedText
+
+            if let range = inputString.range(of: ",") {
+                let substring = inputString[..<range.lowerBound]
+                self.lblEventDate.text = substring.trimmingCharacters(in: .whitespaces)
+                print(substring.trimmingCharacters(in: .whitespaces))
+            } else {
+                print("String does not contain a comma.")
+            }
+            self.lblDate.text = "\(selectedText)"
+            self.lblTime.text = ""
             self.txtDate.text = "\(selectedText)"
+            self.viewModel.selectedEventLocationId = id
+            self.viewModel.multilocation?.forEach({ data in
+                if data.id == self.viewModel.selectedEventLocationId{
+                    self.txtLocation.optionArray  = [data.eventAddress ?? ""]
+                    self.txtLocation.text = data.eventAddress ?? ""
+                    self.lblAddress.text = data.eventAddress ?? ""
+                }
+            })
+            self.lblEventDate.isHidden = false
+            self.lblDate.isHidden = false
+            self.lblTime.isHidden = false
+            self.lblAddress.isHidden = false
         }
         
-        txtLocation.optionArray = ["Supermarket bar and Variety", "Supermarket bar and Variety", "Supermarket bar and Variety","Supermarket bar and Variety"]
+        //txtLocation.optionArray = ["Supermarket bar and Variety", "Supermarket bar and Variety", "Supermarket bar and Variety","Supermarket bar and Variety"]
         
-        txtLocation.optionIds = [1,23,54,22]
+        if let selectedEventLocationId = self.viewModel.selectedEventLocationId{
+            self.viewModel.multilocation?.forEach({ data in
+                if data.id == selectedEventLocationId{
+                    txtLocation.optionArray  = [data.eventAddress ?? ""]
+                    
+                    let startDate = self.viewModel.recurringList?.compactMap({ $0.startDate?.getDateFormattedFrom() }).first ?? ""
+                    let endDate = self.viewModel.recurringList?.compactMap({ $0.endDate?.getDateFormattedFromTo() }).first ?? ""
+                    let startTime = self.viewModel.recurringList?.compactMap({ $0.startTime?.getFormattedTime() }).first ?? ""
+                    let endTime = self.viewModel.recurringList?.compactMap({ $0.endTime?.getFormattedTime() }).first ?? ""
+                    
+                    
+                    let date = "\(startDate)" +  " " + "-" + " " + "\(endDate) "
+                    let time = "\(startTime)" +  " " + "-" + " " + "\(endTime) "
+                    let finalDate = date + time
+                    txtDate.optionArray = [finalDate]
+                }
+            })
+        }else{
+            if let  startDate = self.viewModel.recurringList?.compactMap({ $0.startDate?.getDateFormattedFrom() }), startDate.count != 0{
+                for i in 0...startDate.count-1{
+                    let startDate = self.viewModel.recurringList?[i].startDate?.getDateFormattedFrom() ?? ""
+                    let endDate = self.viewModel.recurringList?[i].endDate?.getDateFormattedFromTo() ?? ""
+                    let startTime = self.viewModel.recurringList?[i].startTime?.getFormattedTime() ?? ""
+                    let endTime = self.viewModel.recurringList?[i].endTime?.getFormattedTime() ?? ""
+                    
+                    let date = "\(startDate)" +  " " + "-" + " " + "\(endDate) "
+                    let time = "\(startTime)" +  " " + "-" + " " + "\(endTime) "
+                    let finalDate = date + time
+                    txtDate.optionArray.append(finalDate)
+                }
+                txtLocation.optionArray  = self.viewModel.multilocation?.compactMap({ $0.eventAddress ?? "" }) ?? []
+               // txtLocation.optionArray  = self.viewModel.multilocation?.compactMap({ $0.id == self.viewModel.selectedEventLocationId }) ?? []
+            }
+        }
+        
+        
+       
+        
+        txtLocation.optionIds = self.viewModel.recurringList?.compactMap({ $0.eventLocationID })
         txtLocation.didSelect{(selectedText , index ,id) in
             self.txtLocation.text = "\(selectedText)"
         }
@@ -534,18 +623,42 @@ extension EventDetailVC {
             if sucess, err == nil {
               DispatchQueue.main.async {
                 let newEvent = EKEvent(eventStore: self.store)
-                let eventObject = self.viewModel.eventDetail?.eventDateObj
-                print("startDate", eventObject?.eventStartDate as Any)
-                print("endDate", eventObject?.eventEndDate as Any)
-                print("startTime", eventObject?.eventStartTime as Any)
-                print("endTime", eventObject?.eventEndTime as Any)
+                var eventObject = self.viewModel.eventDetail?.eventDateObj ?? EventDateObj()
+                  if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+                      var startDate = ""
+                      var endDate = ""
+                      var startTime = ""
+                      var endTime = ""
+                      
+                      self.viewModel.recurringList?.forEach({ data in
+                          if data.eventLocationID == self.viewModel.selectedEventLocationId{
+                              print(data)
+                              startDate = data.startDate ?? ""
+                              endDate = data.endDate ?? ""
+                              startTime = data.startTime ?? ""
+                              endTime = data.endTime ?? ""
+                          }
+                      })
+                      print(startDate,  startTime ,  endDate,  endTime)
+                      eventObject.eventStartDate = startDate
+                      eventObject.eventEndDate = endDate
+                      eventObject.eventStartTime = startTime
+                      eventObject.eventEndTime = endTime
+                  }
+                  print("startDate", eventObject.eventStartDate as Any)
+                  print("endDate", eventObject.eventEndDate as Any)
+                  print("startTime", eventObject.eventStartTime as Any)
+                  print("endTime", eventObject.eventEndTime as Any)
+                  
+                  
+                  
                 let startDateTime = self.combineDateWithTime(
-                  date: eventObject?.eventStartDate?.convertToDate() ?? Date(),
-                  time: eventObject?.eventStartTime?.convertStringToDateForTime() ?? Date()
+                  date: eventObject.eventStartDate?.convertToDate() ?? Date(),
+                  time: eventObject.eventStartTime?.convertStringToDateForTime() ?? Date()
                 )
                 let endDateTime = self.combineDateWithTime(
-                  date: eventObject?.eventEndDate?.convertToDate() ?? Date(),
-                  time: eventObject?.eventEndTime?.convertStringToDateForTime() ?? Date()
+                  date: eventObject.eventEndDate?.convertToDate() ?? Date(),
+                  time: eventObject.eventEndTime?.convertStringToDateForTime() ?? Date()
                 )
                 newEvent.title = self.viewModel.eventDetail?.event?.title
                 newEvent.startDate = startDateTime
@@ -638,12 +751,28 @@ extension EventDetailVC {
     }
     
     func btnShowMapAction() {
-        let view = createView(storyboard: .home, storyboardID: .EventMapVC) as! EventMapVC
-        let eventLocation = self.viewModel.eventDetail?.eventLocation
-        view.latitude =  eventLocation?.latitude ?? 00.0
-        view.longitude =  eventLocation?.longitude ?? 00.0
-        view.location = eventLocation?.eventAddress ?? ""
-        self.navigationController?.pushViewController(view, animated: true)
+        if let view = createView(storyboard: .home, storyboardID: .EventMapVC) as? EventMapVC{
+            let eventLocation = self.viewModel.eventDetail?.eventLocation
+            
+            if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+                self.viewModel.multilocation?.forEach({ data in
+                    if data.id == self.viewModel.selectedEventLocationId{
+                        view.latitude = (data.latitude as? NSString)?.doubleValue ?? (eventLocation?.latitude ?? 0.0)
+                        view.longitude =  (data.longitude as? NSString)?.doubleValue ?? (eventLocation?.latitude ?? 0.0)
+                        view.location = data.eventAddress ?? ""
+                    }
+                })
+                self.navigationController?.pushViewController(view, animated: true)
+            }else{
+                view.latitude =  eventLocation?.latitude ?? 00.0
+                view.longitude =  eventLocation?.longitude ?? 00.0
+                view.location = eventLocation?.eventAddress ?? ""
+                self.navigationController?.pushViewController(view, animated: true)
+            }
+            
+            
+            
+        }
     }
 
     @objc func btnShareAction(_ sender: UIButton) {
