@@ -3077,7 +3077,7 @@ TicketGateway Balance  </string>
                                                                                         <subviews>
                                                                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Date" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZTf-y7-YAl" customClass="DropDown">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="48.333333333333336"/>
-                                                                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                                                 <textInputTraits key="textInputTraits"/>
                                                                                                 <userDefinedRuntimeAttributes>
                                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="arrowSize">
@@ -3129,7 +3129,7 @@ TicketGateway Balance  </string>
                                                                                         <subviews>
                                                                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Location" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zoy-XF-kbu" customClass="DropDown">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="48.333333333333336"/>
-                                                                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                                                 <textInputTraits key="textInputTraits"/>
                                                                                                 <userDefinedRuntimeAttributes>
                                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="arrowSize">
@@ -3197,16 +3197,16 @@ TicketGateway Balance  </string>
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="95"/>
                                                                                 <subviews>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-YM-kGc">
-                                                                                        <rect key="frame" x="52" y="10" width="306" height="25"/>
+                                                                                        <rect key="frame" x="52" y="10" width="284.33333333333331" height="25"/>
                                                                                         <subviews>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 19 to Feb 19, 2023 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9sM-kc-r73">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="25"/>
-                                                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 19 to Feb 19, 2023 " textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9sM-kc-r73">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="150.66666666666666" height="25"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM - 11:00 PM " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBP-kN-9fb">
-                                                                                                <rect key="frame" x="180.33333333333334" y="0.0" width="125.66666666666666" height="25"/>
+                                                                                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM - 11:00 PM " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBP-kN-9fb">
+                                                                                                <rect key="frame" x="158.66666666666666" y="0.0" width="125.66666666666666" height="25"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" name="Headinglbl"/>
@@ -3240,9 +3240,9 @@ TicketGateway Balance  </string>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="95" id="4kA-Jk-vdr"/>
                                                                                     <constraint firstItem="0dh-YM-kGc" firstAttribute="leading" secondItem="tGs-e1-pPJ" secondAttribute="trailing" constant="10" id="4zD-0a-OGA"/>
+                                                                                    <constraint firstItem="tGs-e1-pPJ" firstAttribute="centerY" secondItem="0dh-YM-kGc" secondAttribute="centerY" id="IC5-8n-0jj"/>
                                                                                     <constraint firstItem="2bS-oh-f6l" firstAttribute="top" secondItem="0dh-YM-kGc" secondAttribute="bottom" constant="10" id="LXE-ii-o0T"/>
                                                                                     <constraint firstItem="2bS-oh-f6l" firstAttribute="leading" secondItem="tGs-e1-pPJ" secondAttribute="trailing" constant="10" id="Zxp-M1-8xF"/>
-                                                                                    <constraint firstItem="tGs-e1-pPJ" firstAttribute="centerY" secondItem="9sM-kc-r73" secondAttribute="centerY" id="gIS-BX-OVj"/>
                                                                                     <constraint firstItem="0dh-YM-kGc" firstAttribute="top" secondItem="GND-al-NiG" secondAttribute="top" constant="10" id="gde-c8-TtD"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="tGs-e1-pPJ" secondAttribute="bottom" id="itm-G5-W6R"/>
                                                                                     <constraint firstItem="tGs-e1-pPJ" firstAttribute="leading" secondItem="GND-al-NiG" secondAttribute="leading" constant="20" id="tFH-I5-nkQ"/>
@@ -3264,12 +3264,12 @@ TicketGateway Balance  </string>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-Vl-0CG">
                                                                                         <rect key="frame" x="50" y="10" width="343" height="40"/>
                                                                                         <subviews>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supermarket bar and Variety" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-uy-axF">
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supermarket bar and Variety" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-uy-axF">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22.670000000000002" id="l6v-KX-1W5"/>
                                                                                                 </constraints>
-                                                                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
@@ -3283,7 +3283,7 @@ TicketGateway Balance  </string>
                                                                                         </subviews>
                                                                                     </stackView>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-pin" translatesAutoresizingMaskIntoConstraints="NO" id="rnR-nq-T5F">
-                                                                                        <rect key="frame" x="20" y="-55" width="22" height="165"/>
+                                                                                        <rect key="frame" x="20" y="-50" width="22" height="160"/>
                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3298,12 +3298,12 @@ TicketGateway Balance  </string>
                                                                                     <constraint firstItem="BiS-Vl-0CG" firstAttribute="top" secondItem="jz9-KS-JFD" secondAttribute="top" constant="10" id="A0Z-31-PHM"/>
                                                                                     <constraint firstItem="rnR-nq-T5F" firstAttribute="leading" secondItem="jz9-KS-JFD" secondAttribute="leading" constant="20" id="Rzp-om-ci3"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="rnR-nq-T5F" secondAttribute="bottom" id="U2C-zn-gO7"/>
-                                                                                    <constraint firstItem="rnR-nq-T5F" firstAttribute="centerY" secondItem="56g-uy-axF" secondAttribute="centerY" id="bkg-xB-Aju"/>
                                                                                     <constraint firstItem="Eea-bK-2cI" firstAttribute="top" secondItem="BiS-Vl-0CG" secondAttribute="bottom" constant="10" id="vO9-aJ-q88"/>
                                                                                     <constraint firstItem="BiS-Vl-0CG" firstAttribute="leading" secondItem="jz9-KS-JFD" secondAttribute="leading" constant="50" id="vxA-am-qeI"/>
                                                                                     <constraint firstItem="Eea-bK-2cI" firstAttribute="leading" secondItem="BiS-Vl-0CG" secondAttribute="leading" id="wFC-jJ-V7k"/>
                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="wTS-KB-KQZ"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="BiS-Vl-0CG" secondAttribute="trailing" id="yIZ-2J-qge"/>
+                                                                                    <constraint firstItem="rnR-nq-T5F" firstAttribute="centerY" secondItem="BiS-Vl-0CG" secondAttribute="centerY" id="z7S-do-TYE"/>
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kx0-ZA-GRq">
@@ -4773,13 +4773,13 @@ TicketGateway fee is non refundable.</string>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-RF-Ikr">
                                                                                             <rect key="frame" x="0.0" y="15.333333333333332" width="325" height="44.666666666666671"/>
                                                                                             <subviews>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="20.333333333333332"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
                                                                                                     <rect key="frame" x="0.0" y="24.333333333333336" width="325" height="20.333333333333336"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>

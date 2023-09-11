@@ -305,13 +305,13 @@ struct RecurringList: Codable {
     var id: Int?
     var onDays: String?
     var updatedAt: String?
-    var startDate: Date?
+    var startDate: String?
     var isShowDate: Bool?
     var createdBy: String?
-    var endDate: Date?
+    var endDate: String?
     var showDate, updatedBy: String?
     var startTime: String?
-    var onWeek: String?
+    var onWeek: Int?
     var eventTimeZoneID: Int?
     var endTime: String?
     var showName: String?

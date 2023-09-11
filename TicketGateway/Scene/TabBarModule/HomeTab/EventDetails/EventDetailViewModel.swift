@@ -30,6 +30,7 @@ final class EventDetailViewModel{
     var recurringList:[RecurringList]?
     var dispatchGroup1 = DispatchGroup()
     var dispatchGroup2 = DispatchGroup()
+    var selectedEventLocationId : Int?
 }
 
 

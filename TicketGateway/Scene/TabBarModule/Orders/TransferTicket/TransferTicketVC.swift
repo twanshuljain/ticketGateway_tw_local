@@ -20,6 +20,7 @@ class TransferTicketVC: UIViewController {
     @IBOutlet weak var tblTransferTicketTableView: UITableView!
     // MARK: - Variables
     var viewModel = TransferTicketViewModel()
+    var transferViewModel = ContinueToTransferViewModel()
     //var arrData = [ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false), ExpandableTicketCell(isExpanded: false)]
    // let tblData = ["334566", "565656", "56656456", "5645645" ]
    
@@ -50,10 +51,36 @@ extension  TransferTicketVC {
         self.tblTransferTicketTableView.register(UINib(nibName: "TransferTicketTableViewCell", bundle: nil), forCellReuseIdentifier: "TransferTicketTableViewCell")
         self.tblTransferTicketTableView.register(UINib(nibName: "TransferTicketHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TransferTicketHeaderView")
     }
+    
+    func resendTicket(){
+        if Reachability.isConnectedToNetwork() //check internet connectivity
+        {
+            self.view.showLoading(centreToView: self.view)
+            transferViewModel.reSendTransferTicket(complition: { isTrue, messageShowToast in
+                if isTrue == true {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: messageShowToast)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    
     @objc func navigateButton(_ sender: UIButton) {
         if let data = self.viewModel.myTicket?.items?[sender.tag]{
             if data.isTransfer ?? false{
-                
+                self.resendTicket()
             }else{
                 if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC{
                     continueToTransferVC.viewModel.ticketDetails = self.viewModel.ticketDetails

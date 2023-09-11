@@ -453,10 +453,12 @@ extension DropDown: UITableViewDelegate {
             endEditing(true)
         }
         if let selected = optionArray.firstIndex(where: { $0 == selectedText }) {
-            if let id = optionIds?[selected] {
-                didSelectCompletion(selectedText, selected, id)
-            } else {
-                didSelectCompletion(selectedText, selected, 0)
+           if optionIds?.indices.contains(selected) ?? false{
+                if let id = optionIds?[selected] {
+                    didSelectCompletion(selectedText, selected, id)
+                } else {
+                    didSelectCompletion(selectedText, selected, 0)
+                }
             }
         }
     }
