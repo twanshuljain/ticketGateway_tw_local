@@ -21,9 +21,13 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var viewNoData : UIView!
     @IBOutlet weak var lblNoData : UILabel!
+    @IBOutlet weak var imgTime : UIImageView!
+    @IBOutlet weak var lblSeperator : UILabel!
     
     var getEvent:GetEventModel?{
         didSet{
+            self.lblSeperator.isHidden = false
+            self.imgTime.isHidden = false
             self.viewNoData.isHidden = true
             if getEvent?.likeCountData?.isLiked != nil{
                 btnLike.isSelected = getEvent?.likeCountData?.isLiked ?? false
@@ -32,11 +36,19 @@ class EventTableViewCell: UITableViewCell {
             }
             self.lblTitle.text = getEvent?.event?.title ?? ""
             self.lblPrice.text = "$ \(getEvent?.ticketOnwards ?? 0) onwards"
-            self.lblAddress.text = getEvent?.locationType == "VIRTUAL" ? "Virtual Event" : getEvent?.locationType == "MULTIPLE" ? "Multi Location" : (getEvent?.location?.eventAddress ?? "-")
+            self.lblAddress.text = getEvent?.locationType == VIRTUAL ? VirtualEvent : getEvent?.locationType == MULTIPLE ? MultipleLocation : (getEvent?.location?.eventAddress ?? "-")
             //            self.lblAddress.text = getEvent?.location?.eventAddress ?? "-"
 
-            self.lblDate.text = "  " + "\(getEvent?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getEvent?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-            self.lblTime.text = "  " + "\(getEvent?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getEvent?.date?.eventEndTime?.getFormattedTime() ?? "")"
+            if getEvent?.locationType == MULTIPLE{
+                self.imgTime.isHidden = true
+                self.lblSeperator.isHidden = true
+                self.lblDate.text = " \(RecurringDates)"
+                self.lblTime.text = ""
+            }else{
+                self.lblDate.text = "  " + "\(getEvent?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getEvent?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+                self.lblTime.text = "  " + "\(getEvent?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getEvent?.date?.eventEndTime?.getFormattedTime() ?? "")"
+            }
+            
             if let imageUrl = getEvent?.coverImage?.eventCoverImage{
                 if imageUrl.contains(APIHandler.shared.previousBaseURL){
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""

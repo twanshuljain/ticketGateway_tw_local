@@ -92,8 +92,8 @@ extension ManageSellTicketSuccessfully {
     }
     func btnGoToOrderAction() {
         //self.showToast(message: AMOUNT_ADDED_SUCCESSFULLY)
-        self.popViewController()
-        
+        //self.popViewController()
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func popViewController(){
@@ -113,7 +113,7 @@ extension ManageSellTicketSuccessfully {
 // MARK: - NavigationBarViewDelegate
 extension ManageSellTicketSuccessfully: NavigationBarViewDelegate {
     func navigationBackAction() {
-        self.popViewController()
-        //self.navigationController?.popViewController(animated: true)
+        //self.popViewController()
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }

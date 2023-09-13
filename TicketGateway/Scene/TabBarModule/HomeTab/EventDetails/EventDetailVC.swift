@@ -158,7 +158,7 @@ extension EventDetailVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.toSetPageControll()
-        if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+        if self.viewModel.eventDetail?.locationType == MULTIPLE {
             self.dropDown()
         }
         //self.bottomView.isHidden = viewModel.isFromPast
@@ -257,7 +257,7 @@ extension EventDetailVC {
                   self.collvwEventImages.reloadData()
                   self.setData()
                   self.loadData()
-                  if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+                  if self.viewModel.eventDetail?.locationType == MULTIPLE {
                       self.dateAndLocationStackView.isHidden = false
                      self.vwStackHeight.constant = 155
                   } else {
@@ -285,7 +285,7 @@ extension EventDetailVC {
                                 self.collvwEventImages.reloadData()
                                 self.setData()
                                 self.loadData()
-                                if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+                                if self.viewModel.eventDetail?.locationType == MULTIPLE {
                                     self.dateAndLocationStackView.isHidden = false
                                    self.vwStackHeight.constant = 155
                                 } else {
@@ -416,7 +416,7 @@ extension EventDetailVC {
         self.lblTime.text = startTime +  " " + "-" + " " + endTime
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
         
-        if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+        if self.viewModel.eventDetail?.locationType == MULTIPLE {
             self.lblEventDate.isHidden = true
             self.lblDate.isHidden = true
             self.lblTime.isHidden = true
@@ -470,7 +470,7 @@ extension EventDetailVC {
         }else{
             self.tagsView.isHidden = true
         }
-        if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+        if self.viewModel.eventDetail?.locationType == MULTIPLE {
             self.dropDown()
         }
         
@@ -521,9 +521,11 @@ extension EventDetailVC {
                     
                     let startDate = self.viewModel.recurringList?.compactMap({ $0.startDate?.getDateFormattedFrom() }).first ?? ""
                     let endDate = self.viewModel.recurringList?.compactMap({ $0.endDate?.getDateFormattedFromTo() }).first ?? ""
-                    let startTime = self.viewModel.recurringList?.compactMap({ $0.startTime?.getFormattedTime() }).first ?? ""
-                    let endTime = self.viewModel.recurringList?.compactMap({ $0.endTime?.getFormattedTime() }).first ?? ""
+                   // let startTime = self.viewModel.recurringList?.compactMap({ $0.startTime?.getFormattedTime() }).first ?? ""
+                   // let endTime = self.viewModel.recurringList?.compactMap({ $0.endTime?.getFormattedTime() }).first ?? ""
                     
+                    let startTime = self.viewModel.recurringList?.compactMap({ $0.startTime }).first ?? ""
+                    let endTime = self.viewModel.recurringList?.compactMap({ $0.endTime }).first ?? ""
                     
                     let date = "\(startDate)" +  " " + "-" + " " + "\(endDate) "
                     let time = "\(startTime)" +  " " + "-" + " " + "\(endTime) "
@@ -536,8 +538,8 @@ extension EventDetailVC {
                 for i in 0...startDate.count-1{
                     let startDate = self.viewModel.recurringList?[i].startDate?.getDateFormattedFrom() ?? ""
                     let endDate = self.viewModel.recurringList?[i].endDate?.getDateFormattedFromTo() ?? ""
-                    let startTime = self.viewModel.recurringList?[i].startTime?.getFormattedTime() ?? ""
-                    let endTime = self.viewModel.recurringList?[i].endTime?.getFormattedTime() ?? ""
+                    let startTime = self.viewModel.recurringList?[i].startTime ?? ""  //startTime?.getFormattedTime() ?? ""
+                    let endTime = self.viewModel.recurringList?[i].endTime ?? ""  //endTime?.getFormattedTime() ?? ""
                     
                     let date = "\(startDate)" +  " " + "-" + " " + "\(endDate) "
                     let time = "\(startTime)" +  " " + "-" + " " + "\(endTime) "
@@ -624,7 +626,7 @@ extension EventDetailVC {
               DispatchQueue.main.async {
                 let newEvent = EKEvent(eventStore: self.store)
                 var eventObject = self.viewModel.eventDetail?.eventDateObj ?? EventDateObj()
-                  if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+                  if self.viewModel.eventDetail?.locationType == MULTIPLE {
                       var startDate = ""
                       var endDate = ""
                       var startTime = ""
@@ -754,7 +756,7 @@ extension EventDetailVC {
         if let view = createView(storyboard: .home, storyboardID: .EventMapVC) as? EventMapVC{
             let eventLocation = self.viewModel.eventDetail?.eventLocation
             
-            if self.viewModel.eventDetail?.locationType == "MULTIPLE" {
+            if self.viewModel.eventDetail?.locationType == MULTIPLE {
                 self.viewModel.multilocation?.forEach({ data in
                     if data.id == self.viewModel.selectedEventLocationId{
                         view.latitude = (data.latitude as? NSString)?.doubleValue ?? (eventLocation?.latitude ?? 0.0)
