@@ -176,6 +176,7 @@
 		188CE1B42A1367EA00BCEC76 /* TicketAddInOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188CE1B22A1367EA00BCEC76 /* TicketAddInOrderCell.xib */; };
 		188CE1BE2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */; };
 		188D48192A73A86500ED2D5E /* OrganizersandArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */; };
+		1890EA022AB1976800B5CB3E /* TicketTransferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890EA012AB1976800B5CB3E /* TicketTransferModel.swift */; };
 		1892EE1C29E5492300AD7CC7 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1B29E5492300AD7CC7 /* UIView+Extension.swift */; };
 		1892EE1E29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1D29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift */; };
 		1892EE2029E54A7900AD7CC7 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1F29E54A7900AD7CC7 /* LoginVC.swift */; };
@@ -618,6 +619,7 @@
 		188CE1B22A1367EA00BCEC76 /* TicketAddInOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketAddInOrderCell.xib; sourceTree = "<group>"; };
 		188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingPaymentMethodVC.swift; sourceTree = "<group>"; };
 		188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizersandArtistViewModel.swift; sourceTree = "<group>"; };
+		1890EA012AB1976800B5CB3E /* TicketTransferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTransferModel.swift; sourceTree = "<group>"; };
 		1892EE1B29E5492300AD7CC7 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1892EE1D29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeLoginSignupVC.swift; sourceTree = "<group>"; };
 		1892EE1F29E54A7900AD7CC7 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -1471,6 +1473,7 @@
 				18717F7F2A2A1BE9002F36BC /* ContinueToTransferVC.swift */,
 				183622662AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift */,
 				183622682AA5CDDD00CE9FFC /* ContinueTransferRequest.swift */,
+				1890EA012AB1976800B5CB3E /* TicketTransferModel.swift */,
 			);
 			path = TransferContinue;
 			sourceTree = "<group>";
@@ -3321,6 +3324,7 @@
 				18FBC0C52A309239002CF129 /* ManageEventSellTicketCell.swift in Sources */,
 				18F5A4B92A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift in Sources */,
 				182B9FB12A73FA2300358311 /* EventBookingTicketOnApplyCouponViewModel.swift in Sources */,
+				1890EA022AB1976800B5CB3E /* TicketTransferModel.swift in Sources */,
 				18FBC0BC2A309239002CF129 /* ManageEventOrderVC.swift in Sources */,
 				1821FDE22A30A80800BD4AB6 /* RefundOptionsVC.swift in Sources */,
 				186FB9482A4026AA002B0E5C /* Date+Extension.swift in Sources */,

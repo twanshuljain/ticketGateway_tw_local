@@ -92,14 +92,28 @@ extension ManageSellTicketSuccessfully {
     }
     func btnGoToOrderAction() {
         //self.showToast(message: AMOUNT_ADDED_SUCCESSFULLY)
-        self.navigationController?.popToRootViewController(animated: true)
+        self.popViewController()
+        
+    }
+    
+    func popViewController(){
+        if let navigationController = self.navigationController{
+            for controller in navigationController.viewControllers {
+                if controller.isKind(of: MyTicketVC.self) {
+                    navigationController.popToViewController(controller, animated: true)
+                    break
+                }
+            }
+        }else{
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 
 // MARK: - NavigationBarViewDelegate
 extension ManageSellTicketSuccessfully: NavigationBarViewDelegate {
     func navigationBackAction() {
+        self.popViewController()
         //self.navigationController?.popViewController(animated: true)
-        self.navigationController?.popToRootViewController(animated: true)
     }
 }

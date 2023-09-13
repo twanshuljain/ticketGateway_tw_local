@@ -17,6 +17,7 @@ class ContinueToTransferViewModel {
     var mobileNumber = ""
     var isChangeName = false
     var isTCsChecked = false
+    var ticketTransfer: TicketTransfer?
 }
 
 
@@ -35,9 +36,9 @@ extension ContinueToTransferViewModel{
     
     
     func transferTicket(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.TransferTicket.rawValue + "\(self.ticketDetails?.eventId ?? 0)/"
+        let getURL = APIName.TransferTicket.rawValue + "\(self.myTicket?.ticketOrderID ?? 0)/"
         let param = ContinueTransferRequest(cell_phone: self.mobileNumber, email: self.email, confirm_email: self.confirmEmail, full_name: self.fullName)
-        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<TicketTransfer>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -51,12 +52,13 @@ extension ContinueToTransferViewModel{
         }
     }
     
-    func reSendTransferTicket(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.ResendTicketTransfer.rawValue + "\(self.myTicket?.transferredID ?? 0)/"
-        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
+    func reSendTransferTicket(transferId: Int?,complition: @escaping (Bool,String) -> Void ) {
+        let getURL = APIName.ResendTicketTransfer.rawValue + "\(transferId ?? 0)/"
+        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<TicketTransfer>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
+                    self.ticketTransfer = response.data
                     complition(true, response.message ?? "")
                 }else{
                     complition(false,response.message ?? "error message")
