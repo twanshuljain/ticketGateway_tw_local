@@ -83,6 +83,7 @@ public enum APIName: String {
     case scanTicket = "tgscan/login/"
     case scanDetail = "tgscan/scan/detail"
     case scanBarCode = "tgscan/scan/ticket/"
+    case scanOverview = "tgscan/overview"
 }
 public enum GroupApiName: String {
     case auth = "auth"

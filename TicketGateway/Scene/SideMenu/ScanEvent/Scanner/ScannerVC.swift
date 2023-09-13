@@ -281,7 +281,9 @@ extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
 // MARK: - AlertAction
 extension ScannerVC: AlertAction {
     func alertYesaction() {
-        let view = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC)
-        self.navigationController?.pushViewController(view, animated: true)
+        if let view = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC) as? ScanSummaryVC {
+            view.viewModel.scanSummaryModel.event_id = viewModel.getScanTicketDetails.eventId
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
 }

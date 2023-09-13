@@ -9,6 +9,6 @@ import Foundation
 
 class FindRFIDViewModel {
     // MARK: - Variables
-    var isConnected: Bool = false
+    var isConnected: Bool = true
     var getScanTicketDetails = GetScanTicketDetails()
 }

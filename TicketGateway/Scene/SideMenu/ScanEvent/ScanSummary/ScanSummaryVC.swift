@@ -26,6 +26,7 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
      let tblData = ["Tix to scan", "Tix Scanned", "Accepted", "Rejected", "Scanned Hard Tix", "Scanned PDF Tix", "Scanned Comps Tix"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        getScanOverview()
         self.setNavigationView()
         self.setFont()
         self.setTableView()
@@ -88,6 +89,33 @@ extension ScanSummaryVC {
         self.btnUpdateLiveOnServer.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnUpdateLiveOnServer.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
     }
+    func getScanOverview() {
+        if Reachability.isConnectedToNetwork() {
+            view.showLoading(centreToView: self.view)
+            viewModel.getScanOverview(completion: { isTrue, message in
+                if isTrue {
+                    self.dataSettingAfterScanOverview()
+                    self.view.stopLoading()
+                    self.tblScanSummaryTableView.reloadData()
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
+    func dataSettingAfterScanOverview() {
+        lblSunburnReload.text = viewModel.getScanSummaryData.eventName ?? "-"
+        lblDate.text = Date().convertToString()
+        lblTotalTicketValue.text = "\(viewModel.getScanSummaryData.totalTicketInEvent ?? 0)"
+    }
 }
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ScanSummaryVC: UITableViewDelegate, UITableViewDataSource {
@@ -97,6 +125,24 @@ extension ScanSummaryVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScanSummaryTableViewCell", for: indexPath) as! ScanSummaryTableViewCell
         let data = tblData[indexPath.row]
+        switch data {
+        case TicketStatusList.tixToScan.rawValue:
+            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixToScan ?? 0)"
+        case TicketStatusList.tixScanned.rawValue:
+            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixScanned ?? 0)"
+        case TicketStatusList.accepted.rawValue:
+            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixAccepted ?? 0)"
+        case TicketStatusList.rejected.rawValue:
+            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixRejected ?? 0)"
+        case TicketStatusList.scannedHardTix.rawValue:
+            cell.lblTitleValue.text = "\(0)"
+        case TicketStatusList.scannedPdfTix.rawValue:
+            cell.lblTitleValue.text = "\(0)"
+        case TicketStatusList.scannedCompsTix.rawValue:
+            cell.lblTitleValue.text = "\(0)"
+        default:
+            break
+        }
         cell.selectionStyle = .none
         cell.lblSummaryTitle.text = data
         return cell

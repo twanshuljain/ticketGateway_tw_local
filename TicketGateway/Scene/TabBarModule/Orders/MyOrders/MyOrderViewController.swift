@@ -43,13 +43,14 @@ class MyOrderViewController: UIViewController {
         setFont()
         setUI()
         setNavigationView()
+        setSearchBar()
     }
     override func viewWillAppear(_ animated: Bool) {
         viewModel.isFromUpcoming = true
         setButtonBackground()
         setButtonsTitle()
-        self.resetPage()
-        getMyOrderApiCall(isFromUpcoming: true)
+        resetPage()
+        getMyOrderApiCall(isFromUpcoming: true, searchText: "")
     }
 }
 // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -82,11 +83,16 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
 }
 // MARK: - Functions
 extension MyOrderViewController {
-    func getMyOrderApiCall(isFromUpcoming: Bool) {
+    func getMyOrderApiCall(isFromUpcoming: Bool, isFromSearch: Bool = false, searchText: String = "") {
         if Reachability.isConnectedToNetwork() {
+            if isFromSearch {
+                viewModel.myOrdersModel.search_query = searchText
+                viewModel.myOrdersModel.page = 1
+            }
             viewModel.myOrdersModel.filter_by = isFromUpcoming ? "upcoming" : "past"
             parentView.showLoading(centreToView: self.view)
             viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel,
+                                      isFromSearch: isFromSearch,
                                       completion: { isTrue, message in
                 if isTrue {
                     if isFromUpcoming {
@@ -125,7 +131,21 @@ extension MyOrderViewController {
         viewModel.myOrdersModel.page = 1
         viewModel.arrMyOrder.removeAll()
     }
-    
+    @objc func searchBarAction(_ sender: UITextField) {
+        let text = sender.text?.trimmingCharacters(in: .whitespaces)
+        if !(text?.isEmpty ?? false) {
+            getMyOrderApiCall(isFromUpcoming: viewModel.isFromUpcoming,
+                              isFromSearch: true,
+                              searchText: text ?? "-")
+        }
+    }
+    func setSearchBar() {
+        txtSearch.delegate = self
+        txtSearch.autocorrectionType = .no
+        txtSearch.spellCheckingType = .no
+        txtSearch.autocapitalizationType = .none
+        txtSearch.addTarget(self, action: #selector(searchBarAction(_:)), for: .allEditingEvents)
+    }
     func setTableView() {
         upComingTableView.separatorColor = .clear
         upComingTableView.delegate = self
@@ -213,6 +233,8 @@ extension MyOrderViewController {
         }
     }
     func upcomingAction() {
+        viewModel.myOrdersModel.search_query = ""
+        txtSearch.text = ""
         viewModel.isFromUpcoming = true
         setButtonBackground()
         //pastView.isHidden = true
@@ -221,6 +243,8 @@ extension MyOrderViewController {
         getMyOrderApiCall(isFromUpcoming: true)
     }
     func pastAction() {
+        viewModel.myOrdersModel.search_query = ""
+        txtSearch.text = ""
         viewModel.isFromUpcoming = false
         setButtonBackground()
         viewModel.arrMyOrder.removeAll()
@@ -237,8 +261,8 @@ extension MyOrderViewController {
     }
     func loadData() {
         viewModel.myOrdersModel.page += 1
-        if viewModel.arrMyOrder.count != viewModel.totalPage {
-            print("viewModel.totalPage", viewModel.totalPage)
+        if viewModel.arrMyOrder.count != viewModel.totalCount {
+            print("viewModel.totalCount", viewModel.totalCount)
             print("load more data")
             getMyOrderApiCall(isFromUpcoming: viewModel.isFromUpcoming)
         }
@@ -253,3 +277,22 @@ extension MyOrderViewController: NavigationBarViewDelegate {
         present(menu, animated: true, completion: nil)
     }
 }
+extension MyOrderViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Get the current text in the text field
+        guard let currentText = textField.text else {
+            return true
+        }
+        // Calculate the new text after applying the replacement
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        // When last character remove from search bar API should call Past Data should show.
+        if currentText.count == 1 && string == "" {
+            print("last character removed")
+            getMyOrderApiCall(isFromUpcoming: viewModel.isFromUpcoming,
+                              isFromSearch: true)
+        }
+        return true
+    }
+}
+
+

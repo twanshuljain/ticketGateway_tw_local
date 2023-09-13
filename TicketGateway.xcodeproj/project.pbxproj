@@ -63,6 +63,8 @@
 		183A263C2A4336FC00DC97E3 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */; };
 		183A263E2A43375600DC97E3 /* EventsOrganizesListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */; };
 		183D52542A459932005CAABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183D52532A459932005CAABC /* GoogleService-Info.plist */; };
+		18403DD12AB09BCA00E6F55C /* ScanSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18403DD02AB09BCA00E6F55C /* ScanSummaryModel.swift */; };
+		18403DD32AB09C1C00E6F55C /* GetScanSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18403DD22AB09C1C00E6F55C /* GetScanSummaryModel.swift */; };
 		18447DCD2AA9AFAB00DC4A80 /* GetScanDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18447DCC2AA9AFAB00DC4A80 /* GetScanDetailModel.swift */; };
 		18447DCF2AA9B2FC00DC4A80 /* ScanDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18447DCE2AA9B2FC00DC4A80 /* ScanDetailModel.swift */; };
 		18463E082AA1F9160074B1C6 /* GetOrganizerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */; };
@@ -510,6 +512,8 @@
 		183A263A2A4336FC00DC97E3 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		183A263D2A43375600DC97E3 /* EventsOrganizesListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsOrganizesListTableView.swift; sourceTree = "<group>"; };
 		183D52532A459932005CAABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18403DD02AB09BCA00E6F55C /* ScanSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSummaryModel.swift; sourceTree = "<group>"; };
+		18403DD22AB09C1C00E6F55C /* GetScanSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScanSummaryModel.swift; sourceTree = "<group>"; };
 		18447DCC2AA9AFAB00DC4A80 /* GetScanDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScanDetailModel.swift; sourceTree = "<group>"; };
 		18447DCE2AA9B2FC00DC4A80 /* ScanDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDetailModel.swift; sourceTree = "<group>"; };
 		18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOrganizerListModel.swift; sourceTree = "<group>"; };
@@ -2368,6 +2372,8 @@
 			children = (
 				18F5A4AF2A4EA55900CA18F7 /* ScanSummaryVC.swift */,
 				18F5A4B02A4EA55900CA18F7 /* ScanSummaryViewModel.swift */,
+				18403DD02AB09BCA00E6F55C /* ScanSummaryModel.swift */,
+				18403DD22AB09C1C00E6F55C /* GetScanSummaryModel.swift */,
 			);
 			path = ScanSummary;
 			sourceTree = "<group>";
@@ -3298,6 +3304,7 @@
 				18A338D82A4D8BA100D7C194 /* LeaderProfileTableViewCell.swift in Sources */,
 				18A338D02A4D634400D7C194 /* BandLeaderProfileViewModel.swift in Sources */,
 				187E22922A40787E003236EC /* NumberVerifyRequest.swift in Sources */,
+				18403DD32AB09C1C00E6F55C /* GetScanSummaryModel.swift in Sources */,
 				18B2B21F2A04D21B001DF3E5 /* EventDetailVC.swift in Sources */,
 				188A67FC2A0CF11100987BAD /* TicketTypesCell.swift in Sources */,
 				18FDDED92A2DBBFC008BEEF0 /* GetEventCategoryModel.swift in Sources */,
@@ -3359,6 +3366,7 @@
 				189FAECC29F1472900B8325A /* AppShareData.swift in Sources */,
 				18A73E0A29EFD5D7007365CB /* UserDefaultManager.swift in Sources */,
 				18F5A4BD2A4EA55900CA18F7 /* SearchViewModel.swift in Sources */,
+				18403DD12AB09BCA00E6F55C /* ScanSummaryModel.swift in Sources */,
 				18FBC0E32A309239002CF129 /* CostumeListTableView.swift in Sources */,
 				18A8497829EE6B5A00F92BCD /* RSCountryTableViewCell.swift in Sources */,
 				1821FDEA2A30B51A00BD4AB6 /* RequestRefundVC.swift in Sources */,

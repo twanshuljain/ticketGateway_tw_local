@@ -10,12 +10,13 @@ final class MyOrderViewModel {
     // MARK: Custom Functions
     var arrMyOrder: [GetMyOrderItem] = []
     var myOrdersModel = MyOrdersModel()
-    var totalPage: Int = 0
+    var totalCount: Int = 0
     var isFromUpcoming: Bool = false
     var upcomingCount: Int = 0
     var pastCount: Int = 0 
     // MARK: Custom Functions
     func myOrdersApiCall(myOrdersModel: MyOrdersModel,
+                         isFromSearch: Bool = false,
                          completion: @escaping (Bool, String) -> Void) {
         APIHandler.shared.executeRequestWith(apiName: .myOrders, parameters: myOrdersModel, methodType: .GET) { (result: Result<ResponseModal<GetMyOrderData>, Error>) in
             switch result {
@@ -24,15 +25,19 @@ final class MyOrderViewModel {
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
-                            self.arrMyOrder.append(contentsOf: data.items!)
-                            self.totalPage = data.total ?? 0
+                            if isFromSearch {
+                                self.arrMyOrder.removeAll()
+                                self.arrMyOrder = data.items ?? []
+                            } else {
+                                self.arrMyOrder.append(contentsOf: data.items ?? [])
+                            }
+                            self.totalCount = data.total ?? 0
                             completion(true, response.message ?? "")
                         }
                     }
                 }
             case .failure(let error):
-                print("error", error)
-                print("failure my order api ")
+                print("myorder api error:-", error)
                 completion(false, error as? String ?? "")
             }
         }
