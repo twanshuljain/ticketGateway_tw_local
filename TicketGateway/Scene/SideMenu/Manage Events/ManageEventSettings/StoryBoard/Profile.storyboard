@@ -558,6 +558,7 @@
                                                             </view>
                                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qun-OO-s0m" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="5" width="325" height="40"/>
+                                                                <color key="backgroundColor" name="BgPurpleColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="dNB-6f-hGS"/>
                                                                 </constraints>
@@ -597,6 +598,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hef-e0-79T">
                                                 <rect key="frame" x="0.0" y="188" width="353" height="79"/>
@@ -610,6 +612,7 @@
                                                     </label>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivB-dr-Wc5" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="29" width="353" height="50"/>
+                                                        <color key="backgroundColor" name="BgPurpleColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="3QS-V4-IfA"/>
                                                         </constraints>
@@ -964,6 +967,9 @@
         <image name="profile" width="100.33333587646484" height="100"/>
         <namedColor name="BackgroundColor">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BgPurpleColor">
+            <color red="0.92549019607843142" green="0.91764705882352937" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="EndGradient">
             <color red="0.0" green="0.78799998760223389" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -551,6 +551,7 @@ extension HomeVC: FavouriteAction {
             return
         }
         AppShareData().commanEventLikeApiCall(likeStatus: eventDetail.likeCountData?.isLiked ?? false, eventId: eventDetail.event?.id ?? 0, completion: { _,_ in
+            self.funcCallApi()
         })
     }
 }

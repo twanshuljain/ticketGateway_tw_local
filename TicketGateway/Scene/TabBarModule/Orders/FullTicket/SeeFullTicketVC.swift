@@ -96,9 +96,11 @@ extension SeeFullTicketVC {
         self.vwNavigationView.lblTitle.text = MY_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.vwNavigationView.btnRight.isHidden = false
-        self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
-        self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
+        if !self.viewModel.isFromPast{
+            self.vwNavigationView.btnRight.isHidden = false
+            self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
+            self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
+        }
     }
     func setProfile(){
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
@@ -126,6 +128,9 @@ extension SeeFullTicketVC {
             }
         }))
         actionsheet.addAction(UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+            if let eventDetail = self.viewModel.eventDetail {
+                self.shareEventDetailData(eventDetail: eventDetail)
+            }
         }))
         actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
@@ -310,6 +315,18 @@ extension SeeFullTicketVC {
             
             //funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
         }
+    }
+    
+    func shareEventDetailData(eventDetail: EventDetail) {
+        self.shareEventDetailData(
+            eventStartDate: eventDetail.eventDateObj?.eventStartDate ?? "",
+            eventEndDate: eventDetail.eventDateObj?.eventEndDate ?? "",
+            eventCoverImage: eventDetail.eventCoverImageObj?.eventCoverImage,
+            eventTitle: eventDetail.event?.title,
+            eventStartTime: eventDetail.eventDateObj?.eventStartTime ?? "",
+            eventEndTime: eventDetail.eventDateObj?.eventEndDate ?? "",
+            eventDescription: eventDetail.event?.eventDescription
+        )
     }
 }
 // MARK: - UITableViewDelegate,UITableViewDataSource

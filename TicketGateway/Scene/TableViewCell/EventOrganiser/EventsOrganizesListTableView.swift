@@ -276,7 +276,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                     if arrDataCategorySearch.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataCategorySearch[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
-                       // cell.lblAddress.text = cell.getEvent?.locationType == "VIRTUAL" ? "Virtual Event" : cell.getEvent?.locationType == "MULTIPLE" ? "Multi Location" : (cell.getEvent?.location?.eventAddress ?? "-")
+                       // cell.lblAddress.text = cell.getEvent?.locationType == "VIRTUAL" ? VirtualEvent : cell.getEvent?.locationType == "MULTIPLE" ? MultipleLocation : (cell.getEvent?.location?.eventAddress ?? "-")
                     }
                 case .weekend:
                     if arrDataaWeekend.indices.contains(indexPath.row){
@@ -287,7 +287,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                     if arrDataaVirtual.indices.contains(indexPath.row){
                         cell.getEvent = self.arrDataaVirtual[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataaVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
-                      //  cell.lblAddress.text = cell.getEvent?.locationType == "VIRTUAL" ? "Virtual Event" : cell.getEvent?.locationType == "MULTIPLE" ? "Multi Location" : (cell.getEvent?.location?.eventAddress ?? "-")
+                      //  cell.lblAddress.text = cell.getEvent?.locationType == "VIRTUAL" ? VirtualEvent : cell.getEvent?.locationType == "MULTIPLE" ? MultipleLocation : (cell.getEvent?.location?.eventAddress ?? "-")
                         
                     }
                 case .popular:

@@ -23,6 +23,7 @@ class ContinueToTransferVC: UIViewController {
     @IBOutlet weak var lblOnceTicketTransfer: UILabel!
     @IBOutlet weak var btnTransferTicket: CustomButtonGradiant!
     @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak var viewChangeName: UIView!
     
     // MARK: - Variables
     var viewModel = ContinueToTransferViewModel()
@@ -75,6 +76,7 @@ extension ContinueToTransferVC {
         self.btnCheck.cornerRadius = 2
         self.btnCheck.borderWidth = 0.5
         self.btnCheck.borderColor = .lightGray
+        self.viewChangeName.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
     
     func setData(){
@@ -126,6 +128,7 @@ extension ContinueToTransferVC {
     }
     
     @IBAction func btnChangeNumberAction(_ sender:UIButton){
+        self.viewChangeName.backgroundColor = .clear
         self.viewModel.isChangeName = true
         self.txtNameOnTicket.isUserInteractionEnabled = true
     }

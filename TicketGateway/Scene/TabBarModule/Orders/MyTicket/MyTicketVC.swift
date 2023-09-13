@@ -15,6 +15,8 @@ class MyTicketVC: UIViewController {
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     
     var viewModel: MyTicketViewModel = MyTicketViewModel()
+    var myOrderViewModel: MyOrderViewModel = MyOrderViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -75,9 +77,11 @@ extension MyTicketVC {
         self.vwNavigationView.lblTitle.text = MY_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.vwNavigationView.btnRight.isHidden = false
-        self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
-        self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
+        if !self.viewModel.isFromPast{
+            self.vwNavigationView.btnRight.isHidden = false
+            self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
+            self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
+        }
     }
     func setFont() {
         self.btnAddAppToWallet.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -166,6 +170,7 @@ extension MyTicketVC {
         let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC) as? SeeFullTicketVC
         seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails
         seeFullTicketVC?.viewModel.eventDetail = viewModel.eventDetail
+        seeFullTicketVC?.viewModel.myTicket = viewModel.myTicket
         seeFullTicketVC?.viewModel.myTicketList = viewModel.myTicket?.items?[sender.tag]
         seeFullTicketVC?.viewModel.isFromPast = self.viewModel.isFromPast
         self.navigationController?.pushViewController(seeFullTicketVC!, animated: false)
