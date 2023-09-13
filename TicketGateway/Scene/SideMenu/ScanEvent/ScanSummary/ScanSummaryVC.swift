@@ -7,6 +7,7 @@
 // swiftlint: disable line_length
 import UIKit
 import Charts
+import SDWebImage
 class ScanSummaryVC: UIViewController, ChartViewDelegate {
     // MARK: - Outlets
     @IBOutlet weak var chartView: PieChartView!
@@ -21,6 +22,7 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
     @IBOutlet weak var btnUpdateLiveOnServer: UIButton!
     @IBOutlet weak var tblViewHeight: NSLayoutConstraint!
     @IBOutlet weak var btnDownloadReportWidth: NSLayoutConstraint!
+    @IBOutlet weak var imgProfile: UIImageView!
     // MARK: - Variables
     let viewModel = ScanSummaryViewModel()
      let tblData = ["Tix to scan", "Tix Scanned", "Accepted", "Rejected", "Scanned Hard Tix", "Scanned PDF Tix", "Scanned Comps Tix"]
@@ -30,7 +32,6 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
         self.setNavigationView()
         self.setFont()
         self.setTableView()
-        self.setChart()
         self.chartView.delegate = self
         self.tblScanSummaryTableView.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblViewHeight.constant = self.tblScanSummaryTableView.contentSize.height
@@ -55,8 +56,9 @@ extension ScanSummaryVC {
     }
     func setChart() {
         var entries = [ChartDataEntry]()
-        for num in 0...7 {
-            entries.append(ChartDataEntry(x: Double(num), y: Double(num)))
+        viewModel.arrOfValueChart.forEach { data in
+            print("data", data)
+            entries.append(ChartDataEntry(x: Double(data), y: Double(data)))
         }
         let set = PieChartDataSet(entries: entries)
         set.colors = ChartColorTemplates.chartColor()
@@ -96,6 +98,7 @@ extension ScanSummaryVC {
                 if isTrue {
                     self.dataSettingAfterScanOverview()
                     self.view.stopLoading()
+                    self.setChart()
                     self.tblScanSummaryTableView.reloadData()
                 } else {
                     DispatchQueue.main.async {
@@ -115,6 +118,20 @@ extension ScanSummaryVC {
         lblSunburnReload.text = viewModel.getScanSummaryData.eventName ?? "-"
         lblDate.text = Date().convertToString()
         lblTotalTicketValue.text = "\(viewModel.getScanSummaryData.totalTicketInEvent ?? 0)"
+        if let url = (APIHandler.shared.s3URL + (viewModel.getScanSummaryData.eventCoverImage ?? "")).getCleanedURL() {
+            self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+        } else {
+            self.imgProfile.image = UIImage(named: "homeDas")
+        }
+        viewModel.arrOfValueChart = []
+        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixToScan ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixScanned ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixAccepted ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixRejected ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.scannedHardTix ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.scannedPdfTix ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.scannedCompsTix ?? 0)
+        print("viewModel.arrOfValueChart:-", viewModel.arrOfValueChart)
     }
 }
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -128,18 +145,25 @@ extension ScanSummaryVC: UITableViewDelegate, UITableViewDataSource {
         switch data {
         case TicketStatusList.tixToScan.rawValue:
             cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixToScan ?? 0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFDDC6")
         case TicketStatusList.tixScanned.rawValue:
             cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixScanned ?? 0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#CDC8F9")
         case TicketStatusList.accepted.rawValue:
             cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixAccepted ?? 0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#A0CF67")
         case TicketStatusList.rejected.rawValue:
             cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixRejected ?? 0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FB896B")
         case TicketStatusList.scannedHardTix.rawValue:
             cell.lblTitleValue.text = "\(0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFD467")
         case TicketStatusList.scannedPdfTix.rawValue:
             cell.lblTitleValue.text = "\(0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#C6E0FF")
         case TicketStatusList.scannedCompsTix.rawValue:
             cell.lblTitleValue.text = "\(0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFBDE1")
         default:
             break
         }

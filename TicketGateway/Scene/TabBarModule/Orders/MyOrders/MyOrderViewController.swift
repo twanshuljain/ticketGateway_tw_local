@@ -283,8 +283,6 @@ extension MyOrderViewController: UITextFieldDelegate {
         guard let currentText = textField.text else {
             return true
         }
-        // Calculate the new text after applying the replacement
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
         // When last character remove from search bar API should call Past Data should show.
         if currentText.count == 1 && string == "" {
             print("last character removed")

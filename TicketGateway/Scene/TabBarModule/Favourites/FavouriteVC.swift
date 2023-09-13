@@ -36,7 +36,10 @@ class FavouriteVC: UIViewController {
         self.configure()
         self.setCollectionView()
         self.setFont()
-        self.apiCall()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateData()
     }
 }
 // MARK: - Functions
@@ -182,7 +185,8 @@ extension FavouriteVC {
     }
     func btnLikeAction(indexPath: IndexPath) {
         var eventId: Int = 0
-        if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
+//        if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
+        if viewModel.isForVenue {
             eventId = viewModel.arrSuggestionsList[indexPath.row].event?.id ?? 0
         } else if !viewModel.isForVenue {
             eventId = viewModel.arrFavouriteList[indexPath.row].eventId ?? 0
@@ -199,7 +203,8 @@ extension FavouriteVC {
                     if isTrue {
                         DispatchQueue.main.async {
                             self.view.stopLoading()
-                            if self.viewModel.isForVenue && self.viewModel.arrVenueList.isEmpty {
+//                            if self.viewModel.isForVenue && self.viewModel.arrVenueList.isEmpty {
+                            if self.viewModel.isForVenue {
                                 self.viewModel.arrSuggestionsList.removeAll()
                                 self.getSuggestionsList(categoryId: 3)
                             } else if self.viewModel.isForVenue {
@@ -252,7 +257,8 @@ extension FavouriteVC {
     }
     func navigateToDetailVc(index: IndexPath) {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
-            if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
+//            if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
+            if viewModel.isForVenue {
                 if viewModel.arrSuggestionsList.indices.contains(index.row) {
                     view.viewModel.eventId = viewModel.arrSuggestionsList[index.row].event?.id
                 }
@@ -333,7 +339,8 @@ extension FavouriteVC {
 // MARK: - TableView Delegate
 extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
+//        if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
+        if viewModel.isForVenue {
             return self.viewModel.arrSuggestionsList.count
         } else if !viewModel.isForVenue {
             return viewModel.arrFavouriteList.count
@@ -343,7 +350,8 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as? FavouriteTableViewCell {
-            if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
+//            if viewModel.arrVenueList.isEmpty && viewModel.isForVenue {
+            if viewModel.isForVenue {
                 if viewModel.arrSuggestionsList.indices.contains(indexPath.row){
                     cell.getSuggestionsData = self.viewModel.arrSuggestionsList[indexPath.row]
                 }

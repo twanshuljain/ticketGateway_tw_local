@@ -507,7 +507,7 @@
                                                     <constraint firstAttribute="height" constant="250" id="fYC-fn-rPM"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile_ip" translatesAutoresizingMaskIntoConstraints="NO" id="zEl-XI-5gO">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zEl-XI-5gO">
                                                 <rect key="frame" x="169.66666666666666" y="58" width="54" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="i5x-XV-zrl"/>
@@ -834,12 +834,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IcS-cW-rVQ" customClass="PieChartView" customModule="Charts">
                                                 <rect key="frame" x="16" y="164" width="361" height="300"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile_ip" translatesAutoresizingMaskIntoConstraints="NO" id="xKF-oP-53l">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xKF-oP-53l">
                                                         <rect key="frame" x="140.66666666666666" y="110" width="80" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="98Z-gL-quQ"/>
                                                             <constraint firstAttribute="height" constant="80" id="hcu-DH-r4k"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="40"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1004,6 +1009,7 @@
                         <outlet property="btnDownloadReportWidth" destination="4Hm-Ks-0Pr" id="uii-0l-5WY"/>
                         <outlet property="btnUpdateLiveOnServer" destination="AM7-XN-4TX" id="JJ3-md-dgI"/>
                         <outlet property="chartView" destination="IcS-cW-rVQ" id="3NH-Ug-vDq"/>
+                        <outlet property="imgProfile" destination="xKF-oP-53l" id="xqR-py-vI9"/>
                         <outlet property="lblDate" destination="B2d-gN-ejO" id="wtV-XV-52k"/>
                         <outlet property="lblSunburnReload" destination="yBg-rX-wVN" id="CmA-sf-RiU"/>
                         <outlet property="lblTotalTicketValue" destination="zuI-Xv-UBP" id="4r3-8E-PKn"/>
@@ -1348,7 +1354,7 @@
                                                     <constraint firstAttribute="height" constant="250" id="sBO-Aa-TGs"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile_ip" translatesAutoresizingMaskIntoConstraints="NO" id="WIv-uQ-9en">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WIv-uQ-9en">
                                                 <rect key="frame" x="169.66666666666666" y="58" width="54" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="9Lr-Qp-Hs9"/>

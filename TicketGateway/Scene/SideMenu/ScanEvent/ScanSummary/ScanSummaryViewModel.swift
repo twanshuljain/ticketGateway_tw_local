@@ -12,6 +12,7 @@ class ScanSummaryViewModel {
     var isOnline: Bool = true
     var scanSummaryModel = ScanSummaryModel()
     var getScanSummaryData = GetScanSummaryData()
+    var arrOfValueChart: [Int] = []
     // MARK: Custom Functions
     func getScanOverview(completion: @escaping (Bool, String) -> Void) {
         APIHandler.shared.executeRequestWith(apiName: .scanOverview, parameters: scanSummaryModel, methodType: .GET) { (result: Result<ResponseModal<GetScanSummaryData>, Error>) in
