@@ -74,7 +74,7 @@ class FavouriteViewModel {
         }
     }
     func GetEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
-        let url = APIName.GetEventDetail.rawValue + "\(0)"  + "/"
+        let url = APIName.GetEventDetail.rawValue + "\(eventId)"  + "/"
         APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
