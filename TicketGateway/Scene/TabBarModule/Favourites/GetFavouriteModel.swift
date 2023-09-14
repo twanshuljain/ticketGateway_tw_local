@@ -70,3 +70,33 @@ struct GetFavouriteCoverImage : Codable {
         case eventId = "event_id"
     }
 }
+// MARK: Get Venue Data
+struct GetVenueData : Codable {
+    let items : [GetVenueItem]?
+    let total : Int?
+    let page : Int?
+    let size : Int?
+    let pages : String?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case items = "items"
+        case total = "total"
+        case page = "page"
+        case size = "size"
+        case pages = "pages"
+    }
+}
+struct GetVenueItem: Codable {
+    let id: Int?
+    let venueName: String?
+    let image: String?
+    let totalLike: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case image = "image"
+        case venueName = "venue_name"
+        case totalLike = "total_like"
+    }
+}

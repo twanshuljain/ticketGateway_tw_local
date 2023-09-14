@@ -82,6 +82,33 @@ class FavouriteTableViewCell: UITableViewCell {
             }
         }
     }
+    var getVenueData: GetVenueItem? {
+        didSet {
+            lblTitle.text = getVenueData?.venueName ?? "-"
+            lblAddress.text = "NA"
+            lblDate.text = "NA"
+            lblTime.text = "NA"
+//            btnLike.setImage(UIImage(named: (getVenueData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+            if let imageUrl = getVenueData?.image {
+                if imageUrl.contains(APIHandler.shared.previousBaseURL) {
+                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                        self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    } else {
+                        self.imgImages.image = UIImage(named: "homeDas")
+                    }
+                } else {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
+                        self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    } else {
+                        self.imgImages.image = UIImage(named: "homeDas")
+                    }
+                }
+            } else {
+                self.imgImages.image = UIImage(named: "homeDas")
+            }
+        }
+    }
     @IBAction func likeButtonAction(_ sender: UIButton) {
         likeButtonPressed()
     }

@@ -11,7 +11,7 @@ class FavouriteViewModel {
     var favouriteModel: FavouriteModel = FavouriteModel()
     var venueModel: VenueModel = VenueModel()
     var arrFavouriteList: [GetFavouriteItem] = []
-    var arrVenueList: [GetFavouriteItem] = []
+    var arrVenueList: [GetVenueItem] = []
     var totalPageEvent: Int = 0
     var totalPageVenue: Int = 0
     var isForVenue: Bool = false
@@ -20,6 +20,7 @@ class FavouriteViewModel {
     var arrSuggestionsList : [GetEventModel] = [GetEventModel]()
     var eventScrollToValue = 0
     var venueScrollToValue = 0
+    var eventDetailViewModel = EventDetailViewModel()
     // MARK: Custom Functions
     func getFavouriteList(favouriteModel: FavouriteModel,
                           completion: @escaping (Bool, String) -> Void) {
@@ -53,7 +54,7 @@ class FavouriteViewModel {
             apiName: .myVenue,
             parameters: venueModel,
             methodType: .GET
-        ) { (result: Result<ResponseModal<GetFavouriteData>, Error>) in
+        ) { (result: Result<ResponseModal<GetVenueData>, Error>) in
             switch result {
             case .success(let response):
                 print("success my Venue api")
@@ -83,7 +84,6 @@ class FavouriteViewModel {
                     print("response....",response)
                     DispatchQueue.main.async {
                         self.eventDetail = response.data ?? EventDetail()
-                        print("--------------------",self.eventDetail as Any)
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")

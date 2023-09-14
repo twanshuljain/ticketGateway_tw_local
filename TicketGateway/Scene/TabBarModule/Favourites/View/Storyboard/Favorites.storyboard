@@ -50,27 +50,27 @@
                                 <rect key="frame" x="0.0" y="181" width="414" height="632"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dkb-a3-yTW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="898" height="160"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-tW-2Kp">
-                                                <rect key="frame" x="16" y="16" width="382" height="91.5"/>
+                                                <rect key="frame" x="16" y="16" width="866" height="91.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No liked events yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EX-zW-gdv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="866" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like an event to find it later, receive notifications before it sells out, and help us improve recommendations for you." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfc-mg-mh8">
-                                                        <rect key="frame" x="0.0" y="30.5" width="382" height="61"/>
+                                                        <rect key="frame" x="0.0" y="71" width="866" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggestions for you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-Vb-xEr">
-                                                <rect key="frame" x="16" y="131.5" width="382" height="20.5"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggestions for you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-Vb-xEr">
+                                                <rect key="frame" x="16" y="131.5" width="866" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -88,14 +88,14 @@
                                             <constraint firstAttribute="bottom" secondItem="N0d-Vb-xEr" secondAttribute="bottom" constant="8" id="zmE-NH-g3O"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Yle-QD-55h">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="632"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </tableView>
                                 </subviews>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Yle-QD-55h">
+                                <rect key="frame" x="0.0" y="180" width="414" height="633"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxN-hi-cwy">
-                                <rect key="frame" x="0.0" y="181" width="414" height="632"/>
+                                <rect key="frame" x="0.0" y="181" width="414" height="280"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="QdD-eL-UtQ">
                                         <rect key="frame" x="16" y="24" width="382" height="90.5"/>
@@ -121,11 +121,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yIZ-js-H9T">
-                                        <rect key="frame" x="16" y="173" width="382" height="100"/>
+                                        <rect key="frame" x="16" y="173" width="382" height="105"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="TAb-3q-hvW"/>
-                                        </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0ua-jQ-mqJ">
                                             <size key="itemSize" width="151" height="47"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -188,9 +185,11 @@
                                 <constraints>
                                     <constraint firstItem="yIZ-js-H9T" firstAttribute="top" secondItem="y6Q-ZB-Lql" secondAttribute="bottom" constant="14" id="89Y-bp-Hjr"/>
                                     <constraint firstItem="QdD-eL-UtQ" firstAttribute="leading" secondItem="oxN-hi-cwy" secondAttribute="leading" constant="16" id="Cx8-hZ-SCS"/>
+                                    <constraint firstAttribute="height" constant="280" id="HBh-00-cDt"/>
                                     <constraint firstItem="y6Q-ZB-Lql" firstAttribute="leading" secondItem="oxN-hi-cwy" secondAttribute="leading" constant="16" id="Hl5-4F-hDt"/>
                                     <constraint firstItem="y6Q-ZB-Lql" firstAttribute="top" secondItem="QdD-eL-UtQ" secondAttribute="bottom" constant="24" id="J2Q-rc-edn"/>
                                     <constraint firstAttribute="trailing" secondItem="yIZ-js-H9T" secondAttribute="trailing" constant="16" id="KWu-1Y-ziy"/>
+                                    <constraint firstAttribute="bottom" secondItem="yIZ-js-H9T" secondAttribute="bottom" constant="2" id="TpC-de-QZA"/>
                                     <constraint firstAttribute="trailing" secondItem="QdD-eL-UtQ" secondAttribute="trailing" constant="16" id="XAo-P8-nQb"/>
                                     <constraint firstItem="QdD-eL-UtQ" firstAttribute="top" secondItem="oxN-hi-cwy" secondAttribute="top" constant="24" id="aWA-WV-Mwi"/>
                                     <constraint firstItem="yIZ-js-H9T" firstAttribute="leading" secondItem="oxN-hi-cwy" secondAttribute="leading" constant="16" id="c1r-iS-2gX"/>
@@ -204,10 +203,10 @@
                             <constraint firstItem="cFy-jC-l1s" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3cy-XX-PTK"/>
                             <constraint firstItem="oxN-hi-cwy" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="4zs-i3-1UJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fIm-p3-y2P" secondAttribute="trailing" id="5Ce-Jo-3zx"/>
+                            <constraint firstItem="Yle-QD-55h" firstAttribute="top" secondItem="1C3-kk-SuN" secondAttribute="bottom" constant="15" id="78J-6s-srr"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cFy-jC-l1s" secondAttribute="trailing" id="7a3-Zc-NDG"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="RV4-sQ-2KB" secondAttribute="trailing" id="Igr-os-8GT"/>
                             <constraint firstItem="1C3-kk-SuN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="LhH-sM-xuJ"/>
-                            <constraint firstItem="oxN-hi-cwy" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="Lsl-OH-Lal"/>
                             <constraint firstItem="fIm-p3-y2P" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="RPS-g4-oUA"/>
                             <constraint firstItem="fIm-p3-y2P" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="RtJ-TH-J6i"/>
                             <constraint firstItem="RV4-sQ-2KB" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="U3j-7u-cQ9"/>
@@ -215,9 +214,12 @@
                             <constraint firstItem="oxN-hi-cwy" firstAttribute="top" secondItem="1C3-kk-SuN" secondAttribute="bottom" constant="16" id="fx9-rr-r7T"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1C3-kk-SuN" secondAttribute="trailing" constant="16" id="jr7-lg-x8a"/>
                             <constraint firstItem="1C3-kk-SuN" firstAttribute="top" secondItem="cFy-jC-l1s" secondAttribute="bottom" constant="16" id="k0X-lV-ubf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Yle-QD-55h" secondAttribute="bottom" id="qLU-TO-9pA"/>
                             <constraint firstItem="RV4-sQ-2KB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uTd-wP-eaI"/>
                             <constraint firstItem="oxN-hi-cwy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="waS-6h-jhO"/>
                             <constraint firstItem="cFy-jC-l1s" firstAttribute="top" secondItem="RV4-sQ-2KB" secondAttribute="bottom" id="xgm-oE-fec"/>
+                            <constraint firstItem="Yle-QD-55h" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yel-fs-A71"/>
+                            <constraint firstItem="Yle-QD-55h" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="zXr-hY-wNH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favourites" image="fav" selectedImage="fav_sel" id="ZUw-mx-a6g"/>
@@ -234,6 +236,7 @@
                         <outlet property="lblVenuNoLikeEvent" destination="2EX-zW-gdv" id="PFV-m1-Buw"/>
                         <outlet property="lblVenuSuggestionForYou" destination="N0d-Vb-xEr" id="TbY-6w-PgJ"/>
                         <outlet property="segmentControl" destination="1C3-kk-SuN" id="var-pY-KmB"/>
+                        <outlet property="topConstraintTblView" destination="78J-6s-srr" id="oly-oY-855"/>
                         <outlet property="vwNavigationView" destination="RV4-sQ-2KB" id="Gzl-Gt-dQO"/>
                         <outlet property="vwNoLikedEventView" destination="oxN-hi-cwy" id="Wc2-7d-iKe"/>
                         <outlet property="vwVenueView" destination="Dkb-a3-yTW" id="xZl-Th-t3r"/>
