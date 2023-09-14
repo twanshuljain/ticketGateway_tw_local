@@ -76,7 +76,6 @@ class EventsOrganizesListTableView: UITableView {
             case .nearByLocation:
                 if arrDataCategorySearch.indices.contains(indexPath.row){
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataCategorySearch[indexPath.row])
-                    
                 }
             case .weekend:
                 if arrDataaWeekend.indices.contains(indexPath.row){
@@ -435,6 +434,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         if self.isComingFrom == .Home{
             if self.arrEventCategory[section] == .nearByLocation{
                 return 40
+            }else if self.arrEventCategory[section] == .noLocationData{
+                return 0
             }
             return 40
         }else if self.isComingFrom == .EventDetail{
@@ -444,12 +445,25 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.isComingFrom == .Home{
+            if self.arrEventCategory[indexPath.section] == .noLocationData{
+                return 20
+            }
+            return UITableView.automaticDimension
+        }
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
        // print("in \(indexPath.row)")
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.isComingFrom == .Home{
+            if self.arrEventCategory[section] == .noLocationData{
+                return 0
+            }
             return 50
         }else{
             return 0

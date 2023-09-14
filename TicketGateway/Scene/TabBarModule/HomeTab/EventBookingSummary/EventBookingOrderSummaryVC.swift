@@ -117,10 +117,10 @@ extension EventBookingOrderSummaryVC {
         let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
         let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
         
-        self.lblServiceChargeValue.text = "CA$ \(serviceCharge)"
-        self.lblProcessingFeeValue.text = "CA$ \(processingCharge)"
-        self.lblfacilityFeeValue.text = "CA$ \(facilityCharge)"
-        self.lblSubTotalValue.text = "CA$ \(subTotal)"
+        self.lblServiceChargeValue.text = "CAD$ \(serviceCharge)"
+        self.lblProcessingFeeValue.text = "CAD$ \(processingCharge)"
+        self.lblfacilityFeeValue.text = "CAD$ \(facilityCharge)"
+        self.lblSubTotalValue.text = "CAD$ \(subTotal)"
         var total = 0.0
         
         
@@ -136,7 +136,7 @@ extension EventBookingOrderSummaryVC {
             self.lblDiscoutedValue.isHidden = true
             self.discountViewHt.constant = 0
         }
-        self.lblTotalAmtValue.text = "CA$ \(total)"
+        self.lblTotalAmtValue.text = "CAD$ \(total)"
         self.viewModel.totalTicketPrice = "\(total)"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
         self.tblAddOnEtcThings.selectedAddOnList = self.viewModel.selectedAddOnList

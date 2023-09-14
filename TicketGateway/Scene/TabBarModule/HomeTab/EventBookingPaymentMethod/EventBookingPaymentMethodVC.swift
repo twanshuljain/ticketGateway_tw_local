@@ -124,7 +124,7 @@ extension EventBookingPaymentMethodVC {
         self.setGradientBackground(viewadd: UIView())
         
         
-        self.lblTotalTicketPrice.text = "CA$ \(self.viewModel.totalTicketPrice)"
+        self.lblTotalTicketPrice.text = "CAD$ \(self.viewModel.totalTicketPrice)"
 //        self.txtCardName.text = "Saurabh"
 //        self.txtCardNumber.text = "4242424242424242"
 //        self.txtExpiryDate.text = "12/2025"

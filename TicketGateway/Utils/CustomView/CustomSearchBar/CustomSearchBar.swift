@@ -31,7 +31,7 @@ enum CustomSearchBarEnum:Int{
 }
 
 class CustomSearchBar: UIView {
-    var searchTextPlaceholder = "Search..."
+    var searchTextPlaceholder = "Search event..."
     @IBOutlet weak var vwLocation: UIView!
     @IBOutlet weak var btnMenu: UIButton!
     @IBOutlet weak var wtBtnMenu:NSLayoutConstraint!
