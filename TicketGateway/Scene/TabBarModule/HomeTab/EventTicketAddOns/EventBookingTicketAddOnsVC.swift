@@ -95,7 +95,7 @@ extension EventBookingTicketAddOnsVC {
     }
     
     func setData(){
-        self.lblTotalTicketPrice.text = "CA$ \(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
+        self.lblTotalTicketPrice.text = "CAD$ \(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
         if self.viewModel.arrAddOnTicketList?.count == 0{
             self.noDataFoundView.isHidden = false
         }else{

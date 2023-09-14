@@ -17,9 +17,18 @@ class EventImageCell: UICollectionViewCell {
     }
     
     func setData(index:Int, eventDetail:EventDetail?){
-       if eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.indices.contains(index) ?? false{
-            if let imageUrl = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?[index]{
-                if let imageUrl = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?[index]{
+        var images:[String]?
+        if eventDetail?.eventCoverImageObj?.eventCoverImage != nil || eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
+            images = [eventDetail?.eventCoverImageObj?.eventCoverImage ?? ""]
+            if let additionalImages = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages{
+                images?.append(contentsOf: additionalImages)
+            }
+        }else{
+            images = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages
+        }
+        if images?.indices.contains(index) ?? false{
+            if let imageUrl = images?[index]{
+                if let imageUrl = images?[index]{
                     if imageUrl.contains(APIHandler.shared.previousBaseURL){
                         let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                         if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {

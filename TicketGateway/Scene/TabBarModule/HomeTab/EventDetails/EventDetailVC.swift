@@ -280,7 +280,12 @@ extension EventDetailVC {
                         if isTrue == true {
                             self.vwEventName.stopLoading()
                             DispatchQueue.main.async {
-                                let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+                                var numberOfPage = 0
+                                if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
+                                    numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
+                                }else{
+                                    numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+                                }
                                 AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
                                 self.collvwEventImages.reloadData()
                                 self.setData()
@@ -635,10 +640,27 @@ extension EventDetailVC {
                       self.viewModel.recurringList?.forEach({ data in
                           if data.eventLocationID == self.viewModel.selectedEventLocationId{
                               print(data)
-                              startDate = data.startDate ?? ""
-                              endDate = data.endDate ?? ""
-                              startTime = data.startTime ?? ""
-                              endTime = data.endTime ?? ""
+                              //yyyy-MM-dd'T'HH:mm:ssZ
+                              "2023-09-18T18:30:00+00:00"
+                              if let range = data.startDate?.range(of: "T") {
+                                  let substring = data.startDate?[..<range.lowerBound]
+                                  startDate = substring?.trimmingCharacters(in: .whitespaces) ?? ""
+                                  print(startDate)
+                              } else {
+                                  startDate = data.startDate ?? ""
+                              }
+                              startDate = startDate + "T" + (data.startTime ?? "") + ":00+00:00"
+                              
+                              if let range = data.endDate?.range(of: "T") {
+                                  let substring = data.endDate?[..<range.lowerBound]
+                                  endDate = substring?.trimmingCharacters(in: .whitespaces) ?? ""
+                                  print(endDate)
+                              } else {
+                                  endDate = data.endDate ?? ""
+                              }
+                              endDate = endDate + "T" + (data.endTime ?? "") + ":00+00:00"
+                              startTime = (data.startTime ?? "") + ":00"
+                              endTime = (data.endTime ?? "") + ":00"
                           }
                       })
                       print(startDate,  startTime ,  endDate,  endTime)
@@ -689,7 +711,8 @@ extension EventDetailVC {
         print("TIME:---:", time)
         var calendar = NSCalendar.autoupdatingCurrent
         calendar.locale = Locale(identifier: "en_US_POSIX")
-        calendar.timeZone = TimeZone(abbreviation: "GMT") ?? .current
+        calendar.timeZone = .current
+        //calendar.timeZone = TimeZone(abbreviation: "GMT") ?? .current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
         let timeComponents = calendar.dateComponents([.hour, .minute], from: time)
         var mergedComponents = DateComponents()
@@ -820,14 +843,25 @@ extension EventDetailVC {
 // MARK: - PageControl
 extension EventDetailVC {
     func toSetPageControll() {
-        if (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages == nil) ||
-            (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 0) ||
-            (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count == 1) {
+        var numberOfPage = 0
+        if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
+            numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
+        }else{
+            numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+        }
+        
+        
+        if (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages == nil) || (numberOfPage == 0) || (numberOfPage == 1) {
             self.pageConrtrolEventTop.constant = 0
             self.pageControllerParentView.isHidden = false
         } else {
             self.pageConrtrolEventTop.constant = 10
-            let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+            var numberOfPage = 0
+            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
+                numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
+            }else{
+                numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+            }
             AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
             pageConrtrolEventImages.drawer = ScaleDrawer(numberOfPages: numberOfPage)
             self.pageControllerParentView.isHidden = true
@@ -851,14 +885,19 @@ extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        var imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
+        let imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
         if imgCount == 0{
             if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil{
                 return 1
             }
             return 0
         }else{
-            return imgCount
+            if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
+                return imgCount + 1
+            }else{
+                return imgCount
+            }
+            
         }
     }
     

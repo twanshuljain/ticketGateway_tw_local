@@ -51,7 +51,7 @@ extension EventBookingTicketVC {
         self.tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
         self.tblEventTicketTypes.updatedPrice = { price in
             self.viewModel.eventDetail?.event?.eventTicketFinalPrice = price
-            self.lblTotalTicketPrice.text = "CA$ \(price)"
+            self.lblTotalTicketPrice.text = "CAD$ \(price)"
         }
         self.navigationView.delegateBarAction = self
           self.navigationView.lblTitle.text = ""
