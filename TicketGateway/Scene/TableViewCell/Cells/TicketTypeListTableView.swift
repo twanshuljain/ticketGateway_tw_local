@@ -60,10 +60,10 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         }
         
      
-        
-        if  self.selectedArrTicketList.indices.contains(indexPath.row){
-            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
-        }
+        //IF ERROR COME IN ADD TO CART UNCOMMENT THIS
+//        if  self.selectedArrTicketList.indices.contains(indexPath.row){
+//            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
+//        }
         
  // MARK: - OFFLINE
 //        if indexPath.row == 0 {
@@ -139,7 +139,6 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
     @objc func PlusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
         if isFromAccessCode {
-            
                print(sender.tag)
                 let data = arrDataAccessCode?[sender.tag]
                 let indexPath = IndexPath(row: sender.tag, section: 0)

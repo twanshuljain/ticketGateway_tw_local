@@ -75,7 +75,7 @@ extension RSCountryPickerController{
             for dicData in self.RScountriesModel {
                 
                 let prefix = Int(textfield.text!.count) // Hello
-                let isMachingWorker : NSString = (dicData.country_name) as NSString
+                let isMachingWorker : NSString = (dicData.country_name) as? NSString ?? ""
                 
                 let range = isMachingWorker.lowercased.prefix(prefix).range(of: textfield.text!, options: String.CompareOptions.caseInsensitive, range: nil, locale: nil)
                 

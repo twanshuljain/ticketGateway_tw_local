@@ -119,8 +119,8 @@ extension EventBookingPaymentMethodVC {
         self.vwCardTop.isHidden = true
         self.imgCard.image = UIImage(named: UNACTIVE_ICON)
         self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
-        self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
-        self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
+        self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+        self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
         self.setGradientBackground(viewadd: UIView())
         
         
@@ -165,8 +165,8 @@ extension EventBookingPaymentMethodVC {
             self.vwCardTop.isHidden = true
             self.imgWallet.image = UIImage(named: ACTIVE_ICON)
             self.imgCard.image = UIImage(named: UNACTIVE_ICON)
-            self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
-            self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
+            self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
+            self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
          } else {
             self.funcDefoultSet()
         }
@@ -185,8 +185,8 @@ extension EventBookingPaymentMethodVC {
             self.vwCard.isHidden = false
             self.imgCard.image = UIImage(named: ACTIVE_ICON)
             self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
-            self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
-            self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
+            self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
+            self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
         } else {
             self.funcDefoultSet()
         }

@@ -58,7 +58,7 @@ extension ManageEventEditProfileVC {
         self.txtEmailAddress.delegate = self
         self.btnCancel.setTitles(text: CANCEL, font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .titleColourDarkBlue))
         self.btnContinue.setTitles(text: SAVE_CHANGES, font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-        self.btnContinue.addRightIcon(image: UIImage(named: SAVE_ICON))
+        //self.btnContinue.addRightIcon(image: UIImage(named: SAVE_ICON))
         self.navigationView.lblTitle.text = EDIT_PROFILE
         self.navigationView.btnBack.isHidden = false
         self.navigationView.lblSeprator.isHidden = false

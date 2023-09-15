@@ -15,7 +15,7 @@ import UIKit
 import SideMenu
 
 protocol SendLocation: AnyObject {
-    func toSendLocation(location: String, selectedIndex:Int)
+    func toSendLocation(location: CountryInfo, selectedIndex:Int)
 }
 
 class EventSearchLocationVC: UIViewController {
@@ -133,7 +133,7 @@ extension EventSearchLocationVC: UITextFieldDelegate {
 extension EventSearchLocationVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         //countriesModel[sender.tag].country_name
-        self.delegate?.toSendLocation(location: selecetdCountriesModel?.country_name ?? "Toronto", selectedIndex: self.selectedIndex ?? 0)
+        self.delegate?.toSendLocation(location: selecetdCountriesModel ?? CountryInfo(country_code: "", dial_code: "", country_name: "Toronto"), selectedIndex: self.selectedIndex ?? 0)
         self.navigationController?.popViewController(animated: true)
     }
     
