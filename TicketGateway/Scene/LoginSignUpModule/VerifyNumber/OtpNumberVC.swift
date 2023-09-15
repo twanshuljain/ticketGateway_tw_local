@@ -55,6 +55,7 @@ extension OtpNumberVC {
     func setText() {
         lblSentVerification.text = SENT_VERIFICATION_CODE_TO
         lblApplyAuto.text = AUTO_APPLY
+        lblReceiveOtp.attributedText = getAttributedOtpStr(str: "You will receive OTP in 00:00s")
     }
     
     
@@ -338,8 +339,23 @@ extension OtpNumberVC {
         self.viewModel.countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
     
+    func getAttributedOtpStr(str:String) -> NSAttributedString{
+        
+        let attributedString = NSMutableAttributedString(string: str)
+
+        // Define attributes for the "00:00" portion (e.g., make it bold)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.setFont(fontType: .bold, fontSize: .sixteen) // You can adjust the font size as needed
+        ]
+        // Apply the attributes to the specific range containing "00:00"
+        attributedString.addAttributes(attributes, range: NSRange(location: 24, length: 6)) // Adjust the range as needed
+        return attributedString
+    }
+    
     @objc func updateTime() {
-        lblReceiveOtp.text = "Your OTP will expire in \(timeFormatted(self.viewModel.totalTime))"
+        // Create an attributed string
+        lblReceiveOtp.attributedText = getAttributedOtpStr(str: "Your OTP will expire in \(timeFormatted(self.viewModel.totalTime))s")
+       // lblReceiveOtp.text = "Your OTP will expire in \(timeFormatted(self.viewModel.totalTime))"
         
         if self.viewModel.totalTime != 0 {
             self.viewModel.totalTime -= 1

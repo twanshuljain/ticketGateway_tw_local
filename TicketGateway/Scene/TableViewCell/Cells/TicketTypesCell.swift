@@ -42,13 +42,21 @@ class TicketTypesCell: UITableViewCell {
                self.lblDiscripation.text = "Sales end \(String(describing: endDate.getDateFormattedFromTo()))"
             }
            
+            //IF ERROR COME IN ADD TO CART COMMENT THIS
+            if let selectedTicket = event.selectedTicketQuantity{
+                self.vwStepper.lblCount.text = String(selectedTicket)
+            }else{
+                self.vwStepper.lblCount.text = "0"
+            }
+            
         }
     }
     
     func setSelectedTicketData(selectedTicket:EventTicket?){
-        if let selectedTicket = selectedTicket?.selectedTicketQuantity{
-            self.vwStepper.lblCount.text = String(selectedTicket)
-        }
+        //IF ERROR COME IN ADD TO CART UNCOMMENT THIS
+//        if let selectedTicket = selectedTicket?.selectedTicketQuantity{
+//            self.vwStepper.lblCount.text = String(selectedTicket)
+//        }
     }
 
     

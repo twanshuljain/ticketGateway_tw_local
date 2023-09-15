@@ -44,7 +44,12 @@ extension EventBookingTicketOnApplyCouponViewModel {
                 defer { self.dispatchGroup1.leave() }
                 if response.status_code == 200 {
                     if let data = response.data{
+                        self.arrDataForAccessCode?.removeAll()
+                        self.arrDataForAccessCode = []
                         self.arrDataForAccessCode = data
+                        self.arrDataForAccessCode?.forEach({ data in
+                            self.arrTicketList?.removeAll(where: { $0.uniqueTicketID == data.uniqueTicketID })
+                        })
                         self.arrTicketList?.appendAtBeginning(newItem: data)
                         //self.arrTicketList?.append(contentsOf: data)
                         print("---------------arrDataForAccessCode", self.arrDataForAccessCode)

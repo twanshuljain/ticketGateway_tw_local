@@ -70,7 +70,7 @@ extension HomeVC {
         self.setUi()
         self.collvwSuggestedOrganisation.configure()
         self.tblEvents.delegateViewMore = self
-        self.tblEvents.countryName = self.viewModel.countryName
+        self.tblEvents.countryName = self.viewModel.country?.country_name ?? "Toronto"
         self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.Home)
         self.tblEvents.tableDidSelectAtIndex = { _ in
             self.navigationController?.popViewController(animated: true)
@@ -167,7 +167,7 @@ extension HomeVC {
         {
             parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup.enter()
-            viewModel.getEventAsPerLocation(countryName: self.viewModel.countryName, complition: { isTrue, messageShowToast in
+            viewModel.getEventAsPerLocation(countryName: self.viewModel.country?.country_name ?? "Toronto", complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
                     if let itemsLocation = self.viewModel.arrEventData.itemsLocation{
@@ -502,15 +502,17 @@ extension HomeVC: CustomSearchMethodsDelegate {
         if self.viewModel.selectedIndexForCountry != nil{
             view?.selectedIndex = self.viewModel.selectedIndexForCountry
         }
+        
+        view?.selecetdCountriesModel = self.viewModel.country
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
 
 // MARK: -
 extension HomeVC: SendLocation {
-    func toSendLocation(location: String, selectedIndex:Int) {
-        vwSearchBar.lblAddress.text = location
-        self.viewModel.countryName = location
+    func toSendLocation(location: CountryInfo, selectedIndex: Int) {
+        vwSearchBar.lblAddress.text = location.country_name ?? "Toronto"
+        self.viewModel.country = location
         self.viewModel.selectedIndexForCountry = selectedIndex
         self.refreshData()
     }
@@ -522,7 +524,7 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
         view?.updateHomeScreenDelegate = self
         view?.viewModel.index = index
-        view?.viewModel.countryName = self.viewModel.countryName
+        view?.viewModel.countryName = self.viewModel.country?.country_name ?? "Toronto"
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
     }

@@ -448,7 +448,7 @@ extension EventDetailVC {
         
         //ORGANIZER
         self.lblOrganiserName_Company.text = eventDetail?.organizer?.name ?? ""
-        self.lblFollowers.text = "\(eventDetail?.organizer?.followers ?? 0)  followers"
+        self.lblFollowers.text = "\(eventDetail?.totalFollower ?? 0)  followers"
         if let imageUrl = eventDetail?.organizer?.profileImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL){
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
