@@ -567,12 +567,12 @@ extension EventDetailVC {
     
     func shareEventDetailData(eventDetail: GetEventModel) {
         self.shareEventDetailData(
-            eventStartDate: eventDetail.eventDate?.eventStartDate ?? "",
-            eventEndDate: eventDetail.eventDate?.eventEndDate ?? "",
+            eventStartDate: eventDetail.date?.eventStartDate ?? "",
+            eventEndDate: eventDetail.date?.eventEndDate ?? "",
             eventCoverImage: eventDetail.coverImage?.eventCoverImage,
             eventTitle: eventDetail.event?.title,
-            eventStartTime: eventDetail.eventDate?.eventStartTime ?? "",
-            eventEndTime: eventDetail.eventDate?.eventEndDate ?? "",
+            eventStartTime: eventDetail.date?.eventStartTime ?? "",
+            eventEndTime: eventDetail.date?.eventEndTime ?? "",
             eventDescription: eventDetail.event?.eventDescription
         )
     }
@@ -808,7 +808,7 @@ extension EventDetailVC {
                 eventCoverImage: eventDetail.eventCoverImageObj?.eventCoverImage,
                 eventTitle: eventDetail.event?.title,
                 eventStartTime: eventDetail.eventDateObj?.eventStartTime ?? "",
-                eventEndTime: eventDetail.eventDateObj?.eventEndDate ?? "",
+                eventEndTime: eventDetail.eventDateObj?.eventEndTime ?? "",
                 eventDescription: (eventDetail.event?.eventDescription == nil || eventDetail.event?.eventDescription == "") ? (eventDetail.organizer?.eventDescription) : (eventDetail.event?.eventDescription)
             )
         }

@@ -715,12 +715,12 @@ extension ViewMoreEventsVC : NavigationBarViewDelegate {
 extension ViewMoreEventsVC: ActivityController {
     func toShowActivityController(eventDetail: GetEventModel) {
         self.shareEventDetailData(
-            eventStartDate: eventDetail.eventDate?.eventStartDate ?? "",
-            eventEndDate: eventDetail.eventDate?.eventEndDate ?? "",
+            eventStartDate: eventDetail.date?.eventStartDate ?? "",
+            eventEndDate: eventDetail.date?.eventEndDate ?? "",
             eventCoverImage: eventDetail.coverImage?.eventCoverImage,
             eventTitle: eventDetail.event?.title,
-            eventStartTime: eventDetail.eventDate?.eventStartTime ?? "",
-            eventEndTime: eventDetail.eventDate?.eventEndDate ?? "",
+            eventStartTime: eventDetail.date?.eventStartTime ?? "",
+            eventEndTime: eventDetail.date?.eventEndTime ?? "",
             eventDescription: eventDetail.event?.eventDescription
         )
     }
