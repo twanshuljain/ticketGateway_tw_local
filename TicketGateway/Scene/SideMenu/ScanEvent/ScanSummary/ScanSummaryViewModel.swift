@@ -10,26 +10,48 @@ import Foundation
 class ScanSummaryViewModel {
     // MARK: - Variables
     var isOnline: Bool = true
+    var scanOverviewModel = ScanOverviewModel()
     var scanSummaryModel = ScanSummaryModel()
-    var getScanSummaryData = GetScanSummaryData()
+    var getScanOverviewData = GetScanOverviewData()
+    var getScanSummaryItem = [GetScanSummaryItem]()
     var arrOfValueChart: [Int] = []
     // MARK: Custom Functions
     func getScanOverview(completion: @escaping (Bool, String) -> Void) {
-        APIHandler.shared.executeRequestWith(apiName: .scanOverview, parameters: scanSummaryModel, methodType: .GET) { (result: Result<ResponseModal<GetScanSummaryData>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .scanOverview, parameters: scanOverviewModel, methodType: .GET) { (result: Result<ResponseModal<GetScanOverviewData>, Error>) in
             switch result {
             case .success(let response):
-                print("success my order api")
+                print("success scan overview api")
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
-                            self.getScanSummaryData = data
+                            self.getScanOverviewData = data
                             completion(true, response.message ?? "")
                         }
                     }
                 }
             case .failure(let error):
                 print("error", error)
-                print("failure my order api ")
+                print("failure scan overview api ")
+                completion(false, error as? String ?? "")
+            }
+        }
+    }
+    func getScanSummary(completion: @escaping (Bool, String) -> Void) {
+        APIHandler.shared.executeRequestWith(apiName: .scanSummary, parameters: scanSummaryModel, methodType: .GET) { (result: Result<ResponseModal<GetScanSummaryData>, Error>) in
+            switch result {
+            case .success(let response):
+                print("success scan summary api")
+                if response.status_code == 200 {
+                    DispatchQueue.main.async {
+                        if let data = response.data {
+                            self.getScanSummaryItem = data.items ?? []
+                            completion(true, response.message ?? "")
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("error", error)
+                print("failure scan summary api ")
                 completion(false, error as? String ?? "")
             }
         }

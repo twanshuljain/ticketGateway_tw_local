@@ -29,6 +29,7 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getScanOverview()
+        getScanSummary()
         self.setNavigationView()
         self.setFont()
         self.setTableView()
@@ -114,23 +115,43 @@ extension ScanSummaryVC {
             }
         }
     }
+    func getScanSummary() {
+        if Reachability.isConnectedToNetwork() {
+            view.showLoading(centreToView: self.view)
+            viewModel.getScanSummary(completion: { isTrue, message in
+                if isTrue {
+                    self.view.stopLoading()
+                } else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoading()
+                        self.showToast(message: message)
+                    }
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.view.stopLoading()
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
+        }
+    }
     func dataSettingAfterScanOverview() {
-        lblSunburnReload.text = viewModel.getScanSummaryData.eventName ?? "-"
+        lblSunburnReload.text = viewModel.getScanOverviewData.eventName ?? "-"
         lblDate.text = Date().convertToString()
-        lblTotalTicketValue.text = "\(viewModel.getScanSummaryData.totalTicketInEvent ?? 0)"
-        if let url = (APIHandler.shared.s3URL + (viewModel.getScanSummaryData.eventCoverImage ?? "")).getCleanedURL() {
+        lblTotalTicketValue.text = "\(viewModel.getScanOverviewData.totalTicketInEvent ?? 0)"
+        if let url = (APIHandler.shared.s3URL + (viewModel.getScanOverviewData.eventCoverImage ?? "")).getCleanedURL() {
             self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
         } else {
             self.imgProfile.image = UIImage(named: "homeDas")
         }
         viewModel.arrOfValueChart = []
-        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixToScan ?? 0)
-        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixScanned ?? 0)
-        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixAccepted ?? 0)
-        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.tixRejected ?? 0)
-        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.scannedHardTix ?? 0)
-        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.scannedPdfTix ?? 0)
-        viewModel.arrOfValueChart.append(viewModel.getScanSummaryData.scannedCompsTix ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanOverviewData.tixToScan ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanOverviewData.tixScanned ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanOverviewData.tixAccepted ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanOverviewData.tixRejected ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanOverviewData.scannedHardTix ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanOverviewData.scannedPdfTix ?? 0)
+        viewModel.arrOfValueChart.append(viewModel.getScanOverviewData.scannedCompsTix ?? 0)
         print("viewModel.arrOfValueChart:-", viewModel.arrOfValueChart)
     }
 }
@@ -144,26 +165,26 @@ extension ScanSummaryVC: UITableViewDelegate, UITableViewDataSource {
         let data = tblData[indexPath.row]
         switch data {
         case TicketStatusList.tixToScan.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixToScan ?? 0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFDDC6")
-        case TicketStatusList.tixScanned.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixScanned ?? 0)"
+            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixToScan ?? 0)"
             cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#CDC8F9")
-        case TicketStatusList.accepted.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixAccepted ?? 0)"
+        case TicketStatusList.tixScanned.rawValue:
+            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixScanned ?? 0)"
             cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#A0CF67")
-        case TicketStatusList.rejected.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanSummaryData.tixRejected ?? 0)"
+        case TicketStatusList.accepted.rawValue:
+            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixAccepted ?? 0)"
             cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FB896B")
+        case TicketStatusList.rejected.rawValue:
+            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixRejected ?? 0)"
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFD467")
         case TicketStatusList.scannedHardTix.rawValue:
             cell.lblTitleValue.text = "\(0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFD467")
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#C6E0FF")
         case TicketStatusList.scannedPdfTix.rawValue:
             cell.lblTitleValue.text = "\(0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#C6E0FF")
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFBDE1")
         case TicketStatusList.scannedCompsTix.rawValue:
             cell.lblTitleValue.text = "\(0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFBDE1")
+            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFDDC6")
         default:
             break
         }

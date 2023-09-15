@@ -264,17 +264,18 @@ extension FavouriteVC {
             if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
                 if viewModel.arrSuggestionsList.indices.contains(index.row) {
                     view.viewModel.eventId = viewModel.arrSuggestionsList[index.row].event?.id
-                    funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
                 }
             } else if !viewModel.isForVenue {
                 if viewModel.arrFavouriteList.indices.contains(index.row) {
                     view.viewModel.eventId = viewModel.arrFavouriteList[index.row].eventId
-                    funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
                 }
             } else {
                 if viewModel.arrVenueList.indices.contains(index.row) {
                     view.viewModel.eventId = viewModel.arrVenueList[index.row].id ?? 0
                 }
+            }
+            if !(viewModel.isForVenue && !viewModel.arrVenueList.isEmpty) {
+                funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
             }
         }
     }
