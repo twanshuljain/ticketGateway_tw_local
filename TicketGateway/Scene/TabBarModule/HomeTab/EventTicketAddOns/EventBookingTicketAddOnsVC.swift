@@ -149,7 +149,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         let data = viewModel.arrAddOnTicketList?[indexPath.row]
         cell.lblTitle.text = data?.addOnName
         if let ticketPrice = data?.addOnTicketPrice {
-            cell.lblPrice.text = "$\(ticketPrice)"
+            cell.lblPrice.text = "CAD$\(ticketPrice)"
         }
         if let imgString = data?.addOnLogo?.first {
             let urlString = (APIHandler.shared.baseURL + imgString).getCleanedURL()
