@@ -259,6 +259,10 @@ extension UIViewController {
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
     }
+    
+    func getCountry() -> String{
+        return Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
+    }
 }
 extension URL {
     /// Returns a new URL by adding the query items, or nil if the URL doesn't support it.

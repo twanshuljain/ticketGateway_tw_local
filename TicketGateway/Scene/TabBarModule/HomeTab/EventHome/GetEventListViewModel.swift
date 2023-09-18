@@ -42,7 +42,8 @@ final class HomeDashBoardViewModel {
     var eventDetail: EventDetail?
     var followUnfollow: EventDetail?
     var country: CountryInfo?
-    var selectedIndexForCountry:Int?
+    var selectedCountryName:String?
+    var currentRegionCountry = Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
 }
 
 // MARK: - Functions

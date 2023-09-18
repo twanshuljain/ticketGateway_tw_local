@@ -70,7 +70,7 @@ extension HomeVC {
         self.setUi()
         self.collvwSuggestedOrganisation.configure()
         self.tblEvents.delegateViewMore = self
-        self.tblEvents.countryName = self.viewModel.country?.country_name ?? "Toronto"
+        self.tblEvents.countryName = self.viewModel.country?.country_name ?? self.getCountry()
         self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.Home)
         self.tblEvents.tableDidSelectAtIndex = { _ in
             self.navigationController?.popViewController(animated: true)
@@ -82,6 +82,7 @@ extension HomeVC {
         //self.tblEvents.reloadData()
         self.tblEvents.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.heightOfNearOrganisedEvent.constant = self.tblEvents.contentSize.height
+        vwSearchBar.lblAddress.text = self.viewModel.selectedCountryName ?? self.getCountry()
         self.vwSearchBar.delegate = self
         self.vwSearchBar.txtSearch.delegate = self
     }
@@ -167,7 +168,7 @@ extension HomeVC {
         {
             parentView.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup.enter()
-            viewModel.getEventAsPerLocation(countryName: self.viewModel.country?.country_name ?? "Toronto", complition: { isTrue, messageShowToast in
+            viewModel.getEventAsPerLocation(countryName: self.viewModel.country?.country_name ?? self.getCountry(), complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
                     if let itemsLocation = self.viewModel.arrEventData.itemsLocation{
@@ -499,10 +500,12 @@ extension HomeVC: CustomSearchMethodsDelegate {
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         view?.delegate = self
-        if self.viewModel.selectedIndexForCountry != nil{
-            view?.selectedIndex = self.viewModel.selectedIndexForCountry
+        if self.viewModel.selectedCountryName != nil && self.viewModel.selectedCountryName != ""{
+            view?.selectedCountry = self.viewModel.selectedCountryName
+        }else{
+            view?.selectedCountry = self.viewModel.currentRegionCountry
         }
-        
+        view?.selecetdCountriesModel = CountryInfo.init(country_code: "", dial_code: "", country_name: view?.selectedCountry ?? "")
         view?.selecetdCountriesModel = self.viewModel.country
         self.navigationController?.pushViewController(view!, animated: true)
     }
@@ -510,10 +513,10 @@ extension HomeVC: CustomSearchMethodsDelegate {
 
 // MARK: -
 extension HomeVC: SendLocation {
-    func toSendLocation(location: CountryInfo, selectedIndex: Int) {
-        vwSearchBar.lblAddress.text = location.country_name ?? "Toronto"
+    func toSendLocation(location: CountryInfo, selectedCountry: String) {
+        vwSearchBar.lblAddress.text = location.country_name ?? self.getCountry()
         self.viewModel.country = location
-        self.viewModel.selectedIndexForCountry = selectedIndex
+        self.viewModel.selectedCountryName = selectedCountry
         self.refreshData()
     }
 }
@@ -524,7 +527,7 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
         view?.updateHomeScreenDelegate = self
         view?.viewModel.index = index
-        view?.viewModel.countryName = self.viewModel.country?.country_name ?? "Toronto"
+        view?.viewModel.countryName = self.viewModel.country?.country_name ?? self.getCountry()
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
     }

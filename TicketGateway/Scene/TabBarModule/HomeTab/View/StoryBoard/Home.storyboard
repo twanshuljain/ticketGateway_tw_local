@@ -4842,18 +4842,47 @@ TicketGateway fee is non refundable.</string>
                                                             </tableViewCell>
                                                         </prototypes>
                                                     </tableView>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvc-5t-jYc">
+                                                        <rect key="frame" x="16" y="235.66666666666663" width="361" height="1047.3333333333335"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_no_data_found" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-jp-pmt">
+                                                                <rect key="frame" x="111.66666666666669" y="485.66666666666674" width="138" height="76"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="76" id="AMY-jt-0yu"/>
+                                                                    <constraint firstAttribute="width" constant="138" id="lYT-sa-Mj1"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops!! No record found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtO-e2-pyT">
+                                                                <rect key="frame" x="87.333333333333329" y="581.66666666666674" width="186.66666666666669" height="22.666666666666629"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="ZtO-e2-pyT" firstAttribute="top" secondItem="RwS-jp-pmt" secondAttribute="bottom" constant="20" id="3He-bE-GP0"/>
+                                                            <constraint firstItem="RwS-jp-pmt" firstAttribute="centerX" secondItem="fvc-5t-jYc" secondAttribute="centerX" id="RJL-rc-uES"/>
+                                                            <constraint firstItem="ZtO-e2-pyT" firstAttribute="centerX" secondItem="RwS-jp-pmt" secondAttribute="centerX" id="gKA-Tg-B0J"/>
+                                                            <constraint firstItem="RwS-jp-pmt" firstAttribute="centerY" secondItem="fvc-5t-jYc" secondAttribute="centerY" id="n0a-sH-2DD"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="1AU-9h-DCe" firstAttribute="centerX" secondItem="yCe-qN-h85" secondAttribute="centerX" id="0H1-wK-JkW"/>
+                                                    <constraint firstItem="fvc-5t-jYc" firstAttribute="leading" secondItem="Phx-yX-RBy" secondAttribute="leading" id="1mk-2j-h96"/>
                                                     <constraint firstItem="1AU-9h-DCe" firstAttribute="leading" secondItem="yCe-qN-h85" secondAttribute="leading" constant="15" id="26l-zS-IGV"/>
                                                     <constraint firstItem="c7v-ki-K08" firstAttribute="top" secondItem="1AU-9h-DCe" secondAttribute="bottom" constant="25" id="3vB-zk-c22"/>
+                                                    <constraint firstItem="fvc-5t-jYc" firstAttribute="trailing" secondItem="Phx-yX-RBy" secondAttribute="trailing" id="3wx-Yk-xOW"/>
                                                     <constraint firstItem="Phx-yX-RBy" firstAttribute="leading" secondItem="yCe-qN-h85" secondAttribute="leading" constant="16" id="5jl-BQ-Ld3"/>
                                                     <constraint firstItem="Phx-yX-RBy" firstAttribute="top" secondItem="c7v-ki-K08" secondAttribute="bottom" constant="25" id="KAo-yf-NuQ"/>
                                                     <constraint firstAttribute="bottom" secondItem="Phx-yX-RBy" secondAttribute="bottom" constant="15" id="NBI-rO-SOR"/>
                                                     <constraint firstAttribute="trailing" secondItem="Phx-yX-RBy" secondAttribute="trailing" constant="16" id="QPU-x2-dz8"/>
                                                     <constraint firstAttribute="trailing" secondItem="1AU-9h-DCe" secondAttribute="trailing" constant="15" id="h0V-GD-m6O"/>
                                                     <constraint firstItem="c7v-ki-K08" firstAttribute="leading" secondItem="yCe-qN-h85" secondAttribute="leading" constant="15" id="ihF-aP-xir"/>
+                                                    <constraint firstItem="fvc-5t-jYc" firstAttribute="bottom" secondItem="Phx-yX-RBy" secondAttribute="bottom" id="mvi-Ln-00N"/>
+                                                    <constraint firstItem="fvc-5t-jYc" firstAttribute="top" secondItem="Phx-yX-RBy" secondAttribute="top" id="nkn-mj-Az3"/>
                                                     <constraint firstItem="1AU-9h-DCe" firstAttribute="top" secondItem="yCe-qN-h85" secondAttribute="top" constant="20" id="nsg-qJ-eNm"/>
                                                 </constraints>
                                             </view>
@@ -4906,6 +4935,7 @@ TicketGateway fee is non refundable.</string>
                         <outlet property="lblNearByDiscripation" destination="QAq-ZD-cuW" id="Def-zA-jdc"/>
                         <outlet property="lblOnlineEventDis" destination="YEI-aP-7lw" id="VfR-UV-Pw9"/>
                         <outlet property="lblOnlineEvents" destination="uHB-JN-Vt0" id="NCM-eL-fJ5"/>
+                        <outlet property="noResultFoundView" destination="fvc-5t-jYc" id="NHk-sb-zr8"/>
                         <outlet property="tblList" destination="Phx-yX-RBy" id="Qgi-Ik-6mT"/>
                         <outlet property="vwSearchBar" destination="ZyF-nU-F0v" id="39V-NV-Vma"/>
                     </connections>
@@ -4928,7 +4958,7 @@ TicketGateway fee is non refundable.</string>
         <image name="arrow-down" width="24" height="24"/>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
-        <image name="chevron-down_ip" width="24.333333969116211" height="24"/>
+        <image name="chevron-down_ip" width="16" height="16"/>
         <image name="circleChevron-down_ip" width="24" height="24"/>
         <image name="cross_ip" width="24.333333969116211" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>
