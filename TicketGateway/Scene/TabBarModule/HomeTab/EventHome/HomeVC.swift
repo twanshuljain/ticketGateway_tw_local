@@ -557,7 +557,7 @@ extension HomeVC: FavouriteAction {
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
-            self.showToast(message: Unable_To_LikeFollow)
+            self.showToast(message: Unable_To_Like)
             return
         }
         AppShareData().commanEventLikeApiCall(likeStatus: eventDetail.likeCountData?.isLiked ?? false, eventId: eventDetail.event?.id ?? 0, completion: { _,_ in
@@ -568,6 +568,11 @@ extension HomeVC: FavouriteAction {
 // MARK: - 
 extension HomeVC: NavigateToProfile, suggestedOrganizerListProtocol {
     func followUnfollowAction(tag: Int) {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            self.showToast(message: Unable_To_Follow)
+            return
+        }
         if let cell = self.collvwSuggestedOrganisation.cellForItem(at: IndexPath.init(row: tag, section: 0)) as? suggestedOrganizerCell {
             if Reachability.isConnectedToNetwork() { //check internet connectivity
                 if let organizerId = self.collvwSuggestedOrganisation.arrOrganizersList?[tag].userID {

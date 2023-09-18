@@ -64,7 +64,8 @@ extension ManageEventEditProfileVC {
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
-        
+        self.txtEmailAddress.textColor = UIColor.setColor(colorType: .tgGrey)
+        self.txtMobileNumber.textColor = UIColor.setColor(colorType: .tgGrey)
         self.setIntialUiDesign()
         self.funcSetProfile()
     }

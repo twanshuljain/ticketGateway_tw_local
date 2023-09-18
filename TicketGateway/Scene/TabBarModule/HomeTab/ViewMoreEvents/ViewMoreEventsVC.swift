@@ -597,7 +597,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func btnLikeActionTapped(btn:UIButton, indexPath: IndexPath) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
-            self.showToast(message: Unable_To_LikeFollow)
+            self.showToast(message: Unable_To_Like)
             return
         }
         print("IndexPath row : \(indexPath.row)")

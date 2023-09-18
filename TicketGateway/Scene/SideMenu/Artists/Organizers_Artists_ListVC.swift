@@ -195,6 +195,11 @@ extension Organizers_Artists_ListVC {
         }
         }
     func suggestedFollowButtonAction(organizerId: Int, isSuccess: (@escaping (String) -> Void)) {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            self.showToast(message: Unable_To_Follow)
+            return
+        }
         if Reachability.isConnectedToNetwork() { //check internet connectivity
             self.view.showLoading(centreToView: self.view)
             AppShareData().commanFollowUnfollowApi(

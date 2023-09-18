@@ -205,7 +205,7 @@ extension EventSearchHomeVC: FavouriteAction {
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
-            self.showToast(message: Unable_To_LikeFollow)
+            self.showToast(message: Unable_To_Like)
             return
         }
         viewModel.isLikedAnyEvent = true

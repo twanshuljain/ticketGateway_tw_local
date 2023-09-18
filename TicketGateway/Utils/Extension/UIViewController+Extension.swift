@@ -57,7 +57,7 @@ extension UIViewController {
         popover.show(aView, fromView: anchorView)
     }
     
-    func showToast(message: String, font: UIFont = UIFont.setFont(fontType: .regular, fontSize: .fifteen)) {
+    func showToast(message: String, font: UIFont = UIFont.setFont(fontType: .regular, fontSize: .sixteen)) {
         let toastLabel = UILabel(frame: CGRect(x: 45, y: self.view.frame.size.height - 150, width: self.view.frame.size.width - 90, height: self.view.heightForView(text: message, font: font, width: self.view.frame.size.width - 60) + 20))
         toastLabel.numberOfLines = 5
         toastLabel.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
@@ -69,7 +69,7 @@ extension UIViewController {
         toastLabel.layer.cornerRadius = 10
         toastLabel.clipsToBounds = true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 6.0, delay: 1.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 10.0, delay: 1.0, options: .curveEaseOut, animations: {
              toastLabel.alpha = 0.0
         }, completion: { _ in
             toastLabel.removeFromSuperview()

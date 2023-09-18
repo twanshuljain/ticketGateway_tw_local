@@ -76,7 +76,9 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = self.createView(storyboard: .order, storyboardID: .MyTicketVC) as? MyTicketVC
-        viewController?.viewModel.ticketDetails = viewModel.arrMyOrder[indexPath.row]
+        if viewModel.arrMyOrder.indices.contains(indexPath.row) {
+            viewController?.viewModel.ticketDetails = viewModel.arrMyOrder[indexPath.row]
+        }
         viewController?.viewModel.isFromPast = viewModel.isFromUpcoming == true ? false : true
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
@@ -110,6 +112,7 @@ extension MyOrderViewController {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
                         self.showToast(message: message)
+                        self.upComingTableView.reloadData()
                     }
                 }
             })

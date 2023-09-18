@@ -743,6 +743,11 @@ extension EventDetailVC {
     }
     
     func addFollowingAction() {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            self.showToast(message: Unable_To_Follow)
+            return
+        }
         if Reachability.isConnectedToNetwork() { //check internet connectivity
             if let organizerId = self.viewModel.eventDetail?.organizer?.id {
                 vwEventName.showLoading(centreToView: self.view)
@@ -817,7 +822,7 @@ extension EventDetailVC {
     @objc func btnLikeAction(_ sender: UIButton) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
-            self.showToast(message: Unable_To_LikeFollow)
+            self.showToast(message: Unable_To_Like)
             return
         }
         viewModel.isLikedAnyEvent = true
@@ -976,7 +981,7 @@ extension EventDetailVC : FavouriteAction {
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
-            self.showToast(message: Unable_To_LikeFollow)
+            self.showToast(message: Unable_To_Like)
             return
         }
         viewModel.isLikedAnyEvent = true

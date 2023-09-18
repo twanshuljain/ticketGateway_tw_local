@@ -176,6 +176,11 @@ extension FavouriteVC {
         }
     }
     func btnLikeAction(indexPath: IndexPath) {
+        // Condition for -> If user with guest login then like/unlike feature should not work.
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            self.showToast(message: Unable_To_Like)
+            return
+        }
         var eventId: Int = 0
         if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
             eventId = viewModel.arrSuggestionsList[indexPath.row].event?.id ?? 0
