@@ -40,7 +40,7 @@ final class ViewMoreEventsViewModel {
     var itemsLocation = [GetEventModel]()
     var itemsSuggestedEvents = [GetEventModel]()
     var isLikedAnyEvent: Bool = false
-    var countryName = "Toronto"
+    var countryName = Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
 }
 
 //MARK: - Functions

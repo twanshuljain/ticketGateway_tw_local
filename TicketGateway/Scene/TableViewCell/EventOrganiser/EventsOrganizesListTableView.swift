@@ -58,7 +58,7 @@ class EventsOrganizesListTableView: UITableView {
     var arrDataCategorySearch = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
     var shareEvent:GetEventModel?
-    var countryName = "Toronto"
+    var countryName = Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
     
     func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
         self.isComingFrom = isComingFrom
@@ -346,6 +346,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             switch self.arrEventCategory[section] {
             case .noLocationData:
                 print("No Location Data")
+                label.text = "Events Near \(self.countryName)"
+                return headerView
             case .nearByLocation:
                 label.text = "Events Near \(countryName)"
                 return headerView
@@ -461,9 +463,9 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.isComingFrom == .Home{
-            if self.arrEventCategory[section] == .noLocationData{
-                return 0
-            }
+//            if self.arrEventCategory[section] == .noLocationData{
+//                return 0
+//            }
             return 50
         }else{
             return 0

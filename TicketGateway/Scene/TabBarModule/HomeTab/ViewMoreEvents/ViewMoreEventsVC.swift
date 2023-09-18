@@ -150,7 +150,7 @@ extension ViewMoreEventsVC{
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
-            viewModel.getEventAsPerLocation(viewAll:true, countryName: "Toronto", complition: { isTrue, messageShowToast in
+            viewModel.getEventAsPerLocation(viewAll:true, countryName: self.getCountry(), complition: { isTrue, messageShowToast in
                 
                 if isTrue == true {
                     self.parentView.stopLoading()

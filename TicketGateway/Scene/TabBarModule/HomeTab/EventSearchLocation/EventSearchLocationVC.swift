@@ -15,7 +15,7 @@ import UIKit
 import SideMenu
 
 protocol SendLocation: AnyObject {
-    func toSendLocation(location: CountryInfo, selectedIndex:Int)
+    func toSendLocation(location: CountryInfo, selectedCountry: String)
 }
 
 class EventSearchLocationVC: UIViewController {
@@ -28,12 +28,15 @@ class EventSearchLocationVC: UIViewController {
     @IBOutlet weak var lblNearBy: UILabel!
     @IBOutlet weak var lblBrowingIn: UILabel!
     @IBOutlet weak var tblList: UITableView!
+    @IBOutlet weak var noResultFoundView: UIView!
+    
     //MARK: - Variables
     
     weak var delegate: SendLocation?
     var countriesModel = [CountryInfo]()
+    var searchCountriesModel = [CountryInfo]()
     var selecetdCountriesModel:CountryInfo?
-    var selectedIndex : Int?
+    var selectedCountry : String?
     var countries = [[String: String]]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,7 @@ class EventSearchLocationVC: UIViewController {
         self.vwSearchBar.txtSearch.attributedPlaceholder = NSAttributedString(string: FIND_EVENT_IN, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .placeHolder)])
         self.vwSearchBar.txtSearch.delegate = self
         self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
+        vwSearchBar.txtSearch.addTarget(self, action: #selector(searchAction(_:)), for: .editingChanged)
     }
     
     func addCountries() {
@@ -55,7 +59,55 @@ class EventSearchLocationVC: UIViewController {
             let countryinfo = CountryInfo(country_code: "", dial_code: "", country_name: name)
             countriesModel.append(countryinfo)
         }
-         tblList.reloadData()
+        searchCountriesModel = countriesModel
+        tblList.reloadData()
+    }
+    
+    @objc func searchAction(_ sender: UITextField) {
+        if sender.text == ""{
+            self.searchCountriesModel = countriesModel
+        }else{
+            let lowercasedQuery = sender.text?.lowercased() ?? ""
+            self.searchCountriesModel = countriesModel.filter { item in
+                return item.country_name.lowercased().contains(lowercasedQuery)
+            }
+        }
+        
+        if self.searchCountriesModel.count == 0{
+            self.noResultFoundView.isHidden = false
+        }else{
+            self.noResultFoundView.isHidden = true
+        }
+        self.tblList.reloadData()
+        
+        
+        
+        
+        
+        
+//        if Reachability.isConnectedToNetwork() // check internet connectivity
+//        {
+//            self.view.showLoading(centreToView: self.view)
+//            viewModel.getEventSearchApi(searchText: sender.text ?? "", complition: { isTrue, showMessage in
+//                if isTrue {
+//                    DispatchQueue.main.async {
+//                        self.view.stopLoading()
+//                        self.tblEvents.arrSearchData = self.viewModel.arrSearchData
+//                        self.tblEvents.reloadData()
+//                    }
+//                } else {
+//                    DispatchQueue.main.async {
+//                        self.view.stopLoading()
+//                        self.showToast(message: showMessage)
+//                    }
+//                }
+//            })
+//        } else {
+//            DispatchQueue.main.async {
+//                self.view.stopLoading()
+//                self.showToast(message: ValidationConstantStrings.networkLost)
+//            }
+//        }
     }
 }
 
@@ -91,17 +143,17 @@ extension EventSearchLocationVC{
 extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       //  return countries.count
-        return countriesModel.count//locationData.count
+        return searchCountriesModel.count//locationData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
-        let countryName = countriesModel[indexPath.row].country_name//locationData[indexPath.row]
+        let countryName = searchCountriesModel[indexPath.row].country_name//locationData[indexPath.row]
         cell.lblTittle.text = countryName
         cell.btnCheck.isUserInteractionEnabled = false
         cell.btnCheck.tag = indexPath.row
         cell.btnCheck.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        if  self.selectedIndex == indexPath.row{
+        if  self.selectedCountry == countryName{
             cell.btnCheck.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         }else{
             cell.btnCheck.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
@@ -113,8 +165,8 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
         
-        self.selecetdCountriesModel = countriesModel[indexPath.row]
-        self.selectedIndex = indexPath.row
+        self.selecetdCountriesModel = searchCountriesModel[indexPath.row]
+        self.selectedCountry = self.selecetdCountriesModel?.country_name
         self.tblList.reloadData()
     }
     
@@ -133,7 +185,7 @@ extension EventSearchLocationVC: UITextFieldDelegate {
 extension EventSearchLocationVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         //countriesModel[sender.tag].country_name
-        self.delegate?.toSendLocation(location: selecetdCountriesModel ?? CountryInfo(country_code: "", dial_code: "", country_name: "Toronto"), selectedIndex: self.selectedIndex ?? 0)
+        self.delegate?.toSendLocation(location: selecetdCountriesModel ?? CountryInfo(country_code: "", dial_code: "", country_name: self.getCountry()), selectedCountry: selecetdCountriesModel?.country_name ?? self.getCountry())
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -305,4 +305,8 @@ extension String {
         }
         return nil
     }
+    
+    func getCountry() -> String{
+        return Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
+    }
 }
