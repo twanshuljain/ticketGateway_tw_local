@@ -67,7 +67,7 @@ public enum APIName: String {
     case myOrders = "events/my/order/"
     // Get Favourite List
     case myFavourite = "events/like/list/"
-    case myVenue = "venue/like/list/"
+    case myVenue = "venue/list/"
 
     case ContactOrganizer = "organizer/contact/form/"
     case ChangeTicketName = "ticket/transfer/user-name/change/"

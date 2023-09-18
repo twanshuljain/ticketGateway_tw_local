@@ -130,6 +130,7 @@ extension MyOrderViewController {
     func resetPage(){
         viewModel.myOrdersModel.page = 1
         viewModel.arrMyOrder.removeAll()
+        txtSearch.text = ""
     }
     @objc func searchBarAction(_ sender: UITextField) {
         let text = sender.text?.trimmingCharacters(in: .whitespaces)

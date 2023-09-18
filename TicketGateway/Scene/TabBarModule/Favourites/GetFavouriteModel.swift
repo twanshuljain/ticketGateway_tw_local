@@ -88,15 +88,72 @@ struct GetVenueData : Codable {
     }
 }
 struct GetVenueItem: Codable {
-    let id: Int?
-    let venueName: String?
-    let image: String?
-    let totalLike: Int?
-    
+    let website : String?
+    let isApproved : Bool?
+    let userId : String?
+    let minimumAge : String?
+    let id : Int?
+    let address : String?
+    let isVerified : Bool?
+    let isActive : Bool?
+    let createdAt : String?
+    let state : String?
+    let facebookId : String?
+    let crowd : String?
+    let updatedAt : String?
+    let city : String?
+    let linkedinId : String?
+    let dressCode : String?
+    let createdBy : String?
+    let zipCode : String?
+    let instagramId : String?
+    let music : String?
+    let updatedBy : String?
+    let image : String?
+    let youtubeId : String?
+    let description : String?
+    let venueName : String?
+    let eventId : String?
+    let cellPhone : String?
+    let price : String?
+    let venueTypeId : Int?
+    let ratio : String?
+    let venueTypeName : String?
+    let isLike : Bool?
+    let totalLike : Int?
     enum CodingKeys: String, CodingKey {
+        case website = "website"
+        case isApproved = "is_approved"
+        case userId = "user_id"
+        case minimumAge = "minimum_age"
         case id = "id"
+        case address = "address"
+        case isVerified = "is_verified"
+        case isActive = "is_active"
+        case createdAt = "created_at"
+        case state = "state"
+        case facebookId = "facebook_id"
+        case crowd = "crowd"
+        case updatedAt = "updated_at"
+        case city = "city"
+        case linkedinId = "linkedin_id"
+        case dressCode = "dress_code"
+        case createdBy = "created_by"
+        case zipCode = "zip_code"
+        case instagramId = "instagram_id"
+        case music = "music"
+        case updatedBy = "updated_by"
         case image = "image"
+        case youtubeId = "youtube_id"
+        case description = "description"
         case venueName = "venue_name"
+        case eventId = "event_id"
+        case cellPhone = "cell_phone"
+        case price = "price"
+        case venueTypeId = "venue_type_id"
+        case ratio = "ratio"
+        case venueTypeName = "venue_type_name"
+        case isLike = "is_like"
         case totalLike = "total_like"
     }
 }
