@@ -155,6 +155,8 @@ class AppShareData {
             case .success(let response):
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
+                        // Setting "true" to userDefault object for knowing on HomeTab to refresh event list.
+                        UserDefaultManager.share.setIsLikedAnyEvent(isLikedAnyEvent: true)
                         if let message = response.message {
                             print("success like api")
                             completion(true, message)

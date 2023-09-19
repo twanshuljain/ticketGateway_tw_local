@@ -21,7 +21,6 @@ final class GetEventCategoryViewModel {
     var arrCategoryData : [GetEventCategoryModel] = [GetEventCategoryModel]()
     var arrSearchCategoryData = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
-    var isLikedAnyEvent: Bool = false
 }
 
 //MARK: - Functions

@@ -35,7 +35,6 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
     private let viewModel = GetEventCategoryViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.isLikedAnyEvent = false
         self.vwCollectionViewHeight.constant = 0
         self.vwSortByRelevanceHeight.constant = 0
         self.vwBlack.isHidden =  true
@@ -174,9 +173,6 @@ extension EventSearchHomeVC {
 // MARK: - CustomSearchMethodsDelegate
 extension EventSearchHomeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-        if viewModel.isLikedAnyEvent {
-            self.delegate?.updateData()
-        }
         self.navigationController?.popViewController(animated: true)
     }
     func rightButtonPressed(_ sender: UIButton) {
@@ -208,7 +204,6 @@ extension EventSearchHomeVC: FavouriteAction {
             self.showToast(message: Unable_To_Like)
             return
         }
-        viewModel.isLikedAnyEvent = true
         AppShareData().commanEventLikeApiCall(
             likeStatus: eventDetail.likeCountData?.isLiked ?? false,
             eventId: eventDetail.event?.id ?? 0,

@@ -705,8 +705,6 @@ extension ViewMoreEventsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
         if viewModel.isLikedAnyEvent {
-            // For API calling at HomeScreen when user comeback from MoreEventList Screen
-            self.updateHomeScreenDelegate?.updateData()
             // For API calling of event detail when user come back from MoreEventList Screen
             self.delegate?.reloadView(eventId: viewModel.eventId, isEventDetailApiCall: true)
         }

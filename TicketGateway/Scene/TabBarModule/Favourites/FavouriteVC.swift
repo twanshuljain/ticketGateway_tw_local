@@ -79,7 +79,9 @@ extension FavouriteVC {
     }
     func getFavouriteList() {
         if Reachability.isConnectedToNetwork() {
-            self.view.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                self.view.showLoading(centreToView: self.view)
+            }
             viewModel.getFavouriteList(favouriteModel: viewModel.favouriteModel, completion: { isTrue, message in
                 if isTrue {
                     DispatchQueue.main.async {
@@ -102,7 +104,9 @@ extension FavouriteVC {
     }
     func getVenueList() {
         if Reachability.isConnectedToNetwork() {
-            self.view.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                self.view.showLoading(centreToView: self.view)
+            }
             viewModel.getVenueList(venueModel: viewModel.venueModel, completion: { isTrue, message in
                 if isTrue {
                     DispatchQueue.main.async {
@@ -157,7 +161,7 @@ extension FavouriteVC {
     func loadMoreData() {
         if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
             if viewModel.arrSuggestionsList.count < viewModel.totalPageVenue {
-                print("venue load more data")
+                print("suggesyion load more data")
                 viewModel.venueModel.page += 1
                 getVenueList()
             }
@@ -191,7 +195,6 @@ extension FavouriteVC {
         }
         // API Calling for Dislike the Event
         if Reachability.isConnectedToNetwork() {
-            self.view.showLoading(centreToView: self.view)
             AppShareData().commanEventLikeApiCall(
                 likeStatus: false,
                 eventId: eventId,
@@ -212,7 +215,6 @@ extension FavouriteVC {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            self.view.stopLoading()
                             self.showToast(message: message)
                         }
                     }
@@ -220,7 +222,6 @@ extension FavouriteVC {
             )
         } else {
             DispatchQueue.main.async {
-                self.view.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
@@ -325,7 +326,9 @@ extension FavouriteVC {
     func getSuggestionsList(categoryId: Int) {
         if Reachability.isConnectedToNetwork() { //check internet connectivity
             DispatchQueue.main.async { [self] in
-                self.view.showLoading(centreToView: self.view)
+                if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                    self.view.showLoading(centreToView: self.view)
+                }
             }
             viewModel.eventDetailViewModel.GetEventSuggestedCategory(categoryId: categoryId) { isTrue, messageShowToast in
                 if isTrue == true {
@@ -387,13 +390,10 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
-            print("arr suggestion data in numberOfRowsInSection count:", viewModel.arrSuggestionsList.count)
             return self.viewModel.arrSuggestionsList.count
         } else if !viewModel.isForVenue {
-            print("arr fav data in numberOfRowsInSection")
             return viewModel.arrFavouriteList.count
         } else {
-            print("else in numberOfRowsInSection")
             return viewModel.arrVenueList.count
         }
     }
@@ -401,17 +401,14 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as? FavouriteTableViewCell {
             if  viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
                 if viewModel.arrSuggestionsList.indices.contains(indexPath.row){
-                    print("arr suggestion data in cellForRowAt")
                     cell.getSuggestionsData = self.viewModel.arrSuggestionsList[indexPath.row]
                 }
             } else if !viewModel.isForVenue {
                 if viewModel.arrFavouriteList.indices.contains(indexPath.row){
-                    print("arr fav data in cellForRowAt")
                     cell.getFavouriteData =  viewModel.arrFavouriteList[indexPath.row]
                 }
             } else {
                 if viewModel.arrVenueList.indices.contains(indexPath.row){
-                    print("arr venue data in cellForRowAt")
                     cell.getVenueData = viewModel.arrVenueList[indexPath.row]
                 }
             }

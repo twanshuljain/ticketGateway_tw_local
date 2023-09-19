@@ -50,7 +50,12 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        // If any event liked from Fav Tab then we need to refresh the list of all events at Home Tab
+        if UserDefaultManager.share.getIsLikedAnyEvent() {
+            // Setting "false" to userDefault object once event list refreshed
+            UserDefaultManager.share.setIsLikedAnyEvent(isLikedAnyEvent: false)
+            self.refreshData()
+        }
     }
 }
 
@@ -59,7 +64,6 @@ class HomeVC: UIViewController {
 extension HomeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
-        view?.delegate = self
         self.navigationController?.pushViewController(view!, animated: true)
     }
     
@@ -139,7 +143,9 @@ extension HomeVC {
     func apiCall(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             viewModel.GetEventApi(complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
@@ -166,7 +172,9 @@ extension HomeVC {
     func funcCallApi(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             self.viewModel.dispatchGroup.enter()
             viewModel.getEventAsPerLocation(countryName: self.viewModel.country?.country_name ?? self.getCountry(), complition: { isTrue, messageShowToast in
                 if isTrue == true {
@@ -201,7 +209,9 @@ extension HomeVC {
     func funcCallApiForWeekendEvents(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             self.viewModel.dispatchGroup1.enter()
             viewModel.getEventApiForWeekendEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 
@@ -242,7 +252,9 @@ extension HomeVC {
     func funcCallApiForOnlineEvents(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             self.viewModel.dispatchGroup2.enter()
             viewModel.getEventApiForOnlineEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
@@ -275,7 +287,9 @@ extension HomeVC {
     func funcCallApiForPopularEvents(viewAll: Bool){
         if Reachability.isConnectedToNetwork() // check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             self.viewModel.dispatchGroup3.enter()
             viewModel.getEventApiForPopularEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
@@ -310,7 +324,9 @@ extension HomeVC {
     func funcCallApiForFreeEvents(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             self.viewModel.dispatchGroup4.enter()
             viewModel.getEventApiForFreeEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
@@ -344,7 +360,9 @@ extension HomeVC {
     func funcCallApiForUpcomingEvents(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             self.viewModel.dispatchGroup5.enter()
             viewModel.getEventApiForUpcomingEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
@@ -385,7 +403,9 @@ extension HomeVC {
     func funcCallApiForOrganizersList(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
-            parentView.showLoading(centreToView: self.view)
+            if !UserDefaultManager.share.getIsLikedAnyEvent() {
+                parentView.showLoading(centreToView: self.view)
+            }
             viewModel.getOrganizersList { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
@@ -406,12 +426,6 @@ extension HomeVC {
                 self.parentView.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
-        }
-    }
-    
-    func funcCallFavoriteApi() {
-        if Reachability.isConnectedToNetwork() {
-            
         }
     }
     
@@ -449,7 +463,6 @@ extension HomeVC {
                 // Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
                 AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
                 view.viewModel.eventDetail = self.viewModel.eventDetail
-                view.delegate = self
                 self.navigationController?.pushViewController(view, animated: false)
             }
       }
@@ -525,7 +538,6 @@ extension HomeVC: SendLocation {
 extension HomeVC: EventsOrganizesListTableViewProtocol{
     func tapActionOfViewMoreEvents(index: Int) {
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
-        view?.updateHomeScreenDelegate = self
         view?.viewModel.index = index
         view?.viewModel.countryName = self.viewModel.country?.country_name ?? self.getCountry()
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
@@ -546,14 +558,8 @@ extension HomeVC: ActivityController {
             eventDescription: eventDetail.event?.eventDescription
         )
     }
-  
 }
-extension HomeVC: EventDetailVCProtocol{
-    func updateData() {
-        self.refreshData()
-    }
-}
-extension HomeVC: FavouriteAction {    
+extension HomeVC: FavouriteAction {
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {

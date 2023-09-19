@@ -15,7 +15,7 @@ class UserDefaultManager {
     static let share = UserDefaultManager()
     
     let defaults = UserDefaults.standard
-    
+    private let keyIsLikedAnyEvent = "isLikedAnyEvent"
     func storeModelToUserDefault<T>(userData: T, key: UserDefaultModelKeys) where T: Codable {
         defaults.set(try? JSONEncoder().encode(userData), forKey: key.rawValue)
     }
@@ -80,5 +80,14 @@ extension UserDefaultManager {
     }
     func getUserStirngValue(key: UserDefaultKeys) -> String {
         return UserDefaults.standard.value(forKey: key.rawValue) as? String ?? ""
+    }
+    func getIsLikedAnyEvent() -> Bool {
+        return UserDefaults.standard.bool(forKey: keyIsLikedAnyEvent)
+    }
+    func setIsLikedAnyEvent(isLikedAnyEvent: Bool) {
+        UserDefaults.standard.set(isLikedAnyEvent, forKey: keyIsLikedAnyEvent)
+    }
+    func removeIsLikedAnyEvent() {
+        UserDefaults.standard.removeObject(forKey: keyIsLikedAnyEvent)
     }
 }

@@ -135,6 +135,7 @@ extension SideMenuViewControllers{
                 self.showAlert(message: "Are you sure you want to logout", complition: { _ in
                     objSceneDelegate.showLogin_Signup()
                     UserDefaultManager.share.clearAllUserDataAndModel()
+                    UserDefaultManager.share.removeIsLikedAnyEvent()
                 })
             }
             
