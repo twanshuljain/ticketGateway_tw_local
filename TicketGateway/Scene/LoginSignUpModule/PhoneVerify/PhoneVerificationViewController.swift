@@ -103,7 +103,7 @@ extension PhoneVerificationViewController {
                     self.view.showLoading(centreToView: self.view)
                     let number = "\(lblDialCountryCode.text ?? "")" + (self.txtNumber.text ?? "")
                     let numberWithoutCode = self.txtNumber.text ?? ""
-                    let param = ValidateForNumberRequest(cell_phone: numberWithoutCode, email: self.txtEmail.text ?? "")
+                    let param = ValidateForNumberRequest(cell_phone: numberWithoutCode, email: self.txtEmail.text ?? "", country_code: lblDialCountryCode.text ?? "")
                     signInViewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
                         if isTrue == true {
                             DispatchQueue.main.async { [self] in
@@ -168,6 +168,7 @@ extension PhoneVerificationViewController {
     }
     
     @IBAction func btnChangeNumberAction(_ sender:UIButton){
+        self.btnChangeNumber.isHidden = true
         self.isChangeMobileNumberTap = true
         self.txtNumber.text = ""
         self.txtNumber.isUserInteractionEnabled = true
@@ -216,16 +217,32 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
         self.imgCountry.image = nil
         if self.imgCountry.image == nil {
             var str = ""
+            var arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
+            
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
+                arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
             }else{
                 str = NSLocale.current.regionCode ?? ""
+                arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
+            }
+           
+            self.lblDialCountryCode.text = "+91"
+            var imagePath = "CountryPicker.bundle/\(str).png"
+            
+            if arr.count == 2{
+                arr.removeAll { country in
+                    country.country_code != (NSLocale.current.regionCode ?? "")
+                }
             }
             
-            let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
-            self.imgCountry.image = UIImage(named: imagePath)
-            self.lblDialCountryCode.text = "+91"
-            let arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
+            if let flagImg = UIImage(named: imagePath){
+                self.imgCountry.image = flagImg
+            }else{
+                str = arr[0].country_code
+                imagePath = "CountryPicker.bundle/\(str).png"
+                self.imgCountry.image = UIImage(named: imagePath)
+            }
             if arr.count>0 {
                 let country = arr[0]
                 self.signInViewModel.strCountryDialCode = country.dial_code

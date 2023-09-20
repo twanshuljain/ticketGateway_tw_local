@@ -340,6 +340,8 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
             label.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
             label.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
             headerView.addSubview(label)
             
             
@@ -450,7 +452,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.isComingFrom == .Home{
             if self.arrEventCategory[indexPath.section] == .noLocationData{
-                return 20
+                return 50
             }
             return UITableView.automaticDimension
         }

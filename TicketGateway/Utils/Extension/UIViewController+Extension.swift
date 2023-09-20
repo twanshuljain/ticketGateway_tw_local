@@ -89,6 +89,14 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
       }
     
+    func showAlertWithOkButton(title: String = "TicketGateway", message: String ,completion: @escaping () -> Void ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+         completion()
+         }))
+        present(alert, animated: true, completion: nil)
+      }
+    
     func showAlertSendOnUrlPath( strTittle: String,strMessage: String,strUrl: String){
         let alert = UIAlertController(title: strTittle, message: strMessage, preferredStyle: .alert)
         let strGoSetting = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in

@@ -163,17 +163,19 @@
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhK-TD-C8I">
                         <rect key="frame" x="0.0" y="0.0" width="511" height="501"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Events Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-5J-aaY">
-                                <rect key="frame" x="181.5" y="238" width="148" height="25.5"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Events Found" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-5J-aaY">
+                                <rect key="frame" x="5" y="239.5" width="501" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                 <color key="textColor" name="TiitleColourDarkBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="u7V-5J-aaY" secondAttribute="trailing" constant="5" id="HIx-EC-Uev"/>
                             <constraint firstItem="u7V-5J-aaY" firstAttribute="centerY" secondItem="GhK-TD-C8I" secondAttribute="centerY" id="UAZ-VO-b4z"/>
                             <constraint firstItem="u7V-5J-aaY" firstAttribute="centerX" secondItem="GhK-TD-C8I" secondAttribute="centerX" id="cDE-W9-jWd"/>
+                            <constraint firstItem="u7V-5J-aaY" firstAttribute="leading" secondItem="GhK-TD-C8I" secondAttribute="leading" constant="5" id="p2b-Ur-8i1"/>
                         </constraints>
                     </view>
                 </subviews>
