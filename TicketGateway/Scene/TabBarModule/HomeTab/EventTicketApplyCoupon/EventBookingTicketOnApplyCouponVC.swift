@@ -161,8 +161,14 @@ extension EventBookingTicketOnApplyCouponVC {
                 if isTrue == true {
                     self.parentView.stopLoading()
                     DispatchQueue.main.async {
-                        self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
-                         self.tblEventTicketTypes.reloadData()
+                        if self.viewModel.arrTicketList?.count == 0{
+                            self.showAlertWithOkButton(message: messageShowToast) {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }else{
+                            self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
+                            self.tblEventTicketTypes.reloadData()
+                        }
                     }
                 } else {
                     DispatchQueue.main.async {

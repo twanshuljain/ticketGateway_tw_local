@@ -402,17 +402,17 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
             if  viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
                 if viewModel.arrSuggestionsList.indices.contains(indexPath.row){
                     print("arr suggestion data in cellForRowAt")
-                    cell.getSuggestionsData = self.viewModel.arrSuggestionsList[indexPath.row]
+                    cell.setDataForSuggestions(getSuggestionsData: self.viewModel.arrSuggestionsList[indexPath.row])
                 }
             } else if !viewModel.isForVenue {
                 if viewModel.arrFavouriteList.indices.contains(indexPath.row){
                     print("arr fav data in cellForRowAt")
-                    cell.getFavouriteData =  viewModel.arrFavouriteList[indexPath.row]
+                    cell.setDataForFavoritesEvents(getFavouriteData: viewModel.arrFavouriteList[indexPath.row])
                 }
             } else {
                 if viewModel.arrVenueList.indices.contains(indexPath.row){
                     print("arr venue data in cellForRowAt")
-                    cell.getVenueData = viewModel.arrVenueList[indexPath.row]
+                    cell.setDataForFavoritesVenue(getVenueData: viewModel.arrVenueList[indexPath.row])
                 }
             }
             cell.lblFavoriteDate.isHidden = viewModel.isForVenue

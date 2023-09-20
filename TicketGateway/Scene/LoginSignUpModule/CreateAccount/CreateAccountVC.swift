@@ -169,7 +169,8 @@ extension CreateAccountVC: UITextFieldDelegate {
         if textField == txtFullName {
             viewModel.fullName = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtMobileNumber {
-            viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+           // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            viewModel.mobileNumber = "\(text.replacingCharacters(in: textRange, with: string))"
         } else if textField == txtEmailAddress {
             viewModel.emailAddress = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtPassword {
@@ -196,16 +197,20 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
         self.imgCountry.image = nil
         if self.imgCountry.image == nil {
             var str = ""
+            var arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+            
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
+                arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
             }else{
                 str = NSLocale.current.regionCode ?? ""
+                arr = viewModel.RScountriesModel.filter({$0.country_code == str})
             }
             
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
-            let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+            
             if arr.count>0 {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dial_code

@@ -78,16 +78,38 @@ extension ManageEventEditProfileVC {
         if self.imgCountry.image == nil
         {
             var str = ""
+            var arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+            
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
+                arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
             }else{
                 str = NSLocale.current.regionCode ?? ""
+                arr = viewModel.RScountriesModel.filter({$0.country_code == str})
             }
             
-            let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
-            self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
-            let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+            
+            var imagePath = "CountryPicker.bundle/\(str).png"
+            
+            if arr.count == 2{
+                arr.removeAll { country in
+                    country.country_code != (NSLocale.current.regionCode ?? "")
+                }
+            }
+            
+            if let flagImg = UIImage(named: imagePath){
+                self.imgCountry.image = flagImg
+            }else{
+                str = arr[0].country_code
+                imagePath = "CountryPicker.bundle/\(str).png"
+                self.imgCountry.image = UIImage(named: imagePath)
+            }
+            
+//            let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
+//            self.imgCountry.image = UIImage(named: imagePath)
+//            self.lblDialCountryCode.text = "+91"
+//            let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
             if arr.count>0 {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dial_code

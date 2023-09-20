@@ -23,4 +23,5 @@ struct SignInNumberWithEmailRequest: Codable {
 struct ValidateForNumberRequest: Codable {
     var cell_phone: String?
     var email: String?
+    var country_code: String?
 }
