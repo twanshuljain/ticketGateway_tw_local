@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import AVFoundation
 
 class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -54,8 +54,12 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         self.viewController = viewController
         alert.dismiss(animated: true, completion: nil)
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){
-            picker.sourceType = .camera
-            self.viewController!.present(picker, animated: true, completion: nil)
+            checkCameraPermission { isEnable in
+                if isEnable {
+                    self.picker.sourceType = .camera
+                    self.viewController!.present(self.picker, animated: true, completion: nil)
+                }
+            }
         } else {
             let alertController: UIAlertController = {
                 let controller = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
@@ -64,6 +68,41 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
                 return controller
             }()
             viewController?.present(alertController, animated: true)
+        }
+    }
+    func checkCameraPermission(isEnable: @escaping (Bool) -> Void) {
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+            print("Already Authorized")
+            isEnable(true)
+        } else {
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted: Bool) -> Void in
+               if granted == true {
+                   print("User granted")
+                   isEnable(true)
+               } else {
+                   // Popup for Navigate to Settings
+                   let alertController: UIAlertController = {
+                       let controller = UIAlertController(title: "Alert", message: Allow_Camera_Permission, preferredStyle: .alert)
+                       let cancel = UIAlertAction(title: "Cancel", style: .default)
+                       let settings = UIAlertAction(title: "Settings", style: .default) { (action:UIAlertAction!) in
+                           print("Settings tapped")
+                           if let url = URL(string: UIApplication.openSettingsURLString) {
+                               if UIApplication.shared.canOpenURL(url) {
+                                   DispatchQueue.main.async {
+                                       UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                   }
+                               }
+                           }
+                       }
+                       controller.addAction(cancel)
+                       controller.addAction(settings)
+                       return controller
+                   }()
+                   DispatchQueue.main.async {
+                       self.viewController?.present(alertController, animated: true)
+                   }
+               }
+           })
         }
     }
     func openGallery(viewController:UIViewController?){

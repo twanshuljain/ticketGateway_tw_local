@@ -53,6 +53,7 @@ extension ScannerVC {
         do {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
         } catch {
+            print("error: ", error)
             return
         }
         if viewModel.captureSession.canAddInput(videoInput){
