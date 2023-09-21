@@ -8,11 +8,22 @@
 import Foundation
 struct ScanDetailModel: Encodable {
     var name: String = ""
-    var event_id: Int = 0
+    var eventId: Int = 0
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case eventId = "event_id"
+    }
 }
 struct ScanBarCodeModel: Encodable {
     var qrid: String = ""
     var name: String = ""
-    var event_id: Int = 0
-    var scan_ticket_types: [String] = []
+    var eventId: Int = 0
+    var scanTicketTypes: [String] = []
+    enum CodingKeys: String, CodingKey {
+        case qrid = "qrid"
+        case name = "name"
+        case eventId = "event_id"
+        case scanTicketTypes = "scan_ticket_types"
+    }
+
 }

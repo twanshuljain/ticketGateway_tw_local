@@ -7,7 +7,10 @@
 
 import Foundation
 struct ScanOverviewModel: Encodable {
-    var event_id: Int = 0
+    var eventId: Int = 0
+    enum CodingKeys: String, CodingKey {
+        case eventId = "event_id"
+    }
 }
 struct ScanSummaryModel: Encodable {
     var tab: String = "ACCEPTED"

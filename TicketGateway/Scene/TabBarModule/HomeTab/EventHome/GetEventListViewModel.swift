@@ -4,14 +4,6 @@
 //
 //  Created by Apple  on 30/05/23.
 //
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
@@ -49,8 +41,8 @@ final class HomeDashBoardViewModel {
 // MARK: - Functions
 extension HomeDashBoardViewModel {
     
-    func GetEventApi(complition: @escaping (Bool,String) -> Void ) {
-        APIHandler.shared.executeRequestWith(apiName: .GetEventList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+    func getEventApi(complition: @escaping (Bool,String) -> Void ) {
+        APIHandler.shared.executeRequestWith(apiName: .getEventList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -79,7 +71,7 @@ extension HomeDashBoardViewModel {
     }
     
     func getOrganizersList(complition: @escaping (Bool,String) -> Void ) {
-        APIHandler.shared.executeRequestWith(apiName: .GetOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -100,7 +92,7 @@ extension HomeDashBoardViewModel {
     func getEventAsPerLocation(category:String? = "", countryName:String? = "", sortBy:SortBy? = .None, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
         let parameters =  GetEventSearchByCategoryRequest(countryName: countryName, limit: "3", page: "1")
-        APIHandler.shared.executeRequestWith(apiName: .GetEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
                 
             case .success(let response):
@@ -112,7 +104,7 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsLocation = items
                             self.arrSearchCategoryData = items
-                            if items.count != 0{
+                            if !items.isEmpty {
                                 self.arrEventCategory.append(.nearByLocation)
                             }else{
                                 self.arrEventCategory.append(.noLocationData)
@@ -132,7 +124,7 @@ extension HomeDashBoardViewModel {
     }
     func getEventApiForWeekendEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let parameters = viewAll == false ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.weekend.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup1.leave() }
@@ -143,7 +135,7 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsWeekend = items
                             self.arrDataaWeekend = items
-                            if items.count != 0{
+                            if !items.isEmpty {
                                 self.arrEventCategory.append(.weekend)
                             }
                         }
@@ -163,7 +155,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForOnlineEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.virtual.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.virtual.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup2.leave() }
@@ -174,7 +166,7 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsVirtual = items
                             self.arrDataaVirtual = items
-                            if items.count != 0{
+                            if !items.isEmpty {
                                 self.arrEventCategory.append(.online)
                             }
                         }
@@ -194,7 +186,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForPopularEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.popular.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.popular.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -204,7 +196,7 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsPopular = items
                             self.arrDataaPopular = items
-                            if items.count != 0{
+                            if !items.isEmpty {
                                 self.arrEventCategory.append(.popular)
                             }
                         }
@@ -224,7 +216,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForFreeEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.free.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.free.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -234,7 +226,7 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsFree = items
                             self.arrDataaFree = items
-                            if items.count != 0{
+                            if !items.isEmpty {
                                 self.arrEventCategory.append(.free)
                             }
                         }
@@ -253,7 +245,7 @@ extension HomeDashBoardViewModel {
     
     func getEventApiForUpcomingEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.upcoming.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.upcoming.rawValue)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -263,7 +255,7 @@ extension HomeDashBoardViewModel {
                             self.arrEventData = data
                             self.arrEventData.itemsUpcoming = items
                             self.arrDataaUpcoming = items
-                            if items.count != 0{
+                            if !items.isEmpty {
                                 self.arrEventCategory.append(.upcoming)
                             }
                         }
@@ -279,9 +271,9 @@ extension HomeDashBoardViewModel {
             }
         }
     }
-    func GetEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
-        let url = APIName.GetEventDetail.rawValue + "\(eventId)"  + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+    func getEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
+        let url = APIName.getEventDetail.rawValue + "\(eventId)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

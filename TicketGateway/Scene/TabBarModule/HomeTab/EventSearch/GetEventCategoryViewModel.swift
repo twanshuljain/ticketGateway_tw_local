@@ -55,7 +55,7 @@ extension GetEventCategoryViewModel {
     
     func GetEventCategoryApi(complition: @escaping (Bool,String) -> Void ) {
         
-        APIHandler.shared.executeRequestWith(apiName: .GetEventCategoryList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventCategoryModel]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventCategoryList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventCategoryModel]>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -80,7 +80,7 @@ extension GetEventCategoryViewModel {
     
     func getEventSearchCategoryApi(category: String, complition: @escaping (Bool,String) -> Void ) {
         let parameters =  GetEventSearchByCategoryRequest(category: category)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventSearchByCategory, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -105,7 +105,7 @@ extension GetEventCategoryViewModel {
     
     func getEventSearchApi(searchText: String, complition: @escaping (Bool,String) -> Void ) {
         let parameters =  GetEventSearch(search_key: searchText)
-        APIHandler.shared.executeRequestWith(apiName: .GetEventSearch, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<SearchModel>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getEventSearch, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<SearchModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

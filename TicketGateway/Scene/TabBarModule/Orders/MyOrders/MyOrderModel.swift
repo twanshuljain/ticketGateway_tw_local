@@ -9,7 +9,14 @@ import Foundation
 struct MyOrdersModel: Encodable {
     var page: Int = 1
     var limit: Int = 10
-    var filter_by: String = ""
-    var search_query: String = ""
-    var sort_by: String = ""
+    var filterBy: String = ""
+    var searchQuery: String = ""
+    var sortBy: String = ""
+    enum CodingKeys: String, CodingKey {
+        case page = "page"
+        case limit = "limit"
+        case filterBy = "filter_by"
+        case searchQuery = "search_query"
+        case sortBy = "sort_by"
+    }
 }

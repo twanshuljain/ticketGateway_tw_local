@@ -125,7 +125,7 @@ extension ManageSellAddBuyerVC {
 //            self.imgCountry.image = UIImage(named: imagePath)
 //            self.lblDialCountryCode.text = "+91"
 //            let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
-            if arr.count>0 {
+            if !arr.isEmpty {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code

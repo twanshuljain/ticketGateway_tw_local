@@ -31,9 +31,9 @@ final class EventBookingTicketViewModel{
 //MARK: - Functions
 extension EventBookingTicketViewModel{
     func getEventTicketList(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.GetTicketList.rawValue + "\(self.eventId ?? 0)" + "/"
+        var getURL = APIName.getTicketList.rawValue + "\(self.eventId ?? 0)" + "/"
        // var getURL = APIName.GetTicketList.rawValue + "12" + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup.leave() }
@@ -57,8 +57,8 @@ extension EventBookingTicketViewModel{
     
     func getEventTicketFeeStructure(complition: @escaping (Bool,String) -> Void ) {
         guard let eventId = self.eventDetail?.event?.id else {return}
-        var getURL = APIName.GetFeeStructure.rawValue + "\(eventId)" + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetFeeStructure, parameters: EmptyModel?.none, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<FeeStructure>, Error>) in
+        var getURL = APIName.getFeeStructure.rawValue + "\(eventId)" + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getFeeStructure, parameters: EmptyModel?.none, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<FeeStructure>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

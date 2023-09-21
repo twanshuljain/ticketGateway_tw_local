@@ -211,7 +211,7 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
             
-            if arr.count>0 {
+            if !arr.isEmpty {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code

@@ -8,7 +8,11 @@
 import Foundation
 struct ScanTicketModel: Encodable {
     var name: String = ""
-    var scan_pin: String = ""
+    var scanPin: String = ""
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case scanPin = "scan_pin"
+    }
 }
 struct GetScanTicketDetails {
     var name: String = ""

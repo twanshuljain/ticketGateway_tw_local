@@ -102,7 +102,7 @@ extension EventBookingOrderSummaryVC {
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height
-        if self.viewModel.selectedAddOnList.count == 0{
+        if self.viewModel.selectedAddOnList.isEmpty {
             self.heightOfAddOn.constant = 0
         }else{
             self.heightOfAddOn.constant = tblAddOnEtcThings.contentSize.height
@@ -167,7 +167,7 @@ extension EventBookingOrderSummaryVC {
                 }else{
                     view.userType = .existing
                 }
-                view.isComingFrom = .OrderSummary
+                view.isComingFrom = .orderSummary
                 view.viewModel.eventId = self.viewModel.eventId
                 view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
                 view.viewModel.eventDetail = self.viewModel.eventDetail

@@ -4,24 +4,17 @@
 //
 //  Created by Apple  on 28/04/23.
 //
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
+// swiftlint: disable cyclomatic_complexity
 import UIKit
 
 enum IsComingFromForEventsOrganizesListTableView{
-    case Home
-    case EventDetail
-    case Venue
-    case EventSearch
-    case None
-    case NoneEventDetail
+    case home
+    case eventDetail
+    case venue
+    case eventSearch
+    case none
+    case noneEventDetail
 }
 
 protocol EventsOrganizesListTableViewProtocol{
@@ -51,7 +44,7 @@ class EventsOrganizesListTableView: UITableView {
     var tableDidSelectAtIndex: ((IndexPath) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
-    var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .Home
+    var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .home
     var delegateViewMore: EventsOrganizesListTableViewProtocol?
     var delegateShareAction: ActivityController?
     var delegateLikeAction: FavouriteAction?
@@ -69,7 +62,7 @@ class EventsOrganizesListTableView: UITableView {
     
     func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
         print("IndexPath : \(indexPath.row)")
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
             switch self.arrEventCategory[indexPath.section] {
             case .noLocationData:
                 print("No Location Data")
@@ -98,12 +91,12 @@ class EventsOrganizesListTableView: UITableView {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaUpcoming[indexPath.row])
                 }
             }
-        } else if isComingFrom == .EventDetail {
+        } else if isComingFrom == .eventDetail {
             // Suggestions Event
             if arrData.indices.contains(indexPath.row){
                 self.delegateShareAction?.toShowActivityController(eventDetail: self.arrData[indexPath.row])
             }
-        } else if isComingFrom == .EventSearch {
+        } else if isComingFrom == .eventSearch {
             // For Serach Screen
             if arrSearchData.indices.contains(indexPath.row){
                 self.delegateShareAction?.toShowActivityController(eventDetail: self.arrSearchData[indexPath.row])
@@ -112,7 +105,7 @@ class EventsOrganizesListTableView: UITableView {
     }
     func btnLikeActionTapped(btn:UIButton, indexPath:IndexPath) {
         print("IndexPath : \(indexPath.row)")
-        if self.isComingFrom == .Home {
+        if self.isComingFrom == .home {
             switch self.arrEventCategory[indexPath.section] {
             case .noLocationData:
                 print("No Location Data")
@@ -148,13 +141,13 @@ class EventsOrganizesListTableView: UITableView {
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaUpcoming[indexPath.row], isForLocation: false)
                 }
             }
-        } else if isComingFrom == .EventDetail {
+        } else if isComingFrom == .eventDetail {
             // Suggestions Event
             if arrData.indices.contains(indexPath.row){
                 arrData[indexPath.row].isLiked?.toggle()
                 self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrData[indexPath.row], isForLocation: true)
             }
-        } else if isComingFrom == .EventSearch {
+        } else if isComingFrom == .eventSearch {
             // For Serach Screen
             if arrSearchData.indices.contains(indexPath.row) {
                 arrSearchData[indexPath.row].likeCountData?.isLiked?.toggle()
@@ -183,7 +176,7 @@ class EventsOrganizesListTableView: UITableView {
 extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
 //            if self.arrDataaWeekend.count != 0{
 //                return 1
 //            }else if self.arrDataaVirtual.count != 0{
@@ -204,7 +197,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
 //            switch section {
 //            case 0: return self.arrDataaWeekend.count
 //            case 1: return self.arrDataaVirtual.count
@@ -238,14 +231,14 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             }
             
             
-        }else if self.isComingFrom == .EventDetail{
-            if self.arrData.count == 0{
+        }else if self.isComingFrom == .eventDetail{
+            if self.arrData.isEmpty {
                 return 5
             }else{
                 return self.arrData.count
                 //return 3
             }
-        }else if self.isComingFrom == .EventSearch {
+        }else if self.isComingFrom == .eventSearch {
             ///return arrDataCategorySearch.count
             return isFromSearch ? arrSearchData.count: arrDataCategorySearch.count
           }
@@ -266,7 +259,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                  self.btnLikeActionTapped(btn: btn, indexPath: indexPath)
             }
             //cell.btnShare.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
-            if self.isComingFrom == .Home{
+            if self.isComingFrom == .home{
                 
                 switch self.arrEventCategory[indexPath.section] {
                 case .noLocationData:
@@ -305,7 +298,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                         cell.btnLike.setImage(UIImage(named: (arrDataaUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 }
-            } else if self.isComingFrom == .EventSearch {
+            } else if self.isComingFrom == .eventSearch {
                 if isFromSearch {
                     if arrSearchData.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrSearchData[indexPath.row]
@@ -320,7 +313,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 //    if arrDataCategorySearch.indices.contains(indexPath.row) {
                 //     cell.getEvent = self.arrDataCategorySearch[indexPath.row]
                 //    }
-            } else if isComingFrom == .EventDetail {
+            } else if isComingFrom == .eventDetail {
                   if arrData.indices.contains(indexPath.row) {
                       cell.getEvent = self.arrData[indexPath.row]
                       cell.btnLike.setImage(UIImage(named: (arrData[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
@@ -334,7 +327,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
             let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
             let label = UILabel()
             label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
@@ -407,7 +400,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         let separatorView = UIView(frame: CGRect.init(x: 25, y: 45, width: tableView.frame.width - 50, height: 1))
         footerView.addSubview(separatorView)
         separatorView.backgroundColor = UIColor.setColor(colorType: .placeHolder)
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
             switch self.arrEventCategory[section] {
             case .noLocationData:
                 print("No Location Data")
@@ -426,7 +419,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 return footerView
             
             }
-        }else if self.isComingFrom == .EventDetail{
+        }else if self.isComingFrom == .eventDetail{
             return footerView
         }else{
             return nil
@@ -435,14 +428,14 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 
     // set height for footer
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
             if self.arrEventCategory[section] == .nearByLocation{
                 return 40
             }else if self.arrEventCategory[section] == .noLocationData{
                 return 0
             }
             return 40
-        }else if self.isComingFrom == .EventDetail{
+        }else if self.isComingFrom == .eventDetail{
             return 40
         }else{
             return 0
@@ -450,7 +443,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
             if self.arrEventCategory[indexPath.section] == .noLocationData{
                 return 50
             }
@@ -464,7 +457,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
 //            if self.arrEventCategory[section] == .noLocationData{
 //                return 0
 //            }
@@ -475,7 +468,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func buttonPressed(sender: UIButton) {
-        if self.isComingFrom == .Home{
+        if self.isComingFrom == .home{
             switch self.arrEventCategory[sender.tag] {
             case .nearByLocation:
                 self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
@@ -498,7 +491,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             default:
                 break;
             }
-        }else if self.isComingFrom == .EventDetail{
+        }else if self.isComingFrom == .eventDetail{
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
         }
 

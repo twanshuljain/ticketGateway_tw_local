@@ -6,12 +6,6 @@
 //
 
 import Foundation
-struct GetScanEventResponse: Codable {
-    var data: GetScanEventData?
-    var status_code: Int?
-    var message: String?
-    var error: String?
-}
 struct GetScanEventData: Codable {
     var eventId: Int?
     var eventName: String?

@@ -18,7 +18,7 @@ class ScannerViewModel {
     var scanBarCodeModel = ScanBarCodeModel()
     // MARK: Custom Functions
     func getScanDetail(complition: @escaping (Bool, String) -> Void ) {
-        let parameters = ScanDetailModel(name: getScanTicketDetails.name, event_id: getScanTicketDetails.eventId)
+        let parameters = ScanDetailModel(name: getScanTicketDetails.name, eventId: getScanTicketDetails.eventId)
         APIHandler.shared.executeRequestWith(apiName: .scanDetail, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<GetScanDetailData>, Error>) in
             switch result {
             case .success(let response):

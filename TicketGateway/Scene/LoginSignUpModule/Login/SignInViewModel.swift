@@ -101,7 +101,7 @@ extension SignInViewModel {
         var authTokenString = userType == .new ? false : true
         let paramForNumber:ValidateForNumberRequest?
         if userType == .new{
-            paramForNumber = ValidateForNumberRequest(cell_phone: userModel?.number, email: userModel?.email)
+            paramForNumber = ValidateForNumberRequest(cellPhone: userModel?.number, email: userModel?.email)
         }else{
             paramForNumber = ValidateForNumberRequest()
         }

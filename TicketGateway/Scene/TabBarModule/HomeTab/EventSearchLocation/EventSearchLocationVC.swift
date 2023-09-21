@@ -73,7 +73,7 @@ class EventSearchLocationVC: UIViewController {
             }
         }
         
-        if self.searchCountriesModel.count == 0{
+        if self.searchCountriesModel.isEmpty {
             self.noResultFoundView.isHidden = false
         }else{
             self.noResultFoundView.isHidden = true

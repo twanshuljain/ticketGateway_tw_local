@@ -74,11 +74,11 @@ extension ScanEventVC {
     }
     func btnContinueAction() {
         viewModel.scanTicketModel.name = txtYourName.text?.trimmingCharacters(in: .whitespaces) ?? "-"
-        viewModel.scanTicketModel.scan_pin = txtEnterPin.text?.trimmingCharacters(in: .whitespaces) ?? "-"
+        viewModel.scanTicketModel.scanPin = txtEnterPin.text?.trimmingCharacters(in: .whitespaces) ?? "-"
         if viewModel.scanTicketModel.name.isEmpty {
             self.showToast(message: Name_Not_Nil)
             return
-        } else if viewModel.scanTicketModel.scan_pin.isEmpty {
+        } else if viewModel.scanTicketModel.scanPin.isEmpty {
             self.showToast(message: Pin_Not_Nil)
             return
         }

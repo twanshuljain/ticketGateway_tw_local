@@ -105,7 +105,7 @@ extension MyTicketVC {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
                         //self.setData()
-                        if self.viewModel.myTicket?.items?.count == 0{
+                        if !(self.viewModel.myTicket?.items?.isEmpty ?? false) {
                             self.showToast(message: "No Tickets Found!!")
                         }
                     }
@@ -134,7 +134,7 @@ extension MyTicketVC {
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {
                 self.view.showLoading(centreToView: self.view)
-                viewModel.GetEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
+                viewModel.getEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
                     if isTrue == true {
                         DispatchQueue.main.async {
                             self.view.stopLoading()

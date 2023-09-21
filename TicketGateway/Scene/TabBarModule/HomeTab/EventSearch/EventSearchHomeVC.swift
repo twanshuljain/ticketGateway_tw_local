@@ -44,7 +44,7 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
         self.vwSearchBar.vwLocation.isHidden = true
         self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
         self.collVwEvent.configure()
-        self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.EventSearch)
+        self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.eventSearch)
         self.collVwEvent.isFromCategory = true
         self.collVwEventSubCategory.configure()
         self.collVwEventSubCategory.isFromCategory = false
@@ -52,7 +52,7 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.tblEvents.tableDidSelectAtIndex = {  index in
-            let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
+            let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC
             if self.viewModel.arrSearchData.indices.contains(index.row){
                 view?.viewModel.eventId = self.viewModel.arrSearchData[index.row].event?.id
                 self.navigationController?.pushViewController(view!, animated: true)

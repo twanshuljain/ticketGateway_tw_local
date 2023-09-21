@@ -129,7 +129,13 @@ extension EventBookingPaymentMethodViewModel{
         var ticketIDs = [CheckoutTicketID]()
         var addOnList = [CheckoutAddonList]()
         self.selectedArrTicketList.forEach { ticket in
-            let data = CheckoutTicketID.init(ticketTypeId: ticket.ticketTypeId,ticketType: ticket.ticketType ?? "", ticketName: ticket.ticketName ?? "", baseTicketID: ticket.ticketID ?? 0, quantity: ticket.selectedTicketQuantity ?? 0, ticketPrice: ticket.ticketPrice ?? 0, ticketCurrency: ticket.ticketCurrencyType ?? "")
+            let data = CheckoutTicketID.init(
+                ticketTypeId: ticket.ticketTypeId, ticketType: ticket.ticketType ?? "",
+                ticketName: ticket.ticketName ?? "", baseTicketID: ticket.ticketID ?? 0,
+                quantity: ticket.selectedTicketQuantity ?? 0,
+                ticketPrice: ticket.ticketPrice ?? 0,
+                ticketCurrency: ticket.ticketCurrencyType ?? ""
+            )
             ticketIDs.append(data)
         }
         
@@ -143,7 +149,11 @@ extension EventBookingPaymentMethodViewModel{
             DispatchQueue.main.async {
                 vc.parentView.showLoading(centreToView: vc.view)
             }
-            StripeClasses.sharedInstance.createCheckout(eventId: eventId, orderType: "ticket", totalUserLoyaltyPoint: "123", totalUserSpentAmount: "1234", ticketIDs: ticketIDs, addOnList: addOnList, controller: vc, complition: { response, isTrue, message in
+            StripeClasses.sharedInstance.createCheckout(
+                eventId: eventId, orderType: "ticket",
+                totalUserLoyaltyPoint: "123", totalUserSpentAmount: "1234",
+                ticketIDs: ticketIDs, addOnList: addOnList, controller: vc,
+                complition: { response, isTrue, message in
                 if isTrue == true  && response != nil{
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()
@@ -157,7 +167,8 @@ extension EventBookingPaymentMethodViewModel{
                         vc.showAlertController(message: message)
                     }
                 }
-            })
+            }
+            )
         }
     }
     
@@ -168,7 +179,7 @@ extension EventBookingPaymentMethodViewModel{
                 let obj =   DataHoldOnSignUpProcessModel.init(strEmail: userModel?.email ?? "", strNumber: userModel?.number ?? "", strStatus: "", strDialCountryCode: userModel?.strDialCountryCode ?? "", strCountryCode: "")
                 objAppShareData.dicToHoldDataOnSignUpModule = obj
                 view.isComingFromLogin = false
-                view.isComingFrom = .OrderSummary
+                view.isComingFrom = .orderSummary
                 let number = "\(userModel?.strDialCountryCode ?? "")" + (userModel?.number ?? "")
                 view.viewModel.number = number
                 
@@ -218,11 +229,11 @@ extension EventBookingPaymentMethodViewModel{
     
     //MARK:- func validateCreditCard
     func validateCreditCard(_ cardholderName:String?,_ cardNumber:String?,_ expiryDate:String?,_ cvv:String? ,_ vc:EventBookingPaymentMethodVC)-> Bool{
-        if cardNumber == nil || cardNumber?.count == 0 {
+        if cardNumber == nil || cardNumber?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardNumber.value)
             return false
             
-        }else if cardholderName == nil || cardholderName?.count == 0 {
+        }else if cardholderName == nil || cardholderName?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardholderName.value)
             return false
             
@@ -230,11 +241,11 @@ extension EventBookingPaymentMethodViewModel{
             vc.showAlertController(message: PaymentError.cardNumberLenghtShort.value)
             return false
             
-        }else if expiryDate == nil || expiryDate?.count == 0 {
+        }else if expiryDate == nil || expiryDate?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.expiryDate.value)
             return false
             
-        }else if cvv == nil || cvv?.count == 0 {
+        }else if cvv == nil || cvv?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cvv.value)
             return false
             

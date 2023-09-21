@@ -8,14 +8,14 @@
 import Foundation
 struct GetFavouriteResponse : Codable {
     let data : GetFavouriteData?
-    let status_code : Int?
+    let statusCode : Int?
     let message : String?
     let error : String?
     
     enum CodingKeys: String, CodingKey {
         
         case data = "data"
-        case status_code = "status_code"
+        case statusCode = "status_code"
         case message = "message"
         case error = "error"
     }

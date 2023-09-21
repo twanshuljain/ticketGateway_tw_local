@@ -265,7 +265,7 @@ extension FavouriteVC {
         }
     }
     func navigateToDetailVc(index: IndexPath) {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
+        if let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC {
             if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
                 if viewModel.arrSuggestionsList.indices.contains(index.row) {
                     view.viewModel.eventId = viewModel.arrSuggestionsList[index.row].event?.id
@@ -290,7 +290,7 @@ extension FavouriteVC {
             {
                 self.view.showLoading(centreToView: self.view)
                 self.viewModel.dispatchGroup.enter()
-                viewModel.GetEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
+                viewModel.getEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
                     if isTrue == true {
                         DispatchQueue.main.async {
                             self.view.stopLoading()

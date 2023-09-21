@@ -5,14 +5,7 @@
 //  Created by Apple on 28/06/22.
 //
 
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+// swiftlint: disable cyclomatic_complexity
 import SVProgressHUD
 import UIKit
 public enum MethodType: String {
@@ -32,35 +25,35 @@ public enum APIName: String {
     case forgotPassword = "auth/user/forget-password/"
     case logoutUser = ""
     //******HOME*******//
-    case GetEventList = "events/list/"
-    case GetEventListCategoryWise = "events/filter-types/list/"
-    case GetEventDetail = "events/detail/"
-    case GetMultiLocationList = "events/multilocation/list/"
-    case GetRecurringList = "events/recurring/list/"
-    case GetEventCategoryList = "events/category/list/"
-    case GetEventSubCategoryList =  "events/sub/category/list/"
-    case GetEventSuggestedCategoryList = "events/suggestion/" //"events/category/"
-    case GetOrganizersList = "organizer/featured-organizer/list/"
+    case getEventList = "events/list/"
+    case getEventListCategoryWise = "events/filter-types/list/"
+    case getEventDetail = "events/detail/"
+    case getMultiLocationList = "events/multilocation/list/"
+    case getRecurringList = "events/recurring/list/"
+    case getEventCategoryList = "events/category/list/"
+    case getEventSubCategoryList =  "events/sub/category/list/"
+    case getEventSuggestedCategoryList = "events/suggestion/" //"events/category/"
+    case getOrganizersList = "organizer/featured-organizer/list/"
     case organizerSuggestedList = "organizer/suggested/list/"
     
-    case GetEventSearchByCategory = "events/event/search/category/"
-    case GetEventSearch = "events/event/search/category/?"
+    case getEventSearchByCategory = "events/event/search/category/"
+    case getEventSearch = "events/event/search/category/?"
     
-    case GetTicketList = "events/show-ticket/"
+    case getTicketList = "events/show-ticket/"
     case getAddOnList = "events/ticket-add-on-list/"
     
-    case GetFeeStructure = "default/data/fee/structure/get/"
+    case getFeeStructure = "default/data/fee/structure/get/"
     case favoriteEvents = "events/like/unlike/"
     case followUnfollow = "organizer/follow-unfollow/"
     
     //STRIPE
-    case CreateStripeCustomer = "payment/stripe/create-customer/"
-    case AddCardForUser = "payment/add-card/"
-    case CreateCheckout = "payment/checkout/"
-    case CreateCharge = "payment/stripe/create-charge/"
+    case createStripeCustomer = "payment/stripe/create-customer/"
+    case addCardForUser = "payment/add-card/"
+    case createCheckout = "payment/checkout/"
+    case createCharge = "payment/stripe/create-charge/"
     case checkoutValidateUser = "payment/validate/checkout-user/"
     
-    case ApplyAccessCode = "ticket/apply/access-code/"
+    case applyAccessCode = "ticket/apply/access-code/"
     case applyPromoCode = "ticket/apply/promo-code/"
     
     // Orders
@@ -69,11 +62,11 @@ public enum APIName: String {
     case myFavourite = "events/like/list/"
     case myVenue = "venue/list/"
 
-    case ContactOrganizer = "organizer/contact/form/"
-    case ChangeTicketName = "ticket/transfer/user-name/change/"
-    case GetMyTicketList = "ticket/my-ticket/list/"
-    case TransferTicket = "ticket/transfer/"
-    case ResendTicketTransfer = "ticket/re-transfer/details/"
+    case contactOrganizer = "organizer/contact/form/"
+    case changeTicketName = "ticket/transfer/user-name/change/"
+    case getMyTicketList = "ticket/my-ticket/list/"
+    case transferTicket = "ticket/transfer/"
+    case resendTicketTransfer = "ticket/re-transfer/details/"
     
     // Profile Tab
     case getUserProfileData = "auth/me/"
@@ -105,7 +98,13 @@ class APIHandler: NSObject {
     private let boundary = "Boundary-\(NSUUID().uuidString)"
     
     
-    func executeRequestWith<T: Decodable, U: Encodable>(of type: T.Type = T.self, apiName: APIName, parameters: U?, methodType: MethodType, getURL: String? = "",  authRequired: Bool = true, authTokenString:Bool? = false, complition: @escaping(Result<ResponseModal<T>, Error>) -> Void) {
+    func executeRequestWith<T: Decodable, U: Encodable>(
+        of type: T.Type = T.self,
+        apiName: APIName, parameters: U?,
+        methodType: MethodType, getURL: String? = "",
+        authRequired: Bool = true, authTokenString:Bool? = false,
+        complition: @escaping(Result<ResponseModal<T>, Error>
+        ) -> Void) {
         
         var finalURL = baseURL + apiName.rawValue
         
@@ -113,7 +112,7 @@ class APIHandler: NSObject {
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
-        }else if methodType == .POST && (apiName == .followUnfollow || apiName == .ChangeTicketName || apiName == .TransferTicket){
+        }else if methodType == .POST && (apiName == .followUnfollow || apiName == .changeTicketName || apiName == .transferTicket){
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }

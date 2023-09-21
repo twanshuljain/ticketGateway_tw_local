@@ -48,7 +48,7 @@ class LoginVC: UIViewController{
     var viewModel = SignInViewModel()
     let viewModelSocialSignIN = SocialSignInVC()
     var profileViewModel: ManageEventProfileViewModel = ManageEventProfileViewModel()
-    var isComingFrom: IsComingFrom  = .Login
+    var isComingFrom: IsComingFrom  = .login
     
     
     override func viewDidLoad() {
@@ -315,7 +315,7 @@ extension LoginVC: RSCountrySelectedDelegate {
             self.lblDialCountryCode.text = "+91"
      //       let arr = viewModel.RScountriesModel.filter({$0.country_code == str})
             
-            if arr.count>0 {
+            if !arr.isEmpty {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code

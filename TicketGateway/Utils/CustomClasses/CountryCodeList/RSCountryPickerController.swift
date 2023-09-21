@@ -71,7 +71,7 @@ class RSCountryPickerController: UIViewController,UITextFieldDelegate {
 extension RSCountryPickerController{
     @objc func searchWorkersAsPerText(_ textfield:UITextField) {
         self.RScountriesFiltered.removeAll()
-        if textfield.text?.count != 0 {
+        if !(textfield.text?.isEmpty ?? false) {
             for dicData in self.RScountriesModel {
                 
                 let prefix = Int(textfield.text!.count) // Hello

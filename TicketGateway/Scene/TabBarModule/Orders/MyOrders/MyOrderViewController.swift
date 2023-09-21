@@ -88,10 +88,10 @@ extension MyOrderViewController {
     func getMyOrderApiCall(isFromUpcoming: Bool, isFromSearch: Bool = false, searchText: String = "") {
         if Reachability.isConnectedToNetwork() {
             if isFromSearch {
-                viewModel.myOrdersModel.search_query = searchText
+                viewModel.myOrdersModel.searchQuery = searchText
                 viewModel.myOrdersModel.page = 1
             }
-            viewModel.myOrdersModel.filter_by = isFromUpcoming ? "upcoming" : "past"
+            viewModel.myOrdersModel.filterBy = isFromUpcoming ? "upcoming" : "past"
             parentView.showLoading(centreToView: self.view)
             viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel,
                                       isFromSearch: isFromSearch,
@@ -100,11 +100,11 @@ extension MyOrderViewController {
                     if isFromUpcoming {
                         self.viewModel.upcomingCount = self.viewModel.arrMyOrder.count
                         self.btnUpcoming.setTitle("Upcoming (\(self.viewModel.upcomingCount))", for: .normal)
-                        self.pastView.isHidden = self.viewModel.arrMyOrder.count == 0 ? false : true
+                        self.pastView.isHidden = self.viewModel.arrMyOrder.isEmpty ? false : true
                     } else {
                         self.viewModel.pastCount = self.viewModel.arrMyOrder.count
                         self.btnPast.setTitle("Past (\(self.viewModel.pastCount))", for: .normal)
-                        self.pastView.isHidden = self.viewModel.arrMyOrder.count == 0 ? false : true
+                        self.pastView.isHidden = self.viewModel.arrMyOrder.isEmpty ? false : true
                     }
                     self.upComingTableView.reloadData()
                     self.parentView.stopLoading()
@@ -237,7 +237,7 @@ extension MyOrderViewController {
         }
     }
     func upcomingAction() {
-        viewModel.myOrdersModel.search_query = ""
+        viewModel.myOrdersModel.searchQuery = ""
         txtSearch.text = ""
         viewModel.isFromUpcoming = true
         setButtonBackground()
@@ -247,7 +247,7 @@ extension MyOrderViewController {
         getMyOrderApiCall(isFromUpcoming: true)
     }
     func pastAction() {
-        viewModel.myOrdersModel.search_query = ""
+        viewModel.myOrdersModel.searchQuery = ""
         txtSearch.text = ""
         viewModel.isFromUpcoming = false
         setButtonBackground()

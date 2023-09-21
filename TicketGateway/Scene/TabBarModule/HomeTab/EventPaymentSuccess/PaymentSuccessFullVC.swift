@@ -60,7 +60,7 @@ extension PaymentSuccessFullVC {
     
     func setData(){
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        if selectedArrTicketList.count == 0{
+        if selectedArrTicketList.isEmpty {
             self.lbl1Ticket.text = "Ticket with amount"
         }else if selectedArrTicketList.count == 1{
             self.lbl1Ticket.text = "1 Ticket(S) with amount "

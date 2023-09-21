@@ -176,7 +176,7 @@ extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
             self.lblDialCountryCode.text = "+91"
             let arr = RScountriesModel.filter({$0.dial_code == str})
             
-            if arr.count>0{
+            if !arr.isEmpty {
                 let country = arr[0]
                 strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code

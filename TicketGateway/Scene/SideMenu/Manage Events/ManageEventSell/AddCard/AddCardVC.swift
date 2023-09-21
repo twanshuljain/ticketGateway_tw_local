@@ -138,7 +138,7 @@ extension AddCardVC {
     @IBAction func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
-        if viewModel.selectedMonthName.count > 0 && viewModel.selectedyearName.count > 0 {
+        if !viewModel.selectedMonthName.isEmpty && !viewModel.selectedyearName.isEmpty {
             let str = "\(viewModel.selectedMonthName)/\(viewModel.selectedyearName)"
             txtExpiryDate.text = str
             viewModel.strMonth = viewModel.selectedMonthName

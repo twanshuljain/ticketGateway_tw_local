@@ -13,7 +13,7 @@ class OrganizersandArtistViewModel {
     var arrOrganizersListSideMenu: [Organizers]?
     var arrSuggestedOrganizers: [GetSuggestedOrganizerItemModel] = []
     func getOrganizersList(complition: @escaping (Bool,String) -> Void ) {
-        APIHandler.shared.executeRequestWith(apiName: .GetOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

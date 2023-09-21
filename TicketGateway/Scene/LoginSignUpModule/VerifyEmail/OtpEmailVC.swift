@@ -170,7 +170,7 @@ extension OtpEmailVC: UITextFieldDelegate {
             default:
                 break
             }
-        } else if text?.count == 0 {
+        } else if text?.isEmpty ?? false {
             switch textField {
             case txtOtp1:
                 txtOtp1.becomeFirstResponder()

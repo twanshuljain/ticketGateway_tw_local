@@ -35,9 +35,9 @@ final class EventDetailViewModel{
 
 
 extension EventDetailViewModel{
-    func GetEventDetailApi(complition: @escaping (Bool,String) -> Void ) {
-        let url = APIName.GetEventDetail.rawValue + "\(eventId ?? 0)"  + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+    func getEventDetailApi(complition: @escaping (Bool,String) -> Void ) {
+        let url = APIName.getEventDetail.rawValue + "\(eventId ?? 0)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -60,8 +60,8 @@ extension EventDetailViewModel{
     func GetEventSuggestedCategory(categoryId:Int?, complition: @escaping (Bool,String) -> Void ) {
         let parameters = GetEventRequest(limit: "3", page: "1")
         if let suggestedEventCategoryId = categoryId{
-            let url = APIName.GetEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"
-            APIHandler.shared.executeRequestWith(apiName: .GetEventSuggestedCategoryList, parameters: parameters, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
+            let url = APIName.getEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"
+            APIHandler.shared.executeRequestWith(apiName: .getEventSuggestedCategoryList, parameters: parameters, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
                 switch result {
                 case .success(let response):
                     if response.status_code == 200 {
@@ -80,8 +80,8 @@ extension EventDetailViewModel{
     }
     
     func GetMultiLocationList(complition: @escaping (Bool,String) -> Void ) {
-        let url = APIName.GetMultiLocationList.rawValue + "\(eventId ?? 0)"  + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetMultiLocationList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[MultiLocation]>, Error>) in
+        let url = APIName.getMultiLocationList.rawValue + "\(eventId ?? 0)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getMultiLocationList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[MultiLocation]>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup1.leave() }
@@ -100,8 +100,8 @@ extension EventDetailViewModel{
     }
     
     func GetRecurringList(complition: @escaping (Bool,String) -> Void ) {
-        let url = APIName.GetRecurringList.rawValue + "\(eventId ?? 0)"  + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetRecurringList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[RecurringList]>, Error>) in
+        let url = APIName.getRecurringList.rawValue + "\(eventId ?? 0)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getRecurringList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[RecurringList]>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup2.leave() }

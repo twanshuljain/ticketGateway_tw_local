@@ -3,15 +3,8 @@
 //  TicketGateway
 //
 //  Created by Apple on 12/07/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
+// swiftlint: disable cyclomatic_complexity
 import UIKit
 import SideMenu
 import SVProgressHUD
@@ -68,7 +61,7 @@ extension ViewMoreEventsVC{
     }
     
     func setData(){
-        if self.viewModel.isComingFrom == .Home{
+        if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .nearByLocation:
                 navigationView.lblTitle.text = "Events near \(self.viewModel.countryName)"
@@ -100,9 +93,9 @@ extension ViewMoreEventsVC{
     
     
     func navigateToDetail(index:IndexPath){
-        let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
+        let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC
         
-        if self.viewModel.isComingFrom == .Home{
+        if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
@@ -133,7 +126,7 @@ extension ViewMoreEventsVC{
             }
             view?.delegate = self
             self.navigationController?.pushViewController(view!, animated: true)
-        } else if viewModel.isComingFrom == .EventDetail {
+        } else if viewModel.isComingFrom == .eventDetail {
             if self.viewModel.itemsSuggestedEvents.indices.contains(index.row) {
                 // On Click of cell api should call
                 self.delegate?.reloadView(
@@ -399,7 +392,7 @@ extension ViewMoreEventsVC{
 //         let spinner = UIActivityIndicatorView(style: .gray)
 //         spinner.startAnimating()
 //         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
-        if self.viewModel.isComingFrom == .Home{
+        if self.viewModel.isComingFrom == .home{
             
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
@@ -478,7 +471,7 @@ extension ViewMoreEventsVC{
 // MARK: - TableView Delegate
 extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.viewModel.isComingFrom == .Home{
+        if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
@@ -511,7 +504,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                  print("You can use here also directly : \(indexPath.row)")
                  self.btnShareActionTapped(btn: btn, indexPath: indexPath)
             }
-            if self.viewModel.isComingFrom == .Home {
+            if self.viewModel.isComingFrom == .home {
                 switch self.viewModel.arrEventCategory[self.viewModel.index] {
                 case .noLocationData:
                     print("No Data Found")
@@ -558,7 +551,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     }
     func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
         print("IndexPath : \(indexPath.row)")
-        if viewModel.isComingFrom == .Home {
+        if viewModel.isComingFrom == .home {
             switch viewModel.arrEventCategory[viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
@@ -587,7 +580,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                     toShowActivityController(eventDetail: viewModel.itemsUpcoming[indexPath.row])
                 }
             }
-        } else if viewModel.isComingFrom == .EventDetail {
+        } else if viewModel.isComingFrom == .eventDetail {
             // Suggestions Event
             if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
                 toShowActivityController(eventDetail: viewModel.itemsSuggestedEvents[indexPath.row])
@@ -601,7 +594,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             return
         }
         print("IndexPath row : \(indexPath.row)")
-        if viewModel.isComingFrom == .Home {
+        if viewModel.isComingFrom == .home {
             switch viewModel.arrEventCategory[viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
@@ -636,7 +629,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsUpcoming[indexPath.row], isForLocation: false)
                 }
             }
-        } else if viewModel.isComingFrom == .EventDetail {
+        } else if viewModel.isComingFrom == .eventDetail {
             if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
                 viewModel.itemsSuggestedEvents[indexPath.row].isLiked?.toggle()
                 viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsSuggestedEvents[indexPath.row], isForLocation: false)

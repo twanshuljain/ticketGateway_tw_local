@@ -261,7 +261,7 @@ extension String {
     func getSeparatedFirstName() -> String{
         var firstName = ""
         var components = self.components(separatedBy: " ")
-        if components.count > 0 {
+        if !components.isEmpty {
          firstName = components.removeFirst()
          let lastName = components.joined(separator: " ")
          debugPrint(firstName)
@@ -273,7 +273,7 @@ extension String {
     func getSeparatedLastName() -> String{
         var lastName = ""
         var components = self.components(separatedBy: " ")
-        if components.count > 0 {
+        if !components.isEmpty {
          let firstName = components.removeFirst()
          lastName = components.joined(separator: " ")
          debugPrint(lastName)

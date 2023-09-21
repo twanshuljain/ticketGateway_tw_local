@@ -27,9 +27,9 @@ extension ChangeNameViewModel{
     }
     
     func changeTicketName(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.ChangeTicketName.rawValue + "\(self.selectedTicket?.ticketOrderID ?? 0)/"
+        var getURL = APIName.changeTicketName.rawValue + "\(self.selectedTicket?.ticketOrderID ?? 0)/"
         let param = ChangeNameRequestModel(ticketId: selectedTicket?.ticketOrderID ?? 0, firstName: firstName, lastName: lastName, ticketOrderId: selectedTicket?.ticketOrderID ?? 0)
-        APIHandler.shared.executeRequestWith(apiName: .ChangeTicketName, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .changeTicketName, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

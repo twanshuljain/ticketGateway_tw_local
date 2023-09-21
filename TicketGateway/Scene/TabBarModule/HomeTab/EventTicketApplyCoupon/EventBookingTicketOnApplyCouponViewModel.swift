@@ -37,8 +37,8 @@ final class EventBookingTicketOnApplyCouponViewModel{
 extension EventBookingTicketOnApplyCouponViewModel {
     func applyAccessCode(accessCode:String,complition: @escaping (Bool,String) -> Void ) {
         //let accessCode = "MOON"
-        let param = AccessCodeRequestModel(eventId: eventId, access_code: accessCode)
-        APIHandler.shared.executeRequestWith(apiName: .ApplyAccessCode, parameters: param, methodType: .POST, getURL: APIName.ApplyAccessCode.rawValue, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
+        let param = AccessCodeRequestModel(eventId: eventId, accessCode: accessCode)
+        APIHandler.shared.executeRequestWith(apiName: .applyAccessCode, parameters: param, methodType: .POST, getURL: APIName.applyAccessCode.rawValue, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup1.leave() }
@@ -67,9 +67,9 @@ extension EventBookingTicketOnApplyCouponViewModel {
     }
     
     func getEventTicketList(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.GetTicketList.rawValue + "\(self.eventId ?? 0)" + "/"
+        var getURL = APIName.getTicketList.rawValue + "\(self.eventId ?? 0)" + "/"
        // var getURL = APIName.GetTicketList.rawValue + "12" + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup.leave() }
@@ -93,8 +93,8 @@ extension EventBookingTicketOnApplyCouponViewModel {
     
     func getEventTicketFeeStructure(complition: @escaping (Bool,String) -> Void ) {
         guard let eventId = self.eventDetail?.event?.id else {return}
-        var getURL = APIName.GetFeeStructure.rawValue + "\(eventId)" + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetFeeStructure, parameters: EmptyModel?.none, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<FeeStructure>, Error>) in
+        var getURL = APIName.getFeeStructure.rawValue + "\(eventId)" + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getFeeStructure, parameters: EmptyModel?.none, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<FeeStructure>, Error>) in
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup2.leave() }

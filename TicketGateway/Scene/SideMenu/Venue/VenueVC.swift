@@ -41,7 +41,7 @@ extension VenueVC{
     
     func setUp(){
         self.setUi()
-        self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.Venue)
+        self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.venue)
         self.tblEvents.tableDidSelectAtIndex = { _ in
             
         }

@@ -36,9 +36,9 @@ extension ContinueToTransferViewModel{
     
     
     func transferTicket(complition: @escaping (Bool,String) -> Void ) {
-        let getURL = APIName.TransferTicket.rawValue + "\(self.myTicket?.ticketOrderID ?? 0)/"
-        let param = ContinueTransferRequest(cell_phone: self.mobileNumber, email: self.email, confirm_email: self.confirmEmail, full_name: self.fullName)
-        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<TicketTransfer>, Error>) in
+        let getURL = APIName.transferTicket.rawValue + "\(self.myTicket?.ticketOrderID ?? 0)/"
+        let param = ContinueTransferRequest(cellPhone: self.mobileNumber, email: self.email, confirmEmail: self.confirmEmail, fullName: self.fullName)
+        APIHandler.shared.executeRequestWith(apiName: .transferTicket, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<TicketTransfer>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -53,8 +53,8 @@ extension ContinueToTransferViewModel{
     }
     
     func reSendTransferTicket(transferId: Int?,complition: @escaping (Bool,String) -> Void ) {
-        let getURL = APIName.ResendTicketTransfer.rawValue + "\(transferId ?? 0)/"
-        APIHandler.shared.executeRequestWith(apiName: .TransferTicket, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<TicketTransfer>, Error>) in
+        let getURL = APIName.resendTicketTransfer.rawValue + "\(transferId ?? 0)/"
+        APIHandler.shared.executeRequestWith(apiName: .transferTicket, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<TicketTransfer>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

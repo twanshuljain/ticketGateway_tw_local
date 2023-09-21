@@ -21,7 +21,7 @@ class LoginNmberWithEmailVC: UIViewController, NavigationBarViewDelegate {
     @IBOutlet weak var lblSelectEmail: UILabel!
     // MARK: - Variable
     var viewModel: LoginNmberWithEmailViewModel?
-    var isComingFrom: IsComingFrom  = .Login
+    var isComingFrom: IsComingFrom  = .login
     var profileViewModel: ManageEventProfileViewModel = ManageEventProfileViewModel()
     
     override func viewDidLoad() {
@@ -87,7 +87,7 @@ extension LoginNmberWithEmailVC {
                 if isTrue == true {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
-                        if self.isComingFrom == .Login{
+                        if self.isComingFrom == .login{
                             self.getUserProfileData()
                         }else{
                             

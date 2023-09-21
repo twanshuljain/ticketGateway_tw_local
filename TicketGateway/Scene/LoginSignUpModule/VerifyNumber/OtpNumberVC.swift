@@ -3,15 +3,8 @@
 //  TicketGateway
 //
 //  Created by Apple on 12/04/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
+// swiftlint: disable cyclomatic_complexity
 
 import UIKit
 import SVProgressHUD
@@ -38,7 +31,7 @@ class OtpNumberVC: UIViewController {
     var isComingFromLogin = true
     var userType: UserType  = .existing
     var otpVerified: ((Bool, String) -> Void)?
-    var isComingFrom: IsComingFrom  = .Login
+    var isComingFrom: IsComingFrom  = .login
     var isChangeMobileNumberTap = false
    
      override func viewDidLoad() {
@@ -118,7 +111,7 @@ extension OtpNumberVC {
     
     func btnResenOtpAction() {
         self.vwResend.isHidden = true
-        if self.isComingFrom == .OrderSummary{
+        if self.isComingFrom == .orderSummary{
             if Reachability.isConnectedToNetwork(){
                 self.view.showLoading(centreToView: self.view)
                 viewModelResendOtp.checkoutVerifyResendOTP(userType: self.userType) { isTrue , messageShowToast in
@@ -174,7 +167,7 @@ extension OtpNumberVC {
         if self.txtOtp1.text ?? "" == "" || self.txtOtp2.text ?? "" == "" || self.txtOtp3.text ?? "" == "" || self.txtOtp4.text ?? "" == "" {
             self.showToast(message: PLEASE_ENTER_OTP)
         } else {
-            if self.isComingFrom == .OrderSummary{
+            if self.isComingFrom == .orderSummary{
                 if (self.userType == .new) || (self.userType == .existing && self.isChangeMobileNumberTap == true){
                     if Reachability.isConnectedToNetwork(){
                         self.view.showLoading(centreToView: self.view)
@@ -282,7 +275,7 @@ extension OtpNumberVC : UITextFieldDelegate {
         default:
           break
         }
-      }else if text?.count == 0{
+      }else if (text?.isEmpty ?? false) {
         switch textField{
         case txtOtp1:
           txtOtp1.becomeFirstResponder()

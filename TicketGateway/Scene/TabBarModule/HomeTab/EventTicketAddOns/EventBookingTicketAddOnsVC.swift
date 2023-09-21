@@ -52,7 +52,7 @@ extension EventBookingTicketAddOnsVC {
                 if isTrue {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
-                        if self.viewModel.arrAddOnTicketList?.count == 0{
+                        if self.viewModel.arrAddOnTicketList?.isEmpty ?? false {
                             self.noDataFoundView.isHidden = false
                         }else{
                             self.noDataFoundView.isHidden = true
@@ -96,7 +96,7 @@ extension EventBookingTicketAddOnsVC {
     
     func setData(){
         self.lblTotalTicketPrice.text = "CAD$ \(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
-        if self.viewModel.arrAddOnTicketList?.count == 0{
+        if self.viewModel.arrAddOnTicketList?.isEmpty ?? false {
             self.noDataFoundView.isHidden = false
         }else{
             self.noDataFoundView.isHidden = true

@@ -131,8 +131,8 @@ extension ScannerVC {
         }
         // Here the data is being set to the model which we are bringing from the previous screen
         viewModel.scanBarCodeModel.name = viewModel.getScanTicketDetails.name
-        viewModel.scanBarCodeModel.event_id = viewModel.getScanTicketDetails.eventId
-        viewModel.scanBarCodeModel.scan_ticket_types = viewModel.getScanTicketDetails.selectedTicketType
+        viewModel.scanBarCodeModel.eventId = viewModel.getScanTicketDetails.eventId
+        viewModel.scanBarCodeModel.scanTicketTypes = viewModel.getScanTicketDetails.selectedTicketType
         // Set Data to UI Components
         self.lblSunburnReload.text = viewModel.getScanTicketDetails.eventName
         self.lblDate.text = Date().convertToString()
@@ -283,7 +283,7 @@ extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
 extension ScannerVC: AlertAction {
     func alertYesaction() {
         if let view = createView(storyboard: .scanevent, storyboardID: .ScanSummaryVC) as? ScanSummaryVC {
-            view.viewModel.scanOverviewModel.event_id = viewModel.getScanTicketDetails.eventId
+            view.viewModel.scanOverviewModel.eventId = viewModel.getScanTicketDetails.eventId
             self.navigationController?.pushViewController(view, animated: true)
         }
     }

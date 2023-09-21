@@ -19,7 +19,7 @@ extension UIImage {
      */
     static func decodeBase64(toImage strEncodeData: String!) -> UIImage {
 
-        if let decData = Data(base64Encoded: strEncodeData, options: .ignoreUnknownCharacters), strEncodeData.count > 0 {
+        if let decData = Data(base64Encoded: strEncodeData, options: .ignoreUnknownCharacters), !strEncodeData.isEmpty {
             return UIImage(data: decData)!
         }
         return UIImage()

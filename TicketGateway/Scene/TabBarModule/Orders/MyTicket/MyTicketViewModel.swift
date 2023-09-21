@@ -16,8 +16,8 @@ class MyTicketViewModel {
 
 extension MyTicketViewModel{
     func getMyTicketList(complition: @escaping (Bool,String) -> Void ) {
-        var getURL = APIName.GetMyTicketList.rawValue + "\(self.ticketDetails?.eventId ?? 0)"
-        APIHandler.shared.executeRequestWith(apiName: .GetMyTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<MyTicketList>, Error>) in
+        var getURL = APIName.getMyTicketList.rawValue + "\(self.ticketDetails?.eventId ?? 0)"
+        APIHandler.shared.executeRequestWith(apiName: .getMyTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<MyTicketList>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
@@ -36,9 +36,9 @@ extension MyTicketViewModel{
         }
     }
     
-    func GetEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
-        let url = APIName.GetEventDetail.rawValue + "\(eventId)"  + "/"
-        APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+    func getEventDetailApi(eventId: Int, complition: @escaping (Bool, String) -> Void ) {
+        let url = APIName.getEventDetail.rawValue + "\(eventId)"  + "/"
+        APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {

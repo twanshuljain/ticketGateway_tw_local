@@ -303,7 +303,7 @@ extension SeeFullTicketVC {
     }
     
     func navigateToEventDetail() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
+        if let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC {
             view.viewModel.eventId = viewModel.myTicketList?.eventID //TO BE CHANGED
             let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
            //  Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.

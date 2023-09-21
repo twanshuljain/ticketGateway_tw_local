@@ -21,9 +21,9 @@ enum UserType {
 }
 
 enum IsComingFrom {
-    case Login
-    case OrderSummary
-    case Home
+    case login
+    case orderSummary
+    case home
 }
 
 class PhoneVerificationViewController: UIViewController {
@@ -45,7 +45,7 @@ class PhoneVerificationViewController: UIViewController {
     var viewModel = PhoneVerifyViewModel()
     var userType: UserType  = .existing
     var isChangeMobileNumberTap = false
-    var isComingFrom: IsComingFrom  = .Login
+    var isComingFrom: IsComingFrom  = .login
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +103,7 @@ extension PhoneVerificationViewController {
                     self.view.showLoading(centreToView: self.view)
                     let number = "\(lblDialCountryCode.text ?? "")" + (self.txtNumber.text ?? "")
                     let numberWithoutCode = self.txtNumber.text ?? ""
-                    let param = ValidateForNumberRequest(cell_phone: numberWithoutCode, email: self.txtEmail.text ?? "", country_code: lblDialCountryCode.text ?? "")
+                    let param = ValidateForNumberRequest(cellPhone: numberWithoutCode, email: self.txtEmail.text ?? "", countryCode: lblDialCountryCode.text ?? "")
                     signInViewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
                         if isTrue == true {
                             DispatchQueue.main.async { [self] in
@@ -182,7 +182,7 @@ extension PhoneVerificationViewController {
 extension PhoneVerificationViewController: RSCountrySelectedDelegate {
     func setIntialUiDesign() {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        if isComingFrom == .OrderSummary{
+        if isComingFrom == .orderSummary{
             if self.userType == .new {
                 btnChangeNumber.isHidden = true
                 self.txtNumber.text = ""
@@ -243,7 +243,7 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 imagePath = "CountryPicker.bundle/\(str).png"
                 self.imgCountry.image = UIImage(named: imagePath)
             }
-            if arr.count>0 {
+            if !arr.isEmpty {
                 let country = arr[0]
                 self.signInViewModel.strCountryDialCode = country.dial_code
                 self.lblDialCountryCode.text = country.dial_code

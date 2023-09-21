@@ -161,7 +161,7 @@ extension EventBookingTicketOnApplyCouponVC {
                 if isTrue == true {
                     self.parentView.stopLoading()
                     DispatchQueue.main.async {
-                        if self.viewModel.arrTicketList?.count == 0{
+                        if (self.viewModel.arrTicketList?.isEmpty ?? false) {
                             self.showAlertWithOkButton(message: messageShowToast) {
                                 self.navigationController?.popViewController(animated: true)
                             }
@@ -294,10 +294,10 @@ extension EventBookingTicketOnApplyCouponVC {
            view.feeStructure = self.viewModel.feeStructure
            self.navigationController?.pushViewController(view, animated: true)
             */
-           if self.tblEventTicketTypes.selectedArrTicketList.count == 0{
+           if self.tblEventTicketTypes.selectedArrTicketList.isEmpty {
                self.showToast(message: "Please select ticket")
            }else{
-               if (self.viewModel.arrAddOnTicketList?.count == 0) || (self.viewModel.arrAddOnTicketList == nil){
+               if (self.viewModel.arrAddOnTicketList?.isEmpty ?? false ) || (self.viewModel.arrAddOnTicketList == nil){
                    self.navigateToEventPromoCode()
                }else{
                    self.navigateToPaymentEventBookingTicketAddOns()

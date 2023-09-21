@@ -21,7 +21,12 @@ struct SignInNumberWithEmailRequest: Codable {
 
 
 struct ValidateForNumberRequest: Codable {
-    var cell_phone: String?
+    var cellPhone: String?
     var email: String?
-    var country_code: String?
+    var countryCode: String?
+    enum CodingKeys: String, CodingKey {
+        case cellPhone = "cell_phone"
+        case email = "email"
+        case countryCode = "countryCode"
+    }
 }

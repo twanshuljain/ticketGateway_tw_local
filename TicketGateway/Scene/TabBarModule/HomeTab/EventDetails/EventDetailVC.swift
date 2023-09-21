@@ -120,7 +120,7 @@ extension EventDetailVC {
         self.txtDate.delegate = self
         self.txtLocation.delegate = self
         self.collVwTags.configure()
-        self.tblSuggestedEvent.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.EventDetail)
+        self.tblSuggestedEvent.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.eventDetail)
         self.tblSuggestedEvent.tableDidSelectAtIndex = { index in
             if self.viewModel.arrEventData.indices.contains(index.row){
                 self.viewModel.eventId = self.viewModel.arrEventData[index.row].event?.id
@@ -276,7 +276,7 @@ extension EventDetailVC {
                 if Reachability.isConnectedToNetwork() //check internet connectivity
                 {
                     vwEventName.showLoading(centreToView: self.view)
-                    viewModel.GetEventDetailApi(complition: { isTrue, messageShowToast in
+                    viewModel.getEventDetailApi(complition: { isTrue, messageShowToast in
                         if isTrue == true {
                             self.vwEventName.stopLoading()
                             DispatchQueue.main.async {
@@ -469,7 +469,7 @@ extension EventDetailVC {
         }
         
         //TAGS
-        if eventDetail?.eventTagsObj?.eventTags?.count != 0 && eventDetail?.eventTagsObj?.eventTags != nil{
+        if !(eventDetail?.eventTagsObj?.eventTags?.isEmpty ?? false) && eventDetail?.eventTagsObj?.eventTags != nil {
             self.tagsView.isHidden = false
             self.collVwTags.setData(eventDetail: eventDetail)
         }else{
@@ -539,7 +539,7 @@ extension EventDetailVC {
                 }
             })
         }else{
-            if let  startDate = self.viewModel.recurringList?.compactMap({ $0.startDate?.getDateFormattedFrom() }), startDate.count != 0{
+            if let  startDate = self.viewModel.recurringList?.compactMap({ $0.startDate?.getDateFormattedFrom() }), !startDate.isEmpty {
                 for i in 0...startDate.count-1{
                     let startDate = self.viewModel.recurringList?[i].startDate?.getDateFormattedFrom() ?? ""
                     let endDate = self.viewModel.recurringList?[i].endDate?.getDateFormattedFromTo() ?? ""
@@ -938,7 +938,7 @@ extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtoc
     
     func tapActionOfViewMoreEvents(index: Int) {
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
-        view?.viewModel.isComingFrom = .EventDetail
+        view?.viewModel.isComingFrom = .eventDetail
         view?.delegate = self
         view?.viewModel.categoryId = self.viewModel.suggestedEventCategoryId
         view?.viewModel.eventId = self.viewModel.eventId ?? 0

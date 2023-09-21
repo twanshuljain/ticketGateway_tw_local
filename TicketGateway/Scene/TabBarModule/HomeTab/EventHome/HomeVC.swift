@@ -75,7 +75,7 @@ extension HomeVC {
         self.collvwSuggestedOrganisation.configure()
         self.tblEvents.delegateViewMore = self
         self.tblEvents.countryName = self.viewModel.country?.country_name ?? self.getCountry()
-        self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.Home)
+        self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.home)
         self.tblEvents.tableDidSelectAtIndex = { _ in
             self.navigationController?.popViewController(animated: true)
         }
@@ -92,7 +92,7 @@ extension HomeVC {
     }
     
     func navigateToDetailVc(index:IndexPath){
-        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
+        if let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC{
             if self.viewModel.arrEventCategory.indices.contains(index.section){
                 switch self.viewModel.arrEventCategory[index.section] {
                 case .noLocationData:
@@ -146,7 +146,7 @@ extension HomeVC {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
                 parentView.showLoading(centreToView: self.view)
             }
-            viewModel.GetEventApi(complition: { isTrue, messageShowToast in
+            viewModel.getEventApi(complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
                     DispatchQueue.main.async {
@@ -435,7 +435,7 @@ extension HomeVC {
           {
               parentView.showLoading(centreToView: self.view)
               self.viewModel.dispatchGroup6.enter()
-              viewModel.GetEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
+              viewModel.getEventDetailApi(eventId: eventId, complition: { isTrue, messageShowToast in
                   if isTrue == true {
                       self.parentView.stopLoading()
                      // }
