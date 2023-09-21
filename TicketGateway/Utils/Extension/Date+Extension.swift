@@ -24,7 +24,7 @@ extension Date {
     }
     func getOnlyTimeFromDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .current
+        // dateFormatter.timeZone = .current
         //dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "hh:mm a" // output format
@@ -41,7 +41,7 @@ extension Date {
     func getWeekDay(date: Date) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE"
-        dateFormatter.timeZone = .current
+        //dateFormatter.timeZone = .current
         //dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         return dateFormatter.string(from: date).capitalized
     }

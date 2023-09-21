@@ -13,7 +13,7 @@ extension UITableViewCell {
            let date = NSDate(timeIntervalSince1970: timeStamp / 1000)
            let dateFormatter = DateFormatter()
            dateFormatter.dateFormat = "dd.MM.yy HH:mm:ss a"
-           dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        //dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
            let dateString = dateFormatter.string(from: date as Date)
            return dateString
        }

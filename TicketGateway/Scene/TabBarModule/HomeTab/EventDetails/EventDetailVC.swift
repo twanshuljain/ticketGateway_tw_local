@@ -307,6 +307,8 @@ extension EventDetailVC {
                         } else {
                             DispatchQueue.main.async {
                                 self.vwEventName.stopLoading()
+                                self.setData()
+                                self.loadData()
                                 self.showToast(message: messageShowToast)
                             }
                         }
@@ -515,6 +517,7 @@ extension EventDetailVC {
             self.lblDate.isHidden = false
             self.lblTime.isHidden = false
             self.lblAddress.isHidden = false
+            self.viewModel.dateLocationSelected = true
         }
         
         //txtLocation.optionArray = ["Supermarket bar and Variety", "Supermarket bar and Variety", "Supermarket bar and Variety","Supermarket bar and Variety"]
@@ -623,6 +626,69 @@ extension EventDetailVC {
        return components
     }
     
+    func setDateForMultiLocation(eventObject:EventDateObj) -> EventDateObj{
+        var eventObject = eventObject
+        if self.viewModel.eventDetail?.locationType == MULTIPLE {
+            var startDate = ""
+            var endDate = ""
+            var startTime = ""
+            var endTime = ""
+            
+//            self.viewModel.recurringList?.forEach({ data in
+//                if data.eventLocationID == self.viewModel.selectedEventLocationId{
+//                    print(data)
+//                    //yyyy-MM-dd'T'HH:mm:ssZ
+//                    "2023-09-18T18:30:00+00:00"
+//                    if let range = data.startDate?.range(of: "T") {
+//                        let substring = data.startDate?[..<range.lowerBound]
+//                        startDate = substring?.trimmingCharacters(in: .whitespaces) ?? ""
+//                        print(startDate)
+//                    } else {
+//                        startDate = data.startDate ?? ""
+//                    }
+//                    startDate = startDate + "T" + (data.startTime ?? "") + ":00+00:00"
+//
+//                    if let range = data.endDate?.range(of: "T") {
+//                        let substring = data.endDate?[..<range.lowerBound]
+//                        endDate = substring?.trimmingCharacters(in: .whitespaces) ?? ""
+//                        print(endDate)
+//                    } else {
+//                        endDate = data.endDate ?? ""
+//                    }
+//                    endDate = endDate + "T" + (data.endTime ?? "") + ":00+00:00"
+//                    startTime = (data.startTime ?? "") + ":00"
+//                    endTime = (data.endTime ?? "") + ":00"
+//                }
+//            })
+            self.viewModel.recurringList?.forEach({ data in
+                if data.eventLocationID == self.viewModel.selectedEventLocationId{
+                    print(data)
+                    //yyyy-MM-dd'T'HH:mm:ssZ
+                    "2023-09-18T18:30:00+00:00"
+                    startDate = data.startDate ?? ""
+                    endDate = data.endDate ?? ""
+                    startTime = (data.startTime ?? "") + ":00"
+                    endTime = (data.endTime ?? "") + ":00"
+                }
+            })
+            
+            
+            
+            
+            print(startDate,  startTime ,  endDate,  endTime)
+            eventObject.eventStartDate = startDate
+            eventObject.eventEndDate = endDate
+            eventObject.eventStartTime = startTime
+            eventObject.eventEndTime = endTime
+        }
+        
+        if self.viewModel.eventDetail?.eventDateObj == nil{
+            self.viewModel.eventDetail?.eventDateObj = eventObject
+        }
+        
+        return eventObject
+    }
+    
     
     func addToCalenAction() {
         DispatchQueue.main.async {
@@ -631,43 +697,11 @@ extension EventDetailVC {
               DispatchQueue.main.async {
                 let newEvent = EKEvent(eventStore: self.store)
                 var eventObject = self.viewModel.eventDetail?.eventDateObj ?? EventDateObj()
-                  if self.viewModel.eventDetail?.locationType == MULTIPLE {
-                      var startDate = ""
-                      var endDate = ""
-                      var startTime = ""
-                      var endTime = ""
-                      
-                      self.viewModel.recurringList?.forEach({ data in
-                          if data.eventLocationID == self.viewModel.selectedEventLocationId{
-                              print(data)
-                              //yyyy-MM-dd'T'HH:mm:ssZ
-                              "2023-09-18T18:30:00+00:00"
-                              if let range = data.startDate?.range(of: "T") {
-                                  let substring = data.startDate?[..<range.lowerBound]
-                                  startDate = substring?.trimmingCharacters(in: .whitespaces) ?? ""
-                                  print(startDate)
-                              } else {
-                                  startDate = data.startDate ?? ""
-                              }
-                              startDate = startDate + "T" + (data.startTime ?? "") + ":00+00:00"
-                              
-                              if let range = data.endDate?.range(of: "T") {
-                                  let substring = data.endDate?[..<range.lowerBound]
-                                  endDate = substring?.trimmingCharacters(in: .whitespaces) ?? ""
-                                  print(endDate)
-                              } else {
-                                  endDate = data.endDate ?? ""
-                              }
-                              endDate = endDate + "T" + (data.endTime ?? "") + ":00+00:00"
-                              startTime = (data.startTime ?? "") + ":00"
-                              endTime = (data.endTime ?? "") + ":00"
-                          }
-                      })
-                      print(startDate,  startTime ,  endDate,  endTime)
-                      eventObject.eventStartDate = startDate
-                      eventObject.eventEndDate = endDate
-                      eventObject.eventStartTime = startTime
-                      eventObject.eventEndTime = endTime
+                  if self.viewModel.eventDetail?.locationType == MULTIPLE && self.viewModel.dateLocationSelected == false{
+                      self.showToast(message: "Please Select Date")
+                      return
+                  }else if self.viewModel.eventDetail?.locationType == MULTIPLE{
+                      eventObject = self.setDateForMultiLocation(eventObject: eventObject)
                   }
                   print("startDate", eventObject.eventStartDate as Any)
                   print("endDate", eventObject.eventEndDate as Any)
@@ -711,7 +745,7 @@ extension EventDetailVC {
         print("TIME:---:", time)
         var calendar = NSCalendar.autoupdatingCurrent
         calendar.locale = Locale(identifier: "en_US_POSIX")
-        calendar.timeZone = .current
+        //calendar.timeZone = .current
         //calendar.timeZone = TimeZone(abbreviation: "GMT") ?? .current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
         let timeComponents = calendar.dateComponents([.hour, .minute], from: time)
@@ -732,7 +766,23 @@ extension EventDetailVC {
 //           // view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
 //            self.navigationController?.pushViewController(view, animated: true)
 //        }
-        
+        if self.viewModel.eventDetail?.locationType == MULTIPLE{
+            if self.viewModel.dateLocationSelected == false{
+                self.showToast(message: "Please Select Date, time")
+            }else if self.viewModel.eventDetail?.eventDateObj == nil && self.viewModel.dateLocationSelected == true{
+                var eventObject = self.viewModel.eventDetail?.eventDateObj ?? EventDateObj()
+                eventObject = self.setDateForMultiLocation(eventObject: eventObject)
+                self.viewModel.eventDetail?.eventDateObj = eventObject
+                self.navigateToTicketBooking()
+            }else{
+                self.navigateToTicketBooking()
+            }
+        }else{
+            self.navigateToTicketBooking()
+        }
+    }
+    
+    func navigateToTicketBooking(){
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.eventId = self.viewModel.eventId

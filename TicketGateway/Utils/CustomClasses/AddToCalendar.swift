@@ -21,7 +21,7 @@ final class AddToCalendar {
                 let event: EKEvent = EKEvent(eventStore: eventStore)
                 print("startDate----", startDate)
                 print("endDate----", endDate)
-                event.timeZone = TimeZone.current
+                //event.timeZone = TimeZone.current
                 event.title = title
                 event.startDate = startDate
                 event.endDate = endDate
