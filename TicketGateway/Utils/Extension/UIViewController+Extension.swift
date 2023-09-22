@@ -271,6 +271,32 @@ extension UIViewController {
     func getCountry() -> String{
         return Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
     }
+    
+//    func formatNumericToTwoDecimalPlaces<T: Numeric>(_ value: T) -> String {
+//        let numberFormatter = NumberFormatter()
+//        numberFormatter.numberStyle = .decimal
+//        numberFormatter.minimumFractionDigits = 2
+//        numberFormatter.maximumFractionDigits = 2
+//        
+//        if let formattedNumber = numberFormatter.string(from: NSNumber(value: value)) {
+//            return formattedNumber
+//        } else {
+//            return "Formatting failed"
+//        }
+//    }
+    
+    func convertToTwoDecimalPlaces(_ value: Any) -> String? {
+        if let numericValue = value as? Double {
+            return String(format: "%.2f", numericValue)
+        } else if let numericValue = value as? Float {
+            return String(format: "%.2f", numericValue)
+        } else if let numericValue = value as? Int {
+            return String(format: "%.2f", Double(numericValue))
+        }
+        
+        // Handle other types or unsupported types here
+        return nil
+    }
 }
 extension URL {
     /// Returns a new URL by adding the query items, or nil if the URL doesn't support it.

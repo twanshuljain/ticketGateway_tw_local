@@ -120,7 +120,7 @@ extension EventBookingPaymentMethodVC {
         self.imgCard.image = UIImage(named: UNACTIVE_ICON)
         self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
         self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
-        self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+      //  self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
         self.setGradientBackground(viewadd: UIView())
         
         
@@ -159,13 +159,13 @@ extension EventBookingPaymentMethodVC {
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
             self.vwBgWallet.borderColor = UIColor.setColor(colorType: .tgBlue)
-            self.vwWallet.isHidden = false
+           // self.vwWallet.isHidden = false
             self.vwCard.isHidden = true
-            self.vwWalletTop.isHidden = false
+           // self.vwWalletTop.isHidden = false
             self.vwCardTop.isHidden = true
             self.imgWallet.image = UIImage(named: ACTIVE_ICON)
             self.imgCard.image = UIImage(named: UNACTIVE_ICON)
-            self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
+           // self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
             self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
          } else {
             self.funcDefoultSet()
@@ -173,6 +173,7 @@ extension EventBookingPaymentMethodVC {
     }
     
     func btnCardAction() {
+        self.vwBgWallet.backgroundColor = .clear
         if self.vwBgCard.backgroundColor == .clear {
             self.setGradientBackground(viewadd: vwBgCard)
             self.vwBgCard.backgroundColor = .white
@@ -186,7 +187,7 @@ extension EventBookingPaymentMethodVC {
             self.imgCard.image = UIImage(named: ACTIVE_ICON)
             self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
             self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
-            self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+         //   self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
         } else {
             self.funcDefoultSet()
         }

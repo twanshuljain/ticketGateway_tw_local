@@ -117,10 +117,20 @@ extension EventBookingOrderSummaryVC {
         let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
         let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
         
-        self.lblServiceChargeValue.text = "CAD$ \(serviceCharge)"
-        self.lblProcessingFeeValue.text = "CAD$ \(processingCharge)"
-        self.lblfacilityFeeValue.text = "CAD$ \(facilityCharge)"
-        self.lblSubTotalValue.text = "CAD$ \(subTotal)"
+        
+        let convertedServiceCharge = self.convertToTwoDecimalPlaces(serviceCharge)
+        let convertedProcessingCharge = self.convertToTwoDecimalPlaces(processingCharge)
+        let convertedFacilityCharge = self.convertToTwoDecimalPlaces(facilityCharge)
+        
+        let convertedSubTotal = self.convertToTwoDecimalPlaces(subTotal)
+        let convertedDiscountValue = self.convertToTwoDecimalPlaces(discountValue)
+        let convertedDiscountedFinalPrice = self.convertToTwoDecimalPlaces(discountedFinalPrice)
+        
+        
+        self.lblServiceChargeValue.text = "CAD$ \(convertedServiceCharge ?? "")"
+        self.lblProcessingFeeValue.text = "CAD$ \(convertedProcessingCharge ?? "")"
+        self.lblfacilityFeeValue.text = "CAD$ \(convertedFacilityCharge ?? "")"
+        self.lblSubTotalValue.text = "CAD$ \(convertedSubTotal ?? "")"
         var total = 0.0
         
         
@@ -129,15 +139,18 @@ extension EventBookingOrderSummaryVC {
             self.lblDiscouted.isHidden = false
             self.lblDiscoutedValue.isHidden = false
             self.discountViewHt.constant = 40
-            self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(discountValue)%" : "- $\(discountValue)"
+            self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(convertedDiscountValue ?? "")%" : "- $\(convertedDiscountValue ?? "")"
         }else{
             total = serviceCharge + processingCharge + facilityCharge + subTotal
             self.lblDiscouted.isHidden = true
             self.lblDiscoutedValue.isHidden = true
             self.discountViewHt.constant = 0
         }
-        self.lblTotalAmtValue.text = "CAD$ \(total)"
-        self.viewModel.totalTicketPrice = "\(total)"
+        
+        
+        
+        self.lblTotalAmtValue.text = "CAD$ \(convertToTwoDecimalPlaces(total) ?? "")"
+        self.viewModel.totalTicketPrice = "\(convertToTwoDecimalPlaces(total) ?? "")"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
         self.tblAddOnEtcThings.selectedAddOnList = self.viewModel.selectedAddOnList
         DispatchQueue.main.async {

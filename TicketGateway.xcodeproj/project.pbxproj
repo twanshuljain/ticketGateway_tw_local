@@ -44,6 +44,7 @@
 		1821FDF62A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FDF52A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift */; };
 		18233FB529E7C5B000255BB7 /* WelComeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18233FB429E7C5B000255BB7 /* WelComeVC.swift */; };
 		18233FB729E7C72500255BB7 /* WelComeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18233FB629E7C72500255BB7 /* WelComeCell.swift */; };
+		18259E2E2ABDADB30089AB6C /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18259E2D2ABDADB30089AB6C /* Double+Extension.swift */; };
 		18277F1B2AA210A500586683 /* MyTicketListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18277F192AA210A500586683 /* MyTicketListingTableViewCell.swift */; };
 		18277F1C2AA210A500586683 /* MyTicketListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18277F1A2AA210A500586683 /* MyTicketListingTableViewCell.xib */; };
 		182B9FAD2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B9FAC2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift */; };
@@ -494,6 +495,7 @@
 		1821FDF52A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFollowerTableViewCell.swift; sourceTree = "<group>"; };
 		18233FB429E7C5B000255BB7 /* WelComeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelComeVC.swift; sourceTree = "<group>"; };
 		18233FB629E7C72500255BB7 /* WelComeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelComeCell.swift; sourceTree = "<group>"; };
+		18259E2D2ABDADB30089AB6C /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		18277F192AA210A500586683 /* MyTicketListingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketListingTableViewCell.swift; sourceTree = "<group>"; };
 		18277F1A2AA210A500586683 /* MyTicketListingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTicketListingTableViewCell.xib; sourceTree = "<group>"; };
 		182B9FAC2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingOrderSummaryVieModel.swift; sourceTree = "<group>"; };
@@ -1554,6 +1556,7 @@
 				1861A2E82A447DB300E13A5D /* UITabBarController+Extension.swift */,
 				18B384972A5C2FF300B47D9D /* Array+Extension.swift */,
 				18C7D8722A84D52800A2BE98 /* UIButton+Extension.swift */,
+				18259E2D2ABDADB30089AB6C /* Double+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -3313,6 +3316,7 @@
 				18FDDED92A2DBBFC008BEEF0 /* GetEventCategoryModel.swift in Sources */,
 				18FBC0CC2A309239002CF129 /* ManageSellTicketSuccessfully.swift in Sources */,
 				18FBC0A82A309239002CF129 /* NotificationCell.swift in Sources */,
+				18259E2E2ABDADB30089AB6C /* Double+Extension.swift in Sources */,
 				18F88C392A25D61F005E7457 /* GetEventListViewModel.swift in Sources */,
 				18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */,
 				181FD44E2A976C4400CAA230 /* MyTicketModel.swift in Sources */,
