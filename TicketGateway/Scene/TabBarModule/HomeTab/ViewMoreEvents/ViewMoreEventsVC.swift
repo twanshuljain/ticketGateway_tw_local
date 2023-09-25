@@ -93,7 +93,7 @@ extension ViewMoreEventsVC{
     
     
     func navigateToDetail(index:IndexPath){
-        let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC
+        let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
         
         if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {

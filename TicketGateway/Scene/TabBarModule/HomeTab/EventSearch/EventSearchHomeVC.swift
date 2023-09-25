@@ -3,13 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 22/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
 
 import UIKit
 import iOSDropDown
@@ -48,18 +41,17 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
         self.collVwEvent.isFromCategory = true
         self.collVwEventSubCategory.configure()
         self.collVwEventSubCategory.isFromCategory = false
-        [self.btnReset, self.btnShowResult, self.btnSortByRelevence, self.btnFIlter,].forEach {
+        [self.btnReset, self.btnShowResult, self.btnSortByRelevence, self.btnFIlter].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.tblEvents.tableDidSelectAtIndex = {  index in
-            let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC
-            if self.viewModel.arrSearchData.indices.contains(index.row){
+            let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
+            if self.viewModel.arrSearchData.indices.contains(index.row) {
                 view?.viewModel.eventId = self.viewModel.arrSearchData[index.row].event?.id
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
             }
         }
         self.collVwEvent.collVwDidSelectAtIndex = { obj in
-            print("--------------------------------------------",obj)
             self.vwBlack.isHidden =  false
         }
         self.collVwEventSubCategory.collectionViewLayout = createLeftAlignedLayout()
@@ -100,7 +92,7 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
         }
     }
 }
-//MARK: - Functions
+// MARK: - Functions
 extension EventSearchHomeVC {
     func funcSetDropDown() {
         txtSortByRelevance.optionArray = ["Jan", "Feb", "Mar","April"]
@@ -111,7 +103,7 @@ extension EventSearchHomeVC {
         }
     }
 }
-//MARK: - Actions
+// MARK: - Actions
 extension EventSearchHomeVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -200,14 +192,14 @@ extension EventSearchHomeVC: CustomSearchMethodsDelegate {
 extension EventSearchHomeVC: FavouriteAction {
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
-        if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
             self.showToast(message: Unable_To_Like)
             return
         }
         AppShareData().commanEventLikeApiCall(
             likeStatus: eventDetail.likeCountData?.isLiked ?? false,
             eventId: eventDetail.event?.id ?? 0,
-            completion: { _,_ in
+            completion: { _, _ in
             }
         )
     }

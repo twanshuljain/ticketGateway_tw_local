@@ -89,7 +89,7 @@ extension HomeDashBoardViewModel {
     }
     
     
-    func getEventAsPerLocation(category:String? = "", countryName:String? = "", sortBy:SortBy? = .None, complition: @escaping (Bool,String) -> Void ) {
+    func getEventAsPerLocation(category:String? = "", countryName:String? = "", sortBy:SortBy? = .noneValue, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
         let parameters =  GetEventSearchByCategoryRequest(countryName: countryName, limit: "3", page: "1")
         APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in

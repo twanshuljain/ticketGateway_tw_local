@@ -3,13 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 05/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
 
 import UIKit
 import SVProgressHUD
@@ -29,7 +22,7 @@ extension GetEventCategoryViewModel {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             vc?.view.showLoading(centreToView: vc?.view ?? UIView())
-            self.GetEventCategoryApi(complition: { isTrue, messageShowToast in
+            self.getEventCategoryApi(complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     DispatchQueue.main.async {
                         vc?.view.stopLoading()
@@ -53,8 +46,7 @@ extension GetEventCategoryViewModel {
         }
     }
     
-    func GetEventCategoryApi(complition: @escaping (Bool,String) -> Void ) {
-        
+    func getEventCategoryApi(complition: @escaping (Bool,String) -> Void ) {
         APIHandler.shared.executeRequestWith(apiName: .getEventCategoryList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventCategoryModel]>, Error>) in
             switch result {
             case .success(let response):
@@ -104,7 +96,7 @@ extension GetEventCategoryViewModel {
     
     
     func getEventSearchApi(searchText: String, complition: @escaping (Bool,String) -> Void ) {
-        let parameters =  GetEventSearch(search_key: searchText)
+        let parameters =  GetEventSearch(searchKey: searchText)
         APIHandler.shared.executeRequestWith(apiName: .getEventSearch, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<SearchModel>, Error>) in
             switch result {
             case .success(let response):

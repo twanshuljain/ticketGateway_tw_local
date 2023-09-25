@@ -18,7 +18,8 @@ import SVProgressHUD
 
 
 class HomeVC: UIViewController {
-    //MARK: - IBOutlets
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var heightOfCollectionView: NSLayoutConstraint!
     @IBOutlet weak var heightOfNearOrganisedEvent: NSLayoutConstraint!
     @IBOutlet weak var btnViewAllForSuggestedOrganised: CustomButtonNormal!
@@ -30,12 +31,11 @@ class HomeVC: UIViewController {
     @IBOutlet weak var tableParentView: UIView!
     @IBOutlet weak var collectionParentView: UIView!
     @IBOutlet weak var parentView: UIView!
-    
-    //MARK: - Variables
+
+    // MARK: - Variables
     var isMenuOpened: Bool = false
     var viewModel = HomeDashBoardViewModel()
     private let eventCategoryViewModel = GetEventCategoryViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.funcCallApi()
@@ -44,10 +44,8 @@ class HomeVC: UIViewController {
         self.tblEvents.delegateLikeAction = self
         self.collvwSuggestedOrganisation.delegateOrgansierToProfile = self
         self.collvwSuggestedOrganisation.followUnfollowDelegate = self
-        
         // self.apiCall()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // If any event liked from Fav Tab then we need to refresh the list of all events at Home Tab
@@ -58,9 +56,7 @@ class HomeVC: UIViewController {
         }
     }
 }
-
-
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension HomeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
@@ -92,7 +88,7 @@ extension HomeVC {
     }
     
     func navigateToDetailVc(index:IndexPath){
-        if let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC{
+        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
             if self.viewModel.arrEventCategory.indices.contains(index.section){
                 switch self.viewModel.arrEventCategory[index.section] {
                 case .noLocationData:

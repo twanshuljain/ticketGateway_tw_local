@@ -4,31 +4,20 @@
 //
 //  Created by Apple  on 05/05/23.
 //
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
-// swiftlint: disable trailing_whitespace
-// swiftlint: disable comment_spacing
-// swiftlint: disable opening_brace
 import UIKit
 import iOSDropDown
 import AdvancedPageControl
 import SVProgressHUD
 import SDWebImage
 import EventKitUI
-
-protocol EventDetailVCProtocol:class{
+// swiftlint: disable file_length
+protocol EventDetailVCProtocol: class {
     func updateData()
 }
 
 class EventDetailVC: UIViewController, UITextFieldDelegate{
     
-    //MARK: - IBOutlets
+    // MARK: IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageConrtrolEventImages: AdvancedPageControlView!
     @IBOutlet weak var collvwEventImages: UICollectionView!
@@ -51,7 +40,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var lblAboutOfEvent: UILabel!
     @IBOutlet weak var lblAboutDiscripation: UILabel!
     @IBOutlet weak var lblOrganizer: UILabel!
-    @IBOutlet weak var lblOrganiserName_Company: UILabel!
+    @IBOutlet weak var lblOrganiserNameCompany: UILabel!
     @IBOutlet weak var lblFollowers: UILabel!
     @IBOutlet weak var lblTags: UILabel!
     @IBOutlet weak var lblSuggestionForYou: UILabel!
@@ -70,22 +59,18 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var vwSelectDateView: UIView!
     @IBOutlet weak var vwSelectLocationView: UIView!
     @IBOutlet weak var vwSelectLocationAndDateView: UIView!
-
     @IBOutlet weak var dateAndLocationStackView: UIStackView!
     @IBOutlet weak var vwStackHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var aboutView: UIView!
     @IBOutlet weak var tagsView: UIView!
     @IBOutlet weak var organizersView: UIView!
     @IBOutlet weak var suggestionsForYouView: UIView!
-    
     @IBOutlet weak var vwOrganiserMainView: setBorderView!
-    
-    @IBOutlet weak var pageConrtrolEventImagesHt:NSLayoutConstraint!
-    @IBOutlet weak var pageControllerParentView:UIView!
-    @IBOutlet weak var pageConrtrolEventTop:NSLayoutConstraint!
-    @IBOutlet weak var bottomView:UIView!
-    @IBOutlet weak var htBottomView:NSLayoutConstraint!
+    @IBOutlet weak var pageConrtrolEventImagesHt: NSLayoutConstraint!
+    @IBOutlet weak var pageControllerParentView: UIView!
+    @IBOutlet weak var pageConrtrolEventTop: NSLayoutConstraint!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var htBottomView: NSLayoutConstraint!
     
     // MARK: - Variables
     var viewModel = EventDetailViewModel()
@@ -104,14 +89,14 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     }
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension EventDetailVC {
-    func loadData(){
+    func loadData() {
         self.setUp()
         self.addTapGestureToOrganiserView()
     }
     
-    func setUp(){
+    func setUp() {
         self.setUi()
         self.tblSuggestedEvent.delegateShareAction = self
         self.tblSuggestedEvent.delegateLikeAction = self
@@ -122,7 +107,7 @@ extension EventDetailVC {
         self.collVwTags.configure()
         self.tblSuggestedEvent.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.eventDetail)
         self.tblSuggestedEvent.tableDidSelectAtIndex = { index in
-            if self.viewModel.arrEventData.indices.contains(index.row){
+            if self.viewModel.arrEventData.indices.contains(index.row) {
                 self.viewModel.eventId = self.viewModel.arrEventData[index.row].event?.id
                 self.viewModel.eventDetail = nil
                 self.funcCallApi()
@@ -144,7 +129,6 @@ extension EventDetailVC {
         btnAddToCalender.addRightIcon(image: UIImage.init(named: "calendar_blue"))
         btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
-        
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
@@ -167,19 +151,17 @@ extension EventDetailVC {
             lblOnTicketGateway.isHidden = true
             btnBookTickets.isHidden = true
             htBottomView.constant = 0
-        }else{
+        } else {
             lblPrice.isHidden = false
             lblOnTicketGateway.isHidden = false
             btnBookTickets.isHidden = false
             htBottomView.constant = 95
         }
     }
-    
     func addTapGestureToOrganiserView() {
         let gesture = UITapGestureRecognizer.init(target: self, action: #selector(navigateToProfileForOrganiser(_:)))
         self.vwOrganiserMainView.addGestureRecognizer(gesture)
     }
-    
     @objc func navigateToProfileForOrganiser(_ sender: UITapGestureRecognizer) {
         let eventDetail = self.viewModel.eventDetail
         if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
@@ -189,9 +171,7 @@ extension EventDetailVC {
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }
-    
-    
-    func getMultiLocation(){
+    func getMultiLocation() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             vwEventName.showLoading(centreToView: self.view)
@@ -199,9 +179,6 @@ extension EventDetailVC {
             viewModel.GetMultiLocationList { isTrue, messageShowToast in
                 if isTrue == true {
                     self.vwEventName.stopLoading()
-                    DispatchQueue.main.async {
-                        
-                    }
                 } else {
                     DispatchQueue.main.async {
                         self.vwEventName.stopLoading()
@@ -215,12 +192,10 @@ extension EventDetailVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
         self.viewModel.dispatchGroup1.notify(queue: .main) {
             self.getRecurringList()
         }
     }
-    
     func getRecurringList(){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -229,9 +204,6 @@ extension EventDetailVC {
             viewModel.GetRecurringList { isTrue, messageShowToast in
                 if isTrue == true {
                     self.vwEventName.stopLoading()
-                    DispatchQueue.main.async {
-                        
-                    }
                 } else {
                     DispatchQueue.main.async {
                         self.vwEventName.stopLoading()
@@ -245,13 +217,11 @@ extension EventDetailVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
         self.viewModel.dispatchGroup2.notify(queue: .main) {
             self.funcCallApi()
         }
     }
-    
-      func funcCallApi(){
+      func funcCallApi() {
           if self.viewModel.eventDetail != nil {
               DispatchQueue.main.async {
                   self.collvwEventImages.reloadData()
@@ -263,18 +233,15 @@ extension EventDetailVC {
                   } else {
                       self.dateAndLocationStackView.isHidden = true
                       self.vwStackHeight.constant = 0
-
                   }
               }
-              
               if let eventCategoryId = self.viewModel.eventDetail?.event?.eventCategoryID{
                   self.viewModel.suggestedEventCategoryId = eventCategoryId
                   self.funcCallApiForEventCategory(categoryId: eventCategoryId)
               }
-          }else{
+          } else {
               if self.viewModel.eventId != nil{
-                if Reachability.isConnectedToNetwork() //check internet connectivity
-                {
+                if Reachability.isConnectedToNetwork() { //check internet connectivity
                     vwEventName.showLoading(centreToView: self.view)
                     viewModel.getEventDetailApi(complition: { isTrue, messageShowToast in
                         if isTrue == true {
@@ -283,7 +250,7 @@ extension EventDetailVC {
                                 var numberOfPage = 0
                                 if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
                                     numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
-                                }else{
+                                } else {
                                     numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
                                 }
                                 AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
@@ -299,7 +266,6 @@ extension EventDetailVC {
 
                                 }
                             }
-                            
                             if let eventCategoryId = self.viewModel.eventDetail?.event?.eventCategoryID{
                                 self.viewModel.suggestedEventCategoryId = eventCategoryId
                                 self.funcCallApiForEventCategory(categoryId: eventCategoryId)
@@ -322,10 +288,8 @@ extension EventDetailVC {
             }
           }
     }
-    
     func funcCallApiForEventCategory(categoryId:Int){
-        if Reachability.isConnectedToNetwork() //check internet connectivity
-        {
+        if Reachability.isConnectedToNetwork() { // check internet connectivity
             DispatchQueue.main.async { [self] in
                 self.tblSuggestedEvent.isHidden = true
                 vwEventName.showLoading(centreToView: self.view)
@@ -352,13 +316,10 @@ extension EventDetailVC {
             }
         }
     }
-    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfSuggestedOrganisedEvent.constant = tblSuggestedEvent.contentSize.height
-        
     }
-    
-    func setUi(){
+    func setUi() {
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblFollowers.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblEventName.font = UIFont.setFont(fontType: .bold, fontSize: .twentyFour)
@@ -392,8 +353,7 @@ extension EventDetailVC {
         self.lblOnTicketGateway.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblOnTicketGateway.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-    
-    func setData(){
+    func setData() {
         let eventDetail = self.viewModel.eventDetail
         self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
         print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
@@ -417,52 +377,46 @@ extension EventDetailVC {
         let endDate = "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
         let startTime = "\(eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
         let endTime = "\(eventDetail?.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")"
-        
         self.lblEventDate.text = startDate +  " " + "-" + " " + endDate
         self.lblDate.text = startDate +  " " + "to" + " " + endDate
         self.lblTime.text = startTime +  " " + "-" + " " + endTime
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
-        
         if self.viewModel.eventDetail?.locationType == MULTIPLE {
             self.lblEventDate.isHidden = true
             self.lblDate.isHidden = true
             self.lblTime.isHidden = true
             self.lblAddress.isHidden = true
-        }else{
+        } else {
             self.lblEventDate.isHidden = false
             self.lblDate.isHidden = false
             self.lblTime.isHidden = false
             self.lblAddress.isHidden = false
-            
         }
       //  self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
         self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
-        
-        //ABOUt US
+        // ABOUT US
         if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
             self.aboutView.isHidden = false
             self.lblAboutDiscripation.text = eventDetail?.organizer?.eventDescription ?? ""
-            
-        }else{
+        } else {
             self.aboutView.isHidden = true
             self.lblAboutDiscripation.text = ""
         }
-        
-        //ORGANIZER
-        self.lblOrganiserName_Company.text = eventDetail?.organizer?.name ?? ""
+        // ORGANIZER
+        self.lblOrganiserNameCompany.text = eventDetail?.organizer?.name ?? ""
         self.lblFollowers.text = "\(eventDetail?.totalFollower ?? 0)  followers"
         if let imageUrl = eventDetail?.organizer?.profileImage {
-            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+            if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                }else{
+                } else {
                     self.imgOrganiser.image = UIImage(named: "profile")
                 }
-            }else{
+            } else {
                 if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                }else{
+                } else {
                     self.imgOrganiser.image = UIImage(named: "profile")
                 }
             }
@@ -474,27 +428,23 @@ extension EventDetailVC {
         if !(eventDetail?.eventTagsObj?.eventTags?.isEmpty ?? false) && eventDetail?.eventTagsObj?.eventTags != nil {
             self.tagsView.isHidden = false
             self.collVwTags.setData(eventDetail: eventDetail)
-        }else{
+        } else {
             self.tagsView.isHidden = true
         }
         if self.viewModel.eventDetail?.locationType == MULTIPLE {
             self.dropDown()
         }
-        
     }
     
     func dropDown(){
         //txtDate.optionArray = ["May 25 - May 30 6:00 AM - 7:00 AM", "May 25 - May 30 6:00 AM - 7:00 ", "May 25 - May 30 6:00 AM - 7:00 AM","May 25 - May 30 6:00 AM - 7:00 AM"]
-        
         txtDate.optionIds?.removeAll()
         txtLocation.optionIds?.removeAll()
         txtLocation.optionArray.removeAll()
         txtDate.optionArray.removeAll()
-        
         txtDate.optionIds = self.viewModel.recurringList?.compactMap({ $0.eventLocationID })
-        txtDate.didSelect{(selectedText , index ,id) in
+        txtDate.didSelect{(selectedText, index, id) in
             let inputString = selectedText
-
             if let range = inputString.range(of: ",") {
                 let substring = inputString[..<range.lowerBound]
                 self.lblEventDate.text = substring.trimmingCharacters(in: .whitespaces)
@@ -507,7 +457,7 @@ extension EventDetailVC {
             self.txtDate.text = "\(selectedText)"
             self.viewModel.selectedEventLocationId = id
             self.viewModel.multilocation?.forEach({ data in
-                if data.id == self.viewModel.selectedEventLocationId{
+                if data.id == self.viewModel.selectedEventLocationId {
                     self.txtLocation.optionArray  = [data.eventAddress ?? ""]
                     self.txtLocation.text = data.eventAddress ?? ""
                     self.lblAddress.text = data.eventAddress ?? ""
@@ -519,36 +469,30 @@ extension EventDetailVC {
             self.lblAddress.isHidden = false
             self.viewModel.dateLocationSelected = true
         }
-        
         //txtLocation.optionArray = ["Supermarket bar and Variety", "Supermarket bar and Variety", "Supermarket bar and Variety","Supermarket bar and Variety"]
-        
         if let selectedEventLocationId = self.viewModel.selectedEventLocationId{
             self.viewModel.multilocation?.forEach({ data in
                 if data.id == selectedEventLocationId{
                     txtLocation.optionArray  = [data.eventAddress ?? ""]
-                    
                     let startDate = self.viewModel.recurringList?.compactMap({ $0.startDate?.getDateFormattedFrom() }).first ?? ""
                     let endDate = self.viewModel.recurringList?.compactMap({ $0.endDate?.getDateFormattedFromTo() }).first ?? ""
                    // let startTime = self.viewModel.recurringList?.compactMap({ $0.startTime?.getFormattedTime() }).first ?? ""
                    // let endTime = self.viewModel.recurringList?.compactMap({ $0.endTime?.getFormattedTime() }).first ?? ""
-                    
                     let startTime = self.viewModel.recurringList?.compactMap({ $0.startTime }).first ?? ""
                     let endTime = self.viewModel.recurringList?.compactMap({ $0.endTime }).first ?? ""
-                    
                     let date = "\(startDate)" +  " " + "-" + " " + "\(endDate) "
                     let time = "\(startTime)" +  " " + "-" + " " + "\(endTime) "
                     let finalDate = date + time
                     txtDate.optionArray = [finalDate]
                 }
             })
-        }else{
+        } else {
             if let  startDate = self.viewModel.recurringList?.compactMap({ $0.startDate?.getDateFormattedFrom() }), !startDate.isEmpty {
-                for i in 0...startDate.count-1{
-                    let startDate = self.viewModel.recurringList?[i].startDate?.getDateFormattedFrom() ?? ""
-                    let endDate = self.viewModel.recurringList?[i].endDate?.getDateFormattedFromTo() ?? ""
-                    let startTime = self.viewModel.recurringList?[i].startTime ?? ""  //startTime?.getFormattedTime() ?? ""
-                    let endTime = self.viewModel.recurringList?[i].endTime ?? ""  //endTime?.getFormattedTime() ?? ""
-                    
+                for data in 0...startDate.count - 1 {
+                    let startDate = self.viewModel.recurringList?[data].startDate?.getDateFormattedFrom() ?? ""
+                    let endDate = self.viewModel.recurringList?[data].endDate?.getDateFormattedFromTo() ?? ""
+                    let startTime = self.viewModel.recurringList?[data].startTime ?? ""  //startTime?.getFormattedTime() ?? ""
+                    let endTime = self.viewModel.recurringList?[data].endTime ?? ""  //endTime?.getFormattedTime() ?? ""
                     let date = "\(startDate)" +  " " + "-" + " " + "\(endDate) "
                     let time = "\(startTime)" +  " " + "-" + " " + "\(endTime) "
                     let finalDate = date + time
@@ -558,16 +502,11 @@ extension EventDetailVC {
                // txtLocation.optionArray  = self.viewModel.multilocation?.compactMap({ $0.id == self.viewModel.selectedEventLocationId }) ?? []
             }
         }
-        
-        
-       
-        
         txtLocation.optionIds = self.viewModel.recurringList?.compactMap({ $0.eventLocationID })
         txtLocation.didSelect{(selectedText , index ,id) in
             self.txtLocation.text = "\(selectedText)"
         }
     }
-    
     func shareEventDetailData(eventDetail: GetEventModel) {
         self.shareEventDetailData(
             eventStartDate: eventDetail.date?.eventStartDate ?? "",
@@ -581,7 +520,7 @@ extension EventDetailVC {
     }
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension EventDetailVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -625,7 +564,6 @@ extension EventDetailVC {
         let components = calendar.dateComponents([.day, .month, .year, .hour, .minute], from: Date())
        return components
     }
-    
     func setDateForMultiLocation(eventObject:EventDateObj) -> EventDateObj{
         var eventObject = eventObject
         if self.viewModel.eventDetail?.locationType == MULTIPLE {
@@ -633,7 +571,6 @@ extension EventDetailVC {
             var endDate = ""
             var startTime = ""
             var endTime = ""
-            
 //            self.viewModel.recurringList?.forEach({ data in
 //                if data.eventLocationID == self.viewModel.selectedEventLocationId{
 //                    print(data)
@@ -671,75 +608,63 @@ extension EventDetailVC {
                     endTime = (data.endTime ?? "") + ":00"
                 }
             })
-            
-            
-            
-            
             print(startDate,  startTime ,  endDate,  endTime)
             eventObject.eventStartDate = startDate
             eventObject.eventEndDate = endDate
             eventObject.eventStartTime = startTime
             eventObject.eventEndTime = endTime
         }
-        
         if self.viewModel.eventDetail?.eventDateObj == nil{
             self.viewModel.eventDetail?.eventDateObj = eventObject
         }
-        
         return eventObject
     }
-    
-    
     func addToCalenAction() {
         DispatchQueue.main.async {
-          self.store.requestAccess(to: .event, completion: { sucess, err in
-            if sucess, err == nil {
-              DispatchQueue.main.async {
-                let newEvent = EKEvent(eventStore: self.store)
-                var eventObject = self.viewModel.eventDetail?.eventDateObj ?? EventDateObj()
-                  if self.viewModel.eventDetail?.locationType == MULTIPLE && self.viewModel.dateLocationSelected == false{
-                      self.showToast(message: "Please Select Date")
-                      return
-                  }else if self.viewModel.eventDetail?.locationType == MULTIPLE{
-                      eventObject = self.setDateForMultiLocation(eventObject: eventObject)
-                  }
-                  print("startDate", eventObject.eventStartDate as Any)
-                  print("endDate", eventObject.eventEndDate as Any)
-                  print("startTime", eventObject.eventStartTime as Any)
-                  print("endTime", eventObject.eventEndTime as Any)
-                  
-                  
-                  
-                let startDateTime = self.combineDateWithTime(
-                  date: eventObject.eventStartDate?.convertToDate() ?? Date(),
-                  time: eventObject.eventStartTime?.convertStringToDateForTime() ?? Date()
-                )
-                let endDateTime = self.combineDateWithTime(
-                  date: eventObject.eventEndDate?.convertToDate() ?? Date(),
-                  time: eventObject.eventEndTime?.convertStringToDateForTime() ?? Date()
-                )
-                newEvent.title = self.viewModel.eventDetail?.event?.title
-                newEvent.startDate = startDateTime
-                newEvent.endDate = endDateTime
-                let vc = EKEventViewController()
-                vc.delegate = self
-                vc.event = newEvent
-                let navVC = UINavigationController(rootViewController: vc)
-                self.present(navVC, animated: true)
-                do {
-                  try self.store.save(newEvent, span: .thisEvent, commit: true)
-                  print("Saved event with ID: \(String(describing: newEvent.eventIdentifier))")
-                  // The event gets created and the ID is printed to the console but at a time when the whole function already has returned (nil)
-                } catch let error as NSError {
-                  print("Failed to save event with error: \(error)")
+            self.store.requestAccess(to: .event, completion: { sucess, err in
+                if sucess, err == nil {
+                    DispatchQueue.main.async {
+                        let newEvent = EKEvent(eventStore: self.store)
+                        var eventObject = self.viewModel.eventDetail?.eventDateObj ?? EventDateObj()
+                        if self.viewModel.eventDetail?.locationType == MULTIPLE && self.viewModel.dateLocationSelected == false {
+                            self.showToast(message: "Please Select Date")
+                            return
+                        } else if self.viewModel.eventDetail?.locationType == MULTIPLE {
+                            eventObject = self.setDateForMultiLocation(eventObject: eventObject)
+                        }
+                        print("startDate", eventObject.eventStartDate as Any)
+                        print("endDate", eventObject.eventEndDate as Any)
+                        print("startTime", eventObject.eventStartTime as Any)
+                        print("endTime", eventObject.eventEndTime as Any)
+                        let startDateTime = self.combineDateWithTime(
+                            date: eventObject.eventStartDate?.convertToDate() ?? Date(),
+                            time: eventObject.eventStartTime?.convertStringToDateForTime() ?? Date()
+                        )
+                        let endDateTime = self.combineDateWithTime(
+                            date: eventObject.eventEndDate?.convertToDate() ?? Date(),
+                            time: eventObject.eventEndTime?.convertStringToDateForTime() ?? Date()
+                        )
+                        newEvent.title = self.viewModel.eventDetail?.event?.title
+                        newEvent.startDate = startDateTime
+                        newEvent.endDate = endDateTime
+                        let view = EKEventViewController()
+                        view.delegate = self
+                        view.event = newEvent
+                        let navVC = UINavigationController(rootViewController: view)
+                        self.present(navVC, animated: true)
+                        do {
+                            try self.store.save(newEvent, span: .thisEvent, commit: true)
+                            print("Saved event with ID: \(String(describing: newEvent.eventIdentifier))")
+                            // The event gets created and the ID is printed to the console but at a time when the whole function already has returned (nil)
+                        } catch let error as NSError {
+                            print("Failed to save event with error: \(error)")
+                        }
+                    }
+                } else {
                 }
-              }
-            } else {
-            }
-          })
+            })
         }
-      }
-    
+    }
     func combineDateWithTime(date: Date, time: Date) -> Date? {
         print("DATE:---:", date)
         print("TIME:---:", time)
@@ -757,7 +682,6 @@ extension EventDetailVC {
         mergedComponents.minute = timeComponents.minute
         return calendar.date(from: mergedComponents)
     }
-    
     func btnBookTicket() {
 //        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
 //            view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -766,22 +690,21 @@ extension EventDetailVC {
 //           // view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
 //            self.navigationController?.pushViewController(view, animated: true)
 //        }
-        if self.viewModel.eventDetail?.locationType == MULTIPLE{
-            if self.viewModel.dateLocationSelected == false{
+        if self.viewModel.eventDetail?.locationType == MULTIPLE {
+            if self.viewModel.dateLocationSelected == false {
                 self.showToast(message: "Please Select Date, time")
-            }else if self.viewModel.eventDetail?.eventDateObj == nil && self.viewModel.dateLocationSelected == true{
+            } else if self.viewModel.eventDetail?.eventDateObj == nil && self.viewModel.dateLocationSelected == true {
                 var eventObject = self.viewModel.eventDetail?.eventDateObj ?? EventDateObj()
                 eventObject = self.setDateForMultiLocation(eventObject: eventObject)
                 self.viewModel.eventDetail?.eventDateObj = eventObject
                 self.navigateToTicketBooking()
-            }else{
+            } else {
                 self.navigateToTicketBooking()
             }
-        }else{
+        } else {
             self.navigateToTicketBooking()
         }
     }
-    
     func navigateToTicketBooking(){
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -791,7 +714,6 @@ extension EventDetailVC {
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
-    
     func addFollowingAction() {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
@@ -941,83 +863,66 @@ extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,U
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         let imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
-        if imgCount == 0{
+        if imgCount == 0 {
             if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil{
                 return 1
             }
             return 0
-        }else{
+        } else {
             if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
                 return imgCount + 1
-            }else{
+            } else {
                 return imgCount
             }
-            
         }
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventImageCell", for: indexPath) as! EventImageCell
         cell.setData(index: indexPath.row, eventDetail: self.viewModel.eventDetail)
         //  cell.imgEvents.cornerRadius = 10
         return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
 }
-//MARK: - EKEventViewDelegate
+// MARK: - EKEventViewDelegate
 extension EventDetailVC: EKEventViewDelegate {
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
         controller.dismiss(animated: true)
     }
-    
-    
 }
-//MARK: -
-extension EventDetailVC:  ActivityController, EventsOrganizesListTableViewProtocol{
+extension EventDetailVC: ActivityController, EventsOrganizesListTableViewProtocol{
     func toShowActivityController(eventDetail: GetEventModel) {
         self.shareEventDetailData(eventDetail: eventDetail)
     }
-    
     func tapActionOfViewMoreEvents(index: Int) {
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
         view?.viewModel.isComingFrom = .eventDetail
         view?.delegate = self
         view?.viewModel.categoryId = self.viewModel.suggestedEventCategoryId
         view?.viewModel.eventId = self.viewModel.eventId ?? 0
-        //view?.viewModel.index = index
-        //view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
-  
 }
 
-//MARK: - ViewMoreEventsVCProtocol
+// MARK: - ViewMoreEventsVCProtocol
 extension EventDetailVC: ViewMoreEventsVCProtocol {
     func reloadView(eventId: Int?, isEventDetailApiCall: Bool?) {
-        if (isEventDetailApiCall ?? false) {
+        if isEventDetailApiCall ?? false {
             self.viewModel.eventId = eventId
             viewModel.eventDetail = nil
             funcCallApi()
             self.scrollView.setContentOffset(.zero, animated: false)
         }
-//        else {
-//            print("in else ***** ")
-//            self.viewModel.eventId = eventId
-//            self.loadData()
-//        }
     }
 }
 
-//MARK: - NavigationBarViewDelegate
-extension EventDetailVC : NavigationBarViewDelegate {
+// MARK: - NavigationBarViewDelegate
+extension EventDetailVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         if viewModel.isLikedAnyEvent {
             self.delegate?.updateData()
@@ -1026,11 +931,11 @@ extension EventDetailVC : NavigationBarViewDelegate {
     }
 }
 
-//MARK: - NavigationBarViewDelegate
-extension EventDetailVC : FavouriteAction {
+// MARK: - NavigationBarViewDelegate
+extension EventDetailVC: FavouriteAction {
     func toCallFavouriteaApi(eventDetail: GetEventModel, isForLocation: Bool) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
-        if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
             self.showToast(message: Unable_To_Like)
             return
         }
@@ -1038,8 +943,9 @@ extension EventDetailVC : FavouriteAction {
         AppShareData().commanEventLikeApiCall(
             likeStatus: eventDetail.likeCountData?.isLiked ?? false,
             eventId: eventDetail.event?.id ?? 0,
-            completion: { isTrue, messageShowToast in
+            completion: { _, _ in
             }
         )
     }
 }
+// swiftlint: enable file_length

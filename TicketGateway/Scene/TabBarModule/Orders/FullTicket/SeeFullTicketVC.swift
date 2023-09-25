@@ -3,8 +3,7 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 31/05/23.
-// swiftlint: disable force_cast
-// swiftlint: disable line_length
+
 import UIKit
 import CoreImage
 import SDWebImage
@@ -62,15 +61,13 @@ class SeeFullTicketVC: UIViewController {
 }
 // MARK: - Functions
 extension SeeFullTicketVC {
-    
     func configure() {
         tblMyTicket.register(UINib(nibName: "MyTicketListingTableViewCell", bundle: nil), forCellReuseIdentifier: "MyTicketListingTableViewCell")
         tblMyTicket.delegate = self
         tblMyTicket.dataSource = self
     }
-    
     func setUI() {
-        [self.btnGetARefund,self.btnSeeLessView,self.btnSaveTicketAsImage,self.btnAddAppToWallet,self.btnViewEventList].forEach {
+        [self.btnGetARefund, self.btnSeeLessView, self.btnSaveTicketAsImage, self.btnAddAppToWallet, self.btnViewEventList].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.tblMyTicket.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
@@ -80,12 +77,10 @@ extension SeeFullTicketVC {
         let date = strDate.convertStringToDate(date: strDate)
         return date.getOnlyTimeFromDate(date: date)
     }
-    
     func getTimeISO(strDate: String) -> String {
         let date = strDate.convertStringToDateForProfile(date: strDate)
         return date.getOnlyTimeFromDate(date: date)
     }
-    
     func getWeekDay(strDate: String) -> String {
         let date = strDate.convertStringToDate(date: strDate)
         return date.getWeekDay(date: date) ?? "-"
@@ -96,50 +91,50 @@ extension SeeFullTicketVC {
         self.vwNavigationView.lblTitle.text = MY_TICKETS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        if !self.viewModel.isFromPast{
+        if !self.viewModel.isFromPast {
             self.vwNavigationView.btnRight.isHidden = false
             self.vwNavigationView.btnRight.setImage(UIImage(named: MENU_DOT_ICON), for: .normal)
             self.vwNavigationView.btnRight.addTarget(self, action: #selector(addActionSheet), for: .touchUpInside)
         }
     }
-    func setProfile(){
+    func setProfile() {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (userModel?.image ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
         self.imgProfile.cornerRadius = self.imgProfile.frame.width/2
     }
     @objc func addActionSheet() {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        actionsheet.addAction(UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            if let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC) as? TransferTicketVC{
+        actionsheet.addAction(UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (_) -> Void in
+            if let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC) as? TransferTicketVC {
                 transferTicketVC.viewModel.ticketDetails = self.viewModel.ticketDetails
                 transferTicketVC.viewModel.eventDetail = self.viewModel.eventDetail
                 transferTicketVC.viewModel.myTicket = self.viewModel.myTicket
                 self.navigationController?.pushViewController(transferTicketVC, animated: true)
             }
         }))
-        actionsheet.addAction(UIAlertAction(title: "Exchange ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+        actionsheet.addAction(UIAlertAction(title: "Exchange ticket", style: UIAlertAction.Style.default, handler: { (_) -> Void in
             let exchangeTicketVC = self.createView(storyboard: .order, storyboardID: .ExchangeTicketVC)
             self.navigationController?.pushViewController(exchangeTicketVC, animated: true)
         }))
-        actionsheet.addAction(UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC{
+        actionsheet.addAction(UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (_) -> Void in
+            if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC {
                 changeNameVC.viewModel.myTicket = self.viewModel.myTicket
                 self.navigationController?.pushViewController(changeNameVC, animated: true)
             }
         }))
-        actionsheet.addAction(UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+        actionsheet.addAction(UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (_) -> Void in
             if let eventDetail = self.viewModel.eventDetail {
                 self.shareEventDetailData(eventDetail: eventDetail)
             }
         }))
-        actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
+        actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (_) -> Void in
+            if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC {
                 contactOrganiserVC.viewModel.eventDetail = self.viewModel.eventDetail
                 contactOrganiserVC.viewModel.oranizerId = self.viewModel.eventDetail?.organizer?.id ?? 0
                 self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
             }
         }))
-        actionsheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (action) -> Void in
+        actionsheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (_) -> Void in
         }))
         self.present(actionsheet, animated: true, completion: nil)
     }
@@ -188,52 +183,39 @@ extension SeeFullTicketVC {
         self.btnFollowing.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblPolicyExpired.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
     }
-    
-    
-    func setData(){
+    func setData() {
         self.setProfile()
         let eventDetail = self.viewModel.eventDetail
       //  lblEventName.text = viewModel.ticketDetails?.eventTitle ?? "-"
       //  lblAddress.text = viewModel.ticketDetails?.location ?? "-"
-        
-        
         if let base64String = self.viewModel.myTicketList?.qrcodeBase64Data{
 //            if let qrCode = base64String.generateQRCode(qrCodeImageView: imgScanCode) {
 //                imgScanCode.image = qrCode
 //            }
-            
            // if let qrCodeImage = base64String.base64ToImage(){
                 imgScanCode.image = UIImage.decodeBase64(toImage: base64String)
            // }
         }
-        
         self.lblName.text = self.viewModel.myTicketList?.nameOnTicket ?? ""
-        
         self.lblEventName.text = eventDetail?.event?.title ?? ""
-        //((eventDetail?.event?.title ?? "") + " - " + "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFromTo() ?? "")")
-        //self.lblGeneralAdmission.text = viewModel.myTicketList?.ticketName ?? ""
-        
+        // ((eventDetail?.event?.title ?? "") + " - " + "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFromTo() ?? "")")
+        // self.lblGeneralAdmission.text = viewModel.myTicketList?.ticketName ?? ""
         if let startDate = eventDetail?.eventDateObj?.eventStartDate, let startTime =  eventDetail?.eventDateObj?.eventStartTime {
             lblDateValue.text = "\(startDate.getDayFormattedFromTo()), \(startDate.getDateFormattedFromTo()) / \(startTime.getFormattedTime())"
         }
-       
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
         lblOrderNumberValue.text = "#\(viewModel.myTicketList?.orderNumber ?? "")"
-        
-        //ABOUt US
+        // ABOUt US
         if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
             self.lblEventSummary.isHidden = false
             self.lblSummary.text = eventDetail?.organizer?.eventDescription ?? ""
-            
-        }else{
+        } else {
             self.lblEventSummary.isHidden  = true
             self.lblSummary.text = ""
         }
-        
-        //ORGANIZER
+        // ORGANIZER
         self.lblOrganizerName.text = eventDetail?.organizer?.name ?? ""
-        
-        //FOLLOW/UNFOLLOW
+        // FOLLOW/UNFOLLOW
         print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
         if let isFollow = eventDetail?.isFollow {
             if isFollow {
@@ -250,18 +232,20 @@ extension SeeFullTicketVC {
                 )
             }
         }
-        
-        //REFUND
+        // REFUND
         self.lblRefundPolicyDays.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
-        
         tblMyTicket.reloadData()
     }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey: Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
         self.heightOfMyTicket.constant = tblMyTicket.contentSize.height
-        if self.viewModel.myTicketList == nil{
+        if self.viewModel.myTicketList == nil {
             self.heightOfMyTicket.constant = 0
-        }else{
+        } else {
             self.heightOfMyTicket.constant = tblMyTicket.contentSize.height
         }
     }
@@ -286,34 +270,29 @@ extension SeeFullTicketVC {
         }
     }
     func btnRefundAction() {
-        let vc = self.createView(storyboard: .order, storyboardID: .RequestRefundVC)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let view = self.createView(storyboard: .order, storyboardID: .RequestRefundVC)
+        self.navigationController?.pushViewController(view, animated: true)
     }
     func seeLessViewAction() {
-        let vc = self.createView(storyboard: .order, storyboardID: .MyTicketVC)
         self.navigationController?.popViewController(animated: false)
     }
     func saveTicketAsImage() {
     }
     func addAppToWalletAction() {
     }
-    
     func viewEventListAction() {
         self.navigateToEventDetail()
     }
     
     func navigateToEventDetail() {
-        if let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC {
-            view.viewModel.eventId = viewModel.myTicketList?.eventID //TO BE CHANGED
+        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
+            view.viewModel.eventId = viewModel.myTicketList?.eventID // TO BE CHANGED
             let numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
            //  Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
             AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.isFromPast = self.viewModel.isFromPast
             self.navigationController?.pushViewController(view, animated: false)
-           // view.delegate = self
-            
-            //funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
         }
     }
     

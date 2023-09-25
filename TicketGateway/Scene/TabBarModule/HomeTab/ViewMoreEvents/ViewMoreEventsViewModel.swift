@@ -45,7 +45,7 @@ final class ViewMoreEventsViewModel {
 
 //MARK: - Functions
 extension ViewMoreEventsViewModel: FavouriteAction {
-    func getEventAsPerLocation(viewAll:Bool, category:String? = "", countryName:String? = "", sortBy:SortBy? = .None, complition: @escaping (Bool,String) -> Void ) {
+    func getEventAsPerLocation(viewAll:Bool, category:String? = "", countryName:String? = "", sortBy:SortBy? = .noneValue, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
         let parameters =  viewAll == true ? GetEventSearchByCategoryRequest(countryName: countryName, limit: "10", page: "\(self.currentPage)") : GetEventSearchByCategoryRequest(countryName: countryName)
         

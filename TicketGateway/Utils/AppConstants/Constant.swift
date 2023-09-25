@@ -63,7 +63,7 @@ enum StoryboardIdentifier: String {
     case Organizers_Artists_ListVC
     case MyFollowersVC
     case VenueVC
-    case eventDetailVC
+    case EventDetailVC
     case MyWalletVC
     case MyRefundVC
     case CostumeViewController
