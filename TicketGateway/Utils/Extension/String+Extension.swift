@@ -309,4 +309,11 @@ extension String {
     func getCountry() -> String{
         return Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
     }
+    
+    
+}
+
+extension StringProtocol {
+    var firstUppercased: String { return prefix(1).uppercased() + dropFirst() }
+    var firstCapitalized: String { return prefix(1).capitalized + dropFirst() }
 }

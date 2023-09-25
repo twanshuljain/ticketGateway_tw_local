@@ -27,11 +27,19 @@ class TicketAddInOrderCell: UITableViewCell {
             if let selectedTicketQuantity = ticketData.selectedTicketQuantity{
                 //lblTittle.text = " + " + "\(ticketData.ticketName ?? "")" + "*" + " \(selectedTicketQuantity) "
                 lblTittle.text = "Ticket details " + "(" + " \(selectedTicketQuantity) " + " \(ticketData.ticketName ?? "") " + ")"
-                lblAmtValue.text = "CAD$ \(Double(ticketData.ticketPrice ?? 0) * Double(selectedTicketQuantity))"
+                //lblAmtValue.text = "CAD$ \(Double(ticketData.ticketPrice ?? 0) * Double(selectedTicketQuantity))"
+                
+                var price = Double(ticketData.ticketPrice ?? 0) * Double(selectedTicketQuantity)
+                lblAmtValue.text = "CAD$ \(price.convertToTwoDecimalPlaces() ?? "0.00")"
             }else{
                 //lblTittle.text = " + " + "\(ticketData.ticketName ?? "")"
                 lblTittle.text = "Ticket details " + "(" + "\(ticketData.ticketName ?? "")" + ")"
-                lblAmtValue.text = "CAD$ \(Double(ticketData.ticketPrice ?? 0))"
+                //lblAmtValue.text = "CAD$ \(Double(ticketData.ticketPrice ?? 0))"
+                
+                var price = Double(ticketData.ticketPrice ?? 0)
+                lblAmtValue.text = "CAD$ \(price.convertToTwoDecimalPlaces() ?? "0.00")"
+                
+                
             }
             lblTittleDis.isHidden = true
             lblDiscount.isHidden = true

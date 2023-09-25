@@ -403,7 +403,7 @@ extension EventDetailVC {
             self.lblAboutDiscripation.text = ""
         }
         // ORGANIZER
-        self.lblOrganiserNameCompany.text = eventDetail?.organizer?.name ?? ""
+        self.lblOrganiserNameCompany.text = eventDetail?.organizer?.name?.firstUppercased ?? ""
         self.lblFollowers.text = "\(eventDetail?.totalFollower ?? 0)  followers"
         if let imageUrl = eventDetail?.organizer?.profileImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
