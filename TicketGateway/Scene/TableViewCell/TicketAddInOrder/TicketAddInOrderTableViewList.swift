@@ -24,6 +24,7 @@ class TicketAddInOrderTableViewList: UITableView {
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
+    var selectedCurrencyType = ""
     
     func configure() {
         self.register(UINib(nibName: "TicketAddInOrderCell", bundle: nil), forCellReuseIdentifier: "TicketAddInOrderCell")
@@ -40,7 +41,7 @@ extension TicketAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketAddInOrderCell") as? TicketAddInOrderCell{
-            cell.setData(ticketData: selectedArrTicketList[indexPath.row])
+            cell.setData(ticketData: selectedArrTicketList[indexPath.row], selectedCurrencyType: self.selectedCurrencyType)
             return cell
         }
         return UITableViewCell()

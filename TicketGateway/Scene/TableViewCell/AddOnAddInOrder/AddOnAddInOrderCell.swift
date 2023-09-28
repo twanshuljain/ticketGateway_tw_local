@@ -29,7 +29,7 @@ class AddOnAddInOrderCell: UITableViewCell {
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
     }
-    func setData(addOnData:EventTicketAddOnResponseModel?) {
+    func setData(addOnData:EventTicketAddOnResponseModel?, selectedCurrencyType:String) {
         if let addOnData = addOnData{
             if let selectedTicketQuantity = addOnData.selectedTicketQuantity{
                 lblTittle.text = " + " + "\(addOnData.addOnName ?? "")" + "*" + " \(selectedTicketQuantity) "
@@ -37,13 +37,13 @@ class AddOnAddInOrderCell: UITableViewCell {
                 
                 
                 var price = Double(addOnData.addOnTicketPrice ?? 0) * Double(selectedTicketQuantity)
-                lblTittleValue.text = "CAD$ \(price.convertToTwoDecimalPlaces() ?? "0.00")"
+                lblTittleValue.text = "\(selectedCurrencyType)\(price.convertToTwoDecimalPlaces() ?? "0.00")"
             }else{
                 lblTittle.text = " + " + "\(addOnData.ticketName ?? "")"
                 //lblTittleValue.text = "CAD$ \(Double(addOnData.addOnTicketPrice ?? 0))"
                 
                 var price = Double(addOnData.addOnTicketPrice ?? 0)
-                lblTittleValue.text = "CAD$ \(price.convertToTwoDecimalPlaces() ?? "0.00")"
+                lblTittleValue.text = "\(selectedCurrencyType)\(price.convertToTwoDecimalPlaces() ?? "0.00")"
             }
             
         }

@@ -98,6 +98,7 @@ extension OtpNumberVC {
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
             view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
