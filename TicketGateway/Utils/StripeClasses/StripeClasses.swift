@@ -91,8 +91,8 @@ class StripeClasses: NSObject {
         }
     }
     
-    func createCharge(amount:Double,cardId:Int,checkoutId:String,controller:UIViewController?,complition: @escaping (CreateCharge?,Bool,String) -> Void ) {
-        let req = CreateChargeRequest.init(amount: amount, card_id: cardId, checkout_id: checkoutId)
+    func createCharge(amount:Double,cardId:Int,checkoutId:String,controller:UIViewController?,currency:String,complition: @escaping (CreateCharge?,Bool,String) -> Void ) {
+        let req = CreateChargeRequest.init(amount: amount, card_id: cardId, checkout_id: checkoutId, currency: currency)
         APIHandler.shared.executeRequestWith(apiName: .CreateCharge, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<CreateCharge>, Error>) in
             switch result {
             case .success(let response):

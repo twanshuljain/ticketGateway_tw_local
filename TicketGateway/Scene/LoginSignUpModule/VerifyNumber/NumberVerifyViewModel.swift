@@ -23,6 +23,7 @@ final class NumberVerifyViewModel {
     var totalTicketPrice = ""
     var selectedAddOnList:[EventTicketAddOnResponseModel]?
     var objUserModel: SignInAuthModel?
+    var selectedCurrencyType = ""
     init() {
     }
     init(otpNumVC: OtpNumberVC) {
@@ -61,7 +62,7 @@ extension NumberVerifyViewModel {
         
         let numberWithoutCode = objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? ""
         let number = "\(objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")" + (objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")
-        param = NumberVerifyRequest(otp: otp, cell_phone: numberWithoutCode)
+        param = NumberVerifyRequest(otp: otp, cell_phone: number)
         APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyNumberOtp, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
             switch result {
             case .success(let response):

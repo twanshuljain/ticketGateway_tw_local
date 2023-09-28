@@ -24,7 +24,7 @@ class PaymentSuccessFullVC: UIViewController {
     var isTransactionFailed: Bool = false
     var createCharge:CreateCharge?
     var selectedArrTicketList = [EventTicket]()
-    
+    var selectedCurrencyType = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,7 @@ extension PaymentSuccessFullVC {
             self.lbl1Ticket.text = "\(selectedArrTicketList.count) Ticket(S) with amount"
         }
        
-        self.lblCADPrice.text = " CAD$ \(self.createCharge?.amountTotal ?? 0)"
+        self.lblCADPrice.text = " \(self.selectedCurrencyType) \(self.createCharge?.amountTotal ?? 0)"
         self.lblTicketForOrder.text = "Transaction Id for Order is #\(self.createCharge?.transactionID ?? "") has been sent to \(userModel?.email ?? "")"
     }
     

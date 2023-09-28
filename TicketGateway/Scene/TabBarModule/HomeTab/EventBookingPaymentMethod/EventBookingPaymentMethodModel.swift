@@ -21,6 +21,7 @@ struct CreateChargeRequest: Codable {
     var amount : Double?
     var card_id : Int?
     var checkout_id : String?
+    var currency : String?
 }
 
 // MARK: - CheckoutId

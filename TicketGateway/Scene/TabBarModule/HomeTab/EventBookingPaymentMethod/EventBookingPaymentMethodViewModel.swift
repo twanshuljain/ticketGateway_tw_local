@@ -26,7 +26,7 @@ final class EventBookingPaymentMethodViewModel{
     let colorTop =  UIColor(red: 146.0/255.0, green: 254.0/255.0, blue: 157.0/255.0, alpha: 0.2).cgColor
     let colorBottom = UIColor(red: 0/255.0, green: 201.0/255.0, blue: 255.0/255.0, alpha: 0.2).cgColor
     let gradientLayer = CAGradientLayer()
-    
+    var selectedCurrencyType = ""
     var eventId:Int?
     var selectedArrTicketList = [EventTicket]()
     var eventDetail:EventDetail?
@@ -187,11 +187,11 @@ extension EventBookingPaymentMethodViewModel{
     }
     
     func createCharge(vc:EventBookingPaymentMethodVC){
-        if let amount = Double(self.totalTicketPrice), let cardId = self.addCard?.id, let checkOutId = self.checkoutId{
+        if let amount = Double(self.totalTicketPrice), let cardId = self.addCard?.id, let checkOutId = self.checkoutId, let currency = self.selectedArrTicketList.compactMap({ $0.ticketCurrencyType ?? "" }).first{
             DispatchQueue.main.async {
                 vc.parentView.showLoading(centreToView: vc.view)
             }
-            StripeClasses().createCharge(amount: amount, cardId: Int(cardId) , checkoutId: checkOutId, controller: vc) { response, isTrue, message in
+            StripeClasses().createCharge(amount: amount, cardId: Int(cardId) , checkoutId: checkOutId, controller: vc, currency: currency) { response, isTrue, message in
                 if isTrue == true  && response != nil{
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()
@@ -212,6 +212,7 @@ extension EventBookingPaymentMethodViewModel{
     func navigateToPaymentSuccess(vc:EventBookingPaymentMethodVC){
         if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC{
             view.createCharge = self.createCharge
+            view.selectedCurrencyType = self.selectedCurrencyType
             vc.navigationController?.pushViewController(view, animated: true)
         }
     }

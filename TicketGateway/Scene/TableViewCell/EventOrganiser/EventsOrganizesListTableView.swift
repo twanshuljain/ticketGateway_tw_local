@@ -395,7 +395,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
     
     // set view for footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        let footerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 38))
         let button = CustomButtonNormal()
         button.frame = CGRect.init(x: 16, y: 0, width: footerView.frame.width, height: footerView.frame.height)
         footerView.addSubview(button)
@@ -468,7 +468,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //            if self.arrEventCategory[section] == .noLocationData{
 //                return 0
 //            }
-            return 50
+            return 35
         }else{
             return 0
         }
