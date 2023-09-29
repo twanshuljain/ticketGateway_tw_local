@@ -18,6 +18,7 @@ final class EmailVerifyViewModel {
     var countdownTimer: Timer!
     var totalTime = 60
     var otpVC: OtpEmailVC?
+    var navigationController:UINavigationController?
     init() {
     }
     init(otpVC: OtpEmailVC) {

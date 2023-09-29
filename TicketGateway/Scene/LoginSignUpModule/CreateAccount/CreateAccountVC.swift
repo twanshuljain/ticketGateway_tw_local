@@ -166,11 +166,20 @@ extension CreateAccountVC: UITextFieldDelegate {
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
+        let mobileNoLimit = 11
         if textField == txtFullName {
             viewModel.fullName = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtMobileNumber {
-           // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
-            viewModel.mobileNumber = "\(text.replacingCharacters(in: textRange, with: string))"
+            // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            let startingLength = textField.text?.count ?? 0
+            let lengthToAdd = string.count
+            let lengthToReplace = range.length
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            let valid = newLength <= mobileNoLimit
+            if valid{
+                viewModel.mobileNumber = "\(text.replacingCharacters(in: textRange, with: string))"
+            }
+            return valid
         } else if textField == txtEmailAddress {
             viewModel.emailAddress = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtPassword {
@@ -184,7 +193,12 @@ extension CreateAccountVC: UITextFieldDelegate {
 // MARK: - NavigationBarViewDelegate
 extension CreateAccountVC: NavigationBarViewDelegate {
     func navigationBackAction() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.viewControllers.forEach({ controller in
+            if controller is SignUpVC{
+                self.navigationController?.popToViewController(controller, animated: false)
+            }
+        })
+        
     }
 }
 
