@@ -39,6 +39,7 @@ class SignUpVC: UIViewController {
 // MARK: - Functions
 extension SignUpVC {
     func setText() {
+        self.viewModel.email = ""
         self.txtEmail.text = ""
         self.lblSignUp.text = SIGN_UP
         self.lblSignUnWith.text = OR_SIGN_UP_WITH
