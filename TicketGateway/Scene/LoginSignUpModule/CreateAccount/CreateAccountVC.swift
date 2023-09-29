@@ -183,9 +183,21 @@ extension CreateAccountVC: UITextFieldDelegate {
         } else if textField == txtEmailAddress {
             viewModel.emailAddress = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtPassword {
-            viewModel.password = text.replacingCharacters(in: textRange, with: string)
+            var str = "\(text.replacingCharacters(in: textRange, with: string))"
+            if str == " "{
+                return false
+            }else{
+                viewModel.password = text.replacingCharacters(in: textRange, with: string)
+                return true
+            }
         } else if textField == txtConfirmPassword {
-            viewModel.confimePassword = text.replacingCharacters(in: textRange, with: string)
+            var str = "\(text.replacingCharacters(in: textRange, with: string))"
+            if str == " "{
+                return false
+            }else{
+                viewModel.confimePassword = text.replacingCharacters(in: textRange, with: string)
+                return true
+            }
         }
         return true
     }
