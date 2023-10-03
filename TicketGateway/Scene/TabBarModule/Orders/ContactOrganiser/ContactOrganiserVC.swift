@@ -12,6 +12,8 @@ class ContactOrganiserVC: UIViewController {
     @IBOutlet weak var lblSunburnReload: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var txtName: UITextField!
+    @IBOutlet weak var txtOrganizersName: UITextField!
+    @IBOutlet weak var lblOrganizersName: UILabel!
     @IBOutlet weak var lblEmailAddress: UILabel!
     @IBOutlet weak var txtEmailAddress: UITextField!
     @IBOutlet weak var lblReason: UILabel!
@@ -20,6 +22,7 @@ class ContactOrganiserVC: UIViewController {
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var txtView:PlaceholderTextView!
     @IBOutlet weak var btnSendMessage: CustomButtonGradiant!
+    @IBOutlet weak var lblOrderId: UILabel!
     
     // MARK: - Variables
     var viewModel = ContactOrganiserViewModel()
@@ -47,12 +50,12 @@ extension ContactOrganiserVC {
     func setFont() {
         self.lblSunburnReload.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblSunburnReload.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        let lbls = [lblName, lblEmailAddress, lblReason, lblMessage]
+        let lbls = [lblName, lblEmailAddress, lblOrganizersName, lblReason, lblMessage]
         for lbl in lbls {
             lbl?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
             lbl?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        let txtflds = [txtName, txtEmailAddress, txtReason]
+        let txtflds = [txtName,txtOrganizersName, txtEmailAddress, txtReason]
         for txtfld in txtflds {
             txtfld?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             txtfld?.textColor = UIColor.setColor(colorType: .headinglbl)
@@ -61,7 +64,8 @@ extension ContactOrganiserVC {
         self.btnSendMessage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSendMessage.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.lblName.attributedText = getAttributedTextAction(attributedText: "*", firstString: NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        self.lblEmailAddress.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblEmailAddress.attributedText = getAttributedTextAction(attributedText: "*", firstString: ORGANIZERS_EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblOrganizersName.attributedText = getAttributedTextAction(attributedText: "*", firstString: ORGANIZERS_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         self.lblReason.attributedText = getAttributedTextAction(attributedText: "*", firstString: REASON, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         [btnSendMessage].forEach {
             $0?.addTarget(self, action: #selector(btnSendAction(sender:)), for: .touchUpInside)
@@ -89,6 +93,9 @@ extension ContactOrganiserVC {
     }
     
     func setData(){
+        txtOrganizersName.text = self.viewModel.eventDetail?.organizer?.name ?? ""
+        txtEmailAddress.text = self.viewModel.eventDetail?.organizer?.promoterEmail ?? ""
+        lblOrderId.text = "Order ID: \(self.viewModel.ticketDetails?.orderId ?? 0)"
         lblSunburnReload.text = (self.viewModel.eventDetail?.event?.title ?? "") + " - " + "\(self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")"
     }
     

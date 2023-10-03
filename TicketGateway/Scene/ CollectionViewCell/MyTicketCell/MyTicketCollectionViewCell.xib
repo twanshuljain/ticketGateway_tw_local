@@ -36,6 +36,15 @@
                                     <constraint firstAttribute="width" constant="200" id="uIX-sY-aFH"/>
                                 </constraints>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sc-6C-fsC">
+                                <rect key="frame" x="336.66666666666669" y="200" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="1Zo-i9-lhP"/>
+                                    <constraint firstAttribute="height" constant="50" id="xmM-2a-8lJ"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="img_faded_qr"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qT-AZ-b19" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
                                 <rect key="frame" x="21" y="396" width="681" height="30"/>
                                 <constraints>
@@ -123,6 +132,10 @@
                                     <constraint firstAttribute="height" constant="46" id="3oN-Ur-7Qj"/>
                                 </constraints>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-57-f8u">
+                                <rect key="frame" x="0.0" y="0.0" width="723" height="566"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -136,15 +149,21 @@
                             <constraint firstItem="shk-TK-r1Q" firstAttribute="top" secondItem="Tdi-1K-o8q" secondAttribute="top" constant="10" id="H5e-lM-iQa"/>
                             <constraint firstItem="eNA-Qi-myo" firstAttribute="centerX" secondItem="shk-TK-r1Q" secondAttribute="centerX" id="IVN-cZ-R7F"/>
                             <constraint firstItem="shk-TK-r1Q" firstAttribute="centerX" secondItem="Tdi-1K-o8q" secondAttribute="centerX" id="Kig-C0-8Ey"/>
+                            <constraint firstItem="bN6-57-f8u" firstAttribute="leading" secondItem="Tdi-1K-o8q" secondAttribute="leading" id="Mys-so-B7E"/>
                             <constraint firstAttribute="trailing" secondItem="Hsj-bk-eNl" secondAttribute="trailing" id="OvG-9M-zG3"/>
+                            <constraint firstAttribute="bottom" secondItem="bN6-57-f8u" secondAttribute="bottom" id="abO-aP-oE2"/>
                             <constraint firstItem="eNA-Qi-myo" firstAttribute="top" secondItem="shk-TK-r1Q" secondAttribute="bottom" constant="5" id="bEX-M6-Ivc"/>
+                            <constraint firstItem="bN6-57-f8u" firstAttribute="top" secondItem="Tdi-1K-o8q" secondAttribute="top" id="eUA-wi-0h3"/>
                             <constraint firstItem="UKj-re-JId" firstAttribute="top" secondItem="tNd-F9-XPV" secondAttribute="bottom" constant="16" id="foN-XT-YOk"/>
                             <constraint firstItem="tNd-F9-XPV" firstAttribute="leading" secondItem="Tdi-1K-o8q" secondAttribute="leading" constant="20" id="gMh-aF-Yty"/>
                             <constraint firstItem="Cfv-Xg-I57" firstAttribute="centerX" secondItem="Tdi-1K-o8q" secondAttribute="centerX" id="gyA-zT-eW7"/>
                             <constraint firstItem="QPi-f3-i6e" firstAttribute="leading" secondItem="Tdi-1K-o8q" secondAttribute="leading" constant="-10" id="ibp-7Y-qmr"/>
                             <constraint firstItem="QPi-f3-i6e" firstAttribute="centerY" secondItem="Hsj-bk-eNl" secondAttribute="centerY" id="kS3-Nw-uRs"/>
                             <constraint firstItem="Cfv-Xg-I57" firstAttribute="centerY" secondItem="Hsj-bk-eNl" secondAttribute="centerY" id="nlv-a0-GK3"/>
+                            <constraint firstItem="0Sc-6C-fsC" firstAttribute="centerY" secondItem="eNA-Qi-myo" secondAttribute="centerY" id="oqd-Za-Abx"/>
+                            <constraint firstItem="0Sc-6C-fsC" firstAttribute="centerX" secondItem="eNA-Qi-myo" secondAttribute="centerX" id="q5V-q0-nVS"/>
                             <constraint firstItem="6qT-AZ-b19" firstAttribute="top" secondItem="Hsj-bk-eNl" secondAttribute="bottom" constant="40" id="so7-NP-Ido"/>
+                            <constraint firstAttribute="trailing" secondItem="bN6-57-f8u" secondAttribute="trailing" id="tqr-8Y-UQn"/>
                             <constraint firstItem="3tP-oB-sxP" firstAttribute="centerY" secondItem="Hsj-bk-eNl" secondAttribute="centerY" id="v97-h6-B6r"/>
                             <constraint firstAttribute="trailing" secondItem="tNd-F9-XPV" secondAttribute="trailing" constant="20" id="wO9-7v-1EM"/>
                             <constraint firstAttribute="trailing" secondItem="3tP-oB-sxP" secondAttribute="trailing" constant="-10" id="weE-4K-YlH"/>
@@ -167,8 +186,10 @@
             </constraints>
             <size key="customSize" width="733" height="571"/>
             <connections>
+                <outlet property="btnLogo" destination="0Sc-6C-fsC" id="eFP-2o-U7W"/>
                 <outlet property="btnSaveTicketAsImage" destination="tNd-F9-XPV" id="qkb-B6-tdt"/>
                 <outlet property="btnSeeFullTicket" destination="6qT-AZ-b19" id="hex-xJ-6Dq"/>
+                <outlet property="greyView" destination="bN6-57-f8u" id="TMW-p9-TfX"/>
                 <outlet property="imgProfile" destination="shk-TK-r1Q" id="4k7-Dj-4NB"/>
                 <outlet property="imgQRCode" destination="eNA-Qi-myo" id="16a-XB-s6I"/>
                 <outlet property="lblTicket" destination="vlv-Wc-GjH" id="YWM-W9-P5H"/>
@@ -180,6 +201,7 @@
     <resources>
         <image name="Curve_ip" width="18" height="18"/>
         <image name="Profile_ip" width="110" height="110"/>
+        <image name="img_faded_qr" width="83.666664123535156" height="84"/>
         <image name="qr-code_ip" width="237" height="237"/>
         <image name="tg_logo_ip" width="228" height="45.666667938232422"/>
         <namedColor name="BackgroundColor">

@@ -48,6 +48,7 @@ extension ContinueToTransferVC {
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }
     func setFont() {
+        self.txtPhoneNumber.delegate = self
         let lbls = [lblPhoneNumber, lblEmail, lblConfirmEmail, lblNameOnTicket]
         for lbl in lbls {
             lbl?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
@@ -122,7 +123,8 @@ extension ContinueToTransferVC {
 // MARK: - Actions
 extension ContinueToTransferVC {
     func showAlert() {
-        self.showAlert(title: TRANSFER_TICKETS, message: "Are you sure to transfer ticket to \(self.viewModel.email).", complition: {_ in
+        let msg = TRANSFER_TICKET_ALERT + "\(self.viewModel.email)? " + TRANSFER_TICKET_ALERT1
+        self.showAlert(title: TRANSFER_TICKETS, message: msg, complition: {_ in
             self.apiTransferTicket()
         })
     }
@@ -167,6 +169,27 @@ extension ContinueToTransferVC {
             self.btnTransferTicket.alpha = 1
         }
         
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension ContinueToTransferVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
+        let mobileNoLimit = 11
+       if textField == txtPhoneNumber {
+            // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            let startingLength = textField.text?.count ?? 0
+            let lengthToAdd = string.count
+            let lengthToReplace = range.length
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            let valid = newLength <= mobileNoLimit
+            if valid{
+                viewModel.mobileNumber = "\(text.replacingCharacters(in: textRange, with: string))"
+            }
+            return valid
+        }
+        return true
     }
 }
 // MARK: - NavigationBarViewDelegate

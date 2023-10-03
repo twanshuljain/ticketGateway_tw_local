@@ -237,6 +237,7 @@ struct Organizer: Codable {
     var userID: Int?
     var website: String?
     var followers: Int?
+    var promoterEmail: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -253,6 +254,7 @@ struct Organizer: Codable {
         case isEmailOptIn = "is_email_opt_in"
         case userID = "user_id"
         case website, followers
+        case promoterEmail = "promoter_email"
     }
 }
 

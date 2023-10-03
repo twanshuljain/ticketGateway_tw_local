@@ -17,6 +17,8 @@ class MyTicketCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgQRCode: UIImageView!
     @IBOutlet weak var lblTicket: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var greyView : UIView!
+    @IBOutlet weak var btnLogo: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,9 +34,18 @@ class MyTicketCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(myTicket:MyTicket?){
-        if let base64String = myTicket?.qrcodeBase64Data{
-            self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
+        if myTicket?.isTransfer ?? false{
+            //if let base64String = myTicket?.qrcodeBase64Data{
+                self.imgQRCode.image = UIImage.init(named: "img_dummy_qr")
+            
+           // }
+        }else{
+            if let base64String = myTicket?.qrcodeBase64Data{
+                self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
+            }
         }
+        self.btnLogo.isHidden = myTicket?.isTransfer == true ? false : true
+        self.greyView.isHidden = myTicket?.isTransfer == true ? false : true
     }
     
     

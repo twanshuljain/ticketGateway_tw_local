@@ -40,6 +40,7 @@ struct GetMyOrderItem: Codable {
     var location: String?
     var eventStartDate: String?
     var eventEndDate: String?
+    var orderId: Int?
     enum CodingKeys: String, CodingKey {
         case eventTitle = "event_title"
         case eventId = "event_id"
@@ -47,6 +48,7 @@ struct GetMyOrderItem: Codable {
         case eventStartDate = "event_start_date"
         case eventEndDate = "event_end_date"
         case location = "location"
+        case orderId = "order_id"
     }
 }
 struct MyOrderCoverImage: Codable {
