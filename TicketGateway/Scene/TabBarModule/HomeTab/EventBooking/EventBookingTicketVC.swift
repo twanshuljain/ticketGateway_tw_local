@@ -45,7 +45,7 @@ class EventBookingTicketVC: UIViewController {
 //MARK: - Functions
 extension EventBookingTicketVC {
     private func setup() {
-        self.viewModel.isCheckedTerm_COndition = false
+        self.viewModel.isCheckedTermCondition = false
         self.setUi()
         self.tblEventTicketTypes.configure()
         self.tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
@@ -163,20 +163,17 @@ extension EventBookingTicketVC {
     }
     
     func btnCheckTermConditionAction() {
-        if viewModel.isCheckedTerm_COndition == false
-        {
-            viewModel.isCheckedTerm_COndition = true
+        if !viewModel.isCheckedTermCondition {
+            viewModel.isCheckedTermCondition = true
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         }
         else {
-            viewModel.isCheckedTerm_COndition = false
+            viewModel.isCheckedTermCondition = false
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
-        
     }
-    
    func btnContinueAction() {
-       if viewModel.isCheckedTerm_COndition == true {
+       if viewModel.isCheckedTermCondition {
            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC {
                view.viewModel.eventId = self.viewModel.eventId
                view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
@@ -193,13 +190,12 @@ extension EventBookingTicketVC {
 }
 
 // MARK: - NavigationBarViewDelegate
-extension EventBookingTicketVC : NavigationBarViewDelegate {
+extension EventBookingTicketVC: NavigationBarViewDelegate {
     func navigationBackAction() {
 //        if let view = self.createView(storyboard: .home, storyboardID: .eventDetailVC) as? EventDetailVC {
 //            view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
 //            self.navigationController?.popToViewController(view, animated: false)
 //        }
-
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: EventDetailVC.self) {
                 //(controller as! EventDetailVC).viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
@@ -207,7 +203,6 @@ extension EventBookingTicketVC : NavigationBarViewDelegate {
                 break
             }
         }
-
       // self.navigationController?.popViewController(animated: true)
   }
 }

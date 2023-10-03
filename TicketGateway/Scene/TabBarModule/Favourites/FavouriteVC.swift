@@ -327,7 +327,7 @@ extension FavouriteVC {
             DispatchQueue.main.async { [self] in
                 self.view.showLoading(centreToView: self.view)
             }
-            viewModel.eventDetailViewModel.GetEventSuggestedCategory(categoryId: categoryId) { isTrue, messageShowToast in
+            viewModel.eventDetailViewModel.getEventSuggestedCategory(categoryId: categoryId) { isTrue, messageShowToast in
                 if isTrue == true {
                     DispatchQueue.main.async {
                         self.viewModel.arrSuggestionsList.append(contentsOf: self.viewModel.eventDetailViewModel.arrEventData)

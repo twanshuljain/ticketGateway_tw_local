@@ -27,6 +27,6 @@ struct CreateAccountRequest: Codable {
         case confimePassword = "confirm_password"
         case role = "role"
         case isVerify = "is_verify"
-        case countryCode =  "country_code"
+        case countryCode =  "countryCode"
     }
 }

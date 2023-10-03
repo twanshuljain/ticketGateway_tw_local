@@ -202,8 +202,8 @@ extension EventPromoCodeVC {
 //
 //        cell.vwStepper.btnPlus.tag = indexPath.row
 //        cell.vwStepper.btnMinus.tag = indexPath.row
-//        cell.vwStepper.btnPlus.addTarget(self, action: #selector(PlusButtonPressed), for: .touchUpInside)
-//        cell.vwStepper.btnMinus.addTarget(self, action: #selector(MinustButtonPressed), for: .touchUpInside)
+//        cell.vwStepper.btnPlus.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+//        cell.vwStepper.btnMinus.addTarget(self, action: #selector(minustButtonPressed), for: .touchUpInside)
 //
 //        return cell
 //
@@ -225,7 +225,7 @@ extension EventPromoCodeVC {
 //    }
 //
 //    // MARK: - ONLINE
-//    @objc func PlusButtonPressed(_ sender: UIButton) {
+//    @objc func plusButtonPressed(_ sender: UIButton) {
 //        let data = viewModel.selectedArrTicketList[sender.tag]
 //        let indexPath = IndexPath(row: sender.tag, section: 0)
 //        let cell = self.promoCodeTableView.cellForRow(at: indexPath) as! TicketTypesCell
@@ -245,7 +245,7 @@ extension EventPromoCodeVC {
 //
 //    }
 //
-//    @objc func MinustButtonPressed(_ sender: UIButton) {
+//    @objc func minustButtonPressed(_ sender: UIButton) {
 //        let data = viewModel.selectedArrTicketList[sender.tag]
 //        let indexPath = IndexPath(row: sender.tag, section: 0)
 //        let cell = self.promoCodeTableView.cellForRow(at: indexPath) as! TicketTypesCell

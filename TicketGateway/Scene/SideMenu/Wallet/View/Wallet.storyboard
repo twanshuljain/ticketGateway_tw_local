@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I2u-Ml-Yf2">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I2u-Ml-Yf2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -25,7 +24,7 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -40,37 +39,37 @@
             <objects>
                 <viewController storyboardIdentifier="MyWalletVC" id="I2u-Ml-Yf2" customClass="MyWalletVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jk-is-Y0Y">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-e5-rp1">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VmA-jl-Na0" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="4e3-xW-MC1"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ia-ym-gTA">
-                                        <rect key="frame" x="20" y="79.999999999999986" width="353" height="176.66666666666663"/>
+                                        <rect key="frame" x="20" y="80" width="560" height="280"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6y-0A-SeY">
-                                                <rect key="frame" x="20" y="21" width="131.33333333333334" height="20.333333333333329"/>
+                                                <rect key="frame" x="20" y="72.666666666666657" width="131.33333333333334" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoOnLoginSignup" translatesAutoresizingMaskIntoConstraints="NO" id="WLk-gE-jpm">
-                                                <rect key="frame" x="20" y="51.333333333333343" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="103" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="DtK-5h-2Ho"/>
                                                     <constraint firstAttribute="width" constant="50" id="Pff-Dp-E25"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0y-VP-rej">
-                                                <rect key="frame" x="20" y="111.33333333333334" width="313" height="1"/>
+                                                <rect key="frame" x="20" y="163" width="520" height="1"/>
                                                 <color key="backgroundColor" name="PlaceHolder"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="xXB-9C-Ju6"/>
@@ -80,13 +79,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add amount in TG wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fs1-7e-jt3">
-                                                <rect key="frame" x="20" y="122.3333333333333" width="185.33333333333334" height="20.333333333333329"/>
+                                                <rect key="frame" x="20" y="174" width="185.33333333333334" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLY-KL-489">
-                                                <rect key="frame" x="20" y="115" width="313" height="35"/>
+                                                <rect key="frame" x="20" y="166.66666666666666" width="520" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="TC8-Kp-226"/>
                                                 </constraints>
@@ -94,7 +93,7 @@
                                                 <state key="normal" image="blue-right"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$3000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ami-1B-rNn">
-                                                <rect key="frame" x="75" y="66" width="51.333333333333343" height="20.333333333333329"/>
+                                                <rect key="frame" x="75" y="117.99999999999999" width="51.333333333333343" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -131,17 +130,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transactions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5T-ac-oli">
-                                        <rect key="frame" x="20" y="296.66666666666669" width="112" height="24"/>
+                                        <rect key="frame" x="20" y="400" width="112" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AJ7-6x-Qm1" customClass="TransactionListTableView" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="340.66666666666674" width="353" height="398.33333333333326"/>
+                                        <rect key="frame" x="20" y="444" width="560" height="136"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-H9-zEm" customClass="DropDown">
-                                        <rect key="frame" x="253" y="288.66666666666669" width="120" height="40"/>
+                                        <rect key="frame" x="460" y="392" width="120" height="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="RfW-s2-MkI"/>
@@ -174,14 +173,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron-down_ip" translatesAutoresizingMaskIntoConstraints="NO" id="V03-ud-R1q">
-                                        <rect key="frame" x="343" y="293.66666666666669" width="30" height="30"/>
+                                        <rect key="frame" x="550" y="397" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="C6C-0y-ZVM"/>
                                             <constraint firstAttribute="height" constant="30" id="cJt-H8-C1h"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-aj-T43">
-                                        <rect key="frame" x="253" y="288.66666666666669" width="120" height="40"/>
+                                        <rect key="frame" x="460" y="392" width="120" height="40"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     </button>
                                 </subviews>
@@ -244,13 +243,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7g-L0-lGz">
-                                <rect key="frame" x="0.0" y="119" width="393" height="1218"/>
+                                <rect key="frame" x="0.0" y="60" width="393" height="1311"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlf-JA-wxc">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1218"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1311"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpf-yi-vPb">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1218"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1311"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35O-zi-6JH">
                                                         <rect key="frame" x="16" y="10" width="361" height="232.66666666666666"/>
@@ -587,7 +586,7 @@
                                                                                         <color key="textColor" name="Headinglbl"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ay8-W6-ehX" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ay8-W6-ehX" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="29" width="312" height="50"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="50" id="0vV-Ch-cTK"/>
@@ -611,7 +610,7 @@
                                                                                         <color key="textColor" name="Headinglbl"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BXs-uJ-myx" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BXs-uJ-myx" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="24.333333333333371" width="312" height="50"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="50" id="MKD-Ig-7fD"/>
@@ -638,7 +637,7 @@
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mSk-Ks-Jhm">
                                                                                                 <rect key="frame" x="0.0" y="27.666666666666629" width="151" height="50"/>
                                                                                                 <subviews>
-                                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter expiry date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="di3-FJ-HEG" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter expiry date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="di3-FJ-HEG" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="151" height="50"/>
                                                                                                         <constraints>
                                                                                                             <constraint firstAttribute="height" constant="50" id="UCZ-hN-zc6"/>
@@ -680,7 +679,7 @@
                                                                                                 <color key="textColor" name="Headinglbl"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter cvc/cvv" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ajR-xg-cPX" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter cvc/cvv" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ajR-xg-cPX" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                                                 <rect key="frame" x="0.0" y="27.666666666666629" width="151" height="50"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="50" id="UDz-hh-m9Y"/>
@@ -801,14 +800,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Njt-nx-Udk" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="rYh-1K-JFJ"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-a5-78i" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="15" y="1357" width="358" height="50"/>
+                                <rect key="frame" x="15" y="1391" width="358" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6Na-p9-7H7"/>
                                 </constraints>
@@ -1001,30 +1000,30 @@
             <objects>
                 <viewController storyboardIdentifier="AmountAddedSuccessfullyVC" id="WD0-Sp-w1B" customClass="AmountAddedSuccessfullyVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ba5-vp-gjm">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I33-gQ-G8J" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="mFt-7r-FK3"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E37-V8-aQS">
-                                <rect key="frame" x="20" y="149" width="353" height="350"/>
+                                <rect key="frame" x="20" y="90" width="560" height="350"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Done_ip" translatesAutoresizingMaskIntoConstraints="NO" id="uJJ-Fn-TTq">
-                                        <rect key="frame" x="158.33333333333334" y="19.999999999999996" width="36.666666666666657" height="36.666666666666657"/>
+                                        <rect key="frame" x="261.66666666666669" y="19.999999999999996" width="36.666666666666686" height="36.666666666666657"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mc1-IB-kWF">
-                                        <rect key="frame" x="10" y="76.666666666666657" width="333" height="20.333333333333329"/>
+                                        <rect key="frame" x="10" y="76.666666666666657" width="540" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="y9a-ga-6eA">
-                                        <rect key="frame" x="96" y="117" width="161" height="20.333333333333343"/>
+                                        <rect key="frame" x="199.66666666666663" y="117" width="161" height="20.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMz-eK-N32">
                                                 <rect key="frame" x="0.0" y="0.0" width="79.666666666666671" height="20.333333333333332"/>
@@ -1041,7 +1040,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="IK4-k1-eYB">
-                                        <rect key="frame" x="64.000000000000014" y="152.33333333333331" width="225.33333333333337" height="20.333333333333343"/>
+                                        <rect key="frame" x="167.33333333333331" y="152.33333333333334" width="225.33333333333331" height="20.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="has been successfully added!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwm-dM-HhR">
                                                 <rect key="frame" x="0.0" y="0.0" width="225.33333333333334" height="20.333333333333332"/>
@@ -1052,7 +1051,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcd-hW-D6g" customClass="CustomButtonNormalWithBorder" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="86.666666666666686" y="197.66666666666669" width="180" height="50"/>
+                                        <rect key="frame" x="190" y="197.66666666666669" width="180" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="180" id="OLV-PN-6YS"/>
                                             <constraint firstAttribute="height" constant="50" id="ORF-yx-1T8"/>

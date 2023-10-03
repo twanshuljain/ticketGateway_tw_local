@@ -80,30 +80,30 @@ extension ManageSellAddBuyerVC {
 //                let country = arr[0]
 //                viewModel.strCountryDialCode = country.dial_code
 //                self.lblDialCountryCode.text = country.dial_code
-//                self.viewModel.strCountryCode = country.country_code
+//                self.viewModel.strCountryCode = country.countryCode
 //                self.viewModel.strCountryName = country.country_name
 //                self.lblDialCountryCode.text = country.dial_code
-//                self.viewModel.strCountryCode = country.country_code
-//                let imagePath = "CountryPicker.bundle/\( country.country_code).png"
+//                self.viewModel.strCountryCode = country.countryCode
+//                let imagePath = "CountryPicker.bundle/\( country.countryCode).png"
 //                self.imgCountry.image = UIImage(named: imagePath)
 //            }
 //        } else {
 //        }
         if self.imgCountry.image == nil {
             var str = ""
-            var arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+            var arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
             
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
-                arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+                arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
                 
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
-                    arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                    arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
                 }
             } else {
                 str = NSLocale.current.regionCode ?? ""
-                arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
             }
             
             self.lblDialCountryCode.text = "+91"
@@ -112,7 +112,7 @@ extension ManageSellAddBuyerVC {
             
             if arr.count == 2{
                 arr.removeAll { country in
-                    country.country_code != (NSLocale.current.regionCode ?? "")
+                    country.countryCode != (NSLocale.current.regionCode ?? "")
                 }
             }
             
@@ -120,7 +120,7 @@ extension ManageSellAddBuyerVC {
                 self.imgCountry.image = flagImg
             } else {
                 if arr.indices.contains(0) {
-                    str = arr[0].country_code
+                    str = arr[0].countryCode
                     imagePath = "CountryPicker.bundle/\(str).png"
                     self.imgCountry.image = UIImage(named: imagePath)
                 }
@@ -131,13 +131,13 @@ extension ManageSellAddBuyerVC {
 //            let arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
             if !arr.isEmpty {
                 let country = arr[0]
-                self.viewModel.strCountryDialCode = country.dial_code
-                self.lblDialCountryCode.text = country.dial_code
-                self.viewModel.strCountryCode = country.country_code
-                self.viewModel.strCountryName = country.country_name
-                self.lblDialCountryCode.text = country.dial_code
-                self.viewModel.strCountryCode = country.country_code
-                let imagePath = "CountryPicker.bundle/\( country.country_code).png"
+                self.viewModel.strCountryDialCode = country.dialCode
+                self.lblDialCountryCode.text = country.dialCode
+                self.viewModel.strCountryCode = country.countryCode
+                self.viewModel.strCountryName = country.countryName
+                self.lblDialCountryCode.text = country.dialCode
+                self.viewModel.strCountryCode = country.countryCode
+                let imagePath = "CountryPicker.bundle/\( country.countryCode).png"
                 self.imgCountry.image = UIImage(named: imagePath)
             }
         } else {
@@ -217,12 +217,12 @@ extension ManageSellAddBuyerVC: NavigationBarViewDelegate {
 // MARK: - Country Code
 extension ManageSellAddBuyerVC: RSCountrySelectedDelegate {
     func RScountrySelected(countrySelected country: CountryInfo) {
-        let imagePath = "CountryPicker.bundle/\(country.country_code).png"
+        let imagePath = "CountryPicker.bundle/\(country.countryCode).png"
         self.imgCountry.image = UIImage(named: imagePath)
-        self.viewModel.strCountryDialCode = country.dial_code
-        self.lblDialCountryCode.text = country.dial_code
-        self.viewModel.strCountryCode = country.country_code
-        self.viewModel.strCountryName = country.country_name
+        self.viewModel.strCountryDialCode = country.dialCode
+        self.lblDialCountryCode.text = country.dialCode
+        self.viewModel.strCountryCode = country.countryCode
+        self.viewModel.strCountryName = country.countryName
         self.txtMobileNumber.becomeFirstResponder()
     }
 }

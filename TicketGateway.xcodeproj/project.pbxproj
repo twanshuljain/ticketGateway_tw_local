@@ -186,9 +186,9 @@
 		1894653A2AA1FE8C002D1D66 /* TransferTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189465392AA1FE8C002D1D66 /* TransferTicketViewModel.swift */; };
 		189D7C812A13BEB600BDEE9A /* PaymentSuccessFullVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D7C802A13BEB600BDEE9A /* PaymentSuccessFullVC.swift */; };
 		189DD61729FBABAC000804EB /* uiColour+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DD61629FBABAC000804EB /* uiColour+Extensions.swift */; };
-		189DD62529FBD3A5000804EB /* suggestedOrganizerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DD62329FBD3A5000804EB /* suggestedOrganizerCell.swift */; };
-		189DD62629FBD3A5000804EB /* suggestedOrganizerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189DD62429FBD3A5000804EB /* suggestedOrganizerCell.xib */; };
-		189DD62829FBD3C9000804EB /* suggestedOrganizerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DD62729FBD3C9000804EB /* suggestedOrganizerList.swift */; };
+		189DD62529FBD3A5000804EB /* SuggestedOrganizerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DD62329FBD3A5000804EB /* SuggestedOrganizerCell.swift */; };
+		189DD62629FBD3A5000804EB /* SuggestedOrganizerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189DD62429FBD3A5000804EB /* SuggestedOrganizerCell.xib */; };
+		189DD62829FBD3C9000804EB /* SuggestedOrganizerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DD62729FBD3C9000804EB /* SuggestedOrganizerList.swift */; };
 		189FAEC729F112AD00B8325A /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FAEC629F112AD00B8325A /* LogoutViewModel.swift */; };
 		189FAEC929F12A7100B8325A /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FAEC829F12A7100B8325A /* CommonFunctions.swift */; };
 		189FAECC29F1472900B8325A /* AppShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FAECB29F1472900B8325A /* AppShareData.swift */; };
@@ -630,9 +630,9 @@
 		189465392AA1FE8C002D1D66 /* TransferTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTicketViewModel.swift; sourceTree = "<group>"; };
 		189D7C802A13BEB600BDEE9A /* PaymentSuccessFullVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PaymentSuccessFullVC.swift; path = TicketGateway/Scene/TabBarModule/HomeTab/EventPaymentSuccess/PaymentSuccessFullVC.swift; sourceTree = SOURCE_ROOT; };
 		189DD61629FBABAC000804EB /* uiColour+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "uiColour+Extensions.swift"; sourceTree = "<group>"; };
-		189DD62329FBD3A5000804EB /* suggestedOrganizerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = suggestedOrganizerCell.swift; sourceTree = "<group>"; };
-		189DD62429FBD3A5000804EB /* suggestedOrganizerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = suggestedOrganizerCell.xib; sourceTree = "<group>"; };
-		189DD62729FBD3C9000804EB /* suggestedOrganizerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = suggestedOrganizerList.swift; sourceTree = "<group>"; };
+		189DD62329FBD3A5000804EB /* SuggestedOrganizerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedOrganizerCell.swift; sourceTree = "<group>"; };
+		189DD62429FBD3A5000804EB /* SuggestedOrganizerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestedOrganizerCell.xib; sourceTree = "<group>"; };
+		189DD62729FBD3C9000804EB /* SuggestedOrganizerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedOrganizerList.swift; sourceTree = "<group>"; };
 		189FAEC629F112AD00B8325A /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 		189FAEC829F12A7100B8325A /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
 		189FAECB29F1472900B8325A /* AppShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShareData.swift; sourceTree = "<group>"; };
@@ -2079,9 +2079,9 @@
 		189DD62029FBD2C7000804EB /* SuggestedOrganizers */ = {
 			isa = PBXGroup;
 			children = (
-				189DD62329FBD3A5000804EB /* suggestedOrganizerCell.swift */,
-				189DD62429FBD3A5000804EB /* suggestedOrganizerCell.xib */,
-				189DD62729FBD3C9000804EB /* suggestedOrganizerList.swift */,
+				189DD62329FBD3A5000804EB /* SuggestedOrganizerCell.swift */,
+				189DD62429FBD3A5000804EB /* SuggestedOrganizerCell.xib */,
+				189DD62729FBD3C9000804EB /* SuggestedOrganizerList.swift */,
 			);
 			path = SuggestedOrganizers;
 			sourceTree = "<group>";
@@ -2929,7 +2929,7 @@
 				18FBC0A72A309239002CF129 /* NotificationCell.xib in Resources */,
 				180A07F429ED764C0088C03A /* TabBar.storyboard in Resources */,
 				18FBC0B52A309239002CF129 /* ManageEventOrder.storyboard in Resources */,
-				189DD62629FBD3A5000804EB /* suggestedOrganizerCell.xib in Resources */,
+				189DD62629FBD3A5000804EB /* SuggestedOrganizerCell.xib in Resources */,
 				18FBC0A92A309239002CF129 /* TransactionDetailCell.xib in Resources */,
 				1801CD5B2A4EF894007DA967 /* RatingCustomFooterView.xib in Resources */,
 				188A68022A0CF6BE00987BAD /* CustomStepper.xib in Resources */,
@@ -3227,14 +3227,14 @@
 				18FBC0DF2A309239002CF129 /* ManageEventTicketSoldVC.swift in Sources */,
 				18A73DFE29EED1B1007365CB /* Image+Extensions.swift in Sources */,
 				183622672AA5BC0400CE9FFC /* ContinueToTransferViewModel.swift in Sources */,
-				189DD62829FBD3C9000804EB /* suggestedOrganizerList.swift in Sources */,
+				189DD62829FBD3C9000804EB /* SuggestedOrganizerList.swift in Sources */,
 				18233FB729E7C72500255BB7 /* WelComeCell.swift in Sources */,
 				18C952862A94E1FB00C9C02B /* MyOrderViewModel.swift in Sources */,
 				18447DCD2AA9AFAB00DC4A80 /* GetScanDetailModel.swift in Sources */,
 				184B79142A440F9600577B26 /* EventBookingTicketAddOnsVC.swift in Sources */,
 				188CE1AE2A13678E00BCEC76 /* EventBookingOrderSummaryVC.swift in Sources */,
 				18F5A4BB2A4EA55900CA18F7 /* SearchTableViewCell.swift in Sources */,
-				189DD62529FBD3A5000804EB /* suggestedOrganizerCell.swift in Sources */,
+				189DD62529FBD3A5000804EB /* SuggestedOrganizerCell.swift in Sources */,
 				18F6F74D29E9894C007B9513 /* ForgotPasswordViewModel.swift in Sources */,
 				186ADE342A7B942600F590FD /* SkyFloatingLabelTextField.swift in Sources */,
 				18B636B129F7D38B00DC14B8 /* NumberVerifyViewModel.swift in Sources */,

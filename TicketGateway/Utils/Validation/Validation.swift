@@ -4,10 +4,6 @@
 //
 //  Created by Apple  on 14/04/23.
 
-// swiftlint: disable cyclomatic_complexity
-// swiftlint: disable shorthand_operator
-// swiftlint: disable type_name
-// swiftlint: disable duplicate_conditions
 import UIKit
 //MARK: - InputValidation
 enum InputValidation: String {
@@ -139,8 +135,8 @@ class Validation {
                    text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
         }
     }
-    
-    func CompareValidation(fieldName: ValidationParam, compare: (CompareField: UITextField, CompareFieldTo: UITextField)? = nil) -> (Bool, String) {
+    // swiftlint: disable cyclomatic_complexity
+    func compareValidation(fieldName: ValidationParam, compare: (CompareField: UITextField, CompareFieldTo: UITextField)? = nil) -> (Bool, String) {
         var valuess = fieldName.sorted(by: { (arg0, arg1) -> Bool in
             return arg0.value.priority < arg1.value.priority
         })
@@ -233,6 +229,7 @@ class Validation {
         }
         return (true, "")
     }
+    // swiftlint: enable cyclomatic_complexity
     func textComparisonValidation(firstText: String,
                                   secondText: String,
                                   validationType: InputCompareValidation) -> (Bool, String) {

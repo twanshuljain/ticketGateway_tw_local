@@ -27,7 +27,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var lblSuggestedOrganised: UILabel!
     @IBOutlet weak var tblEvents: EventsOrganizesListTableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
-    @IBOutlet weak var collvwSuggestedOrganisation: suggestedOrganizerList!
+    @IBOutlet weak var collvwSuggestedOrganisation: SuggestedOrganizerList!
     @IBOutlet weak var tableParentView: UIView!
     @IBOutlet weak var collectionParentView: UIView!
     @IBOutlet weak var parentView: UIView!
@@ -70,7 +70,7 @@ extension HomeVC {
         self.setUi()
         self.collvwSuggestedOrganisation.configure()
         self.tblEvents.delegateViewMore = self
-        self.tblEvents.countryName = self.viewModel.country?.country_name ?? self.getCountry()
+        self.tblEvents.countryName = self.viewModel.country?.countryName ?? self.getCountry()
         self.tblEvents.configure(isComingFrom: IsComingFromForEventsOrganizesListTableView.home)
         self.tblEvents.tableDidSelectAtIndex = { _ in
             self.navigationController?.popViewController(animated: true)
@@ -172,7 +172,7 @@ extension HomeVC {
                 parentView.showLoading(centreToView: self.view)
             }
             self.viewModel.dispatchGroup.enter()
-            viewModel.getEventAsPerLocation(countryName: self.viewModel.country?.country_name ?? self.getCountry(), complition: { isTrue, messageShowToast in
+            viewModel.getEventAsPerLocation(countryName: self.viewModel.country?.countryName ?? self.getCountry(), complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
                     if let itemsLocation = self.viewModel.arrEventData.itemsLocation{
@@ -514,7 +514,7 @@ extension HomeVC: CustomSearchMethodsDelegate {
         } else {
             view?.selectedCountry = self.viewModel.currentRegionCountry
         }
-        view?.selecetdCountriesModel = CountryInfo.init(country_code: "", dial_code: "", country_name: view?.selectedCountry ?? "")
+        view?.selecetdCountriesModel = CountryInfo.init(countryCode: "", dialCode: "", countryName: view?.selectedCountry ?? "")
         view?.selecetdCountriesModel = self.viewModel.country
         self.navigationController?.pushViewController(view!, animated: true)
     }
@@ -523,7 +523,7 @@ extension HomeVC: CustomSearchMethodsDelegate {
 // MARK: -
 extension HomeVC: SendLocation {
     func toSendLocation(location: CountryInfo, selectedCountry: String) {
-        vwSearchBar.lblAddress.text = location.country_name ?? self.getCountry()
+        vwSearchBar.lblAddress.text = location.countryName ?? self.getCountry()
         self.viewModel.country = location
         self.viewModel.selectedCountryName = selectedCountry
         self.refreshData()
@@ -535,7 +535,7 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
     func tapActionOfViewMoreEvents(index: Int) {
         let view = self.createView(storyboard: .home, storyboardID: .ViewMoreEventsVC) as? ViewMoreEventsVC
         view?.viewModel.index = index
-        view?.viewModel.countryName = self.viewModel.country?.country_name ?? self.getCountry()
+        view?.viewModel.countryName = self.viewModel.country?.countryName ?? self.getCountry()
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
         self.navigationController?.pushViewController(view!, animated: true)
     }
@@ -568,14 +568,14 @@ extension HomeVC: FavouriteAction {
     }
 }
 // MARK: - 
-extension HomeVC: NavigateToProfile, suggestedOrganizerListProtocol {
+extension HomeVC: NavigateToProfile, SuggestedOrganizerListProtocol {
     func followUnfollowAction(tag: Int) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
             self.showToast(message: Unable_To_Follow)
             return
         }
-        if let cell = self.collvwSuggestedOrganisation.cellForItem(at: IndexPath.init(row: tag, section: 0)) as? suggestedOrganizerCell {
+        if let cell = self.collvwSuggestedOrganisation.cellForItem(at: IndexPath.init(row: tag, section: 0)) as? SuggestedOrganizerCell {
             if Reachability.isConnectedToNetwork() { //check internet connectivity
                 if let organizerId = self.collvwSuggestedOrganisation.arrOrganizersList?[tag].userID {
                     parentView.showLoading(centreToView: self.view)

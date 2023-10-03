@@ -215,7 +215,6 @@ extension ZoomViewController:UIScrollViewDelegate{
         // Return the view that we want to zoom
         return imgBackground
     }
-
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         // The scroll view has zoomed, so we need to re-center the contents
         centerScrollViewContents()
@@ -227,21 +226,16 @@ extension ZoomViewController {
     @objc func scrollViewDoubleTapped(_ recognizer: UITapGestureRecognizer?) {
         // Get the location within the image view where we tapped
         let pointInView = recognizer?.location(in: imgBackground)
-
         // Get a zoom scale that's zoomed in slightly, capped at the maximum zoom scale specified by the scroll view
         var newZoomScale = mainScrollView.zoomScale * 1.5
         newZoomScale = CGFloat(min(newZoomScale, mainScrollView.maximumZoomScale))
-
         // Figure out the rect we want to zoom to, then zoom to it
         let scrollViewSize = mainScrollView.bounds.size
-
-        let w = scrollViewSize.width / newZoomScale
-        let h = scrollViewSize.height / newZoomScale
-        let x = (pointInView?.x ?? 0.0) - (w / 2.0)
-        let y = (pointInView?.y ?? 0.0) - (h / 2.0)
-
-        let rectToZoomTo = CGRect(x: x, y: y, width: w, height: h)
-
+        let width = scrollViewSize.width / newZoomScale
+        let height = scrollViewSize.height / newZoomScale
+        let xAxis = (pointInView?.x ?? 0.0) - (width / 2.0)
+        let yAxis = (pointInView?.y ?? 0.0) - (height / 2.0)
+        let rectToZoomTo = CGRect(x: xAxis, y: yAxis, width: width, height: height)
         mainScrollView.zoom(to: rectToZoomTo, animated: true)
     }
     
@@ -254,7 +248,7 @@ extension ZoomViewController {
 }
 
 // MARK: - NavigationBarViewDelegate
-extension ZoomViewController : NavigationBarViewDelegate {
+extension ZoomViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)
   }

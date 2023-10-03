@@ -22,7 +22,7 @@ class ManageMyEventCell: UITableViewCell {
     @IBOutlet weak var lblView: UILabel!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var lblEdit: UILabel!
-    @IBOutlet weak var vwPopUp: customSocialLoginView!
+    @IBOutlet weak var vwPopUp: CustomSocialLoginView!
     @IBOutlet weak var collVwPeople: PeopleCollectionList!
     @IBOutlet weak var btnManage: CustomButtonNormalWithBorder!
     @IBOutlet weak var btnMenuMore: UIButton!

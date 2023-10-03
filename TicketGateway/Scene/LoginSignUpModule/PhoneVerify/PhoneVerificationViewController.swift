@@ -103,11 +103,21 @@ extension PhoneVerificationViewController {
                                 self.view.stopLoading()
                                 let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
                                 UserDefaultManager.share.clearAllUserDataAndModel()
-                                let objUserModel = SignInAuthModel(id: userModel?.id, number: numberWithoutCode, fullName: userModel?.fullName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
+                                let objUserModel = SignInAuthModel(
+                                    id: userModel?.id, number: numberWithoutCode,
+                                    fullName: userModel?.fullName, email: userModel?.email,
+                                    accessToken:  userModel?.accessToken,
+                                    refreshToken: userModel?.refreshToken,
+                                    strDialCountryCode: "\(lblDialCountryCode.text ?? "")"
+                                )
                                 UserDefaultManager.share.storeModelToUserDefault(userData: objUserModel, key: .userAuthData)
                                 
                                 if let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
-                                    let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text ?? "", strCountryCode: self.signInViewModel.strCountryCode)
+                                    let obj = DataHoldOnSignUpProcessModel.init(
+                                        strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "",
+                                        strDialCountryCode: self.lblDialCountryCode.text ?? "",
+                                        strCountryCode: self.signInViewModel.strCountryCode
+                                    )
                                     objAppShareData.dicToHoldDataOnSignUpModule = obj
                                     view.isComingFromLogin = false
                                     view.isComingFrom = self.isComingFrom
@@ -212,19 +222,19 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
         self.imgCountry.image = nil
         if self.imgCountry.image == nil {
             var str = ""
-            var arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
+            var arr = signInViewModel.RScountriesModel.filter({$0.dialCode == str})
             
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
-                arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
+                arr = signInViewModel.RScountriesModel.filter({$0.dialCode == str})
                 
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
-                    arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
+                    arr = signInViewModel.RScountriesModel.filter({$0.countryCode == str})
                 }
             } else {
                 str = NSLocale.current.regionCode ?? ""
-                arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
+                arr = signInViewModel.RScountriesModel.filter({$0.countryCode == str})
             }
            
             self.lblDialCountryCode.text = "+91"
@@ -232,7 +242,7 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
             
             if arr.count == 2{
                 arr.removeAll { country in
-                    country.country_code != (NSLocale.current.regionCode ?? "")
+                    country.countryCode != (NSLocale.current.regionCode ?? "")
                 }
             }
             
@@ -240,20 +250,20 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 self.imgCountry.image = flagImg
             } else {
                 if arr.indices.contains(0) {
-                    str = arr[0].country_code
+                    str = arr[0].countryCode
                     imagePath = "CountryPicker.bundle/\(str).png"
                     self.imgCountry.image = UIImage(named: imagePath)
                 }
             }
             if !arr.isEmpty {
                 let country = arr[0]
-                self.signInViewModel.strCountryDialCode = country.dial_code
-                self.lblDialCountryCode.text = country.dial_code
-                self.signInViewModel.strCountryCode = country.country_code
-                self.signInViewModel.strCountryName = country.country_name
-                self.lblDialCountryCode.text = country.dial_code
-                self.signInViewModel.strCountryCode = country.country_code
-                let imagePath = "CountryPicker.bundle/\( country.country_code).png"
+                self.signInViewModel.strCountryDialCode = country.dialCode
+                self.lblDialCountryCode.text = country.dialCode
+                self.signInViewModel.strCountryCode = country.countryCode
+                self.signInViewModel.strCountryName = country.countryName
+                self.lblDialCountryCode.text = country.dialCode
+                self.signInViewModel.strCountryCode = country.countryCode
+                let imagePath = "CountryPicker.bundle/\( country.countryCode).png"
                 self.imgCountry.image = UIImage(named: imagePath)
             }
         } else {
@@ -265,16 +275,16 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
             let code = country["code"] ?? ""
             let name = country["name"] ?? ""
             let dailcode = country["dial_code"] ?? ""
-            signInViewModel.RScountriesModel.append(CountryInfo(country_code: code, dial_code: dailcode, country_name: name))
+            signInViewModel.RScountriesModel.append(CountryInfo(countryCode: code, dialCode: dailcode, countryName: name))
         }
     }
     func RScountrySelected(countrySelected country: CountryInfo) {
-        let imagePath = "CountryPicker.bundle/\(country.country_code).png"
+        let imagePath = "CountryPicker.bundle/\(country.countryCode).png"
         self.imgCountry.image = UIImage(named: imagePath)
-        self.signInViewModel.strCountryDialCode = country.dial_code
-        self.lblDialCountryCode.text = country.dial_code
-        self.signInViewModel.strCountryCode = country.country_code
-        self.signInViewModel.strCountryName = country.country_name
+        self.signInViewModel.strCountryDialCode = country.dialCode
+        self.lblDialCountryCode.text = country.dialCode
+        self.signInViewModel.strCountryCode = country.countryCode
+        self.signInViewModel.strCountryName = country.countryName
         self.txtNumber.becomeFirstResponder()
     }
 }

@@ -15,9 +15,9 @@ class ExpandableName {
 class ManageEventOrderVC: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationBar: NavigationBarView!
-    @IBOutlet weak var OrderTableView: UITableView!
+    @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
-    @IBOutlet weak var BgNoOrderView: UIView!
+    @IBOutlet weak var bgNoOrderView: UIView!
     @IBOutlet weak var lblSorry: UILabel!
     @IBOutlet weak var lblYourSearch: UILabel!
     @IBOutlet weak var btnScan: UIButton!
@@ -32,8 +32,8 @@ class ManageEventOrderVC: UIViewController {
         self.setUI()
     }
 }
-//MARK: - Functions
-extension ManageEventOrderVC{
+// MARK: - Functions
+extension ManageEventOrderVC {
     func setNavigationBar() {
         self.vwNavigationBar.delegateBarAction = self
         self.vwNavigationBar.btnBack.isHidden = false
@@ -47,12 +47,12 @@ extension ManageEventOrderVC{
         self.vwNavigationBar.imgBack.image = UIImage(named: MENU_ICON)
     }
     func setTableView() {
-        self.OrderTableView.delegate = self
-        self.OrderTableView.dataSource = self
-        self.OrderTableView.separatorColor = UIColor.clear
-        self.OrderTableView.register(UINib(nibName: "ManageOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ManageOrderTableViewCell")
-        self.OrderTableView.register(UINib(nibName: "RefundRequestTableViewCell", bundle: nil), forCellReuseIdentifier: "RefundRequestTableViewCell")
-        self.OrderTableView.register(UINib(nibName: "RequestRefundHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RequestRefundHeaderView")
+        self.orderTableView.delegate = self
+        self.orderTableView.dataSource = self
+        self.orderTableView.separatorColor = UIColor.clear
+        self.orderTableView.register(UINib(nibName: "ManageOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ManageOrderTableViewCell")
+        self.orderTableView.register(UINib(nibName: "RefundRequestTableViewCell", bundle: nil), forCellReuseIdentifier: "RefundRequestTableViewCell")
+        self.orderTableView.register(UINib(nibName: "RequestRefundHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RequestRefundHeaderView")
     }
     func setFont() {
         self.lblSorry.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -61,7 +61,7 @@ extension ManageEventOrderVC{
         self.lblYourSearch.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
 }
-//MARK: - Button Actions
+// MARK: - Button Actions
 extension ManageEventOrderVC {
     func setUI () {
         [btnScan].forEach {
@@ -94,25 +94,25 @@ extension ManageEventOrderVC{
             obj.isExpanded = false
         }
         print("value",viewModel.arrData)
-        self.OrderTableView.reloadData()
+        self.orderTableView.reloadData()
     }
     @IBAction func actionSegmentControl(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             viewModel.isRefundRequest = false
-            self.OrderTableView.reloadData()
+            self.orderTableView.reloadData()
         case 1:
             viewModel.isRefundRequest = true
-            self.OrderTableView.reloadData()
+            self.orderTableView.reloadData()
         default:
             break
         }
     }
 }
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int{
-        if viewModel.isRefundRequest == true{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if viewModel.isRefundRequest == true {
             return viewModel.arrData.count
         }
         return 1
@@ -121,7 +121,7 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
         if !viewModel.isRefundRequest {
             return viewModel.orderTableData.count
         } else {
-            if viewModel.arrData[section].isExpanded == true{
+            if viewModel.arrData[section].isExpanded {
                 return 1
             } else {
                 return 0
@@ -148,7 +148,7 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
         if obj.isExpanded == true {
             headerView.btnChevron.setImage(UIImage(named: CIRCLE_CHEVRON_UP_ICON), for: .normal)
             headerView.vwLineView.isHidden = true
-        }else {
+        } else {
             headerView.btnChevron.setImage(UIImage(named: CIRCLE_CHEVRON_DOWN_ICON), for: .normal)
             headerView.vwLineView.isHidden = false
         }
@@ -158,12 +158,12 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
         return viewModel.isRefundRequest ? 50 : 0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = createView(storyboard: .manageventorder, storyboardID: .ManageEventOrderDeatilVC)
+        var vc = createView(storyboard: .manageventorder, storyboardID: .ManageEventOrderDeatilVC)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageEventOrderVC : NavigationBarViewDelegate{
+extension ManageEventOrderVC: NavigationBarViewDelegate{
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

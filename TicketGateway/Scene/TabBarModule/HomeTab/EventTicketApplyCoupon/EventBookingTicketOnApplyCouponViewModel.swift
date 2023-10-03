@@ -17,7 +17,7 @@ import Foundation
 final class EventBookingTicketOnApplyCouponViewModel{
     // MARK: - Variables
     var eventDetail :EventDetail?
-    var isCheckedTerm_COndition = false
+    var isCheckedTermCondition = false
     var totalTicketPrice = ""
     var feeStructure :FeeStructure?
     var isAccessCodeAvailable = false

@@ -1,5 +1,5 @@
 //
-//  suggestedOrganizerCell.swift
+//  SuggestedOrganizerCell.swift
 //  TicketGateway
 //
 //  Created by Apple  on 28/04/23.
@@ -12,23 +12,21 @@ protocol SuggestedOrganizerCellProtocol:class {
     func followUnfollowAction(tag:Int)
 }
 
-class suggestedOrganizerCell: UICollectionViewCell {
-    
-//MARK: - Outlets
+class SuggestedOrganizerCell: UICollectionViewCell {
+// MARK: - Outlets
     @IBOutlet weak var vwImgProfile: UIView!
     @IBOutlet weak var btnFollerwers: CustomButtonGradiant!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblFollowers: UILabel!
     @IBOutlet weak var lblName: UILabel!
     var isFromOrganizationSection: Bool = false
-    weak var delegate:SuggestedOrganizerCellProtocol?
+    weak var delegate: SuggestedOrganizerCellProtocol?
     var followButtonDidTap: ((_ sender: UIButton) -> Void) = {sender in }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
         // Initialization code
     }
-    
     func setData(organizerDetail: Organizers) {
         self.lblName.text = organizerDetail.name ?? ""
         self.lblFollowers.text = "\(organizerDetail.followers ?? 0) followers "

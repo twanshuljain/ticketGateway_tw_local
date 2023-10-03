@@ -151,13 +151,11 @@ open class RingProgressLayer: CALayer {
             return image
         }
     }
-    
+    // swiftlint: disable function_body_length
     private func drawContent(in context: CGContext) {
         context.setShouldAntialias(allowsAntialiasing)
         context.setAllowsAntialiasing(allowsAntialiasing)
-        
         let useGradient = startColor != endColor
-        
         let squareSize = min(bounds.width, bounds.height)
         let squareRect = CGRect(
             x: (bounds.width - squareSize) / 2,
@@ -166,7 +164,6 @@ open class RingProgressLayer: CALayer {
             height: squareSize
         )
         let gradientRect = squareRect.integral
-        
         let widthRing = min(ringWidth, squareSize / 2)
         let redius = min(bounds.width, bounds.height) / 2 - widthRing / 2
         let cPoints = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
@@ -175,27 +172,19 @@ open class RingProgressLayer: CALayer {
         let angle = 2 * .pi * ringProgress - angleOffset
         let minAngle = 1.1 * atan(0.5 * widthRing / redius)
         let maxAngle = 2 * .pi - 3 * minAngle - angleOffset
-        
         let circleRect = squareRect.insetBy(dx: widthRing / 2, dy: widthRing / 2)
         let circlePath = UIBezierPath(ovalIn: circleRect)
-        
         let angle1 = angle > maxAngle ? maxAngle : angle
-        
         context.setLineWidth(widthRing)
         context.setLineCap(progressStyle.lineCap)
-        
         // Draw backdrop circle
-        
         context.addPath(circlePath.cgPath)
         let bgColor = backgroundRingColor ?? startColor.copy(alpha: 0.15)!
         context.setStrokeColor(bgColor)
         context.strokePath()
-        
         // Draw solid arc
-        
         if angle > maxAngle {
             let offset = angle - maxAngle
-            
             let arc2Path = UIBezierPath(
                 arcCenter: cPoints,
                 radius: redius,
@@ -206,17 +195,13 @@ open class RingProgressLayer: CALayer {
             context.addPath(arc2Path.cgPath)
             context.setStrokeColor(startColor)
             context.strokePath()
-            
             context.translateBy(x: circleRect.midX, y: circleRect.midY)
             context.rotate(by: offset)
             context.translateBy(x: -circleRect.midX, y: -circleRect.midY)
         }
-        
         // Draw shadow and progress end
-        
         if ringProgress > 0.0 || !hidesRingForZeroProgress {
             context.saveGState()
-            
             if endShadowOpacity > 0.0 {
                 context.addPath(
                     CGPath(
@@ -229,7 +214,6 @@ open class RingProgressLayer: CALayer {
                     )!
                 )
                 context.clip()
-                
                 let shadowOffset = CGSize(
                     width: widthRing / 10 * cos(angle + angleOffset),
                     height: widthRing / 10 * sin(angle + angleOffset)
@@ -240,9 +224,7 @@ open class RingProgressLayer: CALayer {
                     color: UIColor(white: 0.0, alpha: endShadowOpacity).cgColor
                 )
             }
-            
             let arcEnd = CGPoint(x: cPoints.x + redius * cos(angle1), y: cPoints.y + redius * sin(angle1))
-            
             let shadowPath: UIBezierPath = {
                 switch progressStyle {
                 case .round:
@@ -269,7 +251,6 @@ open class RingProgressLayer: CALayer {
                     return path
                 }
             }()
-            
             let shadowFillColor: CGColor = {
                 let fadeStartProgress: CGFloat = 0.02
                 if !hidesRingForZeroProgress || ringProgress > fadeStartProgress {
@@ -281,12 +262,9 @@ open class RingProgressLayer: CALayer {
             context.addPath(shadowPath.cgPath)
             context.setFillColor(shadowFillColor)
             context.fillPath()
-            
             context.restoreGState()
         }
-        
         // Draw gradient arc
-        
         let gradient: CGImage? = {
             guard useGradient else {
                 return nil
@@ -299,7 +277,6 @@ open class RingProgressLayer: CALayer {
             gradientGenerator.endPoint = CGPoint(x: 0.5 - CGFloat(2 * size), y: 1.0)
             return gradientGenerator.image()
         }()
-        
         if ringProgress > 0.0 {
             let arc1Path = UIBezierPath(
                 arcCenter: cPoints,
@@ -310,7 +287,6 @@ open class RingProgressLayer: CALayer {
             )
             if let gradient = gradient {
                 context.saveGState()
-                
                 context.addPath(
                     CGPath(
                         __byStroking: arc1Path.cgPath,
@@ -322,10 +298,8 @@ open class RingProgressLayer: CALayer {
                     )!
                 )
                 context.clip()
-                
                 context.interpolationQuality = .none
                 context.draw(gradient, in: gradientRect)
-                
                 context.restoreGState()
             } else {
                 context.setStrokeColor(startColor)
@@ -336,8 +310,8 @@ open class RingProgressLayer: CALayer {
             }
         }
     }
+    // swiftlint: enable function_body_length
 }
-
 private extension RingProgressViewStyle {
     var lineCap: CGLineCap {
         switch self {
@@ -347,7 +321,6 @@ private extension RingProgressViewStyle {
             return .butt
         }
     }
-    
     var lineJoin: CGLineJoin {
         switch self {
         case .round:

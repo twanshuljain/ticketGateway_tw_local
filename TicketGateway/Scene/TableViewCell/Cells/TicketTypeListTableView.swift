@@ -82,8 +82,8 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
       
         cell.vwStepper.btnPlus.tag = indexPath.row
         cell.vwStepper.btnMinus.tag = indexPath.row
-        cell.vwStepper.btnPlus.addTarget(self, action: #selector(PlusButtonPressed), for: .touchUpInside)
-        cell.vwStepper.btnMinus.addTarget(self, action: #selector(MinustButtonPressed), for: .touchUpInside)
+        cell.vwStepper.btnPlus.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        cell.vwStepper.btnMinus.addTarget(self, action: #selector(minustButtonPressed), for: .touchUpInside)
         
           return cell
         
@@ -105,7 +105,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     //MARK: - OFFLINE
-//    @objc func PlusButtonPressed(_ sender: UIButton) {
+//    @objc func plusButtonPressed(_ sender: UIButton) {
 //       print(sender.tag)
 //        let indexPath = IndexPath(row: sender.tag, section: 0)
 //        let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
@@ -115,7 +115,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
 //        cell.vwStepper.lblCount.text = String(lblNumberOfCount)
 //    }
 //
-//    @objc func MinustButtonPressed(_ sender: UIButton) {
+//    @objc func minustButtonPressed(_ sender: UIButton) {
 //         let indexPath = IndexPath(row: sender.tag, section: 0)
 //        let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
 //        let value =  cell.vwStepper.lblCount.text ?? ""
@@ -129,7 +129,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
 //    }
 
     // MARK: - ONLINE
-    @objc func PlusButtonPressed(_ sender: UIButton) {
+    @objc func plusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
         if isFromAccessCode {
                print(sender.tag)
@@ -190,7 +190,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    @objc func MinustButtonPressed(_ sender: UIButton) {
+    @objc func minustButtonPressed(_ sender: UIButton) {
         if isFromAccessCode {
                 let data = arrDataAccessCode?[sender.tag]
                  let indexPath = IndexPath(row: sender.tag, section: 0)

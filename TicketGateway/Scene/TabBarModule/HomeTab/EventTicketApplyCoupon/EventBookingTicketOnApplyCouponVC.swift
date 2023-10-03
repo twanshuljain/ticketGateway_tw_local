@@ -290,7 +290,7 @@ extension EventBookingTicketOnApplyCouponVC {
     }
 
    func btnContinueAction() {
-       if viewModel.isCheckedTerm_COndition == true {
+       if viewModel.isCheckedTermCondition == true {
            /*
            let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
            view.selectedArrTicketList = self.viewModel.selectedArrTicketList
@@ -373,13 +373,13 @@ extension EventBookingTicketOnApplyCouponVC {
     }
     
     func btnCheckTermConditionAction() {
-        if viewModel.isCheckedTerm_COndition == false
+        if viewModel.isCheckedTermCondition == false
         {
-            viewModel.isCheckedTerm_COndition = true
+            viewModel.isCheckedTermCondition = true
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         }
         else {
-            viewModel.isCheckedTerm_COndition = false
+            viewModel.isCheckedTermCondition = false
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         

@@ -62,7 +62,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
         }
     }
     
-    func GetEventSuggestedCategory(viewAll:Bool, complition: @escaping (Bool,String) -> Void ) {
+    func getEventSuggestedCategory(viewAll: Bool, complition: @escaping (Bool,String) -> Void ) {
         let parameters = GetEventRequest(limit: "10", page: "\(self.currentPage)")
         if let suggestedEventCategoryId = categoryId{
             let url = APIName.getEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"

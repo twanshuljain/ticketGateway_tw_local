@@ -149,7 +149,7 @@ class AppShareData {
         completion: @escaping (Bool, String) -> Void
     ) {
         print("eventId:- \(eventId), likeStatus:- \(likeStatus)")
-        let param = FavoriteRequestModel(event_id: eventId, like_status: likeStatus)
+        let param = FavoriteRequestModel(eventId: eventId, likeStatus: likeStatus)
         APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
             switch result {
             case .success(let response):

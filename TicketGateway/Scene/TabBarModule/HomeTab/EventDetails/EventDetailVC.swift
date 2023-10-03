@@ -65,7 +65,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var tagsView: UIView!
     @IBOutlet weak var organizersView: UIView!
     @IBOutlet weak var suggestionsForYouView: UIView!
-    @IBOutlet weak var vwOrganiserMainView: setBorderView!
+    @IBOutlet weak var vwOrganiserMainView: SetBorderView!
     @IBOutlet weak var pageConrtrolEventImagesHt: NSLayoutConstraint!
     @IBOutlet weak var pageControllerParentView: UIView!
     @IBOutlet weak var pageConrtrolEventTop: NSLayoutConstraint!
@@ -294,7 +294,7 @@ extension EventDetailVC {
                 self.tblSuggestedEvent.isHidden = true
                 vwEventName.showLoading(centreToView: self.view)
             }
-            viewModel.GetEventSuggestedCategory(categoryId: categoryId) { isTrue, messageShowToast in
+            viewModel.getEventSuggestedCategory(categoryId: categoryId) { isTrue, messageShowToast in
                 if isTrue == true {
                     self.vwEventName.stopLoading()
                     DispatchQueue.main.async {

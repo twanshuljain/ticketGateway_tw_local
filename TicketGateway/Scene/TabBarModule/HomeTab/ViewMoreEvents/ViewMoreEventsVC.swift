@@ -174,7 +174,7 @@ extension ViewMoreEventsVC{
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
-            viewModel.GetEventSuggestedCategory(viewAll:true,complition: { isTrue, messageShowToast in
+            viewModel.getEventSuggestedCategory(viewAll:true,complition: { isTrue, messageShowToast in
                 
                 if isTrue == true {
                     self.parentView.stopLoading()

@@ -33,7 +33,7 @@ class NavigationBarView: UIView {
     @IBOutlet weak var lblDiscripation: UILabel!
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var vwBorder: UIView!
-    let XIB_NAME = "NavigationBarView"
+    let xibName = "NavigationBarView"
     var delegateBarAction: NavigationBarViewDelegate!
     var navViewbackgroundColor: UIColor?
     override init(frame: CGRect) {
@@ -45,7 +45,7 @@ class NavigationBarView: UIView {
         commonInit()
     }
     func commonInit() {
-        Bundle.main.loadNibNamed(XIB_NAME, owner: self, options: nil)
+        Bundle.main.loadNibNamed(xibName, owner: self, options: nil)
         viewContent.fixInView(self)
         [btnRight, btnBack,btnSecRight,btnSkip].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)

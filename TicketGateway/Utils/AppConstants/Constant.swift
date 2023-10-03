@@ -60,7 +60,7 @@ enum StoryboardIdentifier: String {
     //SideMenuBar
     case AddAmountWalletVC
     case AmountAddedSuccessfullyVC
-    case Organizers_Artists_ListVC
+    case OrganizersArtistsListVC
     case MyFollowersVC
     case VenueVC
     case EventDetailVC
@@ -68,7 +68,7 @@ enum StoryboardIdentifier: String {
     case MyRefundVC
     case CostumeViewController
     case DeviceSettingVC
-    case Reward_LoyaltyPointsVC
+    case RewardLoyaltyPointsVC
     case NotificationVC
     case FAQVC
     //order

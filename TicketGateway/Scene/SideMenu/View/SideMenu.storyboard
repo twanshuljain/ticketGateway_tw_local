@@ -22,7 +22,7 @@
         <!--Reward Loyalty PointsVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="Reward_LoyaltyPointsVC" id="Y6W-OH-hqX" customClass="Reward_LoyaltyPointsVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RewardLoyaltyPointsVC" id="Y6W-OH-hqX" customClass="RewardLoyaltyPointsVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -332,7 +332,7 @@
         <!--Organizers Artists ListVC-->
         <scene sceneID="ulc-0M-SYP">
             <objects>
-                <viewController storyboardIdentifier="Organizers_Artists_ListVC" id="TLl-7l-Kzy" customClass="Organizers_Artists_ListVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrganizersArtistsListVC" id="TLl-7l-Kzy" customClass="OrganizersArtistsListVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qea-Ne-snB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -436,7 +436,7 @@
                                         <rect key="frame" x="0.0" y="511.5" width="375" height="488.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Organizers_Artists_ListCell" rowHeight="108" id="Vg3-Du-zqC" customClass="Organizers_Artists_ListCell" customModule="TicketGateway" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizersArtistsListCell" rowHeight="108" id="Vg3-Du-zqC" customClass="OrganizersArtistsListCell" customModule="TicketGateway" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="375" height="108"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vg3-Du-zqC" id="Fk9-zv-UuD">
@@ -453,7 +453,7 @@
                                                                         <constraint firstAttribute="height" id="nva-lm-UTt"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQU-Wd-Iuz" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQU-Wd-Iuz" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
                                                                     <rect key="frame" x="20" y="22" width="64" height="64"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="n2o-jC-KyW">
@@ -482,16 +482,16 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="j8i-Es-igf">
-                                                                    <rect key="frame" x="89" y="30" width="171" height="42.5"/>
+                                                                    <rect key="frame" x="89" y="30" width="171" height="39"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taylor Swift" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAE-iQ-XFD">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="171" height="22.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="171" height="19"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                                             <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,742 followers" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkH-VD-NnK">
-                                                                            <rect key="frame" x="0.0" y="27.5" width="171" height="15"/>
+                                                                            <rect key="frame" x="0.0" y="24" width="171" height="15"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="15" id="kja-k5-hpP"/>
@@ -625,11 +625,11 @@
                     <connections>
                         <outlet property="btnSeeAll" destination="H78-iw-f7a" id="tEs-nu-KsA"/>
                         <outlet property="btnSeeAllForSuggested" destination="LI6-6p-I6f" id="X8Q-O2-6WL"/>
-                        <outlet property="collVwTrending_Artists" destination="X14-rj-V17" id="cff-vY-Ht8"/>
+                        <outlet property="collVwTrendingArtists" destination="X14-rj-V17" id="cff-vY-Ht8"/>
                         <outlet property="lblSuggested" destination="4fz-4G-vtz" id="Oh9-Zu-tdf"/>
                         <outlet property="lblTittle" destination="GcP-oT-Ek1" id="roB-Mz-Jh7"/>
                         <outlet property="navigationView" destination="ORw-o1-TV6" id="taK-Uc-PIY"/>
-                        <outlet property="tblSuggestedOrag_Art" destination="kjo-dz-2JP" id="C3O-F4-xmG"/>
+                        <outlet property="tblSuggestedOragArt" destination="kjo-dz-2JP" id="C3O-F4-xmG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhO-hU-yx9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -685,7 +685,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YxA-iS-XGo">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
                                                     <subviews>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttp-9s-Rrk" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttp-9s-Rrk" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
                                                             <rect key="frame" x="20" y="22" width="64" height="64"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="iBm-Cp-AdO">
@@ -716,13 +716,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="495-NZ-joK">
                                                             <rect key="frame" x="94" y="30.5" width="146.5" height="47.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taylor Swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SW6-wC-AZm">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Taylor Swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SW6-wC-AZm">
                                                                     <rect key="frame" x="0.0" y="0.0" width="146.5" height="22.5"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                                     <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jane@microsoft.com" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cV-eZ-LQd">
+                                                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="jane@microsoft.com" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cV-eZ-LQd">
                                                                     <rect key="frame" x="0.0" y="27.5" width="146.5" height="20"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>

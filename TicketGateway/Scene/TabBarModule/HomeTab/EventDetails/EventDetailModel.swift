@@ -38,7 +38,7 @@ struct EventDetail: Codable {
     var event: Event?
     var ticketOnwards: Int?
     var locationType: String?
-    var is_multi_location: Bool?
+    var isMultiLocation: Bool?
     var organizer: Organizer?
     var eventType: DataEventType?
     var eventCategory, eventSubCategory: EventCategory?
@@ -68,6 +68,7 @@ struct EventDetail: Codable {
         case isLike = "is_like"
         case isFollow = "is_follow"
         case totalFollower = "total_follower"
+        case isMultiLocation = "is_multi_location"
     }
 }
 

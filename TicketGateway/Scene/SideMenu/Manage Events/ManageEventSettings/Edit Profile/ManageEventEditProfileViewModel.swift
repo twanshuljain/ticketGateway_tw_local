@@ -27,7 +27,9 @@ extension ManageEventEditProfileViewModel{
             let code = country["code"] ?? ""
             let name = country["name"] ?? ""
             let dailcode = country["dial_code"] ?? ""
-            self.RScountriesModel.append(CountryInfo(country_code:code,dial_code:dailcode, country_name:name))
+            self.RScountriesModel.append(CountryInfo(
+                countryCode: code, dialCode: dailcode, countryName: name
+            ))
         }
     }
     func updateUserProfileData(complition: @escaping (Bool, String) -> Void ) {

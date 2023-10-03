@@ -64,16 +64,16 @@ class PlaceholderTextView: UITextView {
     }
 
     func placeholderRectForBounds(bounds: CGRect) -> CGRect {
-        var x = contentInset.left + 4.0
-        var y = contentInset.top  + 9.0
-        let w = frame.size.width - contentInset.left - contentInset.right - 16.0
-        let h = frame.size.height - contentInset.top - contentInset.bottom - 16.0
+        var xAxis = contentInset.left + 4.0
+        var yAxis = contentInset.top  + 9.0
+        let width = frame.size.width - contentInset.left - contentInset.right - 16.0
+        let height = frame.size.height - contentInset.top - contentInset.bottom - 16.0
 
         if let style = self.typingAttributes[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle {
-            x += style.headIndent
-            y += style.firstLineHeadIndent
+            xAxis += style.headIndent
+            yAxis += style.firstLineHeadIndent
         }
-        return CGRect(x: x, y: y, width: w, height: h)
+        return CGRect(x: xAxis, y: yAxis, width: width, height: height)
     }
 
     override func draw(_ rect: CGRect) {

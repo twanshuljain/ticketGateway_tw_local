@@ -1,5 +1,5 @@
 //
-//  Reward_LoyaltyPointsVC.swift
+//  RewardLoyaltyPointsVC.swift
 //  TicketGateway
 //
 //  Created by Apple  on 02/06/23.
@@ -9,7 +9,7 @@ import UIKit
 import iOSDropDown
 import SideMenu
 
-class Reward_LoyaltyPointsVC: UIViewController,UITextFieldDelegate {
+class RewardLoyaltyPointsVC: UIViewController,UITextFieldDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var collvwCalender: EventCalenderList!
@@ -32,7 +32,7 @@ class Reward_LoyaltyPointsVC: UIViewController,UITextFieldDelegate {
     
 }
 // MARK: - Functions
-extension Reward_LoyaltyPointsVC {
+extension RewardLoyaltyPointsVC {
     private func setup() {
         self.collvwCalender.configure()
         self.navigationView.delegateBarAction = self
@@ -76,7 +76,7 @@ extension Reward_LoyaltyPointsVC {
 }
 
 // MARK: - Actions
-extension Reward_LoyaltyPointsVC {
+extension RewardLoyaltyPointsVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnDrpoDown:
@@ -92,7 +92,7 @@ extension Reward_LoyaltyPointsVC {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension Reward_LoyaltyPointsVC : NavigationBarViewDelegate {
+extension RewardLoyaltyPointsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

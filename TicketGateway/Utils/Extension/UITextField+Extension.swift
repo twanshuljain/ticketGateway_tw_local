@@ -119,7 +119,7 @@ extension UITextField {
     
 }
 
-class setCustomTextField: UITextField {
+class SetCustomTextField: UITextField {
 
         func setup() {
             self.layer.borderColor = UIColor.init(named: "BorderLineColour")?.cgColor

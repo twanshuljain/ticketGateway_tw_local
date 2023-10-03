@@ -25,12 +25,15 @@ class EmailSentVC: UIViewController {
     func setFont() {
         lblEmail.font = UIFont.setFont(fontType: .semiBold, fontSize: .twentyFour)
         lblEmail.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-    //   lblDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
       lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
-        let attributedlabel = getAttributedTextAction(attributedText: strForEmail, firstString: "We have sent an email ", lastString: " with a link to reset your password", attributedFont: UIFont.setFont(fontType: .semiBold, fontSize: .fourteen), attributedColor: UIColor.setColor(colorType: .lblTextPara), isToUnderLineAttributeText: false)
+        let attributedlabel = getAttributedTextAction(
+            attributedText: strForEmail,
+            firstString: "We have sent an email ",
+            lastString: " with a link to reset your password",
+            attributedFont: UIFont.setFont(fontType: .semiBold, fontSize: .fourteen),
+            attributedColor: UIColor.setColor(colorType: .lblTextPara),
+            isToUnderLineAttributeText: false
+        )
         lblDescription.attributedText = attributedlabel
     }
-    
-
-  
 }

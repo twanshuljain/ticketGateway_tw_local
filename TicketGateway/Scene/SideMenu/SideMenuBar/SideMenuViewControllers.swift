@@ -4,10 +4,6 @@
 //
 //  Created by Apple  on 02/05/23.
 
-// swiftlint: disable cyclomatic_complexity
-// swiftlint: disable shorthand_operator
-// swiftlint: disable type_name
-// swiftlint: disable duplicate_conditions
 import UIKit
 import SDWebImage
 
@@ -80,7 +76,7 @@ extension SideMenuViewControllers{
         
         
     }
-    
+    // swiftlint: disable cyclomatic_complexity
     func setUpTableView() {
         self.tblList.isFromManageEvent = false
         self.btnChangeProfile.setTitle("CHANGE INTO ORGANISER", for: .normal)
@@ -89,13 +85,13 @@ extension SideMenuViewControllers{
                 objSceneDelegate.showTabBar()
                 
             } else if obj.title == "Organizers" {
-                let view = self.createView(storyboard: .sidemenu, storyboardID: .Organizers_Artists_ListVC) as! Organizers_Artists_ListVC
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as! OrganizersArtistsListVC
                 view.isFrom = "Organizers"
                 
                 self.navigationController?.pushViewController(view, animated: true)
                 
             } else if obj.title == "Artists" {
-                let view = self.createView(storyboard: .sidemenu, storyboardID: .Organizers_Artists_ListVC) as? Organizers_Artists_ListVC
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as? OrganizersArtistsListVC
                 view?.isFrom = "Artists"
                 self.navigationController?.pushViewController(view!, animated: true)
                 
@@ -112,17 +108,11 @@ extension SideMenuViewControllers{
             else if obj.title == "My Refunds" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .MyRefundVC) as? MyRefundVC
                 self.navigationController?.pushViewController(view!, animated: true)
-                
+  
             }
             else if obj.title == "Costumes" {
                 let view = self.createView(storyboard: .costumes, storyboardID: .CostumeViewController) as? CostumeViewController
                 self.navigationController?.pushViewController(view!, animated: true)
-                
-            }
-            else if obj.title == "Manage Events" {
-                let view = self.createView(storyboard: .manageevent, storyboardID: .ManageEventVC) as? ManageEventVC
-                self.navigationController?.pushViewController(view!, animated: true)
-                
             }
             else if obj.title == "Log Out" {
                 self.showAlert(message: "Are you sure you want to logout", complition: { _ in
@@ -141,16 +131,6 @@ extension SideMenuViewControllers{
                 let view = self.createView(storyboard: .scanevent, storyboardID: .ScanEventVC) as? ScanEventVC
                 self.navigationController?.pushViewController(view!, animated: true)
             }
-            
-            else if obj.title == "Scan Events" {
-                // let view = self.createView(storyboard: .scanevent, storyboardID: .ScanEventVC) as? ScanEventVC
-                // self.navigationController?.pushViewController(view!, animated: true)
-                
-            }
-            else if obj.title == "Log Out" {
-                objSceneDelegate.showLogin_Signup()
-                UserDefaultManager.share.clearAllUserDataAndModel()
-            }
             else if obj.title == "Notifications" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .NotificationVC) as? NotificationVC
                 self.navigationController?.pushViewController(view!, animated: true)
@@ -161,7 +141,7 @@ extension SideMenuViewControllers{
                 self.navigationController?.pushViewController(view!, animated: true)
             }
             else if obj.title == "Rewords & Loyality Points" {
-                let view = self.createView(storyboard: .sidemenu, storyboardID: .Reward_LoyaltyPointsVC) as? Reward_LoyaltyPointsVC
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .RewardLoyaltyPointsVC) as? RewardLoyaltyPointsVC
                 self.navigationController?.pushViewController(view!, animated: true)
             }
             else if obj.title == "My Followers" {
@@ -181,17 +161,15 @@ extension SideMenuViewControllers{
             else if obj.title == "FAQs" {
                 let vc = self.createView(storyboard: .sidemenu, storyboardID: .FAQVC) as! FAQVC
                 self.navigationController?.pushViewController(vc, animated: false)
-            }else if obj.title == "Venue" {
-                let vc = self.createView(storyboard: .sidemenu, storyboardID: .VenueVC) as! VenueVC
-                self.navigationController?.pushViewController(vc, animated: false)
-            }else if obj.title == "Feedback"{
+            }
+            else if obj.title == "Feedback"{
                 let vc = self.createView(storyboard: .sidemenu, storyboardID: .FeedbackViewController) as! FeedbackViewController
                 self.navigationController?.pushViewController(vc, animated: false)
             }
-            
         }
         self.tblList.reloadData()
     }
+    // swiftlint: enable cyclomatic_complexity
     
     func funcSetProfile() {
         self.lblName.text = objAppShareData.userAuth?.fullName

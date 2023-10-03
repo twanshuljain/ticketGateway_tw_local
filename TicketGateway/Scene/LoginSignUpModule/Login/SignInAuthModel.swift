@@ -18,7 +18,7 @@ struct SignInAuthModel: Codable {
         case accessToken = "access_token"
         case refreshToken = "refresh_token"
         case number = "cell_phone"
-        case strDialCountryCode = "country_code"
+        case strDialCountryCode = "countryCode"
         case image
         case userStatus = "user_status"
         case userType = "user_type"

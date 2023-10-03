@@ -14,7 +14,7 @@ class ManageEventVC: UIViewController, UITextFieldDelegate {
     // MARK: - IBOutlets
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var txtAllorganiser: DropDown!
-    @IBOutlet weak var TblManageEvent: ManageMyEventListTableView!
+    @IBOutlet weak var tblManageEvent: ManageMyEventListTableView!
     @IBOutlet weak var collVwCategory: ManageMyEventCateoryList!
     @IBOutlet weak var btnAllorganiser: UIButton!
     @IBOutlet weak var btnCreateEvent: CustomButtonGradiant!
@@ -40,7 +40,7 @@ extension ManageEventVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.setUi()
-        self.TblManageEvent.configure()
+        self.tblManageEvent.configure()
         self.collVwCategory.configure()
         self.txtAllorganiser.optionArray = ["Rebecca young", "Feb", "Rebecca young","Rebecca young","Rebecca young"]
         self.txtAllorganiser.optionIds = [1,23,54,22]
@@ -48,7 +48,7 @@ extension ManageEventVC {
             self.txtAllorganiser.text = "Selected String: \(selectedText) \n index: \(index)"
         }
         
-        self.TblManageEvent.tableDidSelectAtIndex = { _ in
+        self.tblManageEvent.tableDidSelectAtIndex = { _ in
             objSceneDelegate.showMangeEventTabBar()
         }
         

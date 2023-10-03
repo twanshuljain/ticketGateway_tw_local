@@ -300,36 +300,36 @@ extension LoginVC: RSCountrySelectedDelegate {
         self.imgCountry.image = nil
         if self.imgCountry.image == nil {
             var str = ""
-            var arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+            var arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
             
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
-                arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+                arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
                 
                 
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
-                    arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                    arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
                 }
             } else {
                 str = NSLocale.current.regionCode ?? ""
-                arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
             }
             
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
-     //       let arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+     //       let arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
             
             if !arr.isEmpty {
                 let country = arr[0]
-                self.viewModel.strCountryDialCode = country.dial_code
-                self.lblDialCountryCode.text = country.dial_code
-                self.viewModel.strCountryCode = country.country_code
-                self.viewModel.strCountryName = country.country_name
-                self.lblDialCountryCode.text = country.dial_code
-                self.viewModel.strCountryCode = country.country_code
-                let imagePath = "CountryPicker.bundle/\( country.country_code).png"
+                self.viewModel.strCountryDialCode = country.dialCode
+                self.lblDialCountryCode.text = country.dialCode
+                self.viewModel.strCountryCode = country.countryCode
+                self.viewModel.strCountryName = country.countryName
+                self.lblDialCountryCode.text = country.dialCode
+                self.viewModel.strCountryCode = country.countryCode
+                let imagePath = "CountryPicker.bundle/\( country.countryCode).png"
                 self.imgCountry.image = UIImage(named: imagePath)
             }
         } else {
@@ -340,17 +340,17 @@ extension LoginVC: RSCountrySelectedDelegate {
         for country in viewModel.countries {
             let code = country["code"] ?? ""
             let name = country["name"] ?? ""
-            let dailcode = country["dial_code"] ?? ""
-            viewModel.RScountriesModel.append(CountryInfo(country_code:code, dial_code:dailcode, country_name:name))
+            let dailcode = country["dialCode"] ?? ""
+            viewModel.RScountriesModel.append(CountryInfo(countryCode:code, dialCode:dailcode, countryName:name))
         }
     }
     func RScountrySelected(countrySelected country: CountryInfo) {
-        let imagePath = "CountryPicker.bundle/\(country.country_code).png"
+        let imagePath = "CountryPicker.bundle/\(country.countryCode).png"
         self.imgCountry.image = UIImage(named: imagePath)
-        self.viewModel.strCountryDialCode = country.dial_code
-        self.lblDialCountryCode.text = country.dial_code
-        self.viewModel.strCountryCode = country.country_code
-        self.viewModel.strCountryName = country.country_name
+        self.viewModel.strCountryDialCode = country.dialCode
+        self.lblDialCountryCode.text = country.dialCode
+        self.viewModel.strCountryCode = country.countryCode
+        self.viewModel.strCountryName = country.countryName
         self.txtNumber.becomeFirstResponder()
     }
 }

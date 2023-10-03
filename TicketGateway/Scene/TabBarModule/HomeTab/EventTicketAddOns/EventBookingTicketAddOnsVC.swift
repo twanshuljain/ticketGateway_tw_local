@@ -170,12 +170,12 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         cell.btnInfo.addTarget(self, action: #selector(btnInfoAction(sender:)), for: .touchUpInside)
         cell.vwStepper.btnPlus.tag = indexPath.row
         cell.vwStepper.btnMinus.tag = indexPath.row
-        cell.vwStepper.btnPlus.addTarget(self, action: #selector(PlusButtonPressed), for: .touchUpInside)
-        cell.vwStepper.btnMinus.addTarget(self, action: #selector(MinustButtonPressed), for: .touchUpInside)
+        cell.vwStepper.btnPlus.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        cell.vwStepper.btnMinus.addTarget(self, action: #selector(minustButtonPressed), for: .touchUpInside)
         return cell
     }
     
-    @objc func PlusButtonPressed(_ sender: UIButton) {
+    @objc func plusButtonPressed(_ sender: UIButton) {
 //       print(sender.tag)
 //        let data = viewModel.arrAddOnTicketList?[sender.tag]
 //        let indexPath = IndexPath(row: sender.tag, section: 0)
@@ -230,7 +230,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         
     }
     
-    @objc func MinustButtonPressed(_ sender: UIButton) {
+    @objc func minustButtonPressed(_ sender: UIButton) {
         /*
          
         let data = viewModel.arrAddOnTicketList?[sender.tag]

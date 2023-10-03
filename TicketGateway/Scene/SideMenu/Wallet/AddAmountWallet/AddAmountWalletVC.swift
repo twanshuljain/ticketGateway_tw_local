@@ -37,7 +37,7 @@ class AddAmountWalletVC: UIViewController {
     @IBOutlet weak var lblCVCCVV: UILabel!
     @IBOutlet weak var txtCardNumber: UITextField!
     @IBOutlet weak var txtCardName: UITextField!
-    @IBOutlet weak var txtEnterAmt: setCustomTextField!
+    @IBOutlet weak var txtEnterAmt: SetCustomTextField!
     @IBOutlet weak var txtCountryCUrrency: DropDown!
     @IBOutlet weak var txtCVV: UITextField!
     @IBOutlet weak var txtExpiryDate: UITextField!

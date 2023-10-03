@@ -17,7 +17,7 @@ extension UIImageView {
     addSubview(blurEffectView)
   }
 }
-class customCorRaduisTopImg: UIImageView {
+class CustomCorRaduisTopImg: UIImageView {
 
         func setup() {
             clipsToBounds = true

@@ -56,7 +56,7 @@ class EventSearchLocationVC: UIViewController {
         self.countries = self.jsonSerial()
         for country in countries {
             let name = country["name"] ?? ""
-            let countryinfo = CountryInfo(country_code: "", dial_code: "", country_name: name)
+            let countryinfo = CountryInfo(countryCode: "", dialCode: "", countryName: name)
             countriesModel.append(countryinfo)
         }
         searchCountriesModel = countriesModel
@@ -69,7 +69,7 @@ class EventSearchLocationVC: UIViewController {
         } else {
             let lowercasedQuery = sender.text?.lowercased() ?? ""
             self.searchCountriesModel = countriesModel.filter { item in
-                return item.country_name.lowercased().contains(lowercasedQuery)
+                return item.countryName.lowercased().contains(lowercasedQuery)
             }
         }
         
@@ -148,7 +148,7 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
-        let countryName = searchCountriesModel[indexPath.row].country_name//locationData[indexPath.row]
+        let countryName = searchCountriesModel[indexPath.row].countryName//locationData[indexPath.row]
         cell.lblTittle.text = countryName
         cell.btnCheck.isUserInteractionEnabled = false
         cell.btnCheck.tag = indexPath.row
@@ -166,7 +166,7 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
        // let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
         
         self.selecetdCountriesModel = searchCountriesModel[indexPath.row]
-        self.selectedCountry = self.selecetdCountriesModel?.country_name
+        self.selectedCountry = self.selecetdCountriesModel?.countryName
         self.tblList.reloadData()
     }
     
@@ -184,8 +184,14 @@ extension EventSearchLocationVC: UITextFieldDelegate {
 //MARK: - CustomSearchMethodsDelegate
 extension EventSearchLocationVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-        //countriesModel[sender.tag].country_name
-        self.delegate?.toSendLocation(location: selecetdCountriesModel ?? CountryInfo(country_code: "", dial_code: "", country_name: self.getCountry()), selectedCountry: selecetdCountriesModel?.country_name ?? self.getCountry())
+        //countriesModel[sender.tag].countryName
+        self.delegate?.toSendLocation(
+            location: selecetdCountriesModel ?? CountryInfo(
+                countryCode: "", dialCode: "",
+                countryName: self.getCountry()
+            ),
+            selectedCountry: selecetdCountriesModel?.countryName ?? self.getCountry()
+        )
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -72,7 +72,7 @@ extension ManageEventSettingVC {
         //      if obj.title == "All Events" {
         //        objSceneDelegate.showTabBar()
         //      } else if obj.title == "Organizers" {
-        //        let view = self.createView(storyboard: .sidemenu, storyboardID: .Organizers_Artists_ListVC) as! Organizers_Artists_ListVC
+        //        let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as! OrganizersArtistsListVC
         //        view.isFrom = "Organizers"
         //        self.navigationController?.pushViewController(view, animated: true)
         //      }

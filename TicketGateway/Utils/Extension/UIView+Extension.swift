@@ -507,7 +507,7 @@ extension UIView {
     }
 }
 
-class customSocialLoginView: UIView {
+class CustomSocialLoginView: UIView {
 
         func setup() {
             layer.shadowColor = UIColor.lightGray.cgColor
@@ -530,7 +530,7 @@ class customSocialLoginView: UIView {
         setup()
     }
 }
-class customTopCornerRadiusView: UIView {
+class CustomTopCornerRadiusView: UIView {
 
         func setup() {
             clipsToBounds = true
@@ -547,7 +547,7 @@ class customTopCornerRadiusView: UIView {
         setup()
     }
 }
-class setBorderView: UIView {
+class SetBorderView: UIView {
 
         func setup() {
             layer.shadowColor = UIColor.lightGray.cgColor

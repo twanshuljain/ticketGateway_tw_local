@@ -17,7 +17,7 @@ class SegmentCostumeVC: ViewController {
     @IBOutlet weak var lblYear: UILabel!
     @IBOutlet weak var segmentcontrol: UISegmentedControl!
     @IBOutlet weak var tblCostume: UITableView!
-    @IBOutlet weak var vwPopUp: customSocialLoginView!
+    @IBOutlet weak var vwPopUp: CustomSocialLoginView!
     @IBOutlet weak var btnMonth: UIButton!
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var btnYear: UIButton!

@@ -1,5 +1,5 @@
 //
-//  Organizers_Artists_ListCell.swift
+//  OrganizersArtistsListCell.swift
 //  TicketGateway
 //
 //  Created by Apple  on 04/05/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class Organizers_Artists_ListCell: UITableViewCell {
+class OrganizersArtistsListCell: UITableViewCell {
     
 //MARK: - Outlets
     @IBOutlet weak var imgProfile: UIImageView!

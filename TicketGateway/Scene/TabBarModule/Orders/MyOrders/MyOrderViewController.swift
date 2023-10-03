@@ -26,7 +26,7 @@ class MyOrderViewController: UIViewController {
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var btnFilter: CustomButtonNormal!
     @IBOutlet weak var vwBgSearchView: UIView!
-    @IBOutlet weak var vwPopUp: customSocialLoginView!
+    @IBOutlet weak var vwPopUp: CustomSocialLoginView!
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var btnMonth: UIButton!
     @IBOutlet weak var lblPopYear: UILabel!

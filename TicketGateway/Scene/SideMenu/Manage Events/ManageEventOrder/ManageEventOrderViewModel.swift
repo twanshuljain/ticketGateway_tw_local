@@ -13,5 +13,14 @@ final class ManageEventOrderViewModel{
     // MARK: - Variables
     var isRefundRequest = false
     let orderTableData = ["David Taylor", "David Taylor", "David Taylor"]
-    var arrData = [ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false)]
+    var arrData = [
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false)
+    ]
 }

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rf4-GT-KsL">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -31,7 +29,7 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,13 +48,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RO5-wq-uJh">
-                                <rect key="frame" x="0.0" y="119" width="393" height="1298"/>
+                                <rect key="frame" x="0.0" y="60" width="393" height="1391"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXr-iE-u2K">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1298"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1391"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ruc-bM-eRn">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1298"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1391"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BJV-gE-vDO" customClass="ManageMyEventCateoryList" customModule="TicketGateway" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="20" width="360.66666666666669" height="50"/>
@@ -88,7 +86,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </collectionView>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-DK-AK6" customClass="ManageMyEventListTableView" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="157" width="353" height="1121"/>
+                                                        <rect key="frame" x="20" y="157" width="353" height="1214"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </tableView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="F2Q-nW-N8a">
@@ -225,7 +223,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFK-UL-Uez" customClass="CustomSearchBar" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="rnL-2w-Vf3"/>
@@ -248,10 +246,10 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
-                        <outlet property="TblManageEvent" destination="wPO-DK-AK6" id="BCv-08-9ec"/>
                         <outlet property="btnAllorganiser" destination="SeG-uU-nnM" id="N85-r9-XAN"/>
                         <outlet property="btnCreateEvent" destination="i2U-xc-Hkh" id="Zaz-Fv-rr9"/>
                         <outlet property="collVwCategory" destination="BJV-gE-vDO" id="Zrb-h9-dhu"/>
+                        <outlet property="tblManageEvent" destination="wPO-DK-AK6" id="BCv-08-9ec"/>
                         <outlet property="txtAllorganiser" destination="1sq-Wa-ZZU" id="g0m-Tc-djC"/>
                         <outlet property="vwSearchBar" destination="EFK-UL-Uez" id="DKr-bO-d4t"/>
                     </connections>
@@ -265,6 +263,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TabBarNavMange" navigationBarHidden="YES" id="rf4-GT-KsL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t0i-Mb-p6S">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -278,7 +277,7 @@
         <!--Tab Bar ManageVC-->
         <scene sceneID="oVx-Nc-KaD">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarManage_VC" id="ckC-WD-QMh" customClass="TabBarManage_VC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarManageVC" id="ckC-WD-QMh" customClass="TabBarManageVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="lpS-5r-pRw"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4aV-TD-pE8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -309,13 +308,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQb-Me-59Q">
-                                <rect key="frame" x="0.0" y="119" width="393" height="1298"/>
+                                <rect key="frame" x="0.0" y="60" width="393" height="1391"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lif-wu-TUe">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1298"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1391"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGm-h3-qwE">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1298"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1391"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwT-le-pXM">
                                                         <rect key="frame" x="16" y="16" width="361" height="93.666666666666671"/>
@@ -376,7 +375,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$100K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqX-wy-F1r">
-                                                                        <rect key="frame" x="0.0" y="23.333333333333343" width="124.66666666666667" height="20.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="23.333333333333329" width="124.66666666666667" height="20.333333333333329"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.329999999999998" id="mwb-fY-W71"/>
                                                                         </constraints>
@@ -410,7 +409,7 @@
                                                         <rect key="frame" x="15" y="124.66666666666666" width="363" height="93.666666666666657"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnK-O4-aBG">
-                                                                <rect key="frame" x="286" y="25.000000000000028" width="57" height="26"/>
+                                                                <rect key="frame" x="286" y="25" width="57" height="26"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f29-vA-Hpg">
                                                                         <rect key="frame" x="9.9999999999999982" y="0.0" width="24.333333333333329" height="26"/>
@@ -443,19 +442,19 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 207" translatesAutoresizingMaskIntoConstraints="NO" id="xoD-AM-8rL">
-                                                                <rect key="frame" x="296" y="60.666666666666657" width="67" height="33"/>
+                                                                <rect key="frame" x="296" y="60.666666666666686" width="67" height="33"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotalAddChecked" translatesAutoresizingMaskIntoConstraints="NO" id="Lx4-93-x3W">
-                                                                <rect key="frame" x="16" y="23.000000000000028" width="48" height="48"/>
+                                                                <rect key="frame" x="16" y="23" width="48" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="48" id="grA-w4-bg3"/>
                                                                     <constraint firstAttribute="height" constant="48" id="yoV-x9-XbO"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="bKs-cB-god">
-                                                                <rect key="frame" x="80.000000000000014" y="25.000000000000025" width="191.33333333333337" height="43.666666666666657"/>
+                                                                <rect key="frame" x="80.000000000000014" y="24.999999999999996" width="191.33333333333337" height="43.666666666666657"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Admission Checked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAy-0M-FU6">
                                                                         <rect key="frame" x="0.0" y="0.0" width="191.33333333333334" height="20.333333333333332"/>
@@ -467,7 +466,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$100K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMr-uN-55V">
-                                                                        <rect key="frame" x="0.0" y="23.333333333333314" width="191.33333333333334" height="20.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="23.333333333333343" width="191.33333333333334" height="20.333333333333329"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.329999999999998" id="CN2-o5-RP8"/>
                                                                         </constraints>
@@ -856,7 +855,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQg-dY-aTw" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="BfA-ba-HyF"/>
@@ -985,17 +984,17 @@
             <objects>
                 <viewController storyboardIdentifier="ManageEventTicketSoldVC" hidesBottomBarWhenPushed="YES" id="gLP-5Q-5oF" customClass="ManageEventTicketSoldVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gLl-iu-D8h">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-BU-qMD">
-                                <rect key="frame" x="15" y="119" width="363" height="132"/>
+                                <rect key="frame" x="15" y="60" width="570" height="132"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c5-7V-27B">
-                                        <rect key="frame" x="0.0" y="0.0" width="363" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="570" height="60"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwd-c0-Au0" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="243" y="0.0" width="120" height="60"/>
+                                                <rect key="frame" x="450" y="0.0" width="120" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="iFZ-Lc-eaA"/>
                                                 </constraints>
@@ -1020,7 +1019,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHg-4l-to2">
-                                                <rect key="frame" x="0.0" y="0.0" width="363" height="1"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="570" height="1"/>
                                                 <color key="backgroundColor" name="BorderLineColour"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="q4h-kU-Q0Q"/>
@@ -1041,7 +1040,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Tickets Sold:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1f-Ps-je8">
-                                        <rect key="frame" x="0.0" y="67.666666666666657" width="139" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="67.666666666666671" width="139" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1064,7 +1063,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezA-tK-oHj">
-                                        <rect key="frame" x="313" y="67.666666666666657" width="50" height="50"/>
+                                        <rect key="frame" x="520" y="67.666666666666671" width="50" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotalTicket_ip" translatesAutoresizingMaskIntoConstraints="NO" id="HMc-vN-GAs">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -1081,7 +1080,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpZ-xp-28k">
-                                        <rect key="frame" x="0.0" y="131" width="363" height="1"/>
+                                        <rect key="frame" x="0.0" y="131" width="570" height="1"/>
                                         <color key="backgroundColor" name="BorderLineColour"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="HtV-kI-YgO"/>
@@ -1111,14 +1110,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zce-Rb-UXm" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="2Y1-uE-f9w"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r38-y6-ays" customClass="TicketOverAllEstimateBarTableViewList" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="15" y="251" width="363" height="601"/>
+                                <rect key="frame" x="15" y="192" width="570" height="408"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -1154,40 +1153,40 @@
             <objects>
                 <viewController storyboardIdentifier="ManageSellTicketVC" id="RXb-T4-0N8" customClass="ManageSellTicketVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nmk-pG-Mlx">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qI-OJ-dDf" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="L2p-zg-mUn"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-SI-Fim">
-                                <rect key="frame" x="15" y="134" width="363" height="110"/>
+                                <rect key="frame" x="15" y="75" width="570" height="100.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-KU-Zlw">
-                                        <rect key="frame" x="150" y="20" width="63" height="31"/>
+                                        <rect key="frame" x="257.33333333333331" y="20" width="55.333333333333314" height="25.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="22"/>
                                         <color key="textColor" systemColor="systemTealColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FD5-UB-eyw">
-                                        <rect key="frame" x="127" y="15" width="18" height="18"/>
+                                        <rect key="frame" x="234.33333333333334" y="15" width="18" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="cwR-KU-qVe"/>
                                             <constraint firstAttribute="width" constant="18" id="lkO-7t-U6V"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxes &amp; fees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOt-pC-m6u">
-                                        <rect key="frame" x="10" y="66" width="343" height="24"/>
+                                        <rect key="frame" x="10" y="60.666666666666657" width="550" height="20"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                         <color key="textColor" name="TGBlue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNs-uj-AYd">
-                                        <rect key="frame" x="283" y="0.0" width="80" height="50"/>
+                                        <rect key="frame" x="490" y="0.0" width="80" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="GKT-if-cJw"/>
                                             <constraint firstAttribute="width" constant="80" id="bD1-0F-EMV"/>
@@ -1222,17 +1221,17 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4pU-ZV-8Xo" customClass="ManageEventSellTicketTableViewList" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="15" y="259" width="363" height="450"/>
+                                <rect key="frame" x="15" y="190.66666666666666" width="570" height="300.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9UD-gZ-ewV">
-                                <rect key="frame" x="15" y="709" width="363" height="50"/>
+                                <rect key="frame" x="15" y="491" width="570" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70P-Xa-sXX">
-                                        <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="570" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWE-8T-g6V" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="570" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="jia-E1-9VL"/>
@@ -1251,13 +1250,13 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v9-YH-ht3">
-                                        <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="570" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Eac-dY-tt0">
-                                                <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="570" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEw-GE-zuG" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="174" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="277.66666666666669" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="14H-dp-mCI"/>
                                                         </constraints>
@@ -1270,7 +1269,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pba-JC-vab" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="189" y="0.0" width="174" height="50"/>
+                                                        <rect key="frame" x="292.66666666666674" y="0.0" width="277.33333333333326" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="wxF-Bn-qQn"/>
                                                         </constraints>
@@ -1299,17 +1298,17 @@
                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hb9-Du-KsK">
                                 <rect key="frame" x="0.0" y="852" width="393" height="11"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vx-wU-S6c" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="467" width="343" height="205"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vx-wU-S6c" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                        <rect key="frame" x="25" y="215" width="550" height="205"/>
                                         <subviews>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="H1G-MW-xlz">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="205"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="550" height="205"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDT-TW-wA2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqE-x2-lER" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -1324,10 +1323,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMZ-YN-WNf">
-                                                        <rect key="frame" x="0.0" y="51.666666666666629" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="51.666666666666686" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ND4-8C-rai" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -1342,10 +1341,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lP5-yq-U9D">
-                                                        <rect key="frame" x="0.0" y="103.33333333333337" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="103.33333333333331" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwf-te-lqQ" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -1360,10 +1359,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dC5-P7-bd3">
-                                                        <rect key="frame" x="0.0" y="155" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="155" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srM-pI-teo" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -1394,17 +1393,17 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqe-Nm-V1F" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="682" width="343" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqe-Nm-V1F" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                        <rect key="frame" x="25" y="430" width="550" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="7kZ-vX-yEp">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ScF-6U-P1D">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMA-SO-2Tw" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -1500,34 +1499,34 @@
             <objects>
                 <viewController storyboardIdentifier="ManageSellAddBuyerVC" hidesBottomBarWhenPushed="YES" id="hbD-V4-PkZ" customClass="ManageSellAddBuyerVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YNB-X7-fkF">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZP-pR-5jX" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="k58-gQ-BTV"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEw-TN-1PT">
-                                <rect key="frame" x="0.0" y="119" width="393" height="699"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LIk-95-w10">
-                                        <rect key="frame" x="20" y="20" width="353" height="361"/>
+                                        <rect key="frame" x="20" y="20" width="560" height="347.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CMQ-CQ-3Zk">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="79"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="75.666666666666671"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cM-qS-w8W">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="17.666666666666668"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                         <color key="textColor" name="Headinglbl"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WCJ-dH-DBm" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="29" width="353" height="50"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WCJ-dH-DBm" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="25.666666666666671" width="560" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="1kW-iL-qAC"/>
                                                         </constraints>
@@ -1538,20 +1537,20 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="laH-XF-5rB">
-                                                <rect key="frame" x="0.0" y="94" width="353" height="79"/>
+                                                <rect key="frame" x="0.0" y="90.666666666666657" width="560" height="75.666666666666657"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4h-R0-yu9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="17.666666666666668"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                         <color key="textColor" name="Headinglbl"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRc-mu-AQe">
-                                                        <rect key="frame" x="0.0" y="29" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="25.666666666666686" width="560" height="50"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FvA-2j-3gB" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FvA-2j-3gB" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="CaS-bm-a89"/>
                                                                 </constraints>
@@ -1560,7 +1559,7 @@
                                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHc-nZ-ifc">
-                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="510" y="0.0" width="50" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="P3z-UU-2In"/>
                                                                     <constraint firstAttribute="height" constant="50" id="vF3-YZ-rrI"/>
@@ -1582,17 +1581,17 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cZe-wA-aM7">
-                                                <rect key="frame" x="0.0" y="188" width="353" height="79"/>
+                                                <rect key="frame" x="0.0" y="181.33333333333331" width="560" height="75.666666666666686"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-UU-05e">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="17.666666666666668"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                         <color key="textColor" name="Headinglbl"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sMl-v1-bLa" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="29" width="353" height="50"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sMl-v1-bLa" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="25.666666666666686" width="560" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="2ux-cN-Cg9"/>
                                                         </constraints>
@@ -1603,20 +1602,20 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OdP-Wb-5JP">
-                                                <rect key="frame" x="0.0" y="282" width="353" height="79"/>
+                                                <rect key="frame" x="0.0" y="272" width="560" height="75.666666666666686"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Number" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQ2-Pm-dFj">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="17.666666666666668"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                         <color key="textColor" name="Headinglbl"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdv-l0-9NE">
-                                                        <rect key="frame" x="0.0" y="29" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="25.666666666666686" width="560" height="50"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dw8-Ah-EiI">
-                                                                <rect key="frame" x="5" y="5" width="95.666666666666671" height="40"/>
+                                                                <rect key="frame" x="5" y="5" width="92.333333333333329" height="40"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leaveOrange" translatesAutoresizingMaskIntoConstraints="NO" id="BOr-Gi-wkh">
                                                                         <rect key="frame" x="8" y="8" width="22" height="24"/>
@@ -1625,7 +1624,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9j4-oJ-IqA">
-                                                                        <rect key="frame" x="40" y="10.999999999999998" width="25.666666666666671" height="18.333333333333329"/>
+                                                                        <rect key="frame" x="40" y="12.333333333333314" width="22.333333333333329" height="15.333333333333336"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="KHw-9h-0I2"/>
                                                                         </constraints>
@@ -1634,7 +1633,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-ij-GZD">
-                                                                        <rect key="frame" x="70.666666666666671" y="13.666666666666686" width="13" height="13"/>
+                                                                        <rect key="frame" x="67.333333333333329" y="13.666666666666629" width="13" height="13"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="hlw-6E-d7Z">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
@@ -1646,10 +1645,10 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnC-Dp-Tbp">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="95.666666666666671" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="40"/>
                                                                     </button>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8a-fx-Jy3" userLabel="ViewDor">
-                                                                        <rect key="frame" x="94.666666666666671" y="7.6666666666666856" width="1" height="25"/>
+                                                                        <rect key="frame" x="91.333333333333329" y="7.6666666666666288" width="1" height="25"/>
                                                                         <color key="backgroundColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="1" id="vcP-tI-t8f"/>
@@ -1688,8 +1687,8 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2jm-ab-nem" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="112.66666666666664" y="5" width="220.33333333333337" height="40"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2jm-ab-nem" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                <rect key="frame" x="109.33333333333334" y="5" width="430.66666666666663" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="NEA-pF-mXH"/>
                                                                 </constraints>
@@ -1733,10 +1732,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vrm-du-TFr">
-                                        <rect key="frame" x="15" y="639" width="363" height="50"/>
+                                        <rect key="frame" x="15" y="480" width="570" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPy-LL-c1F" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="kpc-0Y-SxG"/>
                                                 </constraints>
@@ -1756,7 +1755,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJx-cc-esL" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="186.66666666666663" y="0.0" width="176.33333333333337" height="50"/>
+                                                <rect key="frame" x="290" y="0.0" width="280" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="bnC-GB-iBN"/>
                                                 </constraints>
@@ -1767,7 +1766,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQB-0a-fyv">
-                                        <rect key="frame" x="0.0" y="623" width="393" height="1"/>
+                                        <rect key="frame" x="0.0" y="464" width="600" height="1"/>
                                         <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="fbr-lB-71p"/>
@@ -1830,18 +1829,18 @@
             <objects>
                 <viewController storyboardIdentifier="ManageSellBuyersInfoListVC" id="Swq-91-GMd" customClass="ManageSellBuyersInfoListVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Eh-jU-RKP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ut-Ah-idr" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="HtX-Yo-gAV"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmI-TN-Rc5" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="15" y="758" width="363" height="50"/>
+                                <rect key="frame" x="15" y="540" width="570" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="des-jW-rJw"/>
@@ -1850,7 +1849,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XuT-OJ-oXK" customClass="BuyersInfoTableViewList" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="15" y="134" width="363" height="609"/>
+                                <rect key="frame" x="15" y="75" width="570" height="450"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -1884,18 +1883,18 @@
             <objects>
                 <viewController storyboardIdentifier="PromoCodeVC" id="CHU-PX-chy" customClass="PromoCodeVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpG-6K-Aym">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSo-Nz-ck6" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="AL5-8W-EEJ"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGV-j8-YXr" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="15" y="758" width="363" height="50"/>
+                                <rect key="frame" x="15" y="540" width="570" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="rNn-Be-8sb"/>
@@ -1904,18 +1903,18 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MMz-EB-i50">
-                                <rect key="frame" x="15" y="204" width="363" height="539"/>
+                                <rect key="frame" x="15" y="145" width="570" height="380"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PromoCodeCell" rowHeight="124" id="hwA-nj-qot" customClass="PromoCodeCell" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="363" height="124"/>
+                                        <rect key="frame" x="0.0" y="50" width="570" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwA-nj-qot" id="Bbh-Or-U2l">
-                                            <rect key="frame" x="0.0" y="0.0" width="363" height="124"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="570" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wt-26-w0q" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                                    <rect key="frame" x="3" y="3" width="357" height="118"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wt-26-w0q" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                                    <rect key="frame" x="3" y="3" width="564" height="118"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX5-Re-WPf">
                                                             <rect key="frame" x="15" y="44" width="30" height="30"/>
@@ -1927,7 +1926,7 @@
                                                             <state key="normal" image="activeTerm"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ga4-CS-JuT">
-                                                            <rect key="frame" x="50" y="47.666666666666664" width="61" height="22.666666666666664"/>
+                                                            <rect key="frame" x="50" y="49.666666666666664" width="61" height="18.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1958,7 +1957,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXx-zY-PCM" customClass="CustomSearchBar" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="119" width="393" height="70"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="70"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="qfu-2r-3kx"/>
@@ -1999,27 +1998,27 @@
             <objects>
                 <viewController storyboardIdentifier="ManageSellTicketSuccessfully" id="TZP-LX-4c8" customClass="ManageSellTicketSuccessfully" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gDW-te-bEh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJW-Yu-LQH" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Wdn-fO-pYL"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BgX-Ih-Whd">
-                                <rect key="frame" x="20" y="144" width="353" height="250"/>
+                                <rect key="frame" x="20" y="85" width="560" height="250"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Done_ip" translatesAutoresizingMaskIntoConstraints="NO" id="geO-Iz-XfO">
-                                        <rect key="frame" x="158.33333333333334" y="19.999999999999996" width="36.666666666666657" height="36.666666666666657"/>
+                                        <rect key="frame" x="261.66666666666669" y="19.999999999999996" width="36.666666666666686" height="36.666666666666657"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36.670000000000002" id="CpG-TN-5yP"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-zn-DUl">
-                                        <rect key="frame" x="10" y="76.666666666666657" width="333" height="20.333333333333329"/>
+                                        <rect key="frame" x="10" y="76.666666666666657" width="540" height="20.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.329999999999998" id="mPz-NI-bgI"/>
                                         </constraints>
@@ -2028,7 +2027,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="XJY-Ka-qRS">
-                                        <rect key="frame" x="118.33333333333334" y="117" width="116.33333333333334" height="20.333333333333343"/>
+                                        <rect key="frame" x="222.00000000000003" y="117" width="116.33333333333334" height="20.333333333333343"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OX1-YO-Tuo">
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.333333333333332"/>
@@ -2045,10 +2044,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="l9q-VJ-A7k">
-                                        <rect key="frame" x="16" y="152.33333333333331" width="321" height="20.333333333333343"/>
+                                        <rect key="frame" x="16" y="152.33333333333334" width="528" height="20.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tickets: 2 x General Admission" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvH-ut-pPy">
-                                                <rect key="frame" x="0.0" y="0.0" width="321" height="20.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="528" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2056,7 +2055,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOy-ph-PMM" customClass="CustomButtonNormalWithBorder" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="100" y="192.66666666666669" width="153" height="50"/>
+                                        <rect key="frame" x="100" y="192.66666666666669" width="360" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Ilc-Ev-C2v"/>
                                         </constraints>
@@ -2100,17 +2099,17 @@
                                     <constraint firstItem="rOy-ph-PMM" firstAttribute="top" secondItem="l9q-VJ-A7k" secondAttribute="bottom" constant="20" id="z2B-8b-mBE"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRE-gZ-KLK" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="20" y="578" width="353" height="230"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRE-gZ-KLK" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                <rect key="frame" x="20" y="360" width="560" height="230"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Ju-MD-pgR">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="230"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="230"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tI-J2-x9m">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxn-CY-967" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2147,10 +2146,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAs-Ac-ydW">
-                                                <rect key="frame" x="0.0" y="60" width="353" height="50"/>
+                                                <rect key="frame" x="0.0" y="60" width="560" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ad-ew-uNK" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2187,10 +2186,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DV2-1v-RaZ">
-                                                <rect key="frame" x="0.0" y="120" width="353" height="50"/>
+                                                <rect key="frame" x="0.0" y="120" width="560" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rml-hw-z7g" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2216,10 +2215,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ka-Gw-mWw">
-                                                <rect key="frame" x="0.0" y="180" width="353" height="50"/>
+                                                <rect key="frame" x="0.0" y="180" width="560" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZu-O7-avh" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal">
@@ -2293,29 +2292,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sh0-fu-J1I">
-                                <rect key="frame" x="0.0" y="119" width="408" height="595"/>
+                                <rect key="frame" x="0.0" y="60" width="408" height="688"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUb-GP-UQI">
-                                        <rect key="frame" x="0.0" y="0.0" width="408" height="595"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="408" height="688"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OId-V7-JoU">
-                                                <rect key="frame" x="0.0" y="0.0" width="408" height="595"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="408" height="688"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2s-a9-f7M">
-                                                        <rect key="frame" x="5" y="96" width="398" height="296"/>
+                                                        <rect key="frame" x="5" y="90.666666666666657" width="398" height="286"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EOx-GZ-6Ne">
-                                                                <rect key="frame" x="10" y="15" width="378" height="79"/>
+                                                                <rect key="frame" x="10" y="15" width="378" height="75.666666666666671"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Number" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mej-2g-TSS">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="21"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="17.666666666666668"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                                         <color key="textColor" name="Headinglbl"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKB-3H-cnl" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="29" width="378" height="50"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKB-3H-cnl" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="25.666666666666686" width="378" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="pUg-42-PKA"/>
                                                                         </constraints>
@@ -2326,17 +2325,17 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FBE-Mu-DhR">
-                                                                <rect key="frame" x="10" y="109" width="378" height="71"/>
+                                                                <rect key="frame" x="10" y="105.66666666666666" width="378" height="67.666666666666657"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qub-4i-Ore">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="21"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="17.666666666666668"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                                         <color key="textColor" name="Headinglbl"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQU-jk-ezQ" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="21" width="378" height="50"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQU-jk-ezQ" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="17.666666666666686" width="378" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="ybl-hi-FIx"/>
                                                                         </constraints>
@@ -2347,22 +2346,22 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ipf-se-6tD">
-                                                                <rect key="frame" x="10" y="195" width="378" height="81"/>
+                                                                <rect key="frame" x="10" y="188.33333333333334" width="378" height="77.666666666666657"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Voa-Ru-jTo">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="81"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="77.666666666666671"/>
                                                                         <subviews>
                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fub-Q6-bO0">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="21"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="17.666666666666668"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                                                 <color key="textColor" name="Headinglbl"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jd0-bm-k52">
-                                                                                <rect key="frame" x="0.0" y="31" width="184" height="50"/>
+                                                                                <rect key="frame" x="0.0" y="27.666666666666686" width="184" height="50"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter expiry date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="68T-T9-Cds" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter expiry date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="68T-T9-Cds" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="50" id="O7a-uS-Xmh"/>
@@ -2395,17 +2394,17 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tm5-eg-gWj">
-                                                                        <rect key="frame" x="194" y="0.0" width="184" height="81"/>
+                                                                        <rect key="frame" x="194" y="0.0" width="184" height="77.666666666666671"/>
                                                                         <subviews>
                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CVC/CVV" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTj-65-wrM">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="21"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="17.666666666666668"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                                                 <color key="textColor" name="Headinglbl"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter cvc/cvv" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zON-aG-Nj3" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="31" width="184" height="50"/>
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter cvc/cvv" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zON-aG-Nj3" customClass="SetCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="27.666666666666686" width="184" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="50" id="bvx-dZ-jmI"/>
                                                                                 </constraints>
@@ -2438,7 +2437,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHU-z5-kxS" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="530" width="378" height="50"/>
+                                                        <rect key="frame" x="15" y="623" width="378" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Wdx-xs-eBC"/>
@@ -2447,16 +2446,16 @@
                                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0k-Yy-nFq">
-                                                        <rect key="frame" x="15" y="15" width="378" height="66"/>
+                                                        <rect key="frame" x="15" y="14.999999999999996" width="378" height="60.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jy-bz-RqP">
-                                                                <rect key="frame" x="157.66666666666666" y="20" width="63" height="31"/>
+                                                                <rect key="frame" x="161.33333333333334" y="20" width="55.333333333333343" height="25.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="22"/>
                                                                 <color key="textColor" systemColor="systemTealColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oHs-b3-fAd">
-                                                                <rect key="frame" x="134.66666666666666" y="15" width="18" height="18"/>
+                                                                <rect key="frame" x="138.33333333333334" y="15" width="18" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="18" id="P1u-TC-ahn"/>
                                                                     <constraint firstAttribute="height" constant="18" id="pza-Ip-Tm6"/>
@@ -2524,7 +2523,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MrD-pa-XTb" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="408" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="408" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FA5-xS-seu"/>
@@ -2549,7 +2548,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYP-RJ-pWH">
-                                                <rect key="frame" x="153" y="14" width="102.33333333333331" height="22"/>
+                                                <rect key="frame" x="157.66666666666666" y="14" width="92.666666666666657" height="22"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <nil key="highlightedColor"/>
@@ -2570,7 +2569,7 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x30-F3-mz2">
-                                                <rect key="frame" x="10" y="12.666666666666686" width="25" height="25"/>
+                                                <rect key="frame" x="10" y="12.666666666666629" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="5tx-kC-CmH"/>
                                                     <constraint firstAttribute="width" constant="25" id="T8m-Kp-rRX"/>
@@ -2692,28 +2691,28 @@
             <objects>
                 <viewController storyboardIdentifier="ManageSellTicketComplimentary" id="6lf-Qo-35D" customClass="ManageSellTicketComplimentary" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pJA-3n-S9S">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QyH-N0-2VA" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="aay-ob-xeS"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7Cc-ra-mCk" customClass="ManageEventSellTicketTableViewList" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="15" y="129" width="363" height="629"/>
+                                <rect key="frame" x="15" y="70" width="570" height="470"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C3x-ay-aD1">
-                                <rect key="frame" x="15" y="758" width="363" height="50"/>
+                                <rect key="frame" x="15" y="540" width="570" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3Y-zs-GNv">
-                                        <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="570" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyv-Fw-gEW" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="570" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="0zk-CV-2GA"/>
@@ -2736,17 +2735,17 @@
                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYI-gk-oXc">
                                 <rect key="frame" x="0.0" y="852" width="393" height="11"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTb-3k-SYN" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="467" width="343" height="205"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTb-3k-SYN" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                        <rect key="frame" x="25" y="215" width="550" height="205"/>
                                         <subviews>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="fN6-37-UKr">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="205"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="550" height="205"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ojw-Zh-dyo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGM-XD-oxp" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -2761,10 +2760,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Otn-1x-Ofk">
-                                                        <rect key="frame" x="0.0" y="51.666666666666629" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="51.666666666666686" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5P-6g-d4G" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -2779,10 +2778,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyY-qv-nFD">
-                                                        <rect key="frame" x="0.0" y="103.33333333333337" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="103.33333333333331" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZW-n1-Zr2" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -2797,10 +2796,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0K-uI-Yw8">
-                                                        <rect key="frame" x="0.0" y="155" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="155" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-eG-RrF" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -2831,17 +2830,17 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7NY-NA-Sbg" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="682" width="343" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7NY-NA-Sbg" customClass="CustomSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                        <rect key="frame" x="25" y="430" width="550" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hQA-RR-YAY">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nwp-sh-eC0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-E8-dsr" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="550" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             </button>
@@ -2945,21 +2944,21 @@
             <objects>
                 <viewController storyboardIdentifier="ManageEventCheckInVC" id="eM1-4J-9VN" customClass="ManageEventCheckInVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tpe-d5-sig">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pg8-7F-f4n" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="H25-xP-NK9"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EnL-eP-zTy">
-                                <rect key="frame" x="0.0" y="119" width="393" height="80"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="80"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4d-pF-JYd">
-                                        <rect key="frame" x="16" y="16" width="361" height="48"/>
+                                        <rect key="frame" x="16" y="16" width="568" height="48"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_ip" translatesAutoresizingMaskIntoConstraints="NO" id="Bc2-8z-sk0">
                                                 <rect key="frame" x="8" y="15" width="18" height="18"/>
@@ -2969,7 +2968,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="search for attendees" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xzo-jq-cTd">
-                                                <rect key="frame" x="34" y="0.0" width="327" height="48"/>
+                                                <rect key="frame" x="34" y="0.0" width="534" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -3007,17 +3006,17 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vd9-Sf-Es1">
-                                <rect key="frame" x="0.0" y="199" width="393" height="1"/>
+                                <rect key="frame" x="0.0" y="140" width="600" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="2jv-3C-vhc"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5CA-en-Qdn">
-                                <rect key="frame" x="16" y="706" width="361" height="48"/>
+                                <rect key="frame" x="16" y="488" width="568" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTJ-0w-6hJ" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="276" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="klY-X5-nap"/>
                                         </constraints>
@@ -3027,7 +3026,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWQ-5z-1oV" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="48"/>
+                                        <rect key="frame" x="292" y="0.0" width="276" height="48"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Stats">
                                             <color key="titleColor" name="btnDarkBlue"/>
@@ -3036,27 +3035,27 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wfk-8E-bBK">
-                                <rect key="frame" x="0.0" y="208" width="393" height="478"/>
+                                <rect key="frame" x="0.0" y="149" width="600" height="319"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContactTableViewCell" rowHeight="85" id="Ifw-AW-8Pm" customClass="ContactTableViewCell" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="85"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ifw-AW-8Pm" id="lkb-uf-d6c">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IA0-0c-NN3">
-                                                    <rect key="frame" x="16" y="16" width="361" height="53"/>
+                                                    <rect key="frame" x="16" y="16" width="568" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="David Taylor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVi-yr-t8R">
-                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="568" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Admission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBZ-B9-mXb">
-                                                            <rect key="frame" x="0.0" y="32.666666666666664" width="361" height="20.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="32.666666666666664" width="568" height="20.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -3064,14 +3063,14 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oqv-Eu-4J6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="1"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
                                                     <color key="backgroundColor" name="BorderLineColour"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="oah-vA-nhG"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OY3-iB-02n">
-                                                    <rect key="frame" x="0.0" y="84" width="393" height="1"/>
+                                                    <rect key="frame" x="0.0" y="84" width="600" height="1"/>
                                                     <color key="backgroundColor" name="BorderLineColour"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="1Ca-j1-pcK"/>
@@ -3139,14 +3138,14 @@
             <objects>
                 <viewController storyboardIdentifier="ScanQRVC" id="Bof-T2-OoA" customClass="ScanQRVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MXy-cW-MOa">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFZ-bI-TDK">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EJ-i6-V80">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow left" translatesAutoresizingMaskIntoConstraints="NO" id="9aW-dj-cI3">
                                                 <rect key="frame" x="16" y="18" width="24" height="24"/>
@@ -3160,17 +3159,17 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan TG QR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtU-pD-RAo">
-                                                <rect key="frame" x="150.33333333333334" y="19.666666666666671" width="92.333333333333343" height="21"/>
+                                                <rect key="frame" x="254.00000000000003" y="19.666666666666668" width="92.333333333333343" height="21.000000000000004"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8le-A6-nY1">
-                                                <rect key="frame" x="353" y="18" width="24" height="24"/>
+                                                <rect key="frame" x="560" y="18" width="24" height="24"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flash_ip" translatesAutoresizingMaskIntoConstraints="NO" id="pOt-2k-7zA">
-                                                <rect key="frame" x="353" y="18" width="24" height="24"/>
+                                                <rect key="frame" x="560" y="18" width="24" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="24" id="cdS-uV-Olm"/>
                                                     <constraint firstAttribute="height" constant="24" id="jpI-TC-xXt"/>
@@ -3197,7 +3196,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUl-xw-UGi">
-                                        <rect key="frame" x="21.666666666666657" y="120" width="350" height="350"/>
+                                        <rect key="frame" x="125" y="120" width="350" height="350"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E4-Cl-JTe">
                                                 <rect key="frame" x="30" y="30" width="290" height="290"/>
@@ -3223,13 +3222,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please align the QR within scanner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHr-e2-gt2">
-                                        <rect key="frame" x="65.666666666666686" y="486" width="262" height="21"/>
+                                        <rect key="frame" x="169" y="486" width="262" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiz-y0-jXy" customClass="CustomButtonNormal" customModule="TicketGateway" customModuleProvider="target">
-                                        <rect key="frame" x="90" y="695" width="213" height="48"/>
+                                        <rect key="frame" x="90" y="536" width="420" height="48"/>
                                         <color key="backgroundColor" name="TGBlack"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="htx-fj-Jl9"/>
@@ -3288,31 +3287,31 @@
             <objects>
                 <viewController storyboardIdentifier="AttendeeDetailsVC" id="mPO-bt-e3F" customClass="AttendeeDetailsVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sx5-uN-CRa">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIY-Ft-8Q4" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="piJ-Ra-IUY"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWz-l9-m7s">
-                                <rect key="frame" x="0.0" y="119" width="393" height="1"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="1"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Fko-UD-9gR"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8L-o9-R4X">
-                                <rect key="frame" x="0.0" y="122" width="393" height="696"/>
+                                <rect key="frame" x="0.0" y="63" width="600" height="537"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxO-ia-NCa">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="696"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="638.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAr-zC-glV">
-                                                <rect key="frame" x="16" y="15.999999999999998" width="361" height="20.333333333333329"/>
+                                                <rect key="frame" x="16" y="15.999999999999998" width="568" height="20.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20.329999999999998" id="mt9-xb-rpf"/>
                                                 </constraints>
@@ -3321,10 +3320,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xgf-m2-HCI">
-                                                <rect key="frame" x="16" y="38.333333333333343" width="361" height="44.666666666666657"/>
+                                                <rect key="frame" x="16" y="38.333333333333329" width="568" height="44.666666666666671"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="David Taylor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVw-Bh-w0t">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="20.333333333333332"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20.329999999999998" id="or6-rz-PhG"/>
                                                         </constraints>
@@ -3333,7 +3332,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="david.taylor@yahoo.com   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBL-mo-FmK">
-                                                        <rect key="frame" x="0.0" y="24.333333333333314" width="361" height="20.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="24.333333333333343" width="568" height="20.333333333333329"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.329999999999998" id="XHR-vZ-hy5"/>
                                                         </constraints>
@@ -3344,26 +3343,26 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbP-My-Fxa">
-                                                <rect key="frame" x="0.0" y="99" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="99" width="600" height="1"/>
                                                 <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="2PV-re-PX4"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="r2l-Sa-JDr">
-                                                <rect key="frame" x="16" y="115.99999999999999" width="361" height="149.66666666666663"/>
+                                                <rect key="frame" x="16" y="115.99999999999999" width="568" height="149.66666666666663"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MuG-5Y-IP9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="20.333333333333332"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order no." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFE-wF-5J4">
-                                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="20.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6085405869" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vp4-5R-xGh">
-                                                                <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="20.333333333333332"/>
+                                                                <rect key="frame" x="288" y="0.0" width="280" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3371,16 +3370,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="S0I-ao-QYS">
-                                                        <rect key="frame" x="0.0" y="36.333333333333314" width="361" height="20.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="36.333333333333343" width="568" height="20.333333333333329"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Method " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYt-x4-bBx">
-                                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="20.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eTicket: Fulfilled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuW-zn-CVo">
-                                                                <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="20.333333333333332"/>
+                                                                <rect key="frame" x="288" y="0.0" width="280" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3388,16 +3387,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W3o-7G-egr">
-                                                        <rect key="frame" x="0.0" y="72.666666666666686" width="361" height="20.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="72.666666666666657" width="568" height="20.333333333333329"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Type " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txf-KU-ygD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="20.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Admission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7M3-Ob-pxN">
-                                                                <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="20.333333333333332"/>
+                                                                <rect key="frame" x="288" y="0.0" width="280" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3405,16 +3404,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7tS-OK-MTm">
-                                                        <rect key="frame" x="0.0" y="109.00000000000001" width="361" height="40.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="109.00000000000001" width="568" height="40.666666666666671"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checked In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zN-mb-2e4">
-                                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="40.666666666666664"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="40.666666666666664"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu, 30 Mar 2023 at 3:39 AM   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUO-LJ-gwD">
-                                                                <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="40.666666666666664"/>
+                                                                <rect key="frame" x="288" y="0.0" width="280" height="40.666666666666664"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40.670000000000002" id="SEL-u9-KKH"/>
                                                                 </constraints>
@@ -3427,17 +3426,17 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-Fx-puK">
-                                                <rect key="frame" x="0.0" y="281.66666666666669" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="281.66666666666669" width="600" height="1"/>
                                                 <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Nso-zQ-1X2"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lQ9-1Y-i2t">
-                                                <rect key="frame" x="16" y="298.66666666666669" width="361" height="42.666666666666686"/>
+                                                <rect key="frame" x="16" y="298.66666666666669" width="568" height="42.666666666666686"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Barcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Md9-Gg-9Pn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="20.333333333333332"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20.329999999999998" id="h2S-S2-SeP"/>
                                                         </constraints>
@@ -3446,7 +3445,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="98765465468765132165480065463203" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xj4-Br-RIX">
-                                                        <rect key="frame" x="0.0" y="22.333333333333314" width="361" height="20.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="22.333333333333314" width="568" height="20.333333333333329"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.329999999999998" id="2I3-eA-tKB"/>
                                                         </constraints>
@@ -3457,17 +3456,17 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URi-9v-mIE">
-                                                <rect key="frame" x="0.0" y="357.33333333333331" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="357.33333333333331" width="600" height="1"/>
                                                 <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="poe-94-RvN"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="fhf-Np-vnb">
-                                                <rect key="frame" x="16" y="374.33333333333331" width="361" height="150.33333333333331"/>
+                                                <rect key="frame" x="16" y="374.33333333333331" width="568" height="150.33333333333331"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ml-Zn-NCb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="20.333333333333332"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20.329999999999998" id="5Oo-E2-eCN"/>
                                                         </constraints>
@@ -3476,7 +3475,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nKD-tn-NCj">
-                                                        <rect key="frame" x="0.0" y="22.333333333333314" width="361" height="128"/>
+                                                        <rect key="frame" x="0.0" y="22.333333333333371" width="568" height="128"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="128" id="BVq-l1-IaO"/>
@@ -3489,14 +3488,14 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ec2-HH-C6r">
-                                                <rect key="frame" x="0.0" y="556.66666666666663" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="556.66666666666663" width="600" height="1"/>
                                                 <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="gIY-9f-Wfx"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVY-bo-vXL" customClass="CustomButtonGradiant" customModule="TicketGateway" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="573.66666666666663" width="361" height="48"/>
+                                                <rect key="frame" x="16" y="573.66666666666663" width="568" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="IWH-iG-1Eh"/>
                                                 </constraints>
@@ -3506,7 +3505,7 @@
                                                 </state>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKr-df-zaQ">
-                                                <rect key="frame" x="0.0" y="637.66666666666663" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="637.66666666666663" width="600" height="1"/>
                                                 <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="RJA-hL-ZNi"/>

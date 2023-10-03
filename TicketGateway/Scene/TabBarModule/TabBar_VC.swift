@@ -1,12 +1,13 @@
 //
-// TabBar_VC.swift
+// TabBarVC.swift
 // TicketGateway
 //
 // Created by Apple on 17/04/23.
 
 import UIKit
-class TabBar_VC: UITabBarController {
-    //MARK: - Variables
+
+class TabBarVC: UITabBarController {
+    // MARK: - Variables
     let yourImage = UIImage(named: "image")
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +19,12 @@ class TabBar_VC: UITabBarController {
     }
     override func viewDidLayoutSubviews() { // add to any vc
         super.viewDidLayoutSubviews()
-        // self.TabBar_VC?.addSubviewToLastTabItem(yourImage!)
+        // self.TabBarVC?.addSubviewToLastTabItem(yourImage!)
         //  self.tabBarController?.addSubviewToLastTabItem("Image")
         //  self.addSubviewToLastTabItem("Image")
     }
-    
-    
-    
 }
-class TabBarManage_VC: UITabBarController {
+class TabBarManageVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.set(true, forKey: "isComingFromManageEvent")
@@ -34,10 +32,7 @@ class TabBarManage_VC: UITabBarController {
         // Do any additional setup after loading the view.
     }
 }
-
-
-// MARK: -
-extension TabBar_VC: UITabBarControllerDelegate {
+extension TabBarVC: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
             let tabBarIndex = tabBarController.selectedIndex

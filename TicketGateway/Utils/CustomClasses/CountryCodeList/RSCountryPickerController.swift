@@ -10,34 +10,31 @@ import UIKit
 import UIKit
 
 struct CountryInfo {
-    let country_code : String
-    let dial_code: String
-    let country_name : String
+    let countryCode: String
+    let dialCode: String
+    let countryName: String
     // let flag : UIImage
 }
 
-//Make Protocol
+// Make Protocol
 protocol RSCountrySelectedDelegate {
     func RScountrySelected(countrySelected country: CountryInfo) -> Void
 }
 
 class RSCountryPickerController: UIViewController,UITextFieldDelegate {
-    
-    //MARK:- IBOutlets
+    // MARK:- IBOutlets
     @IBOutlet var vwHeader: UIView!
     @IBOutlet var vwContainTfSearch: UIView!
     @IBOutlet var tfSearchBar: UITextField!
     @IBOutlet var tblCountryList: UITableView!
     @IBOutlet var lblHeader: UILabel!
     @IBOutlet weak var navigationView: NavigationBarView!
-    
-    //Variables
+    // Variables
     var countries = [[String: String]]()
     var RScountryDelegate: RSCountrySelectedDelegate!
     var RScountriesFiltered = [CountryInfo]()
     var RScountriesModel = [CountryInfo]()
     var strCheckCountry = ""
-    
     //App LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +65,7 @@ extension RSCountryPickerController{
             for dicData in self.RScountriesModel {
                 
                 let prefix = Int(textfield.text!.count) // Hello
-                let isMachingWorker : NSString = (dicData.country_name) as? NSString ?? ""
+                let isMachingWorker : NSString = (dicData.countryName) as? NSString ?? ""
                 
                 let range = isMachingWorker.lowercased.prefix(prefix).range(of: textfield.text!, options: String.CompareOptions.caseInsensitive, range: nil, locale: nil)
                 
@@ -91,7 +88,9 @@ extension RSCountryPickerController{
             let code = country["code"] ?? ""
             let name = country["name"] ?? ""
             let dailcode = country["dial_code"] ?? ""
-            RScountriesModel.append(CountryInfo(country_code:code,dial_code:dailcode, country_name:name))
+            RScountriesModel.append(CountryInfo(countryCode:code,
+                                                dialCode:dailcode,
+                                                countryName: name))
         }
     }
     
@@ -170,7 +169,7 @@ extension RSCountryPickerController{
             countries = parsedObject as! [[String : String]]
             for dic in countries {
                 if dic["code"] == countryCode {
-                    return CountryInfo(country_code: dic["code"]!, dial_code: dic["dial_code"]!, country_name: dic["name"]!)
+                    return CountryInfo(countryCode: dic["code"]!, dialCode: dic["dial_code"]!, countryName: dic["name"]!)
                 }
             }
             return nil
@@ -188,7 +187,7 @@ extension RSCountryPickerController{
             countries = parsedObject as! [[String : String]]
             for dic in countries {
                 if dic["code"] == dialCode {
-                    return CountryInfo(country_code: dic["code"]!, dial_code: dic["dial_code"]!, country_name: dic["name"]!)
+                    return CountryInfo(countryCode: dic["code"]!, dialCode: dic["dial_code"]!, countryName: dic["name"]!)
                 }
             }
             return nil
@@ -240,13 +239,13 @@ extension RSCountryPickerController: UITableViewDataSource{
         } else {
             contry = RScountriesModel[indexPath.row]
         }
-        cell.lblCountryName.text = contry.country_name
-        cell.lblCountryDialCode.text = contry.dial_code
-        let imagestring = contry.country_code
+        cell.lblCountryName.text = contry.countryName
+        cell.lblCountryDialCode.text = contry.dialCode
+        let imagestring = contry.countryCode
         let imagePath = "CountryPicker.bundle/\(imagestring).png"
         cell.imgCountryFlag.image = UIImage(named: imagePath)
         
-        if strCheckCountry == contry.country_name
+        if strCheckCountry == contry.countryName
         {
             //03/5/2022
           //  cell.imgRadioCheck.image = #imageLiteral(resourceName: "Radio_button_activ")
