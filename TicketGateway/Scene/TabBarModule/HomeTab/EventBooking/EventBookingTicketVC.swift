@@ -67,7 +67,7 @@ extension EventBookingTicketVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
      }
-    func setUi(){
+    func setUi() {
         self.lblAcceptedTermCon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -85,7 +85,7 @@ extension EventBookingTicketVC {
         
    }
     
-    func setData(){
+    func setData() {
         self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
         
         let dateTime = "\(viewModel.eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" + " • " + "\(viewModel.eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
@@ -94,7 +94,7 @@ extension EventBookingTicketVC {
         self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
         
     }
-    func apiCall(){
+    func apiCall() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -162,7 +162,7 @@ extension EventBookingTicketVC {
         }
     }
     
-    func btnCheckTermConditionAction(){
+    func btnCheckTermConditionAction() {
         if viewModel.isCheckedTerm_COndition == false
         {
             viewModel.isCheckedTerm_COndition = true

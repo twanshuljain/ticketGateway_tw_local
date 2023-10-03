@@ -20,7 +20,7 @@ class SideMenuCell: UITableViewCell {
         self.setUi()
         // Initialization code
     }
-    func setUi(){
+    func setUi() {
         self.lblTittle.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblTittle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblDiscripation.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)

@@ -192,7 +192,7 @@ extension SeeFullTicketVC {
 //            if let qrCode = base64String.generateQRCode(qrCodeImageView: imgScanCode) {
 //                imgScanCode.image = qrCode
 //            }
-           // if let qrCodeImage = base64String.base64ToImage(){
+           // if let qrCodeImage = base64String.base64ToImage() {
                 imgScanCode.image = UIImage.decodeBase64(toImage: base64String)
            // }
         }
@@ -206,7 +206,7 @@ extension SeeFullTicketVC {
         self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
         lblOrderNumberValue.text = "#\(viewModel.myTicketList?.orderNumber ?? "")"
         // ABOUt US
-        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
+        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil) {
             self.lblEventSummary.isHidden = false
             self.lblSummary.text = eventDetail?.organizer?.eventDescription ?? ""
         } else {

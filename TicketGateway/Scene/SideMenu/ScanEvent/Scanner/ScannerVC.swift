@@ -51,7 +51,7 @@ class ScannerVC: UIViewController {
 }
 // MARK: -
 extension ScannerVC {
-    func getCameraPreview(){
+    func getCameraPreview() {
         viewModel.captureSession = AVCaptureSession()
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
         let videoInput: AVCaptureDeviceInput
@@ -61,7 +61,7 @@ extension ScannerVC {
             print("error: ", error)
             return
         }
-        if viewModel.captureSession.canAddInput(videoInput){
+        if viewModel.captureSession.canAddInput(videoInput) {
             viewModel.captureSession.addInput(videoInput)
         } else {
             self.imgScanStatus.isHidden = false

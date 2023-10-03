@@ -31,7 +31,7 @@ struct GetEvent: Codable {
     var itemsUpcoming: [GetEventModel]?
     var total, page, size: Int?
     
-    init(){
+    init() {
         
     }
     

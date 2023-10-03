@@ -16,7 +16,7 @@ class MyTicketListingTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func setData(ticketData:MyTicket){
+    func setData(ticketData:MyTicket) {
         self.lblTicketName.text = ((ticketData.ticketName ?? "") + " - " + "\(ticketData.date?.getDateFormattedISOFromTo() ?? "")")
     }
 

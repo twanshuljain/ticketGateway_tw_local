@@ -307,11 +307,11 @@ extension LoginVC: RSCountrySelectedDelegate {
                 arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
                 
                 
-                if !arr.indices.contains(0){
+                if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = viewModel.RScountriesModel.filter({$0.country_code == str})
                 }
-            }else{
+            } else {
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.country_code == str})
             }

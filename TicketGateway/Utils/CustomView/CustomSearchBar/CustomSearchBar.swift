@@ -72,14 +72,14 @@ class CustomSearchBar: UIView {
             return nib.instantiate(withOwner: self, options: nil).first as? UIView
         }
     
-    func setUpView(){
+    func setUpView() {
         if self.customSearchBarEnum == .costume{
             wtBtnMenu.constant = 0
             wtBtnFilter.constant = 50
             self.btnFilter.isHidden = false
             self.locationView.isHidden = true
             self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
-        }else{
+        } else {
             wtBtnFilter.constant = 0
             self.btnFilter.isHidden = true
             self.locationView.isHidden = false

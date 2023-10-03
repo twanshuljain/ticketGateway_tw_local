@@ -87,34 +87,34 @@ extension HomeVC {
         self.vwSearchBar.txtSearch.delegate = self
     }
     
-    func navigateToDetailVc(index:IndexPath){
+    func navigateToDetailVc(index:IndexPath) {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
-            if self.viewModel.arrEventCategory.indices.contains(index.section){
+            if self.viewModel.arrEventCategory.indices.contains(index.section) {
                 switch self.viewModel.arrEventCategory[index.section] {
                 case .noLocationData:
                     print("No Data Found")
                 case .nearByLocation:
-                    if self.viewModel.arrSearchCategoryData.indices.contains(index.row){
+                    if self.viewModel.arrSearchCategoryData.indices.contains(index.row) {
                         view.viewModel.eventId = self.viewModel.arrSearchCategoryData[index.row].event?.id
                     }
                 case .weekend:
-                    if self.viewModel.arrDataaWeekend.indices.contains(index.row){
+                    if self.viewModel.arrDataaWeekend.indices.contains(index.row) {
                         view.viewModel.eventId = self.viewModel.arrDataaWeekend[index.row].event?.id
                     }
                 case .online:
-                    if self.viewModel.arrDataaVirtual.indices.contains(index.row){
+                    if self.viewModel.arrDataaVirtual.indices.contains(index.row) {
                         view.viewModel.eventId = self.viewModel.arrDataaVirtual[index.row].event?.id
                     }
                 case .popular:
-                    if self.viewModel.arrDataaPopular.indices.contains(index.row){
+                    if self.viewModel.arrDataaPopular.indices.contains(index.row) {
                         view.viewModel.eventId = self.viewModel.arrDataaPopular[index.row].event?.id
                     }
                 case .free:
-                    if self.viewModel.arrDataaFree.indices.contains(index.row){
+                    if self.viewModel.arrDataaFree.indices.contains(index.row) {
                         view.viewModel.eventId = self.viewModel.arrDataaFree[index.row].event?.id
                     }
                 case .upcoming:
-                    if self.viewModel.arrDataaUpcoming.indices.contains(index.row){
+                    if self.viewModel.arrDataaUpcoming.indices.contains(index.row) {
                         view.viewModel.eventId = self.viewModel.arrDataaUpcoming[index.row].event?.id
                     }
                 
@@ -124,7 +124,7 @@ extension HomeVC {
         }
     }
     
-    func setUi(){
+    func setUi() {
         self.lblNearOrganisedEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
         self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblSuggestedOrganised.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
@@ -136,7 +136,7 @@ extension HomeVC {
         
     }
     
-    func apiCall(){
+    func apiCall() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -165,7 +165,7 @@ extension HomeVC {
         }
     }
     
-    func funcCallApi(){
+    func funcCallApi() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -202,7 +202,7 @@ extension HomeVC {
         }
     }
     
-    func funcCallApiForWeekendEvents(viewAll:Bool){
+    func funcCallApiForWeekendEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -245,7 +245,7 @@ extension HomeVC {
         }
     }
     
-    func funcCallApiForOnlineEvents(viewAll:Bool){
+    func funcCallApiForOnlineEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -280,7 +280,7 @@ extension HomeVC {
             self.funcCallApiForPopularEvents(viewAll: false)
         }
     }
-    func funcCallApiForPopularEvents(viewAll: Bool){
+    func funcCallApiForPopularEvents(viewAll: Bool) {
         if Reachability.isConnectedToNetwork() // check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -317,7 +317,7 @@ extension HomeVC {
     }
     
     
-    func funcCallApiForFreeEvents(viewAll:Bool){
+    func funcCallApiForFreeEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -353,7 +353,7 @@ extension HomeVC {
         }
     }
     
-    func funcCallApiForUpcomingEvents(viewAll:Bool){
+    func funcCallApiForUpcomingEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -396,7 +396,7 @@ extension HomeVC {
         
     }
     
-    func funcCallApiForOrganizersList(viewAll:Bool){
+    func funcCallApiForOrganizersList(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -425,7 +425,7 @@ extension HomeVC {
         }
     }
     
-    func funcCallApiForEventDetail(eventId:Int?, view: EventDetailVC){
+    func funcCallApiForEventDetail(eventId:Int?, view: EventDetailVC) {
         if let eventId = eventId{
           if Reachability.isConnectedToNetwork() //check internet connectivity
           {
@@ -453,7 +453,7 @@ extension HomeVC {
                 var numberOfPage = 0
                 if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
                     numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
-                }else{
+                } else {
                     numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
                 }
                 // Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
@@ -511,7 +511,7 @@ extension HomeVC: CustomSearchMethodsDelegate {
         view?.delegate = self
         if self.viewModel.selectedCountryName != nil && self.viewModel.selectedCountryName != ""{
             view?.selectedCountry = self.viewModel.selectedCountryName
-        }else{
+        } else {
             view?.selectedCountry = self.viewModel.currentRegionCountry
         }
         view?.selecetdCountriesModel = CountryInfo.init(country_code: "", dial_code: "", country_name: view?.selectedCountry ?? "")

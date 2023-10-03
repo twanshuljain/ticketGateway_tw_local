@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple on 07/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 import iOSDropDown
@@ -58,7 +51,7 @@ class RefundOptionsVC: UIViewController {
 
 // MARK: - Functions
 extension RefundOptionsVC{
-    func setNavigationView(){
+    func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = REFUND_OPTIONS
@@ -163,7 +156,7 @@ extension RefundOptionsVC {
         
     }
     
-    func partialRefundAction(){
+    func partialRefundAction() {
         if swPartialRefundSwitch.isOn {
             partialrefundStackView.isHidden = false
         }else {

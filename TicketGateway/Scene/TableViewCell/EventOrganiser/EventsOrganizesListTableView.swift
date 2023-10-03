@@ -67,38 +67,38 @@ class EventsOrganizesListTableView: UITableView {
             case .noLocationData:
                 print("No Location Data")
             case .nearByLocation:
-                if arrDataCategorySearch.indices.contains(indexPath.row){
+                if arrDataCategorySearch.indices.contains(indexPath.row) {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataCategorySearch[indexPath.row])
                 }
             case .weekend:
-                if arrDataaWeekend.indices.contains(indexPath.row){
+                if arrDataaWeekend.indices.contains(indexPath.row) {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaWeekend[indexPath.row])
                 }
             case .online:
-                if arrDataaVirtual.indices.contains(indexPath.row){
+                if arrDataaVirtual.indices.contains(indexPath.row) {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaVirtual[indexPath.row])
                 }
             case .popular:
-                if arrDataaPopular.indices.contains(indexPath.row){
+                if arrDataaPopular.indices.contains(indexPath.row) {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaPopular[indexPath.row])
                 }
             case .free:
-                if arrDataaFree.indices.contains(indexPath.row){
+                if arrDataaFree.indices.contains(indexPath.row) {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaFree[indexPath.row])
                 }
             case .upcoming:
-                if arrDataaUpcoming.indices.contains(indexPath.row){
+                if arrDataaUpcoming.indices.contains(indexPath.row) {
                     self.delegateShareAction?.toShowActivityController(eventDetail: self.arrDataaUpcoming[indexPath.row])
                 }
             }
         } else if isComingFrom == .eventDetail {
             // Suggestions Event
-            if arrData.indices.contains(indexPath.row){
+            if arrData.indices.contains(indexPath.row) {
                 self.delegateShareAction?.toShowActivityController(eventDetail: self.arrData[indexPath.row])
             }
         } else if isComingFrom == .eventSearch {
             // For Serach Screen
-            if arrSearchData.indices.contains(indexPath.row){
+            if arrSearchData.indices.contains(indexPath.row) {
                 self.delegateShareAction?.toShowActivityController(eventDetail: self.arrSearchData[indexPath.row])
             }
         }
@@ -116,34 +116,34 @@ class EventsOrganizesListTableView: UITableView {
                     
                 }
             case .weekend:
-                if arrDataaWeekend.indices.contains(indexPath.row){
+                if arrDataaWeekend.indices.contains(indexPath.row) {
                     arrDataaWeekend[indexPath.row].likeCountData?.isLiked?.toggle()
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaWeekend[indexPath.row], isForLocation: false)
                 }
             case .online:
-                if arrDataaVirtual.indices.contains(indexPath.row){
+                if arrDataaVirtual.indices.contains(indexPath.row) {
                     arrDataaVirtual[indexPath.row].likeCountData?.isLiked?.toggle()
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaVirtual[indexPath.row], isForLocation: false)
                 }
             case .popular:
-                if arrDataaPopular.indices.contains(indexPath.row){
+                if arrDataaPopular.indices.contains(indexPath.row) {
                     arrDataaPopular[indexPath.row].likeCountData?.isLiked?.toggle()
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaPopular[indexPath.row], isForLocation: false)
                 }
             case .free:
-                if arrDataaFree.indices.contains(indexPath.row){
+                if arrDataaFree.indices.contains(indexPath.row) {
                     arrDataaFree[indexPath.row].likeCountData?.isLiked?.toggle()
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaFree[indexPath.row], isForLocation: false)
                 }
             case .upcoming:
-                if arrDataaUpcoming.indices.contains(indexPath.row){
+                if arrDataaUpcoming.indices.contains(indexPath.row) {
                     arrDataaUpcoming[indexPath.row].likeCountData?.isLiked?.toggle()
                     self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrDataaUpcoming[indexPath.row], isForLocation: false)
                 }
             }
         } else if isComingFrom == .eventDetail {
             // Suggestions Event
-            if arrData.indices.contains(indexPath.row){
+            if arrData.indices.contains(indexPath.row) {
                 arrData[indexPath.row].isLiked?.toggle()
                 self.delegateLikeAction?.toCallFavouriteaApi(eventDetail: self.arrData[indexPath.row], isForLocation: true)
             }
@@ -187,11 +187,11 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //                return 4
 //            }else if self.arrDataaUpcoming.count != 0{
 //                return 5
-//            }else{
+//            } else {
 //                return 0
 //            }
            return self.arrEventCategory.count
-        }else{
+        } else {
             return 1
         }
     }
@@ -209,7 +209,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //            }
 //            if self.arrDataa.count == 0{
 //                return 5
-//            }else{
+//            } else {
 //                return self.arrDataa.count
 //            }
             if self.arrEventCategory[section] == .noLocationData{
@@ -226,7 +226,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 return self.arrDataaFree.count
             }else if self.arrEventCategory[section] == .upcoming{
                 return self.arrDataaUpcoming.count
-            }else{
+            } else {
                 return 0
             }
             
@@ -234,7 +234,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         }else if self.isComingFrom == .eventDetail{
             if self.arrData.isEmpty {
                 return 5
-            }else{
+            } else {
                 return self.arrData.count
                 //return 3
             }
@@ -265,35 +265,35 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 case .noLocationData:
                     cell.setNoDataFound(countryName: self.countryName)
                 case .nearByLocation:
-                    if arrDataCategorySearch.indices.contains(indexPath.row){
+                    if arrDataCategorySearch.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrDataCategorySearch[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataCategorySearch[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                        // cell.lblAddress.text = cell.getEvent?.locationType == "VIRTUAL" ? VirtualEvent : cell.getEvent?.locationType == "MULTIPLE" ? MultipleLocation : (cell.getEvent?.location?.eventAddress ?? "-")
                     }
                 case .weekend:
-                    if arrDataaWeekend.indices.contains(indexPath.row){
+                    if arrDataaWeekend.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrDataaWeekend[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataaWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .online:
-                    if arrDataaVirtual.indices.contains(indexPath.row){
+                    if arrDataaVirtual.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrDataaVirtual[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataaVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                       //  cell.lblAddress.text = cell.getEvent?.locationType == "VIRTUAL" ? VirtualEvent : cell.getEvent?.locationType == "MULTIPLE" ? MultipleLocation : (cell.getEvent?.location?.eventAddress ?? "-")
                         
                     }
                 case .popular:
-                    if arrDataaPopular.indices.contains(indexPath.row){
+                    if arrDataaPopular.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrDataaPopular[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataaPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .free:
-                    if arrDataaFree.indices.contains(indexPath.row){
+                    if arrDataaFree.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrDataaFree[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataaFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .upcoming:
-                    if arrDataaUpcoming.indices.contains(indexPath.row){
+                    if arrDataaUpcoming.indices.contains(indexPath.row) {
                         cell.getEvent = self.arrDataaUpcoming[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (arrDataaUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
@@ -370,7 +370,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 //         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
-//             if arrEventCategory.indices.contains(indexPath.section){
+//             if arrEventCategory.indices.contains(indexPath.section) {
 //                 switch self.arrEventCategory[indexPath.section] {
 //                 case .weekend: self.tableDidSelectAtIndex?(indexPath)
 //                 case .online: self.tableDidSelectAtIndex?(indexPath)
@@ -421,7 +421,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             }
         }else if self.isComingFrom == .eventDetail{
             return footerView
-        }else{
+        } else {
             return nil
         }
     }
@@ -437,7 +437,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             return 40
         }else if self.isComingFrom == .eventDetail{
             return 40
-        }else{
+        } else {
             return 0
         }
     }
@@ -462,7 +462,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //                return 0
 //            }
             return 35
-        }else{
+        } else {
             return 0
         }
     }

@@ -31,7 +31,7 @@ class EventTableViewCell: UITableViewCell {
             self.viewNoData.isHidden = true
             if getEvent?.likeCountData?.isLiked != nil{
                 btnLike.isSelected = getEvent?.likeCountData?.isLiked ?? false
-            }else{
+            } else {
                 btnLike.isSelected = getEvent?.isLiked ?? false
             }
             self.lblTitle.text = getEvent?.event?.title ?? ""
@@ -44,23 +44,23 @@ class EventTableViewCell: UITableViewCell {
                 self.lblSeperator.isHidden = true
                 self.lblDate.text = " \(RecurringDates)"
                 self.lblTime.text = ""
-            }else{
+            } else {
                 self.lblDate.text = "  " + "\(getEvent?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getEvent?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
                 self.lblTime.text = "  " + "\(getEvent?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getEvent?.date?.eventEndTime?.getFormattedTime() ?? "")"
             }
             
             if let imageUrl = getEvent?.coverImage?.eventCoverImage{
-                if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                     if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                         self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                    }else{
+                    } else {
                         self.imgImages.image = UIImage(named: "homeDas")
                     }
-                }else{
-                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL(){
+                } else {
+                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                         self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                    }else{
+                    } else {
                         self.imgImages.image = UIImage(named: "homeDas")
                     }
                 }
@@ -71,7 +71,7 @@ class EventTableViewCell: UITableViewCell {
         }
     }
     
-    func setNoDataFound(countryName:String){
+    func setNoDataFound(countryName:String) {
         self.viewNoData.isHidden = false
         lblNoData.text = "No Events Found near \(countryName)"
     }
@@ -84,7 +84,7 @@ class EventTableViewCell: UITableViewCell {
         
     }
     
-    func setUi(){
+    func setUi() {
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

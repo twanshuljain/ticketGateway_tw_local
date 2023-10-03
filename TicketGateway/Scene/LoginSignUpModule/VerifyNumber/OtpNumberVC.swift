@@ -83,7 +83,7 @@ extension OtpNumberVC {
 //        }
   //  }
     
-    func navigateToPaymentVc(){
+    func navigateToPaymentVc() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
             view.viewModel.eventId = self.viewModel.eventId
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
@@ -113,7 +113,7 @@ extension OtpNumberVC {
     func btnResenOtpAction() {
         self.vwResend.isHidden = true
         if self.isComingFrom == .orderSummary{
-            if Reachability.isConnectedToNetwork(){
+            if Reachability.isConnectedToNetwork() {
                 self.view.showLoading(centreToView: self.view)
                 viewModelResendOtp.checkoutVerifyResendOTP(userType: self.userType) { isTrue , messageShowToast in
                     if isTrue == true {
@@ -137,8 +137,8 @@ extension OtpNumberVC {
             } else {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
-        }else{
-            if Reachability.isConnectedToNetwork(){
+        } else {
+            if Reachability.isConnectedToNetwork() {
                 self.view.showLoading(centreToView: self.view)
                 viewModelResendOtp.signInAPI { isTrue , messageShowToast in
                     if isTrue == true {
@@ -171,8 +171,8 @@ extension OtpNumberVC {
             self.showToast(message: PLEASE_ENTER_OTP)
         } else {
             if self.isComingFrom == .orderSummary{
-                if (self.userType == .new) || (self.userType == .existing && self.isChangeMobileNumberTap == true){
-                    if Reachability.isConnectedToNetwork(){
+                if (self.userType == .new) || (self.userType == .existing && self.isChangeMobileNumberTap == true) {
+                    if Reachability.isConnectedToNetwork() {
                         self.view.showLoading(centreToView: self.view)
                         viewModel.checkoutVerifyOTP(isComingFrom: self.isComingFrom, complition: { isTrue, messageShowToast  in
                             if isTrue == true {
@@ -190,8 +190,8 @@ extension OtpNumberVC {
                     }else {
                         self.showToast(message: ValidationConstantStrings.networkLost)
                     }
-                }else{
-                    if Reachability.isConnectedToNetwork(){
+                } else {
+                    if Reachability.isConnectedToNetwork() {
                         self.view.showLoading(centreToView: self.view)
                         viewModel.checkoutVerifyOTP(isComingFrom: isComingFrom, complition: { isTrue, messageShowToast  in
                             DispatchQueue.main.async {
@@ -207,20 +207,20 @@ extension OtpNumberVC {
                         self.showToast(message: ValidationConstantStrings.networkLost)
                     }
                 }
-            }else{
+            } else {
                 //            // REMOVE WHEN API IS WORKING
                 //            if isComingFromLogin{
                 //                let view  = self.createView(storyboard: .main, storyboardID: .LoginNmberWithEmailVC) as! LoginNmberWithEmailVC
                 //                view.viewModel?.arrMail.append(EmailListUser(name: "", email: ""))
                 //                self.navigationController?.pushViewController(view, animated: true)
-                //            }else{
+                //            } else {
                 //                let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
                 //                self.navigationController?.pushViewController(view!, animated: true)
                 //            }
                 
                 //     ------------------------------------
                 //        TO BE DONE WHEN API IS WORKING
-                if Reachability.isConnectedToNetwork(){
+                if Reachability.isConnectedToNetwork() {
                     self.view.showLoading(centreToView: self.view)
                     viewModel.signUpVerifyNumberAPI(complition: { isTrue, messageShowToast  in
                         if isTrue == true {
@@ -263,7 +263,7 @@ extension OtpNumberVC : UITextFieldDelegate {
   }
     
    
-    @objc func textFieldDidChange(textField: UITextField){
+    @objc func textFieldDidChange(textField: UITextField) {
       let text = textField.text
       if text?.count == 1 {
         switch textField{

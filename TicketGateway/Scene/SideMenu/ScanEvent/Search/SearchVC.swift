@@ -3,8 +3,7 @@
 // TicketGateway
 //
 // Created by Apple on 21/06/23.
-// swiftlint: disable force_cast
-// swiftlint: disable line_length
+
 import UIKit
 class SearchVC: UIViewController {
     // MARK: - Outlets

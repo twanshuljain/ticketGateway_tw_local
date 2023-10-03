@@ -34,7 +34,7 @@ extension ChangeNameViewModel{
             case .success(let response):
                 if response.status_code == 200 {
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

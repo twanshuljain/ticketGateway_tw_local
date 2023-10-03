@@ -48,7 +48,7 @@ extension String {
 //            dateFormatter.locale = tempLocale // reset the locale
 //            let dateString = dateFormatter.string(from: date)
 //            return dateString
-//        }else{
+//        } else {
 //            let date = dateFormatter.date(from: self) ?? Date.init()
 //            dateFormatter.dateFormat = dateFormate
 //            dateFormatter.locale = tempLocale // reset the locale
@@ -94,7 +94,7 @@ extension String {
             dateFormatter.locale = tempLocale // reset the locale
             let dateString = dateFormatter.string(from: date)
             return dateString
-        }else{
+        } else {
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "MMM d, yyyy"
             dateFormatter.locale = tempLocale // reset the locale
@@ -117,7 +117,7 @@ extension String {
             dateFormatter.locale = tempLocale // reset the locale
             let dateString = dateFormatter.string(from: date)
             return dateString
-        }else{
+        } else {
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "MMM d, yyyy"
             dateFormatter.locale = tempLocale // reset the locale
@@ -140,7 +140,7 @@ extension String {
             dateFormatter.locale = tempLocale // reset the locale
             let dateString = dateFormatter.string(from: date)
             return dateString
-        }else{
+        } else {
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "EEE"
             dateFormatter.locale = tempLocale // reset the locale
@@ -163,7 +163,7 @@ extension String {
             dateFormatter.locale = tempLocale // reset the locale
             let dateString = dateFormatter.string(from: date)
             return dateString
-        }else{
+        } else {
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "MMM d, yyyy"
             dateFormatter.locale = tempLocale // reset the locale
@@ -251,7 +251,7 @@ extension String {
         if let url = URL(string: self) {
             return url
         } else {
-            if let urlEscapedString = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) , let escapedURL = URL(string: urlEscapedString){
+            if let urlEscapedString = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) , let escapedURL = URL(string: urlEscapedString) {
                 return escapedURL
             }
         }

@@ -61,7 +61,7 @@ extension HomeDashBoardViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -79,7 +79,7 @@ extension HomeDashBoardViewModel {
                         self.arrOrganizersList = organizersList
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -106,14 +106,14 @@ extension HomeDashBoardViewModel {
                             self.arrSearchCategoryData = items
                             if !items.isEmpty {
                                 self.arrEventCategory.append(.nearByLocation)
-                            }else{
+                            } else {
                                 self.arrEventCategory.append(.noLocationData)
                             }
                         }
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -142,7 +142,7 @@ extension HomeDashBoardViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -173,7 +173,7 @@ extension HomeDashBoardViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -203,7 +203,7 @@ extension HomeDashBoardViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -233,7 +233,7 @@ extension HomeDashBoardViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -262,7 +262,7 @@ extension HomeDashBoardViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -285,7 +285,7 @@ extension HomeDashBoardViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

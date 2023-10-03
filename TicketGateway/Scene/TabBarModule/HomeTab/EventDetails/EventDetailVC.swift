@@ -196,7 +196,7 @@ extension EventDetailVC {
             self.getRecurringList()
         }
     }
-    func getRecurringList(){
+    func getRecurringList() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             vwEventName.showLoading(centreToView: self.view)
@@ -288,7 +288,7 @@ extension EventDetailVC {
             }
           }
     }
-    func funcCallApiForEventCategory(categoryId:Int){
+    func funcCallApiForEventCategory(categoryId:Int) {
         if Reachability.isConnectedToNetwork() { // check internet connectivity
             DispatchQueue.main.async { [self] in
                 self.tblSuggestedEvent.isHidden = true
@@ -395,7 +395,7 @@ extension EventDetailVC {
       //  self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
         self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
         // ABOUT US
-        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
+        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil) {
             self.aboutView.isHidden = false
             self.lblAboutDiscripation.text = eventDetail?.organizer?.eventDescription ?? ""
         } else {
@@ -436,7 +436,7 @@ extension EventDetailVC {
         }
     }
     
-    func dropDown(){
+    func dropDown() {
         //txtDate.optionArray = ["May 25 - May 30 6:00 AM - 7:00 AM", "May 25 - May 30 6:00 AM - 7:00 ", "May 25 - May 30 6:00 AM - 7:00 AM","May 25 - May 30 6:00 AM - 7:00 AM"]
         txtDate.optionIds?.removeAll()
         txtLocation.optionIds?.removeAll()
@@ -705,7 +705,7 @@ extension EventDetailVC {
             self.navigateToTicketBooking()
         }
     }
-    func navigateToTicketBooking(){
+    func navigateToTicketBooking() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.eventId = self.viewModel.eventId
@@ -765,7 +765,7 @@ extension EventDetailVC {
                     }
                 })
                 self.navigationController?.pushViewController(view, animated: true)
-            }else{
+            } else {
                 view.latitude =  eventLocation?.latitude ?? 00.0
                 view.longitude =  eventLocation?.longitude ?? 00.0
                 view.location = eventLocation?.eventAddress ?? ""
@@ -823,7 +823,7 @@ extension EventDetailVC {
         var numberOfPage = 0
         if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
             numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
-        }else{
+        } else {
             numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
         }
         
@@ -836,7 +836,7 @@ extension EventDetailVC {
             var numberOfPage = 0
             if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
                 numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
-            }else{
+            } else {
                 numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
             }
             AppShareData.sharedObject().saveNumOfPage(numOfPage: numberOfPage)

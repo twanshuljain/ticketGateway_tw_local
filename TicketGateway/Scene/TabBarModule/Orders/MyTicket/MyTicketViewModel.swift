@@ -26,7 +26,7 @@ extension MyTicketViewModel{
                         self.myTicket = data
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -46,7 +46,7 @@ extension MyTicketViewModel{
                         self.eventDetail = response.data ?? EventDetail()
                         print("--------------------",self.eventDetail)
                         complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

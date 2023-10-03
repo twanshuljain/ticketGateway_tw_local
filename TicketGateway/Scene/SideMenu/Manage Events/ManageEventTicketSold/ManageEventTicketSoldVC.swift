@@ -27,13 +27,13 @@ class ManageEventTicketSoldVC: UIViewController {
 
 // MARK: - Functions
 extension ManageEventTicketSoldVC{
-    func setup(){
+    func setup() {
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = TICKET_SOLD
         self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
     }
-    func setUi(){
+    func setUi() {
         [self.lblAddmissionSold].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

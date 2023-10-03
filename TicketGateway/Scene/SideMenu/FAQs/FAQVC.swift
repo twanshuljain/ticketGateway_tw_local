@@ -56,7 +56,7 @@ class FAQVC: UIViewController {
 
 // MARK: - Functions
 extension FAQVC{
-    func setNavigationBar(){
+    func setNavigationBar() {
         self.vwNavigatioView.lblTitle.text = FAQS
         self.vwNavigatioView.delegateBarAction = self
         self.vwNavigatioView.imgBack.image = UIImage(named: MENU_ICON)

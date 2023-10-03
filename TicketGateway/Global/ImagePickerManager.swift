@@ -16,17 +16,17 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     var viewController: UIViewController?
     var pickImageCallback : ((UIImage) -> ())?;
     
-    override init(){
+    override init() {
         super.init()
-        let cameraAction = UIAlertAction(title: "Camera", style: .default){
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) {
             UIAlertAction in
             self.openCamera(viewController: self.viewController)
         }
-        let galleryAction = UIAlertAction(title: "Gallery", style: .default){
+        let galleryAction = UIAlertAction(title: "Gallery", style: .default) {
             UIAlertAction in
             self.openGallery(viewController: self.viewController)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             UIAlertAction in
         }
 
@@ -50,10 +50,10 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
 
         viewController.present(alert, animated: true, completion: nil)
     }
-    func openCamera(viewController:UIViewController?){
+    func openCamera(viewController:UIViewController?) {
         self.viewController = viewController
         alert.dismiss(animated: true, completion: nil)
-        if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+        if(UIImagePickerController .isSourceTypeAvailable(.camera)) {
             checkCameraPermission { isEnable in
                 if isEnable {
                     self.picker.sourceType = .camera
@@ -105,7 +105,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
            })
         }
     }
-    func openGallery(viewController:UIViewController?){
+    func openGallery(viewController:UIViewController?) {
         self.viewController = viewController
         alert.dismiss(animated: true, completion: nil)
         picker.sourceType = .photoLibrary

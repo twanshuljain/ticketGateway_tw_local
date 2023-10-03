@@ -20,11 +20,11 @@ class FeedBackTableViewCell: UITableViewCell {
         setFont()
     }
     
-    func setData(feedback:String?, index:Int){
+    func setData(feedback:String?, index:Int) {
         if index == 0{
             self.btnThumbsUp.setImage(UIImage.init(named: THUMBSUP_SELECTED_ICON), for: .normal)
             self.btnThumbsDown.setImage(UIImage.init(named: THUMBSDOWN_UNSELECTED_ICON), for: .normal)
-        }else{
+        } else {
             self.btnThumbsUp.setImage(UIImage.init(named: THUMBSUP_UNSELECTED_ICON), for: .normal)
             self.btnThumbsDown.setImage(UIImage.init(named: THUMBSDOWN_UNSELECTED_ICON), for: .normal)
         }

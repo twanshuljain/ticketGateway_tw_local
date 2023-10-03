@@ -58,7 +58,7 @@ extension DeviceSettingVC {
         self.setUi()
     }
     
-    func setUi(){
+    func setUi() {
         self.lblPushNotificationsOn.font = UIFont.setFont(fontType: .regular, fontSize: .eighteen)
         self.lblPushNotificationsOn.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         
@@ -97,23 +97,23 @@ extension DeviceSettingVC {
         }
     }
     
-    func btnRateUsAction(){
+    func btnRateUsAction() {
         
     }
-    func btnFeedbackAction(){
+    func btnFeedbackAction() {
         let vc = self.createView(storyboard: .sidemenu, storyboardID: .FeedbackViewController) as! FeedbackViewController
         self.navigationController?.pushViewController(vc, animated: false)
     }
-    func btnfaceIdAction(){
+    func btnfaceIdAction() {
         
     }
-    func btnEmailIdAction(){
+    func btnEmailIdAction() {
         
     }
-    func btnhowToUseAppAction(){
+    func btnhowToUseAppAction() {
         
     }
-    func btnchageAvtarImageAction(){
+    func btnchageAvtarImageAction() {
         
     }
 }

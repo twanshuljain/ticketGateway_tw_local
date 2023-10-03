@@ -17,7 +17,7 @@ import UIKit
 class InstallmentInfo {
     var isExpanded : Bool
     
-    init(isExpanded:Bool){
+    init(isExpanded:Bool) {
         self.isExpanded = isExpanded
         
     }

@@ -52,7 +52,7 @@ extension  TransferTicketVC {
         self.tblTransferTicketTableView.register(UINib(nibName: "TransferTicketHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TransferTicketHeaderView")
     }
     
-    func resendTicket(transferId: Int?){
+    func resendTicket(transferId: Int?) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             self.view.showLoading(centreToView: self.view)
@@ -81,7 +81,7 @@ extension  TransferTicketVC {
         if let data = self.viewModel.myTicket?.items?[sender.tag]{
             if data.isTransfer ?? false{
                 self.resendTicket(transferId: data.transferredID ?? 0)
-            }else{
+            } else {
                 if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC{
                     continueToTransferVC.viewModel.ticketDetails = self.viewModel.ticketDetails
                     continueToTransferVC.viewModel.eventDetail = self.viewModel.eventDetail

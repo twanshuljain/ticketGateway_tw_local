@@ -28,7 +28,7 @@ class UpcomingTableViewCell: UITableViewCell {
     }
     
     
-    func setData(getTicket: GetMyOrderItem?, isFaded:Bool){
+    func setData(getTicket: GetMyOrderItem?, isFaded:Bool) {
         self.lblTitle.text = getTicket?.eventTitle ?? ""
         if let startDate = getTicket?.eventStartDate {
             self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
@@ -41,7 +41,7 @@ class UpcomingTableViewCell: UITableViewCell {
                     self.imgImage.sd_setImage(with: url) { image, error, cacheType, url in
                         if error == nil{
                             self.imgImage.image = image
-                        }else{
+                        } else {
                             self.imgImage.image = UIImage(named: "homeDas")
                         }
                         self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale() : self.imgImage.image
@@ -57,7 +57,7 @@ class UpcomingTableViewCell: UITableViewCell {
                     self.imgImage.sd_setImage(with: url) { image, error, cacheType, url in
                         if error == nil{
                             self.imgImage.image = image
-                        }else{
+                        } else {
                             self.imgImage.image = UIImage(named: "homeDas")
                         }
                         self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale() : self.imgImage.image

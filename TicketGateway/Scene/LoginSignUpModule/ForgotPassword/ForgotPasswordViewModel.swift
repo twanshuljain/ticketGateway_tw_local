@@ -12,7 +12,7 @@ final class ForgotPasswordViewModel {
     var email: String = ""
     var objModel: ForgotPasswordModel?
     var frgtPassVC : ForgotPasswordVC?
-    init(){
+    init() {
     }
     init(frgtPassVC:ForgotPasswordVC) {
         self.frgtPassVC = frgtPassVC
@@ -34,7 +34,7 @@ extension ForgotPasswordViewModel {
           case .success(let response):
             if response.status_code == 200 {
                 complition(true, response.message ?? "")
-            }else{
+            } else {
                 complition(false, response.message ?? "Error message")
             }
           case .failure(let error):

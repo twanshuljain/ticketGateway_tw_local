@@ -18,7 +18,7 @@ final class GetEventCategoryViewModel {
 
 //MARK: - Functions
 extension GetEventCategoryViewModel {
-    func funcCallApi(vc:EventSearchHomeVC?){
+    func funcCallApi(vc:EventSearchHomeVC?) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             vc?.view.showLoading(centreToView: vc?.view ?? UIView())
@@ -61,7 +61,7 @@ extension GetEventCategoryViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -84,7 +84,7 @@ extension GetEventCategoryViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -108,7 +108,7 @@ extension GetEventCategoryViewModel {
                         complition(true, response.message ?? "")
                   //  }
                   //  complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

@@ -20,7 +20,7 @@ class LeaderProfileTableViewCell: UITableViewCell {
         
     }
     
-    func setData(indexPath:IndexPath){
+    func setData(indexPath:IndexPath) {
         if indexPath.row == 0{
             self.lblTitle.text = "Name"
             self.lblTitleValue.text = "Karen Jones"
@@ -33,7 +33,7 @@ class LeaderProfileTableViewCell: UITableViewCell {
         }else if indexPath.row == 3{
             self.lblTitle.text = "Location"
             self.lblTitleValue.text = "280 Consumers RD. Unit 344 North York ON M2J1P8"
-        }else{
+        } else {
             self.lblTitle.text = "Opening Hours"
             self.lblTitleValue.text = "MON - FRI: 3:00 pm to 9:00 pm" + "\n" + "\n" + "SAT & SUN: 1:00 pm to 9:00 pm"
         }

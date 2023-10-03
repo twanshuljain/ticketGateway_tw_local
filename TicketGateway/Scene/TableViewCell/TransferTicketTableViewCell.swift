@@ -35,7 +35,7 @@ class TransferTicketTableViewCell: UITableViewCell {
 
     }
     
-    func setData(data:MyTicket){
+    func setData(data:MyTicket) {
         lblTicketIdValue.text = "\(data.ticketID ?? 0)"
         lblNameOnTicketValue.text = data.nameOnTicket ?? ""
         lblTransferredToValue.text = data.transferredEmail ?? ""
@@ -44,7 +44,7 @@ class TransferTicketTableViewCell: UITableViewCell {
             self.emailStackView.isHidden = false
             self.emailCopyStackView.isHidden = false
             btnContinueToTransfer.setTitle("Resend", for: .normal)
-        }else{
+        } else {
             self.emailStackView.isHidden = true
             self.emailCopyStackView.isHidden = true
             btnContinueToTransfer.setTitle("Continue to Transfer", for: .normal)

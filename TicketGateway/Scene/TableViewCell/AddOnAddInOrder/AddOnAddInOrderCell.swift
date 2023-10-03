@@ -23,7 +23,7 @@ class AddOnAddInOrderCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)}
     
-    func setUi(){
+    func setUi() {
         [self.lblTittle,lblTittleValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -38,7 +38,7 @@ class AddOnAddInOrderCell: UITableViewCell {
                 
                 var price = Double(addOnData.addOnTicketPrice ?? 0) * Double(selectedTicketQuantity)
                 lblTittleValue.text = "\(selectedCurrencyType)\(price.convertToTwoDecimalPlaces() ?? "0.00")"
-            }else{
+            } else {
                 lblTittle.text = " + " + "\(addOnData.ticketName ?? "")"
                 //lblTittleValue.text = "CAD$ \(Double(addOnData.addOnTicketPrice ?? 0))"
                 

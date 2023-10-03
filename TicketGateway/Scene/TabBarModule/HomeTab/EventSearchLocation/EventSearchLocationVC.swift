@@ -66,7 +66,7 @@ class EventSearchLocationVC: UIViewController {
     @objc func searchAction(_ sender: UITextField) {
         if sender.text == ""{
             self.searchCountriesModel = countriesModel
-        }else{
+        } else {
             let lowercasedQuery = sender.text?.lowercased() ?? ""
             self.searchCountriesModel = countriesModel.filter { item in
                 return item.country_name.lowercased().contains(lowercasedQuery)
@@ -75,7 +75,7 @@ class EventSearchLocationVC: UIViewController {
         
         if self.searchCountriesModel.isEmpty {
             self.noResultFoundView.isHidden = false
-        }else{
+        } else {
             self.noResultFoundView.isHidden = true
         }
         self.tblList.reloadData()
@@ -155,7 +155,7 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
         cell.btnCheck.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         if  self.selectedCountry == countryName{
             cell.btnCheck.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
-        }else{
+        } else {
             cell.btnCheck.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         return cell

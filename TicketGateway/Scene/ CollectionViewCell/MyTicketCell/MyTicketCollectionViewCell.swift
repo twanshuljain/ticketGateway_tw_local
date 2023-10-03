@@ -25,13 +25,13 @@ class MyTicketCollectionViewCell: UICollectionViewCell {
         self.setProfile()
     }
     
-    func setProfile(){
+    func setProfile() {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (userModel?.image ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
         self.imgProfile.cornerRadius = self.imgProfile.frame.width/2
     }
     
-    func setData(myTicket:MyTicket?){
+    func setData(myTicket:MyTicket?) {
         if let base64String = myTicket?.qrcodeBase64Data{
             self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
         }

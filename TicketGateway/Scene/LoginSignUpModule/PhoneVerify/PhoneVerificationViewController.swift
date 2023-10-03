@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple on 04/07/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 import SVProgressHUD
@@ -89,17 +82,17 @@ extension PhoneVerificationViewController {
         self.navigationController?.present(storyBoard ?? UIViewController(), animated: true, completion: nil)
     }
     @IBAction func btnContinueAction(_ sender: UIButton) {
-        if (self.userType == .new) || (userType == .existing && self.isChangeMobileNumberTap == true){
+        if (self.userType == .new) || (userType == .existing && self.isChangeMobileNumberTap == true) {
             viewModel.emailAddress = self.txtEmail.text ?? ""
             viewModel.mobileNumber = self.txtNumber.text ?? ""
             var isValidate = viewModel.validateUserInput
-            if (userType == .existing && self.isChangeMobileNumberTap == true){
+            if (userType == .existing && self.isChangeMobileNumberTap == true) {
                 isValidate = viewModel.validateUserMobile
-            }else{
+            } else {
                 isValidate = viewModel.validateUserInput
             }
             if isValidate.isValid {
-                if Reachability.isConnectedToNetwork(){
+                if Reachability.isConnectedToNetwork() {
                     self.view.showLoading(centreToView: self.view)
                     let number = "\(lblDialCountryCode.text ?? "")" + (self.txtNumber.text ?? "")
                     let numberWithoutCode = self.txtNumber.text ?? ""
@@ -169,7 +162,7 @@ extension PhoneVerificationViewController {
         //        }
     }
     
-    @IBAction func btnChangeNumberAction(_ sender:UIButton){
+    @IBAction func btnChangeNumberAction(_ sender:UIButton) {
         self.btnChangeNumber.isHidden = true
         self.isChangeMobileNumberTap = true
         self.txtNumber.text = ""
@@ -192,12 +185,12 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 self.btnSelectCountry.isUserInteractionEnabled = true
                 self.vwEmaiLabel.isHidden = false
                 self.vwEmail.isHidden = false
-            }else{
+            } else {
                 btnChangeNumber.isHidden = false
                 let number = userModel?.number
                 if number?.contains("+91") ?? false{
                     self.txtNumber.text = userModel?.number?.replacingOccurrences(of: "+91", with: "")
-                }else{
+                } else {
                     self.txtNumber.text = number
                 }
                 self.txtNumber.isUserInteractionEnabled = false
@@ -205,7 +198,7 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 self.vwEmaiLabel.isHidden = true
                 self.vwEmail.isHidden = true
             }
-        }else{
+        } else {
             btnChangeNumber.isHidden = true
             self.txtNumber.text = ""
             self.txtNumber.isUserInteractionEnabled = false
@@ -225,11 +218,11 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 str = userModel?.strDialCountryCode ?? ""
                 arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
                 
-                if !arr.indices.contains(0){
+                if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
                 }
-            }else{
+            } else {
                 str = NSLocale.current.regionCode ?? ""
                 arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
             }
@@ -243,10 +236,10 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 }
             }
             
-            if let flagImg = UIImage(named: imagePath){
+            if let flagImg = UIImage(named: imagePath) {
                 self.imgCountry.image = flagImg
-            }else{
-                if arr.indices.contains(0){
+            } else {
+                if arr.indices.contains(0) {
                     str = arr[0].country_code
                     imagePath = "CountryPicker.bundle/\(str).png"
                     self.imgCountry.image = UIImage(named: imagePath)

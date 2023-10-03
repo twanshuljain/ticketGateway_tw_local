@@ -17,7 +17,7 @@ class CostumeTypeCollectionViewCell: UICollectionViewCell {
         setFont()
     }
     
-    func setFont(){
+    func setFont() {
         self.lblCostumeType.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)    }
 
 }

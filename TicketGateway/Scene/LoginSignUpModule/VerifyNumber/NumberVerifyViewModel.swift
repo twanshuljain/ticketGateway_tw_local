@@ -67,7 +67,7 @@ extension NumberVerifyViewModel {
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
-                    if isComingFrom == .orderSummary && UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin){
+                    if isComingFrom == .orderSummary && UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
                         UserDefaultManager.share.clearAllUserDataAndModel()
                         self.objUserModel = SignInAuthModel(id: response.data?.id, number: numberWithoutCode, fullName: response.data?.fullName, email:  response.data?.email, accessToken:  response.data?.accessToken, refreshToken: response.data?.refreshToken, strDialCountryCode: objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")
                         UserDefaultManager.share.storeModelToUserDefault(userData: self.objUserModel, key: .userAuthData)

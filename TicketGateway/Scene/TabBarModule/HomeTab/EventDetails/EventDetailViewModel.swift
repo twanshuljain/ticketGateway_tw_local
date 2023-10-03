@@ -49,7 +49,7 @@ extension EventDetailViewModel{
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -70,7 +70,7 @@ extension EventDetailViewModel{
                             self.arrEventData = response.data?.items ?? [GetEventModel]()
                             print(self.arrEventData)
                             complition(true, response.message ?? "")
-                    }else{
+                    } else {
                         complition(false,response.message ?? "error message")
                     }
                 case .failure(let error):
@@ -90,7 +90,7 @@ extension EventDetailViewModel{
                     print("response....",response)
                         self.multilocation = response.data
                         complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -110,7 +110,7 @@ extension EventDetailViewModel{
                     print("response....",response)
                         self.recurringList = response.data
                         complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

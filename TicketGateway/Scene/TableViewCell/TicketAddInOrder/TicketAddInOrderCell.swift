@@ -31,7 +31,7 @@ class TicketAddInOrderCell: UITableViewCell {
                 
                 var price = Double(ticketData.ticketPrice ?? 0) * Double(selectedTicketQuantity)
                 lblAmtValue.text = "\(selectedCurrencyType)\(price.convertToTwoDecimalPlaces() ?? "0.00")"
-            }else{
+            } else {
                 //lblTittle.text = " + " + "\(ticketData.ticketName ?? "")"
                 lblTittle.text = "Ticket details " + "(" + "\(ticketData.ticketName ?? "")" + ")"
                 //lblAmtValue.text = "CAD$ \(Double(ticketData.ticketPrice ?? 0))"
@@ -49,7 +49,7 @@ class TicketAddInOrderCell: UITableViewCell {
     }
    
     
-    func setUi(){
+    func setUi() {
          [self.lblAmt,lblTittleDis,lblAmtValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

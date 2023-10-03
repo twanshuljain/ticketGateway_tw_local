@@ -91,13 +91,13 @@ extension MyTicketVC {
        // self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: APPLE_WALLET_ICON))
     }
     
-//    func setData(){
+//    func setData() {
 //        if let base64String = self.viewModel.myTicket?.items?.first?.qrcodeBase64Data{
 //            self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
 //        }
 //    }
     
-    func apiCallForMyTicketList(){
+    func apiCallForMyTicketList() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             self.viewModel.dispatchGroup1.enter()
@@ -131,7 +131,7 @@ extension MyTicketVC {
         }
     }
     
-    func funcCallApiForEventDetail(eventId:Int?){
+    func funcCallApiForEventDetail(eventId:Int?) {
         if let eventId = eventId{
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {

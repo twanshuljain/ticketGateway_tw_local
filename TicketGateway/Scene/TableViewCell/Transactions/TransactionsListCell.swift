@@ -27,7 +27,7 @@ class TransactionsListCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    func setUi(){
+    func setUi() {
         self.lblTittle.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblTittle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblAmount.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)

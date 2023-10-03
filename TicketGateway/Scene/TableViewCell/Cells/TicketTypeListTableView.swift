@@ -4,14 +4,7 @@
 //
 //  Created by Apple  on 11/05/23.
 //
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 // swiftlint: disable shorthand_operator
 
 import UIKit
@@ -50,18 +43,18 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         
  // MARK: - ONLINE
         if isFromAccessCode {
-            if let arrAccessCode = self.arrDataAccessCode, arrAccessCode.indices.contains(indexPath.row){
+            if let arrAccessCode = self.arrDataAccessCode, arrAccessCode.indices.contains(indexPath.row) {
                 cell.setData(event: arrAccessCode[indexPath.row])
             }
         } else {
-            if let arrTicketList = self.arrTicketList, arrTicketList.indices.contains(indexPath.row){
+            if let arrTicketList = self.arrTicketList, arrTicketList.indices.contains(indexPath.row) {
                 cell.setData(event: arrTicketList[indexPath.row])
             }
         }
         
      
         //IF ERROR COME IN ADD TO CART UNCOMMENT THIS
-//        if  self.selectedArrTicketList.indices.contains(indexPath.row){
+//        if  self.selectedArrTicketList.indices.contains(indexPath.row) {
 //            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
 //        }
         
@@ -182,12 +175,12 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                     }
                     if !contains{
                         self.selectedArrTicketList.append(data)
-                    }else{
+                    } else {
                         let index = selectedArrTicketList.firstIndex { ticket in
                             return ticket.uniqueTicketID == data.uniqueTicketID
                         }
                         
-                        if let index = index, selectedArrTicketList.indices.contains(index){
+                        if let index = index, selectedArrTicketList.indices.contains(index) {
                             self.selectedArrTicketList[index].selectedTicketQuantity = lblNumberOfCount
                         }
                     }
@@ -211,7 +204,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                     //(lblNumberOfCount * (data?.ticketPrice ?? 0))
                     cell.vwStepper.lblCount.text = String(lblNumberOfCount)
                     arrDataAccessCode?[sender.tag].selectedTicketQuantity = lblNumberOfCount
-                    if self.selectedArrTicketList.indices.contains(sender.tag){
+                    if self.selectedArrTicketList.indices.contains(sender.tag) {
 //                        self.selectedArrTicketList.removeAll { ticket in
 //                            return ticket.ticketID == arrDataAccessCode?[sender.tag].ticketID
 //                        }
@@ -222,7 +215,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                     cell.vwStepper.lblCount.text = "0"
                     arrDataAccessCode?[sender.tag].selectedTicketQuantity = 0
                    // self.selectedArrTicketList = self.arrDataAccessCode ?? [EventTicket]()
-                    if self.selectedArrTicketList.indices.contains(sender.tag){
+                    if self.selectedArrTicketList.indices.contains(sender.tag) {
                         self.selectedArrTicketList.removeAll { ticket in
                             return ticket.ticketID == arrDataAccessCode?[sender.tag].ticketID
                         }
@@ -252,7 +245,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                         let index = selectedArrTicketList.firstIndex { ticket in
                             return ticket.uniqueTicketID == data.uniqueTicketID
                         }
-                        if let index = index, selectedArrTicketList.indices.contains(index){
+                        if let index = index, selectedArrTicketList.indices.contains(index) {
                             self.selectedArrTicketList[index].selectedTicketQuantity = lblNumberOfCount
                         }
                     }
@@ -270,7 +263,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                         return ticket.uniqueTicketID == arrTicketList?[sender.tag].uniqueTicketID
                     }
                 self.updatedPrice?(finalPrice)
-            }else{
+            } else {
                 cell.vwStepper.lblCount.text = "0"
             }
         }

@@ -63,7 +63,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
 //MARK: - Functions
 extension EventBookingTicketOnApplyCouponVC {
     
-    func setNavigationData(){
+    func setNavigationData() {
         //  self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
         if let eventTitle = viewModel.eventDetail?.event?.title{
             self.navigationView.lblTitle.text = eventTitle
@@ -119,12 +119,12 @@ extension EventBookingTicketOnApplyCouponVC {
         self.setData()
     }
     
-    func setData(){
+    func setData() {
         self.viewModel.selectedCurrencyType = AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")
         self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")) \(Double(self.viewModel.totalTicketPrice) ?? 0.0)"
     }
     
-    func setUi(){
+    func setUi() {
         self.lblAppliedAccessCodeDIs.isHidden = true
         self.imgApplyAccessCode.isHidden = true
         self.enterAccessCodeBgView.borderColor = UIColor.setColor(colorType: .borderColor)
@@ -154,7 +154,7 @@ extension EventBookingTicketOnApplyCouponVC {
         
     }
     
-    func apiCall(){
+    func apiCall() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -167,7 +167,7 @@ extension EventBookingTicketOnApplyCouponVC {
                             self.showAlertWithOkButton(message: messageShowToast) {
                                 self.navigationController?.popViewController(animated: true)
                             }
-                        }else{
+                        } else {
                             self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
                             self.setData()
                             self.tblEventTicketTypes.reloadData()
@@ -244,7 +244,7 @@ extension EventBookingTicketOnApplyCouponVC {
         }
     }
     
-    func navigateToPaymentEventBookingTicketAddOns(){
+    func navigateToPaymentEventBookingTicketAddOns() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
@@ -257,7 +257,7 @@ extension EventBookingTicketOnApplyCouponVC {
         }
     }
     
-    func navigateToEventPromoCode(){
+    func navigateToEventPromoCode() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
@@ -301,10 +301,10 @@ extension EventBookingTicketOnApplyCouponVC {
             */
            if self.tblEventTicketTypes.selectedArrTicketList.isEmpty {
                self.showToast(message: "Please select ticket")
-           }else{
-               if (self.viewModel.arrAddOnTicketList?.isEmpty ?? false ) || (self.viewModel.arrAddOnTicketList == nil){
+           } else {
+               if (self.viewModel.arrAddOnTicketList?.isEmpty ?? false ) || (self.viewModel.arrAddOnTicketList == nil) {
                    self.navigateToEventPromoCode()
-               }else{
+               } else {
                    self.navigateToPaymentEventBookingTicketAddOns()
                }
 //               if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
@@ -372,7 +372,7 @@ extension EventBookingTicketOnApplyCouponVC {
         }
     }
     
-    func btnCheckTermConditionAction(){
+    func btnCheckTermConditionAction() {
         if viewModel.isCheckedTerm_COndition == false
         {
             viewModel.isCheckedTerm_COndition = true

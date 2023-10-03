@@ -57,7 +57,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
                         print("---------------arrTicketList", self.arrTicketList)
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -82,7 +82,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -105,7 +105,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -127,7 +127,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

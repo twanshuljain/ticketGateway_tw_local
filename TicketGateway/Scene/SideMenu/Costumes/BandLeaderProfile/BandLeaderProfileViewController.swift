@@ -147,14 +147,14 @@ extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSo
     func numberOfSections(in tableView: UITableView) -> Int {
         if !viewModel.isAboutSelected{
             return 1
-        }else{
+        } else {
             return 3
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if !viewModel.isAboutSelected{
             return viewModel.arrCostumeItems.count
-        }else{
+        } else {
             switch section {
             case 0: return 1
             case 1: return 5
@@ -169,7 +169,7 @@ extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSo
         if !viewModel.isAboutSelected{
             let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 0))
             return headerView
-        }else{
+        } else {
             let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 20))
             let label = UILabel()
             label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height)
@@ -206,7 +206,7 @@ extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSo
                 return cell
             }
             return UITableViewCell()
-        }else{
+        } else {
             switch indexPath.section {
             case 0:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell{
@@ -243,7 +243,7 @@ extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if !viewModel.isAboutSelected{
             return 0
-        }else{
+        } else {
             return 20
         }
     }

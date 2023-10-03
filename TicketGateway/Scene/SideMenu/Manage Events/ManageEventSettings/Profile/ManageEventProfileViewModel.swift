@@ -42,7 +42,7 @@ final class ManageEventProfileViewModel {
         }
     }
     
-    func updateProfile(){
+    func updateProfile() {
         var userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         userModel?.image = self.getUserProfileData.userData?.image ?? ""
         userModel?.fullName = self.getUserProfileData.userData?.fullName ?? ""

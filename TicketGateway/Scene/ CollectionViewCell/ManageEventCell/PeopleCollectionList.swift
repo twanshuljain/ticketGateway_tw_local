@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 10/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 
@@ -36,7 +29,7 @@ extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDel
         // #warning Incomplete implementation, return the number of items
          if 5 > 3 {
             return 4
-         }else{
+         } else {
             return 5
          }
     }

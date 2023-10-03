@@ -31,7 +31,7 @@ class AppShareData {
         UserDefaults.standard.set(numOfPage, forKey: numOfPageKey)
     }
     
-    func setRootToHomeVCAndMoveToFAQ(){
+    func setRootToHomeVCAndMoveToFAQ() {
         guard let objHomeViewController = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {
             return
         }

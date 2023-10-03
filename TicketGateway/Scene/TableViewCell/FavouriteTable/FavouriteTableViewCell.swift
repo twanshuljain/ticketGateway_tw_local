@@ -40,7 +40,7 @@ class FavouriteTableViewCell: UITableViewCell {
         
     }
     
-    func setDataForFavoritesEvents(getFavouriteData: GetFavouriteItem?){
+    func setDataForFavoritesEvents(getFavouriteData: GetFavouriteItem?) {
         self.setupUI(isFavorites: true)
         
         lblTitle.text = getFavouriteData?.eventTitle ?? "-"
@@ -69,7 +69,7 @@ class FavouriteTableViewCell: UITableViewCell {
         }
     }
     
-    func setDataForFavoritesVenue(getVenueData: GetVenueItem?){
+    func setDataForFavoritesVenue(getVenueData: GetVenueItem?) {
         self.setupUI(isFavorites: false)
         
         lblNumberOfVenue.text = "10+ events"
@@ -98,7 +98,7 @@ class FavouriteTableViewCell: UITableViewCell {
         }
     }
     
-    func setDataForSuggestions(getSuggestionsData: GetEventModel?){
+    func setDataForSuggestions(getSuggestionsData: GetEventModel?) {
         self.setupUI(isFavorites: true)
         
         lblTitle.text = getSuggestionsData?.event?.title ?? "-"
@@ -126,7 +126,7 @@ class FavouriteTableViewCell: UITableViewCell {
         }
     }
     
-    func setupUI(isFavorites:Bool){
+    func setupUI(isFavorites:Bool) {
         if isFavorites{
             self.numberOfVenueStack.isHidden = true
             self.timeOfVenueStack.isHidden = true
@@ -138,7 +138,7 @@ class FavouriteTableViewCell: UITableViewCell {
             self.likeUnlikeStackViewFavorite.isHidden = false
             self.htLikeUnlikeStackViewFavorite.constant = 40
             self.htLblPrice.constant = 40
-        }else{
+        } else {
             self.numberOfVenueStack.isHidden = false
             self.timeOfVenueStack.isHidden = false
             self.timeOfFavoriteEventStack.isHidden = true
@@ -158,7 +158,7 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBAction func shareButtonAction(_ sender: UIButton) {
         shareButtonPressed()
     }
-    func setUi(){
+    func setUi() {
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

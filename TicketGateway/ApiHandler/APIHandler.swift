@@ -112,7 +112,7 @@ class APIHandler: NSObject {
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
-        }else if methodType == .POST && (apiName == .followUnfollow || apiName == .changeTicketName || apiName == .transferTicket){
+        }else if methodType == .POST && (apiName == .followUnfollow || apiName == .changeTicketName || apiName == .transferTicket) {
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
@@ -171,7 +171,7 @@ class APIHandler: NSObject {
             if let token = userModel?.accessToken {
                 request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
              }
-         }else{
+         } else {
              if authRequired, let token = userModel?.accessToken {
                  print("userModel?.accessToken........ ",userModel!.accessToken! )
                  request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")

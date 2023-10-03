@@ -95,17 +95,15 @@ extension AddAmountWalletVC {
     }
     
     
-    func setUi(){
+    func setUi() {
         [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCVC_CVV].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        
         [self.lblPayWithCard,lblPayWithDigitalWAllet].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .seventeen)
             $0?.textColor = UIColor.setColor(colorType: .TGBlack)
         }
-        
         [self.lblSelectCountry,lblAddAmount,lblAddAmtDigiWallet,lblMoreWayToPay].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -113,7 +111,7 @@ extension AddAmountWalletVC {
         }
     }
     
-    func funcDefoultSet(){
+    func funcDefoultSet() {
         self.vwBgCard.backgroundColor = .clear
         self.vwBgWallet.backgroundColor = .clear
         self.vwWallet.isHidden = true

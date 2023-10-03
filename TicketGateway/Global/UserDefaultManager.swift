@@ -50,7 +50,7 @@ class UserDefaultManager {
 }
 
 extension UserDefaultManager {
-    func guestUserLogin(value: Bool, key: UserDefaultKeys){
+    func guestUserLogin(value: Bool, key: UserDefaultKeys) {
         UserDefaults.standard.setValue(value, forKey: key.rawValue)
     }
     

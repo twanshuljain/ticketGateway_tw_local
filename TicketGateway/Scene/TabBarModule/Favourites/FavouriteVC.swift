@@ -312,7 +312,7 @@ extension FavouriteVC {
                 var numberOfPage = 0
                 if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
                     numberOfPage = (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0) + 1
-                }else{
+                } else {
                     numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
                 }
                 // Here we are saving number of pages for page control UI on detail screen, We need to store it for first time only.
@@ -400,17 +400,17 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as? FavouriteTableViewCell {
             if  viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
-                if viewModel.arrSuggestionsList.indices.contains(indexPath.row){
+                if viewModel.arrSuggestionsList.indices.contains(indexPath.row) {
                     print("arr suggestion data in cellForRowAt")
                     cell.setDataForSuggestions(getSuggestionsData: self.viewModel.arrSuggestionsList[indexPath.row])
                 }
             } else if !viewModel.isForVenue {
-                if viewModel.arrFavouriteList.indices.contains(indexPath.row){
+                if viewModel.arrFavouriteList.indices.contains(indexPath.row) {
                     print("arr fav data in cellForRowAt")
                     cell.setDataForFavoritesEvents(getFavouriteData: viewModel.arrFavouriteList[indexPath.row])
                 }
             } else {
-                if viewModel.arrVenueList.indices.contains(indexPath.row){
+                if viewModel.arrVenueList.indices.contains(indexPath.row) {
                     print("arr venue data in cellForRowAt")
                     cell.setDataForFavoritesVenue(getVenueData: viewModel.arrVenueList[indexPath.row])
                 }

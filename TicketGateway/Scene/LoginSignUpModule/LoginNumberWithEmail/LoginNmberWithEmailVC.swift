@@ -89,7 +89,7 @@ extension LoginNmberWithEmailVC {
                         self.view.stopLoading()
                         if self.isComingFrom == .login{
                             self.getUserProfileData()
-                        }else{
+                        } else {
                             
                         }
                     }

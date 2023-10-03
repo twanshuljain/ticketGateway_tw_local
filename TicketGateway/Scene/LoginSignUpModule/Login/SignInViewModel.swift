@@ -31,7 +31,7 @@ final class SignInViewModel {
 }
 // MARK: - Functions
 extension SignInViewModel {
-    var validateUserInput:(errormessage: String, isValid: Bool){
+    var validateUserInput:(errormessage: String, isValid: Bool) {
         if isForEmail == true {
             if Validation.shared.textValidation(text: email, validationType: .email).0 {
                 let errMsg = Validation.shared.textValidation(text: email, validationType: .email).1
@@ -102,7 +102,7 @@ extension SignInViewModel {
         let paramForNumber:ValidateForNumberRequest?
         if userType == .new{
             paramForNumber = ValidateForNumberRequest(cellPhone: userModel?.number, email: userModel?.email)
-        }else{
+        } else {
             paramForNumber = ValidateForNumberRequest()
         }
         APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyResendOtp, parameters: paramForNumber, methodType: .POST, authTokenString: authTokenString) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in

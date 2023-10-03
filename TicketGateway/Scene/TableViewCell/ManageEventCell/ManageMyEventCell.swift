@@ -54,7 +54,7 @@ class ManageMyEventCell: UITableViewCell {
     }
     
     
-    func setUi(){
+    func setUi() {
         self.vwPopUp.isHidden = true
         self.btnManage.setTitles(text: MANAGE, textColour: UIColor.setColor(colorType: .tgBlack), borderColour: UIColor.setColor(colorType: .tgBlack))
         self.lblEventName.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)

@@ -23,7 +23,7 @@ class TicketOverAllEstimateBarCell: UITableViewCell {
         
     }
     
-    func setUi(){
+    func setUi() {
         self.lbltittle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lbltittle.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblValue.font = UIFont.setFont(fontType: .medium, fontSize: .fifteen)

@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 19/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 import SideMenu
@@ -42,7 +35,7 @@ class ManageEventDashboardVC: UIViewController {
         
     }
     
-    func setup(){
+    func setup() {
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
@@ -78,7 +71,7 @@ class ManageEventDashboardVC: UIViewController {
 
 // MARK: - Functions
 extension ManageEventDashboardVC{
-    func setUi(){
+    func setUi() {
         [self.lblNetTicketSold,self.lblTotalAddCheck].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)

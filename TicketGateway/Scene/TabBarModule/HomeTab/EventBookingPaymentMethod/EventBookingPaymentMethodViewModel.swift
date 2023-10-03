@@ -48,7 +48,7 @@ final class EventBookingPaymentMethodViewModel{
 }
 
 extension EventBookingPaymentMethodViewModel{
-//    func checkout(vc:UIViewController){
+//    func checkout(vc:UIViewController) {
 //        let cardParams = STPCardParams()
 //        cardParams.number = "4242424242424242"
 //        cardParams.expMonth = 12
@@ -71,7 +71,7 @@ extension EventBookingPaymentMethodViewModel{
         return false
     }
     
-    func createCustomer(vc:EventBookingPaymentMethodVC){
+    func createCustomer(vc:EventBookingPaymentMethodVC) {
         DispatchQueue.main.async {
             vc.parentView.showLoading(centreToView: vc.view)
         }
@@ -88,7 +88,7 @@ extension EventBookingPaymentMethodViewModel{
                         self.cvv = cvv
                     }
                 }
-            }else{
+            } else {
                 DispatchQueue.main.async {
                     vc.parentView.stopLoading()
                     vc.showAlertController(message: message)
@@ -102,8 +102,8 @@ extension EventBookingPaymentMethodViewModel{
     }
 
     
-    func addCardForUser(vc:EventBookingPaymentMethodVC){
-        if let name = self.name, let cardNumber = self.cardNumber,let cvv = self.cvv, let expMonth = Int(strMonth), let expYear = Int(strYear){
+    func addCardForUser(vc:EventBookingPaymentMethodVC) {
+        if let name = self.name, let cardNumber = self.cardNumber,let cvv = self.cvv, let expMonth = Int(strMonth), let expYear = Int(strYear) {
             DispatchQueue.main.async {
                 vc.parentView.showLoading(centreToView: vc.view)
             }
@@ -114,7 +114,7 @@ extension EventBookingPaymentMethodViewModel{
                     }
                     self.addCard = addCardResponse
                     self.createCheckout(vc: vc)
-                }else{
+                } else {
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()
                         vc.showAlertController(message: message)
@@ -125,7 +125,7 @@ extension EventBookingPaymentMethodViewModel{
         
     }
     
-    func createCheckout(vc:EventBookingPaymentMethodVC){
+    func createCheckout(vc:EventBookingPaymentMethodVC) {
         var ticketIDs = [CheckoutTicketID]()
         var addOnList = [CheckoutAddonList]()
         self.selectedArrTicketList.forEach { ticket in
@@ -161,7 +161,7 @@ extension EventBookingPaymentMethodViewModel{
                     self.checkoutId = response?.checkoutID ?? ""
                     self.otpVerify(vc: vc)
                     //self.createCharge(vc: vc)
-                }else{
+                } else {
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()
                         vc.showAlertController(message: message)
@@ -172,7 +172,7 @@ extension EventBookingPaymentMethodViewModel{
         }
     }
     
-    func otpVerify(vc:EventBookingPaymentMethodVC){
+    func otpVerify(vc:EventBookingPaymentMethodVC) {
         DispatchQueue.main.async {
             if let view = vc.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
                 let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
@@ -186,7 +186,7 @@ extension EventBookingPaymentMethodViewModel{
                 view.otpVerified = { verified, message in
                     if verified{
                         self.createCharge(vc: vc)
-                    }else{
+                    } else {
                         DispatchQueue.main.async {
                             vc.showAlertController(message: message)
                         }
@@ -197,7 +197,7 @@ extension EventBookingPaymentMethodViewModel{
         }
     }
     
-    func createCharge(vc:EventBookingPaymentMethodVC){
+    func createCharge(vc:EventBookingPaymentMethodVC) {
         if let amount = Double(self.totalTicketPrice), let cardId = self.addCard?.id, let checkOutId = self.checkoutId, let currency = self.selectedArrTicketList.compactMap({ $0.ticketCurrencyType ?? "" }).first{
             DispatchQueue.main.async {
                 vc.parentView.showLoading(centreToView: vc.view)
@@ -209,7 +209,7 @@ extension EventBookingPaymentMethodViewModel{
                         self.createCharge = response
                         self.navigateToPaymentSuccess(vc: vc)
                     }
-                }else{
+                } else {
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()
                         vc.showAlertController(message: message)
@@ -220,7 +220,7 @@ extension EventBookingPaymentMethodViewModel{
         
     }
     
-    func navigateToPaymentSuccess(vc:EventBookingPaymentMethodVC){
+    func navigateToPaymentSuccess(vc:EventBookingPaymentMethodVC) {
         if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC{
             view.createCharge = self.createCharge
             view.selectedCurrencyType = self.selectedCurrencyType

@@ -85,7 +85,7 @@ extension FeedbackViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.isAttendeeSelected{
             return viewModel.arrFeedBackAttendee.count
-        }else{
+        } else {
             return viewModel.arrFeedBackOrganizer.count
         }
     }
@@ -96,7 +96,7 @@ extension FeedbackViewController: UITableViewDelegate,UITableViewDataSource {
             if viewModel.isAttendeeSelected{
                 let feedback = viewModel.arrFeedBackAttendee[indexPath.row]
                 cell.setData(feedback: feedback, index: indexPath.row)
-            }else{
+            } else {
                 let feedback = viewModel.arrFeedBackOrganizer[indexPath.row]
                 cell.setData(feedback: feedback, index: indexPath.row)
             }

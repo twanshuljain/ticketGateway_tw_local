@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple on 03/07/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 
@@ -52,7 +45,7 @@ class ZoomViewController:UIViewController {
 // MARK: - Functions
 extension ZoomViewController{
     
-    func setImageView(){
+    func setImageView() {
         // Creates an image view with a test image
         self.imgBackground = UIImageView()
         imgBackground?.image = imgProfile
@@ -78,7 +71,7 @@ extension ZoomViewController{
         mainScrollView.contentSize = imgProfile!.size
     }
     
-    func setLayer(){
+    func setLayer() {
 //        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 244, y: 244), radius: CGFloat(122), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
 //
 //        let shapeLayer = CAShapeLayer()
@@ -115,7 +108,7 @@ extension ZoomViewController{
         self.navigationView.vwBorder.isHidden = true
     }
     
-    func addGesture(){
+    func addGesture() {
         // Add doubleTap recognizer to the scrollView
         let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewDoubleTapped(_:)))
         doubleTapRecognizer.numberOfTapsRequired = 2
@@ -206,11 +199,11 @@ extension ZoomViewController{
 
 // MARK: - Actions
 extension ZoomViewController{
-    @IBAction func btnCancelPressed(_ sender: UIButton){
+    @IBAction func btnCancelPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnChoosePressed(_ sender: UIButton){
+    @IBAction func btnChoosePressed(_ sender: UIButton) {
         print(cropView?.frame)
     }
 }

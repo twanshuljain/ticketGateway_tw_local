@@ -79,12 +79,12 @@ extension ContinueToTransferVC {
         self.viewChangeName.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
     
-    func setData(){
+    func setData() {
         self.txtNameOnTicket.isUserInteractionEnabled = false
         self.txtNameOnTicket.text = self.viewModel.myTicket?.nameOnTicket ?? ""
     }
     
-    func navigateToManageSellTicketSuccessfully(){
+    func navigateToManageSellTicketSuccessfully() {
         if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
             view.strTittle = TICKET_TRANSFERRED
             view.strComplimentry = "1 Ticket(S) with amount $\(self.viewModel.myTicket?.ticketPrice ?? 0)"
@@ -94,7 +94,7 @@ extension ContinueToTransferVC {
         }
     }
     
-    func apiTransferTicket(){
+    func apiTransferTicket() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             self.view.showLoading(centreToView: self.view)
@@ -127,13 +127,13 @@ extension ContinueToTransferVC {
         })
     }
     
-    @IBAction func btnChangeNumberAction(_ sender:UIButton){
+    @IBAction func btnChangeNumberAction(_ sender:UIButton) {
         self.viewChangeName.backgroundColor = .clear
         self.viewModel.isChangeName = true
         self.txtNameOnTicket.isUserInteractionEnabled = true
     }
     
-    @IBAction func btnTransferTicketAction(_ sender:UIButton){
+    @IBAction func btnTransferTicketAction(_ sender:UIButton) {
         self.view.endEditing(true)
         self.viewModel.mobileNumber = self.txtPhoneNumber.text ?? ""
         self.viewModel.email = self.txtEmail.text ?? ""
@@ -144,12 +144,12 @@ extension ContinueToTransferVC {
         
         if isValidate.isValid{
             self.showAlert()
-        }else{
+        } else {
             self.showToast(message: isValidate.errorMessage)
         }
     }
     
-    @IBAction func btnCheckTCAction(_ sender:UIButton){
+    @IBAction func btnCheckTCAction(_ sender:UIButton) {
         self.viewModel.isTCsChecked = !self.viewModel.isTCsChecked
         if self.viewModel.isTCsChecked{
             self.btnCheck.cornerRadius = 2
@@ -158,7 +158,7 @@ extension ContinueToTransferVC {
             self.btnCheck.setBackgroundImage(UIImage.init(named: "uncheck_ip"), for: .normal)
             self.btnTransferTicket.isUserInteractionEnabled = false
             self.btnTransferTicket.alpha = 0.5
-        }else{
+        } else {
             self.btnCheck.cornerRadius = 0
             self.btnCheck.borderWidth = 0
             self.btnCheck.borderColor = .clear

@@ -9,7 +9,7 @@ import UIKit
 
 class CommonFunctions{
 
-    func selectTextFieldBorderColour(){
+    func selectTextFieldBorderColour() {
         
     }
 }

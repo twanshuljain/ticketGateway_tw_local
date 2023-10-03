@@ -9,19 +9,19 @@ import Foundation
 
 // MARK: - AddCardRequest
 struct AddCardRequest: Codable {
-    var card_number : String?
-    var exp_month : Int?
-    var exp_year : Int?
-    var cvc : String?
-    var name : String?
+    var cardNumber: String?
+    var expMonth: Int?
+    var expYear: Int?
+    var cvc: String?
+    var name: String?
 }
 
 // MARK: - CreateChargeRequest
 struct CreateChargeRequest: Codable {
-    var amount : Double?
-    var card_id : Int?
-    var checkout_id : String?
-    var currency : String?
+    var amount: Double?
+    var cardId: Int?
+    var checkoutId: String?
+    var currency: String?
 }
 
 // MARK: - CheckoutId

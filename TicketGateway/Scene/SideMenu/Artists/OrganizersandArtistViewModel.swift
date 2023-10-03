@@ -21,7 +21,7 @@ class OrganizersandArtistViewModel {
                         self.arrOrganizersListSideMenu = organizersList
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -38,7 +38,7 @@ class OrganizersandArtistViewModel {
                         self.arrSuggestedOrganizers = suggestedOrganizersList.items ?? []
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

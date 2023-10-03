@@ -19,7 +19,7 @@ class NotificationCell: UITableViewCell {
         super.awakeFromNib()
         self.setUi()
     }
-    func setUi(){
+    func setUi() {
         
         [self.lblDay,self.lblTime,].forEach {
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .thirteen)

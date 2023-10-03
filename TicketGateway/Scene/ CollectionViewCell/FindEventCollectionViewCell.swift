@@ -11,7 +11,7 @@ class FindEventCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var lblTitle: UILabel!
     
-    override func awakeFromNib(){
+    override func awakeFromNib() {
     super.awakeFromNib()
         self.setFont()
         

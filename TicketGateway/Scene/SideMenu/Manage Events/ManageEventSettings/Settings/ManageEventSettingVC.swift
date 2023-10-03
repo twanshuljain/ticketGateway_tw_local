@@ -3,14 +3,7 @@
 // TicketGateway
 //
 // Created by Apple on 24/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 
 import UIKit
@@ -45,14 +38,14 @@ extension ManageEventSettingVC {
                 self.setTableView()
                 self.navitem.title = "settings"
                 self.navitem.image = UIImage.init(named: "settings")
-            }else{
+            } else {
                 self.navitem.title = "Profile"
                 let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
                 vc.isComingFromOranizer = false
                 self.navigationController?.viewControllers = [vc]
                 self.navigationController?.pushViewController(vc, animated: false)
             }
-        }else{
+        } else {
         }
     }
     func setTableView() {
@@ -60,7 +53,7 @@ extension ManageEventSettingVC {
         tblList.dataSource = self
         tblList.register(UINib(nibName: "ManageEventSettingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ManageEventSettingTableViewCell")
     }
-    func setUi(){
+    func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblProfileview.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)

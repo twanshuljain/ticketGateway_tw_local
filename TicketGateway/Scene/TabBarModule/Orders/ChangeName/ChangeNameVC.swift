@@ -89,7 +89,7 @@ extension ChangeNameVC {
         view.endEditing(true)
     }
     
-    func apiCall(){
+    func apiCall() {
         self.view.endEditing(true)
         viewModel.firstName = self.txtFirstName.text ?? ""
         viewModel.lastName = self.txtLastName.text ?? ""
@@ -119,12 +119,12 @@ extension ChangeNameVC {
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
-        }else{
+        } else {
             self.showToast(message: isValidate.errorMessage)
         }
     }
     
-    func navigateToManageSellTicketSuccessfully(){
+    func navigateToManageSellTicketSuccessfully() {
         if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
             view.strTittle = TICKET_NAME_CHANGED
             view.strComplimentry = "\(self.viewModel.selectedTicket?.quantity ?? 1) Ticket(S) with amount $\(self.viewModel.selectedTicket?.ticketPrice ?? 0)"

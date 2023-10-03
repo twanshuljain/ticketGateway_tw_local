@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple on 07/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 
@@ -48,7 +41,7 @@ class ReviewRefundVC: UIViewController {
 
 //MARK: - Functions
 extension ReviewRefundVC{
-    func setNavigationView(){
+    func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = REVIEW_REFUND
@@ -64,7 +57,7 @@ extension ReviewRefundVC{
         tblReviewrefund.register(UINib(nibName: "ReviewRefundTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewRefundTableViewCell")
     }
     
-    func setFont(){
+    func setFont() {
         self.lblTotalToRefundPrice.font = UIFont.setFont(fontType: .semiBold, fontSize: .thirtyTwo)
         let gradient = getGradientLayer(bounds: view.bounds)
         self.lblTotalToRefundPrice.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)

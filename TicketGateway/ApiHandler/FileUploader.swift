@@ -18,7 +18,7 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
     private let boundary = "Boundary-\(NSUUID().uuidString)"
     private let baseURL = ""
     // Upload Image Method
-    func uploadFileOnServerWith(apiName: APIName, imageName: String, fileData: Data, keyForFile: String, parameters: [String:Any]?, mimeType: MimeType = .image, onSuccess:@escaping(_ httpStatus:Int,_ response:Data?)->(), onFailure:@escaping(_ httpStatus:Int,_ response:NSDictionary?)->()){
+    func uploadFileOnServerWith(apiName: APIName, imageName: String, fileData: Data, keyForFile: String, parameters: [String:Any]?, mimeType: MimeType = .image, onSuccess:@escaping(_ httpStatus:Int,_ response:Data?)->(), onFailure:@escaping(_ httpStatus:Int,_ response:NSDictionary?)->()) {
         let finalURL = baseURL + apiName.rawValue
         guard let requestURL = URL(string: finalURL) else {
             let tmpResponse = ["message": "Incorrect request URL"] as NSDictionary

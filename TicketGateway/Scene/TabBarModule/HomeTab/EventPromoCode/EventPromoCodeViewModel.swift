@@ -37,7 +37,7 @@ extension EventPromoCodeViewModel{
                         print("---------------promoCodeData", self.promoCodeData)
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

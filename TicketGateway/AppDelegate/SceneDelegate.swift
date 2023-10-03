@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 10/04/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 
@@ -78,7 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    func showTabBar(){
+    func showTabBar() {
         let storyboard:UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
         let navigationController = storyboard.instantiateViewController(withIdentifier: "tabBarNav") as? UINavigationController
         let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBar_VC") as! TabBar_VC
@@ -89,7 +82,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
     
-    func showLogin(){
+    func showLogin() {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController = storyboard.instantiateViewController(withIdentifier: "WelcomeLoginSignupNav") as? UINavigationController
         let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
@@ -103,7 +96,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
     
-    func showMangeEventTabBar(){
+    func showMangeEventTabBar() {
         let storyboard:UIStoryboard = UIStoryboard(name: "ManageEvents", bundle: nil)
         let navigationController = storyboard.instantiateViewController(withIdentifier: "TabBarNavMange") as? UINavigationController
         let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarManage_VC") as! TabBarManage_VC
@@ -113,21 +106,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    func   showLogin_Signup(){
+    func   showLogin_Signup() {
         let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         let  navController = sb.instantiateViewController(withIdentifier: "WelcomeLoginSignupNav") as? UINavigationController
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
     }
-    func showIntroScreen(){
+    func showIntroScreen() {
         let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
         let  navController = sb.instantiateViewController(withIdentifier: "WelcomeIntroNav") as? UINavigationController
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
     }
     
-    func IsUserAlreadyLogin(){
+    func IsUserAlreadyLogin() {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         let userModelSignUp = UserDefaultManager.share.getModelDataFromUserDefults(userData: UserAccountModel.self, key: .userAuthData)
         print("Get data",userModel?.email)

@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 28/04/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 import SDWebImage
@@ -36,7 +29,7 @@ class suggestedOrganizerCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setData(organizerDetail: Organizers){
+    func setData(organizerDetail: Organizers) {
         self.lblName.text = organizerDetail.name ?? ""
         self.lblFollowers.text = "\(organizerDetail.followers ?? 0) followers "
         if organizerDetail.isFollow == true {
@@ -46,17 +39,17 @@ class suggestedOrganizerCell: UICollectionViewCell {
         }
         
         if let imageUrl = organizerDetail.profileImage{
-            if imageUrl.contains(APIHandler.shared.previousBaseURL){
+            if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                }else{
+                } else {
                     self.imgProfile.image = UIImage(named: "homeDas")
                 }
-            }else{
+            } else {
                 if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
                     self.imgProfile.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                }else{
+                } else {
                     self.imgProfile.image = UIImage(named: "homeDas")
                 }
             }
@@ -66,7 +59,7 @@ class suggestedOrganizerCell: UICollectionViewCell {
         }
     }
     
-    func setUi(){
+    func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
@@ -75,7 +68,7 @@ class suggestedOrganizerCell: UICollectionViewCell {
        
     }
     
-    @IBAction func btnFollowUnfollowAction(_ sender:UIButton){
+    @IBAction func btnFollowUnfollowAction(_ sender:UIButton) {
         if isFromOrganizationSection {
             followButtonDidTap(sender)
         }

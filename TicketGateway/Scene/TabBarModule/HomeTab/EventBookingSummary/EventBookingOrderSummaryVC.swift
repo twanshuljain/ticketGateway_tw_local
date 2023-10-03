@@ -3,14 +3,7 @@
 // TicketGateway
 //
 // Created by Apple on 16/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 class EventBookingOrderSummaryVC: UIViewController {
@@ -77,7 +70,7 @@ extension EventBookingOrderSummaryVC {
         self.tblAddOnEtcThings.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.heightOfAddOn.constant = self.tblAddOnEtcThings.contentSize.height
     }
-    func setUi(){
+    func setUi() {
         [self.lblSubTotal,lblSubTotalValue,self.lblfacilityFee,self.lblfacilityFeeValue,self.lblServiceCharge,self.lblServiceChargeValue,self.lblProcessingFee,self.lblProcessingFeeValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -106,7 +99,7 @@ extension EventBookingOrderSummaryVC {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height
         if self.viewModel.selectedAddOnList.isEmpty {
             self.heightOfAddOn.constant = 0
-        }else{
+        } else {
             self.heightOfAddOn.constant = tblAddOnEtcThings.contentSize.height
         }
         
@@ -142,7 +135,7 @@ extension EventBookingOrderSummaryVC {
             self.lblDiscoutedValue.isHidden = false
             self.discountViewHt.constant = 40
             self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(convertedDiscountValue ?? "")%" : "- \(self.viewModel.selectedCurrencyType)\(convertedDiscountValue ?? "")"
-        }else{
+        } else {
             total = serviceCharge + processingCharge + facilityCharge + subTotal
             self.lblDiscouted.isHidden = true
             self.lblDiscoutedValue.isHidden = true
@@ -179,7 +172,7 @@ extension EventBookingOrderSummaryVC {
             if let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as? PhoneVerificationViewController{
                 if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
                     view.userType = .new
-                }else{
+                } else {
                     view.userType = .existing
                 }
                 view.isComingFrom = .orderSummary
@@ -192,7 +185,7 @@ extension EventBookingOrderSummaryVC {
                 view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
                 self.navigationController?.pushViewController(view, animated: true)
             }
-//        }else{
+//        } else {
 //            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
 //                view.viewModel.eventId = self.viewModel.eventId
 //                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList

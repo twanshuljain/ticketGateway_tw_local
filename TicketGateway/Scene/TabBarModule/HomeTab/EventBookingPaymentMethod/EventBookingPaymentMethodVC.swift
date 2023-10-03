@@ -89,7 +89,7 @@ extension EventBookingPaymentMethodVC {
     }
     
     
-    func setUi(){
+    func setUi() {
         [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCVC_CVV].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -107,7 +107,7 @@ extension EventBookingPaymentMethodVC {
         lblAddAmount.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     
-    func funcDefoultSet(){
+    func funcDefoultSet() {
         self.vwBgCard.backgroundColor = .clear
         self.vwBgWallet.backgroundColor = .clear
         self.vwWallet.isHidden = true

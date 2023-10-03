@@ -3,9 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 23/05/23.
-// swiftlint: disable line_length
-// swiftlint: disable line_length
-// swiftlint: disable force_cast
 
 import UIKit
 
@@ -100,11 +97,11 @@ extension ManageSellAddBuyerVC {
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
                 
-                if !arr.indices.contains(0){
+                if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = viewModel.RScountriesModel.filter({$0.country_code == str})
                 }
-            }else{
+            } else {
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.country_code == str})
             }
@@ -119,10 +116,10 @@ extension ManageSellAddBuyerVC {
                 }
             }
             
-            if let flagImg = UIImage(named: imagePath){
+            if let flagImg = UIImage(named: imagePath) {
                 self.imgCountry.image = flagImg
-            }else{
-                if arr.indices.contains(0){
+            } else {
+                if arr.indices.contains(0) {
                     str = arr[0].country_code
                     imagePath = "CountryPicker.bundle/\(str).png"
                     self.imgCountry.image = UIImage(named: imagePath)

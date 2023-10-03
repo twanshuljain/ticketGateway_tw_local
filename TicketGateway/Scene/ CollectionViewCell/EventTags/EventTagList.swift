@@ -23,7 +23,7 @@ class EventTagList: UICollectionView {
         self.dataSource = self
     }
     
-    func setData(eventDetail:EventDetail?){
+    func setData(eventDetail:EventDetail?) {
         self.eventDetail = eventDetail
         self.reloadData()
     }

@@ -186,7 +186,7 @@ extension CreateAccountVC: UITextFieldDelegate {
             var str = "\(text.replacingCharacters(in: textRange, with: string))"
             if str == " "{
                 return false
-            }else{
+            } else {
                 viewModel.password = text.replacingCharacters(in: textRange, with: string)
                 return true
             }
@@ -194,7 +194,7 @@ extension CreateAccountVC: UITextFieldDelegate {
             var str = "\(text.replacingCharacters(in: textRange, with: string))"
             if str == " "{
                 return false
-            }else{
+            } else {
                 viewModel.confimePassword = text.replacingCharacters(in: textRange, with: string)
                 return true
             }
@@ -229,11 +229,11 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
                 
-                if !arr.indices.contains(0){
+                if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = viewModel.RScountriesModel.filter({$0.country_code == str})
                 }
-            }else{
+            } else {
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.country_code == str})
             }

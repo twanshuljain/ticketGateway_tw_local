@@ -27,7 +27,7 @@ extension ContactOrganiserViewModel{
         }else if Validation.shared.organizerInputValidation(text: email, validationType: .email).0 {
             let errMsg = Validation.shared.organizerInputValidation(text: email, validationType: .email).1
             return (errMsg, false)
-        }else if (selectedReason == ""){
+        }else if (selectedReason == "") {
             return ("Please select reason", false)
         }else if message == ""{
             return ("Please enter message", false)
@@ -52,7 +52,7 @@ extension ContactOrganiserViewModel{
                             self.contactOranizer = data
                         }
                         complition(true, response.message ?? "")
-                    }else{
+                    } else {
                         complition(false,response.message ?? "error message")
                     }
                 case .failure(let error):

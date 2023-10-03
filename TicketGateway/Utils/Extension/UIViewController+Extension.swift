@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 14/04/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 import Foundation
@@ -100,7 +93,7 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
       }
     
-    func showAlertSendOnUrlPath( strTittle: String,strMessage: String,strUrl: String){
+    func showAlertSendOnUrlPath( strTittle: String,strMessage: String,strUrl: String) {
         let alert = UIAlertController(title: strTittle, message: strMessage, preferredStyle: .alert)
         let strGoSetting = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
             guard let settingsUrl = URL(string: strUrl) else {

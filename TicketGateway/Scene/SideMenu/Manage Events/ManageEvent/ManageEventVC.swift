@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 10/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 import iOSDropDown
@@ -60,7 +53,7 @@ extension ManageEventVC {
         }
         
     }
-    func setUi(){
+    func setUi() {
         self.txtAllorganiser.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.txtAllorganiser.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         btnCreateEvent.setTitles(text: CREATE_EVENT, font: UIFont.boldSystemFont(ofSize: 20), tintColour: UIColor.setColor(colorType: .tgBlack))
@@ -78,7 +71,7 @@ extension ManageEventVC {
         }
     }
    
-    func btnAllorganiserAction(){
+    func btnAllorganiserAction() {
         txtAllorganiser.showList()
 //        if self.isShow == false{
 //            self.isShow = true

@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 04/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 import SideMenu
@@ -59,7 +52,7 @@ class Organizers_Artists_ListVC: UIViewController {
 // MARK: - Functions
 extension Organizers_Artists_ListVC {
     
-    func callApiForOrganizersList(viewAll:Bool){
+    func callApiForOrganizersList(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             self.view.showLoading(centreToView: self.view)
@@ -123,7 +116,7 @@ extension Organizers_Artists_ListVC {
         self.navigationView.vwBorder.isHidden = false
     }
     
-    func setUi(){
+    func setUi() {
         self.lblTittle.font = UIFont.setFont(fontType: .bold, fontSize: .eighteen)
         self.lblTittle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblSuggested.font = UIFont.setFont(fontType: .bold, fontSize: .eighteen)
@@ -148,7 +141,7 @@ extension Organizers_Artists_ListVC {
     }
 
     func btnSeeAllAction() {
-        if Reachability.isConnectedToNetwork(){
+        if Reachability.isConnectedToNetwork() {
            // SVProgressHUD.show()
             viewModel.signInAPI { isTrue , messageShowToast in
                 if isTrue == true {
@@ -174,7 +167,7 @@ extension Organizers_Artists_ListVC {
 //        self.navigationController?.pushViewController(vc, animated:     true)
 //
         
-        if Reachability.isConnectedToNetwork(){
+        if Reachability.isConnectedToNetwork() {
         //    SVProgressHUD.show()
             viewModel.signInAPI { isTrue , messageShowToast in
                 if isTrue == true {

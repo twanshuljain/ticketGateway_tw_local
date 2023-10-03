@@ -28,7 +28,7 @@ class AmountAddedSuccessfullyVC: UIViewController {
 
 // MARK: - Functions
 extension AmountAddedSuccessfullyVC {
-    func setUp(){
+    func setUp() {
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = SUCCESSFUL_ADDED

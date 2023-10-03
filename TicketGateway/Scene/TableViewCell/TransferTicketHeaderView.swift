@@ -20,7 +20,7 @@ class TransferTicketHeaderView: UITableViewHeaderFooterView {
         self.setFont()
     }
     
-    func setData(data:MyTicket){
+    func setData(data:MyTicket) {
         lblTicketTitle.text = data.ticketName ?? ""
         lblPrice.text = "$\(data.ticketPrice ?? 0)"
         

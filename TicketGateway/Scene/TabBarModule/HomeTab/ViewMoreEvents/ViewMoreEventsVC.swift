@@ -60,7 +60,7 @@ extension ViewMoreEventsVC{
         self.vwSearchBar.vwLocation.isHidden = true
     }
     
-    func setData(){
+    func setData() {
         if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .nearByLocation:
@@ -84,7 +84,7 @@ extension ViewMoreEventsVC{
             default:
                 break;
             }
-        }else{
+        } else {
             navigationView.lblTitle.text = "Suggested Events"
             self.funcCallApiForSuggestedEvents()
         }
@@ -92,7 +92,7 @@ extension ViewMoreEventsVC{
     }
     
     
-    func navigateToDetail(index:IndexPath){
+    func navigateToDetail(index:IndexPath) {
         let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
         
         if self.viewModel.isComingFrom == .home{
@@ -100,27 +100,27 @@ extension ViewMoreEventsVC{
             case .noLocationData:
                 print("No Data Found")
             case .nearByLocation:
-                if self.viewModel.itemsLocation.indices.contains(index.row){
+                if self.viewModel.itemsLocation.indices.contains(index.row) {
                     view?.viewModel.eventId = self.viewModel.itemsLocation[index.row].event?.id
                 }
             case .weekend:
-                if self.viewModel.itemsWeekend.indices.contains(index.row){
+                if self.viewModel.itemsWeekend.indices.contains(index.row) {
                     view?.viewModel.eventId = self.viewModel.itemsWeekend[index.row].event?.id
                 }
             case .online:
-                if self.viewModel.itemsVirtual.indices.contains(index.row){
+                if self.viewModel.itemsVirtual.indices.contains(index.row) {
                     view?.viewModel.eventId = self.viewModel.itemsVirtual[index.row].event?.id
                 }
             case .popular:
-                if self.viewModel.itemsPopular.indices.contains(index.row){
+                if self.viewModel.itemsPopular.indices.contains(index.row) {
                     view?.viewModel.eventId = self.viewModel.itemsPopular[index.row].event?.id
                 }
             case .free:
-                if self.viewModel.itemsFree.indices.contains(index.row){
+                if self.viewModel.itemsFree.indices.contains(index.row) {
                     view?.viewModel.eventId = self.viewModel.itemsFree[index.row].event?.id
                 }
             case .upcoming:
-                if self.viewModel.itemsUpcoming.indices.contains(index.row){
+                if self.viewModel.itemsUpcoming.indices.contains(index.row) {
                     view?.viewModel.eventId = self.viewModel.itemsUpcoming[index.row].event?.id
                 }
             }
@@ -139,7 +139,7 @@ extension ViewMoreEventsVC{
         
     }
     
-    func funcCallApiForLocation(){
+    func funcCallApiForLocation() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -170,7 +170,7 @@ extension ViewMoreEventsVC{
         }
     }
     
-    func funcCallApiForSuggestedEvents(){
+    func funcCallApiForSuggestedEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -206,7 +206,7 @@ extension ViewMoreEventsVC{
     }
     
     
-    func funcCallApi(){
+    func funcCallApi() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -241,7 +241,7 @@ extension ViewMoreEventsVC{
         }
     }
     
-    func funcCallApiForOnlineEvents(){
+    func funcCallApiForOnlineEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -277,7 +277,7 @@ extension ViewMoreEventsVC{
     }
 
 
-    func funcCallApiForPopularEvents(){
+    func funcCallApiForPopularEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -313,7 +313,7 @@ extension ViewMoreEventsVC{
     }
 
 
-    func funcCallApiForFreeEvents(){
+    func funcCallApiForFreeEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -348,7 +348,7 @@ extension ViewMoreEventsVC{
         }
     }
 
-    func funcCallApiForUpcomingEvents(){
+    func funcCallApiForUpcomingEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
@@ -402,7 +402,7 @@ extension ViewMoreEventsVC{
                     //self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForLocation()
-                }else{
+                } else {
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
@@ -411,7 +411,7 @@ extension ViewMoreEventsVC{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApi()
-                }else{
+                } else {
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
@@ -420,7 +420,7 @@ extension ViewMoreEventsVC{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForOnlineEvents()
-                }else{
+                } else {
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
@@ -429,7 +429,7 @@ extension ViewMoreEventsVC{
                   //  self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForPopularEvents()
-                }else{
+                } else {
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
@@ -439,7 +439,7 @@ extension ViewMoreEventsVC{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForFreeEvents()
-                }else{
+                } else {
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
@@ -450,7 +450,7 @@ extension ViewMoreEventsVC{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForUpcomingEvents()
-                }else{
+                } else {
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
@@ -460,7 +460,7 @@ extension ViewMoreEventsVC{
                // self.tblView.tableFooterView = spinner
                 self.tblView.tableFooterView?.isHidden = false
                 self.funcCallApiForSuggestedEvents()
-            }else{
+            } else {
                 self.tblView.tableFooterView = nil
                 self.tblView.tableFooterView?.isHidden = true
             }
@@ -509,38 +509,38 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                 case .noLocationData:
                     print("No Data Found")
                 case .nearByLocation:
-                    if self.viewModel.itemsLocation.indices.contains(indexPath.row){
+                    if self.viewModel.itemsLocation.indices.contains(indexPath.row) {
                         cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .weekend:
-                    if self.viewModel.itemsWeekend.indices.contains(indexPath.row){
+                    if self.viewModel.itemsWeekend.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .online:
-                    if self.viewModel.itemsVirtual.indices.contains(indexPath.row){
+                    if self.viewModel.itemsVirtual.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsVirtual[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .popular:
-                    if self.viewModel.itemsPopular.indices.contains(indexPath.row){
+                    if self.viewModel.itemsPopular.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsPopular[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .free:
-                    if self.viewModel.itemsFree.indices.contains(indexPath.row){
+                    if self.viewModel.itemsFree.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsFree[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (viewModel.itemsFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .upcoming:
-                    if self.viewModel.itemsUpcoming.indices.contains(indexPath.row){
+                    if self.viewModel.itemsUpcoming.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
                         cell.btnLike.setImage(UIImage(named: (viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 }
             } else {
-                if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
+                if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row) {
                     cell.getEvent =  self.viewModel.itemsSuggestedEvents[indexPath.row]
                     cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                 }
@@ -556,33 +556,33 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             case .noLocationData:
                 print("No Data Found")
             case .nearByLocation:
-                if viewModel.itemsLocation.indices.contains(indexPath.row){
+                if viewModel.itemsLocation.indices.contains(indexPath.row) {
                     toShowActivityController(eventDetail: viewModel.itemsLocation[indexPath.row])
                 }
             case .weekend:
-                if viewModel.itemsWeekend.indices.contains(indexPath.row){
+                if viewModel.itemsWeekend.indices.contains(indexPath.row) {
                     toShowActivityController(eventDetail: viewModel.itemsWeekend[indexPath.row])
                 }
             case .online:
-                if viewModel.itemsVirtual.indices.contains(indexPath.row){
+                if viewModel.itemsVirtual.indices.contains(indexPath.row) {
                     toShowActivityController(eventDetail: viewModel.itemsVirtual[indexPath.row])
                 }
             case .popular:
-                if viewModel.itemsPopular.indices.contains(indexPath.row){
+                if viewModel.itemsPopular.indices.contains(indexPath.row) {
                     toShowActivityController(eventDetail: viewModel.itemsPopular[indexPath.row])
                 }
             case .free:
-                if viewModel.itemsFree.indices.contains(indexPath.row){
+                if viewModel.itemsFree.indices.contains(indexPath.row) {
                     toShowActivityController(eventDetail: viewModel.itemsFree[indexPath.row])
                 }
             case .upcoming:
-                if viewModel.itemsUpcoming.indices.contains(indexPath.row){
+                if viewModel.itemsUpcoming.indices.contains(indexPath.row) {
                     toShowActivityController(eventDetail: viewModel.itemsUpcoming[indexPath.row])
                 }
             }
         } else if viewModel.isComingFrom == .eventDetail {
             // Suggestions Event
-            if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
+            if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row) {
                 toShowActivityController(eventDetail: viewModel.itemsSuggestedEvents[indexPath.row])
             }
         }
@@ -604,33 +604,33 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsLocation[indexPath.row], isForLocation: true)
                 }
             case .weekend:
-                if viewModel.itemsWeekend.indices.contains(indexPath.row){
+                if viewModel.itemsWeekend.indices.contains(indexPath.row) {
                     viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked?.toggle()
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsWeekend[indexPath.row], isForLocation: false)
                 }
             case .online:
-                if viewModel.itemsVirtual.indices.contains(indexPath.row){
+                if viewModel.itemsVirtual.indices.contains(indexPath.row) {
                     viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked?.toggle()
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsVirtual[indexPath.row], isForLocation: false)
                 }
             case .popular:
-                if viewModel.itemsPopular.indices.contains(indexPath.row){
+                if viewModel.itemsPopular.indices.contains(indexPath.row) {
                     viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked?.toggle()
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsPopular[indexPath.row], isForLocation: false)
                 }
             case .free:
-                if viewModel.itemsFree.indices.contains(indexPath.row){
+                if viewModel.itemsFree.indices.contains(indexPath.row) {
                     viewModel.itemsFree[indexPath.row].likeCountData?.isLiked?.toggle()
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsFree[indexPath.row], isForLocation: false)
                 }
             case .upcoming:
-                if viewModel.itemsUpcoming.indices.contains(indexPath.row){
+                if viewModel.itemsUpcoming.indices.contains(indexPath.row) {
                     viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked?.toggle()
                     viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsUpcoming[indexPath.row], isForLocation: false)
                 }
             }
         } else if viewModel.isComingFrom == .eventDetail {
-            if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row){
+            if viewModel.itemsSuggestedEvents.indices.contains(indexPath.row) {
                 viewModel.itemsSuggestedEvents[indexPath.row].isLiked?.toggle()
                 viewModel.toCallFavouriteaApi(eventDetail: viewModel.itemsSuggestedEvents[indexPath.row], isForLocation: false)
             }
@@ -641,7 +641,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         self.addLoader(indexPath: indexPath)
     }
     
-    func addLoader(indexPath :IndexPath){
+    func addLoader(indexPath :IndexPath) {
         let lastSectionIndex = self.tblView.numberOfSections - 1
         let lastRowIndex = tblView.numberOfRows(inSection: lastSectionIndex) - 1
         if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {

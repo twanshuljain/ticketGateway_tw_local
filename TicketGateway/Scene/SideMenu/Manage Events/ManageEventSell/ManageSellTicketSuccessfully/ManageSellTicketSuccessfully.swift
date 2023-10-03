@@ -96,7 +96,7 @@ extension ManageSellTicketSuccessfully {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func popViewController(){
+    func popViewController() {
         if let navigationController = self.navigationController{
             for controller in navigationController.viewControllers {
                 if controller.isKind(of: MyTicketVC.self) {
@@ -104,7 +104,7 @@ extension ManageSellTicketSuccessfully {
                     break
                 }
             }
-        }else{
+        } else {
             self.navigationController?.popToRootViewController(animated: true)
         }
     }

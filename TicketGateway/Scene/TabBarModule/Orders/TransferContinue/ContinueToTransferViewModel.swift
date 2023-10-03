@@ -28,7 +28,7 @@ extension ContinueToTransferViewModel{
             return (errMsg, false)
         }else if email != confirmEmail{
             return ("Please enter valid confirm email", false)
-        }else if (isChangeName == true) && (fullName == ""){
+        }else if (isChangeName == true) && (fullName == "") {
             return ("Please enter fullname", false)
         }
         return("", true)
@@ -43,7 +43,7 @@ extension ContinueToTransferViewModel{
             case .success(let response):
                 if response.status_code == 200 {
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
@@ -60,7 +60,7 @@ extension ContinueToTransferViewModel{
                 if response.status_code == 200 {
                     self.ticketTransfer = response.data
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

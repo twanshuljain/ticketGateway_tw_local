@@ -42,7 +42,7 @@ extension FilterViewController{
         self.updateUI()
     }
     
-    func updateUI(){
+    func updateUI() {
         if self.viewModel.selectedFilterIndex != nil{
             self.btnApply.setBackGround()
             self.btnApply.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -51,7 +51,7 @@ extension FilterViewController{
             self.btnCancel.backgroundColor = UIColor.setColor(colorType: .white)
             self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .borderColor)
-        }else{
+        } else {
             self.btnApply.gradientLayer.removeFromSuperlayer()
             self.btnApply.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
             self.btnApply.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -69,7 +69,7 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.tblFilterSection{
             return viewModel.arrFilterSection.count
-        }else{
+        } else {
             return viewModel.arrFilter.count
         }
     }
@@ -80,16 +80,16 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
                 let data = self.viewModel.arrFilterSection[indexPath.row]
                 cell.setData(str: data, selectedIndex: self.viewModel.selectedFilterSectionIndex, index: indexPath.row)
                 return cell
-            }else{
+            } else {
                 return UITableViewCell()
             }
-        }else{
+        } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "FilterSelectedTableViewCell", for: indexPath) as? FilterSelectedTableViewCell{
                 let data = self.viewModel.arrFilter[indexPath.row]
                 cell.setData(str: data, selectedIndex: self.viewModel.selectedFilterIndex ?? 10, index: indexPath.row)
                 self.updateUI()
                 return cell
-            }else{
+            } else {
                 return UITableViewCell()
             }
         }
@@ -98,10 +98,10 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == self.tblFilterSection{
             return UITableView.automaticDimension
-        }else{
-            if (indexPath.row == 2) && (self.viewModel.selectedFilterIndex == 2){
+        } else {
+            if (indexPath.row == 2) && (self.viewModel.selectedFilterIndex == 2) {
                 return 350
-            }else{
+            } else {
                 return 60
             }
         }
@@ -111,7 +111,7 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
         if tableView == self.tblFilterSection{
             self.viewModel.selectedFilterSectionIndex = indexPath.row
             tableView.reloadData()
-        }else{
+        } else {
             self.viewModel.selectedFilterIndex = indexPath.row
             tableView.reloadData()
         }

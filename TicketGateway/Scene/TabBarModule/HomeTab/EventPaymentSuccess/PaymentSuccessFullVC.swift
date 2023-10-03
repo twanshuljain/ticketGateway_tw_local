@@ -35,7 +35,7 @@ class PaymentSuccessFullVC: UIViewController {
 }
 //MARK: - Functions
 extension PaymentSuccessFullVC {
-    func setUp(){
+    func setUp() {
         self.navigationView.btnBack.isHidden = true
         self.navigationView.imgBack.isHidden = true
         //self.navigationView.delegateBarAction = self
@@ -58,13 +58,13 @@ extension PaymentSuccessFullVC {
         self.btnNeedHelp.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
     }
     
-    func setData(){
+    func setData() {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         if selectedArrTicketList.isEmpty {
             self.lbl1Ticket.text = "Ticket with amount"
         }else if selectedArrTicketList.count == 1{
             self.lbl1Ticket.text = "1 Ticket(S) with amount "
-        }else{
+        } else {
             self.lbl1Ticket.text = "\(selectedArrTicketList.count) Ticket(S) with amount"
         }
        

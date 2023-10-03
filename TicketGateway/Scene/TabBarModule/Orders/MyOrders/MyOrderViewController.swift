@@ -130,7 +130,7 @@ extension MyOrderViewController {
         vwNavigationBar.delegateBarAction = self
     }
     
-    func resetPage(){
+    func resetPage() {
         viewModel.myOrdersModel.page = 1
         viewModel.arrMyOrder.removeAll()
         txtSearch.text = ""
@@ -256,7 +256,7 @@ extension MyOrderViewController {
         getMyOrderApiCall(isFromUpcoming: false)
     }
     
-    func browseEventsAction(){
+    func browseEventsAction() {
         self.tabBarController?.selectedIndex = 0
     }
     

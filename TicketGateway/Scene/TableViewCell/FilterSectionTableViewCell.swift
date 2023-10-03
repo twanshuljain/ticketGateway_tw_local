@@ -18,19 +18,19 @@ class FilterSectionTableViewCell: UITableViewCell {
         self.setUI()
     }
     
-    func setData(str:String, selectedIndex:Int, index:Int){
+    func setData(str:String, selectedIndex:Int, index:Int) {
         self.selectionStyle = .none
         self.lblFilterTitle.text = str
        if selectedIndex==index{
             self.lblFilterTitle.textColor = UIColor.setColor(colorType: .white)
             self.filterView.backgroundColor = UIColor.setColor(colorType: .tgBlue)
-       }else{
+       } else {
             self.lblFilterTitle.textColor = UIColor.setColor(colorType: .tgBlack)
             self.filterView.backgroundColor = UIColor.setColor(colorType: .white)
         }
     }
     
-    func setUI(){
+    func setUI() {
         self.lblFilterTitle.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFilterTitle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.filterView.backgroundColor = UIColor.setColor(colorType: .white)

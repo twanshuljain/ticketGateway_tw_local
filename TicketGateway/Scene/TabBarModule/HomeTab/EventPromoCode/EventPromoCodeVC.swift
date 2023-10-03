@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple on 26/07/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 import UIKit
 class EventPromoCodeVC: UIViewController {
     
@@ -65,7 +58,7 @@ extension EventPromoCodeVC {
         self.lblPromoCodeAppliedDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
     
-    func setPromoApplyView(){
+    func setPromoApplyView() {
         if viewModel.isPromoCodeApplied {
             vwPromoCodeAppliedView.isHidden = false
             vwApplyPromoCode.isHidden = true
@@ -73,7 +66,7 @@ extension EventPromoCodeVC {
             self.lblPromoCodeApplied.text = (txtPromoCode.text ?? "") + " Applied"
 //            if self.viewModel.discountType == .PERCENTAGE{
 //              self.viewModel.selectedArrTicketList.map({ $0.ticketName })
-//            }else{
+//            } else {
 //
 //            }
 //            self.lblPromoCodeAppliedDescription.text = "Your promocode \(txtPromoCode.text ?? "") is applied on specific tickets (VIP Admission & Group Tickets)"
@@ -112,7 +105,7 @@ extension EventPromoCodeVC {
         self.navigationController?.popViewController(animated: true)
     }
     func btnApplyAction() {
-        if let promoCode = txtPromoCode.text, (promoCode != nil && promoCode != ""){
+        if let promoCode = txtPromoCode.text, (promoCode != nil && promoCode != "") {
             if Reachability.isConnectedToNetwork()
             {
                 self.view.showLoading(centreToView: self.view)
@@ -127,7 +120,7 @@ extension EventPromoCodeVC {
                             if self.viewModel.discountType == .PERCENTAGE{
                                 let val = price * Double(self.viewModel.promoCodeData?.discountValue ?? 0)
                                 self.viewModel.eventDetail?.event?.discountedFinalPrice =  val / 100.0
-                            }else{
+                            } else {
                                 self.viewModel.eventDetail?.event?.discountedFinalPrice = price - Double(self.viewModel.promoCodeData?.discountValue ?? 0)
                             }
                         }
@@ -146,7 +139,7 @@ extension EventPromoCodeVC {
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
-        }else{
+        } else {
             self.showToast(message: "Please enter promocode")
         }
     }
@@ -197,13 +190,13 @@ extension EventPromoCodeVC {
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
 //        cell.selectionStyle = .none
-//        if viewModel.selectedArrTicketList.indices.contains(indexPath.row){
+//        if viewModel.selectedArrTicketList.indices.contains(indexPath.row) {
 //            cell.setData(event: viewModel.selectedArrTicketList[indexPath.row])
 //        }
 //
 //
 //
-//        //        if  self.selectedArrTicketList.indices.contains(indexPath.row){
+//        //        if  self.selectedArrTicketList.indices.contains(indexPath.row) {
 //        //            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
 //        //        }
 //

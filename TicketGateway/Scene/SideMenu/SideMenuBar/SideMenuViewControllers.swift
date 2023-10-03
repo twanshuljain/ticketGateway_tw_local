@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 02/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 // swiftlint: disable cyclomatic_complexity
 // swiftlint: disable shorthand_operator
 // swiftlint: disable type_name
@@ -47,7 +40,7 @@ class SideMenuViewControllers: UIViewController{
 
 //MARK: - Functions
 extension SideMenuViewControllers{
-    func setUi(){
+    func setUi() {
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
             lblName.text = "Guest"
             lblProfileview.text = "Login"
@@ -67,7 +60,7 @@ extension SideMenuViewControllers{
         self.lblProfileview.textColor = UIColor.setColor(colorType: .headinglbl)
     }
     
-    func addTapGesture(){
+    func addTapGesture() {
         let gesture = UITapGestureRecognizer.init(target: self, action: #selector(navigateToProfile(_ :)))
         self.lblProfileview.addGestureRecognizer(gesture)
     }
@@ -88,7 +81,7 @@ extension SideMenuViewControllers{
         
     }
     
-    func setUpTableView(){
+    func setUpTableView() {
         self.tblList.isFromManageEvent = false
         self.btnChangeProfile.setTitle("CHANGE INTO ORGANISER", for: .normal)
         self.tblList.tableDidSelectAtIndex = { obj in
@@ -200,7 +193,7 @@ extension SideMenuViewControllers{
         self.tblList.reloadData()
     }
     
-    func funcSetProfile(){
+    func funcSetProfile() {
         self.lblName.text = objAppShareData.userAuth?.fullName
     }
 }

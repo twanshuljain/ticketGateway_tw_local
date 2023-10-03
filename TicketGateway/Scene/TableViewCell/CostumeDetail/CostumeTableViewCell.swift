@@ -65,7 +65,7 @@ class CostumeTableViewCell: UITableViewCell {
         
     }
     
-    func setData(costumeObj:UIViewController?, isForDetailVC:String?){
+    func setData(costumeObj:UIViewController?, isForDetailVC:String?) {
         //cell.imgCostumeImage.image = UIImage(named: data)
         self.lblTitle.text = "  Jouvert Republic 2023"
         self.btnFrontLine.titleLabel?.text = "Frontline | Trini Revellers "
@@ -99,7 +99,7 @@ class CostumeTableViewCell: UITableViewCell {
             if let costumeObj = costumeObj as? CostumeFrontLineViewController{
                 self.delegate = costumeObj
             }
-        }else{
+        } else {
             if let costumeObj = costumeObj as? CostumeViewController{
                 self.delegate = costumeObj
             }

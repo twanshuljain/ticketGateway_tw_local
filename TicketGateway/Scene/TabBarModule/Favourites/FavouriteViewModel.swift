@@ -87,7 +87,7 @@ class FavouriteViewModel {
                         complition(true, response.message ?? "")
                     }
                     complition(true, response.message ?? "")
-                }else{
+                } else {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):

@@ -26,7 +26,7 @@ class TicketTypesCell: UITableViewCell {
         self.setUi()
     }
     
-    func setData(event :EventTicket?){
+    func setData(event :EventTicket?) {
         if let event = event{
             self.lblTittle.text = event.ticketName ?? ""
             
@@ -45,14 +45,14 @@ class TicketTypesCell: UITableViewCell {
             //IF ERROR COME IN ADD TO CART COMMENT THIS
             if let selectedTicket = event.selectedTicketQuantity{
                 self.vwStepper.lblCount.text = String(selectedTicket)
-            }else{
+            } else {
                 self.vwStepper.lblCount.text = "0"
             }
             
         }
     }
     
-    func setSelectedTicketData(selectedTicket:EventTicket?){
+    func setSelectedTicketData(selectedTicket:EventTicket?) {
         //IF ERROR COME IN ADD TO CART UNCOMMENT THIS
 //        if let selectedTicket = selectedTicket?.selectedTicketQuantity{
 //            self.vwStepper.lblCount.text = String(selectedTicket)
@@ -60,7 +60,7 @@ class TicketTypesCell: UITableViewCell {
     }
 
     
-    func setUi(){
+    func setUi() {
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblTittle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblAmount.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)

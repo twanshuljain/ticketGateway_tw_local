@@ -26,7 +26,7 @@ class EventCalenderCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func setUi(){
+    func setUi() {
         self.lblDate.font = UIFont.setFont(fontType: .medium, fontSize: .twenty)
         self.lblDate.textColor = UIColor.setColor(colorType: .tgBlack)
       

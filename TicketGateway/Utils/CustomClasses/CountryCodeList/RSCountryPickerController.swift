@@ -3,14 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 18/04/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
+
 
 import UIKit
 
@@ -244,7 +237,7 @@ extension RSCountryPickerController: UITableViewDataSource{
         let contry: CountryInfo
         if checkSearchBarActive() {
             contry = RScountriesFiltered[indexPath.row]
-        }else{
+        } else {
             contry = RScountriesModel[indexPath.row]
         }
         cell.lblCountryName.text = contry.country_name
@@ -258,7 +251,7 @@ extension RSCountryPickerController: UITableViewDataSource{
             //03/5/2022
           //  cell.imgRadioCheck.image = #imageLiteral(resourceName: "Radio_button_activ")
             
-        }else{
+        } else {
           //  cell.imgRadioCheck.image = #imageLiteral(resourceName: "Radio_button_inactiv")
         }
         return cell
