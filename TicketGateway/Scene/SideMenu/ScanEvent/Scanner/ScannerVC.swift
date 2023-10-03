@@ -32,6 +32,11 @@ class ScannerVC: UIViewController {
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblRejected: UILabel!
     @IBOutlet weak var imgProfileImage: UIImageView!
+    @IBOutlet weak var btnScanAgain: UIButton!
+    @IBOutlet weak var imgScanStatus: UIImageView!
+    @IBOutlet weak var imgScanStatusBGColor: UIView!
+    @IBOutlet weak var lblScanStatusMessage: UILabel!
+    @IBOutlet weak var lblQrid: UILabel!
     // MARK: - Variables
     let viewModel = ScannerViewModel()
     override func viewDidLoad() {
@@ -59,6 +64,9 @@ extension ScannerVC {
         if viewModel.captureSession.canAddInput(videoInput){
             viewModel.captureSession.addInput(videoInput)
         } else {
+            self.imgScanStatus.isHidden = false
+            self.imgScanStatus.image = UIImage(named: Wrong)
+            self.vibrateDevice()
             showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
             return
         }
@@ -68,6 +76,9 @@ extension ScannerVC {
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.qr]
         } else {
+            self.imgScanStatus.isHidden = false
+            self.imgScanStatus.image = UIImage(named: Wrong)
+            self.vibrateDevice()
             showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
             return
         }
@@ -80,10 +91,16 @@ extension ScannerVC {
         }
     }
     func setFont() {
-        self.lblScan.text = SCAN
-        self.lblScan.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
+        lblQrid.text = ""
+        lblScanStatusMessage.text = ""
+        lblScan.text = SCAN
+        imgScanStatus.isHidden = true
+        imgScanStatusBGColor.isHidden = true
+        self.lblQrid.textColor = UIColor.setColor(colorType: .tgBlack)
+        self.lblScanStatusMessage.textColor = UIColor.setColor(colorType: .tgBlack)
+        lblScan.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         let gradient = getGradientLayer(bounds: view.bounds)
-        self.lblScan.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
+        lblScan.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
         self.imgScan.image = UIImage(named: SCAN_SELECTED_ICON)
         self.lblFindRfid.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblFindRfid.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -103,6 +120,8 @@ extension ScannerVC {
         self.btn1X.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnEndScan.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnEndScan.titleLabel?.textColor = UIColor.setColor(colorType: .tgRed)
+        self.btnScanAgain.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+        self.btnScanAgain.titleLabel?.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblAccepted.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblAccepted.textColor = UIColor.setColor(colorType: .tgGreen)
         self.lblTotal.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -114,7 +133,7 @@ extension ScannerVC {
 // MARK: - Instance Method
 extension ScannerVC {
     func setUI() {
-        [self.btnSearch, self.btnScan, self.btnFindRfid, self.btnTicket, self.btn1X, self.btnTourch, self.btnEndScan].forEach {
+        [self.btnSearch, self.btnScan, self.btnFindRfid, self.btnTicket, self.btn1X, self.btnTourch, self.btnEndScan, self.btnScanAgain].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         }
     }
@@ -154,11 +173,18 @@ extension ScannerVC {
             self.btnTourchAction()
         case btnEndScan:
             self.btnEndScanAction()
+        case btnScanAgain:
+            self.btnScanAgainAction()
         default:
             break
         }
     }
     func btnScanAction() {
+    }
+    func btnScanAgainAction() {
+        imgScanStatus.isHidden = true
+        imgScanStatusBGColor.isHidden = true
+        getCameraPreview()
     }
     func btnFindRfidAction() {
         if let findRFIDVc = createView(storyboard: .scanevent, storyboardID: .FindRFIDVC) as? FindRFIDVC {
@@ -243,12 +269,12 @@ extension ScannerVC {
                     if isTrue {
                         DispatchQueue.main.async {
                             self.view.stopLoading()
-                            // Get Updated Data after send QRid
-                            self.getScanDetail()
+                            self.setUIAfterScanTicket(isSuccess: true, message: showMessage)
                         }
                     } else {
                         DispatchQueue.main.async {
                             self.view.stopLoading()
+                            self.setUIAfterScanTicket(isSuccess: false, message: showMessage)
                             self.showToast(message: showMessage)
                         }
                     }
@@ -261,13 +287,24 @@ extension ScannerVC {
             }
         }
     }
+    func setUIAfterScanTicket(isSuccess: Bool, message: String) {
+        imgScanStatus.isHidden = false
+        imgScanStatus.image = UIImage(named: isSuccess ? Right : Wrong)
+        imgScanStatusBGColor.isHidden = false
+        imgScanStatusBGColor.backgroundColor = UIColor.setColor(colorType: isSuccess ? .tgGreen : .tgRed)
+        lblQrid.text = viewModel.scanBarCodeModel.qrid
+        lblScanStatusMessage.text = message
+        // Get Updated Data after send QRid
+        getScanDetail()
+    }
 }
 // MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         viewModel.captureSession.stopRunning() // stop scanning after receiving metadata output
         if let metadataObject = metadataObjects.first {
-            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return
+            }
             guard let codeString = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             self.receivedCodeForQR(qrcode: codeString)

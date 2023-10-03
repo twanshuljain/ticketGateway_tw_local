@@ -94,7 +94,8 @@ extension EventBookingTicketOnApplyCouponVC {
             self.viewModel.arrTicketList?.removeAll()
             self.viewModel.arrTicketList = self.tblEventTicketTypes.arrTicketList
             self.viewModel.eventDetail?.event?.eventTicketFinalPrice = price
-            self.lblTotalTicketPrice.text = "CAD$ \(price)"
+            self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")) \(price)"
+            self.viewModel.selectedCurrencyType = AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")
         }
         self.navigationView.delegateBarAction = self
         self.navigationView.lblDiscripation.isHidden = false
@@ -119,7 +120,8 @@ extension EventBookingTicketOnApplyCouponVC {
     }
     
     func setData(){
-        self.lblTotalTicketPrice.text = self.viewModel.totalTicketPrice
+        self.viewModel.selectedCurrencyType = AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")
+        self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")) \(Double(self.viewModel.totalTicketPrice) ?? 0.0)"
     }
     
     func setUi(){
@@ -167,6 +169,7 @@ extension EventBookingTicketOnApplyCouponVC {
                             }
                         }else{
                             self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
+                            self.setData()
                             self.tblEventTicketTypes.reloadData()
                         }
                     }
@@ -249,6 +252,7 @@ extension EventBookingTicketOnApplyCouponVC {
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
             view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
@@ -260,6 +264,7 @@ extension EventBookingTicketOnApplyCouponVC {
             view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
             view.viewModel.eventId = self.viewModel.eventId
             view.viewModel.selectedAddOnList = []
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }

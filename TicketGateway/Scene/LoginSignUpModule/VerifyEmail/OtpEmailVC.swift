@@ -67,6 +67,8 @@ extension OtpEmailVC {
         self.viewModelResendOtp.email = objAppShareData.dicToHoldDataOnSignUpModule?.strEmail ?? ""
         self.vwResend.isHidden = false
         self.viewModel.countdownTimer.invalidate()
+        btnContinue.isEnabled = false
+        btnContinue.alpha = 0.5
     }
 }
 // MARK: - Actions
@@ -92,6 +94,8 @@ extension OtpEmailVC {
                         self.viewModel.totalTime = 60
                         self.startTimer()
                         self.vwResend.isHidden = true
+                        self.btnContinue.isEnabled = true
+                        self.btnContinue.alpha = 1
                     }
                 } else {
                     DispatchQueue.main.async {

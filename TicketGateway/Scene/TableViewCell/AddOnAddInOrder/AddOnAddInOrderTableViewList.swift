@@ -12,6 +12,8 @@ class AddOnAddInOrderTableViewList: UITableView {
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
+    var selectedCurrencyType = ""
+    
     func configure() {
         self.register(UINib(nibName: "AddOnAddInOrderCell", bundle: nil), forCellReuseIdentifier: "AddOnAddInOrderCell")
         self.delegate = self
@@ -44,7 +46,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as? AddOnAddInOrderCell{
-            cell.setData(addOnData: self.selectedAddOnList[indexPath.row])
+            cell.setData(addOnData: self.selectedAddOnList[indexPath.row], selectedCurrencyType: selectedCurrencyType)
             if indexPath.row == 3-1 {
                 cell.vwDottedLine.isHidden = false
             } else {
@@ -56,9 +58,10 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
-        self.tableDidSelectAtIndex?(indexPath.row)
-        self.reloadData()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as? TicketTypesCell{
+            self.tableDidSelectAtIndex?(indexPath.row)
+            self.reloadData()
+        }
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")

@@ -305,6 +305,12 @@ extension LoginVC: RSCountrySelectedDelegate {
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+                
+                
+                if !arr.indices.contains(0){
+                    str = NSLocale.current.regionCode ?? ""
+                    arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                }
             }else{
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.country_code == str})

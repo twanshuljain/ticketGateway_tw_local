@@ -9,36 +9,25 @@ import Foundation
 
 // MARK: - AddCardRequest
 struct AddCardRequest: Codable {
-    var cardNumber: String?
-    var expMonth: Int?
-    var expYear: Int?
-    var cvc: String?
-    var name: String?
-    enum CodingKeys: String, CodingKey {
-        case cardNumber = "card_number"
-        case expMonth = "exp_month"
-        case expYear = "exp_year"
-        case cvc = "cvc"
-        case name = "name"
-    }
-
+    var card_number : String?
+    var exp_month : Int?
+    var exp_year : Int?
+    var cvc : String?
+    var name : String?
 }
 
 // MARK: - CreateChargeRequest
 struct CreateChargeRequest: Codable {
-    var amount: Double?
-    var cardId: Int?
-    var checkoutId: String?
-    enum CodingKeys: String, CodingKey {
-        case amount = "amount"
-        case cardId = "card_Id"
-        case checkoutId = "checkout_Id"
-    }
+    var amount : Double?
+    var card_id : Int?
+    var checkout_id : String?
+    var currency : String?
 }
 
 // MARK: - CheckoutId
 struct CheckoutId: Codable {
     var checkoutID: String?
+
     enum CodingKeys: String, CodingKey {
         case checkoutID = "checkout_id"
     }

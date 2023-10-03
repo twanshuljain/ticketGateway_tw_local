@@ -15,6 +15,7 @@
 import UIKit
 import Foundation
 import LocalAuthentication
+import AudioToolbox
 
 extension UIViewController {
 
@@ -75,7 +76,9 @@ extension UIViewController {
             toastLabel.removeFromSuperview()
         })
     }
-
+    func vibrateDevice() {
+        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
+    }
     func showAlert(title: String = "TicketGateway", message: String ,complition: @escaping (Bool) -> Void ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in

@@ -10,8 +10,8 @@ import UIKit
 class ValidationConstantStrings: NSObject {
          // MARK: - Validation Alert messages
         static let emptyEmail = Bundle.main.localizedString(forKey: "Please enter your email address", value: "", table: nil)
-        static let emptyNumber = "Please enter number"
-       static let invalidNumber = "Please enter valid number"
+        static let emptyNumber = "Please enter mobile number"
+       static let invalidNumber = "Please enter valid mobile number"
         static let emptyName = "Please enter full name"
         static let invalidName = "Please enter valid full name"
         static let invalidEmail = "The user email must be a valid email address"

@@ -3553,7 +3553,7 @@
                     </view>
                     <size key="freeformSize" width="414" height="900"/>
                     <connections>
-                        <outlet property="btnAddAppToWallet" destination="V2R-lF-nRw" id="X5o-VF-aD3"/>
+                        <outlet property="btnAddAppToWallet" destination="V2R-lF-nRw" id="EV4-rj-66X"/>
                         <outlet property="collectionView" destination="UFi-zt-bqj" id="4cv-Ze-Fpi"/>
                         <outlet property="vwNavigationView" destination="zzi-OM-bfT" id="GK3-N8-90T"/>
                     </connections>

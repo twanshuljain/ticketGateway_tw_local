@@ -16,6 +16,7 @@ final class PhoneVerifyViewModel{
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""
     var selectedAddOnList:[EventTicketAddOnResponseModel]?
+    var selectedCurrencyType = ""
 }
 
 extension PhoneVerifyViewModel{

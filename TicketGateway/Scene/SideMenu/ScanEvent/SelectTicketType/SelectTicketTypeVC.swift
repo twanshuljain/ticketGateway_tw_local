@@ -89,6 +89,10 @@ extension SelectTicketTypeVC {
         }
     }
     func btnDoneAction() {
+        guard !viewModel.arrSelectedTicketTypeList.isEmpty else {
+            showAlertController(title: "Alert", message: SelectTicketMessage)
+            return
+        }
         print("selected Items:- ", viewModel.arrSelectedTicketTypeList)
         viewModel.getScanTicketDetails.selectedTicketType = viewModel.arrSelectedTicketTypeList
         let scannerVC = createView(storyboard: .scanevent, storyboardID: .ScannerVC) as? ScannerVC

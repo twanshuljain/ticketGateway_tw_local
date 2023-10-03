@@ -166,17 +166,38 @@ extension CreateAccountVC: UITextFieldDelegate {
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
+        let mobileNoLimit = 11
         if textField == txtFullName {
             viewModel.fullName = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtMobileNumber {
-           // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
-            viewModel.mobileNumber = "\(text.replacingCharacters(in: textRange, with: string))"
+            // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            let startingLength = textField.text?.count ?? 0
+            let lengthToAdd = string.count
+            let lengthToReplace = range.length
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            let valid = newLength <= mobileNoLimit
+            if valid{
+                viewModel.mobileNumber = "\(text.replacingCharacters(in: textRange, with: string))"
+            }
+            return valid
         } else if textField == txtEmailAddress {
             viewModel.emailAddress = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtPassword {
-            viewModel.password = text.replacingCharacters(in: textRange, with: string)
+            var str = "\(text.replacingCharacters(in: textRange, with: string))"
+            if str == " "{
+                return false
+            }else{
+                viewModel.password = text.replacingCharacters(in: textRange, with: string)
+                return true
+            }
         } else if textField == txtConfirmPassword {
-            viewModel.confimePassword = text.replacingCharacters(in: textRange, with: string)
+            var str = "\(text.replacingCharacters(in: textRange, with: string))"
+            if str == " "{
+                return false
+            }else{
+                viewModel.confimePassword = text.replacingCharacters(in: textRange, with: string)
+                return true
+            }
         }
         return true
     }
@@ -184,7 +205,12 @@ extension CreateAccountVC: UITextFieldDelegate {
 // MARK: - NavigationBarViewDelegate
 extension CreateAccountVC: NavigationBarViewDelegate {
     func navigationBackAction() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.viewControllers.forEach({ controller in
+            if controller is SignUpVC{
+                self.navigationController?.popToViewController(controller, animated: false)
+            }
+        })
+        
     }
 }
 
@@ -202,6 +228,11 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+                
+                if !arr.indices.contains(0){
+                    str = NSLocale.current.regionCode ?? ""
+                    arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                }
             }else{
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.country_code == str})
@@ -242,6 +273,8 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
         self.viewModel.strCountryCode = country.country_code
         self.viewModel.strCountryName = country.country_name
         self.txtMobileNumber.becomeFirstResponder()
+        self.viewModel.mobileNumber = ""
+        self.txtMobileNumber.text = ""
     }
 }
 // MARK: -

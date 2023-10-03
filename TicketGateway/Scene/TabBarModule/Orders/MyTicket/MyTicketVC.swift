@@ -7,11 +7,13 @@
 // swiftlint: disable line_length
 
 import UIKit
+import PassKit
 
 class MyTicketVC: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
+    //@IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
+    @IBOutlet weak var btnAddAppToWallet: PKPass!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     
     var viewModel: MyTicketViewModel = MyTicketViewModel()
@@ -84,9 +86,9 @@ extension MyTicketVC {
         }
     }
     func setFont() {
-        self.btnAddAppToWallet.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
-        self.btnAddAppToWallet.titleLabel?.textColor = UIColor.setColor(colorType: .white)
-        self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: APPLE_WALLET_ICON))
+       // self.btnAddAppToWallet.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+       // self.btnAddAppToWallet.titleLabel?.textColor = UIColor.setColor(colorType: .white)
+       // self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: APPLE_WALLET_ICON))
     }
     
 //    func setData(){
@@ -161,11 +163,16 @@ extension MyTicketVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnAddAppToWallet:
-            break
+            self.btnAppleWalletAction(sender)
         default:
             break
         }
     }
+    
+    @objc func btnAppleWalletAction(_ sender: UIButton) {
+        
+    }
+    
     @objc func seeFullTicketAction(_ sender: UIButton) {
         let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC) as? SeeFullTicketVC
         seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails

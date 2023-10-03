@@ -164,6 +164,7 @@ extension EventPromoCodeVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
@@ -182,6 +183,7 @@ extension EventPromoCodeVC {
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.eventId = self.viewModel.eventId
             view.viewModel.discountType = self.viewModel.discountType
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }

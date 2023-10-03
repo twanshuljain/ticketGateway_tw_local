@@ -99,6 +99,11 @@ extension ManageSellAddBuyerVC {
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+                
+                if !arr.indices.contains(0){
+                    str = NSLocale.current.regionCode ?? ""
+                    arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                }
             }else{
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.country_code == str})
@@ -117,9 +122,11 @@ extension ManageSellAddBuyerVC {
             if let flagImg = UIImage(named: imagePath){
                 self.imgCountry.image = flagImg
             }else{
-                str = arr[0].country_code
-                imagePath = "CountryPicker.bundle/\(str).png"
-                self.imgCountry.image = UIImage(named: imagePath)
+                if arr.indices.contains(0){
+                    str = arr[0].country_code
+                    imagePath = "CountryPicker.bundle/\(str).png"
+                    self.imgCountry.image = UIImage(named: imagePath)
+                }
             }
 //            let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
 //            self.imgCountry.image = UIImage(named: imagePath)

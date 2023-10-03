@@ -30,10 +30,17 @@ class SignUpVC: UIViewController {
         self.setup()
         self.setText()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setText()
+    }
 }
 // MARK: - Functions
 extension SignUpVC {
     func setText() {
+        self.viewModel.email = ""
+        self.txtEmail.text = ""
         self.lblSignUp.text = SIGN_UP
         self.lblSignUnWith.text = OR_SIGN_UP_WITH
         self.lblVerifyYourEmail.text = VERIFY_YOUR_EMAIL

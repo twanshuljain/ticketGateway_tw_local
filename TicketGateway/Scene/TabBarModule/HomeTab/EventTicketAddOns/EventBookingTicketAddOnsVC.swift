@@ -52,7 +52,7 @@ extension EventBookingTicketAddOnsVC {
                 if isTrue {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
-                        if self.viewModel.arrAddOnTicketList?.isEmpty ?? false {
+                        if self.viewModel.arrAddOnTicketList?.count == 0{
                             self.noDataFoundView.isHidden = false
                         }else{
                             self.noDataFoundView.isHidden = true
@@ -95,8 +95,8 @@ extension EventBookingTicketAddOnsVC {
     }
     
     func setData(){
-        self.lblTotalTicketPrice.text = "CAD$ \(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
-        if self.viewModel.arrAddOnTicketList?.isEmpty ?? false {
+        self.lblTotalTicketPrice.text = "\(self.viewModel.selectedCurrencyType)\(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
+        if self.viewModel.arrAddOnTicketList?.count == 0{
             self.noDataFoundView.isHidden = false
         }else{
             self.noDataFoundView.isHidden = true
@@ -130,6 +130,7 @@ extension EventBookingTicketAddOnsVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
         
@@ -149,7 +150,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         let data = viewModel.arrAddOnTicketList?[indexPath.row]
         cell.lblTitle.text = data?.addOnName
         if let ticketPrice = data?.addOnTicketPrice {
-            cell.lblPrice.text = "CAD$\(ticketPrice)"
+            cell.lblPrice.text = "\(self.viewModel.selectedCurrencyType)\(ticketPrice)"
         }
         if let imgString = data?.addOnLogo?.first {
             let urlString = (APIHandler.shared.baseURL + imgString).getCleanedURL()
@@ -341,6 +342,7 @@ extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }

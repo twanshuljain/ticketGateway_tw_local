@@ -48,10 +48,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1298"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Bun-wF-Z3r">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="581"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="551"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdx-pd-gsL">
-                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="231"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="201"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1H-Kp-q1T">
                                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="0.0"/>
@@ -71,14 +71,14 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-hh-KQC" customClass="EventsOrganizesListTableView" customModule="TicketGateway" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="10" width="393" height="200"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="200" id="swK-8u-Igy"/>
                                                                         </constraints>
                                                                     </tableView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXf-zC-eeC">
-                                                                        <rect key="frame" x="0.0" y="230" width="393" height="1"/>
+                                                                        <rect key="frame" x="0.0" y="200" width="393" height="1"/>
                                                                         <color key="backgroundColor" name="PlaceHolder"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="1" id="IAt-kL-mat"/>
@@ -87,10 +87,10 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="eH9-hh-KQC" firstAttribute="top" secondItem="Zdx-pd-gsL" secondAttribute="top" constant="10" id="0sA-2n-W88"/>
+                                                                    <constraint firstItem="eH9-hh-KQC" firstAttribute="top" secondItem="Zdx-pd-gsL" secondAttribute="top" id="0sA-2n-W88"/>
                                                                     <constraint firstItem="N1H-Kp-q1T" firstAttribute="top" secondItem="Zdx-pd-gsL" secondAttribute="top" id="K8c-Cy-6jz"/>
                                                                     <constraint firstItem="N1H-Kp-q1T" firstAttribute="leading" secondItem="Zdx-pd-gsL" secondAttribute="leading" id="PR5-Pd-5wM"/>
-                                                                    <constraint firstItem="oXf-zC-eeC" firstAttribute="top" secondItem="eH9-hh-KQC" secondAttribute="bottom" constant="20" id="WnI-oV-q3V"/>
+                                                                    <constraint firstItem="oXf-zC-eeC" firstAttribute="top" secondItem="eH9-hh-KQC" secondAttribute="bottom" id="WnI-oV-q3V"/>
                                                                     <constraint firstItem="eH9-hh-KQC" firstAttribute="leading" secondItem="Zdx-pd-gsL" secondAttribute="leading" id="aVs-zv-Ziw"/>
                                                                     <constraint firstItem="oXf-zC-eeC" firstAttribute="leading" secondItem="Zdx-pd-gsL" secondAttribute="leading" id="m5C-nM-Suc"/>
                                                                     <constraint firstAttribute="trailing" secondItem="oXf-zC-eeC" secondAttribute="trailing" id="pkR-zw-tEk"/>
@@ -100,7 +100,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcu-lB-9SN">
-                                                                <rect key="frame" x="0.0" y="231" width="393" height="350"/>
+                                                                <rect key="frame" x="0.0" y="201" width="393" height="350"/>
                                                                 <subviews>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TLb-O2-hyG" customClass="suggestedOrganizerList" customModule="TicketGateway" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="40" width="393" height="290"/>
@@ -389,7 +389,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="sZ2-h0-NdA"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CAD$0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W0c-vM-xI4" customClass="DropDown">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W0c-vM-xI4" customClass="DropDown">
                                                 <rect key="frame" x="40" y="0.0" width="333" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
@@ -792,7 +792,7 @@
                                                     <constraint firstAttribute="width" constant="20" id="lYH-IV-QU5"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CAD$0" placeholder="CAD$0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAE-to-qDh" customClass="DropDown">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAE-to-qDh" customClass="DropDown">
                                                 <rect key="frame" x="40" y="0.0" width="313" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
@@ -1374,7 +1374,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="y3a-hD-EQo"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CAD$0" placeholder="CAD$0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mda-N7-kmW" customClass="DropDown">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mda-N7-kmW" customClass="DropDown">
                                                 <rect key="frame" x="40" y="0.0" width="313" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>

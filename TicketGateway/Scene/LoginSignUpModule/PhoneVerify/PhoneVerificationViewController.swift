@@ -127,6 +127,7 @@ extension PhoneVerificationViewController {
                                     view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
                                     view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
                                     view.isChangeMobileNumberTap = self.isChangeMobileNumberTap
+                                    view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
                                     self.navigationController?.pushViewController(view, animated: true)
                                 }
                             }
@@ -153,6 +154,7 @@ extension PhoneVerificationViewController {
                 view.viewModel.feeStructure = self.viewModel.feeStructure
                 view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
                 view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+                view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
                 self.navigationController?.pushViewController(view, animated: true)
             }
         }
@@ -222,6 +224,11 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = signInViewModel.RScountriesModel.filter({$0.dial_code == str})
+                
+                if !arr.indices.contains(0){
+                    str = NSLocale.current.regionCode ?? ""
+                    arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
+                }
             }else{
                 str = NSLocale.current.regionCode ?? ""
                 arr = signInViewModel.RScountriesModel.filter({$0.country_code == str})
@@ -239,9 +246,11 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
             if let flagImg = UIImage(named: imagePath){
                 self.imgCountry.image = flagImg
             }else{
-                str = arr[0].country_code
-                imagePath = "CountryPicker.bundle/\(str).png"
-                self.imgCountry.image = UIImage(named: imagePath)
+                if arr.indices.contains(0){
+                    str = arr[0].country_code
+                    imagePath = "CountryPicker.bundle/\(str).png"
+                    self.imgCountry.image = UIImage(named: imagePath)
+                }
             }
             if !arr.isEmpty {
                 let country = arr[0]

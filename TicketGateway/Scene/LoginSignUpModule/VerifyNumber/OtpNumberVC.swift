@@ -91,6 +91,7 @@ extension OtpNumberVC {
             view.viewModel.feeStructure = self.viewModel.feeStructure
             view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
             view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
@@ -122,6 +123,8 @@ extension OtpNumberVC {
                             [self.txtOtp1,txtOtp2,txtOtp3,txtOtp4].forEach{$0?.text = ""}
                             self.startTimer()
                             self.vwResend.isHidden = true
+                            btnContinue.isEnabled = true
+                            btnContinue.alpha = 1
                         }
                     }
                     else {
@@ -361,10 +364,9 @@ extension OtpNumberVC {
         self.viewModelResendOtp.number = "\(objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "+91")\(objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "7898525961")"
         self.vwResend.isHidden = false
         self.viewModel.countdownTimer.invalidate()
-        
+        btnContinue.isEnabled = false
+        btnContinue.alpha = 0.5
     }
-    
-    
 }
 
 

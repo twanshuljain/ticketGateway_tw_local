@@ -58,7 +58,9 @@ class EventBookingOrderSummaryVC: UIViewController {
 extension EventBookingOrderSummaryVC {
     private func setup() {
         self.tblAddedTickets.configure()
+        self.tblAddedTickets.selectedCurrencyType = self.viewModel.selectedCurrencyType
         self.tblAddOnEtcThings.configure()
+        self.tblAddOnEtcThings.selectedCurrencyType = self.viewModel.selectedCurrencyType
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = ORDER_SUMMARY
         self.navigationView.vwBorder.isHidden = false
@@ -127,10 +129,10 @@ extension EventBookingOrderSummaryVC {
         let convertedDiscountedFinalPrice = self.convertToTwoDecimalPlaces(discountedFinalPrice)
         
         
-        self.lblServiceChargeValue.text = "CAD$ \(convertedServiceCharge ?? "")"
-        self.lblProcessingFeeValue.text = "CAD$ \(convertedProcessingCharge ?? "")"
-        self.lblfacilityFeeValue.text = "CAD$ \(convertedFacilityCharge ?? "")"
-        self.lblSubTotalValue.text = "CAD$ \(convertedSubTotal ?? "")"
+        self.lblServiceChargeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedServiceCharge ?? "")"
+        self.lblProcessingFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedProcessingCharge ?? "")"
+        self.lblfacilityFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedFacilityCharge ?? "")"
+        self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
         var total = 0.0
         
         
@@ -139,7 +141,7 @@ extension EventBookingOrderSummaryVC {
             self.lblDiscouted.isHidden = false
             self.lblDiscoutedValue.isHidden = false
             self.discountViewHt.constant = 40
-            self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(convertedDiscountValue ?? "")%" : "- $\(convertedDiscountValue ?? "")"
+            self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(convertedDiscountValue ?? "")%" : "- \(self.viewModel.selectedCurrencyType)\(convertedDiscountValue ?? "")"
         }else{
             total = serviceCharge + processingCharge + facilityCharge + subTotal
             self.lblDiscouted.isHidden = true
@@ -149,7 +151,7 @@ extension EventBookingOrderSummaryVC {
         
         
         
-        self.lblTotalAmtValue.text = "CAD$ \(convertToTwoDecimalPlaces(total) ?? "")"
+        self.lblTotalAmtValue.text = "\(self.viewModel.selectedCurrencyType)\(convertToTwoDecimalPlaces(total) ?? "")"
         self.viewModel.totalTicketPrice = "\(convertToTwoDecimalPlaces(total) ?? "")"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
         self.tblAddOnEtcThings.selectedAddOnList = self.viewModel.selectedAddOnList
@@ -187,6 +189,7 @@ extension EventBookingOrderSummaryVC {
                 view.viewModel.feeStructure = self.viewModel.feeStructure
                 view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
                 view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+                view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
                 self.navigationController?.pushViewController(view, animated: true)
             }
 //        }else{
