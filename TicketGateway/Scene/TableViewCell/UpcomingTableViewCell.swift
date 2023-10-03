@@ -33,7 +33,13 @@ class UpcomingTableViewCell: UITableViewCell {
         if let startDate = getTicket?.eventStartDate {
             self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
         }
-        self.btnSeeTickets.setTitle("See Tickets", for: .normal)
+        
+        if isFaded{
+            self.btnSeeTickets.setTitle("Completed", for: .normal)
+        }else{
+            self.btnSeeTickets.setTitle("See Tickets", for: .normal)
+        }
+        
         if let imageUrl = getTicket?.coverImage?.eventCoverImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""

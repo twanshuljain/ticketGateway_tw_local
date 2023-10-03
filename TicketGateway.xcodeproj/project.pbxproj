@@ -284,6 +284,7 @@
 		18CF93F12A8CE3A000C9050B /* EventPromoCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF93F02A8CE3A000C9050B /* EventPromoCodeViewModel.swift */; };
 		18D361412A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */; };
 		18DA75312A4AFD5700113541 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA75302A4AFD5700113541 /* FilterViewController.swift */; };
+		18DC6C282ACC270A0041C7E6 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC6C272ACC270A0041C7E6 /* UIAlertController+Extension.swift */; };
 		18DF185A2A3CA0CA00E89AB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DF18592A3CA0CA00E89AB5 /* Main.storyboard */; };
 		18E2ECA12A977B30000F73F6 /* EventPromoCodeRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2ECA02A977B30000F73F6 /* EventPromoCodeRequestModel.swift */; };
 		18E2ECA32A977BDF000F73F6 /* EventPromoCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2ECA22A977BDF000F73F6 /* EventPromoCodeModel.swift */; };
@@ -732,6 +733,7 @@
 		18CF93F02A8CE3A000C9050B /* EventPromoCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeViewModel.swift; sourceTree = "<group>"; };
 		18D361402A6910AA0081B1A7 /* EventTiclketAddOnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTiclketAddOnViewModel.swift; sourceTree = "<group>"; };
 		18DA75302A4AFD5700113541 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		18DC6C272ACC270A0041C7E6 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		18DF18592A3CA0CA00E89AB5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		18E2ECA02A977B30000F73F6 /* EventPromoCodeRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeRequestModel.swift; sourceTree = "<group>"; };
 		18E2ECA22A977BDF000F73F6 /* EventPromoCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoCodeModel.swift; sourceTree = "<group>"; };
@@ -1557,6 +1559,7 @@
 				18B384972A5C2FF300B47D9D /* Array+Extension.swift */,
 				18C7D8722A84D52800A2BE98 /* UIButton+Extension.swift */,
 				18259E2D2ABDADB30089AB6C /* Double+Extension.swift */,
+				18DC6C272ACC270A0041C7E6 /* UIAlertController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -3420,6 +3423,7 @@
 				18FBC0B32A309239002CF129 /* MyRefundVC.swift in Sources */,
 				186D49C62A374FCA008CBB4B /* FAQTableviewCell.swift in Sources */,
 				18717F962A2A1BE9002F36BC /* MyTicketVC.swift in Sources */,
+				18DC6C282ACC270A0041C7E6 /* UIAlertController+Extension.swift in Sources */,
 				1848541D2A850D1F0007798B /* AddToCalendar.swift in Sources */,
 				18F6AEEE2A42C7CA00500678 /* CustomSearchBar.swift in Sources */,
 				1821FDE72A30A90F00BD4AB6 /* ReviewRefundTableViewCell.swift in Sources */,
