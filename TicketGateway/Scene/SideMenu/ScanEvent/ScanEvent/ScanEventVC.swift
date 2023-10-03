@@ -19,6 +19,7 @@ class ScanEventVC: UIViewController {
     @IBOutlet weak var btnHere: UIButton!
     @IBOutlet weak var btnDissMiss: UIButton!
     @IBOutlet weak var btnSecurePassword: UIButton!
+    @IBOutlet weak var btnInfo: UIButton!
     // MARK: - Variable
     let viewModel = ScanEventViewModel()
     override func viewDidLoad() {

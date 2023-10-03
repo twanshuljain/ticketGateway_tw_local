@@ -77,6 +77,10 @@ extension ScanSummaryVC {
             btnDownloadReportWidth.constant = (self.view.bounds.width - 32)/2
             btnUpdateLiveOnServer.isHidden = true
         }
+        // If user with guest login
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            btnUpdateLiveOnServer.isHidden = true
+        }
         self.lblSunburnReload.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblSunburnReload.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

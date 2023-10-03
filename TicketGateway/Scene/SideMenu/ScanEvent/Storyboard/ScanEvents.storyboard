@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -97,16 +97,27 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Ryb-Lm-Sib">
-                                                <rect key="frame" x="16" y="209" width="361" height="72.333333333333314"/>
+                                                <rect key="frame" x="16" y="209" width="361" height="74"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ki-Ff-cJ6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aiU-Fk-8TZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="22"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ki-Ff-cJ6">
+                                                                <rect key="frame" x="0.0" y="0.0" width="68.333333333333329" height="22"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="War-ej-ZPr">
+                                                                <rect key="frame" x="73.333333333333343" y="0.0" width="287.66666666666663" height="22"/>
+                                                                <color key="tintColor" systemColor="tintColor"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="InfoGrey"/>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okV-qo-Eqm">
-                                                        <rect key="frame" x="0.0" y="24.333333333333314" width="361" height="48"/>
+                                                        <rect key="frame" x="0.0" y="26" width="361" height="48"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="A276107" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2M1-hc-b4J">
                                                                 <rect key="frame" x="5" y="0.0" width="356" height="48"/>
@@ -273,6 +284,7 @@
                         <outlet property="btnContinue" destination="sLM-Og-j8z" id="qLZ-lB-6i9"/>
                         <outlet property="btnDissMiss" destination="63o-uN-wTd" id="Cdp-Gx-gWe"/>
                         <outlet property="btnHere" destination="T16-Gi-gPZ" id="Bip-ei-DVw"/>
+                        <outlet property="btnInfo" destination="War-ej-ZPr" id="xCa-2I-ejx"/>
                         <outlet property="btnSecurePassword" destination="WZd-Ht-MnU" id="EmQ-A4-5gA"/>
                         <outlet property="lblEnterDetails" destination="YbZ-5L-Ipd" id="7Lg-vy-RuU"/>
                         <outlet property="lblEnterPin" destination="5Ki-Ff-cJ6" id="jzW-o5-QZW"/>
@@ -1749,6 +1761,7 @@ this event.</string>
     </scenes>
     <resources>
         <image name="Done_ip" width="36.666667938232422" height="36.666667938232422"/>
+        <image name="InfoGrey" width="20" height="20"/>
         <image name="Profile_ip" width="110" height="110"/>
         <image name="ScanSelected_ip" width="48" height="49"/>
         <image name="TG_ip" width="67" height="67"/>
@@ -1783,10 +1796,13 @@ this event.</string>
             <color red="0.043000001460313797" green="0.13699999451637268" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

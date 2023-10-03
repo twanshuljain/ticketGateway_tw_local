@@ -387,13 +387,10 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
-            print("arr suggestion data in numberOfRowsInSection count:", viewModel.arrSuggestionsList.count)
             return self.viewModel.arrSuggestionsList.count
         } else if !viewModel.isForVenue {
-            print("arr fav data in numberOfRowsInSection")
             return viewModel.arrFavouriteList.count
         } else {
-            print("else in numberOfRowsInSection")
             return viewModel.arrVenueList.count
         }
     }
@@ -401,17 +398,14 @@ extension FavouriteVC: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as? FavouriteTableViewCell {
             if  viewModel.isForVenue && viewModel.arrVenueList.isEmpty {
                 if viewModel.arrSuggestionsList.indices.contains(indexPath.row){
-                    print("arr suggestion data in cellForRowAt")
                     cell.setDataForSuggestions(getSuggestionsData: self.viewModel.arrSuggestionsList[indexPath.row])
                 }
             } else if !viewModel.isForVenue {
                 if viewModel.arrFavouriteList.indices.contains(indexPath.row){
-                    print("arr fav data in cellForRowAt")
                     cell.setDataForFavoritesEvents(getFavouriteData: viewModel.arrFavouriteList[indexPath.row])
                 }
             } else {
                 if viewModel.arrVenueList.indices.contains(indexPath.row){
-                    print("arr venue data in cellForRowAt")
                     cell.setDataForFavoritesVenue(getVenueData: viewModel.arrVenueList[indexPath.row])
                 }
             }
