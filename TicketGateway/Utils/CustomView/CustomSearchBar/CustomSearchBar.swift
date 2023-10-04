@@ -19,7 +19,7 @@ protocol CustomSearchMethodsDelegate {
    func filterButtonPressed(_ sender:UIButton)
 }
 
-extension CustomSearchMethodsDelegate{
+extension CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender:UIButton) {}
     func rightButtonPressed(_ sender:UIButton) {}
     func filterButtonPressed(_ sender:UIButton) {}
@@ -73,7 +73,7 @@ class CustomSearchBar: UIView {
         }
     
     func setUpView() {
-        if self.customSearchBarEnum == .costume{
+        if self.customSearchBarEnum == .costume {
             wtBtnMenu.constant = 0
             wtBtnFilter.constant = 50
             self.btnFilter.isHidden = false
@@ -88,16 +88,16 @@ class CustomSearchBar: UIView {
         }
     }
     
-    @IBAction func btnFilter(_ sender: UIButton) {
+    @IBAction private func btnFilter(_ sender: UIButton) {
         self.delegate?.filterButtonPressed(sender)
     }
     
     
-    @IBAction func btnLeft(_ sender: UIButton) {
+    @IBAction private func btnLeft(_ sender: UIButton) {
         self.delegate?.leftButtonPressed(sender )
     }
 
-    @IBAction func btnRight(_ sender: UIButton) {
+    @IBAction private func btnRight(_ sender: UIButton) {
         self.delegate?.rightButtonPressed(sender )
     }
     

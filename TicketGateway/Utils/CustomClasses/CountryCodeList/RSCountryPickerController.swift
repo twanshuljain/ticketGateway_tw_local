@@ -13,7 +13,7 @@ struct CountryInfo {
     let countryCode: String
     let dialCode: String
     let countryName: String
-    // let flag : UIImage
+    // let flag: UIImage
 }
 
 // Make Protocol
@@ -57,7 +57,7 @@ class RSCountryPickerController: UIViewController,UITextFieldDelegate {
    
 }
 
-//MARK:- Searching
+// MARK:- Searching
 extension RSCountryPickerController{
     @objc func searchWorkersAsPerText(_ textfield:UITextField) {
         self.RScountriesFiltered.removeAll()
@@ -65,7 +65,7 @@ extension RSCountryPickerController{
             for dicData in self.RScountriesModel {
                 
                 let prefix = Int(textfield.text!.count) // Hello
-                let isMachingWorker : NSString = (dicData.countryName) as? NSString ?? ""
+                let isMachingWorker: NSString = (dicData.countryName) as? NSString ?? ""
                 
                 let range = isMachingWorker.lowercased.prefix(prefix).range(of: textfield.text!, options: String.CompareOptions.caseInsensitive, range: nil, locale: nil)
                 
@@ -110,7 +110,7 @@ extension RSCountryPickerController{
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             var countries = [[String: String]]()
-            countries = parsedObject as! [[String : String]]
+            countries = parsedObject as! [[String: String]]
             for dic in countries {
                 if dic["code"] == countryCode {
                     return dic["dial_code"]
@@ -129,7 +129,7 @@ extension RSCountryPickerController{
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             var countries = [[String: String]]()
-            countries = parsedObject as! [[String : String]]
+            countries = parsedObject as! [[String: String]]
             for dic in countries {
                 if dic["dial_code"] == dialCode {
                     return dic["code"] ?? ""
@@ -148,7 +148,7 @@ extension RSCountryPickerController{
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             var countries = [[String: String]]()
-            countries = parsedObject as! [[String : String]]
+            countries = parsedObject as! [[String: String]]
             for dic in countries {
                 if dic["code"] == countryCode {
                     return dic["name"]
@@ -166,7 +166,7 @@ extension RSCountryPickerController{
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             var countries = [[String: String]]()
-            countries = parsedObject as! [[String : String]]
+            countries = parsedObject as! [[String: String]]
             for dic in countries {
                 if dic["code"] == countryCode {
                     return CountryInfo(countryCode: dic["code"]!, dialCode: dic["dial_code"]!, countryName: dic["name"]!)
@@ -184,7 +184,7 @@ extension RSCountryPickerController{
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             var countries = [[String: String]]()
-            countries = parsedObject as! [[String : String]]
+            countries = parsedObject as! [[String: String]]
             for dic in countries {
                 if dic["code"] == dialCode {
                     return CountryInfo(countryCode: dic["code"]!, dialCode: dic["dial_code"]!, countryName: dic["name"]!)
@@ -199,8 +199,8 @@ extension RSCountryPickerController{
     //--------------------------XXXX--------------------------
 }
 
-//MARK:- TableVies Delegate
-extension RSCountryPickerController: UITableViewDelegate{
+// MARK:- TableVies Delegate
+extension RSCountryPickerController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! RSCountryTableViewCell
@@ -219,8 +219,8 @@ extension RSCountryPickerController: UITableViewDelegate{
     }
 }
 
-//MARK:- TableVies Datasource
-extension RSCountryPickerController: UITableViewDataSource{
+// MARK:- TableVies Datasource
+extension RSCountryPickerController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if checkSearchBarActive() {
@@ -261,7 +261,7 @@ extension RSCountryPickerController: UITableViewDataSource{
 }
 
 // MARK: -  NavigationBarViewDelegate
-extension RSCountryPickerController : NavigationBarViewDelegate {
+extension RSCountryPickerController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.dismiss(animated: true, completion: nil)
     }

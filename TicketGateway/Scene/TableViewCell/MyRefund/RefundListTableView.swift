@@ -9,7 +9,7 @@ import UIKit
 
 class RefundListTableView: UITableView {
     
-    //MARK: - VARIABLES
+    // MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
@@ -32,14 +32,14 @@ class RefundListTableView: UITableView {
 
 // MARK: - TableView Delegate
 
-extension RefundListTableView : UITableViewDelegate,UITableViewDataSource{
+extension RefundListTableView: UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int{
         return 3 // number of section array count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arrData[section].isExpanded == true{
+        if arrData[section].isExpanded == true {
             return 1
         } else {
             return 0

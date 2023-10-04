@@ -9,7 +9,7 @@ import UIKit
 
 class TransactionDetailCell: UITableViewCell {
 
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var lblTicketID: UILabel!
     @IBOutlet weak var lblTicketName: UILabel!
     @IBOutlet weak var lblDate: UILabel!

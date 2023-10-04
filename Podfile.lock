@@ -38,7 +38,7 @@ DEPENDENCIES:
   - iOSDropDown
   - SideMenu
   - Stripe
-  - SwiftLint
+  - SwiftLint (~> 0.27)
   - TweeTextField
 
 SPEC REPOS:
@@ -74,6 +74,6 @@ SPEC CHECKSUMS:
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
   TweeTextField: 726de695eead9784f7ed02e22f6944bfcfcca07a
 
-PODFILE CHECKSUM: 75a5c063a0c298e7b4d6f7c39a95a4ced746ac2d
+PODFILE CHECKSUM: f9513193ea2a4d472559f6ab27ec27eb568a92e4
 
 COCOAPODS: 1.12.1

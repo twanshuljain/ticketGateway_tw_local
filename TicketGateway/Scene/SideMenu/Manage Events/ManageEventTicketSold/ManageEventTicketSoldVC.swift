@@ -26,7 +26,7 @@ class ManageEventTicketSoldVC: UIViewController {
 }
 
 // MARK: - Functions
-extension ManageEventTicketSoldVC{
+extension ManageEventTicketSoldVC {
     func setup() {
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = TICKET_SOLD
@@ -48,7 +48,7 @@ extension ManageEventTicketSoldVC{
 }
 
 // MARK: - NavigationBarViewDelegate,UITextFieldDelegate
-extension ManageEventTicketSoldVC : NavigationBarViewDelegate ,UITextFieldDelegate{
+extension ManageEventTicketSoldVC: NavigationBarViewDelegate ,UITextFieldDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
   }

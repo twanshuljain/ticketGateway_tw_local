@@ -60,7 +60,7 @@ extension CustomButtonGradiant {
     }
 }
 class CustomButtonNormal: UIButton {
-    func setTitles(text: String, font: UIFont, tintColour: UIColor , textColour : UIColor) {
+    func setTitles(text: String, font: UIFont, tintColour: UIColor , textColour: UIColor) {
         self.setTitleColor(textColour, for: .normal)
         self.setTitle(text, for: .normal)
         self.tintColor = tintColour
@@ -110,7 +110,7 @@ class CustomButtonNormalWithBorder: UIButton {
         self.borderWidth = 1.5
         self.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
     }
-    func setTitles(text: String, textColour : UIColor , borderColour : UIColor) {
+    func setTitles(text: String, textColour: UIColor , borderColour: UIColor) {
         self.setTitleColor(textColour, for: .normal)
         self.borderColor = borderColour
         self.setTitle(text, for: .normal)

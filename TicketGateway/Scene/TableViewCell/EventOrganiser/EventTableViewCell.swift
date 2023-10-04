@@ -10,7 +10,7 @@ import SDWebImage
 
 class EventTableViewCell: UITableViewCell {
     
-    //MARK: - OUTLETS
+    // MARK: - OUTLETS
     @IBOutlet weak var imgImages: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
@@ -19,10 +19,10 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var btnShare: UIButton!
-    @IBOutlet weak var viewNoData : UIView!
-    @IBOutlet weak var lblNoData : UILabel!
-    @IBOutlet weak var imgTime : UIImageView!
-    @IBOutlet weak var lblSeperator : UILabel!
+    @IBOutlet weak var viewNoData: UIView!
+    @IBOutlet weak var lblNoData: UILabel!
+    @IBOutlet weak var imgTime: UIImageView!
+    @IBOutlet weak var lblSeperator: UILabel!
     
     var getEvent:GetEventModel?{
         didSet{
@@ -36,7 +36,7 @@ class EventTableViewCell: UITableViewCell {
             }
             self.lblTitle.text = getEvent?.event?.title ?? ""
             self.lblPrice.text = "$ \(getEvent?.ticketOnwards ?? 0) onwards"
-            self.lblAddress.text = getEvent?.locationType == VIRTUAL ? VirtualEvent : getEvent?.locationType == MULTIPLE ? MultipleLocation : (getEvent?.location?.eventAddress ?? "-")
+            self.lblAddress.text = getEvent?.locationType == VIRTUAL ? VirtualEvent: getEvent?.locationType == MULTIPLE ? MultipleLocation: (getEvent?.location?.eventAddress ?? "-")
             //            self.lblAddress.text = getEvent?.location?.eventAddress ?? "-"
 
             if getEvent?.locationType == MULTIPLE{
@@ -49,7 +49,7 @@ class EventTableViewCell: UITableViewCell {
                 self.lblTime.text = "  " + "\(getEvent?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getEvent?.date?.eventEndTime?.getFormattedTime() ?? "")"
             }
             
-            if let imageUrl = getEvent?.coverImage?.eventCoverImage{
+            if let imageUrl = getEvent?.coverImage?.eventCoverImage {
                 if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                     if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {

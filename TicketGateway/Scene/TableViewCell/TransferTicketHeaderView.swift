@@ -9,7 +9,7 @@ import UIKit
 
 class TransferTicketHeaderView: UITableViewHeaderFooterView {
 
-//MARK: - OUTLETS
+// MARK: - OUTLETS
     @IBOutlet weak var lblTicketTitle: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnUp: UIButton!

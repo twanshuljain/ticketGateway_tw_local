@@ -185,7 +185,7 @@ extension AddAmountWalletVC {
     }
     func btnContinueAction() {
         let view = self.createView(storyboard: .wallet, storyboardID: .AmountAddedSuccessfullyVC) as? AmountAddedSuccessfullyVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
     func btnSelectConcurrencyAction() {
         self.txtCountryCUrrency.showList()
@@ -193,7 +193,7 @@ extension AddAmountWalletVC {
     func setGradientBackground(viewadd: UIView) {
         viewadd.layer.insertSublayer(gradientLayer, at: 0)
     }
-    @IBAction func btnOpenDatePicker(_ sender: Any) {
+    @IBAction private func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
         self.pickerMonthYear.reloadAllComponents()
@@ -248,7 +248,7 @@ extension AddAmountWalletVC {
         self.pickerMonthYear.selectRow(ind, inComponent: 1, animated: false)
         self.pickerMonthYear.reloadAllComponents()
     }
-    @IBAction func btnPickerDoneAction(_ sender: UIButton) {
+    @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
         if !selectedMonthName.isEmpty && !selectedyearName.isEmpty {
@@ -263,7 +263,7 @@ extension AddAmountWalletVC {
             selectedyearName = ""
         }
     }
-    @IBAction func btnPickerCancelAction(_ sender: UIButton) {
+    @IBAction private func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }

@@ -18,7 +18,7 @@ class PeopleCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      //  self.vwContainer.setCollectionProfileView(vwOuter: self.vwContainer, img: self.imgPeople , radius : 20)
+      //  self.vwContainer.setCollectionProfileView(vwOuter: self.vwContainer, img: self.imgPeople , radius: 20)
         //self.vwContainer.setViewShadow()
     }
     

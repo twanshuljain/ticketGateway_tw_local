@@ -50,7 +50,7 @@ class RefundOptionsVC: UIViewController {
 }
 
 // MARK: - Functions
-extension RefundOptionsVC{
+extension RefundOptionsVC {
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false

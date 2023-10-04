@@ -138,9 +138,9 @@ extension ScannerVC {
         }
     }
     func dataSetAfterAPICall() {
-        lblAccepted.text = "Accepted : \(viewModel.getScanDetailData?.acceptedCount ?? 0)"
-        lblRejected.text = "Rejected : \(viewModel.getScanDetailData?.rejectedCount ?? 0)"
-        lblTotal.text = "Total : \(viewModel.getScanDetailData?.totalCount ?? 0)"
+        lblAccepted.text = "Accepted: \(viewModel.getScanDetailData?.acceptedCount ?? 0)"
+        lblRejected.text = "Rejected: \(viewModel.getScanDetailData?.rejectedCount ?? 0)"
+        lblTotal.text = "Total: \(viewModel.getScanDetailData?.totalCount ?? 0)"
     }
     func setUIAndGetScanDetail() {
         if let url = (APIHandler.shared.s3URL + viewModel.getScanTicketDetails.imageUrl).getCleanedURL() {
@@ -289,9 +289,9 @@ extension ScannerVC {
     }
     func setUIAfterScanTicket(isSuccess: Bool, message: String) {
         imgScanStatus.isHidden = false
-        imgScanStatus.image = UIImage(named: isSuccess ? Right : Wrong)
+        imgScanStatus.image = UIImage(named: isSuccess ? Right: Wrong)
         imgScanStatusBGColor.isHidden = false
-        imgScanStatusBGColor.backgroundColor = UIColor.setColor(colorType: isSuccess ? .tgGreen : .tgRed)
+        imgScanStatusBGColor.backgroundColor = UIColor.setColor(colorType: isSuccess ? .tgGreen: .tgRed)
         lblQrid.text = viewModel.scanBarCodeModel.qrid
         lblScanStatusMessage.text = message
         // Get Updated Data after send QRid

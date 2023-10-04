@@ -4,7 +4,7 @@ import UIKit
 
 class SideMenuList: UITableView {
     
-//MARK: - VARIABLES
+// MARK: - VARIABLES
     var isFromManageEventProfile = false
     var isFromManageEvent = false
     var menu: [SideMenuModel] = [SideMenuModel]()
@@ -12,7 +12,7 @@ class SideMenuList: UITableView {
     var selectedDevice = ""
     var isFromDeselected = false
     var isFromSkip: Bool = false
-//MARK: - CONFIGURE
+// MARK: - CONFIGURE
     func configure() {
         self.register(UINib(nibName: "SideMenuCell", bundle: nil), forCellReuseIdentifier: "SideMenuCell")
         self.delegate = self
@@ -39,7 +39,7 @@ class SideMenuList: UITableView {
                 
             
         } else {
-            if isFromManageEvent == true{
+            if isFromManageEvent == true {
             
             if self.isFromManageEventProfile == false
             {

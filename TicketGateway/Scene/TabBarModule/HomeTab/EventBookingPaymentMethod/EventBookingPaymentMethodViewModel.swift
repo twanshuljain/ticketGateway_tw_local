@@ -37,8 +37,8 @@ final class EventBookingPaymentMethodViewModel{
     
     var stripeUser:StripeCreateUser?
     var addCard:AddCard?
-    var selectedMonth : String?
-    var selectedYear : String?
+    var selectedMonth: String?
+    var selectedYear: String?
     var checkoutId:String?
     var name:String?
     var cardNumber:String?
@@ -64,7 +64,7 @@ extension EventBookingPaymentMethodViewModel{
     func checkValidations(vc:EventBookingPaymentMethodVC) -> Bool{
         let validate = self.validateCreditCard(vc.txtCardName.text ?? "", vc.txtCardNumber.text ?? "", vc.txtExpiryDate.text ?? "", vc.txtCVV.text ?? "", vc)
         
-        if validate{
+        if validate {
             return true
             
         }
@@ -174,7 +174,7 @@ extension EventBookingPaymentMethodViewModel{
     
     func otpVerify(vc:EventBookingPaymentMethodVC) {
         DispatchQueue.main.async {
-            if let view = vc.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
+            if let view = vc.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC {
                 let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
                 let obj =   DataHoldOnSignUpProcessModel.init(strEmail: userModel?.email ?? "", strNumber: userModel?.number ?? "", strStatus: "", strDialCountryCode: userModel?.strDialCountryCode ?? "", strCountryCode: "")
                 objAppShareData.dicToHoldDataOnSignUpModule = obj
@@ -221,14 +221,14 @@ extension EventBookingPaymentMethodViewModel{
     }
     
     func navigateToPaymentSuccess(vc:EventBookingPaymentMethodVC) {
-        if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC{
+        if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC {
             view.createCharge = self.createCharge
             view.selectedCurrencyType = self.selectedCurrencyType
             vc.navigationController?.pushViewController(view, animated: true)
         }
     }
     
-    //MARK:- func validateCreditCard
+    // MARK:- func validateCreditCard
     func validateCreditCard(_ cardholderName:String?,_ cardNumber:String?,_ expiryDate:String?,_ cvv:String? ,_ vc:EventBookingPaymentMethodVC)-> Bool{
         if cardNumber == nil || cardNumber?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardNumber.value)

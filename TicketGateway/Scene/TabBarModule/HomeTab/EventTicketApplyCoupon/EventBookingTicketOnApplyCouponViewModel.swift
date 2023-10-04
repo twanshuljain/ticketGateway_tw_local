@@ -22,9 +22,9 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var feeStructure :FeeStructure?
     var isAccessCodeAvailable = false
     var selectedArrTicketList = [EventTicket]()
-    var arrDataForAccessCode : [EventTicket]?
+    var arrDataForAccessCode: [EventTicket]?
     var defaultTicket = [EventTicket]()
-    var arrTicketList : [EventTicket]?
+    var arrTicketList: [EventTicket]?
     var ticketId = ""
     var eventId:Int?
     var dispatchGroup:DispatchGroup = DispatchGroup()

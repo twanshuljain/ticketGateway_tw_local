@@ -9,7 +9,7 @@ import UIKit
 
 class LeaderProfileTableViewCell: UITableViewCell {
 
-    //MARK: - OUTLETS
+    // MARK: - OUTLETS
 
     @IBOutlet weak var lblTitle:UILabel!
     @IBOutlet weak var lblTitleValue:UILabel!

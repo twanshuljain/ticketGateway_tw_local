@@ -15,7 +15,7 @@ protocol EventDetailVCProtocol: class {
     func updateData()
 }
 
-class EventDetailVC: UIViewController, UITextFieldDelegate{
+class EventDetailVC: UIViewController, UITextFieldDelegate {
     
     // MARK: IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -74,7 +74,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     
     // MARK: - Variables
     var viewModel = EventDetailViewModel()
-    weak var delegate : EventDetailVCProtocol?
+    weak var delegate: EventDetailVCProtocol?
     let store = EKEventStore()
     
     override func viewDidLoad() {
@@ -132,7 +132,7 @@ extension EventDetailVC {
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
-        self.navigationView.btnSecRight.setImage(UIImage(named: (viewModel.eventDetail?.isLike ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+        self.navigationView.btnSecRight.setImage(UIImage(named: (viewModel.eventDetail?.isLike ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
         navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
         btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
@@ -316,7 +316,7 @@ extension EventDetailVC {
             }
         }
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfSuggestedOrganisedEvent.constant = tblSuggestedEvent.contentSize.height
     }
     func setUi() {
@@ -683,7 +683,7 @@ extension EventDetailVC {
         return calendar.date(from: mergedComponents)
     }
     func btnBookTicket() {
-//        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC{
+//        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketVC) as? EventBookingTicketVC {
 //            view.viewModel.eventDetail = self.viewModel.eventDetail
 //            view.viewModel.eventId = self.viewModel.eventId
 //            view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
@@ -706,7 +706,7 @@ extension EventDetailVC {
         }
     }
     func navigateToTicketBooking() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC{
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketOnApplyCouponVC) as? EventBookingTicketOnApplyCouponVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.eventId = self.viewModel.eventId
             view.viewModel.ticketId = "\(self.viewModel.eventDetail?.event?.ticketID ?? 0)"
@@ -753,7 +753,7 @@ extension EventDetailVC {
     }
     
     func btnShowMapAction() {
-        if let view = createView(storyboard: .home, storyboardID: .EventMapVC) as? EventMapVC{
+        if let view = createView(storyboard: .home, storyboardID: .EventMapVC) as? EventMapVC {
             let eventLocation = self.viewModel.eventDetail?.eventLocation
             
             if self.viewModel.eventDetail?.locationType == MULTIPLE {
@@ -786,7 +786,7 @@ extension EventDetailVC {
                 eventTitle: eventDetail.event?.title,
                 eventStartTime: eventDetail.eventDateObj?.eventStartTime ?? "",
                 eventEndTime: eventDetail.eventDateObj?.eventEndTime ?? "",
-                eventDescription: (eventDetail.event?.eventDescription == nil || eventDetail.event?.eventDescription == "") ? (eventDetail.organizer?.eventDescription) : (eventDetail.event?.eventDescription)
+                eventDescription: (eventDetail.event?.eventDescription == nil || eventDetail.event?.eventDescription == "") ? (eventDetail.organizer?.eventDescription): (eventDetail.event?.eventDescription)
             )
         }
     }
@@ -806,7 +806,7 @@ extension EventDetailVC {
                 eventId: eventId,
                 completion: { isTrue, messageShowToast in
                     DispatchQueue.main.async {
-                        let image =  (self.viewModel.eventDetail?.isLike ?? false) ? UIImage(named: "favSele_ip") : UIImage(named: "favUnSele_ip")
+                        let image =  (self.viewModel.eventDetail?.isLike ?? false) ? UIImage(named: "favSele_ip"): UIImage(named: "favUnSele_ip")
                         self.navigationView.btnSecRight.setImage(image, for: .normal)
                     }
                 }
@@ -851,8 +851,8 @@ extension EventDetailVC {
     }
 }
 
-//MARK: - UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
-extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+extension EventDetailVC: UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

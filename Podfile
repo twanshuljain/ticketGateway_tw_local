@@ -9,7 +9,7 @@ target 'TicketGateway' do
   pod 'AdvancedPageControl'
   pod 'Charts'
   pod 'Cosmos'
-  pod 'SwiftLint'
+  pod 'SwiftLint', '~> 0.27'
   pod 'Stripe'
   pod 'TweeTextField'
   

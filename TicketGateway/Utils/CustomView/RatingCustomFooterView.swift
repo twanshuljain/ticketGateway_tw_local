@@ -16,7 +16,7 @@ class RatingCustomFooterView: UITableViewHeaderFooterView {
     
     
     
-    @IBAction func btnFeedbackPressed(_ sender: UIButton) {
+    @IBAction private func btnFeedbackPressed(_ sender: UIButton) {
         
     }
     

@@ -9,14 +9,14 @@ import UIKit
 
 class SoldOutTicketVC: UIViewController {
     
-//MARK: - Outlets
+// MARK: - Outlets
     
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var soldOutTicketTableView: UITableView!
     @IBOutlet weak var lblSoldOutTickets: UILabel!
     
     
-//MARK: - Variables
+// MARK: - Variables
     let viewModel = SoldOutTicketsViewModel()
   
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class SoldOutTicketVC: UIViewController {
   
 }
 
-//MARK: - FUNCTIONS
+// MARK: - FUNCTIONS
 extension SoldOutTicketVC {
     
     func setNavigationBar() {
@@ -57,7 +57,7 @@ extension SoldOutTicketVC {
 }
 
 
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension SoldOutTicketVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.arrData.count
@@ -74,7 +74,7 @@ extension SoldOutTicketVC: UITableViewDelegate, UITableViewDataSource {
   
 }
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension SoldOutTicketVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

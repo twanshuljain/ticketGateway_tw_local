@@ -16,7 +16,7 @@ import iOSDropDown
 
 class EventBookingTicketOnApplyCouponVC: UIViewController {
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var lblRefund: UILabel!
     @IBOutlet weak var lblAcceptedTermCon: UILabel!
     @IBOutlet weak var navigationView: NavigationBarView!
@@ -29,7 +29,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     
     //coupon
     @IBOutlet weak var btnCheckTermCondition: UIButton!
-    @IBOutlet weak var txtAccessCode : UITextField!
+    @IBOutlet weak var txtAccessCode: UITextField!
     @IBOutlet weak var viewApplyAccessCode: UIView!
     @IBOutlet weak var btnAppliedCode: CustomButtonGradiant!
     @IBOutlet weak var imgApplyAccessCode: UIImageView!
@@ -45,9 +45,9 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var enterAccessCodeBgView: UIView!
     @IBOutlet weak var parentView: UIView!
-    @IBOutlet weak var btnRemoveAccessCode : UIButton!
+    @IBOutlet weak var btnRemoveAccessCode: UIButton!
     
-    //MARK: - Variables
+    // MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
     
     
@@ -60,12 +60,12 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingTicketOnApplyCouponVC {
     
     func setNavigationData() {
         //  self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
-        if let eventTitle = viewModel.eventDetail?.event?.title{
+        if let eventTitle = viewModel.eventDetail?.event?.title {
             self.navigationView.lblTitle.text = eventTitle
         }
         
@@ -76,14 +76,14 @@ extension EventBookingTicketOnApplyCouponVC {
 //        let dateTime = "\(viewModel.eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" + " • " + "\(viewModel.eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
 //        self.navigationView.lblDiscripation.text = dateTime
         
-        if let date = viewModel.eventDetail?.eventDateObj?.eventStartDate{
+        if let date = viewModel.eventDetail?.eventDateObj?.eventStartDate {
             self.navigationView.lblDiscripation.text = date.getDateFormattedFrom()
         }
         
-        if let time = viewModel.eventDetail?.eventDateObj?.eventStartTime{
+        if let time = viewModel.eventDetail?.eventDateObj?.eventStartTime {
             self.navigationView.lblDiscripation.text! += " • \(time.getFormattedTime())"
         }
-       self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
+       self.lblRefund.text = "Refund Policy: Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
         
     }
       
@@ -149,7 +149,7 @@ extension EventBookingTicketOnApplyCouponVC {
         
         self.btnAppliedAccessCodeAction()
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
         
     }
@@ -245,7 +245,7 @@ extension EventBookingTicketOnApplyCouponVC {
     }
     
     func navigateToPaymentEventBookingTicketAddOns() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
             view.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
             view.viewModel.totalTicketPriceWithoutAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
@@ -270,7 +270,7 @@ extension EventBookingTicketOnApplyCouponVC {
     }
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension EventBookingTicketOnApplyCouponVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -307,7 +307,7 @@ extension EventBookingTicketOnApplyCouponVC {
                } else {
                    self.navigateToPaymentEventBookingTicketAddOns()
                }
-//               if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+//               if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC {
 //                   view.viewModel.eventDetail = self.viewModel.eventDetail
 //                   view.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
 //                   view.viewModel.totalTicketPriceWithoutAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
@@ -324,7 +324,7 @@ extension EventBookingTicketOnApplyCouponVC {
        
        
        
-//       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
+//       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC {
 //           view.totalTicketPrice = self.viewModel.totalTicketPrice
 //           view.feeStructure = self.viewModel.feeStructure
 //           self.navigationController?.pushViewController(view, animated: true)
@@ -418,11 +418,11 @@ extension EventBookingTicketOnApplyCouponVC {
 }
 
 // MARK: - TextField Delegate
-extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
+extension EventBookingTicketOnApplyCouponVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         btnAppliedCode.isUserInteractionEnabled = true
         var copystring  = ""
-        if textField == self.txtAccessCode{
+        if textField == self.txtAccessCode {
             print(string)
             self.lblAppliedAccessCodeDIs.text = ""
             if string.count > 1{
@@ -460,8 +460,8 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
     }
 }
 
-//MARK: - NavigationBarViewDelegate
-extension EventBookingTicketOnApplyCouponVC : NavigationBarViewDelegate {
+// MARK: - NavigationBarViewDelegate
+extension EventBookingTicketOnApplyCouponVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

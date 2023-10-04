@@ -11,7 +11,7 @@ final class PhoneVerifyViewModel{
     var mobileNumber: String = ""
     var emailAddress: String = ""
     var eventId:Int?
-    var selectedArrTicketList : [EventTicket]?
+    var selectedArrTicketList: [EventTicket]?
     var eventDetail:EventDetail?
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""

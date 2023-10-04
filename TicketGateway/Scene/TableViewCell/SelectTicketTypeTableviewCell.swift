@@ -9,7 +9,7 @@ import UIKit
 
 class SelectTicketTypeTableviewCell: UITableViewCell {
     
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var lblTicketType: UILabel!
     @IBOutlet weak var swTicketTypeSwitch: UISwitch!
     var isSelectAll: Bool = false
@@ -26,7 +26,7 @@ class SelectTicketTypeTableviewCell: UITableViewCell {
     func selectAllSwitchOn() {
         self.swTicketTypeSwitch.setOn(true, animated: false)
     }
-    @IBAction func switchButtonAction(_ sender: UISwitch) {
+    @IBAction private func switchButtonAction(_ sender: UISwitch) {
         switchButtonDidTap(sender)
     }
 }

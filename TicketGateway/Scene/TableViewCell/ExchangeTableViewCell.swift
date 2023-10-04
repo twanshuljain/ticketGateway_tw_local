@@ -10,7 +10,7 @@ import iOSDropDown
 
 class ExchangeTableViewCell: UITableViewCell {
 
-//MARK: - OUTLETS
+// MARK: - OUTLETS
     @IBOutlet weak var lblYoungGold: UILabel!
     @IBOutlet weak var lblQty: UILabel!
     
@@ -49,7 +49,7 @@ class ExchangeTableViewCell: UITableViewCell {
         
     }
     
-    @IBAction func actionSwitch(_ sender: UISwitch) {
+    @IBAction private func actionSwitch(_ sender: UISwitch) {
         
         if sender.isOn {
             self.vwTxtView.isHidden = false

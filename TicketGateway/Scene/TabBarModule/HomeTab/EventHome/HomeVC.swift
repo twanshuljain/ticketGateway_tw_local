@@ -60,11 +60,11 @@ class HomeVC: UIViewController {
 extension HomeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
     
 }
-//MARK: - Functions
+// MARK: - Functions
 extension HomeVC {
     func setUp() {
         self.setUi()
@@ -88,7 +88,7 @@ extension HomeVC {
     }
     
     func navigateToDetailVc(index:IndexPath) {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
+        if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
             if self.viewModel.arrEventCategory.indices.contains(index.section) {
                 switch self.viewModel.arrEventCategory[index.section] {
                 case .noLocationData:
@@ -131,7 +131,7 @@ extension HomeVC {
         self.lblSuggestedOrganised.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.btnViewAllForSuggestedOrganised.setTitles(text: SEE_ALL, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
       }
-     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfNearOrganisedEvent.constant = tblEvents.contentSize.height
         
     }
@@ -327,7 +327,7 @@ extension HomeVC {
             viewModel.getEventApiForFreeEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
-                    if let itemsFree = self.viewModel.arrEventData.itemsFree{
+                    if let itemsFree = self.viewModel.arrEventData.itemsFree {
                         self.viewModel.semaphore.wait()
                         self.tblEvents.arrDataaFree = []
                         self.tblEvents.arrDataaFree.append(contentsOf: itemsFree)
@@ -495,7 +495,7 @@ extension HomeVC {
     }
 }
 
-//MARK: - CustomSearchMethodsDelegate
+// MARK: - CustomSearchMethodsDelegate
 extension HomeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         
@@ -516,7 +516,7 @@ extension HomeVC: CustomSearchMethodsDelegate {
         }
         view?.selecetdCountriesModel = CountryInfo.init(countryCode: "", dialCode: "", countryName: view?.selectedCountry ?? "")
         view?.selecetdCountriesModel = self.viewModel.country
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 
@@ -537,7 +537,7 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
         view?.viewModel.index = index
         view?.viewModel.countryName = self.viewModel.country?.countryName ?? self.getCountry()
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 

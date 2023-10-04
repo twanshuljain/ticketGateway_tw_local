@@ -9,7 +9,7 @@ import UIKit
 
 class DepositeTableViewCell: UITableViewCell {
     
-//MARK: - Ouultes
+// MARK: - Ouultes
     @IBOutlet weak var lblDeposit: UILabel!
     @IBOutlet weak var lblFinalBalance: UILabel!
     

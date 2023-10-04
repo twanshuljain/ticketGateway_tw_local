@@ -9,7 +9,7 @@ import UIKit
 
 class MyTicketListingTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var lblTicketName : UILabel!
+    @IBOutlet weak var lblTicketName: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

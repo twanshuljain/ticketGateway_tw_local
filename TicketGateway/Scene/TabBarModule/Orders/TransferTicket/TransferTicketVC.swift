@@ -79,10 +79,10 @@ extension  TransferTicketVC {
     
     @objc func navigateButton(_ sender: UIButton) {
         if let data = self.viewModel.myTicket?.items?[sender.tag]{
-            if data.isTransfer ?? false{
+            if data.isTransfer ?? false {
                 self.resendTicket(transferId: data.transferredID ?? 0)
             } else {
-                if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC{
+                if let continueToTransferVC = createView(storyboard: .order, storyboardID: .ContinueToTransferVC) as? ContinueToTransferVC {
                     continueToTransferVC.viewModel.ticketDetails = self.viewModel.ticketDetails
                     continueToTransferVC.viewModel.eventDetail = self.viewModel.eventDetail
                     continueToTransferVC.viewModel.myTicket = self.viewModel.myTicket?.items?[sender.tag]
@@ -117,7 +117,7 @@ extension TransferTicketVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TransferTicketTableViewCell", for: indexPath) as? TransferTicketTableViewCell{
-            if self.viewModel.myTicket?.items?.indices.contains(indexPath.section) ?? false{
+            if self.viewModel.myTicket?.items?.indices.contains(indexPath.section) ?? false {
                 if let data = self.viewModel.myTicket?.items?[indexPath.section]{
                     cell.btnContinueToTransfer.tag = indexPath.section
                     cell.setData(data: data)
@@ -132,7 +132,7 @@ extension TransferTicketVC: UITableViewDelegate, UITableViewDataSource {
         if let headerview = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TransferTicketHeaderView") as? TransferTicketHeaderView{
             headerview.btnUp.tag = section
             headerview.btnUp.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-            if self.viewModel.myTicket?.items?.indices.contains(section) ?? false{
+            if self.viewModel.myTicket?.items?.indices.contains(section) ?? false {
                 if let obj = self.viewModel.myTicket?.items?[section]{
                     headerview.setData(data: obj)
                     if obj.isExpanded == true {

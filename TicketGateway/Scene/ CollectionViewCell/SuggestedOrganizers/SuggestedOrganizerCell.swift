@@ -36,7 +36,7 @@ class SuggestedOrganizerCell: UICollectionViewCell {
             self.btnFollerwers.setTitle("Follow", for: .normal)
         }
         
-        if let imageUrl = organizerDetail.profileImage{
+        if let imageUrl = organizerDetail.profileImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
@@ -66,7 +66,7 @@ class SuggestedOrganizerCell: UICollectionViewCell {
        
     }
     
-    @IBAction func btnFollowUnfollowAction(_ sender:UIButton) {
+    @IBAction private func btnFollowUnfollowAction(_ sender:UIButton) {
         if isFromOrganizationSection {
             followButtonDidTap(sender)
         }

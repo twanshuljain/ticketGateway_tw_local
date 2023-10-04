@@ -108,7 +108,7 @@ extension RequestRefundVC {
         view?.strComplimentry = "1 Ticket(S) with amount $300.00"
         view?.strSummary = "Ticket for Order Id #32916222 has been successfully refunded in your TG Wallet"
         view?.btnStr = OKAY
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 // MARK: - Actions
@@ -143,7 +143,7 @@ extension RequestRefundVC {
         arrData[sender.tag].isSelected = true
         self.tblRefundTableView.reloadData()
     }
-    @IBAction func actionSegmentControl(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegmentControl(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize: .twelve)], for: .normal)
@@ -188,7 +188,7 @@ extension RequestRefundVC: UITableViewDelegate, UITableViewDataSource {
         if isRefundAll == true {
             headerView.btnCheck.setImage(UIImage(named: ACTIVE_ICON_SQUARE), for: .normal)
         } else {
-            let img = obj.isSelected ? ACTIVE_ICON_SQUARE : "uncheck_ip"
+            let img = obj.isSelected ? ACTIVE_ICON_SQUARE: "uncheck_ip"
             headerView.btnCheck.setImage(UIImage(named: img), for: .normal)
         }
         if obj.isExpanded == true {

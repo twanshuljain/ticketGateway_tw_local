@@ -15,7 +15,7 @@ class MyTicketVC: UIViewController {
     //@IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var btnAddAppToWallet: PKPass!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
-    @IBOutlet weak var greyView : UIView!
+    @IBOutlet weak var greyView: UIView!
     
     var viewModel: MyTicketViewModel = MyTicketViewModel()
     var myOrderViewModel: MyOrderViewModel = MyOrderViewModel()
@@ -31,7 +31,7 @@ class MyTicketVC: UIViewController {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
         let alertTransferTicket = UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            if let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC) as? TransferTicketVC{
+            if let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC) as? TransferTicketVC {
                 transferTicketVC.viewModel.ticketDetails = self.viewModel.ticketDetails
                 transferTicketVC.viewModel.eventDetail = self.viewModel.eventDetail
                 transferTicketVC.viewModel.myTicket = self.viewModel.myTicket
@@ -46,7 +46,7 @@ class MyTicketVC: UIViewController {
         })
         
         let alertChangeNameTicket = UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC{
+            if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC {
                 changeNameVC.viewModel.myTicket = self.viewModel.myTicket
                 self.navigationController?.pushViewController(changeNameVC, animated: true)
             }
@@ -61,7 +61,7 @@ class MyTicketVC: UIViewController {
         
         
         let alertContactOrganizer = UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
+            if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC {
                 contactOrganiserVC.viewModel.ticketDetails = self.viewModel.ticketDetails
                 contactOrganiserVC.viewModel.eventDetail = self.viewModel.eventDetail
                 contactOrganiserVC.viewModel.oranizerId = self.viewModel.eventDetail?.organizer?.id ?? 0
@@ -70,7 +70,7 @@ class MyTicketVC: UIViewController {
         })
         
         
-        if self.viewModel.selectedTicket?.isTransfer ?? false == true{
+        if self.viewModel.selectedTicket?.isTransfer ?? false == true {
             alertTransferTicket.titleTextColor = .gray
             alertTransferTicket.isEnabled = false
             alertExchangeTicket.titleTextColor = .gray
@@ -209,7 +209,7 @@ extension MyTicketVC {
     }
    @objc func saveTicketAsImage(_ sender: UIButton) {
        if let cell = self.collectionView.cellForItem(at: IndexPath.init(row: sender.tag, section: 0)) as? MyTicketCollectionViewCell{
-           if let imageToSave =  cell.imgQRCode.image{
+           if let imageToSave =  cell.imgQRCode.image {
                UIImageWriteToSavedPhotosAlbum(imageToSave, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
            }
        }
@@ -255,9 +255,9 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             cell.btnSeeFullTicket.addTarget(self, action: #selector(seeFullTicketAction(_:)), for: .touchUpInside)
             cell.btnSaveTicketAsImage.tag = indexPath.row
             cell.btnSaveTicketAsImage.addTarget(self, action: #selector(saveTicketAsImage), for: .touchUpInside)
-            if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
+            if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false {
                // self.viewModel.selectedTicket = viewModel.myTicket?.items?[indexPath.row]
-                //self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false : true
+                //self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false: true
                 cell.setData(myTicket: viewModel.myTicket?.items?[indexPath.row])
             }
             return cell
@@ -267,10 +267,10 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = cell as? MyTicketCollectionViewCell{
-            if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
+            if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false {
                 cell.setData(myTicket: viewModel.myTicket?.items?[indexPath.row])
                 self.viewModel.selectedTicket = viewModel.myTicket?.items?[indexPath.row]
-                self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false : true
+                self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false: true
             }
         }
     }

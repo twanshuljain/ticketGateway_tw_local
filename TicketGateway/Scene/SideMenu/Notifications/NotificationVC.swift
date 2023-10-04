@@ -36,7 +36,7 @@ extension NotificationVC {
    
 }
 // MARK: - NavigationBarViewDelegate
-extension NotificationVC : NavigationBarViewDelegate {
+extension NotificationVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

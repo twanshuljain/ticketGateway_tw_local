@@ -84,7 +84,7 @@ extension OtpNumberVC {
   //  }
     
     func navigateToPaymentVc() {
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC {
             view.viewModel.eventId = self.viewModel.eventId
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
             view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -215,7 +215,7 @@ extension OtpNumberVC {
                 //                self.navigationController?.pushViewController(view, animated: true)
                 //            } else {
                 //                let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
-                //                self.navigationController?.pushViewController(view!, animated: true)
+                //                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
                 //            }
                 
                 //     ------------------------------------
@@ -256,7 +256,7 @@ extension OtpNumberVC {
 }
 
 // MARK: - UITextFieldDelegate
-extension OtpNumberVC : UITextFieldDelegate {
+extension OtpNumberVC: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return false
@@ -317,13 +317,13 @@ extension OtpNumberVC : UITextFieldDelegate {
           break
         }
       }
-      else{
+      else {
       }
     }
 }
 
 // MARK: - NavigationBarViewDelegate
-extension OtpNumberVC : NavigationBarViewDelegate {
+extension OtpNumberVC: NavigationBarViewDelegate {
   func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)
   }

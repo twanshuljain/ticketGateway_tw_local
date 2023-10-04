@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-//MARK: - Attributed Text
+// MARK: - Attributed Text
 
     func getAttributedTextAction(attributedText: String, firstString: String, lastString: String, attributedFont: UIFont, attributedColor: UIColor = .red, isToUnderLineAttributeText: Bool = true) -> NSMutableAttributedString {
         // example
@@ -28,7 +28,7 @@ import UIKit
         return attribute
     }
 
-    //MARK: - Gradient Text
+    // MARK: - Gradient Text
     func gradientColor(bounds: CGRect, gradientLayer :CAGradientLayer) -> UIColor? {
         //We are creating UIImage to get gradient color.
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
@@ -37,7 +37,7 @@ import UIKit
         UIGraphicsEndImageContext()
         return UIColor(patternImage: image!)
     }
-    func getGradientLayer(bounds : CGRect) -> CAGradientLayer{
+    func getGradientLayer(bounds: CGRect) -> CAGradientLayer{
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         // gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]

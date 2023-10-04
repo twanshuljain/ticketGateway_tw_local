@@ -16,7 +16,7 @@ import SVProgressHUD
 import iOSDropDown
 
 class EventBookingTicketVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var lblRefund: UILabel!
     @IBOutlet weak var btnCheckTermCondition: UIButton!
     @IBOutlet weak var lblAcceptedTermCon: UILabel!
@@ -29,7 +29,7 @@ class EventBookingTicketVC: UIViewController {
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var parentView: UIView!
     
-    //MARK: - Variables
+    // MARK: - Variables
     var viewModel = EventBookingTicketViewModel()
     
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class EventBookingTicketVC: UIViewController {
 
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingTicketVC {
     private func setup() {
         self.viewModel.isCheckedTermCondition = false
@@ -80,7 +80,7 @@ extension EventBookingTicketVC {
         self.btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
         
    }
@@ -91,7 +91,7 @@ extension EventBookingTicketVC {
         let dateTime = "\(viewModel.eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" + " • " + "\(viewModel.eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
         self.navigationView.lblDiscripation.text = dateTime
         
-        self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
+        self.lblRefund.text = "Refund Policy: Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
         
     }
     func apiCall() {
@@ -149,7 +149,7 @@ extension EventBookingTicketVC {
     }
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension EventBookingTicketVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {

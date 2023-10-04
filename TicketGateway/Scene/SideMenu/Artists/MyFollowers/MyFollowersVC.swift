@@ -27,8 +27,8 @@ class MyFollowersVC: UIViewController {
     }
 }
 
-//MARK: - Functions
-extension MyFollowersVC{
+// MARK: - Functions
+extension MyFollowersVC {
     func setNavigationView() {
         self.vwNavigationView.lblTitle.text = MY_FOLLOWERS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize:   .sixteen)
@@ -50,7 +50,7 @@ extension MyFollowersVC{
     }
 }
 
-//MARK: - UITableViewDelegate,UITableViewDataSource
+// MARK: - UITableViewDelegate,UITableViewDataSource
 extension MyFollowersVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData.count
@@ -61,8 +61,8 @@ extension MyFollowersVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-//MARK: - NavigationBarViewDelegate
-extension MyFollowersVC : NavigationBarViewDelegate {
+// MARK: - NavigationBarViewDelegate
+extension MyFollowersVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

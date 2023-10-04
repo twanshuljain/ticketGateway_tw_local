@@ -16,13 +16,13 @@ import UIKit
 class CancelThisEventVC: UIViewController {
     
 
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var lblCancelThisevent: UILabel!
     @IBOutlet weak var cancelEventTableViewCell: UITableView!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     
-//MARK: - Variables
+// MARK: - Variables
     let viewModel = CancelThisEventViewModel()
    
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class CancelThisEventVC: UIViewController {
 }
 
 
-//MARK: - FUNCTIONS
+// MARK: - FUNCTIONS
 extension CancelThisEventVC {
     
     func setNavigationBar() {
@@ -72,7 +72,7 @@ extension CancelThisEventVC {
     
 }
 
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension CancelThisEventVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.arrData.count
@@ -91,7 +91,7 @@ extension CancelThisEventVC: UITableViewDelegate, UITableViewDataSource {
   
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension CancelThisEventVC {
     func setUI () {
         [self.btnContinue].forEach {
@@ -119,7 +119,7 @@ extension CancelThisEventVC {
     }
    
 }
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension CancelThisEventVC: AlertAction {
     func alertYesaction() {
 //        let vc = self.createView(storyboard: .scanevent, storyboardID: .EndScanPoPUpVC) as! EndScanPoPUpVC
@@ -134,7 +134,7 @@ extension CancelThisEventVC: AlertAction {
 }
 
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension CancelThisEventVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

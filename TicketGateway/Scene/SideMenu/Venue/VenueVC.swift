@@ -26,7 +26,7 @@ class VenueVC: UIViewController{
      }
 }
 // MARK: - Functions
-extension VenueVC{
+extension VenueVC {
     
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self

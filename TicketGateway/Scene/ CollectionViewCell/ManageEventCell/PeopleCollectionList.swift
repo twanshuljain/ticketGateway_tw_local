@@ -17,7 +17,7 @@ class PeopleCollectionList: UICollectionView {
     }
 
 }
-extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+extension PeopleCollectionList: UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -74,7 +74,7 @@ extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
        // let width = (CGFloat(UIScreen.main.bounds.width)-45)/2
-        return CGSize(width: 40, height  : 40)
+        return CGSize(width: 40, height : 40)
         }
 //     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 //            return CGSizeMake(10, 10);

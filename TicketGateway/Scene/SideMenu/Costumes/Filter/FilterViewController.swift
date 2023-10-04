@@ -10,13 +10,13 @@ import UIKit
 
 class FilterViewController: UIViewController {
 
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var tblFilterSection:UITableView!
     @IBOutlet weak var tblFilterSelectedSection:UITableView!
     @IBOutlet weak var btnCancel:UIButton!
     @IBOutlet weak var btnApply:CustomButtonGradiant!
     
-    //MARK: - Variables
+    // MARK: - Variables
     var viewModel = FilterViewModel()
     
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class FilterViewController: UIViewController {
     }
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension FilterViewController{
     func setUpUI() {
         self.tblFilterSection.delegate = self
@@ -64,8 +64,8 @@ extension FilterViewController{
     }
 }
 
-//MARK: - Functions
-extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
+// MARK: - Functions
+extension FilterViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.tblFilterSection{
             return viewModel.arrFilterSection.count
@@ -118,13 +118,13 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
 }
-//MARK: - Actions
+// MARK: - Actions
 extension FilterViewController{
-    @IBAction func btnCancelPressed(_ sender: UIButton) {
+    @IBAction private func btnCancelPressed(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
     
-    @IBAction func btnApplyPressed(_ sender: UIButton) {
+    @IBAction private func btnApplyPressed(_ sender: UIButton) {
         
     }
 }

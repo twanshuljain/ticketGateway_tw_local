@@ -92,14 +92,14 @@ extension ContactOrganiserVC {
         view.endEditing(true)
     }
     
-    func setData(){
+    func setData() {
         txtOrganizersName.text = self.viewModel.eventDetail?.organizer?.name ?? ""
         txtEmailAddress.text = self.viewModel.eventDetail?.organizer?.promoterEmail ?? ""
         lblOrderId.text = "Order ID: \(self.viewModel.ticketDetails?.orderId ?? 0)"
         lblSunburnReload.text = (self.viewModel.eventDetail?.event?.title ?? "") + " - " + "\(self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")"
     }
     
-    func apiCall(){
+    func apiCall() {
         self.view.endEditing(true)
         viewModel.name = self.txtName.text ?? ""
         viewModel.email = self.txtEmailAddress.text ?? ""
@@ -129,12 +129,12 @@ extension ContactOrganiserVC {
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
-        }else{
+        }else {
             self.showToast(message: isValidate.errorMessage)
         }
     }
     
-    func navigateToManageSellTicketSuccessfully(){
+    func navigateToManageSellTicketSuccessfully() {
         if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
             view.strTittle = CHANGE_ORGANISER
             view.strComplimentry = ""

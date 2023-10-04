@@ -29,7 +29,7 @@ class EventTagList: UICollectionView {
     }
 
 }
-extension EventTagList : UICollectionViewDataSource ,UICollectionViewDelegate {
+extension EventTagList: UICollectionViewDataSource ,UICollectionViewDelegate {
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -52,7 +52,7 @@ extension EventTagList : UICollectionViewDataSource ,UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (CGFloat(UIScreen.main.bounds.height))
         let width = (CGFloat(UIScreen.main.bounds.width)-45)/2
-        return CGSize(width: width, height  : height )
+        return CGSize(width: width, height : height )
         }
 
     // MARK: UICollectionViewDelegate

@@ -386,7 +386,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         if hasErrorMessage {
             lineView.backgroundColor = errorColor
         } else {
-            lineView.backgroundColor = editingOrSelected ? selectedLineColor : lineColor
+            lineView.backgroundColor = editingOrSelected ? selectedLineColor: lineColor
         }
     }
 
@@ -460,7 +460,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     }
 
     fileprivate func updateTitleVisibility(_ animated: Bool = false, completion: ((_ completed: Bool) -> Void)? = nil) {
-        let alpha: CGFloat = isTitleVisible() ? 1.0 : 0.0
+        let alpha: CGFloat = isTitleVisible() ? 1.0: 0.0
         let frame: CGRect = titleLabelRectForBounds(bounds, editing: isTitleVisible())
         let updateBlock = { () -> Void in
             self.titleLabel.alpha = alpha
@@ -468,7 +468,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         }
         if animated {
             let animationOptions: UIView.AnimationOptions = .curveEaseOut
-            let duration = isTitleVisible() ? titleFadeInDuration : titleFadeOutDuration
+            let duration = isTitleVisible() ? titleFadeInDuration: titleFadeOutDuration
             UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: { () -> Void in
                 updateBlock()
                 }, completion: completion)
@@ -554,7 +554,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      - returns: The rectangle that the line bar should render in
      */
     open func lineViewRectForBounds(_ bounds: CGRect, editing: Bool) -> CGRect {
-        let height = editing ? selectedLineHeight : lineHeight
+        let height = editing ? selectedLineHeight: lineHeight
         return CGRect(x: 0, y: bounds.size.height - height, width: bounds.size.width, height: height)
     }
 

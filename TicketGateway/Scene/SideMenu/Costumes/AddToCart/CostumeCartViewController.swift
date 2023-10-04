@@ -15,7 +15,7 @@ import UIKit
 
 
 class InstallmentInfo {
-    var isExpanded : Bool
+    var isExpanded: Bool
     
     init(isExpanded:Bool) {
         self.isExpanded = isExpanded
@@ -24,7 +24,7 @@ class InstallmentInfo {
 }
 
 class ExpandableCells {
-    var isExpanded : Bool
+    var isExpanded: Bool
     var data: [InstallmentInfo]
     init(data: [InstallmentInfo],isExpanded:Bool) {
         self.isExpanded = isExpanded
@@ -83,13 +83,13 @@ class CostumeCartViewController: UIViewController {
 
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.tbleViewHeight.constant = paymentTableView.contentSize.height
       }
 }
 
 
-//MARK: - Functions
+// MARK: - Functions
 extension CostumeCartViewController{
     func setUI() {
         lblJouvertRepublic.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -135,7 +135,7 @@ extension CostumeCartViewController{
     
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension CostumeCartViewController{
     @objc func buttonPressed(_ sender: UIButton) {
         
@@ -152,7 +152,7 @@ extension CostumeCartViewController{
         
     }
     
-    @IBAction func actionSegmentControl(_ sender: Any) {
+    @IBAction private func actionSegmentControl(_ sender: Any) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)
@@ -179,10 +179,10 @@ extension CostumeCartViewController{
             isPartialSelected = true
             let arrExpan = [InstallmentInfo]()
             arrData = [ExpandableCells( data: arrExpan, isExpanded: false),
-                       ExpandableCells( data:[InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data:[InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
                        
-                       ExpandableCells( data:[InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
-                       ExpandableCells( data:[InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data:[InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data:[InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
                        ExpandableCells( data: arrExpan, isExpanded: false)]
             
             self.paymentTableView.reloadData()
@@ -194,7 +194,7 @@ extension CostumeCartViewController{
     
 }
 
-//MARK: -  UITableViewDelegate, UITableViewDataSource
+// MARK: -  UITableViewDelegate, UITableViewDataSource
 extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -291,15 +291,15 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
     @objc func btncontinue(sender:UIButton)
     {
         let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as? PhoneVerificationViewController
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
         
         //let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
-        //self.navigationController?.pushViewController(view!, animated: true)
+        //self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
         
     }
    
 }
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension CostumeCartViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

@@ -73,7 +73,7 @@ extension PhoneVerificationViewController {
 
 // MARK: - Actions
 extension PhoneVerificationViewController {
-    @IBAction func btnSelectCountryAction(_ sender: UIButton) {
+    @IBAction private func btnSelectCountryAction(_ sender: UIButton) {
         self.view.endEditing(true)
         let storyBoard = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as? RSCountryPickerController
         storyBoard?.RScountryDelegate = self
@@ -81,7 +81,7 @@ extension PhoneVerificationViewController {
         storyBoard?.modalPresentationStyle = .fullScreen
         self.navigationController?.present(storyBoard ?? UIViewController(), animated: true, completion: nil)
     }
-    @IBAction func btnContinueAction(_ sender: UIButton) {
+    @IBAction private func btnContinueAction(_ sender: UIButton) {
         if (self.userType == .new) || (userType == .existing && self.isChangeMobileNumberTap == true) {
             viewModel.emailAddress = self.txtEmail.text ?? ""
             viewModel.mobileNumber = self.txtNumber.text ?? ""
@@ -112,7 +112,7 @@ extension PhoneVerificationViewController {
                                 )
                                 UserDefaultManager.share.storeModelToUserDefault(userData: objUserModel, key: .userAuthData)
                                 
-                                if let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
+                                if let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC {
                                     let obj = DataHoldOnSignUpProcessModel.init(
                                         strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "",
                                         strDialCountryCode: self.lblDialCountryCode.text ?? "",
@@ -149,8 +149,8 @@ extension PhoneVerificationViewController {
                 self.view.stopLoading()
                 self.showToast(message: isValidate.errorMessage)
             }
-        }else if userType == .existing && self.isChangeMobileNumberTap == false{
-            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+        }else if userType == .existing && self.isChangeMobileNumberTap == false {
+            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC {
                 view.viewModel.eventId = self.viewModel.eventId
                 view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
                 view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -161,7 +161,7 @@ extension PhoneVerificationViewController {
                 self.navigationController?.pushViewController(view, animated: true)
             }
         }
-        //        else{
+        //        else {
         //            let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
         //            let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text ?? "", strCountryCode: self.signInViewModel.strCountryCode)
         //            objAppShareData.dicToHoldDataOnSignUpModule = obj
@@ -172,7 +172,7 @@ extension PhoneVerificationViewController {
         //        }
     }
     
-    @IBAction func btnChangeNumberAction(_ sender:UIButton) {
+    @IBAction private func btnChangeNumberAction(_ sender:UIButton) {
         self.btnChangeNumber.isHidden = true
         self.isChangeMobileNumberTap = true
         self.txtNumber.text = ""
@@ -198,7 +198,7 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
             } else {
                 btnChangeNumber.isHidden = false
                 let number = userModel?.number
-                if number?.contains("+91") ?? false{
+                if number?.contains("+91") ?? false {
                     self.txtNumber.text = userModel?.number?.replacingOccurrences(of: "+91", with: "")
                 } else {
                     self.txtNumber.text = number

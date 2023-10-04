@@ -81,7 +81,7 @@ struct CheckoutAddonList: Codable {
 
 // MARK: - TicketID
 struct CheckoutTicketID: Codable {
-    var ticketTypeId : Int?
+    var ticketTypeId: Int?
     var ticketType, ticketName: String?
     var baseTicketID, quantity: Int?
     var ticketPrice:Int?

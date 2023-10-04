@@ -13,12 +13,12 @@ class ManageEventSettingVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblProfileview : UILabel!
+    @IBOutlet weak var lblProfileview: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var navitem: UITabBarItem!
     
-    //MARK: - Variables
+    // MARK: - Variables
     let viewModel = ManageEventSettingViewModel()
     
     
@@ -83,7 +83,7 @@ extension ManageEventSettingVC {
 }
 // MARK: - Actions
 extension ManageEventSettingVC {
-    @IBAction func btnArrow(_ sender: Any) {
+    @IBAction private func btnArrow(_ sender: Any) {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
         view.isComingFromOranizer = false
         view.isForSideMenuOrSetting = true
@@ -125,7 +125,7 @@ extension ManageEventSettingVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageEventSettingVC : NavigationBarViewDelegate {
+extension ManageEventSettingVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

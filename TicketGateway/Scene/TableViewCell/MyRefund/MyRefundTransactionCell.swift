@@ -9,7 +9,7 @@ import UIKit
 
 class MyRefundTransactionCell: UITableViewCell {
     
-//MARK: - OUTLETS
+// MARK: - OUTLETS
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblStatusValue: UILabel!
     @IBOutlet weak var lblDate: UILabel!

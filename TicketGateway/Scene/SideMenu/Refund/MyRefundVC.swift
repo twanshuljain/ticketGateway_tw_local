@@ -35,7 +35,7 @@ extension MyRefundVC {
    
 }
 // MARK: - NavigationBarViewDelegate
-extension MyRefundVC : NavigationBarViewDelegate {
+extension MyRefundVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
