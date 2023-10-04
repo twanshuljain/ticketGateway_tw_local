@@ -20,7 +20,7 @@ protocol SendLocation: AnyObject {
 
 class EventSearchLocationVC: UIViewController {
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var lblOnlineEventDis: UILabel!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var lblOnlineEvents: UILabel!
@@ -30,7 +30,7 @@ class EventSearchLocationVC: UIViewController {
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var noResultFoundView: UIView!
     
-    //MARK: - Variables
+    // MARK: - Variables
     
     weak var delegate: SendLocation?
     var countriesModel = [CountryInfo]()
@@ -176,12 +176,12 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
   
 }
 
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension EventSearchLocationVC: UITextFieldDelegate {
     
 }
 
-//MARK: - CustomSearchMethodsDelegate
+// MARK: - CustomSearchMethodsDelegate
 extension EventSearchLocationVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         //countriesModel[sender.tag].countryName

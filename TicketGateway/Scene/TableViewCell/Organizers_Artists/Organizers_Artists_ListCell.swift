@@ -10,7 +10,7 @@ import SDWebImage
 
 class OrganizersArtistsListCell: UITableViewCell {
     
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var btnfollow: CustomButtonGradiant!
     @IBOutlet weak var lblFollowers: UILabel!

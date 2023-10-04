@@ -179,13 +179,13 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         if self.isComingFrom == .home{
 //            if self.arrDataaWeekend.count != 0{
 //                return 1
-//            }else if self.arrDataaVirtual.count != 0{
+//            } else if self.arrDataaVirtual.count != 0{
 //                return 2
-//            }else if self.arrDataaPopular.count != 0{
+//            } else if self.arrDataaPopular.count != 0{
 //                return 3
-//            }else if self.arrDataaFree.count != 0{
+//            } else if self.arrDataaFree.count != 0{
 //                return 4
-//            }else if self.arrDataaUpcoming.count != 0{
+//            } else if self.arrDataaUpcoming.count != 0{
 //                return 5
 //            } else {
 //                return 0
@@ -214,31 +214,31 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //            }
             if self.arrEventCategory[section] == .noLocationData{
                 return 1
-            }else if self.arrEventCategory[section] == .nearByLocation{
+            } else if self.arrEventCategory[section] == .nearByLocation{
                 return self.arrDataCategorySearch.count
-            }else if self.arrEventCategory[section] == .weekend{
+            } else if self.arrEventCategory[section] == .weekend{
                 return self.arrDataaWeekend.count
-            }else if self.arrEventCategory[section] == .online{
+            } else if self.arrEventCategory[section] == .online{
                 return self.arrDataaVirtual.count
-            }else if self.arrEventCategory[section] == .popular{
+            } else if self.arrEventCategory[section] == .popular{
                 return self.arrDataaPopular.count
-            }else if self.arrEventCategory[section] == .free{
+            } else if self.arrEventCategory[section] == .free{
                 return self.arrDataaFree.count
-            }else if self.arrEventCategory[section] == .upcoming{
+            } else if self.arrEventCategory[section] == .upcoming{
                 return self.arrDataaUpcoming.count
             } else {
                 return 0
             }
             
             
-        }else if self.isComingFrom == .eventDetail{
+        } else if self.isComingFrom == .eventDetail{
             if self.arrData.isEmpty {
                 return 5
             } else {
                 return self.arrData.count
                 //return 3
             }
-        }else if self.isComingFrom == .eventSearch {
+        } else if self.isComingFrom == .eventSearch {
             ///return arrDataCategorySearch.count
             return isFromSearch ? arrSearchData.count: arrDataCategorySearch.count
           }
@@ -419,7 +419,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
                 return footerView
             
             }
-        }else if self.isComingFrom == .eventDetail{
+        } else if self.isComingFrom == .eventDetail{
             return footerView
         } else {
             return nil
@@ -431,11 +431,11 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
         if self.isComingFrom == .home{
             if self.arrEventCategory[section] == .nearByLocation{
                 return 40
-            }else if self.arrEventCategory[section] == .noLocationData{
+            } else if self.arrEventCategory[section] == .noLocationData{
                 return 0
             }
             return 40
-        }else if self.isComingFrom == .eventDetail{
+        } else if self.isComingFrom == .eventDetail{
             return 40
         } else {
             return 0
@@ -491,7 +491,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             default:
                 break;
             }
-        }else if self.isComingFrom == .eventDetail{
+        } else if self.isComingFrom == .eventDetail{
             self.delegateViewMore?.tapActionOfViewMoreEvents(index: sender.tag)
         }
 

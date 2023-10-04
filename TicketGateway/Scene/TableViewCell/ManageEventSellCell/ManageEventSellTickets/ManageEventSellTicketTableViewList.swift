@@ -11,7 +11,7 @@ import UIKit
 
 class ManageEventSellTicketTableViewList: UITableView {
     
-//MARK: - Variables
+// MARK: - Variables
     var isFromSellTab = false
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0

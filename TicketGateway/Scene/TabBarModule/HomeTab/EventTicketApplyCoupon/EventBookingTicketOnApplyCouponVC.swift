@@ -16,7 +16,7 @@ import iOSDropDown
 
 class EventBookingTicketOnApplyCouponVC: UIViewController {
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var lblRefund: UILabel!
     @IBOutlet weak var lblAcceptedTermCon: UILabel!
     @IBOutlet weak var navigationView: NavigationBarView!
@@ -47,7 +47,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var btnRemoveAccessCode : UIButton!
     
-    //MARK: - Variables
+    // MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
     
     
@@ -60,7 +60,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingTicketOnApplyCouponVC {
     
     func setNavigationData() {
@@ -270,7 +270,7 @@ extension EventBookingTicketOnApplyCouponVC {
     }
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension EventBookingTicketOnApplyCouponVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -460,7 +460,7 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
     }
 }
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension EventBookingTicketOnApplyCouponVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

@@ -20,7 +20,7 @@ extension ChangeNameViewModel{
     var validateInput: (errorMessage: String, isValid: Bool) {
         if firstName == ""{
            return ("Please enter first name", false)
-       }else if lastName == ""{
+       } else if lastName == ""{
            return ("Please enter last name", false)
        }
         return("", true)

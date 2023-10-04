@@ -10,7 +10,7 @@ import SDWebImage
 
 class EventTableViewCell: UITableViewCell {
     
-    //MARK: - OUTLETS
+    // MARK: - OUTLETS
     @IBOutlet weak var imgImages: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblAddress: UILabel!

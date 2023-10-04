@@ -16,7 +16,7 @@ import SVProgressHUD
 import iOSDropDown
 
 class EventBookingTicketVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var lblRefund: UILabel!
     @IBOutlet weak var btnCheckTermCondition: UIButton!
     @IBOutlet weak var lblAcceptedTermCon: UILabel!
@@ -29,7 +29,7 @@ class EventBookingTicketVC: UIViewController {
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var parentView: UIView!
     
-    //MARK: - Variables
+    // MARK: - Variables
     var viewModel = EventBookingTicketViewModel()
     
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class EventBookingTicketVC: UIViewController {
 
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingTicketVC {
     private func setup() {
         self.viewModel.isCheckedTermCondition = false
@@ -149,7 +149,7 @@ extension EventBookingTicketVC {
     }
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension EventBookingTicketVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {

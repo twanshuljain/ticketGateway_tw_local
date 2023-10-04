@@ -27,7 +27,7 @@ class MyFollowersVC: UIViewController {
     }
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension MyFollowersVC{
     func setNavigationView() {
         self.vwNavigationView.lblTitle.text = MY_FOLLOWERS
@@ -50,7 +50,7 @@ extension MyFollowersVC{
     }
 }
 
-//MARK: - UITableViewDelegate,UITableViewDataSource
+// MARK: - UITableViewDelegate,UITableViewDataSource
 extension MyFollowersVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData.count
@@ -61,7 +61,7 @@ extension MyFollowersVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension MyFollowersVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)

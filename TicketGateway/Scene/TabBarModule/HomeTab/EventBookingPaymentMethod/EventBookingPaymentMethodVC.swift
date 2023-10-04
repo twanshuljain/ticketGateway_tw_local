@@ -3,21 +3,13 @@
 //  TicketGateway
 //
 //  Created by Apple  on 16/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable cyclomatic_complexity
-// swiftlint: disable shorthand_operator
+
 import UIKit
 import iOSDropDown
 
 class EventBookingPaymentMethodVC: UIViewController {
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var viewDatePicker: UIView!
     @IBOutlet weak var picker_monthYear: UIPickerView!
     @IBOutlet weak var vwWalletTop: UIView!
@@ -50,7 +42,7 @@ class EventBookingPaymentMethodVC: UIViewController {
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     
-    //MARK: - Variables
+    // MARK: - Variables
     
     var viewModel = EventBookingPaymentMethodViewModel()
     
@@ -63,7 +55,7 @@ class EventBookingPaymentMethodVC: UIViewController {
   
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingPaymentMethodVC {
     private func setup() {
         self.viewModel.gradientLayer.colors = [self.viewModel.colorTop, self.viewModel.colorBottom]
@@ -135,7 +127,7 @@ extension EventBookingPaymentMethodVC {
     
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension EventBookingPaymentMethodVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -299,7 +291,7 @@ extension EventBookingPaymentMethodVC {
    
 }
 
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension EventBookingPaymentMethodVC : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.txtCardNumber{
@@ -333,7 +325,7 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
                 textField.resignFirstResponder()
             }
             return newString.length <= maxLength
-        }else if textField == txtCardNumber{
+        } else if textField == txtCardNumber{
             viewModel.previousTextFieldContent = textField.text;
             viewModel.previousSelection = textField.selectedTextRange;
         
@@ -343,7 +335,7 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
             let newLength = startingLength + lengthToAdd - lengthToReplace
             
             return newLength <= cardNumberLimit
-        }else if textField == txtCardName{
+        } else if textField == txtCardName{
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
@@ -361,12 +353,12 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
         
         
         
-        else{
+        else {
             return true
         }
     }
 }
-//MARK: - UIPickerViewDelegate,UIPickerViewDataSource
+// MARK: - UIPickerViewDelegate,UIPickerViewDataSource
 extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSource{
     
     // MARK:- Picker View Delegates
@@ -437,7 +429,7 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
                 }
                 
                 
-            }else
+            } else
             {
                 viewModel.selectedMonthName = viewModel.months[row] as! String
                 if viewModel.selectedMonthName.count <= 1
@@ -447,7 +439,7 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
             }
             
             
-        }else {
+        } else {
             let strCurrentYear = String(Calendar.current.component(.year, from: Date()))
             let strCurrentMonth = String(Calendar.current.component(.month, from: Date()))
             
@@ -516,7 +508,7 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
     }
 }
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension EventBookingPaymentMethodVC : NavigationBarViewDelegate {
     func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)

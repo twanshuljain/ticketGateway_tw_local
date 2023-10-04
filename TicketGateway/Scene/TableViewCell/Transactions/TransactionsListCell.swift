@@ -9,7 +9,7 @@ import UIKit
 
 class TransactionsListCell: UITableViewCell {
 
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var vwCreditDebit: UIView!
     @IBOutlet weak var btnOpen: UIButton!
     @IBOutlet weak var lblTittle: UILabel!

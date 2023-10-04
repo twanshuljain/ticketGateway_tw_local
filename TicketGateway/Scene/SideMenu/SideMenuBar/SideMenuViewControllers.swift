@@ -9,14 +9,14 @@ import SDWebImage
 
 class SideMenuViewControllers: UIViewController{
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var btnChangeProfile: UIButton!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblProfileview : UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: SideMenuList!
     
-    //MARK: - Variables
+    // MARK: - Variables
     var menu =  [SideMenuModel]()
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class SideMenuViewControllers: UIViewController{
     }
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension SideMenuViewControllers{
     func setUi() {
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
@@ -176,7 +176,7 @@ extension SideMenuViewControllers{
     }
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension SideMenuViewControllers{
     @IBAction func changeProfile(_ sender: Any) {
         if self.tblList.isFromManageEvent == false

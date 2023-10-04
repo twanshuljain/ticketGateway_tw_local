@@ -15,7 +15,7 @@ enum IsComingFromForViewMore{
 
 final class ViewMoreEventsViewModel {
     
-    //MARK: - Variables
+    // MARK: - Variables
    // var arrData:GetEvent?
     var index = 0
     var arrEventCategory = [EventCategories]()
@@ -36,7 +36,7 @@ final class ViewMoreEventsViewModel {
     var countryName = Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension ViewMoreEventsViewModel: FavouriteAction {
     func getEventAsPerLocation(viewAll:Bool, category:String? = "", countryName:String? = "", sortBy:SortBy? = .noneValue, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']

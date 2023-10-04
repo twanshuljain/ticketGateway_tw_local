@@ -7,7 +7,7 @@
 
 import UIKit
 class EventBookingOrderSummaryVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var vwDottedDIscount: UIView!
     @IBOutlet weak var vwDotteds: UIView!
     @IBOutlet weak var vwDotted: UIView!
@@ -47,7 +47,7 @@ class EventBookingOrderSummaryVC: UIViewController {
         self.setData()
     }
 }
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingOrderSummaryVC {
     private func setup() {
         self.tblAddedTickets.configure()
@@ -155,7 +155,7 @@ extension EventBookingOrderSummaryVC {
     }
     
 }
-//MARK: - Actions
+// MARK: - Actions
 extension EventBookingOrderSummaryVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -198,7 +198,7 @@ extension EventBookingOrderSummaryVC {
 //        }
     }
 }
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension EventBookingOrderSummaryVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

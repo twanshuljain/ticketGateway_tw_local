@@ -21,7 +21,7 @@ class ManageEventOrderVC: UIViewController {
     @IBOutlet weak var lblSorry: UILabel!
     @IBOutlet weak var lblYourSearch: UILabel!
     @IBOutlet weak var btnScan: UIButton!
-    //MARK: - Variables
+    // MARK: - Variables
     var viewModel = ManageEventOrderViewModel()
    
     override func viewDidLoad() {
@@ -82,7 +82,7 @@ extension ManageEventOrderVC {
     }
 }
 
-//MARK: - Segment Actions
+// MARK: - Segment Actions
 extension ManageEventOrderVC{
     @objc func nextBtn(sender: UIButton) {
         var obj = viewModel.arrData[sender.tag]

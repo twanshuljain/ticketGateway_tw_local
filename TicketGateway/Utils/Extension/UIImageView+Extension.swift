@@ -28,7 +28,7 @@ extension UIImageView {
                     imageCache.setObject(image, forKey: urlToString)
                     setImage(image: image)
                 }
-            }else {
+            } else {
                 setImage(image: nil)
             }
         }

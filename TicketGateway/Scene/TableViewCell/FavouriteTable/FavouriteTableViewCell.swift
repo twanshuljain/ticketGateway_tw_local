@@ -10,7 +10,7 @@ import SDWebImage
 
 class FavouriteTableViewCell: UITableViewCell {
     
-    //MARK: - OUTLETS
+    // MARK: - OUTLETS
     @IBOutlet weak var lblFavoriteDate: UILabel!
     @IBOutlet weak var imgImages: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!

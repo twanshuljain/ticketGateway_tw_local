@@ -89,7 +89,7 @@ class CostumeCartViewController: UIViewController {
 }
 
 
-//MARK: - Functions
+// MARK: - Functions
 extension CostumeCartViewController{
     func setUI() {
         lblJouvertRepublic.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -135,7 +135,7 @@ extension CostumeCartViewController{
     
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension CostumeCartViewController{
     @objc func buttonPressed(_ sender: UIButton) {
         
@@ -194,7 +194,7 @@ extension CostumeCartViewController{
     
 }
 
-//MARK: -  UITableViewDelegate, UITableViewDataSource
+// MARK: -  UITableViewDelegate, UITableViewDataSource
 extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -237,7 +237,7 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
                 
                 return cell
             }
-        }else {
+        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderDetailTableViewCell", for: indexPath) as!
             OrderDetailTableViewCell
             cell.lblDescription.isHidden = false
@@ -299,7 +299,7 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
     }
    
 }
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension CostumeCartViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

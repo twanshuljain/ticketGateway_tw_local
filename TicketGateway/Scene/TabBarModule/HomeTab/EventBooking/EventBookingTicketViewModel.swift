@@ -10,7 +10,7 @@ import Foundation
 
 
 final class EventBookingTicketViewModel{
-    //MARK: - Variables
+    // MARK: - Variables
     var isCheckedTermCondition = false
     var ticketId = ""
     var eventDetail:EventDetail?
@@ -21,7 +21,7 @@ final class EventBookingTicketViewModel{
     var dispatchGroup:DispatchGroup = DispatchGroup()
     
 }
-//MARK: - Functions
+// MARK: - Functions
 extension EventBookingTicketViewModel{
     func getEventTicketList(complition: @escaping (Bool,String) -> Void ) {
         var getURL = APIName.getTicketList.rawValue + "\(self.eventId ?? 0)" + "/"

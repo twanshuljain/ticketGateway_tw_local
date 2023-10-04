@@ -9,7 +9,7 @@ import UIKit
 
 class FAQTableviewCell: UITableViewCell {
     
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var btnUp: UIButton!
     @IBOutlet weak var lblQuestion: UILabel!
     @IBOutlet weak var lblAnswer: UILabel!

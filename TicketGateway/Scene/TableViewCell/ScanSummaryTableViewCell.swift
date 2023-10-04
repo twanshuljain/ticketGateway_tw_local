@@ -9,7 +9,7 @@ import UIKit
 
 class ScanSummaryTableViewCell: UITableViewCell {
 
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var vwColorView: UIView!
     @IBOutlet weak var lblSummaryTitle: UILabel!
     @IBOutlet weak var lblTitleValue: UILabel!

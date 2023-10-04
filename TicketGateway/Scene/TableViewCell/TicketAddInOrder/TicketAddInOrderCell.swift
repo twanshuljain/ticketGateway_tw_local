@@ -9,7 +9,7 @@ import UIKit
 
 class TicketAddInOrderCell: UITableViewCell {
     
-//MARK: - OUTLETS
+// MARK: - OUTLETS
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var lblTittleDis: UILabel!
     @IBOutlet weak var lblAmt: UILabel!

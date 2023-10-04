@@ -19,7 +19,7 @@ class ExpandableNames {
 
 class TransactionListTableView: UITableView {
     
-//MARK: - Variables
+// MARK: - Variables
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false

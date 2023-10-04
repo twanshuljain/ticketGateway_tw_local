@@ -39,7 +39,7 @@ class MyTicketCollectionViewCell: UICollectionViewCell {
                 self.imgQRCode.image = UIImage.init(named: "img_dummy_qr")
             
            // }
-        }else{
+        } else {
             if let base64String = myTicket?.qrcodeBase64Data{
                 self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
             }

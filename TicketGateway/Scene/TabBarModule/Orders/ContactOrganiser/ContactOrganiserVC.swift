@@ -129,7 +129,7 @@ extension ContactOrganiserVC {
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
-        }else{
+        } else {
             self.showToast(message: isValidate.errorMessage)
         }
     }

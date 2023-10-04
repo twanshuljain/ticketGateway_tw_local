@@ -9,7 +9,7 @@ import UIKit
 
 class ManageMyEventCell: UITableViewCell {
     
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var vwDelete: UIView!
     @IBOutlet weak var vwCopyEvent: UIView!
     @IBOutlet weak var vwViewSee: UIView!
@@ -38,7 +38,7 @@ class ManageMyEventCell: UITableViewCell {
     @IBOutlet weak var lblLastUpdate: UILabel!
     @IBOutlet weak var lblRating: UILabel!
     
-//MARK: - Variables
+// MARK: - Variables
     var progressBarValue: Float = 10
     
     override func awakeFromNib() {

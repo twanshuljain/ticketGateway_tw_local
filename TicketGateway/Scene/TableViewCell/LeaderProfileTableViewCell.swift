@@ -9,7 +9,7 @@ import UIKit
 
 class LeaderProfileTableViewCell: UITableViewCell {
 
-    //MARK: - OUTLETS
+    // MARK: - OUTLETS
 
     @IBOutlet weak var lblTitle:UILabel!
     @IBOutlet weak var lblTitleValue:UILabel!
@@ -24,13 +24,13 @@ class LeaderProfileTableViewCell: UITableViewCell {
         if indexPath.row == 0{
             self.lblTitle.text = "Name"
             self.lblTitleValue.text = "Karen Jones"
-        }else if indexPath.row == 1{
+        } else if indexPath.row == 1{
             self.lblTitle.text = "Email"
             self.lblTitleValue.text = "karen.dazzlecarnival@yahoo.com"
-        }else if indexPath.row == 2{
+        } else if indexPath.row == 2{
             self.lblTitle.text = "Phone"
             self.lblTitleValue.text = "123-456-789"
-        }else if indexPath.row == 3{
+        } else if indexPath.row == 3{
             self.lblTitle.text = "Location"
             self.lblTitleValue.text = "280 Consumers RD. Unit 344 North York ON M2J1P8"
         } else {

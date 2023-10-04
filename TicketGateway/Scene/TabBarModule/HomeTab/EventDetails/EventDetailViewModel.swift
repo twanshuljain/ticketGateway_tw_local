@@ -16,7 +16,7 @@ import Foundation
 
 final class EventDetailViewModel{
     
-    //MARK: - Variables
+    // MARK: - Variables
     var eventDetail: EventDetail?
     var eventId:Int?
     var suggestedEventCategoryId:Int?

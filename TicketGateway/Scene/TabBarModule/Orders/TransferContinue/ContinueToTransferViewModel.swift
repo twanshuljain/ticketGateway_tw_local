@@ -26,9 +26,9 @@ extension ContinueToTransferViewModel{
         if Validation.shared.organizerInputValidation(text: email, validationType: .email).0 {
             let errMsg = Validation.shared.organizerInputValidation(text: email, validationType: .email).1
             return (errMsg, false)
-        }else if email != confirmEmail{
+        } else if email != confirmEmail{
             return ("Please enter valid confirm email", false)
-        }else if (isChangeName == true) && (fullName == "") {
+        } else if (isChangeName == true) && (fullName == "") {
             return ("Please enter fullname", false)
         }
         return("", true)

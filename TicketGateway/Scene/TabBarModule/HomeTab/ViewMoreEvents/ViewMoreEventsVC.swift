@@ -15,7 +15,7 @@ protocol ViewMoreEventsVCProtocol: class {
 
 class ViewMoreEventsVC: UIViewController {
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var navigationView: NavigationBarView!
@@ -38,7 +38,7 @@ class ViewMoreEventsVC: UIViewController {
     }
 
 }
-//MARK: - Functions
+// MARK: - Functions
 extension ViewMoreEventsVC{
     func setUp() {
         self.tblView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
@@ -653,7 +653,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         self.navigateToDetail(index: indexPath)
     }
 }
-//MARK: - CustomSearchMethodsDelegate
+// MARK: - CustomSearchMethodsDelegate
 extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         
@@ -670,7 +670,7 @@ extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
     }
 }
 
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension ViewMoreEventsVC : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
@@ -693,7 +693,7 @@ extension ViewMoreEventsVC: EventDetailVCProtocol {
         self.tblView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
 }
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension ViewMoreEventsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

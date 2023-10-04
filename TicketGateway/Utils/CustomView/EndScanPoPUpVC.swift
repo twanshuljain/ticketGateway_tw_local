@@ -9,13 +9,13 @@ protocol AlertAction: AnyObject {
     func alertYesaction()
 }
 class EndScanPoPUpVC: UIViewController {
-    //MARK: - Outltes
+    // MARK: - Outltes
     @IBOutlet weak var imgBackGrund: UIImageView!
     @IBOutlet weak var lblEndScan: UILabel!
     @IBOutlet weak var lblTitleDescription: UILabel!
     @IBOutlet weak var btnNo: UIButton!
     @IBOutlet weak var btnYes: CustomButtonGradiant!
-    //MARK: - Variables
+    // MARK: - Variables
     weak var delegate: AlertAction?
     var strMsgForTitle = ""
     var strMsgForDescription = ""
@@ -27,7 +27,7 @@ class EndScanPoPUpVC: UIViewController {
         self.lblTitleDescription.text = strMsgForDescription
     }
 }
-//MARK: - Instance Method
+// MARK: - Instance Method
 extension EndScanPoPUpVC {
     func setFont() {
         self.lblEndScan.font = UIFont.setFont(fontType: .semiBold, fontSize: .twentyFour)
@@ -40,7 +40,7 @@ extension EndScanPoPUpVC {
         self.btnNo.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
     }
 }
-//MARK: - Instance Method
+// MARK: - Instance Method
 extension EndScanPoPUpVC {
     func setUI() {
         [self.btnYes, self.btnNo].forEach {

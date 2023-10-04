@@ -9,7 +9,7 @@ import UIKit
 
 class NotificationCell: UITableViewCell {
     
-//MARK: - Oultes
+// MARK: - Oultes
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblTIttle: UILabel!
     @IBOutlet weak var lblDay: UILabel!

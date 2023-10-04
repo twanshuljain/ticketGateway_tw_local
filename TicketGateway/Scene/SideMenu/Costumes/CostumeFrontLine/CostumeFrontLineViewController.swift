@@ -258,7 +258,7 @@ extension CostumeFrontLineViewController {
     
 }
 
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension CostumeFrontLineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         addOnTableData.count
@@ -275,7 +275,7 @@ extension CostumeFrontLineViewController: UITableViewDelegate, UITableViewDataSo
    
 }
 
-//MARK: - CostumeTableViewCellProtocol
+// MARK: - CostumeTableViewCellProtocol
 extension CostumeFrontLineViewController:CostumeTableViewCellProtocol{
     func didTapOnFrontLine(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "BandLeaderProfileViewController") as! BandLeaderProfileViewController
@@ -283,7 +283,7 @@ extension CostumeFrontLineViewController:CostumeTableViewCellProtocol{
     }
 }
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension CostumeFrontLineViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: false)

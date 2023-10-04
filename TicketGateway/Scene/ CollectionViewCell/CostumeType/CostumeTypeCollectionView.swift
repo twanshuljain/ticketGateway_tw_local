@@ -27,7 +27,7 @@ class CostumeTypeCollectionView: UICollectionView {
     }
 }
 
-//MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension CostumeTypeCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return costumeType.count

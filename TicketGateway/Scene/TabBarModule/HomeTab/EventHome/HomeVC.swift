@@ -64,7 +64,7 @@ extension HomeVC: UITextFieldDelegate {
     }
     
 }
-//MARK: - Functions
+// MARK: - Functions
 extension HomeVC {
     func setUp() {
         self.setUi()
@@ -495,7 +495,7 @@ extension HomeVC {
     }
 }
 
-//MARK: - CustomSearchMethodsDelegate
+// MARK: - CustomSearchMethodsDelegate
 extension HomeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         

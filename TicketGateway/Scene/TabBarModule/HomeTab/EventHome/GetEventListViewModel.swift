@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeDashBoardViewModel {
     
-    //MARK: - Variables
+    // MARK: - Variables
     var arrSearchCategoryData = [GetEventModel]()
     var arrEventData = GetEvent()
     var arrEventCategory = [EventCategories]()

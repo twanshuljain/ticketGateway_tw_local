@@ -187,7 +187,7 @@ extension OtpNumberVC {
                                 }
                             }
                         })
-                    }else {
+                    } else {
                         self.showToast(message: ValidationConstantStrings.networkLost)
                     }
                 } else {
@@ -203,7 +203,7 @@ extension OtpNumberVC {
                                 self.otpVerified?(false, messageShowToast)
                             }
                         })
-                    }else {
+                    } else {
                         self.showToast(message: ValidationConstantStrings.networkLost)
                     }
                 }
@@ -247,7 +247,7 @@ extension OtpNumberVC {
                             }
                         }
                     })
-                }else {
+                } else {
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
@@ -278,7 +278,7 @@ extension OtpNumberVC : UITextFieldDelegate {
         default:
           break
         }
-      }else if (text?.isEmpty ?? false) {
+      } else if (text?.isEmpty ?? false) {
         switch textField{
         case txtOtp1:
           txtOtp1.becomeFirstResponder()
@@ -291,7 +291,7 @@ extension OtpNumberVC : UITextFieldDelegate {
         default:
           break
         }
-      }else if text?.count ?? 0 >= 2 {
+      } else if text?.count ?? 0 >= 2 {
         switch textField{
         case txtOtp1:
           var string = txtOtp1.text
@@ -317,7 +317,7 @@ extension OtpNumberVC : UITextFieldDelegate {
           break
         }
       }
-      else{
+      else {
       }
     }
 }

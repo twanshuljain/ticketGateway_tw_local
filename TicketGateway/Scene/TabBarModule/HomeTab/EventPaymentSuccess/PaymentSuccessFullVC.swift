@@ -6,7 +6,7 @@
 //
 import UIKit
 class PaymentSuccessFullVC: UIViewController {
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var imgThankYou: UIImageView!
     @IBOutlet weak var lblThankYou: UILabel!
     @IBOutlet weak var lbl1Ticket: UILabel!
@@ -20,7 +20,7 @@ class PaymentSuccessFullVC: UIViewController {
     @IBOutlet weak var lblRefundDescription: UILabel!
     @IBOutlet weak var btnNeedHelp: CustomButtonNormal!
     @IBOutlet weak var navigationView: NavigationBarView!
-    //MARK: - Varibales
+    // MARK: - Varibales
     var isTransactionFailed: Bool = false
     var createCharge:CreateCharge?
     var selectedArrTicketList = [EventTicket]()
@@ -33,7 +33,7 @@ class PaymentSuccessFullVC: UIViewController {
         self.setData()
     }
 }
-//MARK: - Functions
+// MARK: - Functions
 extension PaymentSuccessFullVC {
     func setUp() {
         self.navigationView.btnBack.isHidden = true
@@ -62,7 +62,7 @@ extension PaymentSuccessFullVC {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         if selectedArrTicketList.isEmpty {
             self.lbl1Ticket.text = "Ticket with amount"
-        }else if selectedArrTicketList.count == 1{
+        } else if selectedArrTicketList.count == 1{
             self.lbl1Ticket.text = "1 Ticket(S) with amount "
         } else {
             self.lbl1Ticket.text = "\(selectedArrTicketList.count) Ticket(S) with amount"
@@ -102,7 +102,7 @@ extension PaymentSuccessFullVC {
         lblRefundDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
 }
-//MARK: - Actions
+// MARK: - Actions
 extension PaymentSuccessFullVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -133,7 +133,7 @@ extension PaymentSuccessFullVC {
         //self.navigationController?.popToRootViewController(animated: false)
     }
 }
-////MARK: - NavigationBarViewDelegate
+//// MARK: - NavigationBarViewDelegate
 //extension PaymentSuccessFullVC : NavigationBarViewDelegate {
 //    func navigationBackAction() {
 //        self.navigationController?.popViewController(animated: true)

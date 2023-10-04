@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 import TweeTextField
 class LoginVC: UIViewController{
-  //MARK: - Outlets
+  // MARK: - Outlets
     @IBOutlet weak var txtEmail: TweeAttributedTextField!
     @IBOutlet weak var txtPassword: TweeAttributedTextField!
     @IBOutlet weak var txtNumber: TweeAttributedTextField!
@@ -354,7 +354,7 @@ extension LoginVC: RSCountrySelectedDelegate {
         self.txtNumber.becomeFirstResponder()
     }
 }
-//MARK: -
+// MARK: -
 extension LoginVC {
     
     @objc func textFieldErrorMsg(_ sender: UITextField) {

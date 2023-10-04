@@ -112,11 +112,11 @@ class APIHandler: NSObject {
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
-        }else if methodType == .POST && (apiName == .followUnfollow || apiName == .changeTicketName || apiName == .transferTicket) {
+        } else if methodType == .POST && (apiName == .followUnfollow || apiName == .changeTicketName || apiName == .transferTicket) {
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }
-        }else if methodType == .POST && parameters == nil{
+        } else if methodType == .POST && parameters == nil{
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
             }

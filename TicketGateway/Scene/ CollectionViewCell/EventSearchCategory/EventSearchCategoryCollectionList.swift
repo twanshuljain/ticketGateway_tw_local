@@ -11,7 +11,7 @@ import UIKit
 
 class EventSearchCategoryCollectionList: UICollectionView {
    
-//MARK: - Variables
+// MARK: - Variables
     var selectedIndex = -1
     var isFromCategory = false
     var collVwDidSelectAtIndex: ((GetEventCategoryModel) -> Void)?
@@ -25,7 +25,7 @@ class EventSearchCategoryCollectionList: UICollectionView {
 
 }
 
-//MARK: - UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -10,7 +10,7 @@ import SDWebImage
 
 class UpcomingTableViewCell: UITableViewCell {
     
-    //MARK: - OUTLETS
+    // MARK: - OUTLETS
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTime: UILabel!
@@ -36,7 +36,7 @@ class UpcomingTableViewCell: UITableViewCell {
         
         if isFaded{
             self.btnSeeTickets.setTitle("Completed", for: .normal)
-        }else{
+        } else {
             self.btnSeeTickets.setTitle("See Tickets", for: .normal)
         }
         

@@ -9,7 +9,7 @@ import UIKit
 
 class TransferTicketTableViewCell: UITableViewCell {
 
- //MARK: - Outlet
+ // MARK: - Outlet
     @IBOutlet weak var lblTicketId: UILabel!
     @IBOutlet weak var lblTicketIdValue: UILabel!
     @IBOutlet weak var lblNameOnTicket: UILabel!

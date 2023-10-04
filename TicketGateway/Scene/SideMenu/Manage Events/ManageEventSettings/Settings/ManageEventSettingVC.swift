@@ -18,7 +18,7 @@ class ManageEventSettingVC: UIViewController {
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var navitem: UITabBarItem!
     
-    //MARK: - Variables
+    // MARK: - Variables
     let viewModel = ManageEventSettingViewModel()
     
     

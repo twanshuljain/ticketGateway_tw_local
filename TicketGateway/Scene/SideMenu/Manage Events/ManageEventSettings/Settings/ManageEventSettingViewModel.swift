@@ -9,7 +9,7 @@ import Foundation
 
 class ManageEventSettingViewModel {
     
-//MARK: - Variables
+// MARK: - Variables
   let arrData = [
     ["img": "ticket_ip", "title": "Sold out Tickets", "titleDescription": ""],
     ["img": "trash_ip", "title": "Cancel this event", "titleDescription": ""],

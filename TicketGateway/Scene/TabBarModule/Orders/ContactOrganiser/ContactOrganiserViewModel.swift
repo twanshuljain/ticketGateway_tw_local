@@ -25,12 +25,12 @@ extension ContactOrganiserViewModel{
     var validateInput: (errorMessage: String, isValid: Bool) {
         if name == ""{
             return ("Please enter name", false)
-        }else if Validation.shared.organizerInputValidation(text: email, validationType: .email).0 {
+        } else if Validation.shared.organizerInputValidation(text: email, validationType: .email).0 {
             let errMsg = Validation.shared.organizerInputValidation(text: email, validationType: .email).1
             return (errMsg, false)
-        }else if (selectedReason == "") {
+        } else if (selectedReason == "") {
             return ("Please select reason", false)
-        }else if message == ""{
+        } else if message == ""{
             return ("Please enter message", false)
         }
         return("", true)

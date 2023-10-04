@@ -39,7 +39,7 @@ class ReviewRefundVC: UIViewController {
     }
 }
 
-//MARK: - Functions
+// MARK: - Functions
 extension ReviewRefundVC{
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
@@ -103,7 +103,7 @@ extension ReviewRefundVC{
     }
 }
 
-//MARK: -  UITableViewDelegate, UITableViewDataSource
+// MARK: -  UITableViewDelegate, UITableViewDataSource
 extension ReviewRefundVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData.count
@@ -119,7 +119,7 @@ extension ReviewRefundVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension ReviewRefundVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: false)

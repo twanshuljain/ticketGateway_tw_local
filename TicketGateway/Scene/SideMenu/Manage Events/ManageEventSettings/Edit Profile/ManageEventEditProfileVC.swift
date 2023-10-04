@@ -122,7 +122,7 @@ extension ManageEventEditProfileVC {
                 self.imgCountry.image = UIImage(named: imagePath)
             }
         }
-        else{
+        else {
             //noting to do
         }
     }
@@ -208,7 +208,7 @@ extension ManageEventEditProfileVC: UITextFieldDelegate {
             createAccountViewModel.fullName = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtMobileNumber {
             createAccountViewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
-        }else if textField == txtEmailAddress {
+        } else if textField == txtEmailAddress {
             createAccountViewModel.emailAddress = text.replacingCharacters(in: textRange, with: string)
         }
         return true

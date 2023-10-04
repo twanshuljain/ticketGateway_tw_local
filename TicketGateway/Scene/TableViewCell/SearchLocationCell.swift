@@ -9,7 +9,7 @@ import UIKit
 
 class SearchLocationCell: UITableViewCell {
 
-    //MARK: - OUTLETS
+    // MARK: - OUTLETS
     @IBOutlet weak var lblOnOFF: UILabel!
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var btnCheck: UIButton!

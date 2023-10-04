@@ -228,29 +228,29 @@ extension EventBookingPaymentMethodViewModel{
         }
     }
     
-    //MARK:- func validateCreditCard
+    // MARK:- func validateCreditCard
     func validateCreditCard(_ cardholderName:String?,_ cardNumber:String?,_ expiryDate:String?,_ cvv:String? ,_ vc:EventBookingPaymentMethodVC)-> Bool{
         if cardNumber == nil || cardNumber?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardNumber.value)
             return false
             
-        }else if cardholderName == nil || cardholderName?.isEmpty ?? false {
+        } else if cardholderName == nil || cardholderName?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardholderName.value)
             return false
             
-        }else if (cardNumber?.count ?? 0) < 16 {
+        } else if (cardNumber?.count ?? 0) < 16 {
             vc.showAlertController(message: PaymentError.cardNumberLenghtShort.value)
             return false
             
-        }else if expiryDate == nil || expiryDate?.isEmpty ?? false {
+        } else if expiryDate == nil || expiryDate?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.expiryDate.value)
             return false
             
-        }else if cvv == nil || cvv?.isEmpty ?? false {
+        } else if cvv == nil || cvv?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cvv.value)
             return false
             
-        }else if cvv?.count != 3 {
+        } else if cvv?.count != 3 {
             vc.showAlertController(message: PaymentError.cvvMin.value)
             return false
             

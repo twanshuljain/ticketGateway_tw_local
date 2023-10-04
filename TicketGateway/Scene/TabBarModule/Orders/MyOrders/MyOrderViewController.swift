@@ -208,7 +208,7 @@ extension MyOrderViewController {
         }
     }
 }
-//MARK: - Actions
+// MARK: - Actions
 extension MyOrderViewController {
     @IBAction func actionSegment(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
@@ -273,7 +273,7 @@ extension MyOrderViewController {
     }
 }
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension MyOrderViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)

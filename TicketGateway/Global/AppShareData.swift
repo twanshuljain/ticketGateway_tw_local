@@ -13,7 +13,7 @@ class AppShareData {
     // MARK: All Properties
     private var numOfPageKey: String = "NumberOfPage"
     private let session = URLSession.shared
-    //MARK: - Shared object
+    // MARK: - Shared object
     private static var sharedManager: AppShareData = {
         let manager = AppShareData()
         //        var strUSERID : String = ""
@@ -191,9 +191,9 @@ class AppShareData {
     func getTicketCurrency(currencyType:String) -> String{
         if currencyType == "EUR"{
             return currencyType
-        }else if currencyType == "CAD"{
+        } else if currencyType == "CAD"{
             return "\(currencyType)$"
-        }else if currencyType == "INR"{
+        } else if currencyType == "INR"{
             return currencyType
         }
         return "CAD$"

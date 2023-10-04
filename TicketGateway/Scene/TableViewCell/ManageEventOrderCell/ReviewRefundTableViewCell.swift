@@ -9,7 +9,7 @@ import UIKit
 
 class ReviewRefundTableViewCell: UITableViewCell {
     
-//MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var lblAtTheDoor: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblGeneralAdmission: UILabel!

@@ -9,7 +9,7 @@ import UIKit
 
 class InstallmentTableViewCell: UITableViewCell {
     
-//MARK: - Outltes
+// MARK: - Outltes
     @IBOutlet weak var lblDownPayment: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPrice: UILabel!

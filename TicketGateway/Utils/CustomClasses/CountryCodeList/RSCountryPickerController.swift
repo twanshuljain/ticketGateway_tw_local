@@ -57,7 +57,7 @@ class RSCountryPickerController: UIViewController,UITextFieldDelegate {
    
 }
 
-//MARK:- Searching
+// MARK:- Searching
 extension RSCountryPickerController{
     @objc func searchWorkersAsPerText(_ textfield:UITextField) {
         self.RScountriesFiltered.removeAll()
@@ -199,7 +199,7 @@ extension RSCountryPickerController{
     //--------------------------XXXX--------------------------
 }
 
-//MARK:- TableVies Delegate
+// MARK:- TableVies Delegate
 extension RSCountryPickerController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -209,7 +209,7 @@ extension RSCountryPickerController: UITableViewDelegate{
         if checkSearchBarActive() {
             RScountryDelegate.RScountrySelected(countrySelected: RScountriesFiltered[indexPath.row])
         
-        }else {
+        } else {
             RScountryDelegate.RScountrySelected(countrySelected: RScountriesModel[indexPath.row])
         }
         
@@ -219,7 +219,7 @@ extension RSCountryPickerController: UITableViewDelegate{
     }
 }
 
-//MARK:- TableVies Datasource
+// MARK:- TableVies Datasource
 extension RSCountryPickerController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

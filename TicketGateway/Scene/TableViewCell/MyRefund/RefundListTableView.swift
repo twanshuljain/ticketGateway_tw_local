@@ -9,7 +9,7 @@ import UIKit
 
 class RefundListTableView: UITableView {
     
-    //MARK: - VARIABLES
+    // MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false

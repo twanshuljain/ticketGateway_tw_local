@@ -9,7 +9,7 @@ import UIKit
 
 class TicketOverAllEstimateBarTableViewList: UITableView {
    
-//MARK: - Varaibles
+// MARK: - Varaibles
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false

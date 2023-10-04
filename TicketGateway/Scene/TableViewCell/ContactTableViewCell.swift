@@ -9,7 +9,7 @@ import UIKit
 
 class ContactTableViewCell: UITableViewCell {
 
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblGeneralAdmission: UILabel!
     

@@ -71,7 +71,7 @@ class CostumeDetailViewController: UIViewController {
         
     }
 }
-//MARK: - Functions
+// MARK: - Functions
 extension CostumeDetailViewController{
     func setNavigaionBar() {
         vwNavigationBar.lblTitle.text = COSTUME_DETAILS
@@ -181,7 +181,7 @@ extension CostumeDetailViewController{
     }
 }
 
-//MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension CostumeDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.productCollectionView {
@@ -238,7 +238,7 @@ extension CostumeDetailViewController: UICollectionViewDelegate, UICollectionVie
 }
 
 
-//MARK: - MKMapView
+// MARK: - MKMapView
 private extension MKMapView {
     func centerToLocation(_ location: CLLocation,regionRadius: CLLocationDistance = 1000
     ) {
@@ -250,7 +250,7 @@ private extension MKMapView {
     }
 }
 
-//MARK: - PageController
+// MARK: - PageController
 extension CostumeDetailViewController {
     func setPageControll() {
         photoPageController.drawer = ExtendedDotDrawer(numberOfPages: 3,
@@ -287,7 +287,7 @@ extension CostumeDetailViewController {
     
 }
 
-//MARK: - CostumeTableViewCellProtocol
+// MARK: - CostumeTableViewCellProtocol
 extension CostumeDetailViewController:CostumeTableViewCellProtocol{
     func didTapOnFrontLine(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "BandLeaderProfileViewController") as! BandLeaderProfileViewController
@@ -300,7 +300,7 @@ extension CostumeDetailViewController:CostumeTableViewCellProtocol{
     }
 }
 
-//MARK: - NavigationBarViewDelegate
+// MARK: - NavigationBarViewDelegate
 extension CostumeDetailViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

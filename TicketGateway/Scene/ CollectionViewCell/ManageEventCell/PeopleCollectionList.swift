@@ -47,7 +47,7 @@ extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDel
              
              cell.imgPeople.backgroundColor = .black
              cell.imgPeople.image = UIImage(named: USER_ICON)
-         }else if indexPath.row == 3{
+         } else if indexPath.row == 3{
     
              cell.imgPeople.image = UIImage(named: PHOTO_ICON)
          }

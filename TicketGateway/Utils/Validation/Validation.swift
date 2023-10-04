@@ -5,7 +5,7 @@
 //  Created by Apple  on 14/04/23.
 
 import UIKit
-//MARK: - InputValidation
+// MARK: - InputValidation
 enum InputValidation: String {
     case email
     case otp
@@ -39,7 +39,7 @@ enum InputCompareValidation: String {
     case email
     case password
 }
-//MARK: - Validation
+// MARK: - Validation
 class Validation {
     static let shared = Validation()
     private init() { }

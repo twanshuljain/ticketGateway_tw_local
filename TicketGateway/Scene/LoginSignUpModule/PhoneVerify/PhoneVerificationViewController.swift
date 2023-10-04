@@ -149,7 +149,7 @@ extension PhoneVerificationViewController {
                 self.view.stopLoading()
                 self.showToast(message: isValidate.errorMessage)
             }
-        }else if userType == .existing && self.isChangeMobileNumberTap == false{
+        } else if userType == .existing && self.isChangeMobileNumberTap == false{
             if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
                 view.viewModel.eventId = self.viewModel.eventId
                 view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
@@ -161,7 +161,7 @@ extension PhoneVerificationViewController {
                 self.navigationController?.pushViewController(view, animated: true)
             }
         }
-        //        else{
+        //        else {
         //            let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC
         //            let obj =   DataHoldOnSignUpProcessModel.init(strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "", strDialCountryCode: self.lblDialCountryCode.text ?? "", strCountryCode: self.signInViewModel.strCountryCode)
         //            objAppShareData.dicToHoldDataOnSignUpModule = obj
