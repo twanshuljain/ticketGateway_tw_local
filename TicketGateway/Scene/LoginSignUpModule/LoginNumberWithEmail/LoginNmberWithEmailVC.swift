@@ -110,7 +110,7 @@ extension LoginNmberWithEmailVC {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension LoginNmberWithEmailVC: UITableViewDelegate, UITableViewDataSource {
+extension LoginNmberWithEmailVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.viewModel?.arrMail.count ?? 0
     }

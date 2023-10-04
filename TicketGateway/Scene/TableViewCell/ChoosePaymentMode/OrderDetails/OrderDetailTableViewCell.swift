@@ -9,7 +9,7 @@ import UIKit
 
 class OrderDetailTableViewCell: UITableViewCell {
  
-// MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblOrderDetails: UILabel!
     @IBOutlet weak var lblItemsAdd: UILabel!

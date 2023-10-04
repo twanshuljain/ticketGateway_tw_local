@@ -11,7 +11,7 @@ final class ForgotPasswordViewModel {
     // MARK: - Variable
     var email: String = ""
     var objModel: ForgotPasswordModel?
-    var frgtPassVC: ForgotPasswordVC?
+    var frgtPassVC : ForgotPasswordVC?
     init() {
     }
     init(frgtPassVC:ForgotPasswordVC) {

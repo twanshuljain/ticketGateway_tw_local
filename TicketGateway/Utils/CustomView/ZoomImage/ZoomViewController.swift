@@ -15,7 +15,7 @@ class ZoomViewController:UIViewController {
     @IBOutlet private var backgroundView: UIView!
     @IBOutlet private var mainView:UIView!
     
-    var cropView: UIView?
+    var cropView : UIView?
     var imgBackground: UIImageView?
    // var imgVZoomedParcelPhoto: UIImageView?
 
@@ -199,17 +199,17 @@ extension ZoomViewController{
 
 // MARK: - Actions
 extension ZoomViewController{
-    @IBAction private func btnCancelPressed(_ sender: UIButton) {
+    @IBAction func btnCancelPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction private func btnChoosePressed(_ sender: UIButton) {
+    @IBAction func btnChoosePressed(_ sender: UIButton) {
         print(cropView?.frame)
     }
 }
 
 // MARK: - ScrollView Delegate methods
-extension ZoomViewController:UIScrollViewDelegate {
+extension ZoomViewController:UIScrollViewDelegate{
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         // Return the view that we want to zoom

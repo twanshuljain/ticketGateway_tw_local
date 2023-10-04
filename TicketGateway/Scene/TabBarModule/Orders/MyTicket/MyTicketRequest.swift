@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct MyTicketRequest:Codable {
-    var page, limit: Int?
+struct MyTicketRequest:Codable{
+    var page, limit : Int?
 }

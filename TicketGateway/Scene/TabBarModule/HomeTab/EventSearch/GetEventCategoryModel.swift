@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - GetEventCategoryModel
+//MARK: - GetEventCategoryModel
 struct GetEventCategoryModel: Codable {
     var id: Int?
     var name: String?

@@ -11,7 +11,7 @@ import UIKit
 
 class TicketTypeListTableView: UITableView {
 
-// MARK: - VARIABLES
+//MARK: - VARIABLES
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var updatedPrice: ((Double) -> Void)?
     var lblNumberOfCount = 0
@@ -104,7 +104,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    // MARK: - OFFLINE
+    //MARK: - OFFLINE
 //    @objc func plusButtonPressed(_ sender: UIButton) {
 //       print(sender.tag)
 //        let indexPath = IndexPath(row: sender.tag, section: 0)

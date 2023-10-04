@@ -122,7 +122,7 @@ extension ManageEventEditProfileVC {
                 self.imgCountry.image = UIImage(named: imagePath)
             }
         }
-        else {
+        else{
             //noting to do
         }
     }
@@ -215,14 +215,14 @@ extension ManageEventEditProfileVC: UITextFieldDelegate {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageEventEditProfileVC: NavigationBarViewDelegate {
+extension ManageEventEditProfileVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
 // MARK: - Country Code
-extension ManageEventEditProfileVC:  RSCountrySelectedDelegate  {
+extension ManageEventEditProfileVC :  RSCountrySelectedDelegate  {
     func RScountrySelected(countrySelected country: CountryInfo) {
         let imagePath = "CountryPicker.bundle/\(country.countryCode).png"
         self.imgCountry.image = UIImage(named: imagePath)

@@ -9,7 +9,7 @@ import UIKit
 
 class TransferTicketTableViewCell: UITableViewCell {
 
- // MARK: - Outlet
+ //MARK: - Outlet
     @IBOutlet weak var lblTicketId: UILabel!
     @IBOutlet weak var lblTicketIdValue: UILabel!
     @IBOutlet weak var lblNameOnTicket: UILabel!
@@ -40,7 +40,7 @@ class TransferTicketTableViewCell: UITableViewCell {
         lblNameOnTicketValue.text = data.nameOnTicket ?? ""
         lblTransferredToValue.text = data.transferredEmail ?? ""
         
-        if data.isTransfer ?? false {
+        if data.isTransfer ?? false{
             self.emailStackView.isHidden = false
             self.emailCopyStackView.isHidden = false
             btnContinueToTransfer.setTitle("Resend", for: .normal)

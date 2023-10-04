@@ -63,7 +63,7 @@ extension FeedbackViewController{
 }
 // MARK: - Actions
 extension FeedbackViewController{
-    @IBAction private func actionSegment(_ sender: UISegmentedControl) {
+    @IBAction func actionSegment(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0 :
             self.viewModel.isAttendeeSelected = true
@@ -77,7 +77,7 @@ extension FeedbackViewController{
     }
 }
 
-// MARK: - NavigationBarViewDelegate
+//MARK: - NavigationBarViewDelegate
 extension FeedbackViewController: UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -118,7 +118,7 @@ extension FeedbackViewController: UITableViewDelegate,UITableViewDataSource {
         return 230
     }
 }
-// MARK: - NavigationBarViewDelegate
+//MARK: - NavigationBarViewDelegate
 extension FeedbackViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

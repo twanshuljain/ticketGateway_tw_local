@@ -9,7 +9,7 @@ import UIKit
 
 class SideMenuCell: UITableViewCell {
     
-// MARK: - OUTLETS
+//MARK: - OUTLETS
     @IBOutlet weak var vwBg: UIView!
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var lblDiscripation: UILabel!

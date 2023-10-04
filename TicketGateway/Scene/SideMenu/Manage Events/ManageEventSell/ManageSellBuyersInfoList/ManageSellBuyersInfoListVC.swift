@@ -30,7 +30,7 @@ extension ManageSellBuyersInfoListVC {
             view?.viewModel.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
             view?.viewModel.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.viewModel.toupleBuyerInfoData.strDialCodeValue = "jhjh"
-           self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+           self.navigationController?.pushViewController(view!, animated: true)
         }
         self.tblBuyerInfo.tableDidSelectAtIndexEdit = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
@@ -40,7 +40,7 @@ extension ManageSellBuyersInfoListVC {
             view?.viewModel.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
             view?.viewModel.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.viewModel.toupleBuyerInfoData.strDialCodeValue = "jhjh"
-           self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+           self.navigationController?.pushViewController(view!, animated: true)
         }
           self.navigationView.delegateBarAction = self
           self.navigationView.lblTitle.text = BUYESR_INFO
@@ -70,7 +70,7 @@ extension ManageSellBuyersInfoListVC {
    func btnAddMoreAction() {
        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
        view?.viewModel.isFromAddInfo = true
-      self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+      self.navigationController?.pushViewController(view!, animated: true)
     }
 }
 

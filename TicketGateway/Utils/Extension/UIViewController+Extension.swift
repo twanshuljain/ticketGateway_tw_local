@@ -188,7 +188,7 @@ extension UIViewController {
         let data = try? Data(contentsOf: URL(fileURLWithPath: (Bundle.main.path(forResource: "countries", ofType: "json"))!))
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-            countries = parsedObject as! [[String: String]]
+            countries = parsedObject as! [[String : String]]
             return countries
             
         }catch{

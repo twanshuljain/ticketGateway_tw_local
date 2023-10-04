@@ -18,8 +18,8 @@ class EventCalenderList: UICollectionView {
 
 }
 
-// MARK: - UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout
-extension EventCalenderList: UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout {
+//MARK: - UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout
+extension EventCalenderList : UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout {
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -41,7 +41,7 @@ extension EventCalenderList: UICollectionViewDataSource ,UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let width = (CGFloat(self.frame.size.height))
-        return CGSize(width: width, height : width)
+        return CGSize(width: width, height  : width)
         }
     // MARK: UICollectionViewDelegate
 

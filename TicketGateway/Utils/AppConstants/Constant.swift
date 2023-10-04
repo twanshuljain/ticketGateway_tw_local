@@ -170,7 +170,7 @@ public extension Notification.Name {
      static let didStopWorkoutTimer = Notification.Name(rawValue: "didStopWorkoutTimer")
 }
 
-// MARK: - String Constant
+//MARK: - String Constant
 let GOOGLE_CLIENT_ID = "1090307909671-o90bdqh5777lnkgqk9mugturu85d524g.apps.googleusercontent.com"
 let TITLE_LOGIN = "Login"
 let TITLE_CONTINUE = "Continue"
@@ -400,7 +400,7 @@ let MULTIPLE = "MULTIPLE"
 let MultipleLocation = "Multi Location"
 let VirtualEvent = "Virtual Event"
 
-// MARK: - IMAGE Constant
+//MARK: - IMAGE Constant
 let RIGHT_BUTTON_ICON = "rightOnButton"
 let X_ICON = "x"
 let PROFILE_ICON = "profile"

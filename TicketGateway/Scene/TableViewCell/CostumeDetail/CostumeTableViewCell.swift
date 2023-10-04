@@ -160,7 +160,7 @@ class CostumeTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout
+//MARK: - UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout
 extension CostumeTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return imgCollectionData.count
@@ -189,7 +189,7 @@ extension CostumeTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
 }
 
-// MARK: - PageController
+//MARK: - PageController
 extension CostumeTableViewCell {
     func toSetPageControll() {
         imagePageController.drawer = ExtendedDotDrawer(numberOfPages: self.imgCollectionData.count,

@@ -9,7 +9,7 @@ import UIKit
 
 class ManageOrderTableViewCell: UITableViewCell {
     
-// MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblEmail: UILabel!

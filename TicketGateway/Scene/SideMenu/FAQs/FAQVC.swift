@@ -20,7 +20,7 @@ class arrdata {
     var queValue:String
     var ansValue: String
     var isExpand:Bool
-    init(queValue: String, isExpand: Bool, ansValue: String)
+    init(queValue : String, isExpand : Bool, ansValue: String)
     {
         self.queValue = queValue
         self.isExpand = isExpand
@@ -55,7 +55,7 @@ class FAQVC: UIViewController {
 }
 
 // MARK: - Functions
-extension FAQVC {
+extension FAQVC{
     func setNavigationBar() {
         self.vwNavigatioView.lblTitle.text = FAQS
         self.vwNavigatioView.delegateBarAction = self
@@ -74,8 +74,8 @@ extension FAQVC {
 }
 
 // MARK: - Actions
-extension FAQVC {
-    @IBAction private func actionSegment(_ sender: UISegmentedControl) {
+extension FAQVC{
+    @IBAction func actionSegment(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0 :
             self.faqTableView.reloadData()
@@ -122,7 +122,7 @@ extension FAQVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.btnUp.tag = indexPath.row
         cell.btnUp.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        if obj.isExpand == true {
+        if obj.isExpand == true{
             let gradient = getGradientLayer(bounds: view.bounds)
             cell.lblQuestion.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
            
@@ -146,7 +146,7 @@ extension FAQVC: UITableViewDelegate, UITableViewDataSource {
 
 
 // MARK: - NavigationBarViewDelegate
-extension FAQVC: NavigationBarViewDelegate {
+extension FAQVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

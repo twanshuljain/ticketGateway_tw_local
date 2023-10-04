@@ -9,8 +9,8 @@ import UIKit
 
 
 class ExpandableNames {
-    var isExpanded: Bool
-    var names: [String]
+    var isExpanded : Bool
+    var names : [String]
     init(isExpanded: Bool, names: [String]) {
         self.isExpanded = isExpanded
         self.names = names
@@ -19,7 +19,7 @@ class ExpandableNames {
 
 class TransactionListTableView: UITableView {
     
-// MARK: - Variables
+//MARK: - Variables
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
@@ -41,7 +41,7 @@ class TransactionListTableView: UITableView {
 
 // MARK: - TableView Delegate
 
-extension TransactionListTableView: UITableViewDelegate,UITableViewDataSource {
+extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int{
         if isFrom == "MyWallet" {
@@ -54,13 +54,13 @@ extension TransactionListTableView: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFrom == "MyWallet"
         {
-            if arrData[section].isExpanded == true {
+            if arrData[section].isExpanded == true{
                 return 1
             } else {
                 return 0
             }
         } else {
-            if arrData[section].isExpanded == true {
+            if arrData[section].isExpanded == true{
                 return 1
             } else {
                 return 0

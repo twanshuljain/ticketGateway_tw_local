@@ -9,7 +9,7 @@ import UIKit
 
 class ContactDetailsTableViewCell: UITableViewCell {
    
-    // MARK: - OUTLETS
+    //MARK: - OUTLETS
     @IBOutlet weak var lblLocation:UILabel!
     @IBOutlet weak var lblContact:UILabel!
     @IBOutlet weak var lblLink:UILabel!

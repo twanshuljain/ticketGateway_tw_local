@@ -101,26 +101,26 @@ extension ManageSellTicketVC {
     }
     func btnComplimentaryAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketComplimentary) as? ManageSellTicketComplimentary
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: false)
+        self.navigationController?.pushViewController(view!, animated: false)
     }
     func btnAddCustomerInfoAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellBuyersInfoListVC) as? ManageSellBuyersInfoListVC
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }
     
     func btnPromoCodeAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .PromoCodeVC) as? PromoCodeVC
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: false)
+        self.navigationController?.pushViewController(view!, animated: false)
     }
     func btnViewCartAction() {
     }
      func btnCardAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .AddCardVC) as? AddCardVC
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnCashAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnBuyAction() {
         self.vwBuy.isHidden = true

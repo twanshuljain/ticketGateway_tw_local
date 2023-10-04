@@ -9,7 +9,7 @@ import UIKit
 
 class TicketOverAllEstimateBarCell: UITableViewCell {
     
-// MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var lblTotalValue: UILabel!
     @IBOutlet weak var lblValue: UILabel!
     @IBOutlet weak var lbltittle: UILabel!

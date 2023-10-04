@@ -7,7 +7,7 @@
 import UIKit
 import SideMenu
 class ExpandableName {
-    var isExpanded: Bool
+    var isExpanded : Bool
     init(isExpanded: Bool) {
         self.isExpanded = isExpanded
     }
@@ -21,7 +21,7 @@ class ManageEventOrderVC: UIViewController {
     @IBOutlet weak var lblSorry: UILabel!
     @IBOutlet weak var lblYourSearch: UILabel!
     @IBOutlet weak var btnScan: UIButton!
-    // MARK: - Variables
+    //MARK: - Variables
     var viewModel = ManageEventOrderViewModel()
    
     override func viewDidLoad() {
@@ -82,8 +82,8 @@ extension ManageEventOrderVC {
     }
 }
 
-// MARK: - Segment Actions
-extension ManageEventOrderVC {
+//MARK: - Segment Actions
+extension ManageEventOrderVC{
     @objc func nextBtn(sender: UIButton) {
         var obj = viewModel.arrData[sender.tag]
         print(viewModel.arrData[sender.tag])
@@ -96,7 +96,7 @@ extension ManageEventOrderVC {
         print("value",viewModel.arrData)
         self.orderTableView.reloadData()
     }
-    @IBAction private func actionSegmentControl(_ sender: UISegmentedControl) {
+    @IBAction func actionSegmentControl(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             viewModel.isRefundRequest = false
@@ -155,7 +155,7 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.isRefundRequest ? 50: 0
+        return viewModel.isRefundRequest ? 50 : 0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var vc = createView(storyboard: .manageventorder, storyboardID: .ManageEventOrderDeatilVC)
@@ -163,7 +163,7 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageEventOrderVC: NavigationBarViewDelegate {
+extension ManageEventOrderVC: NavigationBarViewDelegate{
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

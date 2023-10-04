@@ -10,7 +10,7 @@ import UIKit
 
 class CostumeListTableView: UITableView {
 
-// MARK: - Variables
+//MARK: - Variables
     var costumeTbleItem = ["costume_ip", "costume_ip", "costume_ip", "costume_ip"]
     var tableDidSelectAtIndex:((Int) ->())?
     var isForDetailVC: String?
@@ -30,7 +30,7 @@ class CostumeListTableView: UITableView {
     
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension CostumeListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return costumeTbleItem.count
@@ -53,7 +53,7 @@ extension CostumeListTableView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - CostumeTableViewCellProtocol
+//MARK: - CostumeTableViewCellProtocol
 extension CostumeListTableView:CostumeTableViewCellProtocol{
     func didSelect(index: IndexPath) {
         self.tableDidSelectAtIndex?(index.row)

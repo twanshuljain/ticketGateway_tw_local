@@ -132,7 +132,7 @@ struct GetEventModel: Codable,Equatable {
     }
 }
 
-//struct GetEventCategory:Codable {
+//struct GetEventCategory:Codable{
 //    var eventCategory:[String]?
 //
 //    init(eventCategory:[String]?) {

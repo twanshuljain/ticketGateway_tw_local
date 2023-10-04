@@ -184,7 +184,7 @@ extension ManageEventProfileVC {
         view?.name = viewModel.getUserProfileData.userData?.fullName ?? "-"
         view?.number = viewModel.getUserProfileData.userData?.cellPhone ?? "-"
         view?.email = viewModel.getUserProfileData.userData?.email ?? "-"
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }
     func btnSelectAction() {
         ImagePickerManager().pickImage(self) {image in

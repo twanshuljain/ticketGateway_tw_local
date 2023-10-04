@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 final class SignInViewModel {
     // MARK: - Variable
-    var loginVC: LoginVC?
+    var loginVC : LoginVC?
     var isFromNumberOrEmail = true // number = false , email = true
     var isFromWelcomeScreen = false
     var strCountryDialCode: String = "+91"
@@ -98,7 +98,7 @@ extension SignInViewModel {
     
     func checkoutVerifyResendOTP(userType: UserType,complition: @escaping (Bool,String) -> Void ) {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        var authTokenString = userType == .new ? false: true
+        var authTokenString = userType == .new ? false : true
         let paramForNumber:ValidateForNumberRequest?
         if userType == .new{
             paramForNumber = ValidateForNumberRequest(cellPhone: userModel?.number, email: userModel?.email)

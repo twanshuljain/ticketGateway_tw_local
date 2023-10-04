@@ -9,7 +9,7 @@ import UIKit
 
 class ManageEventSellTicketCell: UITableViewCell {
 
-// MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var lblOrderStatus: UILabel!
     @IBOutlet weak var lblTittleDis: UILabel!

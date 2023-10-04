@@ -322,7 +322,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
   
 }
 // MARK: - NavigationBarViewDelegate
-extension EventBookingTicketAddOnsVC: NavigationBarViewDelegate {
+extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

@@ -18,7 +18,7 @@ final class EventPromoCodeViewModel{
     var finalPrice = 0.0
     var lblNumberOfCount = 0
     var promoCodeData:PromoCode?
-    var discountType: DiscountType?
+    var discountType : DiscountType?
     var selectedCurrencyType = ""
 }
 

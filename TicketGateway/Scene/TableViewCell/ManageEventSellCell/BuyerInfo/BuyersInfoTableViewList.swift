@@ -15,7 +15,7 @@ import UIKit
 
 class BuyersInfoTableViewList: UITableView {
     
-    // MARK: - Variables
+    //MARK: - Variables
     let nameFormatter = PersonNameComponentsFormatter()
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var tableDidSelectAtIndexEdit: ((Int) -> Void)?

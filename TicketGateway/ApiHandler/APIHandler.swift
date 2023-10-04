@@ -142,7 +142,7 @@ class APIHandler: NSObject {
               //  if #available(iOS 16.0, *) {
                     let param = try? JSONEncoder().encode(parameters!)
                     do {
-                        let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String: Any]
+                        let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String : Any]
                        // print("---------------", json ?? "")
 //                        requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: json?.keys.first ?? "", value: (json?.values.first as? String) ?? "")])
                         var queryItems = [URLQueryItem]()
@@ -167,7 +167,7 @@ class APIHandler: NSObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         /*
-         if authTokenString == true {
+         if authTokenString == true{
             if let token = userModel?.accessToken {
                 request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
              }

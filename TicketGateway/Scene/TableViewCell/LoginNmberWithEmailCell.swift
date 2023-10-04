@@ -9,7 +9,7 @@ import UIKit
 
 class LoginNmberWithEmailCell: UITableViewCell {
     
-    // MARK: - OUTLETS
+    //MARK: - OUTLETS
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblShortName: UILabel!

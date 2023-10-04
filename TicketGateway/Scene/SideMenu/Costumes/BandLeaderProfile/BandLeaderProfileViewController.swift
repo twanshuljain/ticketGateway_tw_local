@@ -97,10 +97,10 @@ extension BandLeaderProfileViewController{
         self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
     }
 }
-// MARK: - Actions
+//MARK: - Actions
 extension BandLeaderProfileViewController{
     
-    @IBAction private func actionSegmentControl(_ sender: Any) {
+    @IBAction func actionSegmentControl(_ sender: Any) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)
@@ -142,7 +142,7 @@ extension BandLeaderProfileViewController{
     
 }
 
-// MARK: - NavigationBarViewDelegate
+//MARK: - NavigationBarViewDelegate
 extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if !viewModel.isAboutSelected{
@@ -249,7 +249,7 @@ extension BandLeaderProfileViewController: UITableViewDelegate,UITableViewDataSo
     }
 }
 
-// MARK: - NavigationBarViewDelegate
+//MARK: - NavigationBarViewDelegate
 extension BandLeaderProfileViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.arrBrandLeader.count
@@ -276,7 +276,7 @@ extension BandLeaderProfileViewController: UICollectionViewDelegate,UICollection
     
 }
 
-// MARK: - PageController
+//MARK: - PageController
 extension BandLeaderProfileViewController {
     func toSetPageControll() {
         imagePageController.drawer = ExtendedDotDrawer(numberOfPages: self.viewModel.arrBrandLeader.count,
@@ -298,7 +298,7 @@ extension BandLeaderProfileViewController {
 }
 
 
-// MARK: - NavigationBarViewDelegate
+//MARK: - NavigationBarViewDelegate
 extension BandLeaderProfileViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

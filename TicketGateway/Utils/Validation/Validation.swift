@@ -5,7 +5,7 @@
 //  Created by Apple  on 14/04/23.
 
 import UIKit
-// MARK: - InputValidation
+//MARK: - InputValidation
 enum InputValidation: String {
     case email
     case otp
@@ -39,7 +39,7 @@ enum InputCompareValidation: String {
     case email
     case password
 }
-// MARK: - Validation
+//MARK: - Validation
 class Validation {
     static let shared = Validation()
     private init() { }
@@ -54,40 +54,40 @@ class Validation {
         case .number:
             return(
                 text.isEmpty ? true:
-                    text.count < 4 ? true: false,
+                    text.count < 4 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyNumber:ValidationConstantStrings.invalidNumber)
         case .password:
             return(
                 text.isEmpty ? true :
-                    text.count < 4 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyPassword: ValidationConstantStrings.invalidPassword)
+                    text.count < 4 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.invalidPassword)
         case .newPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyNewPassword: ValidationConstantStrings.invalidNewPassword)
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyNewPassword : ValidationConstantStrings.invalidNewPassword)
         case .currentPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyCurrentPassword: ValidationConstantStrings.invalidCurrentPassword)
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyCurrentPassword : ValidationConstantStrings.invalidCurrentPassword)
         case .confirmPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword: ValidationConstantStrings.invalidPassword)
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword : ValidationConstantStrings.invalidPassword)
         case .name:
             return( text.isEmpty ? true :
-                        text.count < 2 ? true: false,
-                    text.isEmpty ? ValidationConstantStrings.emptyName: ValidationConstantStrings.invalidName)
+                        text.count < 2 ? true : false,
+                    text.isEmpty ? ValidationConstantStrings.emptyName : ValidationConstantStrings.invalidName)
         case .description:
             return( text.isEmpty ? true :
-                        text.count > 140 ? true: false,
+                        text.count > 140 ? true : false,
                     text.isEmpty ? "AppConstant.emptyDescription": "AppConstant.invalidDescription")
         case .otp:
             return(text.isEmpty ? true :
-                    text.count < 4 ? true: false,
-                   text.isEmpty ? ValidationConstantStrings.emptyOtp: ValidationConstantStrings.invalidOtp)
+                    text.count < 4 ? true : false,
+                   text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
         }
     }
     
@@ -100,39 +100,39 @@ class Validation {
         case .number:
             return(
                 text.isEmpty ? true:
-                    text.count < 4 ? true: false,
+                    text.count < 4 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyNumber:ValidationConstantStrings.invalidNumber)
         case .password:
             return(
                 text.isEmpty ? true :
-                    text.count < 4 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyPassword: ValidationConstantStrings.invalidPassword)
+                    text.count < 4 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.invalidPassword)
         case .newPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyNewPassword: ValidationConstantStrings.invalidNewPassword)
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyNewPassword : ValidationConstantStrings.invalidNewPassword)
         case .currentPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyCurrentPassword: ValidationConstantStrings.invalidCurrentPassword)
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyCurrentPassword : ValidationConstantStrings.invalidCurrentPassword)
         case .confirmPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true: false,
-                text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword: ValidationConstantStrings.invalidPassword)
+                    text.count < 8 ? true : false,
+                text.isEmpty ? ValidationConstantStrings.emptyConfirmPassword : ValidationConstantStrings.invalidPassword)
         case .name:
-            return( text.isEmpty ? true: false,
-                    text.isEmpty ? ValidationConstantStrings.emptyName: ValidationConstantStrings.invalidName)
+            return( text.isEmpty ? true : false,
+                    text.isEmpty ? ValidationConstantStrings.emptyName : ValidationConstantStrings.invalidName)
         case .description:
             return( text.isEmpty ? true :
-                        text.count > 140 ? true: false,
+                        text.count > 140 ? true : false,
                     text.isEmpty ? "AppConstant.emptyDescription": "AppConstant.invalidDescription")
         case .otp:
             return(text.isEmpty ? true :
-                    text.count < 4 ? true: false,
-                   text.isEmpty ? ValidationConstantStrings.emptyOtp: ValidationConstantStrings.invalidOtp)
+                    text.count < 4 ? true : false,
+                   text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
         }
     }
     // swiftlint: disable cyclomatic_complexity
@@ -235,9 +235,9 @@ class Validation {
                                   validationType: InputCompareValidation) -> (Bool, String) {
         switch validationType {
         case .email:
-            return firstText != secondText ? (true, ValidationConstantStrings.emailNotMatched): (false, "he")
+            return firstText != secondText ? (true, ValidationConstantStrings.emailNotMatched) : (false, "he")
         case .password:
-            return firstText != secondText ? (true, ValidationConstantStrings.passwordNotMatch): (false, "he")
+            return firstText != secondText ? (true, ValidationConstantStrings.passwordNotMatch) : (false, "he")
         }
     }
     func isValidEmail(emaiId: String) -> Bool {

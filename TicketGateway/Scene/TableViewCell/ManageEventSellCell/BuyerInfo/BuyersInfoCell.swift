@@ -9,7 +9,7 @@ import UIKit
 
 class BuyersInfoCell: UITableViewCell {
 
-// MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var vwPopUp: CustomSocialLoginView!
     @IBOutlet weak var lblFristAndLastName: UILabel!
     @IBOutlet weak var imgBg: UIImageView!

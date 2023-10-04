@@ -206,7 +206,7 @@ extension CreateAccountVC: UITextFieldDelegate {
 extension CreateAccountVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.viewControllers.forEach({ controller in
-            if controller is SignUpVC {
+            if controller is SignUpVC{
                 self.navigationController?.popToViewController(controller, animated: false)
             }
         })

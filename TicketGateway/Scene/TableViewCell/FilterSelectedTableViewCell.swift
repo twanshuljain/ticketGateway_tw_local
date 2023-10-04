@@ -9,7 +9,7 @@ import UIKit
 
 class FilterSelectedTableViewCell: UITableViewCell {
     
-    // MARK: - OUTLETS
+    //MARK: - OUTLETS
     @IBOutlet weak var lblFilter:UILabel!
     @IBOutlet weak var btnSelectedFilter:UIButton!
 

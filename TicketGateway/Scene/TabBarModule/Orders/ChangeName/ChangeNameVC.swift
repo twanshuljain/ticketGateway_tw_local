@@ -136,7 +136,7 @@ extension ChangeNameVC {
 }
 // MARK: - Actions
 extension ChangeNameVC {
-    @IBAction private func btnSaveChange(_ sender: Any) {
+    @IBAction func btnSaveChange(_ sender: Any) {
         self.apiCall()
     }
 }

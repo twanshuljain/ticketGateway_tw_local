@@ -7,7 +7,7 @@
 
 import UIKit
 class EventBookingOrderSummaryVC: UIViewController {
-    // MARK: - IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var vwDottedDIscount: UIView!
     @IBOutlet weak var vwDotteds: UIView!
     @IBOutlet weak var vwDotted: UIView!
@@ -33,7 +33,7 @@ class EventBookingOrderSummaryVC: UIViewController {
     @IBOutlet weak var lblRefundDisc: UILabel!
     @IBOutlet weak var lblDiscouted: UILabel!
     @IBOutlet weak var lblDiscoutedValue: UILabel!
-    @IBOutlet weak var discountViewHt: NSLayoutConstraint!
+    @IBOutlet weak var discountViewHt : NSLayoutConstraint!
 
     
     
@@ -47,7 +47,7 @@ class EventBookingOrderSummaryVC: UIViewController {
         self.setData()
     }
 }
-// MARK: - Functions
+//MARK: - Functions
 extension EventBookingOrderSummaryVC {
     private func setup() {
         self.tblAddedTickets.configure()
@@ -95,7 +95,7 @@ extension EventBookingOrderSummaryVC {
         vwDotteds.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDottedDIscount.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height
         if self.viewModel.selectedAddOnList.isEmpty {
             self.heightOfAddOn.constant = 0
@@ -134,7 +134,7 @@ extension EventBookingOrderSummaryVC {
             self.lblDiscouted.isHidden = false
             self.lblDiscoutedValue.isHidden = false
             self.discountViewHt.constant = 40
-            self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(convertedDiscountValue ?? "")%": "- \(self.viewModel.selectedCurrencyType)\(convertedDiscountValue ?? "")"
+            self.lblDiscoutedValue.text = self.viewModel.discountType == .PERCENTAGE ? "-\(convertedDiscountValue ?? "")%" : "- \(self.viewModel.selectedCurrencyType)\(convertedDiscountValue ?? "")"
         } else {
             total = serviceCharge + processingCharge + facilityCharge + subTotal
             self.lblDiscouted.isHidden = true
@@ -155,7 +155,7 @@ extension EventBookingOrderSummaryVC {
     }
     
 }
-// MARK: - Actions
+//MARK: - Actions
 extension EventBookingOrderSummaryVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -186,7 +186,7 @@ extension EventBookingOrderSummaryVC {
                 self.navigationController?.pushViewController(view, animated: true)
             }
 //        } else {
-//            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC {
+//            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
 //                view.viewModel.eventId = self.viewModel.eventId
 //                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
 //                view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -198,8 +198,8 @@ extension EventBookingOrderSummaryVC {
 //        }
     }
 }
-// MARK: - NavigationBarViewDelegate
-extension EventBookingOrderSummaryVC: NavigationBarViewDelegate {
+//MARK: - NavigationBarViewDelegate
+extension EventBookingOrderSummaryVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

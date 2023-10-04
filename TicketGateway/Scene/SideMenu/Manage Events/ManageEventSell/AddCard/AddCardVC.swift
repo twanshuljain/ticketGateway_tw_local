@@ -78,9 +78,9 @@ extension AddCardVC {
     }
     func btnContinueAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }
-    @IBAction private func btnOpenDatePicker(_ sender: Any) {
+    @IBAction func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
         self.pickerMonthYear.reloadAllComponents()
@@ -135,7 +135,7 @@ extension AddCardVC {
         self.pickerMonthYear.selectRow(ind, inComponent: 1, animated: false)
         self.pickerMonthYear.reloadAllComponents()
     }
-    @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
+    @IBAction func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
         if !viewModel.selectedMonthName.isEmpty && !viewModel.selectedyearName.isEmpty {
@@ -150,7 +150,7 @@ extension AddCardVC {
             viewModel.selectedyearName = ""
         }
     }
-    @IBAction private func btnPickerCancelAction(_ sender: UIButton) {
+    @IBAction func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }

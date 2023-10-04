@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension Double {
+extension Double{
     func convertToTwoDecimalPlaces() -> String? {
         return String(format: "%.2f", self)
     }

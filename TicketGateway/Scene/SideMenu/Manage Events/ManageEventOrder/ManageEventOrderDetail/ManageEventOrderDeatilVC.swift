@@ -48,7 +48,7 @@ class ManageEventOrderDeatilVC: UIViewController {
     }
 }
 
-// MARK: - Functions
+//MARK: - Functions
 extension ManageEventOrderDeatilVC {
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
@@ -114,7 +114,7 @@ extension ManageEventOrderDeatilVC {
     }
 }
 
-// MARK: - Actions
+//MARK: - Actions
 extension ManageEventOrderDeatilVC {
     func setUI () {
         [btnRefund,btnPrint,btnMessage].forEach {

@@ -167,14 +167,14 @@ open class RingProgressLayer: CALayer {
         let widthRing = min(ringWidth, squareSize / 2)
         let redius = min(bounds.width, bounds.height) / 2 - widthRing / 2
         let cPoints = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
-        let ringProgress = max(0.0, disableProgressAnimation ? progress: presentation()?.progress ?? 0.0)
+        let ringProgress = max(0.0, disableProgressAnimation ? progress : presentation()?.progress ?? 0.0)
         let angleOffset = CGFloat.pi / 2
         let angle = 2 * .pi * ringProgress - angleOffset
         let minAngle = 1.1 * atan(0.5 * widthRing / redius)
         let maxAngle = 2 * .pi - 3 * minAngle - angleOffset
         let circleRect = squareRect.insetBy(dx: widthRing / 2, dy: widthRing / 2)
         let circlePath = UIBezierPath(ovalIn: circleRect)
-        let angle1 = angle > maxAngle ? maxAngle: angle
+        let angle1 = angle > maxAngle ? maxAngle : angle
         context.setLineWidth(widthRing)
         context.setLineCap(progressStyle.lineCap)
         // Draw backdrop circle

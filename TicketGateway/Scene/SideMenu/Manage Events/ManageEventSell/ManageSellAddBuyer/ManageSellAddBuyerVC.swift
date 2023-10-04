@@ -167,7 +167,7 @@ extension ManageSellAddBuyerVC {
             self.navigationController?.popViewController(animated: true)
         } else {
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+            self.navigationController?.pushViewController(view!, animated: true)
         }
     }
     func btnSelectCountryAction() {

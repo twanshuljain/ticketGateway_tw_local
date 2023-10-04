@@ -96,7 +96,7 @@ extension MyWalletVC {
 }
 
 // MARK: - NavigationBarViewDelegate,UITextFieldDelegate
-extension MyWalletVC: NavigationBarViewDelegate,UITextFieldDelegate {
+extension MyWalletVC : NavigationBarViewDelegate,UITextFieldDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

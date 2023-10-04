@@ -15,13 +15,13 @@ protocol ViewMoreEventsVCProtocol: class {
 
 class ViewMoreEventsVC: UIViewController {
     
-    // MARK: - IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var parentView:UIView!
     var viewModel = ViewMoreEventsViewModel()
-    weak var delegate: ViewMoreEventsVCProtocol?
+    weak var delegate : ViewMoreEventsVCProtocol?
     weak var updateHomeScreenDelegate: (EventDetailVCProtocol)?
     
     override func viewDidLoad() {
@@ -38,8 +38,8 @@ class ViewMoreEventsVC: UIViewController {
     }
 
 }
-// MARK: - Functions
-extension ViewMoreEventsVC {
+//MARK: - Functions
+extension ViewMoreEventsVC{
     func setUp() {
         self.tblView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         self.tblView.delegate = self
@@ -61,7 +61,7 @@ extension ViewMoreEventsVC {
     }
     
     func setData() {
-        if self.viewModel.isComingFrom == .home {
+        if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .nearByLocation:
                 navigationView.lblTitle.text = "Events near \(self.viewModel.countryName)"
@@ -95,7 +95,7 @@ extension ViewMoreEventsVC {
     func navigateToDetail(index:IndexPath) {
         let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
         
-        if self.viewModel.isComingFrom == .home {
+        if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
@@ -125,7 +125,7 @@ extension ViewMoreEventsVC {
                 }
             }
             view?.delegate = self
-            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+            self.navigationController?.pushViewController(view!, animated: true)
         } else if viewModel.isComingFrom == .eventDetail {
             if self.viewModel.itemsSuggestedEvents.indices.contains(index.row) {
                 // On Click of cell api should call
@@ -320,7 +320,7 @@ extension ViewMoreEventsVC {
             viewModel.getEventApiForFreeEvents(viewAll:true,complition: { isTrue, messageShowToast in
                 if isTrue == true {
                     self.parentView.stopLoading()
-                   // if let itemsFree = self.viewModel.arrData?.itemsFree {
+                   // if let itemsFree = self.viewModel.arrData?.itemsFree{
                     
                     let data = self.viewModel.itemsFree
                    // self.viewModel.itemsFree.removeAll()
@@ -392,13 +392,13 @@ extension ViewMoreEventsVC {
 //         let spinner = UIActivityIndicatorView(style: .gray)
 //         spinner.startAnimating()
 //         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
-        if self.viewModel.isComingFrom == .home {
+        if self.viewModel.isComingFrom == .home{
             
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
             case .nearByLocation:
-                if self.viewModel.itemsLocation.count != self.viewModel.totalPage {
+                if self.viewModel.itemsLocation.count != self.viewModel.totalPage{
                     //self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForLocation()
@@ -407,7 +407,7 @@ extension ViewMoreEventsVC {
                     self.tblView.tableFooterView?.isHidden = true
                 }
             case .weekend:
-                if self.viewModel.itemsWeekend.count != self.viewModel.totalPage {
+                if self.viewModel.itemsWeekend.count != self.viewModel.totalPage{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApi()
@@ -416,7 +416,7 @@ extension ViewMoreEventsVC {
                     self.tblView.tableFooterView?.isHidden = true
                 }
             case .online:
-                if self.viewModel.itemsVirtual.count != self.viewModel.totalPage {
+                if self.viewModel.itemsVirtual.count != self.viewModel.totalPage{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForOnlineEvents()
@@ -425,7 +425,7 @@ extension ViewMoreEventsVC {
                     self.tblView.tableFooterView?.isHidden = true
                 }
             case .popular:
-                if self.viewModel.itemsPopular.count != self.viewModel.totalPage {
+                if self.viewModel.itemsPopular.count != self.viewModel.totalPage{
                   //  self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForPopularEvents()
@@ -435,7 +435,7 @@ extension ViewMoreEventsVC {
                 }
                 
             case .free:
-                if self.viewModel.itemsFree.count != self.viewModel.totalPage {
+                if self.viewModel.itemsFree.count != self.viewModel.totalPage{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForFreeEvents()
@@ -446,7 +446,7 @@ extension ViewMoreEventsVC {
                 
                 
             case .upcoming:
-                if self.viewModel.itemsUpcoming.count != self.viewModel.totalPage {
+                if self.viewModel.itemsUpcoming.count != self.viewModel.totalPage{
                    // self.tblView.tableFooterView = spinner
                     self.tblView.tableFooterView?.isHidden = false
                     self.funcCallApiForUpcomingEvents()
@@ -456,7 +456,7 @@ extension ViewMoreEventsVC {
                 }
             }
         } else {
-            if self.viewModel.itemsSuggestedEvents.count != self.viewModel.totalPage {
+            if self.viewModel.itemsSuggestedEvents.count != self.viewModel.totalPage{
                // self.tblView.tableFooterView = spinner
                 self.tblView.tableFooterView?.isHidden = false
                 self.funcCallApiForSuggestedEvents()
@@ -471,7 +471,7 @@ extension ViewMoreEventsVC {
 // MARK: - TableView Delegate
 extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.viewModel.isComingFrom == .home {
+        if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
@@ -501,7 +501,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                  self.btnLikeActionTapped(btn: btn, indexPath: indexPath)
             }
             cell.btnShare.mk_addTapHandler { (btn) in
-                 print("You can use here also directly: \(indexPath.row)")
+                 print("You can use here also directly : \(indexPath.row)")
                  self.btnShareActionTapped(btn: btn, indexPath: indexPath)
             }
             if self.viewModel.isComingFrom == .home {
@@ -511,38 +511,38 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                 case .nearByLocation:
                     if self.viewModel.itemsLocation.indices.contains(indexPath.row) {
                         cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .weekend:
                     if self.viewModel.itemsWeekend.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .online:
                     if self.viewModel.itemsVirtual.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsVirtual[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .popular:
                     if self.viewModel.itemsPopular.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsPopular[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .free:
                     if self.viewModel.itemsFree.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsFree[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 case .upcoming:
                     if self.viewModel.itemsUpcoming.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                     }
                 }
             } else {
                 if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row) {
                     cell.getEvent =  self.viewModel.itemsSuggestedEvents[indexPath.row]
-                    cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
+                    cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
                 }
             }
             return cell
@@ -550,7 +550,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
-        print("IndexPath: \(indexPath.row)")
+        print("IndexPath : \(indexPath.row)")
         if viewModel.isComingFrom == .home {
             switch viewModel.arrEventCategory[viewModel.index] {
             case .noLocationData:
@@ -593,7 +593,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             self.showToast(message: Unable_To_Like)
             return
         }
-        print("IndexPath row: \(indexPath.row)")
+        print("IndexPath row : \(indexPath.row)")
         if viewModel.isComingFrom == .home {
             switch viewModel.arrEventCategory[viewModel.index] {
             case .noLocationData:
@@ -653,7 +653,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         self.navigateToDetail(index: indexPath)
     }
 }
-// MARK: - CustomSearchMethodsDelegate
+//MARK: - CustomSearchMethodsDelegate
 extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         
@@ -666,15 +666,15 @@ extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
     
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension ViewMoreEventsVC: UITextFieldDelegate {
+//MARK: - UITextFieldDelegate
+extension ViewMoreEventsVC : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }   
 }
 extension ViewMoreEventsVC: EventDetailVCProtocol {
@@ -693,8 +693,8 @@ extension ViewMoreEventsVC: EventDetailVCProtocol {
         self.tblView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
 }
-// MARK: - NavigationBarViewDelegate
-extension ViewMoreEventsVC: NavigationBarViewDelegate {
+//MARK: - NavigationBarViewDelegate
+extension ViewMoreEventsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
         if viewModel.isLikedAnyEvent {

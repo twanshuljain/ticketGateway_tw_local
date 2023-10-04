@@ -9,7 +9,7 @@ import UIKit
 
 class CancelEventTableViewCell: UITableViewCell {
     
-    // MARK: - OUTLETS
+    //MARK: - OUTLETS
 
     @IBOutlet weak var btnSelect: UIButton!
     @IBOutlet weak var lblTitle: UILabel!

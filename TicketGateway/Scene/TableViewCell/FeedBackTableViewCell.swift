@@ -9,7 +9,7 @@ import UIKit
 
 class FeedBackTableViewCell: UITableViewCell {
 
-    // MARK: - OUTLETS
+    //MARK: - OUTLETS
     @IBOutlet weak var lblFeedback:UILabel!
     @IBOutlet weak var btnThumbsUp:UIButton!
     @IBOutlet weak var btnThumbsDown:UIButton!

@@ -31,12 +31,12 @@ final class AddToCalendar {
                     try eventStore.save(event, span: .thisEvent)
                     print("Saved Event Successfully")
                 } catch let error as NSError {
-                    print("failed to save event with error: \(error)")
+                    print("failed to save event with error : \(error)")
                 }
                 print("Saved Event")
                 success(true, "")
             } else {
-                print("failed to save event with error: \(String(describing: error)) or access not granted")
+                print("failed to save event with error : \(String(describing: error)) or access not granted")
                 navigateToSettings()
                 failure(false)
             }

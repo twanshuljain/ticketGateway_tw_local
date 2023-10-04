@@ -20,7 +20,7 @@ protocol SendLocation: AnyObject {
 
 class EventSearchLocationVC: UIViewController {
     
-    // MARK: - IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var lblOnlineEventDis: UILabel!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var lblOnlineEvents: UILabel!
@@ -30,13 +30,13 @@ class EventSearchLocationVC: UIViewController {
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var noResultFoundView: UIView!
     
-    // MARK: - Variables
+    //MARK: - Variables
     
     weak var delegate: SendLocation?
     var countriesModel = [CountryInfo]()
     var searchCountriesModel = [CountryInfo]()
     var selecetdCountriesModel:CountryInfo?
-    var selectedCountry: String?
+    var selectedCountry : String?
     var countries = [[String: String]]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +112,7 @@ class EventSearchLocationVC: UIViewController {
 }
 
 // MARK: - Functions
-extension EventSearchLocationVC {
+extension EventSearchLocationVC{
     private func setUp() {
         self.tblList.dataSource = self
         self.tblList.delegate = self
@@ -153,7 +153,7 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
         cell.btnCheck.isUserInteractionEnabled = false
         cell.btnCheck.tag = indexPath.row
         cell.btnCheck.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        if  self.selectedCountry == countryName {
+        if  self.selectedCountry == countryName{
             cell.btnCheck.setImage(UIImage(named: IMAGE_ACTIVE_TERM_ICON), for: .normal)
         } else {
             cell.btnCheck.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
@@ -176,12 +176,12 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
   
 }
 
-// MARK: - UITextFieldDelegate
+//MARK: - UITextFieldDelegate
 extension EventSearchLocationVC: UITextFieldDelegate {
     
 }
 
-// MARK: - CustomSearchMethodsDelegate
+//MARK: - CustomSearchMethodsDelegate
 extension EventSearchLocationVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
         //countriesModel[sender.tag].countryName
@@ -197,7 +197,7 @@ extension EventSearchLocationVC: CustomSearchMethodsDelegate {
     
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
-        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+        self.navigationController?.pushViewController(view!, animated: true)
     }
 }
 // MARK: -

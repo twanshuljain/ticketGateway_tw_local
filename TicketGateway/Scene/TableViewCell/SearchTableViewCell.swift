@@ -9,7 +9,7 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     
-// MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblOrderId: UILabel!
     @IBOutlet weak var lblCardNo: UILabel!

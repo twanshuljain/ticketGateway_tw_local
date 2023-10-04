@@ -9,7 +9,7 @@ import UIKit
 
 class ManageEventSettingTableViewCell: UITableViewCell {
     
-// MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTitleDescription: UILabel!

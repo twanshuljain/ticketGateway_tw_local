@@ -19,10 +19,10 @@ class SearchViewModel: NSObject {
     var isFromSearchTxtField: Bool = false
     var getScanTicketDetails = GetScanTicketDetails()
     var numberOfRows: Int {
-        return isFromSearchTxtField ? searchData.count: orderInfo.count
+        return isFromSearchTxtField ? searchData.count : orderInfo.count
     }
     func getItem(indexPath: Int) -> SearchDummyData {
-        return isFromSearchTxtField ? searchData[indexPath]: orderInfo[indexPath]
+        return isFromSearchTxtField ? searchData[indexPath] : orderInfo[indexPath]
     }
     override init() {
         super.init()

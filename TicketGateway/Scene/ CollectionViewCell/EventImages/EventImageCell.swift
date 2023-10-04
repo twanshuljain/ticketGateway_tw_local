@@ -26,7 +26,7 @@ class EventImageCell: UICollectionViewCell {
         } else {
             images = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages
         }
-        if images?.indices.contains(index) ?? false {
+        if images?.indices.contains(index) ?? false{
             if let imageUrl = images?[index]{
                 if let imageUrl = images?[index]{
                     if imageUrl.contains(APIHandler.shared.previousBaseURL) {
@@ -54,7 +54,7 @@ class EventImageCell: UICollectionViewCell {
                 }
             }
        } else {
-           if let imageUrl = eventDetail?.eventCoverImageObj?.eventCoverImage {
+           if let imageUrl = eventDetail?.eventCoverImageObj?.eventCoverImage{
                if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                    if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {

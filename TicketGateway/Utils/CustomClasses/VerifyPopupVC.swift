@@ -16,7 +16,7 @@ class VerifyPopupVC: UIViewController {
     @IBOutlet weak var lblTitleVerified: UILabel!
     
     // MARK: - Variables
-    var closerForBack: ((_ isTrue: Bool) -> Void)?
+    var closerForBack : ((_ isTrue: Bool) -> Void)?
     var strMessage = ""
     var img = ""
     var strMsgForlbl = ""
@@ -40,7 +40,7 @@ class VerifyPopupVC: UIViewController {
     }
 
     // MARK: - Actions
-     @IBAction private func btnGreat(_ sender: Any) {
+     @IBAction func btnGreat(_ sender: Any) {
          DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
              print("the value here work:----")
              self.closerForBack!(true)

@@ -17,7 +17,7 @@ import iOSDropDown
 
 class EventBookingPaymentMethodVC: UIViewController {
     
-    // MARK: - IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var viewDatePicker: UIView!
     @IBOutlet weak var picker_monthYear: UIPickerView!
     @IBOutlet weak var vwWalletTop: UIView!
@@ -50,7 +50,7 @@ class EventBookingPaymentMethodVC: UIViewController {
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     
-    // MARK: - Variables
+    //MARK: - Variables
     
     var viewModel = EventBookingPaymentMethodViewModel()
     
@@ -63,7 +63,7 @@ class EventBookingPaymentMethodVC: UIViewController {
   
 }
 
-// MARK: - Functions
+//MARK: - Functions
 extension EventBookingPaymentMethodVC {
     private func setup() {
         self.viewModel.gradientLayer.colors = [self.viewModel.colorTop, self.viewModel.colorBottom]
@@ -135,7 +135,7 @@ extension EventBookingPaymentMethodVC {
     
 }
 
-// MARK: - Actions
+//MARK: - Actions
 extension EventBookingPaymentMethodVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -195,18 +195,18 @@ extension EventBookingPaymentMethodVC {
     
    func btnContinueAction() {
        let validate = self.viewModel.checkValidations(vc: self)
-       if validate {
+       if validate{
            self.viewModel.createCustomer(vc: self)
        }
 //       let view = self.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC
-//       self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
+//       self.navigationController?.pushViewController(view!, animated: true)
     }
     
-    func setGradientBackground( viewadd: UIView) {
+    func setGradientBackground( viewadd : UIView) {
             viewadd.layer.insertSublayer(viewModel.gradientLayer, at:0)
     }
     
-    @IBAction private func btnOpenDatePicker(_ sender: Any) {
+    @IBAction func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
         self.picker_monthYear.reloadAllComponents()
@@ -271,7 +271,7 @@ extension EventBookingPaymentMethodVC {
         self.picker_monthYear.reloadAllComponents()
     }
    
-    @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
+    @IBAction func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
         if !viewModel.selectedMonthName.isEmpty && !viewModel.selectedyearName.isEmpty {
@@ -287,7 +287,7 @@ extension EventBookingPaymentMethodVC {
         }
     }
     
-    @IBAction private func btnPickerCancelAction(_ sender: UIButton) {
+    @IBAction func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }
@@ -299,8 +299,8 @@ extension EventBookingPaymentMethodVC {
    
 }
 
-// MARK: - UITextFieldDelegate
-extension EventBookingPaymentMethodVC: UITextFieldDelegate {
+//MARK: - UITextFieldDelegate
+extension EventBookingPaymentMethodVC : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.txtCardNumber{
             self.viewDatePicker.isHidden = true
@@ -343,7 +343,7 @@ extension EventBookingPaymentMethodVC: UITextFieldDelegate {
             let newLength = startingLength + lengthToAdd - lengthToReplace
             
             return newLength <= cardNumberLimit
-        }else if textField == txtCardName {
+        }else if textField == txtCardName{
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
@@ -351,7 +351,7 @@ extension EventBookingPaymentMethodVC: UITextFieldDelegate {
             
             return newString.length <= maxLength
         }
-        else if textField == txtZipcode {
+        else if textField == txtZipcode{
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
@@ -361,13 +361,13 @@ extension EventBookingPaymentMethodVC: UITextFieldDelegate {
         
         
         
-        else {
+        else{
             return true
         }
     }
 }
-// MARK: - UIPickerViewDelegate,UIPickerViewDataSource
-extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSource {
+//MARK: - UIPickerViewDelegate,UIPickerViewDataSource
+extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSource{
     
     // MARK:- Picker View Delegates
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -516,8 +516,8 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
     }
 }
 
-// MARK: - NavigationBarViewDelegate
-extension EventBookingPaymentMethodVC: NavigationBarViewDelegate {
+//MARK: - NavigationBarViewDelegate
+extension EventBookingPaymentMethodVC : NavigationBarViewDelegate {
     func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)
   }

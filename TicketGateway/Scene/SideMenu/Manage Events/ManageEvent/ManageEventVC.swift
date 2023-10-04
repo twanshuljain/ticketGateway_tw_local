@@ -73,7 +73,7 @@ extension ManageEventVC {
    
     func btnAllorganiserAction() {
         txtAllorganiser.showList()
-//        if self.isShow == false {
+//        if self.isShow == false{
 //            self.isShow = true
 //            txtAllorganiser.showList()
 //        } else {

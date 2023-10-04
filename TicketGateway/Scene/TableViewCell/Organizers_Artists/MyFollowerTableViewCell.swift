@@ -9,7 +9,7 @@ import UIKit
 
 class MyFollowerTableViewCell: UITableViewCell {
     
-// MARK: - VARIABLES
+//MARK: - VARIABLES
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var btnRemove: UIButton!
     @IBOutlet weak var lblFollowers: UILabel!

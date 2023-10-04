@@ -222,7 +222,7 @@ extension OrganizersArtistsListVC {
 }
 
 // MARK: - UITableViewDelegate,UITableViewDataSource
-extension OrganizersArtistsListVC: UITableViewDelegate,UITableViewDataSource {
+extension OrganizersArtistsListVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModelForOrganniser.arrSuggestedOrganizers.count
       //  self.viewModel.arrMail.count

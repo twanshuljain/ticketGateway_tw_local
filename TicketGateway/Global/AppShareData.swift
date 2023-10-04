@@ -13,10 +13,10 @@ class AppShareData {
     // MARK: All Properties
     private var numOfPageKey: String = "NumberOfPage"
     private let session = URLSession.shared
-    // MARK: - Shared object
+    //MARK: - Shared object
     private static var sharedManager: AppShareData = {
         let manager = AppShareData()
-        //        var strUSERID: String = ""
+        //        var strUSERID : String = ""
         return manager
     }()
     // MARK: - Accessors
@@ -24,7 +24,7 @@ class AppShareData {
         return sharedManager
     }
     // NewVariable
-    var dicToHoldDataOnSignUpModule: DataHoldOnSignUpProcessModel?
+    var dicToHoldDataOnSignUpModule : DataHoldOnSignUpProcessModel?
     var userAuth = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
     
     func saveNumOfPage(numOfPage: Int) {

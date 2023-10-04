@@ -9,7 +9,7 @@ import UIKit
 
 class NotificationTableViewList: UITableView {
     
-// MARK: - Variables
+//MARK: - Variables
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false

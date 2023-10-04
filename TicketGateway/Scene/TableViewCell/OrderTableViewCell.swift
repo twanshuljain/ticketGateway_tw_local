@@ -9,7 +9,7 @@ import UIKit
 
 class OrderTableViewCell: UITableViewCell {
 
-// MARK: - OUTLETS
+//MARK: - OUTLETS
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblJouverRepublic: UILabel!

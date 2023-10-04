@@ -61,7 +61,7 @@ class NavigationBarView: UIView {
         vwSkip.isHidden = true
     }
     func setBackgroundColor() {
-        navView.backgroundColor = (navViewbackgroundColor == nil ? UIColor.setColor(colorType: .white): UIColor.setColor(colorType: .btnDarkBlue))
+        navView.backgroundColor = (navViewbackgroundColor == nil ? UIColor.setColor(colorType: .white) : UIColor.setColor(colorType: .btnDarkBlue))
     }
 }
 extension NavigationBarView {

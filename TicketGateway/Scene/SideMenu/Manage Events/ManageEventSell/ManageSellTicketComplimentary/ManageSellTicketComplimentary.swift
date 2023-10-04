@@ -61,7 +61,7 @@ extension ManageSellTicketComplimentary {
 }
 
 // MARK: - NavigationBarViewDelegate
-extension ManageSellTicketComplimentary: NavigationBarViewDelegate {
+extension ManageSellTicketComplimentary: NavigationBarViewDelegate{
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: false)
     }

@@ -160,8 +160,7 @@ extension AddAmountWalletVC {
             self.funcDefoultSet()
         }
     }
-
-
+    
     func btnCardAction() {
         if self.vwBgCard.backgroundColor == .clear {
             self.setGradientBackground(viewadd: vwBgCard)

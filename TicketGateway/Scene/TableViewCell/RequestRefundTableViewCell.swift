@@ -9,7 +9,7 @@ import UIKit
 
 class RequestRefundTableViewCell: UITableViewCell {
     
-    // MARK: - OUTLETS
+    //MARK: - OUTLETS
     @IBOutlet weak var lblTicketId: UILabel!
     @IBOutlet weak var lblTicketIdValue: UILabel!
     @IBOutlet weak var lblTicketName: UILabel!

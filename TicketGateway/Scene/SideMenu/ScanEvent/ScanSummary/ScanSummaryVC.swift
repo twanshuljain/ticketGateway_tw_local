@@ -37,7 +37,7 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
         self.tblScanSummaryTableView.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblViewHeight.constant = self.tblScanSummaryTableView.contentSize.height
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblViewHeight.constant = tblScanSummaryTableView.contentSize.height
     }
 }

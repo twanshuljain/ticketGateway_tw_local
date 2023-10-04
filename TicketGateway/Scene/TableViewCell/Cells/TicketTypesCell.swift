@@ -9,7 +9,7 @@ import UIKit
 
 class TicketTypesCell: UITableViewCell {
 
-// MARK: - Outlet
+//MARK: - Outlet
     @IBOutlet weak var vwDotted: UIView!
     @IBOutlet weak var vwStepper: CustomStepper!
     @IBOutlet weak var vwEtcDiscripation: UIView!

@@ -120,7 +120,7 @@ extension DeviceSettingVC {
 
 
 // MARK: - NavigationBarViewDelegate
-extension DeviceSettingVC: NavigationBarViewDelegate {
+extension DeviceSettingVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

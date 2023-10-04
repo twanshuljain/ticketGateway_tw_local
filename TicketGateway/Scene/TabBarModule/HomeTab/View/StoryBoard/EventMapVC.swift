@@ -12,7 +12,7 @@ class EventMapVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
-    // MARK: - Varibles
+    //MARK: - Varibles
     var latitude = Double()
     var longitude = Double()
     var location = String()
@@ -22,7 +22,7 @@ class EventMapVC: UIViewController {
         self.setNavigationBar()
     }
 }
-// MARK: - Functions
+//MARK: - Functions
 extension EventMapVC {
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self
@@ -40,7 +40,7 @@ extension EventMapVC {
     }
     
 }
-// MARK: - MKMapView
+//MARK: - MKMapView
 private extension MKMapView {
     func centerToLocation(_ location: CLLocation,regionRadius: CLLocationDistance = 1000
     ) {

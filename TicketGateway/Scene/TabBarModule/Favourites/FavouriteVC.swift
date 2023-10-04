@@ -126,7 +126,7 @@ extension FavouriteVC {
 }
 // MARK: - Actions
 extension FavouriteVC {
-    @IBAction private func actionSegmentController(_ sender: UISegmentedControl) {
+    @IBAction func actionSegmentController(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             viewModel.isForVenue = false
@@ -141,7 +141,7 @@ extension FavouriteVC {
             }
         case 1:
             viewModel.isForVenue = true
-            topConstraintTblView.constant = viewModel.arrVenueList.isEmpty ? 300: 5
+            topConstraintTblView.constant = viewModel.arrVenueList.isEmpty ? 300 : 5
             self.vwNoLikedEventView.isHidden = !(viewModel.arrVenueList.isEmpty)
 //            self.vwVenueView.isHidden = false
             self.favouriteTableView.reloadData()

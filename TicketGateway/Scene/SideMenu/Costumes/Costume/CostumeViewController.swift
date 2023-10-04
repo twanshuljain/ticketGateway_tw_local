@@ -18,7 +18,7 @@ import iOSDropDown
 
 class CostumeViewController: UIViewController, UITextFieldDelegate {
     
-    // MARK: - IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var btnFilter: CustomButtonNormal!
     @IBOutlet weak var btnSortBy: CustomButtonNormal!
     @IBOutlet weak var carnivalCollectionView: UICollectionView!
@@ -34,7 +34,7 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtSort: DropDown!
     @IBOutlet weak var vwNavigationBar: NavigationBarView!
     
-    // MARK: - Variables
+    //MARK: - Variables
     let carnivalCollectionData = [["img": "carnival_ip", "title": "All"], ["img": "carnival_ip", "title": "Revolution Carnival"], ["img": "carnival_ip", "title": "Trini Revellars Carnival"], ["img": "carnival_ip", "title": "Fantasy Carnival"]]
     let imgCollectionData = ["ic-CostumeStyle", "ic-CostumeStyle","ic-CostumeStyle" ]
     
@@ -57,12 +57,12 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblViewHeight.constant = costumeTableView.contentSize.height
     }
 }
 
-// MARK: - Functions
+//MARK: - Functions
 extension CostumeViewController{
     func setNavigaionBar() {
         vwNavigationBar.lblTitle.text = COSTUME
@@ -118,7 +118,7 @@ extension CostumeViewController{
     }
 }
 
-// MARK: - Actions
+//MARK: - Actions
 extension CostumeViewController {
     
     func setUI() {
@@ -151,7 +151,7 @@ extension CostumeViewController {
     }
 }
 
-// MARK: - UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout
+//MARK: - UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout
 extension CostumeViewController: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -182,7 +182,7 @@ extension CostumeViewController: UICollectionViewDelegate, UICollectionViewDataS
 }
 
 
-// MARK: - PageController
+//MARK: - PageController
 extension CostumeViewController {
     func toSetPageControll() {
         imagePageController.drawer = ExtendedDotDrawer(numberOfPages: 3,
@@ -203,7 +203,7 @@ extension CostumeViewController {
     }
 }
 
-// MARK: - CostumeTableViewCellProtocol
+//MARK: - CostumeTableViewCellProtocol
 extension CostumeViewController:CostumeTableViewCellProtocol{
     func didTapOnFrontLine(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "BandLeaderProfileViewController") as! BandLeaderProfileViewController
@@ -216,7 +216,7 @@ extension CostumeViewController:CostumeTableViewCellProtocol{
     }
 }
 
-// MARK: - CustomSearchMethodsDelegate
+//MARK: - CustomSearchMethodsDelegate
 extension CostumeViewController: CustomSearchMethodsDelegate {
     
     func filterButtonPressed(_ sender: UIButton) {
@@ -233,7 +233,7 @@ extension CostumeViewController: CustomSearchMethodsDelegate {
     }
 }
 
-// MARK: - NavigationBarViewDelegate
+//MARK: - NavigationBarViewDelegate
 extension CostumeViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
