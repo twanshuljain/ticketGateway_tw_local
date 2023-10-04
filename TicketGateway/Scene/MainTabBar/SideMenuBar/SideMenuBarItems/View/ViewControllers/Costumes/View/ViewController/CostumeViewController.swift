@@ -16,23 +16,21 @@ import AdvancedPageControl
 import SideMenu
 
 class CostumeViewController: UIViewController, UITextFieldDelegate {
-    
-    
+
     let carnivalCollectionData = [["img": "carnival_ip", "title": "All"], ["img": "carnival_ip", "title": "Revolution Carnival"], ["img": "carnival_ip", "title": "Trini Revellars Carnival"], ["img": "carnival_ip", "title": "Fantasy Carnival"]]
-    
+
     let imgCollectionData = ["ic-CostumeStyle", "ic-CostumeStyle","ic-CostumeStyle" ]
-    
+
     @IBOutlet weak var btnFilter: CustomButtonNormal!
     @IBOutlet weak var btnSortBy: CustomButtonNormal!
     @IBOutlet weak var carnivalCollectionView: UICollectionView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var imagePageController: AdvancedPageControlView!
     @IBOutlet weak var costumeTableView: CostumeListTableView!
-    
+
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var tblViewHeight: NSLayoutConstraint!
-  
- 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionView()
@@ -41,31 +39,22 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
         toSetPageControll()
         costumeTableView.tableDidSelectAtIndex = didSelectedAtIndex
         vwSearchBar.delegate = self
-       
-        
-        
-        
-        
-        
+
         [self.btnFilter, self.btnSortBy].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        
-        
-        
-        
+
         //self.setDropDownTxt()
         costumeTableView.reloadData()
         self.costumeTableView.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
             self.tblViewHeight.constant = self.costumeTableView.contentSize.height
 
     }
-   
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblViewHeight.constant = costumeTableView.contentSize.height
       }
-    
-    
+
 //
 //    func setDropDownTxt() {
 //        let textlds = [txtSort,txtFilter]
@@ -78,8 +67,6 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
 //        }
 //}
 
-    
-   
     func setButtonImage() {
               btnFilter.addRightIcon(image: UIImage(named: "chevron-down_ip")) //ic-filter
                 btnFilter.addLeftIcon(image: UIImage(named: "ic-Filter")) //ic-chevron
@@ -89,10 +76,9 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
                 btnSortBy.titleLabel?.textColor = UIColor.setColor(colorType: .TGGrey)
                 btnSortBy.addRightIcon(image: UIImage(named: "chevron-down_ip"))
                 btnSortBy.addLeftIcon(image: UIImage(named: "sort_ip"))
-       
 
     }
-    
+
     func setCollectionView() {
         carnivalCollectionView.delegate = self
         carnivalCollectionView.dataSource = self
@@ -105,14 +91,13 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CostumeDetailViewController") as! CostumeDetailViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
+
 }
 
 //MARK: - UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout
 extension CostumeViewController: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+
         if (collectionView == self.carnivalCollectionView) {
             return  carnivalCollectionData.count
         } else  {
@@ -120,9 +105,9 @@ extension CostumeViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if collectionView == carnivalCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarnivalCollectionViewCell", for: indexPath) as! CarnivalCollectionViewCell
             let data = carnivalCollectionData[indexPath.row]
@@ -136,13 +121,10 @@ extension CostumeViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.imgImage.image = UIImage(named: data)
             return cell
         }
-        
-        
-        
-    }
-   
-}
 
+    }
+
+}
 
 //MARK: - PageController
 extension CostumeViewController {
@@ -156,12 +138,12 @@ extension CostumeViewController {
                                                        indicatorBorderColor: .clear,
                                                        indicatorBorderWidth: 0.0)
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offSet = scrollView.contentOffset.x
         let width = scrollView.frame.width
         imagePageController.setPageOffset(offSet / width)
-        
+
     }
 }
 
@@ -189,15 +171,14 @@ extension CostumeViewController {
         default:
             break
         }
-       
+
     }
-    
+
     func btnFilterAction() {
       //  txtFilter.showList()
     }
-    
+
 //    func btnSortByAction() {
 //        txtSort.showList()
 //    }
 }
-

@@ -4,7 +4,6 @@
 //
 //  Created by Apple  on 04/05/23.
 
-
 import UIKit
 import SideMenu
 import SVProgressHUD
@@ -51,7 +50,7 @@ class OrganizersArtistsListVC: UIViewController {
 
 // MARK: - Functions
 extension OrganizersArtistsListVC {
-    
+
     func callApiForOrganizersList(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -61,7 +60,7 @@ extension OrganizersArtistsListVC {
                     DispatchQueue.main.async { [self] in
                         self.view.stopLoading()
                         self.collVwTrendingArtists.reloadData()
-                        
+
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -115,7 +114,7 @@ extension OrganizersArtistsListVC {
         self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
     }
-    
+
     func setUi() {
         self.lblTittle.font = UIFont.setFont(fontType: .bold, fontSize: .eighteen)
         self.lblTittle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -123,7 +122,7 @@ extension OrganizersArtistsListVC {
         self.lblSuggested.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.btnSeeAll.setTitles(text: SEE_ALL , font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
         self.btnSeeAllForSuggested.setTitles(text: SEE_ALL , font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
-      
+
     }
 }
 
@@ -161,12 +160,12 @@ extension OrganizersArtistsListVC {
             self.showToast(message: ValidationConstantStrings.networkLost)
         }
         }
-    
+
     func btnSeeAllSuggestedAction() {
 //        let vc = createView(storyboard: .sidemenu, storyboardID: .MyFollowersVC)
 //        self.navigationController?.pushViewController(vc, animated:     true)
 //
-        
+
         if Reachability.isConnectedToNetwork() {
         //    SVProgressHUD.show()
             viewModel.signInAPI { isTrue , messageShowToast in
@@ -257,7 +256,7 @@ extension OrganizersArtistsListVC : UITableViewDelegate,UITableViewDataSource {
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // let obj = self.viewModel.arrMail[indexPath.row]
      //   self.viewModel.strSelectedEmail = obj.email ?? ""
@@ -272,7 +271,6 @@ extension OrganizersArtistsListVC: UICollectionViewDataSource ,UICollectionViewD
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -311,13 +309,12 @@ extension OrganizersArtistsListVC: UICollectionViewDataSource ,UICollectionViewD
         }
         return cell
     }
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width/1.3, height: collectionView.bounds.height)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
         let data = viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row]
         let view = createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
         view.isComingFromOranizer = true
@@ -328,7 +325,7 @@ extension OrganizersArtistsListVC: UICollectionViewDataSource ,UICollectionViewD
         view.imageUrl = url
         self.navigationController?.pushViewController(view, animated: true)
     }
-    
+
 }
 
 // MARK: - NavigationBarViewDelegate

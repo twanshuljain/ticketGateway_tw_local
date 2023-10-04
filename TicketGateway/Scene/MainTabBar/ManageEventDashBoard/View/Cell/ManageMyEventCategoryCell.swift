@@ -9,7 +9,7 @@ import UIKit
 
 class ManageMyEventCategoryCell: UICollectionViewCell {
     @IBOutlet weak var vwbg: UIView!
-    
+
     @IBOutlet weak var lblTittle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

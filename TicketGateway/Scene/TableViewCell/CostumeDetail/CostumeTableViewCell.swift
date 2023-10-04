@@ -15,7 +15,6 @@ import UIKit
 import SwiftUI
 import AdvancedPageControl
 
-
 protocol CostumeTableViewCellProtocol {
     func didTapOnFrontLine(sender:UIButton)
     func didSelect(index:IndexPath)
@@ -34,24 +33,24 @@ class CostumeTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var collectionViewCostume: UICollectionView!
     @IBOutlet weak var lblPrice: UILabel!
-   
+
     @IBOutlet weak var lblFlexiblePayment: UILabel!
     @IBOutlet weak var btnRegister: UIButton!
-    
+
     @IBOutlet weak var vwLikeShare: UIView!
-    
+
     @IBOutlet weak var vwGradientView: GradientView!
     @IBOutlet weak var lblDescription: UILabel!
-   
+
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var imagePageController: AdvancedPageControlView!
     @IBOutlet weak var htImagePageController: NSLayoutConstraint!
 
     @IBOutlet weak var htRegisterBtn:NSLayoutConstraint!
-    
+
     let imgCollectionData = ["costume_ip", "costume_ip", "costume_ip", "costume_ip"]
     var delegate:CostumeTableViewCellProtocol?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setFont()
@@ -62,9 +61,8 @@ class CostumeTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        
     }
-    
+
     func setData(costumeObj:UIViewController?, isForDetailVC:String?) {
         //cell.imgCostumeImage.image = UIImage(named: data)
         self.lblTitle.text = "  Jouvert Republic 2023"
@@ -114,7 +112,7 @@ class CostumeTableViewCell: UITableViewCell {
            // self.vwGradientView.endColor = .white
         }
     }
-    
+
     func setCollectionView() {
         collectionViewCostume.delegate = self
         collectionViewCostume.dataSource = self
@@ -122,7 +120,7 @@ class CostumeTableViewCell: UITableViewCell {
         self.collectionViewCostume.register(UINib(nibName: "CostumeImageCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CostumeImageCollectionViewCell")
         //
     }
-    
+
     func setFont() {
         lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -143,7 +141,7 @@ class CostumeTableViewCell: UITableViewCell {
         btnLike.addTarget(self, action: #selector(btnImage(sender:)), for:  .touchUpInside)
         btnFrontLine.addTarget(self, action: #selector(btnFrontLine(sender:)), for:  .touchUpInside)
     }
-    
+
     @objc func btnImage(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
@@ -154,7 +152,7 @@ class CostumeTableViewCell: UITableViewCell {
 
         }
     }
-    
+
     @objc func btnFrontLine(sender: UIButton) {
         self.delegate?.didTapOnFrontLine(sender: sender)
     }
@@ -165,25 +163,25 @@ extension CostumeTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return imgCollectionData.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CostumeImageCollectionViewCell", for: indexPath) as! CostumeImageCollectionViewCell
         let data = imgCollectionData[indexPath.row]
         cell.imgImage.image = UIImage(named: data)
         return cell
-        
+
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
         self.delegate?.didSelect(index: indexPath)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
@@ -201,12 +199,12 @@ extension CostumeTableViewCell {
                                                        indicatorBorderColor: .clear,
                                                        indicatorBorderWidth: 0.0)
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+
         let offSet = scrollView.contentOffset.x
         let width = scrollView.frame.width
         imagePageController.setPageOffset(offSet / width)
-        
+
     }
 }

@@ -23,7 +23,7 @@ class FavouriteVC: UIViewController {
     @IBOutlet weak var lblVenuDescription: UILabel!
     @IBOutlet weak var lblVenuSuggestionForYou: UILabel!
     @IBOutlet weak var topConstraintTblView: NSLayoutConstraint!
-    
+
     // MARK: All Properties
     var viewModel: FavouriteViewModel = FavouriteViewModel()
     let collectionData = ["Today", "Tomorrow", "This Week", "This Weekend"]

@@ -4,48 +4,47 @@
 //
 //  Created by Apple on 07/06/23.
 
-
 import UIKit
 import iOSDropDown
 
 class RefundOptionsVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var lblPaymentMethod: UILabel!
     @IBOutlet weak var lblRefundToOriginal: UILabel!
     @IBOutlet weak var swPaymentMethodSwitch: UISwitch!
-    
+
     @IBOutlet weak var lblTGWallet: UILabel!
     @IBOutlet weak var lblGetAFullRefund: UILabel!
     @IBOutlet weak var swTGWalletSwitch: UISwitch!
-    
+
     @IBOutlet weak var lblReasonForRefund: UILabel!
     @IBOutlet weak var txtReasonForRefund: DropDown!
     @IBOutlet weak var btnReasonForRefundDropDown: UIButton!
-    
+
     @IBOutlet weak var lblFullRefund: UILabel!
     @IBOutlet weak var lblBarcodeWillNoLongerValid: UILabel!
     @IBOutlet weak var swFullRefundSwitch: UISwitch!
-    
+
     @IBOutlet weak var partialrefundStackView: UIStackView!
     @IBOutlet weak var lblPartialRefund: UILabel!
     @IBOutlet weak var lblBarcodeWillRemainValid: UILabel!
     @IBOutlet weak var swPartialRefundSwitch: UISwitch!
-    
+
     @IBOutlet weak var lblSelectTicket: UILabel!
     @IBOutlet weak var txtSelectTicket: DropDown!
     @IBOutlet weak var btnSelectTicketDropDown: UIButton!
-    
+
     @IBOutlet weak var btnNext: CustomButtonGradiant!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
         self.setFont()
         self.setUI()
         self.dropdown()
-        
+
     }
 }
 
@@ -57,26 +56,24 @@ extension RefundOptionsVC{
         self.vwNavigationView.lblTitle.text = REFUND_OPTIONS
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
     }
-    
-    
-    
+
     func dropdown() {
         txtReasonForRefund.optionArray = ["jndnc", "jndnc", "jndnc", "jndnc"]
-        
+
         txtReasonForRefund.optionIds = [1,23,54,22]
         txtReasonForRefund.didSelect{(selectedText , index ,id) in
             self.txtReasonForRefund.text = "\(selectedText)"}
-        
+
         txtSelectTicket.optionArray = ["xyz", "xyz", "xyz", "xyz"]
-        
+
         txtSelectTicket.optionIds = [1,23,54,22]
         txtSelectTicket.didSelect{(selectedText , index ,id) in
             self.txtSelectTicket.text = "\(selectedText)"}
-        
+
     }
-    
+
     func setFont() {
         self.lblPaymentMethod.text = PAYMENT_METHOD
         self.lblRefundToOriginal.text = REFUND_TO_ORIGINAL

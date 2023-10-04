@@ -8,17 +8,17 @@ import UIKit
 import SDWebImage
 
 class SideMenuViewControllers: UIViewController{
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var btnChangeProfile: UIButton!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblProfileview : UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: SideMenuList!
-    
+
     // MARK: - Variables
     var menu =  [SideMenuModel]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUi()
@@ -27,7 +27,7 @@ class SideMenuViewControllers: UIViewController{
         //   self.funcSetProfile()
         self.addTapGesture()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,7 +43,7 @@ extension SideMenuViewControllers{
             self.addTapGesture()
             btnChangeProfile.setImage(UIImage(named: "chevron-right_ip"), for: .normal)
             btnChangeProfile.setTitle("", for: .normal)
-            
+
         } else {
             var userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
             lblName.text = userModel?.fullName ?? ""
@@ -55,7 +55,7 @@ extension SideMenuViewControllers{
         self.lblProfileview.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblProfileview.textColor = UIColor.setColor(colorType: .headinglbl)
     }
-    
+
     func addTapGesture() {
         let gesture = UITapGestureRecognizer.init(target: self, action: #selector(navigateToProfile(_ :)))
         self.lblProfileview.addGestureRecognizer(gesture)
@@ -71,10 +71,9 @@ extension SideMenuViewControllers{
                 vc.isForSideMenuOrSetting = true 
                 self.navigationController?.pushViewController(vc, animated: false)
             }
-            
+
         }
-        
-        
+
     }
     // swiftlint: disable cyclomatic_complexity
     func setUpTableView() {
@@ -83,32 +82,32 @@ extension SideMenuViewControllers{
         self.tblList.tableDidSelectAtIndex = { obj in
             if  obj.title == "All Events" {
                 objSceneDelegate.showTabBar()
-                
+
             } else if obj.title == "Organizers" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as! OrganizersArtistsListVC
                 view.isFrom = "Organizers"
-                
+
                 self.navigationController?.pushViewController(view, animated: true)
-                
+
             } else if obj.title == "Artists" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as? OrganizersArtistsListVC
                 view?.isFrom = "Artists"
                 self.navigationController?.pushViewController(view!, animated: true)
-                
+
             } else if obj.title == "Venue" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .VenueVC) as? VenueVC
                 self.navigationController?.pushViewController(view!, animated: true)
-                
+
             }
             else if obj.title == "My Wallet" {
                 let view = self.createView(storyboard: .wallet, storyboardID: .MyWalletVC) as? MyWalletVC
                 self.navigationController?.pushViewController(view!, animated: true)
-                
+
             }
             else if obj.title == "My Refunds" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .MyRefundVC) as? MyRefundVC
                 self.navigationController?.pushViewController(view!, animated: true)
-  
+
             }
             else if obj.title == "Costumes" {
                 let view = self.createView(storyboard: .costumes, storyboardID: .CostumeViewController) as? CostumeViewController
@@ -121,11 +120,11 @@ extension SideMenuViewControllers{
                     UserDefaultManager.share.removeIsLikedAnyEvent()
                 })
             }
-            
+
             else if obj.title == "Manage Events" {
                 let view = self.createView(storyboard: .manageevent, storyboardID: .ManageEventVC) as? ManageEventVC
                 self.navigationController?.pushViewController(view!, animated: true)
-                
+
             }
             else if obj.title == "Scan Events" {
                 let view = self.createView(storyboard: .scanevent, storyboardID: .ScanEventVC) as? ScanEventVC
@@ -134,7 +133,7 @@ extension SideMenuViewControllers{
             else if obj.title == "Notifications" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .NotificationVC) as? NotificationVC
                 self.navigationController?.pushViewController(view!, animated: true)
-                
+
             }
             else if obj.title == "Device Settings" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .DeviceSettingVC) as? DeviceSettingVC
@@ -148,8 +147,7 @@ extension SideMenuViewControllers{
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .MyFollowersVC) as? MyFollowersVC
                 self.navigationController?.pushViewController(view!, animated: true)
             }
-            
-            
+
             else if obj.title == "Orders" {
                 let vc = self.createView(storyboard: .order, storyboardID: .MyOrderViewController)
                 self.navigationController?.pushViewController(vc, animated: false)
@@ -170,7 +168,7 @@ extension SideMenuViewControllers{
         self.tblList.reloadData()
     }
     // swiftlint: enable cyclomatic_complexity
-    
+
     func funcSetProfile() {
         self.lblName.text = objAppShareData.userAuth?.fullName
     }

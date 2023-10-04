@@ -18,7 +18,7 @@ final class ContactOrganiserViewModel{
     var oranizerId:Int?
     var eventDetail: EventDetail?
     var ticketDetails: GetMyOrderItem?
-    
+
 }
 
 extension ContactOrganiserViewModel{
@@ -35,7 +35,7 @@ extension ContactOrganiserViewModel{
         }
         return("", true)
     }
-    
+
     func contactOrganizer(complition: @escaping (Bool,String) -> Void ) {
         let param = ContactOrganiserRequestModel(name: name, email: email ,reason: selectedReason, message: message, organizerId: oranizerId)
         APIHandler.shared.executeRequestWith(apiName: .contactOrganizer, parameters: param, methodType: .POST, getURL: APIName.applyAccessCode.rawValue, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
@@ -61,6 +61,6 @@ extension ContactOrganiserViewModel{
                 }
             }
         }
-        
+
     }
 }

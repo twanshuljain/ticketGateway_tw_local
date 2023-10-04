@@ -15,8 +15,7 @@ class ManageEventTicketSoldVC: UIViewController {
     @IBOutlet weak var lblAddmissionSold: UILabel!
     @IBOutlet weak var lblAddmissionSoldTotalAvaiable: UILabel!
     @IBOutlet weak var navigationView: NavigationBarView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -38,13 +37,13 @@ extension ManageEventTicketSoldVC{
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
-        
+
         [self.lblAddmissionSoldTotalAvaiable,self.lblTotalTicketsSold].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
     }
-    
+
 }
 
 // MARK: - NavigationBarViewDelegate,UITextFieldDelegate

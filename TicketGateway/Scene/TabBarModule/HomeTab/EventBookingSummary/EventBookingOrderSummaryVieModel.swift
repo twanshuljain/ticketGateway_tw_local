@@ -21,6 +21,5 @@ final class EventBookingOrderSummaryVieModel{
 }
 
 extension EventBookingOrderSummaryVieModel{
-    
 
 }

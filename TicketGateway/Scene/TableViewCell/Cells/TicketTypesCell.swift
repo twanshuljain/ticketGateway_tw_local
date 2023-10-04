@@ -25,11 +25,11 @@ class TicketTypesCell: UITableViewCell {
         super.awakeFromNib()
         self.setUi()
     }
-    
+
     func setData(event :EventTicket?) {
         if let event = event{
             self.lblTittle.text = event.ticketName ?? ""
-            
+
           //  self.lblAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
             self.lblAmount.isHidden = true
             self.vwForGroup.isHidden = true
@@ -37,21 +37,21 @@ class TicketTypesCell: UITableViewCell {
              self.lblSecAmount.text = "\(event.ticketCurrencyType ?? "")"+"$"+"\(event.ticketPrice ?? 0)"
             //self.lblAmountWithAdditionCharge.text = "Incl. CAD$10.00 Facility Fee"
             self.lblAmountWithAdditionCharge.text = "(Incl. fees)"
-            
+
             if let endDate = event.ticketSaleEndDate {
                self.lblDiscripation.text = "Sales end \(String(describing: endDate.getDateFormattedFromTo()))"
             }
-           
+
             //IF ERROR COME IN ADD TO CART COMMENT THIS
             if let selectedTicket = event.selectedTicketQuantity{
                 self.vwStepper.lblCount.text = String(selectedTicket)
             } else {
                 self.vwStepper.lblCount.text = "0"
             }
-            
+
         }
     }
-    
+
     func setSelectedTicketData(selectedTicket:EventTicket?) {
         //IF ERROR COME IN ADD TO CART UNCOMMENT THIS
 //        if let selectedTicket = selectedTicket?.selectedTicketQuantity{
@@ -59,7 +59,6 @@ class TicketTypesCell: UITableViewCell {
 //        }
     }
 
-    
     func setUi() {
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblTittle.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -75,5 +74,5 @@ class TicketTypesCell: UITableViewCell {
         self.lblDiscripation.textColor = UIColor.setColor(colorType: .lblTextPara)
         vwDotted.createDottedLine(width: 1.5, color: UIColor.lightGray.cgColor, dashPattern: [1,4])
     }
-    
+
 }

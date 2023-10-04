@@ -8,10 +8,10 @@ import UIKit
 import iOSDropDown
 
 class EventBookingPaymentMethodVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var viewDatePicker: UIView!
-    @IBOutlet weak var picker_monthYear: UIPickerView!
+    @IBOutlet weak var pickerMonthYear: UIPickerView!
     @IBOutlet weak var vwWalletTop: UIView!
     @IBOutlet weak var vwCardTop: UIView!
     @IBOutlet weak var vwCard: UIView!
@@ -32,7 +32,7 @@ class EventBookingPaymentMethodVC: UIViewController {
     @IBOutlet weak var lblCardNumber: UILabel!
     @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var lblExpiry: UILabel!
-    @IBOutlet weak var lblCVC_CVV: UILabel!
+    @IBOutlet weak var lblCvcCvv: UILabel!
     @IBOutlet weak var txtCardNumber: UITextField!
     @IBOutlet weak var txtCardName: UITextField!
     @IBOutlet weak var txtZipcode: UITextField!
@@ -41,18 +41,17 @@ class EventBookingPaymentMethodVC: UIViewController {
     @IBOutlet weak var btnRightArrow: UIButton!
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
-    
+
     // MARK: - Variables
-    
+
     var viewModel = EventBookingPaymentMethodViewModel()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setUi()
     }
-  
+
 }
 
 // MARK: - Functions
@@ -65,8 +64,8 @@ extension EventBookingPaymentMethodVC {
         self.txtCardNumber.delegate = self
         self.txtExpiryDate.delegate = self
         self.txtCVV.delegate = self
-        self.picker_monthYear.delegate = self
-        self.picker_monthYear.dataSource = self
+        self.pickerMonthYear.delegate = self
+        self.pickerMonthYear.dataSource = self
         self.loadDefaultsParameters()
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
@@ -79,14 +78,13 @@ extension EventBookingPaymentMethodVC {
         }
         self.funcDefoultSet()
     }
-    
-    
+
     func setUi() {
-        [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCVC_CVV].forEach {
+        [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCvcCvv].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        
+
         [self.lblPayWithCard,lblPayWithDigitalWAllet].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -98,7 +96,7 @@ extension EventBookingPaymentMethodVC {
         self.lblAddAmount.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblAddAmount.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-    
+
     func funcDefoultSet() {
         self.vwBgCard.backgroundColor = .clear
         self.vwBgWallet.backgroundColor = .clear
@@ -114,8 +112,7 @@ extension EventBookingPaymentMethodVC {
         self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
       //  self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
         self.setGradientBackground(viewadd: UIView())
-        
-        
+
         self.lblTotalTicketPrice.text = "\(self.viewModel.selectedCurrencyType)\(self.viewModel.totalTicketPrice)"
 //        self.txtCardName.text = "Saurabh"
 //        self.txtCardNumber.text = "4242424242424242"
@@ -124,7 +121,7 @@ extension EventBookingPaymentMethodVC {
 //        self.viewModel.selectedMonth = "12"
 //        self.viewModel.selectedYear = "2025"
     }
-    
+
 }
 
 // MARK: - Actions
@@ -144,9 +141,9 @@ extension EventBookingPaymentMethodVC {
         }
     }
     func btnWalletAction() {
-        
+
         if self.vwBgWallet.backgroundColor == .clear {
-           
+
             self.setGradientBackground(viewadd: vwBgWallet)
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
@@ -163,7 +160,7 @@ extension EventBookingPaymentMethodVC {
             self.funcDefoultSet()
         }
     }
-    
+
     func btnCardAction() {
         self.vwBgWallet.backgroundColor = .clear
         if self.vwBgCard.backgroundColor == .clear {
@@ -184,7 +181,7 @@ extension EventBookingPaymentMethodVC {
             self.funcDefoultSet()
         }
     }
-    
+
    func btnContinueAction() {
        let validate = self.viewModel.checkValidations(vc: self)
        if validate{
@@ -193,47 +190,45 @@ extension EventBookingPaymentMethodVC {
 //       let view = self.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC
 //       self.navigationController?.pushViewController(view!, animated: true)
     }
-    
+
     func setGradientBackground( viewadd : UIView) {
             viewadd.layer.insertSublayer(viewModel.gradientLayer, at:0)
     }
-    
+
     @IBAction func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
-        self.picker_monthYear.reloadAllComponents()
+        self.pickerMonthYear.reloadAllComponents()
         var selectedMonth = 0
         var selectdYear = 0
         viewModel.selectedMonthName = ""
         viewModel.selectedyearName = ""
         if txtExpiryDate.text == ""
         {
-            
+
             let  strSelectedmonths = Calendar.current.component(.month, from: Date())
             let selectedMonthIndex = strSelectedmonths-1
             selectedMonth = selectedMonthIndex
             let strSelctedyears = Calendar.current.component(.year, from: Date())
             selectdYear = strSelctedyears
             self.viewModel.selectedMonthName = String(strSelectedmonths)
-            
+
             if  self.viewModel.selectedMonthName.count <= 1
             {
                 self.viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
             }
-            
+
             self.viewModel.selectedyearName = String(strSelctedyears)
             if (viewModel.selectedyearName.count ) > 2 {
                 let strLastTwoDigits: String! = (viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count) - 2)
                 viewModel.selectedyearName = "\(self.viewModel.selectedyearName)"
                 viewModel.selectedMonthName = "\(self.viewModel.selectedMonthName)"
             }
-        }
-        else
-        {
+        } else {
             let arr = txtExpiryDate.text?.components(separatedBy: "/")
             let strSelectedmonths = arr?[0] ?? ""
             let strSelctedyears = arr?[1] ?? ""
-            
+
             let selectedMonthIndex = Int(strSelectedmonths)! - 1
             selectedMonth = selectedMonthIndex
             selectdYear  = Int(strSelctedyears)!
@@ -245,24 +240,24 @@ extension EventBookingPaymentMethodVC {
                 viewModel.selectedyearName = "\(strSelctedyears)"
                 viewModel.selectedMonthName = "\(strSelectedmonths)"
             }
-            
+
         }
         print(selectedMonth,selectdYear)
-        self.picker_monthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
+        self.pickerMonthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
         var ind = 0
-        var i = 0
-        for obj in self.viewModel.years{
+        var index = 0
+        for obj in self.viewModel.years {
             let yer = String(selectdYear)
-            if obj as! String == yer{
-                ind = i
+            if obj as! String == yer {
+                ind = index
                 break
             }
-            i = i + 1
+            index += 1
         }
-        self.picker_monthYear.selectRow(ind, inComponent: 1, animated: false)
-        self.picker_monthYear.reloadAllComponents()
+        self.pickerMonthYear.selectRow(ind, inComponent: 1, animated: false)
+        self.pickerMonthYear.reloadAllComponents()
     }
-   
+
     @IBAction func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
@@ -278,17 +273,17 @@ extension EventBookingPaymentMethodVC {
             viewModel.selectedyearName = ""
         }
     }
-    
+
     @IBAction func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }
-    
+
     func btnRightArrowAction() {
         let vc = createView(storyboard: .wallet, storyboardID: .AddAmountWalletVC)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-   
+
 }
 
 // MARK: - UITextFieldDelegate
@@ -306,7 +301,7 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
         }
            return true
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.viewDatePicker.isHidden = true
     }
@@ -328,19 +323,19 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
         } else if textField == txtCardNumber{
             viewModel.previousTextFieldContent = textField.text;
             viewModel.previousSelection = textField.selectedTextRange;
-        
+
             let startingLength = textField.text?.count ?? 0
             let lengthToAdd = string.count
             let lengthToReplace =  range.length
             let newLength = startingLength + lengthToAdd - lengthToReplace
-            
+
             return newLength <= cardNumberLimit
         } else if textField == txtCardName{
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
             let maxLength = 30
-            
+
             return newString.length <= maxLength
         }
         else if textField == txtZipcode{
@@ -350,9 +345,7 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
             let maxLength = 30
             return newString.length <= maxLength
         }
-        
-        
-        
+
         else {
             return true
         }
@@ -360,15 +353,15 @@ extension EventBookingPaymentMethodVC : UITextFieldDelegate{
 }
 // MARK: - UIPickerViewDelegate,UIPickerViewDataSource
 extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSource{
-    
+
     // MARK:- Picker View Delegates
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         view.endEditing(true)
-        
+
         if component == viewModel.MONTH {
             return viewModel.months.count
         }
@@ -376,9 +369,9 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
             return viewModel.years.count
         }
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
+
         if component == viewModel.MONTH {
             let monthName: String = viewModel.months[row] as! String
             return monthName
@@ -389,12 +382,12 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
             return str
         }
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         view.endEditing(true)
-        
+
         if component == self.viewModel.MONTH {
-            
+
             let strCurrentYear = String(Calendar.current.component(.year, from: Date()))
             let strCurrentMonth = String(Calendar.current.component(.month, from: Date()))
              let str = viewModel.selectedyearName
@@ -403,32 +396,28 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
                 let strMonths = viewModel.months[row] as! String
                 if Int(strCurrentMonth) ?? 0 > Int(strMonths) ?? 0
                 {
-                    
-                    
+
                     let index = (Int(strCurrentMonth) ?? 0) - 1
-                    
-                    self.picker_monthYear.selectRow(index, inComponent: 0, animated: false)
-                    
+
+                    self.pickerMonthYear.selectRow(index, inComponent: 0, animated: false)
+
                     viewModel.selectedMonthName = strCurrentMonth
                     if viewModel.selectedMonthName.count <= 1
                     {
                         viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
                     }
-                    
-                    
-                    
+
                 }
                 else
                 {
                     viewModel.selectedMonthName = viewModel.months[row] as! String
-                    
+
                     if viewModel.selectedMonthName.count <= 1
                     {
                         viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
                     }
                 }
-                
-                
+
             } else
             {
                 viewModel.selectedMonthName = viewModel.months[row] as! String
@@ -437,19 +426,17 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
                     viewModel.selectedMonthName = "0" + viewModel.selectedMonthName
                 }
             }
-            
-            
+
         } else {
             let strCurrentYear = String(Calendar.current.component(.year, from: Date()))
             let strCurrentMonth = String(Calendar.current.component(.month, from: Date()))
-            
+
             let str = "\(viewModel.years[row])"
-            
-            
+
             if strCurrentYear == str
             {
                 let index = (Int(strCurrentMonth) ?? 0) - 1
-                self.picker_monthYear.selectRow(index, inComponent: 0, animated: false)
+                self.pickerMonthYear.selectRow(index, inComponent: 0, animated: false)
                 viewModel.selectedMonthName = strCurrentMonth
                 if viewModel.selectedMonthName.count <= 1
                 {
@@ -461,11 +448,11 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
                     let strLastTwoDigits: String! = (strCurrentYear as? NSString)?.substring(from: (strCurrentYear.count ) - 2)
                     viewModel.selectedyearName = "\(strCurrentYear)"
                 }
-                
+
             }
             else
             {
-                
+
                 let str = "\(viewModel.years[row])"
                 if (str.count ) > 2 {
                     let strLastTwoDigits: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
@@ -475,7 +462,7 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
             }
         }
     }
-    
+
     func loadDefaultsParameters() {
         let components: DateComponents? = Calendar.current.dateComponents([.day, .month, .year], from: Date())
         let year: Int? = components?.year
@@ -484,8 +471,8 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
         self.viewModel.rowHeight = 44
         self.viewModel.months = nameOfMonths()
         self.viewModel.years = nameOfYears()
-        picker_monthYear.delegate = self
-        picker_monthYear.dataSource = self
+        pickerMonthYear.delegate = self
+        pickerMonthYear.dataSource = self
         let str = "\(Int(year!))"
         if (str.count ) > 2 {
             let strLastTwoDigits: String = ((str as? NSString)?.substring(from: (str.count ) - 2))!
@@ -493,11 +480,11 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
         }
         viewModel.selectedMonthName = "01"
     }
-    
+
     func nameOfMonths() -> [Any] {
         return ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     }
-    
+
     func nameOfYears() -> [Any] {
         var years = [AnyHashable]()
         for year in viewModel.minYear...viewModel.maxYear {

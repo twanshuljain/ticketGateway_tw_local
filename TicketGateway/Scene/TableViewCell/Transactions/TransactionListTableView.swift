@@ -4,9 +4,7 @@
 //
 //  Created by Apple  on 08/05/23.
 
-
 import UIKit
-
 
 class ExpandableNames {
     var isExpanded : Bool
@@ -18,7 +16,7 @@ class ExpandableNames {
 }
 
 class TransactionListTableView: UITableView {
-    
+
 // MARK: - Variables
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""
@@ -28,9 +26,9 @@ class TransactionListTableView: UITableView {
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
-    
+
     ]
-    
+
     func configure() {
         self.register(UINib(nibName: "TransactionsListCell", bundle: nil), forCellReuseIdentifier: "TransactionsListCell")
         self.register(UINib(nibName: "TransactionDetailCell", bundle: nil), forCellReuseIdentifier: "TransactionDetailCell")
@@ -42,7 +40,7 @@ class TransactionListTableView: UITableView {
 // MARK: - TableView Delegate
 
 extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
-    
+
     func numberOfSections(in tableView: UITableView) -> Int{
         if isFrom == "MyWallet" {
             return 3 // number of section array count
@@ -50,7 +48,7 @@ extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
             return 4
         }
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFrom == "MyWallet"
         {
@@ -66,14 +64,14 @@ extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
                 return 0
             }
         }
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionDetailCell") as! TransactionDetailCell
          return cell
     }
-    
+
     //header for the category of allservices.
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableCell(withIdentifier: "TransactionsListCell") as! TransactionsListCell
@@ -90,7 +88,7 @@ extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
             headerView.lblStatus.isHidden = true
             headerView.lblAmount.isHidden = false
             headerView.vwCreditDebit.isHidden = false
-          
+
         } else {
             headerView.lblStatus.isHidden = false
             headerView.lblAmount.isHidden = true
@@ -98,29 +96,26 @@ extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
         }
         headerView.btnOpen.tag = section
         headerView.btnOpen.addTarget(self, action: #selector(nextBtn(sender:)), for: .touchUpInside)
-       
+
        return headerView
     }
-    
+
      func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         50
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
       }
-    
-   
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-     
+
     }
-    
+
     @objc func nextBtn(sender: UIButton) {
         var  obj = arrData[sender.tag]
         print(arrData[sender.tag])
@@ -133,5 +128,5 @@ extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
         print("value",arrData)
         self.reloadData()
     }
-    
+
 }

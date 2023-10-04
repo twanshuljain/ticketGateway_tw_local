@@ -23,7 +23,7 @@ class ManageEventOrderVC: UIViewController {
     @IBOutlet weak var btnScan: UIButton!
     // MARK: - Variables
     var viewModel = ManageEventOrderViewModel()
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()

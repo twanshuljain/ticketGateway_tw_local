@@ -9,8 +9,6 @@
 //
 //   var welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
 
-
-
 import Foundation
 
 enum FollowUnfollow:String{
@@ -71,7 +69,6 @@ struct EventDetail: Codable {
         case isMultiLocation = "is_multi_location"
     }
 }
-
 
 // MARK: - EventEventType
 struct EventEventType: Codable {
@@ -274,7 +271,6 @@ struct PaymentMode: Codable {
         case isPerTicket = "is_per_ticket"
     }
 }
-
 
 // MARK: - MultiLocation
 struct MultiLocation: Codable {

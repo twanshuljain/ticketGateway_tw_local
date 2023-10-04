@@ -23,7 +23,7 @@ final class EventPromoCodeViewModel{
 }
 
 extension EventPromoCodeViewModel{
-    
+
     func applyPromoCode(promoCode:String,complition: @escaping (Bool,String) -> Void ) {
         //let prmoCode = "1234"
         let param = EventPromoCodeRequestModel(eventId: eventId, promoCode: promoCode)

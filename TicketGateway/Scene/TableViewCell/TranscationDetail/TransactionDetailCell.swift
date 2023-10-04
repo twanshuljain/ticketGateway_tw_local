@@ -16,9 +16,9 @@ class TransactionDetailCell: UITableViewCell {
     @IBOutlet weak var lblTicketIDValue: UILabel!
     @IBOutlet weak var lblTicketNameValue: UILabel!
     @IBOutlet weak var lblDateValue: UILabel!
-   
+
     @IBOutlet weak var vwBorder: UIView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
@@ -36,7 +36,7 @@ class TransactionDetailCell: UITableViewCell {
         self.lblTicketID.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblTicketName.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblTicketName.textColor = UIColor.setColor(colorType: .tgGrey)
-        
+
         self.lblTicketIDValue.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblTicketIDValue.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblTicketNameValue.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -44,5 +44,5 @@ class TransactionDetailCell: UITableViewCell {
         self.lblDateValue.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblDateValue.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-    
+
 }

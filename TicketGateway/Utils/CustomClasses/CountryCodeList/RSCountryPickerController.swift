@@ -4,7 +4,6 @@
 //
 //  Created by Apple  on 18/04/23.
 
-
 import UIKit
 
 import UIKit
@@ -53,8 +52,7 @@ class RSCountryPickerController: UIViewController,UITextFieldDelegate {
         navigationView.btnBack.isHidden = false
         navigationView.delegateBarAction = self
     }
-    
-   
+
 }
 
 // MARK:- Searching
@@ -63,12 +61,12 @@ extension RSCountryPickerController{
         self.RScountriesFiltered.removeAll()
         if !(textfield.text?.isEmpty ?? false) {
             for dicData in self.RScountriesModel {
-                
+
                 let prefix = Int(textfield.text!.count) // Hello
                 let isMachingWorker : NSString = (dicData.countryName) as? NSString ?? ""
-                
+
                 let range = isMachingWorker.lowercased.prefix(prefix).range(of: textfield.text!, options: String.CompareOptions.caseInsensitive, range: nil, locale: nil)
-                
+
                 if range != nil {
                     RScountriesFiltered.append(dicData)
                 }
@@ -82,7 +80,7 @@ extension RSCountryPickerController{
 
 //Functions
 extension RSCountryPickerController{
-   
+
     func collectCountries() {
         for country in countries  {
             let code = country["code"] ?? ""
@@ -93,9 +91,7 @@ extension RSCountryPickerController{
                                                 countryName: name))
         }
     }
-    
-    
-    
+
     func checkSearchBarActive() -> Bool {
         if tfSearchBar.text != "" {
             return true
@@ -103,7 +99,7 @@ extension RSCountryPickerController{
             return false
         }
     }
-    
+
 //--------------------------XXXX--------------------------
     class func getDialCode(countryCode: String) -> String? {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
@@ -117,13 +113,12 @@ extension RSCountryPickerController{
                 }
             }
             return nil
-        }catch{
+        }catch {
             print("not able to parse")
             return nil
         }
     }
-    
-    
+
     class func getCountryCode(dialCode: String) -> String {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
         do {
@@ -136,13 +131,12 @@ extension RSCountryPickerController{
                 }
             }
             return nil ?? ""
-        }catch{
+        }catch {
             print("not able to parse")
             return nil ?? ""
         }
     }
-    
-    
+
     class func getCountryName(countryCode: String) -> String? {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
         do {
@@ -155,12 +149,12 @@ extension RSCountryPickerController{
                 }
             }
             return nil
-        }catch{
+        }catch {
             print("not able to parse")
             return nil
         }
     }
-    
+
     class func getCountryInfo(countryCode: String) -> CountryInfo? {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
         do {
@@ -173,12 +167,12 @@ extension RSCountryPickerController{
                 }
             }
             return nil
-        }catch{
+        }catch {
             print("not able to parse")
             return nil
         }
     }
-    
+
     class func getCountryInfo(dialCode: String) -> CountryInfo? {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
         do {
@@ -191,7 +185,7 @@ extension RSCountryPickerController{
                 }
             }
             return nil
-        }catch{
+        }catch {
             print("not able to parse")
             return nil
         }
@@ -201,18 +195,18 @@ extension RSCountryPickerController{
 
 // MARK:- TableVies Delegate
 extension RSCountryPickerController: UITableViewDelegate{
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! RSCountryTableViewCell
         //03/05/2022
        // cell.imgRadioCheck.image = #imageLiteral(resourceName: "caret-down")
         if checkSearchBarActive() {
             RScountryDelegate.RScountrySelected(countrySelected: RScountriesFiltered[indexPath.row])
-        
+
         } else {
             RScountryDelegate.RScountrySelected(countrySelected: RScountriesModel[indexPath.row])
         }
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.dismiss(animated: true, completion: nil)
         }
@@ -221,18 +215,18 @@ extension RSCountryPickerController: UITableViewDelegate{
 
 // MARK:- TableVies Datasource
 extension RSCountryPickerController: UITableViewDataSource{
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if checkSearchBarActive() {
             return RScountriesFiltered.count
         }
         return countries.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RSCountryTableViewCell")as! RSCountryTableViewCell
         // RScountryDelegate = self as? RSCountrySelectedDelegate
-        
+
         let contry: CountryInfo
         if checkSearchBarActive() {
             contry = RScountriesFiltered[indexPath.row]
@@ -244,20 +238,18 @@ extension RSCountryPickerController: UITableViewDataSource{
         let imagestring = contry.countryCode
         let imagePath = "CountryPicker.bundle/\(imagestring).png"
         cell.imgCountryFlag.image = UIImage(named: imagePath)
-        
+
         if strCheckCountry == contry.countryName
         {
             //03/5/2022
           //  cell.imgRadioCheck.image = #imageLiteral(resourceName: "Radio_button_activ")
-            
+
         } else {
           //  cell.imgRadioCheck.image = #imageLiteral(resourceName: "Radio_button_inactiv")
         }
         return cell
     }
-    
-    
-  
+
 }
 
 // MARK: -  NavigationBarViewDelegate

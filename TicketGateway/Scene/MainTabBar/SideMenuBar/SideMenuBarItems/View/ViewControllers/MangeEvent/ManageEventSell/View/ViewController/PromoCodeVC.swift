@@ -24,7 +24,7 @@ class PromoCodeVC: UIViewController {
         self.setUp()
         // Do any additional setup after loading the view.
     }
-    
+
     func setUp() {
         self.btnApply.setTitles(text: "Apply", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
         self.navigationView.lblTitle.text = "Promo code"
@@ -59,7 +59,7 @@ extension PromoCodeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PromoCodeCell") as! PromoCodeCell
          return cell
@@ -67,21 +67,21 @@ extension PromoCodeVC: UITableViewDelegate, UITableViewDataSource {
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          let cell = tableView.dequeueReusableCell(withIdentifier: "TicketOverAllEstimateBarCell") as! TicketOverAllEstimateBarCell
-       
+
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-    
+
     @objc func buttonPressed(_ sender: UIButton) {
-        
+
     }
-    
+
 }
 
 extension PromoCodeVC : UITextFieldDelegate {
-  
+
 }
 extension PromoCodeVC : NavigationBarViewDelegate {
   func navigationBackAction() {
@@ -90,9 +90,9 @@ extension PromoCodeVC : NavigationBarViewDelegate {
 }
 extension PromoCodeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-       
+
     }
-    
+
     func RightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         self.navigationController?.pushViewController(view!, animated: true)

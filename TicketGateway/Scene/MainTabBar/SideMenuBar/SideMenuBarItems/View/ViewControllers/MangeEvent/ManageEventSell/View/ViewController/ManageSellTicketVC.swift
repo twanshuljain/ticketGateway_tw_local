@@ -16,7 +16,7 @@ import UIKit
 import SideMenu
 
 class ManageSellTicketVC: UIViewController {
-    
+
     @IBOutlet weak var vwMore: UIView!
     @IBOutlet weak var lblDiscripation: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
@@ -32,20 +32,20 @@ class ManageSellTicketVC: UIViewController {
     @IBOutlet weak var btnAddCustomerInfo: CustomButtonNormal!
     @IBOutlet weak var btnComplimentary: CustomButtonNormal!
     @IBOutlet weak var btnCancel: CustomButtonNormal!
-    
+
     @IBOutlet weak var btnmenu: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
         // Do any additional setup after loading the view.
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.vwMore.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
     }
-    
+
     func setUp(){
         self.vwMore.isHidden = true
         self.tblEventTicketTypes.isFromSellTab = true
@@ -101,8 +101,7 @@ extension ManageSellTicketVC {
             break
         }
     }
-    
-    
+
     func btnCancelAction() {
         self.vwMore.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
@@ -111,49 +110,47 @@ extension ManageSellTicketVC {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketComplimentary) as? ManageSellTicketComplimentary
         self.navigationController?.pushViewController(view!, animated: false)
     }
-    
+
     func btnAddCustomerInfoAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellBuyersInfoListVC) as? ManageSellBuyersInfoListVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
-    
+
     func btnPromoCodeAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .PromoCodeVC) as? PromoCodeVC
         self.navigationController?.pushViewController(view!, animated: false)
     }
-    
+
     func btnViewCartAction() {
-        
+
     }
-    
-    
+
     func btnCardAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .AddCardVC) as? AddCardVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
-    
+
     func btnCashAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
         self.navigationController?.pushViewController(view!, animated: true)
-        
+
     }
-    
+
     func btnBuyAction() {
         self.vwBuy.isHidden = true
         self.vwPaymentType.isHidden = false
     }
-    
+
     func btnMenuAction() {
         self.vwMore.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
     }
 }
 
-
 extension ManageSellTicketVC : NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-        
+
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
     }

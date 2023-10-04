@@ -19,9 +19,7 @@ import UIKit
 class SideMenuList: UITableView {
     var isFromManageEventProfile = false
     var menu: [SideMenuModel]  = [SideMenuModel]()
-    
-    
-   
+
     var tableDidSelectAtIndex: ((SideMenuModel) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
@@ -33,9 +31,9 @@ class SideMenuList: UITableView {
             menu  = [
                 SideMenuModel(icon: UIImage(named: "list")!, title: "Guest List", titleDis: ""),
                 SideMenuModel(icon: UIImage(named: "settings")!, title: "Event Setting", titleDis: ""),
-           
+
             ]
-            
+
         } else {
             menu  = [
                 SideMenuModel(icon: UIImage(named: "allevent")!, title: "All Events", titleDis: ""),
@@ -69,8 +67,7 @@ extension SideMenuList: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuCell") as! SideMenuCell
         cell.imgSideMenuCategory.image = self.menu[indexPath.row].icon
         cell.lblTittle.text = self.menu[indexPath.row].title
-        
-              
+
         if menu.count-1 == indexPath.row
         {
             cell.lblDiscripation.isHidden = false
@@ -84,13 +81,8 @@ extension SideMenuList: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuCell") as! SideMenuCell
-        
-         
+
         self.tableDidSelectAtIndex!(menu[indexPath.row])
         }
-    
 
 }
-
-
-

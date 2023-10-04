@@ -15,9 +15,9 @@ class TransactionsListCell: UITableViewCell {
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var vwBorder: UIView!
-    
+
     @IBOutlet weak var lblStatus: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
@@ -33,5 +33,5 @@ class TransactionsListCell: UITableViewCell {
         self.lblAmount.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblAmount.textColor = UIColor.setColor(colorType: .tgBlack)
     }
-    
+
 }

@@ -7,7 +7,7 @@
 import UIKit
 
 class ManageMyEventListTableView: UITableView {
-    
+
 // MARK: - Varibales
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var selectedDevice = ""

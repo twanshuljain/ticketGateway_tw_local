@@ -13,7 +13,7 @@ class AddOnAddInOrderTableViewList: UITableView {
     var lblNumberOfCount = 0
     var isFromDeselected = false
     var selectedCurrencyType = ""
-    
+
     func configure() {
         self.register(UINib(nibName: "AddOnAddInOrderCell", bundle: nil), forCellReuseIdentifier: "AddOnAddInOrderCell")
         self.delegate = self
@@ -28,7 +28,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedAddOnList.count
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 20))
         let label = UILabel()
@@ -39,11 +39,11 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
         label.text = "Add ons"
         return headerView
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 25
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as? AddOnAddInOrderCell{
             cell.setData(addOnData: self.selectedAddOnList[indexPath.row], selectedCurrencyType: selectedCurrencyType)
@@ -55,7 +55,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
             return cell
         }
         return UITableViewCell()
-        
+
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as? TicketTypesCell{
@@ -67,7 +67,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
         print("in \(indexPath.row)")
     }
     @objc func buttonPressed(_ sender: UIButton) {
-        
+
     }
     @objc func plusButtonPressed(_ sender: UIButton) {
         print(sender.tag)

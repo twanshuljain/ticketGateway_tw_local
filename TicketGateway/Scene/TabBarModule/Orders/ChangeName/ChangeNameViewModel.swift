@@ -25,7 +25,7 @@ extension ChangeNameViewModel{
        }
         return("", true)
     }
-    
+
     func changeTicketName(complition: @escaping (Bool,String) -> Void ) {
         var getURL = APIName.changeTicketName.rawValue + "\(self.selectedTicket?.ticketOrderID ?? 0)/"
         let param = ChangeNameRequestModel(ticketId: selectedTicket?.ticketOrderID ?? 0, firstName: firstName, lastName: lastName, ticketOrderId: selectedTicket?.ticketOrderID ?? 0)

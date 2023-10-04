@@ -4,7 +4,6 @@
 //
 //  Created by Apple on 04/07/23.
 
-
 import UIKit
 import SVProgressHUD
 enum UserType {
@@ -32,14 +31,14 @@ class PhoneVerificationViewController: UIViewController {
     @IBOutlet weak var vwEmail:UIView!
     @IBOutlet weak var vwEmaiLabel:UIView!
     @IBOutlet weak var txtEmail:UITextField!
-    
+
     // MARK: - Variable
     var signInViewModel = SignInViewModel()
     var viewModel = PhoneVerifyViewModel()
     var userType: UserType  = .existing
     var isChangeMobileNumberTap = false
     var isComingFrom: IsComingFrom  = .login
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -62,7 +61,7 @@ extension PhoneVerificationViewController {
         self.vwNumber.layer.borderWidth = 0.5
         self.vwNumber.layer.borderColor = UIColor.lightGray.cgColor
         self.txtNumber.text = ""
-        
+
         self.vwEmail.layer.cornerRadius = 5
         self.vwEmail.layer.borderWidth = 0.5
         self.vwEmail.layer.borderColor = UIColor.lightGray.cgColor
@@ -111,7 +110,7 @@ extension PhoneVerificationViewController {
                                     strDialCountryCode: "\(lblDialCountryCode.text ?? "")"
                                 )
                                 UserDefaultManager.share.storeModelToUserDefault(userData: objUserModel, key: .userAuthData)
-                                
+
                                 if let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
                                     let obj = DataHoldOnSignUpProcessModel.init(
                                         strEmail: "", strNumber: self.txtNumber.text ?? "", strStatus: "",
@@ -171,7 +170,7 @@ extension PhoneVerificationViewController {
         //            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
         //        }
     }
-    
+
     @IBAction func btnChangeNumberAction(_ sender:UIButton) {
         self.btnChangeNumber.isHidden = true
         self.isChangeMobileNumberTap = true
@@ -223,11 +222,11 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
         if self.imgCountry.image == nil {
             var str = ""
             var arr = signInViewModel.RScountriesModel.filter({$0.dialCode == str})
-            
+
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = signInViewModel.RScountriesModel.filter({$0.dialCode == str})
-                
+
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = signInViewModel.RScountriesModel.filter({$0.countryCode == str})
@@ -236,16 +235,16 @@ extension PhoneVerificationViewController: RSCountrySelectedDelegate {
                 str = NSLocale.current.regionCode ?? ""
                 arr = signInViewModel.RScountriesModel.filter({$0.countryCode == str})
             }
-           
+
             self.lblDialCountryCode.text = "+91"
             var imagePath = "CountryPicker.bundle/\(str).png"
-            
+
             if arr.count == 2{
                 arr.removeAll { country in
                     country.countryCode != (NSLocale.current.regionCode ?? "")
                 }
             }
-            
+
             if let flagImg = UIImage(named: imagePath) {
                 self.imgCountry.image = flagImg
             } else {
@@ -298,7 +297,7 @@ extension PhoneVerificationViewController: UITextFieldDelegate {
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let charsLimit = 12
-        
+
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         if textField == txtNumber {
             signInViewModel.number = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
@@ -306,7 +305,7 @@ extension PhoneVerificationViewController: UITextFieldDelegate {
             let lengthToAdd = string.count
             let lengthToReplace =  range.length
             let newLength = startingLength + lengthToAdd - lengthToReplace
-            
+
             return newLength <= charsLimit
         }
         return true

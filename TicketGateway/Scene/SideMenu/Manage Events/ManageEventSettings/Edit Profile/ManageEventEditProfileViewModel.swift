@@ -8,7 +8,7 @@
 import Foundation
 
 final class ManageEventEditProfileViewModel{
-    
+
     // MARK: - Variable
     var isFromWelcomeScreen = false
     var strCountryDialCode: String = "+91"

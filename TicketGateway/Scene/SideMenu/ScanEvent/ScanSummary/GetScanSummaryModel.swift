@@ -41,7 +41,7 @@ struct GetScanSummaryData : Codable {
     let page : Int?
     let size : Int?
     let pages : String?
-    
+
     enum CodingKeys: String, CodingKey {
         case items = "items"
         case total = "total"

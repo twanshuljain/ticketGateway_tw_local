@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIButton {
 
     private class Action {
@@ -27,11 +26,9 @@ extension UIButton {
         get { return objc_getAssociatedObject(self, &AssociatedKeys.ActionTapped) as? Action }
     }
 
-
     @objc dynamic private func handleAction(_ recognizer: UIButton) {
         tapAction?.action(recognizer)
     }
-
 
     func mk_addTapHandler(action: @escaping (UIButton) -> Void) {
         self.addTarget(self, action: #selector(handleAction(_:)), for: .touchUpInside)

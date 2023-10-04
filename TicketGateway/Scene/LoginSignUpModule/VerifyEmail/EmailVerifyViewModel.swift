@@ -6,7 +6,6 @@
 // swiftlint: disable line_length
 // swiftlint: disable force_cast
 
-
 import Foundation
 import UIKit
 

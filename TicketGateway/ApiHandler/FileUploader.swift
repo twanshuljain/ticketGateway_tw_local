@@ -29,16 +29,16 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
         var urlRequest = URLRequest(url: requestURL)
         urlRequest.httpMethod = MethodType.POST.rawValue
-        
+
         urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         if let token = UserDefaults.standard.token {
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         }
-        
+
         let data = self.createDataBody(withParameters: parameters, media: fileData, boundary: self.boundary, keyForImage: keyForFile, imageName: imageName, mimeType: mimeType)
-        
+
         session.uploadTask(with: urlRequest, from: data) { (tmpdata, response, error) in
-            
+
             var httpStatusCode = 0
             if let httpResponse = response as? HTTPURLResponse {
                 httpStatusCode = httpResponse.statusCode
@@ -58,24 +58,23 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
                         // convert response into json
                         let json = try JSONSerialization.jsonObject(with: tmpdata!, options: []) as! NSDictionary
                         onFailure(httpStatusCode, json)
-                        
+
                     } catch {
                         let tmpResponse = ["message": "Unable to get json."] as NSDictionary
                         onFailure(httpStatusCode, tmpResponse)
                     }
                 }
             }
-            
+
         }.resume()
-        
+
     }
-   
-   
+
     private func createDataBody(withParameters params: [String:Any]?, media: Data?, boundary: String, keyForImage:String, imageName:String, mimeType: MimeType) -> Data {
-        
+
         let lineBreak = "\r\n"
         var body = Data()
-        
+
         if let parameters = params {
             for (key, value) in parameters {
                 body.append("--\(boundary + lineBreak)")

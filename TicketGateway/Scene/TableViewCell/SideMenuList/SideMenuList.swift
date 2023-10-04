@@ -1,9 +1,8 @@
 
-
 import UIKit
 
 class SideMenuList: UITableView {
-    
+
 // MARK: - VARIABLES
     var isFromManageEventProfile = false
     var isFromManageEvent = false
@@ -20,27 +19,24 @@ class SideMenuList: UITableView {
         self.isFromSkip = UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)
         if isFromSkip {
             menu = [
-                
+
                 SideMenuModel(icon: UIImage(named: "scan")!, title: "Scan Events", titleDis: ""),
                 SideMenuModel(icon: UIImage(named: "allevent")!, title: "All Events", titleDis: ""),
                 SideMenuModel(icon: UIImage(named: "costume")!, title: "Costumes", titleDis: ""),
-                
-                
+
                 SideMenuModel(icon: UIImage(named: "notification")!, title: "Notifications", titleDis: ""),
-                
+
                 SideMenuModel(icon: UIImage(named: "music")!, title: "Artists", titleDis: ""),
                 SideMenuModel(icon: UIImage(named: "organizer")!, title: "Organizers", titleDis: ""),
                 SideMenuModel(icon: UIImage(named: "venue")!, title: "Venue", titleDis: ""),
-                
-                
+
                 SideMenuModel(icon: UIImage(named: "devicesetting")!, title: "Device Settings", titleDis: ""),
-                
+
                 SideMenuModel(icon: UIImage(named: "faq")!, title: "FAQs", titleDis: "")]
-                
-            
+
         } else {
             if isFromManageEvent == true{
-            
+
             if self.isFromManageEventProfile == false
             {
                 menu = [
@@ -62,7 +58,7 @@ class SideMenuList: UITableView {
                     SideMenuModel(icon: UIImage(named: "message-square")!, title: "Feedback", titleDis: ""),
                     SideMenuModel(icon: UIImage(named: "faq")!, title: "FAQs", titleDis: ""),
                     SideMenuModel(icon: UIImage(named: "log-out")!, title: "Log Out", titleDis: "Log out from TicketGateway")]
-                
+
             }
             //        else {
             //            menu = [
@@ -72,7 +68,7 @@ class SideMenuList: UITableView {
             //        }
         } else {
             menu = [
-                
+
                 SideMenuModel(icon: UIImage(named: "allevent")!, title: "All Events", titleDis: ""),
                 SideMenuModel(icon: UIImage(named: "costume")!, title: "Costumes", titleDis: ""),
                 SideMenuModel(icon: UIImage(named: "heart")!, title: "My Favorites", titleDis: ""),

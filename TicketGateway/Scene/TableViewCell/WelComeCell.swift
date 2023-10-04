@@ -8,15 +8,14 @@
 import UIKit
 
 class WelComeCell: UICollectionViewCell {
-    
+
 // MARK: - OUTLETS
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var imgAdvertisement: UIImageView!
     @IBOutlet var imgPageControl: UIImageView!
     @IBOutlet weak var imgBg: UIImageView!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         imgBg.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +23,6 @@ class WelComeCell: UICollectionViewCell {
         imgBg.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         imgBg.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         imgBg.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
+
     }
 }

@@ -13,9 +13,8 @@
 
 import Foundation
 
-
 final class EventDetailViewModel{
-    
+
     // MARK: - Variables
     var eventDetail: EventDetail?
     var eventId:Int?
@@ -26,14 +25,13 @@ final class EventDetailViewModel{
     var isLiked: Bool = false
     var isLikedAnyEvent: Bool = false
     var isFromPast = false
-    var multilocation:[MultiLocation]?
-    var recurringList:[RecurringList]?
+    var multilocation: [MultiLocation]?
+    var recurringList: [RecurringList]?
     var dispatchGroup1 = DispatchGroup()
     var dispatchGroup2 = DispatchGroup()
     var selectedEventLocationId : Int?
     var dateLocationSelected = false
 }
-
 
 extension EventDetailViewModel{
     func getEventDetailApi(complition: @escaping (Bool,String) -> Void ) {
@@ -57,7 +55,7 @@ extension EventDetailViewModel{
             }
         }
     }
-    
+
     func getEventSuggestedCategory(categoryId:Int?, complition: @escaping (Bool,String) -> Void ) {
         let parameters = GetEventRequest(limit: "3", page: "1")
         if let suggestedEventCategoryId = categoryId{
@@ -79,7 +77,7 @@ extension EventDetailViewModel{
             }
         }
     }
-    
+
     func GetMultiLocationList(complition: @escaping (Bool,String) -> Void ) {
         let url = APIName.getMultiLocationList.rawValue + "\(eventId ?? 0)"  + "/"
         APIHandler.shared.executeRequestWith(apiName: .getMultiLocationList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[MultiLocation]>, Error>) in
@@ -99,7 +97,7 @@ extension EventDetailViewModel{
             }
         }
     }
-    
+
     func GetRecurringList(complition: @escaping (Bool,String) -> Void ) {
         let url = APIName.getRecurringList.rawValue + "\(eventId ?? 0)"  + "/"
         APIHandler.shared.executeRequestWith(apiName: .getRecurringList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[RecurringList]>, Error>) in

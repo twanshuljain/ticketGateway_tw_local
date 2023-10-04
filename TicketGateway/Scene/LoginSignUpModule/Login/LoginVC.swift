@@ -49,8 +49,7 @@ class LoginVC: UIViewController{
     let viewModelSocialSignIN = SocialSignInVC()
     var profileViewModel: ManageEventProfileViewModel = ManageEventProfileViewModel()
     var isComingFrom: IsComingFrom  = .login
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = SignInViewModel(loginVC: self)
@@ -72,8 +71,7 @@ extension LoginVC {
         self.lblMobileNumber.text = MOBILE_NUMBER
         self.lblPleaseEnterMobileNumber.text = PLEASE_ENTER_YOUR_MOBILE_NUMBER_DDESCRIPTION
         self.lblDontHaveAnAccount.text = DONT_HAVE_AN_ACCOUNT
-        
-        
+
     }
     private func setup() {
         self.viewModel.countries = self.jsonSerial()
@@ -116,7 +114,7 @@ extension LoginVC {
             self.viewModel.isForEmail = false
         }
     }
-    
+
     // Get User Profile API Calling
     func getUserProfileData() {
         if Reachability.isConnectedToNetwork() {
@@ -301,12 +299,11 @@ extension LoginVC: RSCountrySelectedDelegate {
         if self.imgCountry.image == nil {
             var str = ""
             var arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-            
+
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-                
-                
+
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
@@ -315,12 +312,12 @@ extension LoginVC: RSCountrySelectedDelegate {
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
             }
-            
+
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
      //       let arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
-            
+
             if !arr.isEmpty {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dialCode
@@ -356,7 +353,7 @@ extension LoginVC: RSCountrySelectedDelegate {
 }
 // MARK: -
 extension LoginVC {
-    
+
     @objc func textFieldErrorMsg(_ sender: UITextField) {
         switch sender {
         case txtEmail:
@@ -368,10 +365,9 @@ extension LoginVC {
         default:
             break
         }
-     
+
     }
-    
-    
+
     func emailError() {
         if txtEmail.text == "" {
             txtEmail.infoTextColor = .red
@@ -381,8 +377,7 @@ extension LoginVC {
             txtEmail.infoTextColor = .clear
         }
     }
-   
-    
+
     func passwordError() {
         if txtPassword.text == "" {
             txtPassword.infoTextColor = .red
@@ -392,7 +387,7 @@ extension LoginVC {
             txtPassword.infoTextColor = .clear
         }
     }
-  
+
     func numberError() {
         if txtNumber.text == "" {
             txtNumber.infoTextColor = .clear
@@ -402,5 +397,5 @@ extension LoginVC {
             txtNumber.infoTextColor = .clear
         }
     }
-  
+
 }

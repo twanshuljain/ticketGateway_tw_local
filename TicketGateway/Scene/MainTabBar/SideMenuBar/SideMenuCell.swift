@@ -8,7 +8,7 @@
 import UIKit
 
 class SideMenuCell: UITableViewCell {
-    
+
     @IBOutlet weak var vwBg: UIView!
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var lblDiscripation: UILabel!
@@ -33,4 +33,3 @@ class SideMenuCell: UITableViewCell {
         self.lblDiscripation.textColor = UIColor.setColor(colorType: .Headinglbl)
   }
 }
-

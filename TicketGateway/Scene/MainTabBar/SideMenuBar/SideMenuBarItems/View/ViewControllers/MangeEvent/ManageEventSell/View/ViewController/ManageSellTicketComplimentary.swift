@@ -9,21 +9,19 @@ import UIKit
 import SideMenu
 
 class ManageSellTicketComplimentary: UIViewController {
-    
+
     @IBOutlet weak var vwMore: UIView!
     @IBOutlet weak var vwBuy: UIView!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblEventTicketTypes: ManageEventSellTicketTableViewList!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
-   
-    
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
         // Do any additional setup after loading the view.
     }
-    
+
     func setUp(){
         self.vwMore.isHidden = true
         self.tblEventTicketTypes.isFromSellTab = false
@@ -40,7 +38,7 @@ class ManageSellTicketComplimentary: UIViewController {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.btnContinue.setTitles(text: "Continue", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
-       
+
       }
 }
 
@@ -49,12 +47,12 @@ extension ManageSellTicketComplimentary {
         switch sender {
         case  btnContinue:
             self.btnContinueAction()
-        
+
         default:
             break
         }
     }
- 
+
     func btnContinueAction(){
         DispatchQueue.main.async {
             self.showToast(message: "Complimentary applied successfully")
@@ -63,14 +61,12 @@ extension ManageSellTicketComplimentary {
             self.navigationController?.popViewController(animated: false)
         }
     }
-    
 
 }
 
-
 extension ManageSellTicketComplimentary : NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {
-        
+
         self.navigationController?.popViewController(animated: false)
     }
 }

@@ -4,21 +4,19 @@
 //
 //  Created by Apple on 08/06/23.
 
-
 import UIKit
 import SideMenu
 
 class MyFollowersVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var tblMyFollowerTableView: UITableView!
     @IBOutlet weak var lblTotalFollowers: UILabel!
-    
+
     // MARK: - Variables
     let arrData = ["profile", "profile", "profile", "profile", "profile", "profile", "profile", "profile", "profile", "profile", "profile", "profile", "profile", "profile"]
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
@@ -38,12 +36,12 @@ extension MyFollowersVC{
         self.vwNavigationView.delegateBarAction = self
         // self.vwNavigationView.vwBorder.isHidden = false
     }
-    
+
     func setTableView() {
         self.tblMyFollowerTableView.delegate = self
         self.tblMyFollowerTableView.dataSource = self
     }
-    
+
     func setFont() {
         self.lblTotalFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblTotalFollowers.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -55,7 +53,7 @@ extension MyFollowersVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyFollowerTableViewCell", for: indexPath) as! MyFollowerTableViewCell
         return cell
@@ -69,4 +67,3 @@ extension MyFollowersVC : NavigationBarViewDelegate {
         present(menu, animated: true, completion: nil)
     }
 }
-

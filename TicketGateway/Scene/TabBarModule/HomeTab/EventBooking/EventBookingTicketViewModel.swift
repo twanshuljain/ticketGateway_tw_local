@@ -5,9 +5,7 @@
 //  Created by Apple on 14/07/23.
 //
 
-
 import Foundation
-
 
 final class EventBookingTicketViewModel{
     // MARK: - Variables
@@ -19,7 +17,7 @@ final class EventBookingTicketViewModel{
     var selectedArrTicketList = [EventTicket]()
     var feeStructure:FeeStructure?
     var dispatchGroup:DispatchGroup = DispatchGroup()
-    
+
 }
 // MARK: - Functions
 extension EventBookingTicketViewModel{
@@ -47,7 +45,7 @@ extension EventBookingTicketViewModel{
             }
         }
     }
-    
+
     func getEventTicketFeeStructure(complition: @escaping (Bool,String) -> Void ) {
         guard let eventId = self.eventDetail?.event?.id else {return}
         var getURL = APIName.getFeeStructure.rawValue + "\(eventId)" + "/"

@@ -35,27 +35,27 @@ public enum APIName: String {
     case getEventSuggestedCategoryList = "events/suggestion/" //"events/category/"
     case getOrganizersList = "organizer/featured-organizer/list/"
     case organizerSuggestedList = "organizer/suggested/list/"
-    
+
     case getEventSearchByCategory = "events/event/search/category/"
     case getEventSearch = "events/event/search/category/?"
-    
+
     case getTicketList = "events/show-ticket/"
     case getAddOnList = "events/ticket-add-on-list/"
-    
+
     case getFeeStructure = "default/data/fee/structure/get/"
     case favoriteEvents = "events/like/unlike/"
     case followUnfollow = "organizer/follow-unfollow/"
-    
+
     //STRIPE
     case createStripeCustomer = "payment/stripe/create-customer/"
     case addCardForUser = "payment/add-card/"
     case createCheckout = "payment/checkout/"
     case createCharge = "payment/stripe/create-charge/"
     case checkoutValidateUser = "payment/validate/checkout-user/"
-    
+
     case applyAccessCode = "ticket/apply/access-code/"
     case applyPromoCode = "ticket/apply/promo-code/"
-    
+
     // Orders
     case myOrders = "events/my/order/"
     // Get Favourite List
@@ -67,11 +67,11 @@ public enum APIName: String {
     case getMyTicketList = "ticket/my-ticket/list/"
     case transferTicket = "ticket/transfer/"
     case resendTicketTransfer = "ticket/re-transfer/details/"
-    
+
     // Profile Tab
     case getUserProfileData = "auth/me/"
     case updateUserProfileData = "auth/user/update/profile/"
-    
+
     // Scan Ticket
     case scanTicket = "tgscan/login/"
     case scanDetail = "tgscan/scan/detail"
@@ -96,8 +96,7 @@ class APIHandler: NSObject {
     let previousBaseURL = "http://18.224.21.11/"
     let s3URL = "https://tw-staging-media.s3.us-east-2.amazonaws.com/"
     private let boundary = "Boundary-\(NSUUID().uuidString)"
-    
-    
+
     func executeRequestWith<T: Decodable, U: Encodable>(
         of type: T.Type = T.self,
         apiName: APIName, parameters: U?,
@@ -105,9 +104,9 @@ class APIHandler: NSObject {
         authRequired: Bool = true, authTokenString:Bool? = false,
         complition: @escaping(Result<ResponseModal<T>, Error>
         ) -> Void) {
-        
+
         var finalURL = baseURL + apiName.rawValue
-        
+
         if methodType == .GET{
             if let URL = getURL, URL != ""  {
                 finalURL = baseURL + URL
@@ -121,7 +120,7 @@ class APIHandler: NSObject {
                 finalURL = baseURL + URL
             }
         }
-        
+
         guard var requestURL = URL(string: finalURL) else {
             complition(.failure("Incorrect request URL"))
             return
@@ -136,7 +135,7 @@ class APIHandler: NSObject {
 //                }
 //            }
 //        }
-        
+
         if methodType == .GET{
             if parameters != nil {
               //  if #available(iOS 16.0, *) {
@@ -151,7 +150,7 @@ class APIHandler: NSObject {
                             queryItems.append(queryItem)
                         }
                         requestURL =  requestURL.appending(queryItems) ?? requestURL
-                        
+
                     } catch {
                         print("errorMsg")
                     }
@@ -161,11 +160,11 @@ class APIHandler: NSObject {
 //                }
             }
         }
-        
+
         var request = URLRequest(url: requestURL)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         /*
          if authTokenString == true{
             if let token = userModel?.accessToken {
@@ -178,30 +177,28 @@ class APIHandler: NSObject {
              }
          }
          */
-        
+
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        
+
         if authRequired, let token = userModel?.accessToken {
             print("userModel?.accessToken........ ",userModel!.accessToken! )
             request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
         }
         debugPrint("finalURL is \(finalURL)")
         debugPrint("parameters is \(String(describing: parameters))")
-        
+
         if methodType == .POST{
             if parameters != nil {
                 let param = try? JSONEncoder().encode(parameters!)
                 request.httpBody = param
             }
         }
-        
-       
-      
+
         print("\(request.httpMethod ?? "") \(request.url)")
         let str = String(decoding: request.httpBody ?? Data(), as: UTF8.self)
         print("BODY \n \(str)")
         print("HEADERS \n \(request.allHTTPHeaderFields)")
-        
+
         session.dataTask(with: request) { data, response, error in
             var httpStatusCode = 0
             if let httpResponse = response as? HTTPURLResponse {
@@ -227,7 +224,7 @@ class APIHandler: NSObject {
                             let responseModel = try JSONDecoder().decode(ResponseModal<T>.self, from: data)
                             complition(.success(responseModel))
                         }
-                        catch{
+                        catch {
                             print(error)
                         }
                     } catch {
@@ -282,8 +279,7 @@ class APIHandler: NSObject {
                     do {
                         let responseModel = try JSONDecoder().decode(GetUserProfileModel.self, from: data)
                         completion(.success(responseModel))
-                    }
-                    catch{
+                    } catch {
                         print(error)
                     }
                 } else {
@@ -359,8 +355,7 @@ class APIHandler: NSObject {
             }
         }.resume()
     }
-    
-    
+
     func backgroundRequest(apiName: APIName, methodType: MethodType) {
         let strWorkoutId = "RealmDBManager.shared.tasks.last?.workoutId"
         let sem = DispatchSemaphore(value: 0)
@@ -406,14 +401,3 @@ extension Data {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

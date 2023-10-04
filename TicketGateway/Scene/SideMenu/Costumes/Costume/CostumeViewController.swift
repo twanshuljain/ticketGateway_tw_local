@@ -17,7 +17,7 @@ import SideMenu
 import iOSDropDown
 
 class CostumeViewController: UIViewController, UITextFieldDelegate {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var btnFilter: CustomButtonNormal!
     @IBOutlet weak var btnSortBy: CustomButtonNormal!
@@ -25,19 +25,19 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var imagePageController: AdvancedPageControlView!
     @IBOutlet weak var costumeTableView: CostumeListTableView!
-    
+
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var tblViewHeight: NSLayoutConstraint!
-    
+
     @IBOutlet weak var txtFilter: DropDown!
     @IBOutlet weak var lblImageCollectionHeader:UILabel!
     @IBOutlet weak var txtSort: DropDown!
     @IBOutlet weak var vwNavigationBar: NavigationBarView!
-    
+
     // MARK: - Variables
     let carnivalCollectionData = [["img": "carnival_ip", "title": "All"], ["img": "carnival_ip", "title": "Revolution Carnival"], ["img": "carnival_ip", "title": "Trini Revellars Carnival"], ["img": "carnival_ip", "title": "Fantasy Carnival"]]
     let imgCollectionData = ["ic-CostumeStyle", "ic-CostumeStyle","ic-CostumeStyle" ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUI()
@@ -49,14 +49,14 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
         self.setNavigaionBar()
         self.costumeTableView.tableDidSelectAtIndex = didSelectedAtIndex
         self.vwSearchBar.delegate = self
-        
+
         self.setDropDownTxt()
         costumeTableView.reloadData()
         self.costumeTableView.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblViewHeight.constant = self.costumeTableView.contentSize.height
-        
+
     }
-    
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblViewHeight.constant = costumeTableView.contentSize.height
     }
@@ -70,13 +70,13 @@ extension CostumeViewController{
         vwNavigationBar.btnBack.isHidden = false
         vwNavigationBar.vwBorder.isHidden = false
     }
-    
+
     func setFont() {
         self.lblImageCollectionHeader.text = TRENDING_BAND_LEADERS
         self.lblImageCollectionHeader.font =  UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .tgBlack)
     }
-    
+
     func setDropDownTxt() {
         let textlds = [txtSort,txtFilter]
         for textld in textlds {
@@ -87,9 +87,7 @@ extension CostumeViewController{
             }
         }
     }
-    
-    
-    
+
     func setButtonImage() {
         btnFilter.addRightIcon(image: UIImage(named: CHEVRON_DOWN)) //ic-filter
         btnFilter.addLeftIcon(image: UIImage(named: FILTER)) //ic-chevron
@@ -99,10 +97,9 @@ extension CostumeViewController{
         btnSortBy.titleLabel?.textColor = UIColor.setColor(colorType: .tgGrey)
         btnSortBy.addRightIcon(image: UIImage(named:  CHEVRON_DOWN))
         btnSortBy.addLeftIcon(image: UIImage(named: SORT_ICON))
-        
-        
+
     }
-    
+
     func setCollectionView() {
         carnivalCollectionView.delegate = self
         carnivalCollectionView.dataSource = self
@@ -120,7 +117,7 @@ extension CostumeViewController{
 
 // MARK: - Actions
 extension CostumeViewController {
-    
+
     func setUI() {
         self.vwSearchBar.customSearchBarEnum = .costume
         self.vwSearchBar.setUpView()
@@ -128,24 +125,24 @@ extension CostumeViewController {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
     }
-   
+
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnFilter:
             self.btnFilterAction()
         case btnSortBy:
-            
+
             self.btnSortByAction()
         default:
             break
         }
-        
+
     }
-    
+
     func btnFilterAction() {
         txtFilter.showList()
     }
-    
+
     func btnSortByAction() {
         txtSort.showList()
     }
@@ -154,16 +151,16 @@ extension CostumeViewController {
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout
 extension CostumeViewController: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+
         if (collectionView == self.carnivalCollectionView) {
             return  carnivalCollectionData.count
         } else  {
             return imgCollectionData.count
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if collectionView == carnivalCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarnivalCollectionViewCell", for: indexPath) as! CarnivalCollectionViewCell
             let data = carnivalCollectionData[indexPath.row]
@@ -178,9 +175,8 @@ extension CostumeViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         }
     }
-    
-}
 
+}
 
 // MARK: - PageController
 extension CostumeViewController {
@@ -194,12 +190,12 @@ extension CostumeViewController {
                                                        indicatorBorderColor: .clear,
                                                        indicatorBorderWidth: 0.0)
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offSet = scrollView.contentOffset.x
         let width = scrollView.frame.width
         imagePageController.setPageOffset(offSet / width)
-        
+
     }
 }
 
@@ -209,7 +205,7 @@ extension CostumeViewController:CostumeTableViewCellProtocol{
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "BandLeaderProfileViewController") as! BandLeaderProfileViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
     func didSelect(index: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CostumeDetailViewController") as! CostumeDetailViewController
         self.navigationController?.pushViewController(vc, animated: true)
@@ -218,12 +214,12 @@ extension CostumeViewController:CostumeTableViewCellProtocol{
 
 // MARK: - CustomSearchMethodsDelegate
 extension CostumeViewController: CustomSearchMethodsDelegate {
-    
+
     func filterButtonPressed(_ sender: UIButton) {
         let menu = UIStoryboard.init(name: "Costume", bundle: Bundle.main).instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
         self.present(menu, animated: true, completion: nil)
     }
-    
+
     func leftButtonPressed(_ sender: UIButton) {
         let menu = UIStoryboard.init(name: "SideMenu", bundle: Bundle.main).instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
@@ -238,8 +234,5 @@ extension CostumeViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
+
 }
-
-

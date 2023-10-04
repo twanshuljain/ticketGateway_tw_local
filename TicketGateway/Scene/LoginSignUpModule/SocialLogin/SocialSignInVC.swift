@@ -66,13 +66,13 @@ final class SocialSignInVC: UIViewController {
                 let data = picture?["data"] as? [String:Any]
                 let url = data?["url"] as? String ?? ""
                 let accesToken = AccessToken.current?.tokenString ?? ""
-                
+
                 self.viewModel.strEmail = email
                 self.viewModel.strNumber = ""
                 self.viewModel.strName = strName
                 self.viewModel.strProfile = url
                 _ = DataHoldOnSocialSignUpProcessModel(strEmail: self.viewModel.strEmail, strNumber: self.viewModel.strNumber, strStatus: "", strDialCountryCode: "", strCountryCode: "", strName: self.viewModel.strName, strProfile: "" )
-                
+
                 DispatchQueue.main.async(execute: {
                 })
             } else {

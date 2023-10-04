@@ -52,7 +52,7 @@ extension CreateAccountViewModel {
         }
         return("", true)
     }
-  
+
     func createAccountAPI(complition: @escaping (Bool, String) -> Void) {
         let param = CreateAccountRequest(firstName: fullName, lastName: "", mobileNumber: mobileNumber, emailAddress: emailAddress, password: password, confimePassword: confimePassword, role: "user", isVerify: true, countryCode: self.strCountryDialCode)
         APIHandler.shared.executeRequestWith(apiName: .registerUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<UserAccountModel>, Error>) in

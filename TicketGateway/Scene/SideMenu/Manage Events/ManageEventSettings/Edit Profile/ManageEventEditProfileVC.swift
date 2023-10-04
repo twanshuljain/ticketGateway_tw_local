@@ -4,11 +4,10 @@
 //
 //  Created by Apple  on 24/05/23.
 
-
 import UIKit
 
 class ManageEventEditProfileVC: UIViewController {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var btnCancel: CustomButtonNormal!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
@@ -23,19 +22,18 @@ class ManageEventEditProfileVC: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var btnSelectCountry: UIButton!
-    
-    
+
     // MARK: - Variable
     let viewModel = ManageEventEditProfileViewModel()
     let createAccountViewModel = CreateAccountViewModel()
     var name: String = ""
     var number: String = ""
     var email: String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        
+
     }
 }
 // MARK: - Functions
@@ -72,11 +70,11 @@ extension ManageEventEditProfileVC {
         {
             var str = ""
             var arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-            
+
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-                
+
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
@@ -85,17 +83,17 @@ extension ManageEventEditProfileVC {
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
             }
-            
+
             self.lblDialCountryCode.text = "+91"
-            
+
             var imagePath = "CountryPicker.bundle/\(str).png"
-            
+
             if arr.count == 2{
                 arr.removeAll { country in
                     country.countryCode != (NSLocale.current.regionCode ?? "")
                 }
             }
-            
+
             if let flagImg = UIImage(named: imagePath) {
                 self.imgCountry.image = flagImg
             } else {
@@ -105,7 +103,7 @@ extension ManageEventEditProfileVC {
                     self.imgCountry.image = UIImage(named: imagePath)
                 }
             }
-            
+
 //            let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
 //            self.imgCountry.image = UIImage(named: imagePath)
 //            self.lblDialCountryCode.text = "+91"
@@ -126,7 +124,7 @@ extension ManageEventEditProfileVC {
             //noting to do
         }
     }
-    
+
     func funcSetProfile() {
 //        self.txtFullName.text = objAppShareData.userAuth?.fullName
 //        self.txtEmailAddress.text = objAppShareData.userAuth?.email
@@ -174,7 +172,7 @@ extension ManageEventEditProfileVC {
     func btnCancelAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func btnContinueAction() {
         // API call for Update user profile data
         viewModel.updateUserModel.name = self.txtFullName.text ?? ""
@@ -188,7 +186,7 @@ extension ManageEventEditProfileVC {
         sb.modalPresentationStyle = .fullScreen
         self.navigationController?.present(sb, animated: true, completion: nil)
     }
-    
+
 }
 // MARK: - TextFieldDelegate
 extension ManageEventEditProfileVC: UITextFieldDelegate {
@@ -233,21 +231,3 @@ extension ManageEventEditProfileVC :  RSCountrySelectedDelegate  {
         self.txtMobileNumber.becomeFirstResponder()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -15,7 +15,7 @@ class ManageEventSellTicketCell: UITableViewCell {
     @IBOutlet weak var lblTittleDis: UILabel!
     @IBOutlet weak var lblAmountComp: UILabel!
     @IBOutlet weak var vwStepper: CustomStepper!
-   
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.lblTittle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
@@ -32,5 +32,5 @@ class ManageEventSellTicketCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
+
 }

@@ -4,17 +4,15 @@
 //
 //  Created by Dr.Mac on 02/06/23.
 
-
 import Foundation
 import UIKit
-
 
 // MARK: - Attributed Text
 
     func getAttributedTextAction(attributedText: String, firstString: String, lastString: String, attributedFont: UIFont, attributedColor: UIColor = .red, isToUnderLineAttributeText: Bool = true) -> NSMutableAttributedString {
         // example
         //  let fullString = StringConstants.temsAndConditionlbl + termsCondition
-        
+
         let attributedText = attributedText
         let fullString = firstString + attributedText + lastString
         let strNSString: NSString = fullString as NSString
@@ -46,5 +44,3 @@ import UIKit
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         return gradient
     }
-
-

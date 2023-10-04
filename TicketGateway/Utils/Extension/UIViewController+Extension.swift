@@ -4,7 +4,6 @@
 //
 //  Created by Apple  on 14/04/23.
 
-
 import UIKit
 import Foundation
 import LocalAuthentication
@@ -50,7 +49,7 @@ extension UIViewController {
         let popover = Popover(options: options, showHandler: nil, dismissHandler: nil)
         popover.show(aView, fromView: anchorView)
     }
-    
+
     func showToast(message: String, font: UIFont = UIFont.setFont(fontType: .regular, fontSize: .sixteen)) {
         let toastLabel = UILabel(frame: CGRect(x: 45, y: self.view.frame.size.height - 150, width: self.view.frame.size.width - 90, height: self.view.heightForView(text: message, font: font, width: self.view.frame.size.width - 60) + 20))
         toastLabel.numberOfLines = 5
@@ -75,7 +74,7 @@ extension UIViewController {
     func showAlert(title: String = "TicketGateway", message: String ,complition: @escaping (Bool) -> Void ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
-            
+
          print("Handle Ok logic here")
          }))
         alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { (action: UIAlertAction!) in
@@ -84,7 +83,7 @@ extension UIViewController {
          }))
         present(alert, animated: true, completion: nil)
       }
-    
+
     func showAlertWithOkButton(title: String = "TicketGateway", message: String ,completion: @escaping () -> Void ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
@@ -92,7 +91,7 @@ extension UIViewController {
          }))
         present(alert, animated: true, completion: nil)
       }
-    
+
     func showAlertSendOnUrlPath( strTittle: String,strMessage: String,strUrl: String) {
         let alert = UIAlertController(title: strTittle, message: strMessage, preferredStyle: .alert)
         let strGoSetting = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
@@ -108,7 +107,7 @@ extension UIViewController {
         alert.addAction(strGoSetting)
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     public func convertDateFormater(date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -122,7 +121,7 @@ extension UIViewController {
            return "-"
         }
     }
-    
+
     public func getTime(date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -136,7 +135,7 @@ extension UIViewController {
            return "-"
         }
     }
-    
+
     public func convertTimeFormater(date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -176,13 +175,13 @@ extension UIViewController {
            return "-"
         }
     }
-    
+
     func createView(storyboard: Storyboard, storyboardID: StoryboardIdentifier) -> UIViewController {
         let storyboard = UIStoryboard.init(name: storyboard.rawValue, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: storyboardID.rawValue) as UIViewController
         return viewController
     }
-    
+
     func jsonSerial() -> [[String: String]]{
         var countries = [[String: String]]()
         let data = try? Data(contentsOf: URL(fileURLWithPath: (Bundle.main.path(forResource: "countries", ofType: "json"))!))
@@ -190,13 +189,13 @@ extension UIViewController {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             countries = parsedObject as! [[String : String]]
             return countries
-            
-        }catch{
-            
+
+        }catch {
+
         }
         return countries
     }
-    
+
     func timeFormatted(_ totalSeconds: Int) -> String {
         let seconds: Int = totalSeconds % 60
         let minutes: Int = (totalSeconds / 60) % 60
@@ -221,13 +220,13 @@ extension UIViewController {
             let title = "Event Title:- " + eventTitle
             eventName = title
         }
-        
+
         let eventDate = " " + "\(eventStartDate.getDateFormattedFrom())" +  " " + "to" + " " + "\(eventEndDate.getDateFormattedFromTo())"
         let date = "Event Date:- " + eventDate
-        
+
         let eventTime = " " + "\(eventStartTime.getFormattedTime())" +  " " + "-" + " " + "\(eventEndTime.getFormattedTime())"
         let time = "Event Time:- " + eventTime
-        
+
         if let eventDesc = eventDescription {
             let finalDesc = "Event Description:- " + eventDesc
             description = finalDesc
@@ -235,7 +234,7 @@ extension UIViewController {
             let desc = "Event Description:- No Description available for this event"
             description = desc
         }
-        
+
         if let imageUrl = eventCoverImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -263,11 +262,11 @@ extension UIViewController {
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
     }
-    
+
     func getCountry() -> String{
         return Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
     }
-    
+
 //    func formatNumericToTwoDecimalPlaces<T: Numeric>(_ value: T) -> String {
 //        let numberFormatter = NumberFormatter()
 //        numberFormatter.numberStyle = .decimal
@@ -280,7 +279,7 @@ extension UIViewController {
 //            return "Formatting failed"
 //        }
 //    }
-    
+
     func convertToTwoDecimalPlaces(_ value: Any) -> String? {
         if let numericValue = value as? Double {
             return String(format: "%.2f", numericValue)
@@ -289,7 +288,7 @@ extension UIViewController {
         } else if let numericValue = value as? Int {
             return String(format: "%.2f", Double(numericValue))
         }
-        
+
         // Handle other types or unsupported types here
         return nil
     }

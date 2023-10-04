@@ -16,10 +16,10 @@ class TicketTypeListTableView: UITableView {
     var updatedPrice: ((Double) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
-    var arrTicketList:[EventTicket]?
+    var arrTicketList: [EventTicket]?
     var selectedArrTicketList = [EventTicket]()
     var isFromAccessCode: Bool = false
-    var arrDataAccessCode:[EventTicket]?
+    var arrDataAccessCode: [EventTicket]?
 //    var maxStepperCount: Int = 10
     var finalPrice = 0.0
     func configure() {
@@ -37,10 +37,10 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
         }
         return arrTicketList?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
-        
+
  // MARK: - ONLINE
         if isFromAccessCode {
             if let arrAccessCode = self.arrDataAccessCode, arrAccessCode.indices.contains(indexPath.row) {
@@ -51,13 +51,12 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                 cell.setData(event: arrTicketList[indexPath.row])
             }
         }
-        
-     
+
         //IF ERROR COME IN ADD TO CART UNCOMMENT THIS
 //        if  self.selectedArrTicketList.indices.contains(indexPath.row) {
 //            cell.setSelectedTicketData(selectedTicket: selectedArrTicketList[indexPath.row])
 //        }
-        
+
  // MARK: - OFFLINE
 //        if indexPath.row == 0 {
 //            cell.vwForGroup.isHidden = true
@@ -78,16 +77,14 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
 //            cell.lblTittle.text = "Group Admission"
 //
 //        }
-        
-      
+
         cell.vwStepper.btnPlus.tag = indexPath.row
         cell.vwStepper.btnMinus.tag = indexPath.row
         cell.vwStepper.btnPlus.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
         cell.vwStepper.btnMinus.addTarget(self, action: #selector(minustButtonPressed), for: .touchUpInside)
-        
+
           return cell
-        
-        
+
     }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,15 +92,15 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
          self.tableDidSelectAtIndex?(indexPath.row)
          self.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-    
+
     @objc func buttonPressed(_ sender: UIButton) {
-        
+
     }
-    
+
     // MARK: - OFFLINE
 //    @objc func plusButtonPressed(_ sender: UIButton) {
 //       print(sender.tag)
@@ -155,7 +152,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                         self.updatedPrice?(finalPrice)
                     }
                 }
-            
+
         } else {
             let data = arrTicketList?[sender.tag]
             let indexPath = IndexPath(row: sender.tag, section: 0)
@@ -179,7 +176,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                         let index = selectedArrTicketList.firstIndex { ticket in
                             return ticket.uniqueTicketID == data.uniqueTicketID
                         }
-                        
+
                         if let index = index, selectedArrTicketList.indices.contains(index) {
                             self.selectedArrTicketList[index].selectedTicketQuantity = lblNumberOfCount
                         }
@@ -221,7 +218,7 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-            
+
         } else {
                let data = arrTicketList?[sender.tag]
             let indexPath = IndexPath(row: sender.tag, section: 0)
@@ -235,12 +232,12 @@ extension TicketTypeListTableView: UITableViewDelegate, UITableViewDataSource {
                 //(lblNumberOfCount * (data?.ticketPrice ?? 0))
                 cell.vwStepper.lblCount.text = String(lblNumberOfCount)
                 arrTicketList?[sender.tag].selectedTicketQuantity = lblNumberOfCount
-                
+
                 if let data = arrTicketList?[sender.tag]{
                     let contains = self.selectedArrTicketList.contains { ticket in
                         return ticket.uniqueTicketID == data.uniqueTicketID
                     }
-                    
+
                     if contains{
                         let index = selectedArrTicketList.firstIndex { ticket in
                             return ticket.uniqueTicketID == data.uniqueTicketID

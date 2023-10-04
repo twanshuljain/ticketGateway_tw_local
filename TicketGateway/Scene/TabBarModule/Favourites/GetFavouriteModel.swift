@@ -11,9 +11,9 @@ struct GetFavouriteResponse : Codable {
     let statusCode : Int?
     let message : String?
     let error : String?
-    
+
     enum CodingKeys: String, CodingKey {
-        
+
         case data = "data"
         case statusCode = "status_code"
         case message = "message"
@@ -27,9 +27,9 @@ struct GetFavouriteData : Codable {
     let page : Int?
     let size : Int?
     let pages : String?
-    
+
     enum CodingKeys: String, CodingKey {
-        
+
         case items = "items"
         case total = "total"
         case page = "page"
@@ -44,9 +44,9 @@ struct GetFavouriteItem : Codable {
     let location : String?
     let eventCountry : String?
     let eventId : Int?
-    
+
     enum CodingKeys: String, CodingKey {
-        
+
         case eventTitle = "event_title"
         case coverImage = "cover_image"
         case totalLike = "total_like"
@@ -61,9 +61,9 @@ struct GetFavouriteCoverImage : Codable {
     let eventCoverImage : String?
     let id : Int?
     let eventId : Int?
-    
+
     enum CodingKeys: String, CodingKey {
-        
+
         case eventAdditionalCoverImages = "event_additional_cover_images"
         case eventCoverImage = "event_cover_image"
         case id = "id"
@@ -77,9 +77,9 @@ struct GetVenueData : Codable {
     let page : Int?
     let size : Int?
     let pages : String?
-    
+
     enum CodingKeys: String, CodingKey {
-        
+
         case items = "items"
         case total = "total"
         case page = "page"

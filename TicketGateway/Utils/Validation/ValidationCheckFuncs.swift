@@ -15,7 +15,7 @@ class ValidationCheckFuncs{
     public func isiPad() -> Bool {
         return UI_USER_INTERFACE_IDIOM() == .pad
     }
-        
+
     // MARK: - Validation -
     public class func isValidEmail(testStr: String) -> Bool {
         let emailRegEx = "^(?!\\.)(?!.*\\.$)(?!.*?\\.\\.)[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,4}"// "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
@@ -29,7 +29,7 @@ class ValidationCheckFuncs{
         let result = emailTest.evaluate(with: testStr)
         return result
     }
-    
+
     public class func formatSecondsToString(_ seconds: TimeInterval) -> String {
         if seconds.isNaN {
             return "00:00"
@@ -38,7 +38,7 @@ class ValidationCheckFuncs{
         let sec = Int(seconds.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d", min, sec)
     }
-    
+
     public class func isValidMobileNumber(testStr: String) -> Bool {
         if testStr.count == 9 {
             return true
@@ -46,52 +46,52 @@ class ValidationCheckFuncs{
             return false
         }
     }
-    
+
     public class func isValidPassword(testStr: String) -> Bool {
-        
+
         if (testStr.count >= 6) && (testStr.count <= 12) {
             return true
         } else {
             return false
         }
     }
-    
+
     public class func validateemptyfield(textfield: UITextField) -> Bool {
         if (textfield.text?.isEmpty)! {
             return true
         }
         return false
     }
-    
+
     public class func isValidUser(textfield: UITextField) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^\\w+( +\\w+)*$")
         let result = passwordTest.evaluate(with: textfield.text)
         return result
     }
-    
+
     public class func isValidRegex(testStr: String, regex: String) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", regex)
         let result = passwordTest.evaluate(with: testStr)
         return result
     }
-    
+
     public class func isValidUsername(_  input: String) -> Bool  // input
     {
         let usernameRegEx = "\\A\\w{1,50}\\z"
         let test = NSPredicate(format: "SELF MATCHES %@", usernameRegEx)
         return test.evaluate(with: input)
     }
-    
+
     public class func trimWhiteSpaces(text: NSString) -> NSString {
         return text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) as NSString
     }
-    
+
     public class func isValidateURL(stringURL: String) -> Bool {
         let urlRegEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
         let predicate = NSPredicate(format: "SELF MATCHES %@", argumentArray: [urlRegEx])
         return predicate.evaluate(with: stringURL)
     }
-    
+
     public class func containsWhiteSpace(input: String) -> Bool {
         let range = input.rangeOfCharacter(from: .whitespaces)
         if let _ = range {
@@ -100,14 +100,14 @@ class ValidationCheckFuncs{
             return false
         }
     }
-    
+
     public class func isValidPhoneNumber(value: String) -> Bool {
         let phoneRegex = "^((\\+)|(00))[0-9]{8,14}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         let result = phoneTest.evaluate(with: value)
         return result
     }
-    
+
     // MARK: - Date/Time operation Functions -
     public class func getTodayDate() -> String {
         let utcDate = Date()
@@ -115,14 +115,14 @@ class ValidationCheckFuncs{
         fmDate.dateFormat = "dd MMM YYYY"
         return fmDate.string(from: utcDate)
     }
-    
+
     public class func getCurrentTime() -> String {
         let utcDate = Date()
         let fmDate = DateFormatter()
         fmDate.dateFormat = "hh:mm a"
         return fmDate.string(from: utcDate)
     }
-    
+
     // MARK: - Resize Image  -
     public class func resize(_ image: UIImage) -> UIImage {
         var actualHeight: Float = Float(image.size.height)
@@ -157,7 +157,7 @@ class ValidationCheckFuncs{
         UIGraphicsEndImageContext()
         return UIImage(data: imageData!)!
     }
-    
+
     public class func resizeImage(image: UIImage) -> UIImage {
         let size = image.size
         let targetSize: CGSize = CGSize(width: 500, height: 500)

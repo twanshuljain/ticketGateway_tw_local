@@ -14,16 +14,13 @@ class InstallmentHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var btnSelected: UIButton!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var btnAdd: UIButton!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setFont()
-       
-        
-        
+
     }
 
-    
     func setFont() {
         lblInstallment.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         lblInstallment.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -35,15 +32,11 @@ class InstallmentHeaderView: UITableViewHeaderFooterView {
        // btnSelected.setImage(UIImage(named: "Unselected_ip"), for: .normal)
 
     }
-    
+
 //    @objc func setImage(_ sender: UIButton) {
 //        sender.isSelected = !sender.isSelected
 //
 //
 //    }
-    
-    
-    
-   
-    
+
 }

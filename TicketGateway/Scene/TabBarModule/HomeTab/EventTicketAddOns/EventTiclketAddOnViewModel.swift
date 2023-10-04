@@ -5,7 +5,6 @@
 //  Created by Apple on 20/07/23.
 //
 
-
 import Foundation
 class EventTiclketAddOnViewModel {
     var addOnTableData = ["Tshirt_ip", "Tshirt_ip", "Tshirt_ip", "Tshirt_ip"]
@@ -21,7 +20,7 @@ class EventTiclketAddOnViewModel {
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var eventId:Int?
     var selectedCurrencyType = ""
-    
+
     func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
         // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
         var getURL = APIName.getAddOnList.rawValue + "\(self.eventDetail?.event?.id ?? 0)" + "/"

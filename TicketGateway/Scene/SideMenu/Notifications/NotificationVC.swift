@@ -4,22 +4,21 @@
 //
 //  Created by Apple  on 02/06/23.
 
-
 import UIKit
 import SideMenu
 
 class NotificationVC: UIViewController {
- 
+
     // MARK: - IBOutlets
     @IBOutlet weak var tblNotification: NotificationTableViewList!
     @IBOutlet weak var navigationView: NavigationBarView!
-  
+
 // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
      }
-    
+
 }
 // MARK: - Functions
 extension NotificationVC {
@@ -31,9 +30,9 @@ extension NotificationVC {
         self.navigationView.delegateBarAction = self
         self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.vwBorder.isHidden = false
-       
+
     }
-   
+
 }
 // MARK: - NavigationBarViewDelegate
 extension NotificationVC : NavigationBarViewDelegate {

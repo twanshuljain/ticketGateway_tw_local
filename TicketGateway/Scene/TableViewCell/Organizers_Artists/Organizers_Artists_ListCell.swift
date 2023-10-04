@@ -4,12 +4,11 @@
 //
 //  Created by Apple  on 04/05/23.
 
-
 import UIKit
 import SDWebImage
 
 class OrganizersArtistsListCell: UITableViewCell {
-    
+
 // MARK: - Outlets
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var btnfollow: CustomButtonGradiant!

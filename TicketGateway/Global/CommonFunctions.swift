@@ -10,6 +10,6 @@ import UIKit
 class CommonFunctions{
 
     func selectTextFieldBorderColour() {
-        
+
     }
 }

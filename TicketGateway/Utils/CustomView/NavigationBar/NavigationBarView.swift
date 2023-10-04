@@ -6,7 +6,6 @@
 
 import UIKit
 
-
 protocol NavigationBarViewDelegate {
     func navigationBackAction()
     func navigationRightButtonAction()
@@ -17,10 +16,8 @@ extension NavigationBarViewDelegate {
     func navigationRightButtonAction() {}
 }
 
-
 class NavigationBarView: UIView {
-    
-    
+
     @IBOutlet weak var navView:UIView!
     @IBOutlet weak var vwSkip: UIView!
     @IBOutlet weak var imgBack: UIImageView!

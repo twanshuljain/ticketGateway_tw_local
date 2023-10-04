@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 class FavouriteTableViewCell: UITableViewCell {
-    
+
     // MARK: - OUTLETS
     @IBOutlet weak var lblFavoriteDate: UILabel!
     @IBOutlet weak var imgImages: UIImageView!
@@ -31,18 +31,18 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBOutlet weak var widthLikeUnlikeStackView: NSLayoutConstraint!
     @IBOutlet weak var htLikeUnlikeStackViewFavorite: NSLayoutConstraint!
     @IBOutlet weak var htLblPrice: NSLayoutConstraint!
-    
+
     var likeButtonPressed: (() -> ()) = {}
     var shareButtonPressed: (() -> ()) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
-        
+
     }
-    
+
     func setDataForFavoritesEvents(getFavouriteData: GetFavouriteItem?) {
         self.setupUI(isFavorites: true)
-        
+
         lblTitle.text = getFavouriteData?.eventTitle ?? "-"
         lblAddress.text = getFavouriteData?.location ?? "-"
         btnLike.setImage(UIImage(named: "favSele_ip"), for: .normal)
@@ -68,10 +68,10 @@ class FavouriteTableViewCell: UITableViewCell {
             self.imgImages.image = UIImage(named: "homeDas")
         }
     }
-    
+
     func setDataForFavoritesVenue(getVenueData: GetVenueItem?) {
         self.setupUI(isFavorites: false)
-        
+
         lblNumberOfVenue.text = "10+ events"
         lblTitle.text = getVenueData?.venueName ?? "-"
         lblAddress.text = "NA"
@@ -97,10 +97,10 @@ class FavouriteTableViewCell: UITableViewCell {
             self.imgImages.image = UIImage(named: "homeDas")
         }
     }
-    
+
     func setDataForSuggestions(getSuggestionsData: GetEventModel?) {
         self.setupUI(isFavorites: true)
-        
+
         lblTitle.text = getSuggestionsData?.event?.title ?? "-"
         lblAddress.text = getSuggestionsData?.location?.eventAddress ?? "-"
         lblDate.text = "\(getSuggestionsData?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getSuggestionsData?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
@@ -125,7 +125,7 @@ class FavouriteTableViewCell: UITableViewCell {
             self.imgImages.image = UIImage(named: "homeDas")
         }
     }
-    
+
     func setupUI(isFavorites:Bool) {
         if isFavorites{
             self.numberOfVenueStack.isHidden = true
@@ -151,7 +151,7 @@ class FavouriteTableViewCell: UITableViewCell {
             self.htLblPrice.constant = 0
         }
     }
-    
+
     @IBAction func likeButtonAction(_ sender: UIButton) {
         likeButtonPressed()
     }
@@ -163,18 +163,17 @@ class FavouriteTableViewCell: UITableViewCell {
         self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAddress.textColor = UIColor.setColor(colorType: .headinglbl)
-        
+
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblDate.textColor = UIColor.setColor(colorType: .headinglbl)
         self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTime.textColor = UIColor.setColor(colorType: .headinglbl)
         self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
         self.lblFavoriteDate.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblFavoriteDate.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
-        
+
     }
     func getTime(strDate: String) -> String {
         let date = strDate.convertStringToDate(date: strDate)

@@ -23,10 +23,10 @@ class ContactOrganiserVC: UIViewController {
     @IBOutlet weak var txtView:PlaceholderTextView!
     @IBOutlet weak var btnSendMessage: CustomButtonGradiant!
     @IBOutlet weak var lblOrderId: UILabel!
-    
+
     // MARK: - Variables
     var viewModel = ContactOrganiserViewModel()
-    
+
         override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
@@ -91,21 +91,21 @@ extension ContactOrganiserVC {
     @objc func action() {
         view.endEditing(true)
     }
-    
+
     func setData(){
         txtOrganizersName.text = self.viewModel.eventDetail?.organizer?.name ?? ""
         txtEmailAddress.text = self.viewModel.eventDetail?.organizer?.promoterEmail ?? ""
         lblOrderId.text = "Order ID: \(self.viewModel.ticketDetails?.orderId ?? 0)"
         lblSunburnReload.text = (self.viewModel.eventDetail?.event?.title ?? "") + " - " + "\(self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")"
     }
-    
+
     func apiCall(){
         self.view.endEditing(true)
         viewModel.name = self.txtName.text ?? ""
         viewModel.email = self.txtEmailAddress.text ?? ""
         viewModel.message = self.txtView.text ?? ""
         let isValidate = viewModel.validateInput
-        
+
         if isValidate.isValid{
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {
@@ -133,7 +133,7 @@ extension ContactOrganiserVC {
             self.showToast(message: isValidate.errorMessage)
         }
     }
-    
+
     func navigateToManageSellTicketSuccessfully(){
         if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
             view.strTittle = CHANGE_ORGANISER
@@ -178,7 +178,7 @@ extension ContactOrganiserVC: UIPickerViewDelegate, UIPickerViewDataSource, UITe
 
         return pickerLabel!
     }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
     }

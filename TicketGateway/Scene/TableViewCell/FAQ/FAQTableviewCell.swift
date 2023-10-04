@@ -8,7 +8,7 @@
 import UIKit
 
 class FAQTableviewCell: UITableViewCell {
-    
+
 // MARK: - Outlets
     @IBOutlet weak var btnUp: UIButton!
     @IBOutlet weak var lblQuestion: UILabel!
@@ -17,17 +17,17 @@ class FAQTableviewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         self.setFont()
-        
+
     }
-    
+
     func setFont() {
         self.lblQuestion.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblAnswer.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAnswer.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-  
+
 }

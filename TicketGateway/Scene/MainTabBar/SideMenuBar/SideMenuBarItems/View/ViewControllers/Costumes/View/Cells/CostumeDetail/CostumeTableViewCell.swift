@@ -16,29 +16,28 @@ class CostumeTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var imgCostumeImage: UIImageView!
     @IBOutlet weak var lblPrice: UILabel!
-   
+
     @IBOutlet weak var lblFlexiblePayment: UILabel!
     @IBOutlet weak var btnRegister: UIButton!
-    
+
     @IBOutlet weak var vwLikeShare: UIView!
-    
+
     @IBOutlet weak var vwGradientView: GradientView!
     @IBOutlet weak var lblDescription: UILabel!
-   
+
     @IBOutlet weak var btnLike: UIButton!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setFont()
-        
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        
     }
-    
+
     func setFont() {
         lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
@@ -56,9 +55,9 @@ class CostumeTableViewCell: UITableViewCell {
         lblDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
         btnLike.addTarget(self, action: #selector(btnImage(sender:)), for:  .touchUpInside)
-       
+
     }
-    
+
     @objc func btnImage(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {

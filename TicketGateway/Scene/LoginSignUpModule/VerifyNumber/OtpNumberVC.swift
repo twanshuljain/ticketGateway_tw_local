@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 
 class OtpNumberVC: UIViewController {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
@@ -24,7 +24,7 @@ class OtpNumberVC: UIViewController {
     @IBOutlet weak var lblReceiveOtp: UILabel!
     @IBOutlet weak var vwResend: UIView!
     @IBOutlet weak var btnResendOtp: UIButton!
-    
+
     // MARK: - Variable
     let viewModel =  NumberVerifyViewModel()
     let viewModelResendOtp = SignInViewModel()
@@ -33,7 +33,7 @@ class OtpNumberVC: UIViewController {
     var otpVerified: ((Bool, String) -> Void)?
     var isComingFrom: IsComingFrom  = .login
     var isChangeMobileNumberTap = false
-   
+
      override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -44,16 +44,13 @@ class OtpNumberVC: UIViewController {
 
 // MARK: - Functions
 extension OtpNumberVC {
-    
+
     func setText() {
         lblSentVerification.text = SENT_VERIFICATION_CODE_TO
         lblApplyAuto.text = AUTO_APPLY
         lblReceiveOtp.attributedText = getAttributedOtpStr(str: "You will receive OTP in 00:00s")
     }
-    
-    
-    
-    
+
     private func setup() {
         [self.btnContinue,self.btnResendOtp].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -66,14 +63,14 @@ extension OtpNumberVC {
         navigationView.lblTitle.text = OTP_VERIFICATION
         navigationView.btnBack.isHidden = false
         navigationView.delegateBarAction = self
-        
+
         if viewModel.number != "" {
           self.lblMobileNumber.text = viewModel.number
         }
         self.startTimer()
         self.vwResend.isHidden = true
     }
-    
+
 //    private func setViewTextFields() {
 //        [txtOtp1, txtOtp2, txtOtp3, txtOtp4].forEach {
 //            $0?.delegate = self
@@ -82,7 +79,7 @@ extension OtpNumberVC {
 //            }
 //        }
   //  }
-    
+
     func navigateToPaymentVc() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
             view.viewModel.eventId = self.viewModel.eventId
@@ -109,7 +106,7 @@ extension OtpNumberVC {
             break
         }
     }
-    
+
     func btnResenOtpAction() {
         self.vwResend.isHidden = true
         if self.isComingFrom == .orderSummary{
@@ -162,8 +159,7 @@ extension OtpNumberVC {
             }
         }
     }
-      
-    
+
     func btnContinueAction() {
         let otp = "\(self.txtOtp1.text ?? "")" + "\(self.txtOtp2.text ?? "")" + "\(self.txtOtp3.text ?? "")" + "\(self.txtOtp4.text ?? "")"
         self.viewModel.otp = otp
@@ -217,7 +213,7 @@ extension OtpNumberVC {
                 //                let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
                 //                self.navigationController?.pushViewController(view!, animated: true)
                 //            }
-                
+
                 //     ------------------------------------
                 //        TO BE DONE WHEN API IS WORKING
                 if Reachability.isConnectedToNetwork() {
@@ -261,8 +257,7 @@ extension OtpNumberVC : UITextFieldDelegate {
     textField.resignFirstResponder()
     return false
   }
-    
-   
+
     @objc func textFieldDidChange(textField: UITextField) {
       let text = textField.text
       if text?.count == 1 {
@@ -329,14 +324,13 @@ extension OtpNumberVC : NavigationBarViewDelegate {
   }
 }
 
-
 extension OtpNumberVC {
     func startTimer() {
         self.viewModel.countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
-    
+
     func getAttributedOtpStr(str:String) -> NSAttributedString{
-        
+
         let attributedString = NSMutableAttributedString(string: str)
 
         // Define attributes for the "00:00" portion (e.g., make it bold)
@@ -347,19 +341,19 @@ extension OtpNumberVC {
         attributedString.addAttributes(attributes, range: NSRange(location: 24, length: 6)) // Adjust the range as needed
         return attributedString
     }
-    
+
     @objc func updateTime() {
         // Create an attributed string
         lblReceiveOtp.attributedText = getAttributedOtpStr(str: "Your OTP will expire in \(timeFormatted(self.viewModel.totalTime))s")
        // lblReceiveOtp.text = "Your OTP will expire in \(timeFormatted(self.viewModel.totalTime))"
-        
+
         if self.viewModel.totalTime != 0 {
             self.viewModel.totalTime -= 1
         } else {
             endTimer()
         }
     }
-    
+
     func endTimer() {
         self.viewModelResendOtp.number = "\(objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "+91")\(objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "7898525961")"
         self.vwResend.isHidden = false
@@ -368,10 +362,3 @@ extension OtpNumberVC {
         btnContinue.alpha = 0.5
     }
 }
-
-
-
-
-
-
-

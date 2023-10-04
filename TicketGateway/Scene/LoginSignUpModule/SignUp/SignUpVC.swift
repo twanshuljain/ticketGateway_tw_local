@@ -30,7 +30,7 @@ class SignUpVC: UIViewController {
         self.setup()
         self.setText()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setText()

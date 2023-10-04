@@ -8,14 +8,14 @@
 import UIKit
 
 extension UITabBarController {
-    
+
         func addSubviewToLastTabItem(_ imageName: String) {
                if let lastTabBarButton = self.tabBar.subviews.last, let tabItemImageView = lastTabBarButton.subviews.first {
                    if let accountTabBarItem = self.tabBar.items?.last {
                        accountTabBarItem.selectedImage = nil
                        accountTabBarItem.image = nil
                    }
-                 
+
                    let imgView = UIImageView()
                    imgView.frame = tabItemImageView.frame
                    imgView.layer.cornerRadius = tabItemImageView.frame.height/2
@@ -28,4 +28,3 @@ extension UITabBarController {
                }
            }
 }
-

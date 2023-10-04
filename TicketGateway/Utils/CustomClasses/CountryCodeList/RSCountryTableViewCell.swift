@@ -10,7 +10,7 @@ class RSCountryTableViewCell: UITableViewCell {
     @IBOutlet var lblCountryName: UILabel!
     @IBOutlet var lblCountryDialCode: UILabel!
     @IBOutlet var imgRadioCheck: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
        //imgCountryFlag.setImageCircle()
@@ -20,7 +20,6 @@ class RSCountryTableViewCell: UITableViewCell {
    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        
     }
 
 }

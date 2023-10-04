@@ -48,7 +48,7 @@ class SeeFullTicketVC: UIViewController {
     @IBOutlet weak var heightOfMyTicket: NSLayoutConstraint!
     @IBOutlet weak var imgScanCode : UIImageView!
     @IBOutlet weak var imgProfile: UIImageView!
-    
+
     var viewModel: SeeFullTicketViewModel = SeeFullTicketViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -283,7 +283,7 @@ extension SeeFullTicketVC {
     func viewEventListAction() {
         self.navigateToEventDetail()
     }
-    
+
     func navigateToEventDetail() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC {
             view.viewModel.eventId = viewModel.myTicketList?.eventID // TO BE CHANGED
@@ -295,7 +295,7 @@ extension SeeFullTicketVC {
             self.navigationController?.pushViewController(view, animated: false)
         }
     }
-    
+
     func shareEventDetailData(eventDetail: EventDetail) {
         self.shareEventDetailData(
             eventStartDate: eventDetail.eventDateObj?.eventStartDate ?? "",
@@ -314,7 +314,7 @@ extension SeeFullTicketVC:UITableViewDelegate,UITableViewDataSource{
        // return self.viewModel.myTicket?.items?.count ?? 0
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MyTicketListingTableViewCell", for: indexPath) as? MyTicketListingTableViewCell{
 //            if let data = self.viewModel.myTicket?.items?[indexPath.row]{
@@ -328,8 +328,7 @@ extension SeeFullTicketVC:UITableViewDelegate,UITableViewDataSource{
         }
         return UITableViewCell()
     }
-    
-    
+
 }
 
 // MARK: - NavigationBarViewDelegate

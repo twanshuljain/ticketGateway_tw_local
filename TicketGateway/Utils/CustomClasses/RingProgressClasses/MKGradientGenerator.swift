@@ -1,18 +1,18 @@
 /*
  The MIT License (MIT)
- 
+
  Copyright (c) 2015 Max Konovalov
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,7 +32,7 @@ internal final class GradientGenerator {
             }
         }
     }
-    
+
     var size: CGSize = .zero {
         didSet {
             if size != oldValue {
@@ -40,7 +40,7 @@ internal final class GradientGenerator {
             }
         }
     }
-    
+
     var colors: [CGColor] = [] {
         didSet {
             if colors != oldValue {
@@ -48,7 +48,7 @@ internal final class GradientGenerator {
             }
         }
     }
-    
+
     var locations: [Float] = [] {
         didSet {
             if locations != oldValue {
@@ -56,7 +56,7 @@ internal final class GradientGenerator {
             }
         }
     }
-    
+
     var startPoint: CGPoint = CGPoint(x: 0.5, y: 0.5) {
         didSet {
             if startPoint != oldValue {
@@ -64,7 +64,7 @@ internal final class GradientGenerator {
             }
         }
     }
-    
+
     var endPoint: CGPoint = CGPoint(x: 1.0, y: 0.5) {
         didSet {
             if endPoint != oldValue {
@@ -72,33 +72,33 @@ internal final class GradientGenerator {
             }
         }
     }
-    
+
     private var generatedImage: CGImage?
-    
+
     func reset() {
         generatedImage = nil
     }
-    
+
     func image() -> CGImage? {
         if let image = generatedImage {
             return image
         }
-        
+
         let width = Int(size.width * scale)
         let height = Int(size.height * scale)
-        
+
         guard width > 0, height > 0 else {
             return nil
         }
-        
+
         let bitsPerComponent: Int = MemoryLayout<UInt8>.size * 8
         let bytesPerPixel: Int = bitsPerComponent * 4 / 8
-        
+
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
-        
+
         var data = [ARGB]()
-        
+
         for yAxis in 0 ..< height {
             for xAxis in 0 ..< width {
                 let cnt = pixelDataForGradient(
@@ -112,7 +112,7 @@ internal final class GradientGenerator {
                 data.append(cnt)
             }
         }
-        
+
         // Fix for #63 - force retain `data` to prevent crash when CGContext uses the buffer
         let image: CGImage? = withExtendedLifetime(&data) { (data: UnsafeMutableRawPointer) -> CGImage? in
             guard let ctx = CGContext(
@@ -128,14 +128,14 @@ internal final class GradientGenerator {
             }
             ctx.interpolationQuality = .none
             ctx.setShouldAntialias(false)
-            
+
             return ctx.makeImage()
         }
-        
+
         generatedImage = image
         return image
     }
-    
+
     private func pixelDataForGradient(
         at point: CGPoint,
         size: CGSize,
@@ -147,7 +147,7 @@ internal final class GradientGenerator {
         let top = conicalGradientStop(point, size, startPoint, endPoint)
         return interpolatedColor(top, colors, locations)
     }
-    
+
     private func conicalGradientStop(_ point: CGPoint, _ size: CGSize, _ gB0: CGPoint, _ gB1: CGPoint) -> Float {
         let cBurn = CGPoint(x: size.width * gB0.x, y: size.height * gB0.y)
         let sBurn = CGPoint(x: size.width * (gB1.x - gB0.x), y: size.height * (gB1.y - gB0.y))
@@ -160,17 +160,17 @@ internal final class GradientGenerator {
         let tBurn = aBurn / (2 * .pi)
         return Float(tBurn)
     }
-    
+
     private func interpolatedColor(_ tBurn: Float, _ colors: [CGColor], _ locations: [Float]) -> ARGB {
         assert(!colors.isEmpty)
         assert(colors.count == locations.count)
-        
+
         var pB0: Float = 0
         var pB1: Float = 1
-        
+
         var cB0 = colors.first!
         var cB1 = colors.last!
-        
+
         for (iBurn, vBurn) in locations.enumerated() {
             if vBurn > pB0, tBurn >= vBurn {
                 pB0 = vBurn
@@ -181,17 +181,17 @@ internal final class GradientGenerator {
                 cB1 = colors[iBurn]
             }
         }
-        
+
         let pBurn: Float
         if pB0 == pB1 {
             pBurn = 0
         } else {
             pBurn = lerp(tBurn, inRange: pB0 ... pB1, outRange: 0 ... 1)
         }
-        
+
         let color0 = ARGB(cB0)
         let color1 = ARGB(cB1)
-        
+
         return color0.interpolateTo(color1, pBurn)
     }
 }
@@ -223,7 +223,7 @@ extension ARGB {
             self.init(rColor: 0, gColor: 0, bColor: 0)
         }
     }
-    
+
     func interpolateTo(_ color: ARGB, _ top: Float) -> ARGB {
         let rColor = lerp(top, self.rColor, color.rColor)
         let gColor = lerp(top, self.gColor, color.gColor)

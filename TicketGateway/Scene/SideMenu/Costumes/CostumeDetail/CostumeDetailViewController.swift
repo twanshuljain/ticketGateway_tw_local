@@ -16,7 +16,7 @@ import MapKit
 import AdvancedPageControl
 
 class CostumeDetailViewController: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var cotumeTypeCollectionView: CostumeTypeCollectionView!
     @IBOutlet weak var productCollectionView: UICollectionView!
@@ -24,9 +24,9 @@ class CostumeDetailViewController: UIViewController {
     @IBOutlet weak var costumeTableView: CostumeListTableView!
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var similarProductCollectionView: UICollectionView!
-   
+
     @IBOutlet weak var vwNavigationBar: NavigationBarView!
-    
+
     @IBOutlet weak var photoPageController: AdvancedPageControlView!
     @IBOutlet weak var productPageController: AdvancedPageControlView!
     @IBOutlet weak var dottedLine: UILabel!
@@ -53,13 +53,13 @@ class CostumeDetailViewController: UIViewController {
     @IBOutlet weak var lblPhotos: UILabel!
     @IBOutlet weak var lblSimilarProduct: UILabel!
     @IBOutlet weak var btnRegisterNow: CustomButtonGradiant!
-    
+
     // MARK: -  Variables
     let productCollectionData = ["Product Details", "Delivery", "Returns", "Returns"]
     let videoCollectionData = ["Video_ip", "Video_ip", "Video_ip"]
     let photoCollectionData = ["photo_ip", "photo_ip", "photo_ip"]
     var selectedIndex = Int ()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
@@ -68,7 +68,7 @@ class CostumeDetailViewController: UIViewController {
         setUI()
         setPageControll()
         setNavigaionBar()
-        
+
     }
 }
 // MARK: - Functions
@@ -79,14 +79,14 @@ extension CostumeDetailViewController{
         vwNavigationBar.btnBack.isHidden = false
         vwNavigationBar.vwBorder.isHidden = false
     }
-    
+
     func setTableView() {
         costumeTableView.configure(vc: self)
         costumeTableView.isScrollEnabled = false
         costumeTableView.isForDetailVC = "DetailVC"
-       
+
     }
-    
+
     func setCollectionView() {
         cotumeTypeCollectionView.configure()
         cotumeTypeCollectionView.collectionDidSelectAtIndex = didSelectedAtIndex(at:)
@@ -101,14 +101,14 @@ extension CostumeDetailViewController{
         similarProductCollectionView.dataSource = self
         similarProductCollectionView.register(UINib(nibName: "PhotosProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotosProductCollectionViewCell")
     }
-    
+
     func setMap() {
         let initialLocation = CLLocation(latitude: 22.7196, longitude: 75.8577)
         mapView.centerToLocation(initialLocation)
     }
-    
+
     func setUI() {
-        
+
         lblDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblLocation.text = Parade_Location
@@ -146,14 +146,14 @@ extension CostumeDetailViewController{
         lblSectionLeader.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         lblName.textColor = UIColor.setColor(colorType: .tgBlue)
-       
+
         lblEmail.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblEmail.textColor = UIColor.setColor(colorType: .lblTextPara)
         lblPhoneNo.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblPhoneNo.textColor = UIColor.setColor(colorType: .lblTextPara)
         btnContactSectionLeader.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnContactSectionLeader.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        
+
         lblVideo.text = VIDEOS
         lblVideo.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblVideo.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -163,18 +163,18 @@ extension CostumeDetailViewController{
         lblSimilarProduct.text = SIMILAR_PRODUCT
         lblSimilarProduct.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblSimilarProduct.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
         dottedLine.createDottedLine(width: 2, color: UIColor.setColor(colorType: .borderLineColour).cgColor, dashPattern: [2,4])
 
         btnRegisterNow.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnRegisterNow.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         btnRegisterNow.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
-        
+
       //  lblVideoTime.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
        // lblVideoTime.textColor = UIColor.setColor(colorType: .white)
-        
+
     }
-    
+
     private func didSelectedAtIndex(at index: Int) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CostumeFrontLineViewController") as! CostumeFrontLineViewController
         self.navigationController?.pushViewController(vc, animated: false)
@@ -194,12 +194,12 @@ extension CostumeDetailViewController: UICollectionViewDelegate, UICollectionVie
             return photoCollectionData.count
 
         }
-        
+
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if collectionView == productCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailCollectionViewCell", for: indexPath) as! ProductDetailCollectionViewCell
             let data = productCollectionData[indexPath.row]
@@ -225,18 +225,17 @@ extension CostumeDetailViewController: UICollectionViewDelegate, UICollectionVie
             cell.stackView.isHidden = false
             return cell
         }
-         
+
         return UICollectionViewCell()
-       
+
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.row
         productCollectionView.reloadData()
     }
-   
-}
 
+}
 
 // MARK: - MKMapView
 private extension MKMapView {
@@ -261,7 +260,7 @@ extension CostumeDetailViewController {
                                                        borderWidth: 0.0,
                                                        indicatorBorderColor: .clear,
                                                        indicatorBorderWidth: 0.0)
-        
+
         productPageController.drawer = ExtendedDotDrawer(numberOfPages: 3,
                                                          space: 16.0,
                                                          indicatorColor: UIColor.setColor(colorType: .titleColourDarkBlue),
@@ -271,7 +270,7 @@ extension CostumeDetailViewController {
                                                          indicatorBorderColor: .clear,
                                                          indicatorBorderWidth: 0.0)
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offSet = scrollView.contentOffset.x
         let width = scrollView.frame.width
@@ -280,11 +279,9 @@ extension CostumeDetailViewController {
         } else {
             productPageController.setPageOffset(offSet / width)
         }
-        
-       
-        
+
     }
-    
+
 }
 
 // MARK: - CostumeTableViewCellProtocol
@@ -293,7 +290,7 @@ extension CostumeDetailViewController:CostumeTableViewCellProtocol{
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "BandLeaderProfileViewController") as! BandLeaderProfileViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
     func didSelect(index: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CostumeFrontLineViewController") as! CostumeFrontLineViewController
         self.navigationController?.pushViewController(vc, animated: false)
@@ -305,6 +302,5 @@ extension CostumeDetailViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
+
 }

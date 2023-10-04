@@ -210,7 +210,7 @@ extension CreateAccountVC: NavigationBarViewDelegate {
                 self.navigationController?.popToViewController(controller, animated: false)
             }
         })
-        
+
     }
 }
 
@@ -224,11 +224,11 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
         if self.imgCountry.image == nil {
             var str = ""
             var arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-            
+
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-                
+
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
@@ -237,11 +237,11 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
             }
-            
+
             let imagePath = "CountryPicker.bundle/\(str ?? "IN").png"
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
-            
+
             if !arr.isEmpty {
                 let country = arr[0]
                 self.viewModel.strCountryDialCode = country.dialCode
@@ -279,7 +279,7 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
 }
 // MARK: -
 extension CreateAccountVC {
-    
+
     @objc func textFieldErrorMsg(_ sender: UITextField) {
         switch sender {
         case txtFullName:
@@ -293,9 +293,9 @@ extension CreateAccountVC {
         default:
             break
         }
-     
+
     }
-    
+
     func fullNameErrorMsg() {
          if txtFullName.text == "" {
              lblErrFullName.isHidden = false
@@ -303,8 +303,7 @@ extension CreateAccountVC {
             lblErrFullName.isHidden = true
         }
     }
-   
-    
+
     func passwordErrorMsg() {
         if txtPassword.text == "" {
             lblErrPassword.isHidden = false
@@ -312,16 +311,16 @@ extension CreateAccountVC {
             lblErrPassword.isHidden = true
         }
     }
-    
+
     func confirmErrorMsg() {
         if txtConfirmPassword.text == "" {
             lblConfirmPassword.isHidden = false
-            
+
         } else {
             lblConfirmPassword.isHidden = true
         }
     }
-    
+
     func mobileErrMsg() {
         if txtMobileNumber.text == "" {
             lblErrMobileNumber.isHidden = false
@@ -329,5 +328,5 @@ extension CreateAccountVC {
             lblErrMobileNumber.isHidden = true
         }
     }
-    
+
 }

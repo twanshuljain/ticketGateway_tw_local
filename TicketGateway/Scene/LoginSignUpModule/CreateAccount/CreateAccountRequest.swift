@@ -17,7 +17,7 @@ struct CreateAccountRequest: Codable {
     let role: String
     let isVerify: Bool
     let countryCode: String
-    
+
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case lastName = "last_name"

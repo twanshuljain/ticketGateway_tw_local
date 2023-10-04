@@ -13,7 +13,7 @@ extension String {
     public func trim() -> String {
        return self.trimmingCharacters(in: NSCharacterSet.whitespaces)
     }
-    
+
     func timeStampToString(timeStamp: Double) -> (strdate: String, strtime: String)? {
         let date = NSDate(timeIntervalSince1970: timeStamp / 1000)
         let dateFormatter = DateFormatter()
@@ -26,16 +26,15 @@ extension String {
         let timeString = timeFormatter.string(from: date as Date)
         return (dateString, timeString)
     }
-    
+
     var toDouble: Double {
         return NumberFormatter().number(from: self)?.doubleValue ?? 0.0
     }
-   
+
     var toInt: Int {
         return NumberFormatter().number(from: self)?.intValue ?? 0
     }
-    
-    
+
 //    func getDateFormattedFrom(_ dateFormate: String = "MMM d") -> String {
 //        let dateFormatter = DateFormatter()
 //        let tempLocale = dateFormatter.locale // save locale temporarily
@@ -80,7 +79,7 @@ extension String {
           return dateString
         }
       }
-    
+
     func getDateFormattedFromTo() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -101,9 +100,9 @@ extension String {
             let dateString = dateFormatter.string(from: date)
             return dateString
         }
-        
+
     }
-    
+
     func removeTimeFromDate() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -124,9 +123,9 @@ extension String {
             let dateString = dateFormatter.string(from: date)
             return dateString
         }
-        
+
     }
-    
+
     func getDayFormattedFromTo() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -147,9 +146,9 @@ extension String {
             let dateString = dateFormatter.string(from: date)
             return dateString
         }
-        
+
     }
-    
+
     func getDateFormattedISOFromTo() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -170,11 +169,9 @@ extension String {
             let dateString = dateFormatter.string(from: date)
             return dateString
         }
-        
+
     }
-    
-    
-    
+
     func changeDateFormate() -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -187,7 +184,7 @@ extension String {
         let dateString = dateFormatter.string(from: date)
         return dateString
     }
-    
+
     func convertToDate() -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -204,7 +201,7 @@ extension String {
         let result = formatter.date(from: self) ?? Date()
         return result
       }
-    
+
     func getFormattedTime() -> String{
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -216,7 +213,7 @@ extension String {
         let dateString = dateFormatter.string(from: date)
         return dateString
     }
-    
+
     func getDateFormattedDateFromString(_ timeFormat: String = "dd MMM yyyy", _ stringDateFormate: String = "dd MMM yyyy") -> Date {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
@@ -257,7 +254,7 @@ extension String {
         }
         return nil
     }
-    
+
     func getSeparatedFirstName() -> String{
         var firstName = ""
         var components = self.components(separatedBy: " ")
@@ -266,10 +263,10 @@ extension String {
          let lastName = components.joined(separator: " ")
          debugPrint(firstName)
         }
-        
+
         return firstName
     }
-    
+
     func getSeparatedLastName() -> String{
         var lastName = ""
         var components = self.components(separatedBy: " ")
@@ -280,7 +277,6 @@ extension String {
         }
         return lastName
     }
-    
 
     func generateQRCode(qrCodeImageView:UIImageView) -> UIImage? {
         if let data = Data(base64Encoded: self) {
@@ -298,19 +294,18 @@ extension String {
 
         return nil
     }
-    
+
     func base64ToImage() -> UIImage? {
         if let url = URL(string: self),let data = try? Data(contentsOf: url),let image = UIImage(data: data) {
             return image
         }
         return nil
     }
-    
+
     func getCountry() -> String{
         return Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
     }
-    
-    
+
 }
 
 extension StringProtocol {

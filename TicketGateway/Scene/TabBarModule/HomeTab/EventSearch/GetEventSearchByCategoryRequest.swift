@@ -14,7 +14,6 @@ enum SortBy: String {
     case noneValue = ""
 }
 
-
 struct GetEventSearchByCategoryRequest: Codable {
     var category: String?
     var countryName: String?

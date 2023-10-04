@@ -15,7 +15,7 @@ import UIKit
 import iOSDropDown
 
 class EventBookingTicketOnApplyCouponVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var lblRefund: UILabel!
     @IBOutlet weak var lblAcceptedTermCon: UILabel!
@@ -24,9 +24,9 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var lblFewTIcketleft: UILabel!
     @IBOutlet weak var lblClickingonCOntinue: UILabel!
-    
+
     @IBOutlet weak var tblHeight: NSLayoutConstraint!
-    
+
     //coupon
     @IBOutlet weak var btnCheckTermCondition: UIButton!
     @IBOutlet weak var txtAccessCode : UITextField!
@@ -46,47 +46,46 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var enterAccessCodeBgView: UIView!
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var btnRemoveAccessCode : UIButton!
-    
+
     // MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setNavigationData()
         self.apiCall()
     }
-    
+
 }
 
 // MARK: - Functions
 extension EventBookingTicketOnApplyCouponVC {
-    
+
     func setNavigationData() {
         //  self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
         if let eventTitle = viewModel.eventDetail?.event?.title{
             self.navigationView.lblTitle.text = eventTitle
         }
-        
+
         if let eventCountry = self.viewModel.eventDetail?.eventLocation?.eventCountry{
             self.navigationView.lblTitle.text! += " - \(eventCountry)"
         }
-        
+
 //        let dateTime = "\(viewModel.eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" + " • " + "\(viewModel.eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
 //        self.navigationView.lblDiscripation.text = dateTime
-        
+
         if let date = viewModel.eventDetail?.eventDateObj?.eventStartDate{
             self.navigationView.lblDiscripation.text = date.getDateFormattedFrom()
         }
-        
+
         if let time = viewModel.eventDetail?.eventDateObj?.eventStartTime{
             self.navigationView.lblDiscripation.text! += " • \(time.getFormattedTime())"
         }
        self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
-        
+
     }
-      
+
     private func setup() {
         self.setUi()
         self.tblEventTicketTypes.configure()
@@ -109,27 +108,26 @@ extension EventBookingTicketOnApplyCouponVC {
         }
         self.txtAccessCode.delegate = self
         self.txtAccessCode.autocorrectionType = .no
-        
-        
+
         txtAccessCode.isUserInteractionEnabled = true
         tblEventTicketTypes.finalPrice = Double(self.viewModel.totalTicketPrice) ?? 0.0
         tblEventTicketTypes.selectedArrTicketList = self.viewModel.selectedArrTicketList
         tblEventTicketTypes.arrTicketList = viewModel.defaultTicket
-        
+
         self.setData()
     }
-    
+
     func setData() {
         self.viewModel.selectedCurrencyType = AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")
         self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")) \(Double(self.viewModel.totalTicketPrice) ?? 0.0)"
     }
-    
+
     func setUi() {
         self.lblAppliedAccessCodeDIs.isHidden = true
         self.imgApplyAccessCode.isHidden = true
         self.enterAccessCodeBgView.borderColor = UIColor.setColor(colorType: .borderColor)
         self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+
         self.lblAcceptedTermCon.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFewTIcketleft.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -142,18 +140,18 @@ extension EventBookingTicketOnApplyCouponVC {
         self.lblAppliedAccessCodeDIs.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblAppliedAccessCodeDIs.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblAppliedAccessCodeDIs.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
-        
+
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         btnAppliedCode.setTitles(text: "Apply", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
         self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
-        
+
         self.btnAppliedAccessCodeAction()
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
-        
+
     }
-    
+
     func apiCall() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -186,12 +184,12 @@ extension EventBookingTicketOnApplyCouponVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
+
         self.viewModel.dispatchGroup.notify(queue: .main) {
             self.apiCallForFeeStructure()
         }
     }
-    
+
     func apiCallForFeeStructure() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -214,12 +212,12 @@ extension EventBookingTicketOnApplyCouponVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
+
         self.viewModel.dispatchGroup2.notify(queue: .main) {
             self.callAddOnApi()
         }
     }
-    
+
     func callAddOnApi() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -243,7 +241,7 @@ extension EventBookingTicketOnApplyCouponVC {
             }
         }
     }
-    
+
     func navigateToPaymentEventBookingTicketAddOns() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
             view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -256,7 +254,7 @@ extension EventBookingTicketOnApplyCouponVC {
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
-    
+
     func navigateToEventPromoCode() {
         if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
             view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -321,9 +319,7 @@ extension EventBookingTicketOnApplyCouponVC {
            self.showToast(message: "Please Accept Terms and Condition")
 
        }
-       
-       
-       
+
 //       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
 //           view.totalTicketPrice = self.viewModel.totalTicketPrice
 //           view.feeStructure = self.viewModel.feeStructure
@@ -365,13 +361,13 @@ extension EventBookingTicketOnApplyCouponVC {
                     self.showToast(message: ValidationConstantStrings.networkLost)
                 }
             }
-        
+
         self.viewModel.dispatchGroup1.notify(queue: .main) {
             self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
             self.tblEventTicketTypes.reloadData()
         }
     }
-    
+
     func btnCheckTermConditionAction() {
         if viewModel.isCheckedTermCondition == false
         {
@@ -382,9 +378,9 @@ extension EventBookingTicketOnApplyCouponVC {
             viewModel.isCheckedTermCondition = false
             self.btnCheckTermCondition.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
-        
+
     }
-    
+
     func btnAppliedAccessCodeAction() {
         if viewModel.isAccessCodeAvailable {
             enterAccesCodeStackView.isHidden = false
@@ -400,7 +396,7 @@ extension EventBookingTicketOnApplyCouponVC {
         }
         viewModel.isAccessCodeAvailable = !viewModel.isAccessCodeAvailable
     }
-    
+
     func btnRemoveAccessCodeAction() {
         self.btnAppliedCode.isUserInteractionEnabled = true
         self.lblAppliedAccessCodeDIs.text = ""
@@ -414,7 +410,7 @@ extension EventBookingTicketOnApplyCouponVC {
         self.tblEventTicketTypes.arrTicketList = self.viewModel.arrTicketList
         self.tblEventTicketTypes.reloadData()
     }
-    
+
 }
 
 // MARK: - TextField Delegate
@@ -449,7 +445,7 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
             {
                 return false
             }
-            
+
             let maxLength = 20
             let currentString: NSString = textField.text! as NSString
             let newString: NSString =
@@ -466,4 +462,3 @@ extension EventBookingTicketOnApplyCouponVC : NavigationBarViewDelegate {
         self.navigationController?.popViewController(animated: true)
     }
 }
-

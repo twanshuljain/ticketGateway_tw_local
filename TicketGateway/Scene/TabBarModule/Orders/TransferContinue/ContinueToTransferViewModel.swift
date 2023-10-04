@@ -20,7 +20,6 @@ class ContinueToTransferViewModel {
     var ticketTransfer: TicketTransfer?
 }
 
-
 extension ContinueToTransferViewModel{
     var validateInput: (errorMessage: String, isValid: Bool) {
         if Validation.shared.organizerInputValidation(text: email, validationType: .email).0 {
@@ -33,8 +32,7 @@ extension ContinueToTransferViewModel{
         }
         return("", true)
     }
-    
-    
+
     func transferTicket(complition: @escaping (Bool,String) -> Void ) {
         let getURL = APIName.transferTicket.rawValue + "\(self.myTicket?.ticketOrderID ?? 0)/"
         let param = ContinueTransferRequest(cellPhone: self.mobileNumber, email: self.email, confirmEmail: self.confirmEmail, fullName: self.fullName)
@@ -51,7 +49,7 @@ extension ContinueToTransferViewModel{
             }
         }
     }
-    
+
     func reSendTransferTicket(transferId: Int?,complition: @escaping (Bool,String) -> Void ) {
         let getURL = APIName.resendTicketTransfer.rawValue + "\(transferId ?? 0)/"
         APIHandler.shared.executeRequestWith(apiName: .transferTicket, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<TicketTransfer>, Error>) in

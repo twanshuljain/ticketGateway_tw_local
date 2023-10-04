@@ -4,7 +4,6 @@
 //
 //  Created by Apple  on 28/04/23.
 
-
 import UIKit
 import SDWebImage
 
@@ -35,7 +34,7 @@ class SuggestedOrganizerCell: UICollectionViewCell {
         } else {
             self.btnFollerwers.setTitle("Follow", for: .normal)
         }
-        
+
         if let imageUrl = organizerDetail.profileImage{
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -51,21 +50,21 @@ class SuggestedOrganizerCell: UICollectionViewCell {
                     self.imgProfile.image = UIImage(named: "homeDas")
                 }
             }
-            
+
         } else {
             self.imgProfile.image = UIImage(named: "homeDas")
         }
     }
-    
+
     func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblFollowers.textColor = UIColor.setColor(colorType: .headinglbl)
         self.btnFollerwers.setTitles(text: "Following", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-       
+
     }
-    
+
     @IBAction func btnFollowUnfollowAction(_ sender:UIButton) {
         if isFromOrganizationSection {
             followButtonDidTap(sender)

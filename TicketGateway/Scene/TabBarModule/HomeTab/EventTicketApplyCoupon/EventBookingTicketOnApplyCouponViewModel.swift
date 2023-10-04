@@ -34,7 +34,7 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var arrAddOnTicketList: [EventTicketAddOnResponseModel]?
     var selectedCurrencyType = ""
 }
- 
+
 extension EventBookingTicketOnApplyCouponViewModel {
     func applyAccessCode(accessCode:String,complition: @escaping (Bool,String) -> Void ) {
         //let accessCode = "MOON"
@@ -66,7 +66,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
             }
         }
     }
-    
+
     func getEventTicketList(complition: @escaping (Bool,String) -> Void ) {
         var getURL = APIName.getTicketList.rawValue + "\(self.eventId ?? 0)" + "/"
        // var getURL = APIName.GetTicketList.rawValue + "12" + "/"
@@ -91,7 +91,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
             }
         }
     }
-    
+
     func getEventTicketFeeStructure(complition: @escaping (Bool,String) -> Void ) {
         guard let eventId = self.eventDetail?.event?.id else {return}
         var getURL = APIName.getFeeStructure.rawValue + "\(eventId)" + "/"
@@ -114,7 +114,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
             }
         }
     }
-    
+
     func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
         // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"
         var getURL = APIName.getAddOnList.rawValue + "\(self.eventDetail?.event?.id ?? 0)" + "/"

@@ -11,7 +11,7 @@ struct ChangeNameRequestModel:Codable{
     var ticketId : Int?
     var firstName, lastName : String?
     var ticketOrderId : Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case lastName = "last_name"

@@ -4,7 +4,6 @@
 //
 //  Created by Apple  on 10/05/23.
 
-
 import UIKit
 
 class ManageMyEventCateoryList: UICollectionView {

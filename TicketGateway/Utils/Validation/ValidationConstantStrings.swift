@@ -20,7 +20,7 @@ class ValidationConstantStrings: NSObject {
         static let passwordNotMatch = "Password and confirm password are not same"
         static let emptyOtp = "OTP is required"
         static let invalidOtp = "Please enter a valid OTP"
-        
+
         static let emptyPassword = "Please enter password"
         static let emptyNewPassword = "New password is required"
         static let invalidPassword = "Please enter valid password"

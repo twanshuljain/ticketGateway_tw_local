@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class CostumeListTableView: UITableView {
 
 // MARK: - Variables
@@ -25,9 +24,7 @@ class CostumeListTableView: UITableView {
         self.register(UINib(nibName: "CostumeTableViewCell", bundle: nil), forCellReuseIdentifier: "CostumeTableViewCell")
         self.reloadData()
     }
-    
-    
-    
+
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -35,18 +32,18 @@ extension CostumeListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return costumeTbleItem.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CostumeTableViewCell", for: indexPath) as? CostumeTableViewCell{
             cell.selectionStyle = .none
             let data = costumeTbleItem[indexPath.row]
             cell.setData(costumeObj: self.costumeObj, isForDetailVC: isForDetailVC)
-            
+
             return cell
         }
         return UITableViewCell()
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = costumeTbleItem[indexPath.row]
         self.tableDidSelectAtIndex?(indexPath.row)
@@ -58,6 +55,5 @@ extension CostumeListTableView:CostumeTableViewCellProtocol{
     func didSelect(index: IndexPath) {
         self.tableDidSelectAtIndex?(index.row)
     }
-    
-    
+
 }

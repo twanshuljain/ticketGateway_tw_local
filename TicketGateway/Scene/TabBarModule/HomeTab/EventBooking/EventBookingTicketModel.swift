@@ -65,7 +65,6 @@ struct EventTicket: Codable {
     }
 }
 
-
 // MARK: - FeeStructure
 struct FeeStructure: Codable {
     var serviceFees: Int?

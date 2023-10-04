@@ -19,7 +19,7 @@ class FeedBackTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         setFont()
     }
-    
+
     func setData(feedback:String?, index:Int) {
         if index == 0{
             self.btnThumbsUp.setImage(UIImage.init(named: THUMBSUP_SELECTED_ICON), for: .normal)
@@ -30,10 +30,10 @@ class FeedBackTableViewCell: UITableViewCell {
         }
         self.lblFeedback.text = feedback ?? ""
     }
-    
+
     func setFont() {
         lblFeedback.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblFeedback.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
- 
+
 }

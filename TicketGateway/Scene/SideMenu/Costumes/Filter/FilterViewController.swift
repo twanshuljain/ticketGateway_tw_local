@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class FilterViewController: UIViewController {
 
     // MARK: - IBOutlets
@@ -15,10 +14,10 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var tblFilterSelectedSection:UITableView!
     @IBOutlet weak var btnCancel:UIButton!
     @IBOutlet weak var btnApply:CustomButtonGradiant!
-    
+
     // MARK: - Variables
     var viewModel = FilterViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,13 +40,13 @@ extension FilterViewController{
         //lblImageCollectionHeader.textColor = UIColor.setColor(colorType: .tgBlack)
         self.updateUI()
     }
-    
+
     func updateUI() {
         if self.viewModel.selectedFilterIndex != nil{
             self.btnApply.setBackGround()
             self.btnApply.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             self.btnApply.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-            
+
             self.btnCancel.backgroundColor = UIColor.setColor(colorType: .white)
             self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .borderColor)
@@ -56,7 +55,7 @@ extension FilterViewController{
             self.btnApply.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
             self.btnApply.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             self.btnApply.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-            
+
             self.btnCancel.backgroundColor = UIColor.setColor(colorType: .white)
             self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .borderColor)
@@ -73,7 +72,7 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
             return viewModel.arrFilter.count
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == self.tblFilterSection{
             if let cell = tableView.dequeueReusableCell(withIdentifier: "FilterSectionTableViewCell", for: indexPath) as? FilterSectionTableViewCell{
@@ -94,7 +93,7 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
             }
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == self.tblFilterSection{
             return UITableView.automaticDimension
@@ -106,7 +105,7 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
             }
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == self.tblFilterSection{
             self.viewModel.selectedFilterSectionIndex = indexPath.row
@@ -116,15 +115,15 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
             tableView.reloadData()
         }
     }
-    
+
 }
 // MARK: - Actions
 extension FilterViewController{
     @IBAction func btnCancelPressed(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
-    
+
     @IBAction func btnApplyPressed(_ sender: UIButton) {
-        
+
     }
 }

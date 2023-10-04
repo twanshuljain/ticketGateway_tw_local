@@ -13,7 +13,7 @@ class SearchLocationCell: UITableViewCell {
     @IBOutlet weak var lblOnOFF: UILabel!
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var btnCheck: UIButton!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setFont()
@@ -24,9 +24,7 @@ class SearchLocationCell: UITableViewCell {
         self.lblTittle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblOnOFF.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblOnOFF.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
     }
-    
-    
-    
+
 }

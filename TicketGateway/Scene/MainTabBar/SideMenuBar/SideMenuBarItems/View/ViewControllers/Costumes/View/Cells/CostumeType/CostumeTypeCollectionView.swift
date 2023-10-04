@@ -14,9 +14,9 @@
 import UIKit
 
 class CostumeTypeCollectionView: UICollectionView {
-    
+
     var costumeType = ["Detail", "BackLine", "MidLine", "FrontLine", "UltraFrontLine"]
-    
+
     var collectionDidSelectAtIndex:((Int) ->())?
     var selectedIndex = Int ()
 
@@ -32,7 +32,7 @@ extension CostumeTypeCollectionView: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return costumeType.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CostumeTypeCollectionViewCell", for: indexPath) as! CostumeTypeCollectionViewCell
         let data = costumeType[indexPath.row]
@@ -41,14 +41,12 @@ extension CostumeTypeCollectionView: UICollectionViewDelegate, UICollectionViewD
         cell.lblCostumeType.textColor = selectedIndex == indexPath.row ? UIColor.white : UIColor.darkGray
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.collectionDidSelectAtIndex?(indexPath.row)
         selectedIndex = indexPath.row
         self.reloadData()
 
     }
-    
-    
-    
+
 }

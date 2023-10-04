@@ -8,7 +8,7 @@
 import UIKit
 
 class SoldOutTicketTableViewCell: UITableViewCell {
-  
+
     // MARK: - OUTLETS
 
     @IBOutlet weak var lblGeneralAdmission: UILabel!
@@ -19,16 +19,14 @@ class SoldOutTicketTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.setFont()
     }
-    
+
     func setFont() {
         self.lblGeneralAdmission.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         self.lblGeneralAdmission.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
         self.lblTotalTicket.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTotalTicket.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+
     }
 
-   
-    
 }

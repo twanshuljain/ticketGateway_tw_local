@@ -7,7 +7,7 @@
 import UIKit
 
 extension UIView {
-    
+
     //swiftlint:disable force_cast unused_optional_binding valid_ibinspectable for_where unused_setter_value
      class func fromNib<T: UIView>() -> T {
         return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)?[0] as! T
@@ -19,8 +19,7 @@ extension UIView {
         layer.borderColor = #colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9254901961, alpha: 1)
         layer.backgroundColor = .none
     }
-    
-    
+
     func createDottedLine(width: CGFloat, color: CGColor, dashPattern: [NSNumber]) {
        let caShapeLayer = CAShapeLayer()
        caShapeLayer.strokeColor = color
@@ -32,7 +31,7 @@ extension UIView {
        caShapeLayer.path = cgPath
        layer.addSublayer(caShapeLayer)
       }
-  
+
     func addShadow() {
         self.layer.backgroundColor = UIColor.clear.cgColor
         self.layer.shadowColor = UIColor.black.cgColor
@@ -255,7 +254,7 @@ extension UIView {
                                                           options: [],
                                                           metrics: nil,
                                                           views: views))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[line(==lineWidth)]|",
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V: [line(==lineWidth)]|",
                                                           options: [],
                                                           metrics: metrics,
                                                           views: views))
@@ -282,7 +281,7 @@ extension UIView {
             self.clipsToBounds = true
         }
     }
-    
+
     @IBInspectable var isTopCorner: Bool {
         get {
             return false
@@ -375,8 +374,6 @@ extension UIView {
             layer.rasterizationScale = newValue
         }
     }
-    
-   
 
     func setShadow() {
         layer.masksToBounds = false
@@ -439,7 +436,7 @@ extension UIView {
         }
         return nil
     }
-       
+
     func heightForView(text: String, font: UIFont, width: CGFloat) -> CGFloat {
         let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
@@ -451,7 +448,7 @@ extension UIView {
     }
     static let loadingViewTag = 1938123987
     static let loadingViewTag1 = 1938123986
-    
+
     //func showLoading(parentView: UIView, style: UIActivityIndicatorView.Style = .large, color: UIColor? = nil, scale: CGFloat = 1) {
     func showLoading(centreToView: UIView) {
         DispatchQueue.main.async {  [weak self] in
@@ -459,7 +456,7 @@ extension UIView {
             var loaderParentView = self.viewWithTag(UIView.loadingViewTag1)
             if loaderParentView == nil {
                 loaderParentView = UIView()
-                
+
             }
             loaderParentView?.tag = 1938123986
             loaderParentView!.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
@@ -467,13 +464,12 @@ extension UIView {
             let style: UIActivityIndicatorView.Style = .large
             let color: UIColor? =  UIColor.setColor(colorType: .tgBlue)
             let scale: CGFloat =  0.9
-            
-            
+
             var loading = self.viewWithTag(UIView.loadingViewTag) as? UIActivityIndicatorView
             if loading == nil {
                 loading = UIActivityIndicatorView(style: style)
             }
-            
+
             if let color = color {
                 loading?.color = color
             }
@@ -488,7 +484,7 @@ extension UIView {
             loading?.centerXAnchor.constraint(equalTo: centreToView.centerXAnchor).isActive = true
         }
     }
-    
+
     func stopLoading() {
         DispatchQueue.main.async { [self] in
             let loading = viewWithTag(UIView.loadingViewTag) as? UIActivityIndicatorView
@@ -498,7 +494,7 @@ extension UIView {
             loadingParentView?.removeFromSuperview()
         }
     }
-    
+
     func asImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         return renderer.image { rendererContext in
@@ -513,7 +509,7 @@ class CustomSocialLoginView: UIView {
             layer.shadowColor = UIColor.lightGray.cgColor
             self.backgroundColor = .white
             layer.shadowOpacity = 0.4
-            
+
              layer.shadowOffset = CGSize(width: 2, height: 2)
             layer.shadowRadius = 10
             layer.cornerRadius = 10
@@ -524,7 +520,7 @@ class CustomSocialLoginView: UIView {
         super.init(frame: frame)
         setup()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -553,7 +549,7 @@ class SetBorderView: UIView {
             layer.shadowColor = UIColor.lightGray.cgColor
             self.backgroundColor = .white
             layer.shadowOpacity = 0.2
-            
+
              layer.shadowOffset = CGSize(width: 2, height: 2)
             layer.shadowRadius = 7.5
             layer.cornerRadius = 7.5
@@ -564,7 +560,7 @@ class SetBorderView: UIView {
         super.init(frame: frame)
         setup()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -577,12 +573,12 @@ class CustomViewGradiant: UIView {
         super.init(frame: frame)
         setBackGround()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setBackGround()
     }
-    
+
     func setBackGround() {
         gradientLayer.colors = [UIColor.init(named: "startviewGra")?.cgColor ?? UIColor.self, UIColor.init(named: "endviewGra")?.cgColor ?? UIColor.self]
         gradientLayer.cornerRadius = 0
@@ -593,20 +589,18 @@ class CustomViewGradiant: UIView {
         gradientLayer.layoutIfNeeded()
         layer.insertSublayer(gradientLayer, at: 0)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientLayer.frame = self.bounds
     }
-    
-    
+
 }
 @IBDesignable
 class GradientView: UIView {
     @IBInspectable var startColor: UIColor = UIColor.clear
     @IBInspectable var endColor: UIColor = UIColor.clear
     let gradientLayer: CAGradientLayer = CAGradientLayer()
-    
 
     override func draw(_ rect: CGRect) {
             gradientLayer.cornerRadius = 0
@@ -616,7 +610,7 @@ class GradientView: UIView {
             gradientLayer.frame = layer.bounds
             gradientLayer.layoutIfNeeded()
             gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
-       
+
         layer.addSublayer(gradientLayer)
     }
 override func layoutSubviews() {
@@ -630,7 +624,6 @@ class GradientViewBg: UIView {
     @IBInspectable var startColor: UIColor = UIColor.clear
     @IBInspectable var endColor: UIColor = UIColor.clear
     let gradientLayer: CAGradientLayer = CAGradientLayer()
-    
 
     override func draw(_ rect: CGRect) {
             gradientLayer.cornerRadius = 0
@@ -640,7 +633,7 @@ class GradientViewBg: UIView {
             gradientLayer.frame = layer.bounds
             gradientLayer.layoutIfNeeded()
             gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
-       
+
         layer.addSublayer(gradientLayer)
     }
 override func layoutSubviews() {

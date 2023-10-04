@@ -20,7 +20,7 @@ class FBProgressView: UIView {
     @IBOutlet weak var lblProgressPercent: UILabel!
     @IBOutlet weak var ringView: UIView!
     @IBOutlet weak var centerImage: UIImageView!
-    
+
     var delegate: FBProgressViewDelegate?
 
     @IBInspectable var title: String = "" {
@@ -59,7 +59,7 @@ class FBProgressView: UIView {
         ringProgressView = RingProgressView(frame: CGRect(x: 0, y: 0, width: ringView.frame.width, height: ringView.frame.height))
         ringView.addSubview(ringProgressView)
     }
-    
+
     func setProgress(_ progress: Int,
       startColor: UIColor = UIColor(named: "EndGradient")!,
                      endColor: UIColor = UIColor(named: "EndGradient")! ,
@@ -71,7 +71,7 @@ class FBProgressView: UIView {
         lblProgressPercent.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         lblProgressPercent.text = "\(progress)%"
     }
-    
+
     @IBAction private func btnAction(_ sender: Any) {
         self.delegate?.didTapAt(self)
     }

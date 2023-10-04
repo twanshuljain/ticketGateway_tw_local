@@ -92,11 +92,11 @@ extension ManageSellAddBuyerVC {
         if self.imgCountry.image == nil {
             var str = ""
             var arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-            
+
             if userModel?.strDialCountryCode != nil && userModel?.strDialCountryCode != ""{
                 str = userModel?.strDialCountryCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.dialCode == str})
-                
+
                 if !arr.indices.contains(0) {
                     str = NSLocale.current.regionCode ?? ""
                     arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
@@ -105,17 +105,17 @@ extension ManageSellAddBuyerVC {
                 str = NSLocale.current.regionCode ?? ""
                 arr = viewModel.RScountriesModel.filter({$0.countryCode == str})
             }
-            
+
             self.lblDialCountryCode.text = "+91"
-            
+
             var imagePath = "CountryPicker.bundle/\(str).png"
-            
+
             if arr.count == 2{
                 arr.removeAll { country in
                     country.countryCode != (NSLocale.current.regionCode ?? "")
                 }
             }
-            
+
             if let flagImg = UIImage(named: imagePath) {
                 self.imgCountry.image = flagImg
             } else {

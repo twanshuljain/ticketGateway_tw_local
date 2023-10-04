@@ -17,8 +17,7 @@ import iOSDropDown
 import SideMenu
 
 class ManageEventVC: UIViewController, UITextFieldDelegate {
-    
-    
+
     var isShow = false
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
    @IBOutlet weak var txtAllorganiser: DropDown!
@@ -31,7 +30,6 @@ class ManageEventVC: UIViewController, UITextFieldDelegate {
         self.setup()
         // Do any additional setup after loading the view.
     }
-    
 
 }
 extension ManageEventVC {
@@ -49,11 +47,11 @@ extension ManageEventVC {
         self.txtAllorganiser.didSelect{(selectedText , index ,id) in
             self.txtAllorganiser.text = "Selected String: \(selectedText) \n index: \(index)"
         }
-        
+
         self.TblManageEvent.tableDidSelectAtIndex = { _ in
             objSceneDelegate.showMangeEventTabBar()
         }
-        
+
     }
     func setUi(){
         self.txtAllorganiser.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
@@ -72,7 +70,7 @@ extension ManageEventVC {
             break
         }
     }
-   
+
     func btnAllorganiserAction(){
         txtAllorganiser.showList()
 //        if self.isShow == false{
@@ -83,21 +81,19 @@ extension ManageEventVC {
 //            self.isShow = false
 //            txtAllorganiser.hideList()
 //        }
-        
+
     }
 }
 
 extension ManageEventVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-        
+
         let menu = UIStoryboard.init(name: "Home", bundle: Bundle.main).instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
     }
-    
+
     func RightButtonPressed(_ sender: UIButton) {
         print("hello")
     }
-    
 
-    
 }

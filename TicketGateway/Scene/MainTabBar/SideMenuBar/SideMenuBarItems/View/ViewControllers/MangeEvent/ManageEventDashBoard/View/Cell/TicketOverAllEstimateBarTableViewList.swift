@@ -30,10 +30,10 @@ class TicketOverAllEstimateBarTableViewList: UITableView {
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return 4
      }
-     
+
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "TicketOverAllEstimateBarCell") as! TicketOverAllEstimateBarCell
-        
+
           return cell
      }
 
@@ -42,13 +42,13 @@ class TicketOverAllEstimateBarTableViewList: UITableView {
           self.tableDidSelectAtIndex?(indexPath.row)
           self.reloadData()
      }
-     
+
      func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
          print("in \(indexPath.row)")
      }
-     
+
      @objc func buttonPressed(_ sender: UIButton) {
-         
+
      }
-     
+
  }

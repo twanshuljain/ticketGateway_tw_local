@@ -15,10 +15,8 @@ import UIKit
 import SideMenu
 import SVProgressHUD
 
-
-
 class HomeVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var heightOfCollectionView: NSLayoutConstraint!
     @IBOutlet weak var heightOfNearOrganisedEvent: NSLayoutConstraint!
@@ -62,7 +60,7 @@ extension HomeVC: UITextFieldDelegate {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
-    
+
 }
 // MARK: - Functions
 extension HomeVC {
@@ -86,7 +84,7 @@ extension HomeVC {
         self.vwSearchBar.delegate = self
         self.vwSearchBar.txtSearch.delegate = self
     }
-    
+
     func navigateToDetailVc(index:IndexPath) {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
             if self.viewModel.arrEventCategory.indices.contains(index.section) {
@@ -117,13 +115,13 @@ extension HomeVC {
                     if self.viewModel.arrDataaUpcoming.indices.contains(index.row) {
                         view.viewModel.eventId = self.viewModel.arrDataaUpcoming[index.row].event?.id
                     }
-                
+
                 }
                 self.funcCallApiForEventDetail(eventId: view.viewModel.eventId, view: view)
             }
         }
     }
-    
+
     func setUi() {
         self.lblNearOrganisedEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
         self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -133,9 +131,9 @@ extension HomeVC {
       }
      override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfNearOrganisedEvent.constant = tblEvents.contentSize.height
-        
+
     }
-    
+
     func apiCall() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -147,7 +145,7 @@ extension HomeVC {
                     self.parentView.stopLoading()
                     DispatchQueue.main.async {
                         self.tblEvents.arrDataaWeekend = self.viewModel.arrDataaWeekend
-                        
+
                         self.tblEvents.reloadData()
                     }
                 } else {
@@ -164,7 +162,7 @@ extension HomeVC {
             }
         }
     }
-    
+
     func funcCallApi() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -194,14 +192,13 @@ extension HomeVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
-        
+
         self.viewModel.dispatchGroup.notify(queue: .main) {
             print("Finished Api Call GetEventApiForLocations")
             self.funcCallApiForWeekendEvents(viewAll: false)
         }
     }
-    
+
     func funcCallApiForWeekendEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -210,7 +207,7 @@ extension HomeVC {
             }
             self.viewModel.dispatchGroup1.enter()
             viewModel.getEventApiForWeekendEvents(viewAll:viewAll,complition: { isTrue, messageShowToast in
-                
+
                 if isTrue == true {
                     self.parentView.stopLoading()
                     //                   DispatchQueue.main.async {
@@ -223,7 +220,7 @@ extension HomeVC {
                         self.tblEvents.arrDataaWeekend.append(contentsOf: itemWeekend)
                         self.viewModel.semaphore.signal()
                     }
-                    
+
                 } else {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
@@ -237,14 +234,13 @@ extension HomeVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
-        
+
         self.viewModel.dispatchGroup1.notify(queue: .main) {
             print("Finished Api Call GetEventApiForWeekendEvents")
             self.funcCallApiForOnlineEvents(viewAll: false)
         }
     }
-    
+
     func funcCallApiForOnlineEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -274,7 +270,7 @@ extension HomeVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
+
         self.viewModel.dispatchGroup2.notify(queue: .main) {
             print("Finished Api Call GetEventApiForOnlineEvents")
             self.funcCallApiForPopularEvents(viewAll: false)
@@ -309,14 +305,13 @@ extension HomeVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
+
         self.viewModel.dispatchGroup3.notify(queue: .main) {
             print("Finished Api Call GetEventApiForPopularEvents")
             self.funcCallApiForFreeEvents(viewAll: false)
         }
     }
-    
-    
+
     func funcCallApiForFreeEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -346,13 +341,13 @@ extension HomeVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
+
         self.viewModel.dispatchGroup4.notify(queue: .main) {
             print("Finished Api Call GetEventApiForFreeEvents")
             self.funcCallApiForUpcomingEvents(viewAll: false)
         }
     }
-    
+
     func funcCallApiForUpcomingEvents(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -387,15 +382,15 @@ extension HomeVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
+
         self.viewModel.dispatchGroup5.notify(queue: .main) {
             self.tblEvents.arrEventCategory = self.viewModel.arrEventCategory
                 self.tblEvents.reloadData()
                 self.funcCallApiForOrganizersList(viewAll: false)
         }
-        
+
     }
-    
+
     func funcCallApiForOrganizersList(viewAll:Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -424,7 +419,7 @@ extension HomeVC {
             }
         }
     }
-    
+
     func funcCallApiForEventDetail(eventId:Int?, view: EventDetailVC) {
         if let eventId = eventId{
           if Reachability.isConnectedToNetwork() //check internet connectivity
@@ -448,7 +443,7 @@ extension HomeVC {
                   self.showToast(message: ValidationConstantStrings.networkLost)
               }
           }
-            
+
             self.viewModel.dispatchGroup6.notify(queue: .main) {
                 var numberOfPage = 0
                 if self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != nil || self.viewModel.eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
@@ -463,7 +458,7 @@ extension HomeVC {
             }
       }
   }
- 
+
     func refreshData() {
         self.viewModel.arrSearchCategoryData.removeAll()
         //self.viewModel.arrEventData = nil
@@ -474,7 +469,7 @@ extension HomeVC {
         self.viewModel.arrDataaFree.removeAll()
         self.viewModel.arrDataaUpcoming.removeAll()
         self.viewModel.arrOrganizersList?.removeAll()
-        
+
         self.tblEvents.arrData.removeAll()
         self.tblEvents.arrDataa.removeAll()
         self.tblEvents.arrDataaFree.removeAll()
@@ -489,7 +484,7 @@ extension HomeVC {
         self.lblSuggestedOrganised.text = ""
         tblEvents.reloadData()
         collvwSuggestedOrganisation.reloadData()
-        
+
         self.funcCallApi()
         self.setUp()
     }
@@ -498,14 +493,14 @@ extension HomeVC {
 // MARK: - CustomSearchMethodsDelegate
 extension HomeVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-        
+
         self.navigationController?.popViewController(animated: true)
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
-        
+
     }
-    
+
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         view?.delegate = self
@@ -540,7 +535,6 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
-
 
 extension HomeVC: ActivityController {
     func toShowActivityController(eventDetail: GetEventModel) {
@@ -602,7 +596,7 @@ extension HomeVC: NavigateToProfile, SuggestedOrganizerListProtocol {
             }
         }
     }
-    
+
     func tapActionOrganiser(index: Int, data: Organizers) {
         if let vc = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC {
             vc.isComingFromOranizer = true

@@ -23,7 +23,7 @@ class ManageEventProfileVC: UIViewController {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var viewTotalProgress: FBProgressView!
-    
+
     // MARK: - Varibale
     var isComingFromOranizer = false
     var isForSideMenuOrSetting = false
@@ -56,7 +56,7 @@ extension ManageEventProfileVC {
             self.lblAboutSince.isHidden = true
             self.lblAboutSinceDate.isHidden = true
             self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (imageUrl ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-            
+
         } else {
             if isForSideMenuOrSetting {
                 self.navigationView.btnBack.isHidden = false

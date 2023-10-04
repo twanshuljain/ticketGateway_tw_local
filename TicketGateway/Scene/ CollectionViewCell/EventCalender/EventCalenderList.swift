@@ -8,8 +8,7 @@
 import UIKit
 
 class EventCalenderList: UICollectionView {
-    
-    
+
     func configure() {
         self.register(UINib(nibName: "EventCalenderCell", bundle: nil), forCellWithReuseIdentifier: "EventCalenderCell")
         self.delegate = self
@@ -20,12 +19,11 @@ class EventCalenderList: UICollectionView {
 
 // MARK: - UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout
 extension EventCalenderList : UICollectionViewDataSource ,UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout {
-    
+
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
 
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -70,7 +68,7 @@ extension EventCalenderList : UICollectionViewDataSource ,UICollectionViewDelega
     }
 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
+
     }
     */
 

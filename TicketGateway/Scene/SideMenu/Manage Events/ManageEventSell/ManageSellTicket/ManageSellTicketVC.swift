@@ -107,7 +107,7 @@ extension ManageSellTicketVC {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellBuyersInfoListVC) as? ManageSellBuyersInfoListVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
-    
+
     func btnPromoCodeAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .PromoCodeVC) as? PromoCodeVC
         self.navigationController?.pushViewController(view!, animated: false)

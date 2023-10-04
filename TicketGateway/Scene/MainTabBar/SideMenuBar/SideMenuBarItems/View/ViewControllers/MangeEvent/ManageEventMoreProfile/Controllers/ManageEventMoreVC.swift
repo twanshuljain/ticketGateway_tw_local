@@ -15,15 +15,15 @@
 import UIKit
 
 class ManageEventMoreVC: UIViewController {
-    
+
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblProfileview : UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: SideMenuList!
-    
+
     var menu =  [SideMenuModel]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUi()
@@ -41,7 +41,7 @@ class ManageEventMoreVC: UIViewController {
         self.lblName.text = objAppShareData.userAuth?.fullName
         self.tblList.reloadData()
     }
-    
+
     func setUi(){
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
@@ -55,9 +55,7 @@ class ManageEventMoreVC: UIViewController {
         self.navigationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
         self.navigationView.vwBorder.isHidden = false
     }
-    
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,7 +65,6 @@ class ManageEventMoreVC: UIViewController {
         self.navigationController?.pushViewController(view!, animated: true)
     }
 }
-
 
 extension ManageEventMoreVC : NavigationBarViewDelegate {
     func navigationBackAction() {

@@ -15,7 +15,7 @@ enum DiscountType:String {
 struct EventPromoCodeRequestModel: Codable {
     var eventId: Int?
     var promoCode: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case eventId = "event_id"
         case promoCode = "promo_code"

@@ -8,7 +8,7 @@
 import UIKit
 
 class ManageOrderTableViewCell: UITableViewCell {
-    
+
 // MARK: - Outlets
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDate: UILabel!
@@ -16,17 +16,17 @@ class ManageOrderTableViewCell: UITableViewCell {
     @IBOutlet weak var lblFree: UILabel!
     @IBOutlet weak var lblOrderNumber: UILabel!
     @IBOutlet weak var lblOrderNumberFree: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setFont()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
     }
-    
+
     func setFont() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -40,7 +40,7 @@ class ManageOrderTableViewCell: UITableViewCell {
         self.lblOrderNumber.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblOrderNumberFree.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblOrderNumberFree.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+
     }
-    
+
 }

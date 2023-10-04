@@ -23,20 +23,19 @@ class EventBookingTicketAddOnsVC: UIViewController {
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var parentView:UIView!
     @IBOutlet weak var noDataFoundView:UIView!
-    
+
     // MARK: - Variables
-   
+
     let viewModel = EventTiclketAddOnViewModel()
-   
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
         self.setup()
         self.callAddOnApi()
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.eventDetail?.event?.eventTicketFinalPrice = self.viewModel.totalTicketPriceWithAddOn
@@ -93,7 +92,7 @@ extension EventBookingTicketAddOnsVC {
         }
         self.setData()
     }
-    
+
     func setData() {
         self.lblTotalTicketPrice.text = "\(self.viewModel.selectedCurrencyType)\(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
         if (self.viewModel.arrAddOnTicketList?.isEmpty ?? false) {
@@ -123,7 +122,7 @@ extension EventBookingTicketAddOnsVC {
 //            view.viewModel.eventId = self.viewModel.eventId
 //            self.navigationController?.pushViewController(view, animated: true)
 //        }
-        
+
         if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
@@ -133,7 +132,7 @@ extension EventBookingTicketAddOnsVC {
             view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
             self.navigationController?.pushViewController(view, animated: true)
         }
-        
+
     }
 }
 
@@ -155,16 +154,14 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         if let imgString = data?.addOnLogo?.first {
             let urlString = (APIHandler.shared.baseURL + imgString).getCleanedURL()
             cell.imgImage.sd_setImage(with: urlString)
-            
+
             if cell.imgImage.image == nil{
                 cell.imgImage.image = UIImage.init(named: "img_no_addOn_found")
             } else {
                 cell.imgImage.sd_setImage(with: urlString)
             }
         }
-       
-        
-        
+
      //   cell.imgImage.image = data?.addOnLogo
         cell.btnInfo.tag = indexPath.row
         cell.btnInfo.addTarget(self, action: #selector(btnInfoAction(sender:)), for: .touchUpInside)
@@ -174,7 +171,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         cell.vwStepper.btnMinus.addTarget(self, action: #selector(minustButtonPressed), for: .touchUpInside)
         return cell
     }
-    
+
     @objc func plusButtonPressed(_ sender: UIButton) {
 //       print(sender.tag)
 //        let data = viewModel.arrAddOnTicketList?[sender.tag]
@@ -192,9 +189,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
 ////
 //            self.setData()
 //        }
-        
-        
-        
+
         let data = viewModel.arrAddOnTicketList?[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
@@ -216,7 +211,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
                     let index = self.viewModel.selectedAddOnList.firstIndex { ticket in
                         return ticket.ticketID == data.ticketID
                     }
-                    
+
                     if let index = index, self.viewModel.selectedAddOnList.indices.contains(index) {
                         self.viewModel.selectedAddOnList[index].selectedTicketQuantity = viewModel.lblNumberOfCount
                     }
@@ -225,14 +220,12 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
               //  self.updatedPrice?(finalPrice)
             }
         }
-        
-        
-        
+
     }
-    
+
     @objc func minustButtonPressed(_ sender: UIButton) {
         /*
-         
+
         let data = viewModel.arrAddOnTicketList?[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
@@ -245,17 +238,16 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
             cell.vwStepper.lblCount.text = String(viewModel.lblNumberOfCount)
             self.viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
             self.viewModel.selectedAddOnList = self.viewModel.arrAddOnTicketList ?? [EventTicketAddOnResponseModel]()
-            
+
           self.setData()
         } else {
             cell.vwStepper.lblCount.text = "0"
             self.viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = 0
             self.viewModel.selectedAddOnList = self.viewModel.arrAddOnTicketList ?? [EventTicketAddOnResponseModel]()
         }
-         
+
          */
-        
-        
+
      let data = viewModel.arrAddOnTicketList?[sender.tag]
      let indexPath = IndexPath(row: sender.tag, section: 0)
      let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
@@ -267,12 +259,12 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
          self.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
          cell.vwStepper.lblCount.text = String(self.viewModel.lblNumberOfCount)
          viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = self.viewModel.lblNumberOfCount
-         
+
          if let data = viewModel.arrAddOnTicketList?[sender.tag]{
              let contains = self.viewModel.selectedAddOnList.contains { ticket in
                  return ticket.ticketID == data.ticketID
              }
-             
+
              if contains{
                  let index = self.viewModel.selectedAddOnList.firstIndex { ticket in
                      return ticket.ticketID == data.ticketID
@@ -295,10 +287,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
      } else {
          cell.vwStepper.lblCount.text = "0"
      }
-        
-        
-        
-        
+
     }
     @objc func btnInfoAction(sender: UIButton) {
         let data = viewModel.arrAddOnTicketList?[sender.tag]
@@ -315,18 +304,14 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         view.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
         self.present(view, animated: true)
     }
-    
-    
-    
 
-  
 }
 // MARK: - NavigationBarViewDelegate
 extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func navigationRightButtonAction() {
 //        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
 //            view.viewModel.eventDetail = self.viewModel.eventDetail
@@ -334,7 +319,7 @@ extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
 //            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
 //            self.navigationController?.pushViewController(view, animated: true)
 //        }
-        
+
         if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             view.viewModel.selectedAddOnList = []

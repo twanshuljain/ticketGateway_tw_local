@@ -28,10 +28,10 @@ class EventBookingTicketVC: UIViewController {
     @IBOutlet weak var tblHeight: NSLayoutConstraint!
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var parentView: UIView!
-    
+
     // MARK: - Variables
     var viewModel = EventBookingTicketViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -73,26 +73,26 @@ extension EventBookingTicketVC {
         self.lblFewTIcketleft.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblRefund.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblRefund.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+
         self.lblClickingonCOntinue.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
-        
+
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         self.btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 17), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
-        
+
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
-        
+
    }
-    
+
     func setData() {
         self.navigationView.lblTitle.text = (viewModel.eventDetail?.event?.title ?? "") + " - " + (self.viewModel.eventDetail?.eventLocation?.eventCountry ?? "")
-        
+
         let dateTime = "\(viewModel.eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")" + " • " + "\(viewModel.eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
         self.navigationView.lblDiscripation.text = dateTime
-        
+
         self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
-        
+
     }
     func apiCall() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
@@ -119,12 +119,12 @@ extension EventBookingTicketVC {
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
         }
-        
+
         self.viewModel.dispatchGroup.notify(queue: .main) {
             self.apiCallForFeeStructure()
         }
     }
-    
+
     func apiCallForFeeStructure() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -161,7 +161,7 @@ extension EventBookingTicketVC {
             break
         }
     }
-    
+
     func btnCheckTermConditionAction() {
         if !viewModel.isCheckedTermCondition {
             viewModel.isCheckedTermCondition = true
@@ -206,4 +206,3 @@ extension EventBookingTicketVC: NavigationBarViewDelegate {
       // self.navigationController?.popViewController(animated: true)
   }
 }
-

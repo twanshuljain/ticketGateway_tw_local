@@ -4,11 +4,10 @@
 //
 //  Created by Apple on 05/07/23.
 
-
 import Foundation
 
 class ManageEventSettingViewModel {
-    
+
 // MARK: - Variables
   let arrData = [
     ["img": "ticket_ip", "title": "Sold out Tickets", "titleDescription": ""],

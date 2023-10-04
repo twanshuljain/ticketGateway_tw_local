@@ -25,7 +25,7 @@ class PaymentSuccessFullVC: UIViewController {
     var createCharge:CreateCharge?
     var selectedArrTicketList = [EventTicket]()
     var selectedCurrencyType = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -57,7 +57,7 @@ extension PaymentSuccessFullVC {
         self.btnNeedHelp.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnNeedHelp.addRightIcon(image: UIImage(named: RIGHT_BLUE_ICON))
     }
-    
+
     func setData() {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         if selectedArrTicketList.isEmpty {
@@ -67,11 +67,11 @@ extension PaymentSuccessFullVC {
         } else {
             self.lbl1Ticket.text = "\(selectedArrTicketList.count) Ticket(S) with amount"
         }
-       
+
         self.lblCADPrice.text = " \(self.selectedCurrencyType) \(self.createCharge?.amountTotal ?? 0)"
         self.lblTicketForOrder.text = "Transaction Id for Order is #\(self.createCharge?.transactionID ?? "") has been sent to \(userModel?.email ?? "")"
     }
-    
+
     func setUi() {
         if isTransactionFailed {
             lblThankYou.text = "Transaction Failed"

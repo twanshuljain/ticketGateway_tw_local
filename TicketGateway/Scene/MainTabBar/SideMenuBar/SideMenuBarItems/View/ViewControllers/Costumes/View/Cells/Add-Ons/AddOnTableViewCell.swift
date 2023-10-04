@@ -17,18 +17,18 @@ class AddOnTableViewCell: UITableViewCell {
     @IBOutlet weak var toggle: UISwitch!
     @IBOutlet weak var bgTextView: UIView!
     @IBOutlet weak var txtSelect: DropDown!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setFont()
-       
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
-    
+
     func setFont() {
         lblTitle.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         lblTitle.textColor = UIColor.setColor(colorType: .lightBlack)
@@ -37,10 +37,10 @@ class AddOnTableViewCell: UITableViewCell {
         toggle.onTintColor = UIColor.setColor(colorType: .TGBlue)
 
     }
-    
+
     @IBAction func actionSwitch(_ sender: UISwitch) {
         if sender.isOn {
-            
+
             bgTextView.isHidden = false
         } else {
             bgTextView.isHidden = true

@@ -41,7 +41,7 @@ extension ForgotPasswordVC {
         self.navigationView.delegateBarAction = self
         self.lblHeadingDescription.text = DONT_WORRY
         self.lblEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Email ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        
+
     }
 }
 // MARK: - Actions
@@ -67,7 +67,7 @@ extension ForgotPasswordVC {
                             let vc = self.createView(storyboard: .main, storyboardID: .EmailSentVC) as! EmailSentVC
                             vc.strForEmail = self.txtEmail.text ?? ""
                             self.navigationController?.pushViewController(vc, animated: true)
-                            
+
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                 for controller in self.navigationController!.viewControllers as Array {
@@ -112,7 +112,7 @@ extension ForgotPasswordVC: UITextFieldDelegate {
 }
 // MARK: -
 extension ForgotPasswordVC {
-    
+
         @objc func textFldErrorMsg(_ sender: UITextField) {
             if txtEmail.text == "" {
                 txtEmail.infoTextColor = .red
@@ -122,14 +122,8 @@ extension ForgotPasswordVC {
                 txtEmail.infoTextColor = .clear
             }
         }
-    
+
 }
-
-
-
-
-
-
 
 // MARK: - NavigationBarViewDelegate
 extension ForgotPasswordVC: NavigationBarViewDelegate {

@@ -173,14 +173,13 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
             return super.isSecureTextEntry
         }
     }
-    
+
     func fixCaretPosition() {
         let beginning = beginningOfDocument
         selectedTextRange = textRange(from: beginning, to: beginning)
         let end = endOfDocument
         selectedTextRange = textRange(from: end, to: end)
     }
-
 
     /// A String value for the error message to display.
     open var errorMessage: String? {

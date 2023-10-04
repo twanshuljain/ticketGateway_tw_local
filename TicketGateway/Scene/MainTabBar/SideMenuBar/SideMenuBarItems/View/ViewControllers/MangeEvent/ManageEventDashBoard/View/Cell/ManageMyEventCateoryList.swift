@@ -22,7 +22,6 @@ func configure() {
     self.delegate = self
     self.dataSource = self
 }
-    
 
 }
 extension ManageMyEventCateoryList : UICollectionViewDataSource ,UICollectionViewDelegate {
@@ -31,7 +30,6 @@ extension ManageMyEventCateoryList : UICollectionViewDataSource ,UICollectionVie
     // #warning Incomplete implementation, return the number of sections
     return 1
 }
-
 
  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of items
@@ -47,7 +45,7 @@ extension ManageMyEventCateoryList : UICollectionViewDataSource ,UICollectionVie
      }
      return cell
 }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.SelectedIndex = indexPath.row
         self.reloadData()
@@ -85,6 +83,3 @@ override func collectionView(_ collectionView: UICollectionView, performAction a
 */
 
 }
-
-
-

@@ -15,12 +15,12 @@ class RequestRefundHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnChevron: UIButton!
     @IBOutlet weak var vwLineView: UIView!
-    
+
     override func awakeFromNib() {
      super.awakeFromNib()
         setFont()
     }
-    
+
     func setFont() {
         lblName.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -29,7 +29,6 @@ class RequestRefundHeaderView: UITableViewHeaderFooterView {
         lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         lblPaymentStatus.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblPaymentStatus.textColor = UIColor.setColor(colorType: .tgYellow)
-        
-        
+
     }
 }

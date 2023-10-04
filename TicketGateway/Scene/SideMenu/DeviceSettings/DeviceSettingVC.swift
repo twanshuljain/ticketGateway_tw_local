@@ -15,7 +15,7 @@ import UIKit
 import SideMenu
 
 class DeviceSettingVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var lblPushNotificationsOn: UILabel!
@@ -34,13 +34,13 @@ class DeviceSettingVC: UIViewController {
     @IBOutlet weak var btnEmailId: UIButton!
     @IBOutlet weak var btnfaceId: UIButton!
     @IBOutlet weak var btnchageAvtarImage: UIButton!
-    
+
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
     }
-    
+
 }
 
 // MARK: - Functions
@@ -57,22 +57,22 @@ extension DeviceSettingVC {
         }
         self.setUi()
     }
-    
+
     func setUi() {
         self.lblPushNotificationsOn.font = UIFont.setFont(fontType: .regular, fontSize: .eighteen)
         self.lblPushNotificationsOn.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
         [self.lblAbout,self.lblVersiom,self.lblProfile].forEach{
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .thirteen)
             $0.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        
+
         [self.lblRateUs,self.lblFeedBack,self.lblHowToUseApp,self.lblEmailId,self.lblfaceIdId,self.lblChangeAvtarImage].forEach{
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
     }
-    
+
 }
 
 // MARK: - Actions
@@ -91,33 +91,32 @@ extension DeviceSettingVC {
             btnhowToUseAppAction()
         case btnchageAvtarImage:
             btnchageAvtarImageAction()
-            
+
         default:
             break
         }
     }
-    
+
     func btnRateUsAction() {
-        
+
     }
     func btnFeedbackAction() {
         let vc = self.createView(storyboard: .sidemenu, storyboardID: .FeedbackViewController) as! FeedbackViewController
         self.navigationController?.pushViewController(vc, animated: false)
     }
     func btnfaceIdAction() {
-        
+
     }
     func btnEmailIdAction() {
-        
+
     }
     func btnhowToUseAppAction() {
-        
+
     }
     func btnchageAvtarImageAction() {
-        
+
     }
 }
-
 
 // MARK: - NavigationBarViewDelegate
 extension DeviceSettingVC : NavigationBarViewDelegate {

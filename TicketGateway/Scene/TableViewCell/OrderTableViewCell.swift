@@ -14,7 +14,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblJouverRepublic: UILabel!
     @IBOutlet weak var btnSeeCostumes: UIButton!
-   
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setFont()
@@ -24,7 +24,7 @@ class OrderTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
+
     func setFont() {
         self.lblJouverRepublic.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblJouverRepublic.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -33,5 +33,5 @@ class OrderTableViewCell: UITableViewCell {
         self.btnSeeCostumes.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSeeCostumes.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
     }
-    
+
 }

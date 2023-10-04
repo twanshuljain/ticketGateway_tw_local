@@ -8,7 +8,7 @@
 import UIKit
 
 class SelectTicketTypeTableviewCell: UITableViewCell {
-    
+
 // MARK: - Outlets
     @IBOutlet weak var lblTicketType: UILabel!
     @IBOutlet weak var swTicketTypeSwitch: UISwitch!

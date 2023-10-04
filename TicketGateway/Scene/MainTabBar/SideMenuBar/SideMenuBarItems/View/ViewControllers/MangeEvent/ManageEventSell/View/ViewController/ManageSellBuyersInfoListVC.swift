@@ -12,7 +12,7 @@ class ManageSellBuyersInfoListVC: UIViewController {
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var tblBuyerInfo: BuyersInfoTableViewList!
     @IBOutlet weak var btnAdd: CustomButtonGradiant!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -29,7 +29,7 @@ class ManageSellBuyersInfoListVC: UIViewController {
             view?.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
-            
+
         }
         self.tblBuyerInfo.tableDidSelectAtIndexEdit = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
@@ -40,7 +40,7 @@ class ManageSellBuyersInfoListVC: UIViewController {
             view?.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
-            
+
         }
           self.navigationView.delegateBarAction = self
           self.navigationView.lblTitle.text = "Buyers info"
@@ -56,7 +56,6 @@ class ManageSellBuyersInfoListVC: UIViewController {
         self.btnAdd.addLeftIcon(image: UIImage(named: "plus"))
     }
 
-  
 }
 extension ManageSellBuyersInfoListVC {
     @objc func buttonPressed(_ sender: UIButton) {
@@ -67,15 +66,14 @@ extension ManageSellBuyersInfoListVC {
             break
         }
     }
-    
+
    func btnAddMoreAction() {
        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
        view?.isFromAddInfo = true
       self.navigationController?.pushViewController(view!, animated: true)
     }
-    
-}
 
+}
 
 extension ManageSellBuyersInfoListVC : NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {

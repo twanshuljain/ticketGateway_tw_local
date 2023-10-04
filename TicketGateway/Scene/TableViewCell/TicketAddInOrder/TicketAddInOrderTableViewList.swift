@@ -51,7 +51,7 @@ extension TicketAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSou
         self.lblNumberOfCount += 1
         cell.vwStepper.lblCount.text = String(lblNumberOfCount)
     }
-    
+
     @objc func minustButtonPressed(_ sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell

@@ -12,7 +12,7 @@ class CostumeImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+
     }
 
 }

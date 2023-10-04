@@ -42,12 +42,12 @@ class CustomSearchBar: UIView {
     @IBOutlet weak var locationView:UIView!
     @IBOutlet weak var btnFilter:UIButton!
     @IBOutlet weak var wtBtnFilter:NSLayoutConstraint!
-    
+
     var delegate:CustomSearchMethodsDelegate?
     var customSearchBarEnum:CustomSearchBarEnum = .home
-    
+
     let nibName = "CustomSearchBar"
-        
+
         required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
             commonInit()
@@ -61,17 +61,17 @@ class CustomSearchBar: UIView {
             self.setUpView()
         }
         private func commonInit() {
-          
+
             guard let view = loadViewFromNib() else { return }
             view.frame = self.bounds
            self.addSubview(view)
         }
-        
+
         private func loadViewFromNib() -> UIView? {
             let nib = UINib(nibName: nibName, bundle: nil)
             return nib.instantiate(withOwner: self, options: nil).first as? UIView
         }
-    
+
     func setUpView() {
         if self.customSearchBarEnum == .costume{
             wtBtnMenu.constant = 0
@@ -87,12 +87,11 @@ class CustomSearchBar: UIView {
             self.backgroundColor = UIColor.setColor(colorType: .borderLineColour)
         }
     }
-    
+
     @IBAction func btnFilter(_ sender: UIButton) {
         self.delegate?.filterButtonPressed(sender)
     }
-    
-    
+
     @IBAction func btnLeft(_ sender: UIButton) {
         self.delegate?.leftButtonPressed(sender )
     }
@@ -100,6 +99,5 @@ class CustomSearchBar: UIView {
     @IBAction func btnRight(_ sender: UIButton) {
         self.delegate?.rightButtonPressed(sender )
     }
-    
-    
+
 }

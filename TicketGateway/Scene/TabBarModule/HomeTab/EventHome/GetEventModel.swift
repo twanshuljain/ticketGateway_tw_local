@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 enum EventCategories:String{
     case noLocationData = "Events Not Found"
     case nearByLocation = "Events Near Toronto"
@@ -16,7 +15,7 @@ enum EventCategories:String{
     case popular = "Popular Events"
     case free = "Free Events"
     case upcoming = "Upcoming Events"
-    
+
 }
 
 // MARK: - GetEventModel
@@ -30,27 +29,27 @@ struct GetEvent: Codable {
     var itemsFree: [GetEventModel]?
     var itemsUpcoming: [GetEventModel]?
     var total, page, size: Int?
-    
+
     init() {
-        
+
     }
-    
+
     init(itemsWeekend: [GetEventModel]) {
         self.itemsWeekend = itemsWeekend
     }
-    
+
     init(itemsVirtual: [GetEventModel]) {
         self.itemsVirtual = itemsVirtual
     }
-    
+
     init(itemsPopular: [GetEventModel]) {
         self.itemsPopular = itemsPopular
     }
-    
+
     init(itemsFree: [GetEventModel]) {
         self.itemsFree = itemsFree
     }
-    
+
     init(itemsUpcoming: [GetEventModel]) {
         self.itemsUpcoming = itemsUpcoming
     }
@@ -59,7 +58,7 @@ struct GetEvent: Codable {
 // MARK: - GetEventModel
 struct SearchModel: Codable,Equatable {
     let items: [GetEventModel]?
-    
+
 }
 // MARK: - GetEventModel
 struct GetEventModel: Codable,Equatable {
@@ -98,7 +97,7 @@ struct GetEventModel: Codable,Equatable {
         if let precisionValue = try container.decodeIfPresent(DateClass.self, forKey: .dates) {
             date = precisionValue
         }
-        
+
         if let precisionValue = try container.decodeIfPresent(DateClass.self, forKey: .eventDate) {
             date = precisionValue
         }
@@ -133,9 +132,9 @@ struct GetEventModel: Codable,Equatable {
 }
 
 //struct GetEventCategory:Codable{
-//    var eventCategory:[String]?
+//    var eventCategory: [String]?
 //
-//    init(eventCategory:[String]?) {
+//    init(eventCategory: [String]?) {
 //        self.eventCategory = eventCategory
 //    }
 //}
@@ -146,7 +145,7 @@ struct CoverImage: Codable {
     var eventCoverImage: String?
     var eventAdditionalCoverImages: [String]?
     var eventID: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case eventCoverImage = "event_cover_image"
@@ -171,7 +170,7 @@ struct DateClass: Codable {
     var eventStartDate: String?
     var eventStartTime: String?
     var eventLanguageID: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         // case eventEndCount = "event_end_count"
@@ -230,11 +229,11 @@ struct Event: Codable, Hashable, Equatable {
     var eventSubCategoryID: Int?
     var isActive, isPublic: Bool?
     var refundPolicyID: Int?
-    
+
     static func ==(left:Event, right:Event) -> Bool {
         return left.id == right.id
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case customizeWebLink = "customize_web_link"
@@ -297,7 +296,7 @@ struct Location: Codable {
     var isAddressField: Bool?
     var virtualEventTitle: String?
     //   var virtualLinkTitle: JSONNull?
-    
+
     enum CodingKeys: String, CodingKey {
         case isVirtual = "is_virtual"
         //  case additionalCoverImage = "additional_cover_image"
@@ -332,13 +331,12 @@ struct Location: Codable {
 struct LikeCountData: Codable {
     var isLiked: Bool?
     var likeCount: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case isLiked = "is_liked"
         case likeCount = "like_count"
     }
 }
-
 
 // MARK: - Organizers
 struct Organizers: Codable {
@@ -346,7 +344,7 @@ struct Organizers: Codable {
     var createdAt, updatedAt, name, profileImage: String?
     var userID, followers: Int?
     var isFollow: Bool?
-    
+
     enum CodingKeys: String, CodingKey {
         case isActive = "is_active"
         case createdAt = "created_at"
@@ -361,13 +359,6 @@ struct Organizers: Codable {
         self.isFollow = isFollow
     }
 }
-
-
-
-
-
-
-
 
 // MARK: - Encode/decode helpers
 

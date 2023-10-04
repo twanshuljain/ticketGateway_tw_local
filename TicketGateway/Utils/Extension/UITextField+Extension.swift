@@ -4,7 +4,6 @@
 //
 //  Created by Apple on 13/04/23.
 
-
 import Foundation
 import UIKit
 
@@ -27,8 +26,7 @@ extension UITextField {
             attributedPlaceholder = attributedText
         }
     }
-    
-    
+
     enum ViewType {
         case left, right
     }
@@ -85,7 +83,7 @@ extension UITextField {
     func selectAllText() {
         selectedTextRange = textRange(from: beginningOfDocument, to: endOfDocument)
     }
-    
+
     @IBInspectable var doneAccessory: Bool{
            get{
                return self.doneAccessory
@@ -116,7 +114,7 @@ extension UITextField {
        {
            self.resignFirstResponder()
        }
-    
+
 }
 
 class SetCustomTextField: UITextField {
@@ -134,10 +132,9 @@ class SetCustomTextField: UITextField {
         super.init(frame: frame)
         setup()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
 }
-

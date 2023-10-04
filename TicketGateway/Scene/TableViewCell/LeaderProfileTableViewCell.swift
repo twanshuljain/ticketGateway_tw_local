@@ -17,9 +17,9 @@ class LeaderProfileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUpUI()
-        
+
     }
-    
+
     func setData(indexPath:IndexPath) {
         if indexPath.row == 0{
             self.lblTitle.text = "Name"
@@ -37,18 +37,16 @@ class LeaderProfileTableViewCell: UITableViewCell {
             self.lblTitle.text = "Opening Hours"
             self.lblTitleValue.text = "MON - FRI: 3:00 pm to 9:00 pm" + "\n" + "\n" + "SAT & SUN: 1:00 pm to 9:00 pm"
         }
-        
+
     }
-    
+
      func setUpUI() {
         self.lblTitle.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .tgBlack)
-        
+
         self.lblTitleValue.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblTitleValue.textColor = UIColor.setColor(colorType: .tgBlack)
         self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
 
-   
-    
 }

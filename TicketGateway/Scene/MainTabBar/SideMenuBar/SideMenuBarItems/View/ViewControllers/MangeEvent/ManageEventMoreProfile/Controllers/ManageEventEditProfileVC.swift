@@ -15,7 +15,7 @@
 import UIKit
 
 class ManageEventEditProfileVC: UIViewController {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var btnCancel: CustomButtonNormal!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
@@ -30,8 +30,7 @@ class ManageEventEditProfileVC: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var btnSelectCountry: UIButton!
-    
-    
+
     // MARK: - Variable
     let viewModel = CreateAccountViewModel()
     var isFromWelcomeScreen = false
@@ -40,7 +39,7 @@ class ManageEventEditProfileVC: UIViewController {
     var strCountryName: String = "India"
     var countries = [[String: String]]()
     var RScountriesModel = [CountryInfo]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -66,11 +65,11 @@ extension ManageEventEditProfileVC {
         navigationView.lblSeprator.isHidden = false
         navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
-        
+
         self.setIntialUiDesign()
         self.funcSetProfile()
     }
-    
+
     func funcSetProfile(){
         self.txtFullName.text = objAppShareData.userAuth?.fullName
         self.txtEmailAddress.text = objAppShareData.userAuth?.email
@@ -94,7 +93,7 @@ extension ManageEventEditProfileVC {
     func btnCancelAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func btnContinueAction() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -106,7 +105,7 @@ extension ManageEventEditProfileVC {
         sb.modalPresentationStyle = .fullScreen
         self.navigationController?.present(sb, animated: true, completion: nil)
     }
-    
+
 }
 // MARK: - TextFieldDelegate
 extension ManageEventEditProfileVC: UITextFieldDelegate {
@@ -153,7 +152,7 @@ extension ManageEventEditProfileVC :  RSCountrySelectedDelegate  {
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
             let arr = RScountriesModel.filter({$0.dial_code == str})
-            
+
             if !arr.isEmpty {
                 let country = arr[0]
                 strCountryDialCode = country.dial_code
@@ -175,12 +174,12 @@ extension ManageEventEditProfileVC :  RSCountrySelectedDelegate  {
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             countries = parsedObject as! [[String : String]]
-            
-        }catch{
-            
+
+        }catch {
+
         }
     }
-    
+
     func collectCountries() {
         for country in countries  {
             let code = country["code"] ?? ""
@@ -189,7 +188,7 @@ extension ManageEventEditProfileVC :  RSCountrySelectedDelegate  {
             RScountriesModel.append(CountryInfo(country_code:code,dial_code:dailcode, country_name:name))
         }
     }
-    
+
     func RScountrySelected(countrySelected country: CountryInfo) {
         let imagePath = "CountryPicker.bundle/\(country.country_code).png"
         self.imgCountry.image = UIImage(named: imagePath)
@@ -200,21 +199,3 @@ extension ManageEventEditProfileVC :  RSCountrySelectedDelegate  {
         self.txtMobileNumber.becomeFirstResponder()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

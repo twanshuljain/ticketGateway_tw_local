@@ -8,7 +8,7 @@
 import UIKit
 
 class ManageEventSettingTableViewCell: UITableViewCell {
-    
+
 // MARK: - Outlets
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
@@ -16,7 +16,6 @@ class ManageEventSettingTableViewCell: UITableViewCell {
     @IBOutlet weak var swSwitch: UISwitch!
     @IBOutlet weak var vwTopBorder: UIView!
     @IBOutlet weak var vwBottomBorder: UIView!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +27,5 @@ class ManageEventSettingTableViewCell: UITableViewCell {
         self.lblTitleDescription.font = UIFont.setFont(fontType: .regular, fontSize:  .twelve)
         self.lblTitleDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-    
+
 }

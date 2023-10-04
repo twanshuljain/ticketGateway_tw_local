@@ -29,7 +29,6 @@ extension SuggestedOrganizerList: UICollectionViewDataSource ,UICollectionViewDe
         return 1
     }
 
-
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
          return arrOrganizersList?.count ?? 0

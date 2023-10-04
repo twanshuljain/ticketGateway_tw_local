@@ -8,21 +8,21 @@
 import UIKit
 
 class TicketOverAllEstimateBarCell: UITableViewCell {
-    
+
 // MARK: - Outlets
     @IBOutlet weak var lblTotalValue: UILabel!
     @IBOutlet weak var lblValue: UILabel!
     @IBOutlet weak var lbltittle: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setUi()    }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
     }
-    
+
     func setUi() {
         self.lbltittle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lbltittle.textColor = UIColor.setColor(colorType: .lblTextPara)

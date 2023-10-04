@@ -15,7 +15,7 @@
 import UIKit
 
 class ManageSellAddBuyerVC: UIViewController {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var btnCancel: CustomButtonNormal!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
@@ -32,8 +32,7 @@ class ManageSellAddBuyerVC: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var btnSelectCountry: UIButton!
-    
-    
+
     // MARK: - Variable
     let viewModel = CreateAccountViewModel()
     var isFromWelcomeScreen = false
@@ -43,9 +42,9 @@ class ManageSellAddBuyerVC: UIViewController {
     var countries = [[String: String]]()
     var RScountriesModel = [CountryInfo]()
     var isFromAddInfo = false
-    
+
     var ToupleBuyerInfoData = (strNameValue:"",strEmailValue:"",strNumberValue:"",strCountryCodeValue:"",strDialCodeValue:"")
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -78,8 +77,7 @@ extension ManageSellAddBuyerVC {
             self.btnContinue.setTitles(text: "Next", font: UIFont.boldSystemFont(ofSize: 17), tintColour: .black)
             self.btnContinue.addRightIcon(image: UIImage(named: "arrow right"))
         }
-        
-        
+
         self.btnCancel.layer.cornerRadius = 5
         self.navigationView.lblTitle.text = "Buyers info"
         self.navigationView.btnBack.isHidden = false
@@ -106,7 +104,7 @@ extension ManageSellAddBuyerVC {
     func btnCancelAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func btnContinueAction() {
         if isFromAddInfo == true
         {
@@ -124,7 +122,7 @@ extension ManageSellAddBuyerVC {
         sb.modalPresentationStyle = .fullScreen
         self.navigationController?.present(sb, animated: true, completion: nil)
     }
-    
+
 }
 // MARK: - TextFieldDelegate
 extension ManageSellAddBuyerVC: UITextFieldDelegate {
@@ -175,7 +173,7 @@ extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
             self.imgCountry.image = UIImage(named: imagePath)
             self.lblDialCountryCode.text = "+91"
             let arr = RScountriesModel.filter({$0.dial_code == str})
-            
+
             if !arr.isEmpty {
                 let country = arr[0]
                 strCountryDialCode = country.dial_code
@@ -197,12 +195,12 @@ extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
             countries = parsedObject as! [[String : String]]
-            
-        }catch{
-            
+
+        }catch {
+
         }
     }
-    
+
     func collectCountries() {
         for country in countries  {
             let code = country["code"] ?? ""
@@ -211,7 +209,7 @@ extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
             RScountriesModel.append(CountryInfo(country_code:code,dial_code:dailcode, country_name:name))
         }
     }
-    
+
     func RScountrySelected(countrySelected country: CountryInfo) {
         let imagePath = "CountryPicker.bundle/\(country.country_code).png"
         self.imgCountry.image = UIImage(named: imagePath)
@@ -222,21 +220,3 @@ extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
         self.txtMobileNumber.becomeFirstResponder()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

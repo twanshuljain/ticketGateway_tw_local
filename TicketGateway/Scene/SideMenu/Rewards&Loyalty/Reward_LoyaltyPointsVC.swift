@@ -4,13 +4,12 @@
 //
 //  Created by Apple  on 02/06/23.
 
-
 import UIKit
 import iOSDropDown
 import SideMenu
 
 class RewardLoyaltyPointsVC: UIViewController,UITextFieldDelegate {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var collvwCalender: EventCalenderList!
     @IBOutlet weak var tbllatest: RefundListTableView!
@@ -23,13 +22,12 @@ class RewardLoyaltyPointsVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var lblHistoryPoint: UILabel!
     @IBOutlet weak var txtmonths: DropDown!
     @IBOutlet weak var btnDrpoDown: UIButton!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
      }
-    
+
 }
 // MARK: - Functions
 extension RewardLoyaltyPointsVC {
@@ -45,7 +43,7 @@ extension RewardLoyaltyPointsVC {
           self.navigationView.btnBack.isHidden = false
           self.navigationView.delegateBarAction = self
           self.navigationView.vwBorder.isHidden = false
-        
+
         self.txtmonths.delegate = self
         [self.btnDrpoDown].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -58,7 +56,7 @@ extension RewardLoyaltyPointsVC {
             }
         self.setUi()
     }
-    
+
     func setUi() {
         self.lblTotalPoints.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblTotalPoints.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -68,11 +66,9 @@ extension RewardLoyaltyPointsVC {
         self.lblTotalPointsCalculateValue.textColor = UIColor.setColor(colorType: .lblTextPara)
         [self.lbllatestetPoint,self.lblHistoryPoint].forEach { $0.font = UIFont.setFont(fontType: .medium, fontSize: .twenty)
             $0.textColor = UIColor.setColor(colorType: .tgBlack) }
-        
-       
-      
+
     }
-   
+
 }
 
 // MARK: - Actions
@@ -81,12 +77,12 @@ extension RewardLoyaltyPointsVC {
         switch sender {
         case btnDrpoDown:
             btnDrpoDownAction()
-        
+
         default:
             break
         }
     }
-   
+
     func btnDrpoDownAction() {
         self.txtmonths.showList()
     }

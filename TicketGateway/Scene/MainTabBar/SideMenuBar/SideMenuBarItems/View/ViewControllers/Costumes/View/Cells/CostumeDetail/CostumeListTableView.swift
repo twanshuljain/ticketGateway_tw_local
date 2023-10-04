@@ -25,9 +25,7 @@ class CostumeListTableView: UITableView {
         self.register(UINib(nibName: "CostumeTableViewCell", bundle: nil), forCellReuseIdentifier: "CostumeTableViewCell")
         self.reloadData()
     }
-    
-    
-    
+
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -35,7 +33,7 @@ extension CostumeListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return costumeTbleItem.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CostumeTableViewCell", for: indexPath) as! CostumeTableViewCell
         let data = costumeTbleItem[indexPath.row]
@@ -52,19 +50,16 @@ extension CostumeListTableView: UITableViewDelegate, UITableViewDataSource {
             cell.lblDescription.isHidden = false
             cell.vwGradientView.startColor =  .white
             cell.vwGradientView.endColor = .white
-            
+
         }
-        
+
         return cell
-       
-       
+
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = costumeTbleItem[indexPath.row]
         self.tableDidSelectAtIndex?(data)
     }
-    
-   
-    
+
 }

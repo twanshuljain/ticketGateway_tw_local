@@ -22,7 +22,7 @@ final class SignInViewModel {
     var number: String = ""
     var isForEmail: Bool = false
     var objUserModel: SignInAuthModel?
-    
+
     init() {
     }
     init(loginVC: LoginVC) {
@@ -95,7 +95,7 @@ extension SignInViewModel {
             }
         }
     }
-    
+
     func checkoutVerifyResendOTP(userType: UserType,complition: @escaping (Bool,String) -> Void ) {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         var authTokenString = userType == .new ? false : true
@@ -117,9 +117,9 @@ extension SignInViewModel {
                     complition(false, "\(error)")
                 }
             }
-        
+
     }
-    
+
     func checkoutValidateUser(param: ValidateForNumberRequest,complition: @escaping (Bool,String) -> Void ) {
         APIHandler.shared.executeRequestWith(apiName: .checkoutValidateUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
@@ -133,6 +133,6 @@ extension SignInViewModel {
                     complition(false, "\(error)")
                 }
             }
-        
+
     }
 }

@@ -34,7 +34,7 @@ class MyOrderViewController: UIViewController {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var btnDate: UIButton!
     @IBOutlet weak var parentView: UIView!
-    
+
     // MARK: - Variables
     var viewModel: MyOrderViewModel = MyOrderViewModel()
     override func viewDidLoad() {
@@ -129,7 +129,7 @@ extension MyOrderViewController {
         vwNavigationBar.btnBack.isHidden = false
         vwNavigationBar.delegateBarAction = self
     }
-    
+
     func resetPage() {
         viewModel.myOrdersModel.page = 1
         viewModel.arrMyOrder.removeAll()
@@ -255,11 +255,11 @@ extension MyOrderViewController {
         viewModel.myOrdersModel.page = 1
         getMyOrderApiCall(isFromUpcoming: false)
     }
-    
+
     func browseEventsAction() {
         self.tabBarController?.selectedIndex = 0
     }
-    
+
     func filterAction() {
         vwPopUp.isHidden = !vwPopUp.isHidden
     }
@@ -296,5 +296,3 @@ extension MyOrderViewController: UITextFieldDelegate {
         return true
     }
 }
-
-

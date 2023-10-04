@@ -30,7 +30,7 @@ class TransactionListTableView: UITableView {
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
                    ExpandableNames(isExpanded: false, names: ["ram","sham","mahima"]),
-                   
+
     ]
     func configure() {
         self.register(UINib(nibName: "TransactionsListCell", bundle: nil), forCellReuseIdentifier: "TransactionsListCell")
@@ -102,7 +102,7 @@ extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource {
         return true
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
     }
     @objc func nextBtn(sender: UIButton){
         var  obj = arrData[sender.tag]

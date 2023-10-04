@@ -8,7 +8,7 @@
 import UIKit
 
 class FilterSelectedTableViewCell: UITableViewCell {
-    
+
     // MARK: - OUTLETS
     @IBOutlet weak var lblFilter:UILabel!
     @IBOutlet weak var btnSelectedFilter:UIButton!
@@ -18,7 +18,7 @@ class FilterSelectedTableViewCell: UITableViewCell {
         // Initialization code
         self.setUI()
     }
-    
+
     func setData(str:String, selectedIndex:Int, index:Int) {
         self.selectionStyle = .none
         self.lblFilter.text = str
@@ -28,7 +28,7 @@ class FilterSelectedTableViewCell: UITableViewCell {
            self.btnSelectedFilter.setImage(UIImage.init(named: FILTER_RADIO_INACTIVE), for: .normal)
         }
     }
-    
+
     func setUI() {
         self.btnSelectedFilter.titleLabel?.text = ""
         self.btnSelectedFilter.setTitle("", for: .normal)
@@ -42,5 +42,5 @@ class FilterSelectedTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

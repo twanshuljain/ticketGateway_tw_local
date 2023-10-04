@@ -10,13 +10,13 @@
 import UIKit
 
 class ManageEventSellTicketTableViewList: UITableView {
-    
+
 // MARK: - Variables
     var isFromSellTab = false
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
-   
+
     func configure() {
         self.register(UINib(nibName: "ManageEventSellTicketCell", bundle: nil), forCellReuseIdentifier: "ManageEventSellTicketCell")
         self.delegate = self
@@ -29,7 +29,7 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ManageEventSellTicketCell") as! ManageEventSellTicketCell
         cell.vwStepper.btnPlus.tag = indexPath.row
@@ -42,8 +42,7 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
             cell.lblAmountComp.text = "Comp"
         }
           return cell
-        
-        
+
     }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -51,17 +50,14 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
          self.tableDidSelectAtIndex?(indexPath.row)
          self.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-    
-    
-    @objc func buttonPressed(_ sender: UIButton) {
-        
-    }
-    
 
+    @objc func buttonPressed(_ sender: UIButton) {
+
+    }
 
     @objc func plusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
@@ -72,7 +68,7 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
         self.lblNumberOfCount = self.lblNumberOfCount + 1
         cell.vwStepper.lblCount.text = String(lblNumberOfCount)
     }
-    
+
     @objc func minustButtonPressed(_ sender: UIButton) {
          let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! ManageEventSellTicketCell
@@ -85,5 +81,5 @@ extension ManageEventSellTicketTableViewList: UITableViewDelegate, UITableViewDa
             cell.vwStepper.lblCount.text = "0"
         }
     }
-  
+
 }

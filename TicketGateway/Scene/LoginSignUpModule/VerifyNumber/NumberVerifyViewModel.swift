@@ -21,7 +21,7 @@ final class NumberVerifyViewModel {
     var eventDetail:EventDetail?
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""
-    var selectedAddOnList:[EventTicketAddOnResponseModel]?
+    var selectedAddOnList: [EventTicketAddOnResponseModel]?
     var objUserModel: SignInAuthModel?
     var selectedCurrencyType = ""
     init() {
@@ -55,11 +55,10 @@ extension NumberVerifyViewModel {
             }
         }
     }
-    
-    
+
     func checkoutVerifyOTP(isComingFrom: IsComingFrom,complition: @escaping (Bool, String) -> Void) {
         var param : NumberVerifyRequest?
-        
+
         let numberWithoutCode = objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? ""
         let number = "\(objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")" + (objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")
         param = NumberVerifyRequest(otp: otp, cell_phone: number)

@@ -33,7 +33,7 @@ enum CustomFontSize: CGFloat {
     case thirtyTwo = 32
     case thirtySix = 36
 //    case others(value: CGFloat = 0)
-    
+
 }
 
 enum CustomFont: String {

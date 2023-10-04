@@ -41,7 +41,7 @@ enum StoryboardIdentifier: String {
     case CreateAccountVC
     case VerifyPopupVC
     case LoginNmberWithEmailVC
-    
+
     //Home
     case HomeVC
     case EventSearchHomeVC
@@ -85,7 +85,7 @@ enum StoryboardIdentifier: String {
     case RequestRefundVC
     case EventDetailStatusVC
     case FeedbackViewController
-    
+
     //ManageEvent
     //DashBoard
     case ManageEventVC
@@ -98,12 +98,12 @@ enum StoryboardIdentifier: String {
     //sell
     case ManageSellAddBuyerVC
     case ManageSellBuyersInfoListVC
-    
+
     //Check In
       case ManageEventCheckInVC
       case AttendeeDetailsVC
       case ScanQRVC
-    
+
     //Profile/Settings
     case ManageEventSettingVC
     case ManageEventProfileVC
@@ -117,7 +117,7 @@ enum StoryboardIdentifier: String {
     case ReviewRefundVC
     //Favourites
     case FavouriteVC
-    
+
     //ScanEvents
       case ScanEventVC
       case SelectTicketTypeVC
@@ -126,11 +126,11 @@ enum StoryboardIdentifier: String {
       case ScanSummaryVC
       case FindRFIDVC
       case EndScanPoPUpVC
-  
+
 }
 
 enum PaymentError {
-   
+
     case cardholderName
     case cardNumber
     case expiryDate
@@ -139,7 +139,6 @@ enum PaymentError {
     case nameMinCharactorCount
     case cvvMin
     case cardNumberMaxLength
-    
 
     var value:String {
         switch self {
@@ -161,9 +160,8 @@ enum PaymentError {
             return "Card number should not be more than 16 digits"
         }
     }
-    
-}
 
+}
 
 public extension Notification.Name {
      static let didUpdateWorkoutData = Notification.Name(rawValue: "didUpdateWorkoutData")

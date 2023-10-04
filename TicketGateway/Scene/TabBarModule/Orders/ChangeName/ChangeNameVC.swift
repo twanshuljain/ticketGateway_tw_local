@@ -20,9 +20,9 @@ class ChangeNameVC: UIViewController {
     @IBOutlet weak var lblTicketNameChange: UILabel!
     @IBOutlet weak var btnSaveChanges: CustomButtonGradiant!
     @IBOutlet weak var btnCancel: UIButton!
-    
+
     var viewModel = ChangeNameViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
@@ -62,13 +62,13 @@ extension ChangeNameVC {
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.lblFirstName.attributedText = getAttributedTextAction(attributedText: "*", firstString: FIRST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         self.lblLastName.attributedText = getAttributedTextAction(attributedText: "*", firstString: LAST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        
+
         self.txtFirstName.text = viewModel.firstName
         self.txtLastName.text = viewModel.lastName
         txtSelectTickte.delegate = self
         txtSelectTickte.text = ""
     }
-    
+
     func createPickerView() {
         let pickerView = UIPickerView()
         pickerView.backgroundColor = UIColor.setColor(colorType: .white)
@@ -84,18 +84,18 @@ extension ChangeNameVC {
         toolBar.isUserInteractionEnabled = true
         txtSelectTickte.inputAccessoryView = toolBar
     }
-    
+
     @objc func action() {
         view.endEditing(true)
     }
-    
+
     func apiCall() {
         self.view.endEditing(true)
         viewModel.firstName = self.txtFirstName.text ?? ""
         viewModel.lastName = self.txtLastName.text ?? ""
-        
+
         let isValidate = viewModel.validateInput
-        
+
         if isValidate.isValid{
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {
@@ -123,7 +123,7 @@ extension ChangeNameVC {
             self.showToast(message: isValidate.errorMessage)
         }
     }
-    
+
     func navigateToManageSellTicketSuccessfully() {
         if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
             view.strTittle = TICKET_NAME_CHANGED
@@ -170,7 +170,7 @@ extension ChangeNameVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
 
         return pickerLabel!
     }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
     }

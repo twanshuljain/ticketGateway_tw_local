@@ -5,23 +5,19 @@
 //  Created by Apple on 21/07/23.
 //
 
-
-
 import UIKit
 
 class EmailSentVC: UIViewController {
-    
+
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     var strForEmail: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setFont()
-        
-     
-       
+
     }
-    
+
     func setFont() {
         lblEmail.font = UIFont.setFont(fontType: .semiBold, fontSize: .twentyFour)
         lblEmail.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

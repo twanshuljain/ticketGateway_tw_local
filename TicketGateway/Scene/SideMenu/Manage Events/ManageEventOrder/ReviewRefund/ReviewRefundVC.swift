@@ -4,7 +4,6 @@
 //
 //  Created by Apple on 07/06/23.
 
-
 import UIKit
 
 class ReviewRefundVC: UIViewController {
@@ -20,16 +19,16 @@ class ReviewRefundVC: UIViewController {
     @IBOutlet weak var lblOrderNoValue: UILabel!
     @IBOutlet weak var lblTotalTicket: UILabel!
     @IBOutlet weak var lblTotalTicketValue: UILabel!
-    
+
     @IBOutlet weak var lblTickets: UILabel!
     @IBOutlet weak var lblRefundAmount: UILabel!
     @IBOutlet weak var btnProceedRefund: CustomButtonGradiant!
-    
+
     @IBOutlet weak var lblDollar: UILabel!
-    
+
     // MARK: - Variables
     let arrData = ["At the door", "At the door", "At the door"]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
@@ -49,54 +48,53 @@ extension ReviewRefundVC{
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
 
     }
-    
+
     func setTableView() {
         self.tblReviewrefund.separatorColor = UIColor.clear
         self.tblReviewrefund.delegate = self
         self.tblReviewrefund.dataSource = self
         tblReviewrefund.register(UINib(nibName: "ReviewRefundTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewRefundTableViewCell")
     }
-    
+
     func setFont() {
         self.lblTotalToRefundPrice.font = UIFont.setFont(fontType: .semiBold, fontSize: .thirtyTwo)
         let gradient = getGradientLayer(bounds: view.bounds)
         self.lblTotalToRefundPrice.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradient)
-        
+
         self.lblTotalToRefund.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblTotalToRefund.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblTotalToRefund.text = Total_to_Refund
-        
+
         self.lblName.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
-        
+
         self.lblNamePrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblNamePrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
         self.lblOrderNo.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblOrderNo.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblOrderNo.text = ORDER_NO
         self.lblOrderNoValue.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblOrderNoValue.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+
         self.lblTotalTicket.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTotalTicket.textColor = UIColor.setColor(colorType: .tgGrey)
         self.lblTotalTicket.text = Total_Tickets
         self.lblTotalTicketValue.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
         self.lblTotalTicketValue.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+
         self.lblTickets.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTickets.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblTickets.text = TICKETS
-        
+
         self.lblRefundAmount.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblRefundAmount.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblRefundAmount.text = REFUND_AMOUNT
-        
+
         self.btnProceedRefund.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnProceedRefund.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.btnProceedRefund.titleLabel?.text = PROCEED_REFUND
-        
+
         self.lblDollar.font = UIFont.setFont(fontType: .semiBold, fontSize: .twenty)
         let gradientDollar = getGradientLayer(bounds: view.bounds)
         self.lblDollar.textColor = gradientColor(bounds: view.bounds, gradientLayer: gradientDollar)
@@ -108,15 +106,14 @@ extension ReviewRefundVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewRefundTableViewCell", for: indexPath) as! ReviewRefundTableViewCell
         let data = arrData[indexPath.row]
         cell.lblAtTheDoor.text = data
         return cell
     }
-    
-    
+
 }
 
 // MARK: - NavigationBarViewDelegate
@@ -124,5 +121,5 @@ extension ReviewRefundVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: false)
     }
-  
+
 }

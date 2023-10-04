@@ -4,7 +4,6 @@
 //
 //  Created by Apple on 04/08/23.
 
-
 import Foundation
 struct FavoriteRequestModel: Codable {
     var eventId: Int?

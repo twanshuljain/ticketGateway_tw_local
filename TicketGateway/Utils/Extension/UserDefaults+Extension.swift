@@ -16,7 +16,7 @@ extension UserDefaults {
     var email: String? {
         value(forKey: "email") as? String
     }
-    
+
     func saveToken(_ token: String?) {
         set(token, forKey: "token")
         synchronize()
@@ -24,7 +24,7 @@ extension UserDefaults {
     var token: String? {
         value(forKey: "token") as? String
     }
-    
+
     func saveLastLoginDate(_ date: String?) {
         set(date, forKey: "curruntDate")
         synchronize()
@@ -32,7 +32,7 @@ extension UserDefaults {
     var lastLoginDate: String? {
         value(forKey: "curruntDate") as? String
     }
-    
+
     func saveUserImage(_ img: Data?) {
         set(img, forKey: "userImage")
         synchronize()
@@ -40,7 +40,7 @@ extension UserDefaults {
     var getUserImage: Data? {
         value(forKey: "userImage") as? Data
     }
-    
+
     func saveBiometricEnabled(_ isEnable: Bool?) {
         set(isEnable, forKey: "biometric")
         synchronize()
@@ -48,7 +48,7 @@ extension UserDefaults {
     var isBiometricEnabled: Bool? {
         value(forKey: "biometric") as? Bool
     }
-    
+
 //    var userDetail: AuthoriseUserModel? {
 //        get {
 //            if let stringValue = string(forKey: #function), let data = stringValue.data(using: .utf8) {

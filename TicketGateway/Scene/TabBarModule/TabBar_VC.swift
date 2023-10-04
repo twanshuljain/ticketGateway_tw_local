@@ -15,7 +15,7 @@ class TabBarVC: UITabBarController {
         UserDefaults.standard.set(false, forKey: "isComingFromManageEvent")
 //        let selectedindex = tabBarController?.selectedIndex
 //        print("----------", selectedindex)
-        
+
     }
     override func viewDidLayoutSubviews() { // add to any vc
         super.viewDidLayoutSubviews()

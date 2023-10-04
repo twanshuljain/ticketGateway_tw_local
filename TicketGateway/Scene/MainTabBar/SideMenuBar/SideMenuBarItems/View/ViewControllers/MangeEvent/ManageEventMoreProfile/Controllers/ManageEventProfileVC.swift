@@ -33,7 +33,7 @@ class ManageEventProfileVC: UIViewController {
         self.setUp()
         // Do any additional setup after loading the view.
     }
-    
+
  private func setUp()
     {
         self.viewTotalProgress.setProgress(16)
@@ -65,7 +65,7 @@ class ManageEventProfileVC: UIViewController {
         }
         self.funcSetProfile()
     }
-    
+
     func funcSetProfile(){
         self.lblName.text = objAppShareData.userAuth?.fullName
         self.lblEmail.text = objAppShareData.userAuth?.email
@@ -94,13 +94,12 @@ extension ManageEventProfileVC {
             break
         }
     }
-    
-    
+
     func btnEditAction() {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventEditProfileVC) as? ManageEventEditProfileVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
-    
+
     func btnSelectAction() {
         ImagePickerManager().pickImage(self){ image in
             self.imgProfile.image = image

@@ -8,6 +8,6 @@
 import UIKit
 
 class VideoCollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var imgImage: UIImageView!
 }

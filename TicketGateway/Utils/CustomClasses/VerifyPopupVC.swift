@@ -14,14 +14,14 @@ class VerifyPopupVC: UIViewController {
     @IBOutlet weak var imgBackground: UIImageView!
     @IBOutlet weak var imgSuccess: UIImageView!
     @IBOutlet weak var lblTitleVerified: UILabel!
-    
+
     // MARK: - Variables
     var closerForBack : ((_ isTrue: Bool) -> Void)?
     var strMessage = ""
     var img = ""
     var strMsgForlbl = ""
     var strMsgBtn = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
@@ -31,8 +31,7 @@ class VerifyPopupVC: UIViewController {
         self.lblTitleVerified.text = strMsgForlbl
         self.btnGreat.setTitle(strMsgBtn, for: .normal)
     }
-    
-    
+
     // MARK: - Functions
     func setFont() {
         btnGreat.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
@@ -50,5 +49,5 @@ class VerifyPopupVC: UIViewController {
              self.dismiss(animated: true, completion: nil)
          }
      }
-   
+
 }

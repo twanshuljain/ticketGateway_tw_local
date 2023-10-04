@@ -19,13 +19,13 @@ class BuyersInfoCell: UITableViewCell {
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnMenuMore: UIButton!
-    
+
     override func awakeFromNib() {
     super.awakeFromNib()
         self.setUi()
         //  code
     }
-    
+
     func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
@@ -34,12 +34,12 @@ class BuyersInfoCell: UITableViewCell {
         self.lblNumber.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblNumber.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.vwPopUp.isHidden = true
-        
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
-    
+
 }

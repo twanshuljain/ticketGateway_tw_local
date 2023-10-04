@@ -6,7 +6,7 @@
 
 import UIKit
 class EventPromoCodeVC: UIViewController {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var vwApplyPromoCode: UIView!
     @IBOutlet weak var lblPromoCode: UILabel!
@@ -22,7 +22,7 @@ class EventPromoCodeVC: UIViewController {
     @IBOutlet weak var lblPromoCodeAppliedDescription: UILabel!
     // MARK: - Variables
     var viewModel = EventPromoCodeViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
@@ -38,7 +38,7 @@ extension EventPromoCodeVC {
 //        self.promoCodeTableView.dataSource = self
 //        self.promoCodeTableView.reloadData()
     }
-    
+
     func setFont() {
         self.setPromoApplyView()
         self.lblPromoCode.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
@@ -57,7 +57,7 @@ extension EventPromoCodeVC {
         self.lblPromoCodeAppliedDescription.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblPromoCodeAppliedDescription.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-    
+
     func setPromoApplyView() {
         if viewModel.isPromoCodeApplied {
             vwPromoCodeAppliedView.isHidden = false
@@ -150,7 +150,7 @@ extension EventPromoCodeVC {
         //        view?.viewModel.selectedArrTicketList = viewModel.selectedArrTicketList
         //        view?.viewModel.eventId = self.viewModel.eventId
         //        self.navigationController?.pushViewController(view!, animated: true)
-        
+
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
@@ -168,7 +168,7 @@ extension EventPromoCodeVC {
         //        view?.viewModel.selectedArrTicketList = viewModel.selectedArrTicketList
         //        view?.viewModel.eventId = self.viewModel.eventId
         //        self.navigationController?.pushViewController(view!, animated: true)
-        
+
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList

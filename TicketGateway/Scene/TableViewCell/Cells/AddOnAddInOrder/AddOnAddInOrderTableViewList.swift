@@ -8,7 +8,7 @@
 import UIKit
 
 class AddOnAddInOrderTableViewList: UITableView {
-    
+
     var tableDidSelectAtIndex: ((Int) -> Void)?
     var lblNumberOfCount = 0
     var isFromDeselected = false
@@ -24,7 +24,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as! AddOnAddInOrderCell
         if indexPath.row == 3-1
@@ -34,8 +34,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
             cell.vwDottedLine.isHidden = true
         }
           return cell
-        
-        
+
     }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -43,16 +42,14 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
          self.tableDidSelectAtIndex?(indexPath.row)
          self.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-    
-    @objc func buttonPressed(_ sender: UIButton) {
-        
-    }
-    
 
+    @objc func buttonPressed(_ sender: UIButton) {
+
+    }
 
     @objc func plusButtonPressed(_ sender: UIButton) {
        print(sender.tag)
@@ -63,7 +60,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
         self.lblNumberOfCount += 1
         cell.vwStepper.lblCount.text = String(lblNumberOfCount)
     }
-    
+
     @objc func minustButtonPressed(_ sender: UIButton) {
          let indexPath = IndexPath(row: sender.tag, section: 0)
         let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
@@ -76,8 +73,5 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
             cell.vwStepper.lblCount.text = "0"
         }
     }
-    
-    
-    
-    
+
 }

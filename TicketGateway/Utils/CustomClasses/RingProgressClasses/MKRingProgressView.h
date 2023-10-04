@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double MKRingProgressViewVersionNumber;
 FOUNDATION_EXPORT const unsigned char MKRingProgressViewVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MKRingProgressView/PublicHeader.h>
-
-

@@ -19,7 +19,7 @@ protocol SendLocation: AnyObject {
 }
 
 class EventSearchLocationVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var lblOnlineEventDis: UILabel!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
@@ -29,9 +29,9 @@ class EventSearchLocationVC: UIViewController {
     @IBOutlet weak var lblBrowingIn: UILabel!
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var noResultFoundView: UIView!
-    
+
     // MARK: - Variables
-    
+
     weak var delegate: SendLocation?
     var countriesModel = [CountryInfo]()
     var searchCountriesModel = [CountryInfo]()
@@ -40,7 +40,7 @@ class EventSearchLocationVC: UIViewController {
     var countries = [[String: String]]()
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         self.setUp()
         self.setUI()
         addCountries()
@@ -51,7 +51,7 @@ class EventSearchLocationVC: UIViewController {
         self.vwSearchBar.btnMenu.setImage(UIImage(named: BACK_ARROW_ICON), for: .normal)
         vwSearchBar.txtSearch.addTarget(self, action: #selector(searchAction(_:)), for: .editingChanged)
     }
-    
+
     func addCountries() {
         self.countries = self.jsonSerial()
         for country in countries {
@@ -62,7 +62,7 @@ class EventSearchLocationVC: UIViewController {
         searchCountriesModel = countriesModel
         tblList.reloadData()
     }
-    
+
     @objc func searchAction(_ sender: UITextField) {
         if sender.text == ""{
             self.searchCountriesModel = countriesModel
@@ -72,19 +72,14 @@ class EventSearchLocationVC: UIViewController {
                 return item.countryName.lowercased().contains(lowercasedQuery)
             }
         }
-        
+
         if self.searchCountriesModel.isEmpty {
             self.noResultFoundView.isHidden = false
         } else {
             self.noResultFoundView.isHidden = true
         }
         self.tblList.reloadData()
-        
-        
-        
-        
-        
-        
+
 //        if Reachability.isConnectedToNetwork() // check internet connectivity
 //        {
 //            self.view.showLoading(centreToView: self.view)
@@ -145,7 +140,7 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
       //  return countries.count
         return searchCountriesModel.count//locationData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
         let countryName = searchCountriesModel[indexPath.row].countryName//locationData[indexPath.row]
@@ -159,26 +154,26 @@ extension EventSearchLocationVC: UITableViewDelegate, UITableViewDataSource {
             cell.btnCheck.setImage(UIImage(named: IMAGE_UNACTIVE_TERM_ICON), for: .normal)
         }
         return cell
-   
+
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationCell") as! SearchLocationCell
-        
+
         self.selecetdCountriesModel = searchCountriesModel[indexPath.row]
         self.selectedCountry = self.selecetdCountriesModel?.countryName
         self.tblList.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-  
+
 }
 
 // MARK: - UITextFieldDelegate
 extension EventSearchLocationVC: UITextFieldDelegate {
-    
+
 }
 
 // MARK: - CustomSearchMethodsDelegate
@@ -194,7 +189,7 @@ extension EventSearchLocationVC: CustomSearchMethodsDelegate {
         )
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         self.navigationController?.pushViewController(view!, animated: true)
@@ -203,5 +198,5 @@ extension EventSearchLocationVC: CustomSearchMethodsDelegate {
 // MARK: -
 extension EventSearchLocationVC: RSCountrySelectedDelegate {
     func RScountrySelected(countrySelected country: CountryInfo) { }
-   
+
 }

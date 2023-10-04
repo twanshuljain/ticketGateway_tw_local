@@ -7,16 +7,14 @@
 
 import UIKit
 
-
-
 class EventSearchCategoryCollectionList: UICollectionView {
-   
+
 // MARK: - Variables
     var selectedIndex = -1
     var isFromCategory = false
     var collVwDidSelectAtIndex: ((GetEventCategoryModel) -> Void)?
     var arrData = [GetEventCategoryModel]()
-   
+
     func configure() {
         self.register(UINib(nibName: "EventSearchCategoryCell", bundle: nil), forCellWithReuseIdentifier: "EventSearchCategoryCell")
         self.delegate = self
@@ -27,17 +25,16 @@ class EventSearchCategoryCollectionList: UICollectionView {
 
 // MARK: - UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
+
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
          return 1
     }
 
-
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
          return arrData.count
-        
+
     }
 
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -68,12 +65,10 @@ extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UIColl
              cell?.vwBg.layer.cornerRadius = 10
              cell?.imgArrow.isHidden = true
          }
-        
+
          return cell!
     }
-    
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventSearchCategoryCell", for: indexPath) as? EventSearchCategoryCell
         self.selectedIndex = indexPath.row
@@ -85,7 +80,7 @@ extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UIColl
         }
         self.reloadData()
     }
-   
+
     // MARK: UICollectionViewDelegate
 
     /*
@@ -113,7 +108,7 @@ extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UIColl
     }
 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
+
     }
     */
 

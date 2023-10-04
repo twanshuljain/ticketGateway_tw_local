@@ -16,7 +16,7 @@ protocol EventDetailVCProtocol: class {
 }
 
 class EventDetailVC: UIViewController, UITextFieldDelegate{
-    
+
     // MARK: IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageConrtrolEventImages: AdvancedPageControlView!
@@ -71,12 +71,12 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var pageConrtrolEventTop: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var htBottomView: NSLayoutConstraint!
-    
+
     // MARK: - Variables
     var viewModel = EventDetailViewModel()
     weak var delegate : EventDetailVCProtocol?
     let store = EKEventStore()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Imp line to set drawer at initial
@@ -95,7 +95,7 @@ extension EventDetailVC {
         self.setUp()
         self.addTapGestureToOrganiserView()
     }
-    
+
     func setUp() {
         self.setUi()
         self.tblSuggestedEvent.delegateShareAction = self
@@ -423,7 +423,7 @@ extension EventDetailVC {
         } else {
             self.imgOrganiser.image = UIImage(named: "profile")
         }
-        
+
         //TAGS
         if !(eventDetail?.eventTagsObj?.eventTags?.isEmpty ?? false) && eventDetail?.eventTagsObj?.eventTags != nil {
             self.tagsView.isHidden = false
@@ -435,7 +435,7 @@ extension EventDetailVC {
             self.dropDown()
         }
     }
-    
+
     func dropDown() {
         //txtDate.optionArray = ["May 25 - May 30 6:00 AM - 7:00 AM", "May 25 - May 30 6:00 AM - 7:00 ", "May 25 - May 30 6:00 AM - 7:00 AM","May 25 - May 30 6:00 AM - 7:00 AM"]
         txtDate.optionIds?.removeAll()
@@ -751,11 +751,11 @@ extension EventDetailVC {
             }
         }
     }
-    
+
     func btnShowMapAction() {
         if let view = createView(storyboard: .home, storyboardID: .EventMapVC) as? EventMapVC{
             let eventLocation = self.viewModel.eventDetail?.eventLocation
-            
+
             if self.viewModel.eventDetail?.locationType == MULTIPLE {
                 self.viewModel.multilocation?.forEach({ data in
                     if data.id == self.viewModel.selectedEventLocationId{
@@ -771,9 +771,7 @@ extension EventDetailVC {
                 view.location = eventLocation?.eventAddress ?? ""
                 self.navigationController?.pushViewController(view, animated: true)
             }
-            
-            
-            
+
         }
     }
 
@@ -790,7 +788,7 @@ extension EventDetailVC {
             )
         }
     }
-    
+
     @objc func btnLikeAction(_ sender: UIButton) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
@@ -826,8 +824,7 @@ extension EventDetailVC {
         } else {
             numberOfPage = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0
         }
-        
-        
+
         if (self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages == nil) || (numberOfPage == 0) || (numberOfPage == 1) {
             self.pageConrtrolEventTop.constant = 0
             self.pageControllerParentView.isHidden = false
@@ -853,13 +850,12 @@ extension EventDetailVC {
 
 // MARK: - UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 extension EventDetailVC : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         let imgCount = self.viewModel.eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages?.count ?? 0

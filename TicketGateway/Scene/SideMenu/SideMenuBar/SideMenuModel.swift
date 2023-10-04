@@ -11,5 +11,5 @@ import UIKit
     var icon: UIImage
     var title: String
     var titleDis: String
-     
+
 }

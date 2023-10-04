@@ -11,7 +11,7 @@ struct GetUserProfileModel : Codable {
     var userData : UserData?
     var profileCompletePercentage : Int?
     init() {
-        
+
     }
     enum CodingKeys: String, CodingKey {
         case userData = "user_data"
@@ -47,9 +47,9 @@ struct UserData : Codable {
     var allowSuperPromoterLogin : String?
     var updatedAt : String?
     var allowAllTypeOfCards : Bool?
-    
+
     enum CodingKeys: String, CodingKey {
-        
+
         case createdBy = "created_by"
         case gender = "gender"
         case country = "country"

@@ -14,22 +14,22 @@ class TransferTicketHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnUp: UIButton!
     @IBOutlet weak var headerBottomLine: UIView!
-   
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setFont()
     }
-    
+
     func setData(data:MyTicket) {
         lblTicketTitle.text = data.ticketName ?? ""
         lblPrice.text = "$\(data.ticketPrice ?? 0)"
-        
+
     }
-   
+
     func setFont() {
         self.lblTicketTitle.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblTicketTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
+
         self.lblPrice.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
     }

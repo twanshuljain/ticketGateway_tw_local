@@ -26,7 +26,7 @@ class ManageSellTicketSuccessfully: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        
+
     }
 }
 // MARK: - Functions
@@ -95,7 +95,7 @@ extension ManageSellTicketSuccessfully {
         //self.popViewController()
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
+
     func popViewController() {
         if let navigationController = self.navigationController{
             for controller in navigationController.viewControllers {

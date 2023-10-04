@@ -65,11 +65,11 @@ extension UITableView {
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.sizeToFit()
-        
+
         self.backgroundView = messageLabel
         self.separatorStyle = .none
     }
-    
+
     func restore() {
         self.backgroundView = nil
         self.separatorStyle = .none

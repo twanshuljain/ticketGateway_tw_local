@@ -15,7 +15,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     var alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
     var viewController: UIViewController?
     var pickImageCallback : ((UIImage) -> ())?;
-    
+
     override init() {
         super.init()
         let cameraAction = UIAlertAction(title: "Camera", style: .default) {
@@ -36,8 +36,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         alert.addAction(galleryAction)
         alert.addAction(cancelAction)
     }
-    
-    
+
 //    init(viewController: UIViewController?) {
 //        self.viewController = viewController
 //    }
@@ -112,7 +111,6 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         self.viewController!.present(picker, animated: true, completion: nil)
     }
 
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -122,7 +120,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     //    let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     //    pickImageCallback?(image)
     //}
-    
+
     // For Swift 4.2+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
@@ -132,10 +130,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         pickImageCallback?(image)
     }
 
-
-
     @objc func imagePickerController(_ picker: UIImagePickerController, pickedImage: UIImage?) {
     }
 
 }
-

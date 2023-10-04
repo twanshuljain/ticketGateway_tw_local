@@ -4,21 +4,20 @@
 //
 //  Created by Apple  on 09/05/23.
 
-
 import UIKit
 import SideMenu
 
 class MyRefundVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var tblTransaction: RefundListTableView!
     @IBOutlet weak var navigationView: NavigationBarView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
      }
-    
+
 }
 // MARK: - Functions
 extension MyRefundVC {
@@ -32,7 +31,7 @@ extension MyRefundVC {
           self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
     }
-   
+
 }
 // MARK: - NavigationBarViewDelegate
 extension MyRefundVC : NavigationBarViewDelegate {

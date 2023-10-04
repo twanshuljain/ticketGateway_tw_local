@@ -4,12 +4,10 @@
 //
 //  Created by Apple  on 10/05/23.
 
-
 import UIKit
 
 class PeopleCollectionList: UICollectionView {
-    
-    
+
     func configure() {
         self.register(UINib(nibName: "PeopleCollectionCell", bundle: nil), forCellWithReuseIdentifier: "PeopleCollectionCell")
         self.delegate = self
@@ -18,12 +16,11 @@ class PeopleCollectionList: UICollectionView {
 
 }
 extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
+
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
 
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -41,17 +38,17 @@ extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDel
          {
              cell.imgPeople.image = UIImage(named: PHOTO_ICON)
          } else if indexPath.row == 1{
-             
+
              cell.imgPeople.image = UIImage(named: PROFILE_ICON)
          } else if indexPath.row == 2{
-             
+
              cell.imgPeople.backgroundColor = .black
              cell.imgPeople.image = UIImage(named: USER_ICON)
          } else if indexPath.row == 3{
-    
+
              cell.imgPeople.image = UIImage(named: PHOTO_ICON)
          }
-         
+
          if indexPath.row == 3{
              let totalCount = 5 - 3
              cell.vwContainer.backgroundColor = UIColor.white
@@ -61,18 +58,18 @@ extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDel
              cell.vwContainer.layer.masksToBounds = true
              cell.vwContainer.layer.borderWidth = 0.5
              cell.vwContainer.layer.borderColor = UIColor.gray.cgColor
-             
+
          } else {
              cell.vwContainer.backgroundColor = UIColor.clear
              cell.vwContainer.layer.borderColor = UIColor.clear.cgColor
              cell.lblCount.isHidden = true
              cell.imgPeople.isHidden = false
          }
-          
+
          return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
+
        // let width = (CGFloat(UIScreen.main.bounds.width)-45)/2
         return CGSize(width: 40, height  : 40)
         }
@@ -115,11 +112,8 @@ extension PeopleCollectionList : UICollectionViewDataSource ,UICollectionViewDel
     }
 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
+
     }
     */
 
 }
-
-
-

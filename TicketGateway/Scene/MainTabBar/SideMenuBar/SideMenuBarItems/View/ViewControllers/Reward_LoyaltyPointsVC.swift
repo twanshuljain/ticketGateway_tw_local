@@ -17,7 +17,7 @@ import iOSDropDown
 import SideMenu
 
 class Reward_LoyaltyPointsVC: UIViewController,UITextFieldDelegate {
-    
+
     @IBOutlet weak var collvwCalender: EventCalenderList!
     @IBOutlet weak var tbllatest: RefundListTableView!
     @IBOutlet weak var tblHistory: RefundListTableView!
@@ -25,7 +25,7 @@ class Reward_LoyaltyPointsVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var lblTotalPoints: UILabel!
     @IBOutlet weak var lblTotalPointsValue: UILabel!
     @IBOutlet weak var lblTotalPointsCalculateValue: UILabel!
-    
+
     @IBOutlet weak var lbllatestetPoint: UILabel!
     @IBOutlet weak var lblHistoryPoint: UILabel!
     @IBOutlet weak var txtmonths: DropDown!
@@ -34,7 +34,7 @@ class Reward_LoyaltyPointsVC: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         self.setup()
      }
-    
+
 }
 // MARK: - Functions
 extension Reward_LoyaltyPointsVC {
@@ -50,7 +50,7 @@ extension Reward_LoyaltyPointsVC {
           self.navigationView.btnBack.isHidden = false
           self.navigationView.delegateBarAction = self
           self.navigationView.vwBorder.isHidden = false
-        
+
         self.txtmonths.delegate = self
         [self.btnDrpoDown].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -63,7 +63,7 @@ extension Reward_LoyaltyPointsVC {
             }
         self.setUi()
     }
-    
+
     func setUi(){
         self.lblTotalPoints.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lblTotalPoints.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -73,11 +73,9 @@ extension Reward_LoyaltyPointsVC {
         self.lblTotalPointsCalculateValue.textColor = UIColor.setColor(colorType: .lblTextPara)
         [self.lbllatestetPoint,self.lblHistoryPoint].forEach { $0.font = UIFont.setFont(fontType: .medium, fontSize: .twenty)
             $0.textColor = UIColor.setColor(colorType: .TGBlack) }
-        
-       
-      
+
     }
-   
+
 }
 
 // MARK: - Actions
@@ -86,12 +84,12 @@ extension Reward_LoyaltyPointsVC {
         switch sender {
         case btnDrpoDown:
             btnDrpoDownAction()
-        
+
         default:
             break
         }
     }
-   
+
     func btnDrpoDownAction(){
         self.txtmonths.showList()
     }

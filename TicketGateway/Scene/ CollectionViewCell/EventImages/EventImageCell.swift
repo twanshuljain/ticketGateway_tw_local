@@ -9,15 +9,15 @@ import UIKit
 import SDWebImage
 
 class EventImageCell: UICollectionViewCell {
- 
+
     @IBOutlet weak var imgEvents: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     func setData(index:Int, eventDetail:EventDetail?) {
-        var images:[String]?
+        var images: [String]?
         if eventDetail?.eventCoverImageObj?.eventCoverImage != nil || eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
             images = [eventDetail?.eventCoverImageObj?.eventCoverImage ?? ""]
             if let additionalImages = eventDetail?.eventCoverImageObj?.eventAdditionalCoverImages{
@@ -69,7 +69,7 @@ class EventImageCell: UICollectionViewCell {
                        self.imgEvents.image = UIImage(named: "homeDas")
                    }
                }
- 
+
            } else {
                self.imgEvents.image = UIImage(named: "homeDas")
            }

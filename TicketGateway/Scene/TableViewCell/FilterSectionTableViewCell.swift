@@ -8,7 +8,7 @@
 import UIKit
 
 class FilterSectionTableViewCell: UITableViewCell {
-    
+
     // MARK: - OUTLETS
     @IBOutlet weak var lblFilterTitle:UILabel!
     @IBOutlet weak var filterView:UIView!
@@ -17,7 +17,7 @@ class FilterSectionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.setUI()
     }
-    
+
     func setData(str:String, selectedIndex:Int, index:Int) {
         self.selectionStyle = .none
         self.lblFilterTitle.text = str
@@ -29,12 +29,11 @@ class FilterSectionTableViewCell: UITableViewCell {
             self.filterView.backgroundColor = UIColor.setColor(colorType: .white)
         }
     }
-    
+
     func setUI() {
         self.lblFilterTitle.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblFilterTitle.textColor = UIColor.setColor(colorType: .tgBlack)
         self.filterView.backgroundColor = UIColor.setColor(colorType: .white)
     }
 
-   
 }

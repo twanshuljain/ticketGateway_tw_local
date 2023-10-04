@@ -8,13 +8,13 @@
 import UIKit
 
 class InstallmentTableViewCell: UITableViewCell {
-    
+
 // MARK: - Outltes
     @IBOutlet weak var lblDownPayment: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblCAD: UILabel!
-    
+
     @IBOutlet weak var bgView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +25,7 @@ class InstallmentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
+
     func setFont() {
         self.lblDownPayment.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblDownPayment.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -36,5 +36,5 @@ class InstallmentTableViewCell: UITableViewCell {
         self.lblCAD.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblCAD.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
-    
+
 }

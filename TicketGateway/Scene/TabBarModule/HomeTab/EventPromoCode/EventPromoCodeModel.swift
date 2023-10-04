@@ -12,7 +12,6 @@ import UIKit
 //
 //   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
 
-
 // MARK: - PromoCode
 struct PromoCode: Codable {
     var promoCodeLimit, promoCodeStartTime: String?

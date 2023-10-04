@@ -16,17 +16,17 @@ import UIKit
 import SideMenu
 
 class NotificationVC: UIViewController {
- 
+
 // MARK: - Outlet
     @IBOutlet weak var tblNotification: NotificationTableViewList!
     @IBOutlet weak var navigationView: NavigationBarView!
-  
+
 // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
      }
-    
+
 }
 // MARK: - Functions
 extension NotificationVC {
@@ -38,9 +38,9 @@ extension NotificationVC {
         self.navigationView.delegateBarAction = self
         self.navigationView.imgBack.image = UIImage(named: "Menu")
         self.navigationView.vwBorder.isHidden = false
-       
+
     }
-   
+
 }
 // MARK: - Back
 extension NotificationVC : NavigationBarViewDelegate {

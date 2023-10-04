@@ -16,15 +16,15 @@ import UIKit
 import SideMenu
 
 class MyRefundVC: UIViewController {
-    
+
     @IBOutlet weak var tblTransaction: RefundListTableView!
     @IBOutlet weak var navigationView: NavigationBarView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
      }
-    
+
 }
 // MARK: - Functions
 extension MyRefundVC {
@@ -38,7 +38,7 @@ extension MyRefundVC {
           self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
     }
-   
+
 }
 // MARK: - Actions
 extension MyRefundVC : NavigationBarViewDelegate {

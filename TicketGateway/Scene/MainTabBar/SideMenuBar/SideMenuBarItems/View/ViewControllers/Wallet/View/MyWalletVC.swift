@@ -18,7 +18,7 @@ import SideMenu
 
 class MyWalletVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnAddWalletVC: UIButton!
-    
+
     @IBOutlet weak var txtmonths: DropDown!
     @IBOutlet weak var lblTotalBalance: UILabel!
     @IBOutlet weak var lblBalance: UILabel!
@@ -28,12 +28,12 @@ class MyWalletVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tblTransaction: TransactionListTableView!
     @IBOutlet weak var navigationView: NavigationBarView!
     var dropDown = DropDown()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
      }
-    
+
 }
 // MARK: - Functions
 extension MyWalletVC {
@@ -46,11 +46,11 @@ extension MyWalletVC {
         self.tblTransaction.configure()
         self.tblTransaction.isFrom = "MyWallet"
         self.navigationView.delegateBarAction = self
-       
+
             self.navigationView.lblTitle.text = "My Wallet"
           self.navigationView.btnBack.isHidden = false
           self.navigationView.delegateBarAction = self
-        
+
         self.txtmonths.optionArray = ["Jan", "Feb", "Mar","April"]
         self.navigationView.imgBack.image = UIImage(named: "Menu")
         self.txtmonths.optionIds = [1,23,54,22]
@@ -58,7 +58,7 @@ extension MyWalletVC {
         self.txtmonths.text = "\(selectedText)\(index)"
             }
         self.navigationView.vwBorder.isHidden = false
-       
+
     }
     func setUi(){
         self.lblBalance.font = UIFont.setFont(fontType: .medium, fontSize: .twenty)
@@ -69,8 +69,7 @@ extension MyWalletVC {
         self.lblAddAmountInTGWallet.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblTRansaction.font = UIFont.setFont(fontType: .medium, fontSize: .twentyTwo)
         self.lblTRansaction.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
-       
-      
+
     }
 }
 // MARK: - Actions
@@ -85,12 +84,12 @@ extension MyWalletVC {
             break
         }
     }
-    
+
     func btnAddAmtWalletAction(){
         let view = self.createView(storyboard: .wallet, storyboardID: .AddAmountWalletVC) as! AddAmountWalletVC
         self.navigationController?.pushViewController(view, animated: true)
     }
-    
+
     func btnDrpoDownAction(){
         self.txtmonths.showList()
     }

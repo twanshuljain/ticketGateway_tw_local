@@ -13,7 +13,7 @@ extension UIImage {
             self.draw(in: CGRect(origin: .zero, size: targetSize))
         }
     }
-    
+
     /*
      @brief decode image base64
      */
@@ -24,7 +24,7 @@ extension UIImage {
         }
         return UIImage()
     }
-    
+
     func convertToGrayscale() -> UIImage? {
         guard let cgImage = self.cgImage,
               let colorSpace = CGColorSpace(name: CGColorSpace.linearGray) else {

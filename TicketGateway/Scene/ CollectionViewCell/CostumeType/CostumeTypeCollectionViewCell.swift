@@ -8,7 +8,7 @@
 import UIKit
 
 class CostumeTypeCollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var lblCostumeType: UILabel!
     @IBOutlet weak var bgView: UIView!
 
@@ -16,7 +16,7 @@ class CostumeTypeCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         setFont()
     }
-    
+
     func setFont() {
         self.lblCostumeType.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)    }
 

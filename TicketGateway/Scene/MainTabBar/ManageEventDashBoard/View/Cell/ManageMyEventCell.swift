@@ -25,11 +25,11 @@ class ManageMyEventCell: UITableViewCell {
     @IBOutlet weak var collVwPeople: PeopleCollectionList!
     @IBOutlet weak var btnManage: CustomButtonNormalWithBorder!
     @IBOutlet weak var btnMenuMore: UIButton!
-    
+
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var vwContainer: UIView!
     @IBOutlet weak var imgEvent: UIImageView!
-    
+
     @IBOutlet weak var lblEventName: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblStart: UILabel!
@@ -39,7 +39,7 @@ class ManageMyEventCell: UITableViewCell {
     @IBOutlet weak var lblLastUpdate: UILabel!
     @IBOutlet weak var lblRating: UILabel!
     var progressBarValue: Float = 10
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -51,8 +51,7 @@ class ManageMyEventCell: UITableViewCell {
         self.collVwPeople.configure()
         self.collVwPeople.reloadData()
     }
-    
-    
+
     func setUi(){
         self.vwPopUp.isHidden = true
         self.btnManage.setTitles(text: "Manage", textColour: UIColor.setColor(colorType: .TGBlack), borderColour: UIColor.setColor(colorType: .TGBlack))
@@ -72,11 +71,11 @@ class ManageMyEventCell: UITableViewCell {
         self.lblLastUpdate.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblRating.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblLastUpdate.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
+
         [self.lblEdit,self.lblView,self.lblDelete,self.lblCopy].forEach {
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
     }
-    
+
 }

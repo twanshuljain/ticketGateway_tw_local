@@ -14,15 +14,15 @@
 import UIKit
 
 class EventTagList: UICollectionView {
-    
+
     var eventDetail:EventDetail?
-    
+
     func configure() {
         self.register(UINib(nibName: "EventTagCell", bundle: nil), forCellWithReuseIdentifier: "EventTagCell")
         self.delegate = self
         self.dataSource = self
     }
-    
+
     func setData(eventDetail:EventDetail?) {
         self.eventDetail = eventDetail
         self.reloadData()
@@ -30,12 +30,11 @@ class EventTagList: UICollectionView {
 
 }
 extension EventTagList : UICollectionViewDataSource ,UICollectionViewDelegate {
-    
+
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
 
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -82,13 +81,11 @@ extension EventTagList : UICollectionViewDataSource ,UICollectionViewDelegate {
     }
 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
+
     }
     */
 
 }
-
-
 
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {

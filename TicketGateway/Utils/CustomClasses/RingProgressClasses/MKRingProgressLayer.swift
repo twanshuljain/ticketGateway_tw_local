@@ -1,18 +1,18 @@
 /*
  The MIT License (MIT)
- 
+
  Copyright (c) 2015 Max Konovalov
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,7 +21,6 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-
 
 import UIKit
 
@@ -33,35 +32,35 @@ open class RingProgressLayer: CALayer {
             setNeedsDisplay()
         }
     }
-    
+
     /// The progress ring end color.
     @objc open var endColor: CGColor = UIColor.blue.cgColor {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     /// The color of the background ring.
     @objc open var backgroundRingColor: CGColor? {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     /// The width of the progress ring.
     @objc open var ringWidth: CGFloat = 20 {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     /// The style of the progress line end (rounded or straight).
     @objc open var progressStyle: RingProgressViewStyle = .round {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     /// The opacity of the shadow under the progress end.
     @objc open var endShadowOpacity: CGFloat = 1.0 {
         didSet {
@@ -69,21 +68,21 @@ open class RingProgressLayer: CALayer {
             setNeedsDisplay()
         }
     }
-    
+
     /// Whether or not to hide the progress ring when progress is zero.
     @objc open var hidesRingForZeroProgress: Bool = false {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     /// Whether or not to allow anti-aliasing for the generated image.
     @objc open var allowsAntialiasing: Bool = true {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     /// The scale of the generated gradient image.
     /// Use lower values for better performance and higher values for more precise gradients.
     @objc open var gradientImageScale: CGFloat = 1.0 {
@@ -91,23 +90,23 @@ open class RingProgressLayer: CALayer {
             setNeedsDisplay()
         }
     }
-    
+
     /// The current progress shown by the view.
     /// Values less than 0.0 are clamped. Values greater than 1.0 present multiple revolutions of the progress ring.
     @NSManaged public var progress: CGFloat
-    
+
     /// Disable actions for `progress` property.
     internal var disableProgressAnimation: Bool = false
-    
+
     private let gradientGenerator = GradientGenerator()
-    
+
     open override class func needsDisplay(forKey key: String) -> Bool {
         if key == "progress" {
             return true
         }
         return super.needsDisplay(forKey: key)
     }
-    
+
     open override func action(forKey event: String) -> CAAction? {
         if !disableProgressAnimation, event == "progress" {
             if let action = super.action(forKey: "opacity") as? CABasicAnimation {
@@ -124,11 +123,11 @@ open class RingProgressLayer: CALayer {
         }
         return super.action(forKey: event)
     }
-    
+
     open override func display() {
         contents = contentImage()
     }
-    
+
     func contentImage() -> CGImage? {
         let size = bounds.size
         guard size.width > 0, size.height > 0 else {

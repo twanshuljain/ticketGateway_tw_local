@@ -8,7 +8,7 @@
 import UIKit
 
 class DescriptionTableViewCell: UITableViewCell {
-    
+
     // MARK: - OUTLETS
     @IBOutlet weak var lblDescription:UILabel!
 
@@ -22,11 +22,10 @@ class DescriptionTableViewCell: UITableViewCell {
         self.lblDescription.textColor = UIColor.setColor(colorType: .appleDarkGrey)
         self.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        
     }
-    
+
 }

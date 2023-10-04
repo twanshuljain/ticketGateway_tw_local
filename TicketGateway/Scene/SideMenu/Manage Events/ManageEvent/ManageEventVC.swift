@@ -4,13 +4,12 @@
 //
 //  Created by Apple  on 10/05/23.
 
-
 import UIKit
 import iOSDropDown
 import SideMenu
 
 class ManageEventVC: UIViewController, UITextFieldDelegate {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
     @IBOutlet weak var txtAllorganiser: DropDown!
@@ -18,7 +17,7 @@ class ManageEventVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var collVwCategory: ManageMyEventCateoryList!
     @IBOutlet weak var btnAllorganiser: UIButton!
     @IBOutlet weak var btnCreateEvent: CustomButtonGradiant!
-    
+
     // MARK: - Variables
     var isShow = false
 
@@ -27,7 +26,6 @@ class ManageEventVC: UIViewController, UITextFieldDelegate {
         self.setup()
         // Do any additional setup after loading the view.
     }
-    
 
 }
 
@@ -47,11 +45,11 @@ extension ManageEventVC {
         self.txtAllorganiser.didSelect{(selectedText , index ,id) in
             self.txtAllorganiser.text = "Selected String: \(selectedText) \n index: \(index)"
         }
-        
+
         self.tblManageEvent.tableDidSelectAtIndex = { _ in
             objSceneDelegate.showMangeEventTabBar()
         }
-        
+
     }
     func setUi() {
         self.txtAllorganiser.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
@@ -70,7 +68,7 @@ extension ManageEventVC {
             break
         }
     }
-   
+
     func btnAllorganiserAction() {
         txtAllorganiser.showList()
 //        if self.isShow == false{
@@ -81,22 +79,20 @@ extension ManageEventVC {
 //            self.isShow = false
 //            txtAllorganiser.hideList()
 //        }
-        
+
     }
 }
 
 // MARK: - CustomSearchMethodsDelegate
 extension ManageEventVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-        
+
         let menu = UIStoryboard.init(name: "SideMenu", bundle: Bundle.main).instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
     }
-    
+
     func rightButtonPressed(_ sender: UIButton) {
         print("hello")
     }
-    
 
-    
 }

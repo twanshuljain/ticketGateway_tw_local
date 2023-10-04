@@ -90,7 +90,7 @@ class Validation {
                    text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
         }
     }
-    
+
     func organizerInputValidation(text: String, validationType: InputValidation) -> (Bool, String) {
         switch validationType {
         case .email:
@@ -258,8 +258,8 @@ class Validation {
         return nameRegEx.evaluate(with: name)
     }
     func isValidPhoneNumber(number:String) -> Bool {
-        let regEx = "^\\+(?:[0-9]?) {6,14}[0-9]$"
-        
+        let regEx = "^\\+(?: [0-9]?) {6,14}[0-9]$"
+
         let phoneCheck = NSPredicate(format: "SELF MATCHES %@", regEx)
         return phoneCheck.evaluate(with: number)
     }

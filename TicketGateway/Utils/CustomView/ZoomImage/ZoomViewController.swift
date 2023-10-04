@@ -4,17 +4,16 @@
 //
 //  Created by Apple on 03/07/23.
 
-
 import UIKit
 
 class ZoomViewController:UIViewController {
-    
+
     var imgProfile: UIImage?
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet private var mainScrollView: UIScrollView!
     @IBOutlet private var backgroundView: UIView!
     @IBOutlet private var mainView:UIView!
-    
+
     var cropView : UIView?
     var imgBackground: UIImageView?
    // var imgVZoomedParcelPhoto: UIImageView?
@@ -25,10 +24,10 @@ class ZoomViewController:UIViewController {
         imgBackground?.image = imgProfile
         self.setImageView()
         self.addGesture()
-        
+
         self.setLayer()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,10 +40,9 @@ class ZoomViewController:UIViewController {
 
 }
 
-
 // MARK: - Functions
 extension ZoomViewController{
-    
+
     func setImageView() {
         // Creates an image view with a test image
         self.imgBackground = UIImageView()
@@ -59,18 +57,17 @@ extension ZoomViewController{
 
         // Sets the scrollview delegate as self
         mainScrollView.delegate = self
-        
+
         // Creates references to the views
 
         // Sets the image frame as the image size
-        
-        
+
         imgBackground?.frame = CGRect(x: 0, y: mainView.frame.size.height, width: (imgProfile?.size.width)!, height: (imgProfile?.size.height)!)
 
         // Tell the scroll view the size of the contents
         mainScrollView.contentSize = imgProfile!.size
     }
-    
+
     func setLayer() {
 //        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 244, y: 244), radius: CGFloat(122), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
 //
@@ -85,7 +82,7 @@ extension ZoomViewController{
 //        shapeLayer.lineWidth = 3.0
 //
 //        self.view.layer.addSublayer(shapeLayer)
-        
+
         let overlay = createOverlay(frame: backgroundView.frame,
                                     xOffset: backgroundView.frame.midX,
                                     yOffset: backgroundView.frame.midY,
@@ -94,7 +91,7 @@ extension ZoomViewController{
         cropView = overlay
         overlay.isUserInteractionEnabled = false
     }
-    
+
     func setNavigationview() {
         self.navigationView.delegateBarAction = self
         self.navigationView.navViewbackgroundColor = UIColor.setColor(colorType: .btnDarkBlue)
@@ -107,7 +104,7 @@ extension ZoomViewController{
         self.navigationView.setBackgroundColor()
         self.navigationView.vwBorder.isHidden = true
     }
-    
+
     func addGesture() {
         // Add doubleTap recognizer to the scrollView
         let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewDoubleTapped(_:)))
@@ -118,11 +115,11 @@ extension ZoomViewController{
         // Add two finger recognizer to the scrollView
         let twoFingerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewTwoFingerTapped(_:)))
         twoFingerTapRecognizer.numberOfTapsRequired = 1
-        
+
         twoFingerTapRecognizer.numberOfTouchesRequired = 2
         mainScrollView.addGestureRecognizer(twoFingerTapRecognizer)
     }
-    
+
     // MARK: - Scroll View scales setup and center
     func setupScales() {
         // Set up the minimum & maximum zoom scales
@@ -137,7 +134,7 @@ extension ZoomViewController{
 
         centerScrollViewContents()
     }
-    
+
     func centerScrollViewContents() {
         // This method centers the scroll view contents also used on did zoom
         let boundsSize = mainScrollView.bounds.size
@@ -165,7 +162,7 @@ extension ZoomViewController{
         // Reset the scales depending on the change of values
         setupScales()
     }
-    
+
     func createOverlay(frame: CGRect,
                        xOffset: CGFloat,
                        yOffset: CGFloat,
@@ -202,7 +199,7 @@ extension ZoomViewController{
     @IBAction func btnCancelPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @IBAction func btnChoosePressed(_ sender: UIButton) {
         print(cropView?.frame)
     }
@@ -238,7 +235,7 @@ extension ZoomViewController {
         let rectToZoomTo = CGRect(x: xAxis, y: yAxis, width: width, height: height)
         mainScrollView.zoom(to: rectToZoomTo, animated: true)
     }
-    
+
     @objc func scrollViewTwoFingerTapped(_ recognizer: UITapGestureRecognizer?) {
         // Zoom out slightly, capping at the minimum zoom scale specified by the scroll view
         var newZoomScale = mainScrollView.zoomScale / 1.5

@@ -11,7 +11,7 @@ class BuyersInfoCell: UITableViewCell {
 
     @IBOutlet weak var vwPopUp: customSocialLoginView!
     @IBOutlet weak var lblFristAndLastName: UILabel!
-    
+
     @IBOutlet weak var imgBg: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblNumber: UILabel!
@@ -24,7 +24,7 @@ class BuyersInfoCell: UITableViewCell {
         setUi()
         // Initialization code
     }
-    
+
     func setUi(){
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
@@ -33,7 +33,7 @@ class BuyersInfoCell: UITableViewCell {
         self.lblNumber.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblNumber.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.vwPopUp.isHidden = true
-        
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,5 +41,5 @@ class BuyersInfoCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

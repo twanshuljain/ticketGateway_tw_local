@@ -19,12 +19,10 @@ struct GetEventRequest: Codable {
     var eventType: String?
     var limit: String?
     var page: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case eventType = "event_type"
         case limit
         case page
     }
 }
-
-

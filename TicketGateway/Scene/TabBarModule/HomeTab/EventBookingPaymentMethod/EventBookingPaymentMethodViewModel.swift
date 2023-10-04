@@ -34,7 +34,7 @@ final class EventBookingPaymentMethodViewModel{
     var totalTicketPrice = ""
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var createCharge:CreateCharge?
-    
+
     var stripeUser:StripeCreateUser?
     var addCard:AddCard?
     var selectedMonth : String?
@@ -44,7 +44,7 @@ final class EventBookingPaymentMethodViewModel{
     var cardNumber:String?
     var cvv:String?
     var dispatchGroup = DispatchGroup.init()
-    
+
 }
 
 extension EventBookingPaymentMethodViewModel{
@@ -59,18 +59,17 @@ extension EventBookingPaymentMethodViewModel{
 //            print(response)
 //        }
 //    }
-    
-    
+
     func checkValidations(vc:EventBookingPaymentMethodVC) -> Bool{
         let validate = self.validateCreditCard(vc.txtCardName.text ?? "", vc.txtCardNumber.text ?? "", vc.txtExpiryDate.text ?? "", vc.txtCVV.text ?? "", vc)
-        
+
         if validate{
             return true
-            
+
         }
         return false
     }
-    
+
     func createCustomer(vc:EventBookingPaymentMethodVC) {
         DispatchQueue.main.async {
             vc.parentView.showLoading(centreToView: vc.view)
@@ -95,13 +94,12 @@ extension EventBookingPaymentMethodViewModel{
                 }
             }
         }
-        
+
         dispatchGroup.notify(queue: .main) {
             self.addCardForUser(vc: vc)
         }
     }
 
-    
     func addCardForUser(vc:EventBookingPaymentMethodVC) {
         if let name = self.name, let cardNumber = self.cardNumber,let cvv = self.cvv, let expMonth = Int(strMonth), let expYear = Int(strYear) {
             DispatchQueue.main.async {
@@ -122,9 +120,9 @@ extension EventBookingPaymentMethodViewModel{
                 }
             }
         }
-        
+
     }
-    
+
     func createCheckout(vc:EventBookingPaymentMethodVC) {
         var ticketIDs = [CheckoutTicketID]()
         var addOnList = [CheckoutAddonList]()
@@ -138,13 +136,12 @@ extension EventBookingPaymentMethodViewModel{
             )
             ticketIDs.append(data)
         }
-        
+
         self.selectedAddOnList.forEach { addOnData in
             let data = CheckoutAddonList.init(addonID: addOnData.id ?? 0, quantity: addOnData.selectedTicketQuantity ?? 0)
             addOnList.append(data)
         }
-        
-        
+
         if let eventId = self.eventId{
             DispatchQueue.main.async {
                 vc.parentView.showLoading(centreToView: vc.view)
@@ -171,7 +168,7 @@ extension EventBookingPaymentMethodViewModel{
             )
         }
     }
-    
+
     func otpVerify(vc:EventBookingPaymentMethodVC) {
         DispatchQueue.main.async {
             if let view = vc.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{
@@ -182,7 +179,7 @@ extension EventBookingPaymentMethodViewModel{
                 view.isComingFrom = .orderSummary
                 let number = "\(userModel?.strDialCountryCode ?? "")" + (userModel?.number ?? "")
                 view.viewModel.number = number
-                
+
                 view.otpVerified = { verified, message in
                     if verified{
                         self.createCharge(vc: vc)
@@ -196,7 +193,7 @@ extension EventBookingPaymentMethodViewModel{
             }
         }
     }
-    
+
     func createCharge(vc:EventBookingPaymentMethodVC) {
         if let amount = Double(self.totalTicketPrice), let cardId = self.addCard?.id, let checkOutId = self.checkoutId, let currency = self.selectedArrTicketList.compactMap({ $0.ticketCurrencyType ?? "" }).first{
             DispatchQueue.main.async {
@@ -217,9 +214,9 @@ extension EventBookingPaymentMethodViewModel{
                 }
             }
         }
-        
+
     }
-    
+
     func navigateToPaymentSuccess(vc:EventBookingPaymentMethodVC) {
         if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC{
             view.createCharge = self.createCharge
@@ -227,38 +224,38 @@ extension EventBookingPaymentMethodViewModel{
             vc.navigationController?.pushViewController(view, animated: true)
         }
     }
-    
+
     // MARK:- func validateCreditCard
     func validateCreditCard(_ cardholderName:String?,_ cardNumber:String?,_ expiryDate:String?,_ cvv:String? ,_ vc:EventBookingPaymentMethodVC)-> Bool{
         if cardNumber == nil || cardNumber?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardNumber.value)
             return false
-            
+
         } else if cardholderName == nil || cardholderName?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardholderName.value)
             return false
-            
+
         } else if (cardNumber?.count ?? 0) < 16 {
             vc.showAlertController(message: PaymentError.cardNumberLenghtShort.value)
             return false
-            
+
         } else if expiryDate == nil || expiryDate?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.expiryDate.value)
             return false
-            
+
         } else if cvv == nil || cvv?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cvv.value)
             return false
-            
+
         } else if cvv?.count != 3 {
             vc.showAlertController(message: PaymentError.cvvMin.value)
             return false
-            
+
         } else if (cardNumber?.count ?? 0) > 16 {
             vc.showAlertController(message: PaymentError.cardNumberMaxLength.value)
             return false
         }
-        
+
         return true
     }
 }

@@ -13,13 +13,12 @@
 
 import UIKit
 
-
 class InstallmentInfo {
     var isExpanded : Bool
-    
+
     init(isExpanded:Bool) {
         self.isExpanded = isExpanded
-        
+
     }
 }
 
@@ -57,7 +56,7 @@ class CostumeCartViewController: UIViewController {
     @IBOutlet weak var lblChoosePaymentMode: UILabel!
     @IBOutlet weak var vwNavigationBar: NavigationBarView!
     @IBOutlet weak var tbleViewHeight: NSLayoutConstraint!
-    
+
     // MARK: - Variables
     var arrData: [ExpandableCells] = []
     var isPartialSelected = false
@@ -82,12 +81,11 @@ class CostumeCartViewController: UIViewController {
        // self.paymentTableView.contentInsetAdjustmentBehavior = .never
 
     }
-    
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tbleViewHeight.constant = paymentTableView.contentSize.height
       }
 }
-
 
 // MARK: - Functions
 extension CostumeCartViewController{
@@ -119,9 +117,8 @@ extension CostumeCartViewController{
         self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .white) ], for: .selected)
         self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.setColor(colorType: .segmentColor) ], for: .normal)
 
-        
         }
-    
+
     func configure() {
         paymentTableView.delegate = self
         paymentTableView.dataSource = self
@@ -130,15 +127,15 @@ extension CostumeCartViewController{
         paymentTableView.register(UINib(nibName: "InstallmentHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "InstallmentHeaderView")
         paymentTableView.register(UINib(nibName: "InstallmentTableViewCell", bundle: nil), forCellReuseIdentifier: "InstallmentTableViewCell")
      //   paymentTableView.reloadData()
-        
+
     }
-    
+
 }
 
 // MARK: - Actions
 extension CostumeCartViewController{
     @objc func buttonPressed(_ sender: UIButton) {
-        
+
         if sender.tag != 0 || sender.tag != arrData.count - 1 {
         let obj = arrData[sender.tag]
         if obj.isExpanded == false
@@ -149,9 +146,9 @@ extension CostumeCartViewController{
         }
         self.paymentTableView.reloadData()
         }
-        
+
     }
-    
+
     @IBAction func actionSegmentControl(_ sender: Any) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
@@ -167,8 +164,7 @@ extension CostumeCartViewController{
             self.paymentTableView.layoutIfNeeded()
             self.paymentTableView.reloadData()
             //  self.paymentTableView.layoutIfNeeded()
-            
-            
+
         case 1:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .selected)
@@ -179,31 +175,31 @@ extension CostumeCartViewController{
             isPartialSelected = true
             let arrExpan = [InstallmentInfo]()
             arrData = [ExpandableCells( data: arrExpan, isExpanded: false),
-                       ExpandableCells( data:[InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
-                       
-                       ExpandableCells( data:[InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
-                       ExpandableCells( data:[InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+
+                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
                        ExpandableCells( data: arrExpan, isExpanded: false)]
-            
+
             self.paymentTableView.reloadData()
-            
+
         default:
             break
         }
     }
-    
+
 }
 
 // MARK: -  UITableViewDelegate, UITableViewDataSource
 extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return arrData.count
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         if section == 0 {
             return 1
         } else if section == arrData.count-1 {
@@ -217,24 +213,24 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+
         if isPartialSelected == true {
             if indexPath.section == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DepositeTableViewCell", for: indexPath) as! DepositeTableViewCell
                 return cell
-                
+
             } else if indexPath.section == arrData.count-1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "OrderDetailTableViewCell", for: indexPath) as!
                 OrderDetailTableViewCell
                 cell.btnContinue.addTarget(self, action: #selector(btncontinue(sender:)), for: .touchUpInside)
                 cell.lblDescription.isHidden = true
                 return cell
-                
+
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "InstallmentTableViewCell", for: indexPath) as! InstallmentTableViewCell
-                
+
                 return cell
             }
         } else {
@@ -243,16 +239,16 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
             cell.lblDescription.isHidden = false
             return cell
         }
-       
+
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       
+
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "InstallmentHeaderView") as! InstallmentHeaderView
         headerView.contentView.backgroundColor = UIColor.white
         headerView.btnSelected.tag = section
         headerView.btnSelected.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        
+
         let obj = arrData[section]
         if obj.isExpanded == true {
              headerView.btnSelected.setImage(UIImage(named: RADIO_SELECTION_ICON), for: .normal)
@@ -265,9 +261,9 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
 
         }
         return headerView
-      
+
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isPartialSelected == false {
             print("SECTION",section)
@@ -283,27 +279,26 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             print("SECTION ", section)
             return 70
-            
+
         }
         }
     }
-    
+
     @objc func btncontinue(sender:UIButton)
     {
         let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as? PhoneVerificationViewController
         self.navigationController?.pushViewController(view!, animated: true)
-        
+
         //let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC
         //self.navigationController?.pushViewController(view!, animated: true)
-        
+
     }
-   
+
 }
 // MARK: - NavigationBarViewDelegate
 extension CostumeCartViewController: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
+
 }

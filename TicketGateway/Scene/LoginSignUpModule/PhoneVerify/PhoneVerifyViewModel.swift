@@ -15,7 +15,7 @@ final class PhoneVerifyViewModel{
     var eventDetail:EventDetail?
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""
-    var selectedAddOnList:[EventTicketAddOnResponseModel]?
+    var selectedAddOnList: [EventTicketAddOnResponseModel]?
     var selectedCurrencyType = ""
 }
 
@@ -30,7 +30,7 @@ extension PhoneVerifyViewModel{
         }
         return("", true)
     }
-    
+
     var validateUserMobile: (errorMessage: String, isValid: Bool) {
         if Validation.shared.textValidation(text: mobileNumber, validationType: .number).0 {
             let errMsg = Validation.shared.textValidation(text: mobileNumber, validationType: .number).1

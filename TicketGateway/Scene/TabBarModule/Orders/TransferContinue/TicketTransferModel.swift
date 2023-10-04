@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK: - TicketTransfer
 struct TicketTransfer: Codable {
     var ticketName: String?

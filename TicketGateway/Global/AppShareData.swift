@@ -26,11 +26,11 @@ class AppShareData {
     // NewVariable
     var dicToHoldDataOnSignUpModule : DataHoldOnSignUpProcessModel?
     var userAuth = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-    
+
     func saveNumOfPage(numOfPage: Int) {
         UserDefaults.standard.set(numOfPage, forKey: numOfPageKey)
     }
-    
+
     func setRootToHomeVCAndMoveToFAQ() {
         guard let objHomeViewController = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {
             return
@@ -40,7 +40,7 @@ class AppShareData {
        //selectedTabBarIndex = selectedIndex
        UIApplication.shared.windows.first?.rootViewController = navigationController
        UIApplication.shared.windows.first?.makeKeyAndVisible()
-        
+
         guard let objFAQController = UIStoryboard.init(name: "SideMenu", bundle: nil).instantiateViewController(withIdentifier: "FAQVC") as? FAQVC else {
             return
         }
@@ -57,7 +57,7 @@ class AppShareData {
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        
+
         if let token = userModel?.accessToken {
             print("userModel?.accessToken........ ",userModel!.accessToken! )
             request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
@@ -112,8 +112,7 @@ class AppShareData {
                     do {
                         let responseModel = try JSONDecoder().decode(GetUserProfileModel.self, from: data)
                         completion(.success(responseModel))
-                    }
-                    catch{
+                    } catch {
                         print(error)
                     }
                 } else {
@@ -135,7 +134,7 @@ class AppShareData {
         }
         return nil
     }
-    func getPostString(params:[String:Any]) -> String {
+    func getPostString(params: [String:Any]) -> String {
         var data = [String]()
         for(key, value) in params {
             data.append(key + "=\(value)")
@@ -187,7 +186,7 @@ class AppShareData {
             }
         }
     }
-    
+
     func getTicketCurrency(currencyType:String) -> String{
         if currencyType == "EUR"{
             return currencyType

@@ -35,7 +35,7 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
 //        }
         self.arrData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
             cell.getEvent = self.arrData[indexPath.row]
@@ -51,13 +51,13 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
          self.tableDidSelectAtIndex?(indexPath.row)
          self.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("in \(indexPath.row)")
     }
-    
+
     @objc func buttonPressed(_ sender: UIButton) {
-        
+
     }
-    
+
 }

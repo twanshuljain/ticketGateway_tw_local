@@ -4,14 +4,12 @@
 //
 //  Created by Apple  on 19/05/23.
 
-
 import UIKit
 import SideMenu
 import iOSDropDown
 
-
 class ManageEventDashboardVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var heightOfTableView: NSLayoutConstraint!
     @IBOutlet weak var navigationView: NavigationBarView!
@@ -26,21 +24,20 @@ class ManageEventDashboardVC: UIViewController {
     @IBOutlet weak var lblTotalTicketSold: UILabel!
     @IBOutlet weak var txtMonths: DropDown!
     @IBOutlet weak var segment: UISegmentedControl!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setUi()
-        
+
     }
-    
+
     func setup() {
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = HEADER_TITLE_SUNBURN
         self.navigationView.lblDiscripation.text = HEADER_DESCRIPTION_DATE_TIME
         self.navigationView.btnBack.isHidden = false
-        
+
         self.navigationView.btnRight.isHidden =  false
         self.navigationView.btnRight.setImage(UIImage(named: EVEN_FILTER_ICON), for: .normal)
         self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
@@ -57,16 +54,16 @@ class ManageEventDashboardVC: UIViewController {
             self.txtMonths.text = "Selected String: \(selectedText) \n index: \(index)"
         }
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationView.imgBack.image = UIImage(named: BACK_ARROW_ICON)
     }
-    
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTableView.constant = tblTickets.contentSize.height
-        
+
     }
-    
+
 }
 
 // MARK: - Functions
@@ -76,28 +73,27 @@ extension ManageEventDashboardVC{
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        
+
         [self.lblNetTicketSoldValue,self.lblTotalAddCheckValue].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
-        
+
         [self.lblAddmissionSold].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
-        
+
         [self.lblTotalTicketSold].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
             $0?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
-        
-        
+
         [self.lblAddmissionSoldTotalAvaiable,].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
-        
+
     }
 }
 
@@ -107,7 +103,7 @@ extension ManageEventDashboardVC{
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageEventTicketSoldVC) as? ManageEventTicketSoldVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
-    
+
     @IBAction func btnMonths(_ sender: Any) {
         self.txtMonths.showList()
     }
@@ -117,7 +113,7 @@ extension ManageEventDashboardVC{
 extension ManageEventDashboardVC : NavigationBarViewDelegate{
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-        
+
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
   }

@@ -17,7 +17,7 @@ extension Array {
             }
         }
     }
-    
+
     mutating func appendAtBeginning(newItem : [Element]) {
         let copy = self
         self = []

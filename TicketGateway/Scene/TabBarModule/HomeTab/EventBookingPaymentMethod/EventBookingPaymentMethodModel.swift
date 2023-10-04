@@ -98,12 +98,6 @@ struct CheckoutTicketID: Codable {
     }
 }
 
-
-
-
-
-
-
 // MARK: - AddCard
 struct AddCard: Codable {
     var name: String?
@@ -132,7 +126,6 @@ struct AddCard: Codable {
         case updatedAt = "updated_at"
     }
 }
-
 
 // MARK: - CreateCharge
 struct CreateCharge: Codable {

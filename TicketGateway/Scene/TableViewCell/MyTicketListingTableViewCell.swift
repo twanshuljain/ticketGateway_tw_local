@@ -8,14 +8,14 @@
 import UIKit
 
 class MyTicketListingTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var lblTicketName : UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
     func setData(ticketData:MyTicket) {
         self.lblTicketName.text = ((ticketData.ticketName ?? "") + " - " + "\(ticketData.date?.getDateFormattedISOFromTo() ?? "")")
     }
@@ -25,5 +25,5 @@ class MyTicketListingTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

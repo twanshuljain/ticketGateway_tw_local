@@ -38,7 +38,7 @@ extension EventMapVC {
         annotation.title = location
         mapView.addAnnotation(annotation)
     }
-    
+
 }
 // MARK: - MKMapView
 private extension MKMapView {

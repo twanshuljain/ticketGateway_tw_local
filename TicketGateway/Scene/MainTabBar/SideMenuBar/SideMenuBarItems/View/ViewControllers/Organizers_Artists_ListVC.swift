@@ -30,7 +30,6 @@ class Organizers_Artists_ListVC: UIViewController {
     let viewModel = LoginNmberWithEmailViewModel()
     let nameFormatter = PersonNameComponentsFormatter()
     var isFrom = ""
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +71,7 @@ extension Organizers_Artists_ListVC {
         self.lblSuggested.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.btnSeeAll.setTitles(text: "See all", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
         self.btnSeeAllForSuggested.setTitles(text: "See all", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
-      
+
     }
 }
 
@@ -110,7 +109,7 @@ extension Organizers_Artists_ListVC {
             self.showToast(message: ValidationConstantStrings.networkLost)
         }
         }
-    
+
     func btnSeeAllSuggestedAction() {
         if Reachability.isConnectedToNetwork(){
         //    SVProgressHUD.show()
@@ -134,7 +133,6 @@ extension Organizers_Artists_ListVC {
         }
 }
 
-
 extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -156,30 +154,26 @@ extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource 
 //        }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // let obj = self.viewModel.arrMail[indexPath.row]
      //   self.viewModel.strSelectedEmail = obj.email ?? ""
         self.tblSuggestedOrag_Art.reloadData()
   }
 
-   
-    
-
 }
 extension Organizers_Artists_ListVC : UICollectionViewDataSource ,UICollectionViewDelegate {
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return 4
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestedOrganizerCell", for: indexPath)
         // Configure the cell

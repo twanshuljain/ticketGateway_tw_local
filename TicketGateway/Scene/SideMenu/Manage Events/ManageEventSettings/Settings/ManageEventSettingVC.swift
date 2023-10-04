@@ -4,10 +4,7 @@
 //
 // Created by Apple on 24/05/23.
 
-
-
 import UIKit
-
 
 class ManageEventSettingVC: UIViewController {
     // MARK: - Outlets
@@ -17,11 +14,10 @@ class ManageEventSettingVC: UIViewController {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var navitem: UITabBarItem!
-    
+
     // MARK: - Variables
     let viewModel = ManageEventSettingViewModel()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTabBar()

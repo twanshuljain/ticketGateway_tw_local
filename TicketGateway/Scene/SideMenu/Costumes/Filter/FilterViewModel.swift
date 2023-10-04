@@ -8,7 +8,7 @@
 import Foundation
 
 final class FilterViewModel{
-    
+
     // MARK: - Variables
     var arrFilterSection = ["By Price","By Gender","By types","Flexipay","Refundable"]
     var arrFilter = ["Last Week","Last Month","Specific Date range"]

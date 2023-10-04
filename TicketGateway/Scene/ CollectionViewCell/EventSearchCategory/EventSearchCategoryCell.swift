@@ -16,7 +16,5 @@ class EventSearchCategoryCell: UICollectionViewCell {
         super.awakeFromNib()
         imgArrow.isHidden = true
     }
-    
-    
-   
+
 }

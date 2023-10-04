@@ -30,10 +30,9 @@ struct MyTicket: Codable {
     var transferredID: Int?
     var isExpanded: Bool? = false
 
-    
     init() {
     }
-    
+
     init(isExpanded: Bool) {
         self.isExpanded = isExpanded
     }

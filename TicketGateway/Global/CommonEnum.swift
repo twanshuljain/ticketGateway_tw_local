@@ -15,5 +15,5 @@ enum UserDefaultKeys: String {
 
 enum UserDefaultModelKeys: String {
 case userAuthData                                               = "userAuthData"
-                                    
+
 }

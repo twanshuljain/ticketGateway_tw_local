@@ -16,10 +16,10 @@ class MyTicketVC: UIViewController {
     @IBOutlet weak var btnAddAppToWallet: PKPass!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var greyView : UIView!
-    
+
     var viewModel: MyTicketViewModel = MyTicketViewModel()
     var myOrderViewModel: MyOrderViewModel = MyOrderViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -29,7 +29,7 @@ class MyTicketVC: UIViewController {
     }
     @objc func addActionSheet() {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        
+
         let alertTransferTicket = UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC) as? TransferTicketVC{
                 transferTicketVC.viewModel.ticketDetails = self.viewModel.ticketDetails
@@ -37,29 +37,27 @@ class MyTicketVC: UIViewController {
                 transferTicketVC.viewModel.myTicket = self.viewModel.myTicket
                 self.navigationController?.pushViewController(transferTicketVC, animated: true)
             }
-            
+
         })
-        
+
         let alertExchangeTicket = UIAlertAction(title: "Exchange ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             let exchangeTicketVC = self.createView(storyboard: .order, storyboardID: .ExchangeTicketVC)
             self.navigationController?.pushViewController(exchangeTicketVC, animated: true)
         })
-        
+
         let alertChangeNameTicket = UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC{
                 changeNameVC.viewModel.myTicket = self.viewModel.myTicket
                 self.navigationController?.pushViewController(changeNameVC, animated: true)
             }
         })
-        
+
         let alertShareEvent = UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let eventDetail = self.viewModel.eventDetail {
                 self.shareEventDetailData(eventDetail: eventDetail)
             }
         })
-        
-        
-        
+
         let alertContactOrganizer = UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
                 contactOrganiserVC.viewModel.ticketDetails = self.viewModel.ticketDetails
@@ -68,8 +66,7 @@ class MyTicketVC: UIViewController {
                 self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
             }
         })
-        
-        
+
         if self.viewModel.selectedTicket?.isTransfer ?? false == true{
             alertTransferTicket.titleTextColor = .gray
             alertTransferTicket.isEnabled = false
@@ -78,7 +75,7 @@ class MyTicketVC: UIViewController {
             alertChangeNameTicket.titleTextColor = .gray
             alertChangeNameTicket.isEnabled = false
         }
-        
+
         actionsheet.addAction(alertTransferTicket)
         actionsheet.addAction(alertExchangeTicket)
         actionsheet.addAction(alertChangeNameTicket)
@@ -97,7 +94,7 @@ extension MyTicketVC {
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "MyTicketCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyTicketCollectionViewCell")
     }
-    
+
     func setNavigationBar() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
@@ -115,13 +112,13 @@ extension MyTicketVC {
        // self.btnAddAppToWallet.titleLabel?.textColor = UIColor.setColor(colorType: .white)
        // self.btnAddAppToWallet.addLeftIcon(image: UIImage(named: APPLE_WALLET_ICON))
     }
-    
+
 //    func setData() {
 //        if let base64String = self.viewModel.myTicket?.items?.first?.qrcodeBase64Data{
 //            self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
 //        }
 //    }
-    
+
     func apiCallForMyTicketList() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -147,7 +144,7 @@ extension MyTicketVC {
                 self.collectionView.reloadData()
                 self.funcCallApiForEventDetail(eventId: self.viewModel.ticketDetails?.eventId)
             }
-            
+
         } else {
             DispatchQueue.main.async {
                 self.view.stopLoading()
@@ -155,7 +152,7 @@ extension MyTicketVC {
             }
         }
     }
-    
+
     func funcCallApiForEventDetail(eventId:Int?) {
         if let eventId = eventId{
             if Reachability.isConnectedToNetwork() //check internet connectivity
@@ -193,11 +190,11 @@ extension MyTicketVC {
             break
         }
     }
-    
+
     @objc func btnAppleWalletAction(_ sender: UIButton) {
-        
+
     }
-    
+
     @objc func seeFullTicketAction(_ sender: UIButton) {
         let seeFullTicketVC = self.createView(storyboard: .order, storyboardID: .SeeFullTicketVC) as? SeeFullTicketVC
         seeFullTicketVC?.viewModel.ticketDetails = viewModel.ticketDetails
@@ -226,7 +223,7 @@ extension MyTicketVC {
            }
        }
     func addAppToWalletAction() {
-        
+
     }
     func shareEventDetailData(eventDetail: EventDetail) {
         self.shareEventDetailData(
@@ -245,7 +242,7 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.myTicket?.items?.count ?? 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyTicketCollectionViewCell", for: indexPath) as? MyTicketCollectionViewCell{
             cell.lblTicket.text = "Ticket \(indexPath.row+1) of \(self.viewModel.myTicket?.items?.count ?? 0)"
@@ -264,7 +261,7 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         }
         return UICollectionViewCell()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = cell as? MyTicketCollectionViewCell{
             if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
@@ -274,13 +271,12 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: collectionView.frame.width, height: collectionView.frame.height)
     }
-    
-}
 
+}
 
 // MARK: - NavigationBarViewDelegate
 extension MyTicketVC: NavigationBarViewDelegate {

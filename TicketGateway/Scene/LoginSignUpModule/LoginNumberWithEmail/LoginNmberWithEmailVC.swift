@@ -23,7 +23,7 @@ class LoginNmberWithEmailVC: UIViewController, NavigationBarViewDelegate {
     var viewModel: LoginNmberWithEmailViewModel?
     var isComingFrom: IsComingFrom  = .login
     var profileViewModel: ManageEventProfileViewModel = ManageEventProfileViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = LoginNmberWithEmailViewModel(loginVC: self)
@@ -53,7 +53,7 @@ extension LoginNmberWithEmailVC {
         self.lblMobileNumber.text = MOBILE_NUMBER
         self.lblSelectEmail.text =  SELECT_THE_EMAIL_ACCOUNT
     }
-    
+
     // Get User Profile API Calling
     func getUserProfileData() {
         if Reachability.isConnectedToNetwork() {
@@ -90,7 +90,7 @@ extension LoginNmberWithEmailVC {
                         if self.isComingFrom == .login{
                             self.getUserProfileData()
                         } else {
-                            
+
                         }
                     }
                 } else {

@@ -14,27 +14,25 @@
 import UIKit
 
 class FeedbackViewController: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var vwNavigatioView: NavigationBarView!
     @IBOutlet weak var vwSegmentBackgroundView: UIView!
     @IBOutlet weak var lblRateYourExperience:UILabel!
-    
+
     // MARK: - Variables
     var viewModel = FeedbackViewModel()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
         self.setNavigationBar()
         self.configureTableView()
-        
+
     }
-    
-    
+
 }
 // MARK: - Functions
 extension FeedbackViewController{
@@ -43,9 +41,9 @@ extension FeedbackViewController{
         self.vwNavigatioView.delegateBarAction = self
         self.vwNavigatioView.btnBack.isHidden = false
         self.vwNavigatioView.vwBorder.isHidden = false
-        
+
     }
-    
+
     func configureTableView() {
         self.tblView.separatorColor = UIColor.clear
         self.tblView.delegate = self
@@ -55,7 +53,7 @@ extension FeedbackViewController{
         self.tblView.tableFooterView = UIView()
         self.tblView.reloadData()
     }
-    
+
     func setUpUI() {
         self.lblRateYourExperience.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblRateYourExperience.textColor = UIColor.setColor(colorType: .btnDarkBlue)
@@ -89,7 +87,7 @@ extension FeedbackViewController: UITableViewDelegate,UITableViewDataSource {
             return viewModel.arrFeedBackOrganizer.count
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedBackTableViewCell", for: indexPath) as? FeedBackTableViewCell{
             cell.selectionStyle = .none
@@ -104,16 +102,16 @@ extension FeedbackViewController: UITableViewDelegate,UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RatingCustomFooterView") as! RatingCustomFooterView
         return footerView
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 230
     }

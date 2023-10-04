@@ -24,11 +24,10 @@ class ContinueToTransferVC: UIViewController {
     @IBOutlet weak var btnTransferTicket: CustomButtonGradiant!
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var viewChangeName: UIView!
-    
+
     // MARK: - Variables
     var viewModel = ContinueToTransferViewModel()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setFont()
@@ -79,12 +78,12 @@ extension ContinueToTransferVC {
         self.btnCheck.borderColor = .lightGray
         self.viewChangeName.backgroundColor = UIColor.setColor(colorType: .bgPurpleColor)
     }
-    
+
     func setData() {
         self.txtNameOnTicket.isUserInteractionEnabled = false
         self.txtNameOnTicket.text = self.viewModel.myTicket?.nameOnTicket ?? ""
     }
-    
+
     func navigateToManageSellTicketSuccessfully() {
         if let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully{
             view.strTittle = TICKET_TRANSFERRED
@@ -94,7 +93,7 @@ extension ContinueToTransferVC {
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
-    
+
     func apiTransferTicket() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -128,29 +127,29 @@ extension ContinueToTransferVC {
             self.apiTransferTicket()
         })
     }
-    
+
     @IBAction func btnChangeNumberAction(_ sender:UIButton) {
         self.viewChangeName.backgroundColor = .clear
         self.viewModel.isChangeName = true
         self.txtNameOnTicket.isUserInteractionEnabled = true
     }
-    
+
     @IBAction func btnTransferTicketAction(_ sender:UIButton) {
         self.view.endEditing(true)
         self.viewModel.mobileNumber = self.txtPhoneNumber.text ?? ""
         self.viewModel.email = self.txtEmail.text ?? ""
         self.viewModel.confirmEmail = self.txtConfirmEmail.text ?? ""
         self.viewModel.fullName = self.txtNameOnTicket.text ?? ""
-        
+
         let isValidate = viewModel.validateInput
-        
+
         if isValidate.isValid{
             self.showAlert()
         } else {
             self.showToast(message: isValidate.errorMessage)
         }
     }
-    
+
     @IBAction func btnCheckTCAction(_ sender:UIButton) {
         self.viewModel.isTCsChecked = !self.viewModel.isTCsChecked
         if self.viewModel.isTCsChecked{
@@ -168,7 +167,7 @@ extension ContinueToTransferVC {
             self.btnTransferTicket.isUserInteractionEnabled = true
             self.btnTransferTicket.alpha = 1
         }
-        
+
     }
 }
 

@@ -7,9 +7,8 @@
 import UIKit
 import SVProgressHUD
 
-
 final class GetEventCategoryViewModel {
-    
+
     // MARK: - Variables
     var arrCategoryData : [GetEventCategoryModel] = [GetEventCategoryModel]()
     var arrSearchCategoryData = [GetEventModel]()
@@ -45,7 +44,7 @@ extension GetEventCategoryViewModel {
             }
         }
     }
-    
+
     func getEventCategoryApi(complition: @escaping (Bool,String) -> Void ) {
         APIHandler.shared.executeRequestWith(apiName: .getEventCategoryList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventCategoryModel]>, Error>) in
             switch result {
@@ -69,7 +68,7 @@ extension GetEventCategoryViewModel {
             }
         }
     }
-    
+
     func getEventSearchCategoryApi(category: String, complition: @escaping (Bool,String) -> Void ) {
         let parameters =  GetEventSearchByCategoryRequest(category: category)
         APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
@@ -88,13 +87,12 @@ extension GetEventCategoryViewModel {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
-                
+
                 complition(false,"\(error)")
             }
         }
     }
-    
-    
+
     func getEventSearchApi(searchText: String, complition: @escaping (Bool,String) -> Void ) {
         let parameters =  GetEventSearch(searchKey: searchText)
         APIHandler.shared.executeRequestWith(apiName: .getEventSearch, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<SearchModel>, Error>) in
@@ -112,10 +110,10 @@ extension GetEventCategoryViewModel {
                     complition(false,response.message ?? "error message")
                 }
             case .failure(let error):
-                
+
                 complition(false,"\(error)")
             }
         }
     }
-  
+
 }

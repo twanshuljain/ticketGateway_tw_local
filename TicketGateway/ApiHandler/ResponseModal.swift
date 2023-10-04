@@ -24,7 +24,7 @@ struct ResponseModal<T: Codable>: Codable {
         total = try? values.decodeIfPresent(Int.self, forKey: .total)
         page = try? values.decodeIfPresent(Int.self, forKey: .page)
         size = try? values.decodeIfPresent(Int.self, forKey: .size)
-        
+
         do {
               data = try values.decodeIfPresent(T.self, forKey: .data)
             } catch {

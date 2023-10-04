@@ -14,7 +14,7 @@ protocol ViewMoreEventsVCProtocol: class {
 }
 
 class ViewMoreEventsVC: UIViewController {
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
@@ -23,7 +23,7 @@ class ViewMoreEventsVC: UIViewController {
     var viewModel = ViewMoreEventsViewModel()
     weak var delegate : ViewMoreEventsVCProtocol?
     weak var updateHomeScreenDelegate: (EventDetailVCProtocol)?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -31,7 +31,7 @@ class ViewMoreEventsVC: UIViewController {
         //self.viewModel.refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         //tblView.refreshControl = self.viewModel.refreshControl
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.isLikedAnyEvent = false
@@ -44,7 +44,7 @@ extension ViewMoreEventsVC{
         self.tblView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         self.tblView.delegate = self
         self.tblView.dataSource = self
-        
+
         self.navigationView.delegateBarAction = self
         self.navigationView.btnBack.isHidden = false
         self.navigationView.btnSecRight.isHidden = true
@@ -52,14 +52,14 @@ extension ViewMoreEventsVC{
         self.navigationView.vwBorder.isHidden = true
         self.setNavigationView()
     }
-    
+
     func setNavigationView() {
         self.vwSearchBar.delegate = self
         self.vwSearchBar.txtSearch.delegate = self
         self.vwSearchBar.btnMenu.isHidden = true
         self.vwSearchBar.vwLocation.isHidden = true
     }
-    
+
     func setData() {
         if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
@@ -90,11 +90,10 @@ extension ViewMoreEventsVC{
         }
 
     }
-    
-    
+
     func navigateToDetail(index:IndexPath) {
         let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
-        
+
         if self.viewModel.isComingFrom == .home{
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
@@ -136,15 +135,15 @@ extension ViewMoreEventsVC{
             }
             self.navigationController?.popViewController(animated: false)
         }
-        
+
     }
-    
+
     func funcCallApiForLocation() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
             viewModel.getEventAsPerLocation(viewAll:true, countryName: self.getCountry(), complition: { isTrue, messageShowToast in
-                
+
                 if isTrue == true {
                     self.parentView.stopLoading()
                     let data = self.viewModel.itemsLocation
@@ -154,7 +153,7 @@ extension ViewMoreEventsVC{
                             self.tblView.reloadData()
                         }
                  //   }
-                    
+
                 } else {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
@@ -169,27 +168,26 @@ extension ViewMoreEventsVC{
             }
         }
     }
-    
+
     func funcCallApiForSuggestedEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
             viewModel.getEventSuggestedCategory(viewAll:true,complition: { isTrue, messageShowToast in
-                
+
                 if isTrue == true {
                     self.parentView.stopLoading()
                     let data = self.viewModel.itemsSuggestedEvents
                     //self.viewModel.itemsWeekend.removeAll()
                  //   self.viewModel.itemsWeekend = data.removeDuplicates()
-                    
+
                    // self.viewModel.itemsWeekend = self.viewModel.itemsWeekend.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
                             self.tblView.tableFooterView?.isHidden = true
                             self.tblView.reloadData()
                         }
-                    
-                    
+
                 } else {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
@@ -204,28 +202,26 @@ extension ViewMoreEventsVC{
             }
         }
     }
-    
-    
+
     func funcCallApi() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             parentView.showLoading(centreToView: self.view)
             viewModel.getEventApiForWeekendEvents(viewAll:true,complition: { isTrue, messageShowToast in
-                
+
                 if isTrue == true {
                     self.parentView.stopLoading()
                     let data = self.viewModel.itemsWeekend
                     //self.viewModel.itemsWeekend.removeAll()
                  //   self.viewModel.itemsWeekend = data.removeDuplicates()
-                    
+
                    // self.viewModel.itemsWeekend = self.viewModel.itemsWeekend.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
                             self.tblView.tableFooterView?.isHidden = true
                             self.tblView.reloadData()
                         }
-                    
-                    
+
                 } else {
                     DispatchQueue.main.async {
                         self.parentView.stopLoading()
@@ -240,7 +236,7 @@ extension ViewMoreEventsVC{
             }
         }
     }
-    
+
     func funcCallApiForOnlineEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -249,11 +245,11 @@ extension ViewMoreEventsVC{
                 if isTrue == true {
                     self.parentView.stopLoading()
                   //  if let itemsVirtual = self.viewModel.arrData?.itemsVirtual{
-                    
+
                     let data = self.viewModel.itemsVirtual
                    // self.viewModel.itemsVirtual.removeAll()
                     //self.viewModel.itemsVirtual = data.removeDuplicates()
-                    
+
                      //   self.viewModel.itemsVirtual = self.viewModel.itemsVirtual.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
@@ -275,7 +271,6 @@ extension ViewMoreEventsVC{
             }
         }
     }
-
 
     func funcCallApiForPopularEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
@@ -312,7 +307,6 @@ extension ViewMoreEventsVC{
         }
     }
 
-
     func funcCallApiForFreeEvents() {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -321,11 +315,11 @@ extension ViewMoreEventsVC{
                 if isTrue == true {
                     self.parentView.stopLoading()
                    // if let itemsFree = self.viewModel.arrData?.itemsFree{
-                    
+
                     let data = self.viewModel.itemsFree
                    // self.viewModel.itemsFree.removeAll()
                 //    self.viewModel.itemsFree = data.removeDuplicates()
-                    
+
                     //self.viewModel.itemsFree = self.viewModel.itemsFree.removeDuplicates()
                         DispatchQueue.main.async {
                             self.tblView.tableFooterView = nil
@@ -356,11 +350,11 @@ extension ViewMoreEventsVC{
                 if isTrue == true {
                     self.parentView.stopLoading()
                    //     if let itemsUpcoming = self.viewModel.arrData?.itemsUpcoming{
-                    
+
                     let data = self.viewModel.itemsUpcoming
                   //  self.viewModel.itemsUpcoming.removeAll()
                 //    self.viewModel.itemsUpcoming = data.removeDuplicates()
-                    
+
                          //   self.viewModel.itemsUpcoming = self.viewModel.itemsUpcoming.removeDuplicates()
                             DispatchQueue.main.async {
                                 self.tblView.tableFooterView = nil
@@ -383,17 +377,17 @@ extension ViewMoreEventsVC{
         }
 
     }
-    
+
     @objc func loadData() {
         // Make network call to fetch data for currentPage
         self.viewModel.currentPage += 1
-        
+
         // print("this is the last cell")
 //         let spinner = UIActivityIndicatorView(style: .gray)
 //         spinner.startAnimating()
 //         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tblView.bounds.width, height: CGFloat(44))
         if self.viewModel.isComingFrom == .home{
-            
+
             switch self.viewModel.arrEventCategory[self.viewModel.index] {
             case .noLocationData:
                 print("No Data Found")
@@ -433,7 +427,7 @@ extension ViewMoreEventsVC{
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
-                
+
             case .free:
                 if self.viewModel.itemsFree.count != self.viewModel.totalPage{
                    // self.tblView.tableFooterView = spinner
@@ -443,8 +437,7 @@ extension ViewMoreEventsVC{
                     self.tblView.tableFooterView = nil
                     self.tblView.tableFooterView?.isHidden = true
                 }
-                
-                
+
             case .upcoming:
                 if self.viewModel.itemsUpcoming.count != self.viewModel.totalPage{
                    // self.tblView.tableFooterView = spinner
@@ -493,7 +486,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             return  self.viewModel.itemsSuggestedEvents.count
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell") as? EventTableViewCell {
             cell.selectionStyle = .none
@@ -640,7 +633,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.addLoader(indexPath: indexPath)
     }
-    
+
     func addLoader(indexPath :IndexPath) {
         let lastSectionIndex = self.tblView.numberOfSections - 1
         let lastRowIndex = tblView.numberOfRows(inSection: lastSectionIndex) - 1
@@ -648,7 +641,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             self.loadData()
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navigateToDetail(index: indexPath)
     }
@@ -656,14 +649,14 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
 // MARK: - CustomSearchMethodsDelegate
 extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
     func leftButtonPressed(_ sender: UIButton) {
-        
+
         self.navigationController?.popViewController(animated: true)
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
         present(menu, animated: true, completion: nil)
-        
+
     }
-    
+
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
         self.navigationController?.pushViewController(view!, animated: true)

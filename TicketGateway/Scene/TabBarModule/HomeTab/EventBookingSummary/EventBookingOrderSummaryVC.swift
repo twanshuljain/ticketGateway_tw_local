@@ -4,7 +4,6 @@
 //
 // Created by Apple on 16/05/23.
 
-
 import UIKit
 class EventBookingOrderSummaryVC: UIViewController {
     // MARK: - IBOutlets
@@ -35,11 +34,8 @@ class EventBookingOrderSummaryVC: UIViewController {
     @IBOutlet weak var lblDiscoutedValue: UILabel!
     @IBOutlet weak var discountViewHt : NSLayoutConstraint!
 
-    
-    
     var viewModel = EventBookingOrderSummaryVieModel()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -102,7 +98,7 @@ extension EventBookingOrderSummaryVC {
         } else {
             self.heightOfAddOn.constant = tblAddOnEtcThings.contentSize.height
         }
-        
+
     }
     func setData() {
         let serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees ?? 0)
@@ -111,24 +107,21 @@ extension EventBookingOrderSummaryVC {
         let subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
         let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
         let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
-        
-        
+
         let convertedServiceCharge = self.convertToTwoDecimalPlaces(serviceCharge)
         let convertedProcessingCharge = self.convertToTwoDecimalPlaces(processingCharge)
         let convertedFacilityCharge = self.convertToTwoDecimalPlaces(facilityCharge)
-        
+
         let convertedSubTotal = self.convertToTwoDecimalPlaces(subTotal)
         let convertedDiscountValue = self.convertToTwoDecimalPlaces(discountValue)
         let convertedDiscountedFinalPrice = self.convertToTwoDecimalPlaces(discountedFinalPrice)
-        
-        
+
         self.lblServiceChargeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedServiceCharge ?? "")"
         self.lblProcessingFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedProcessingCharge ?? "")"
         self.lblfacilityFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedFacilityCharge ?? "")"
         self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
         var total = 0.0
-        
-        
+
         if discountValue != 0.0 && self.viewModel.discountType != nil{
             total = serviceCharge + processingCharge + facilityCharge + discountedFinalPrice
             self.lblDiscouted.isHidden = false
@@ -141,9 +134,7 @@ extension EventBookingOrderSummaryVC {
             self.lblDiscoutedValue.isHidden = true
             self.discountViewHt.constant = 0
         }
-        
-        
-        
+
         self.lblTotalAmtValue.text = "\(self.viewModel.selectedCurrencyType)\(convertToTwoDecimalPlaces(total) ?? "")"
         self.viewModel.totalTicketPrice = "\(convertToTwoDecimalPlaces(total) ?? "")"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
@@ -153,7 +144,7 @@ extension EventBookingOrderSummaryVC {
             self.tblAddOnEtcThings.reloadData()
         }
     }
-    
+
 }
 // MARK: - Actions
 extension EventBookingOrderSummaryVC {

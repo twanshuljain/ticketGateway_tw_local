@@ -62,7 +62,7 @@ extension ExchangeTicketVC {
         //            self.navigationController?.pushViewController(vc, animated: true)
         //          }))
         //        present(alert, animated: true, completion: nil)
-        
+
         self.showAlert(title: EXCHANGE_TICKETS, message: "You need to pay CAD$9.90 to exchange your ticket. Do you want to continue?", complition: {_ in
             let vc = self.createView(storyboard: .order, storyboardID: .OrderSummaryVC)
             self.navigationController?.pushViewController(vc, animated: true)

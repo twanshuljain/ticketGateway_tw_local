@@ -8,14 +8,13 @@
 import UIKit
 
 class MyFollowerTableViewCell: UITableViewCell {
-    
+
 // MARK: - VARIABLES
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var btnRemove: UIButton!
     @IBOutlet weak var lblFollowers: UILabel!
     @IBOutlet weak var lblName: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setFonts()
@@ -25,14 +24,13 @@ class MyFollowerTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
+
     func setFonts() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblFollowers.textColor = UIColor.setColor(colorType: .headinglbl)
-        
+
     }
-    
 
 }
