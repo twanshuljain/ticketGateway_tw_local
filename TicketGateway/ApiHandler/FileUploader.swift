@@ -1,4 +1,9 @@
-
+//
+//  ScanEventViewModel.swift
+//  TicketGateway
+//
+//  Created by Apple on 30/06/23.
+//
 
 import UIKit
 
@@ -19,8 +24,8 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         keyForFile: String,
         parameters: [String: Any]?,
         mimeType: MimeType = .image,
-        onSuccess: @escaping(_ httpStatus: Int, _ response: Data?) -> (),
-        onFailure: @escaping(_ httpStatus: Int, _ response: NSDictionary?) -> ()) {
+        onSuccess: @escaping(_ httpStatus: Int, _ response: Data?) -> Void,
+        onFailure: @escaping(_ httpStatus: Int, _ response: NSDictionary?) -> Void) {
         let finalURL = baseURL + apiName.rawValue
         guard let requestURL = URL(string: finalURL) else {
             let tmpResponse = ["message": "Incorrect request URL"] as NSDictionary

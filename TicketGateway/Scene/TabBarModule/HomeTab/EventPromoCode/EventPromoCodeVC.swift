@@ -149,7 +149,7 @@ extension EventPromoCodeVC {
         //        view?.viewModel.feeStructure = self.viewModel.feeStructure
         //        view?.viewModel.selectedArrTicketList = viewModel.selectedArrTicketList
         //        view?.viewModel.eventId = self.viewModel.eventId
-        //        self.navigationController?.pushViewController(view!, animated: true)
+        //        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
@@ -167,7 +167,7 @@ extension EventPromoCodeVC {
         //        view?.viewModel.feeStructure = self.viewModel.feeStructure
         //        view?.viewModel.selectedArrTicketList = viewModel.selectedArrTicketList
         //        view?.viewModel.eventId = self.viewModel.eventId
-        //        self.navigationController?.pushViewController(view!, animated: true)
+        //        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
         if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList

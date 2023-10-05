@@ -78,7 +78,7 @@ extension AddCardVC {
     }
     func btnContinueAction() {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
     @IBAction private func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)

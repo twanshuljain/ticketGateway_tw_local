@@ -109,7 +109,7 @@ extension RequestRefundVC {
         view?.strComplimentry = "1 Ticket(S) with amount $300.00"
         view?.strSummary = "Ticket for Order Id #32916222 has been successfully refunded in your TG Wallet"
         view?.btnStr = OKAY
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 // MARK: - Actions

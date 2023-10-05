@@ -188,11 +188,11 @@ extension EventBookingPaymentMethodVC {
            self.viewModel.createCustomer(vc: self)
        }
 //       let view = self.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC
-//       self.navigationController?.pushViewController(view!, animated: true)
+//       self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 
     func setGradientBackground( viewadd: UIView) {
-            viewadd.layer.insertSublayer(viewModel.gradientLayer, at:0)
+            viewadd.layer.insertSublayer(viewModel.gradientLayer, at: 0)
     }
 
     @IBAction private func btnOpenDatePicker(_ sender: Any) {
@@ -449,9 +449,7 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
                     viewModel.selectedyearName = "\(strCurrentYear)"
                 }
 
-            }
-            else
-            {
+            } else {
 
                 let str = "\(viewModel.years[row])"
                 if (str.count ) > 2 {

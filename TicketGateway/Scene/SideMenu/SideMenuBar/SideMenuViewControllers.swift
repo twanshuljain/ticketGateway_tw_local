@@ -92,26 +92,26 @@ extension SideMenuViewControllers{
             } else if obj.title == "Artists" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as? OrganizersArtistsListVC
                 view?.isFrom = "Artists"
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
             } else if obj.title == "Venue" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .VenueVC) as? VenueVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
             }
             else if obj.title == "My Wallet" {
                 let view = self.createView(storyboard: .wallet, storyboardID: .MyWalletVC) as? MyWalletVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
             }
             else if obj.title == "My Refunds" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .MyRefundVC) as? MyRefundVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
             }
             else if obj.title == "Costumes" {
                 let view = self.createView(storyboard: .costumes, storyboardID: .CostumeViewController) as? CostumeViewController
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
             }
             else if obj.title == "Log Out" {
                 self.showAlert(message: "Are you sure you want to logout", complition: { _ in
@@ -123,29 +123,29 @@ extension SideMenuViewControllers{
 
             else if obj.title == "Manage Events" {
                 let view = self.createView(storyboard: .manageevent, storyboardID: .ManageEventVC) as? ManageEventVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
             }
             else if obj.title == "Scan Events" {
                 let view = self.createView(storyboard: .scanevent, storyboardID: .ScanEventVC) as? ScanEventVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
             }
             else if obj.title == "Notifications" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .NotificationVC) as? NotificationVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
             }
             else if obj.title == "Device Settings" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .DeviceSettingVC) as? DeviceSettingVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
             }
             else if obj.title == "Rewords & Loyality Points" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .RewardLoyaltyPointsVC) as? RewardLoyaltyPointsVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
             }
             else if obj.title == "My Followers" {
                 let view = self.createView(storyboard: .sidemenu, storyboardID: .MyFollowersVC) as? MyFollowersVC
-                self.navigationController?.pushViewController(view!, animated: true)
+                self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
             }
 
             else if obj.title == "Orders" {

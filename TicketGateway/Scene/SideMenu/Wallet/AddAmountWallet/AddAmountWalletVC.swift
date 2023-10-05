@@ -202,7 +202,7 @@ extension AddAmountWalletVC {
     }
     func btnContinueAction() {
         let view = self.createView(storyboard: .wallet, storyboardID: .AmountAddedSuccessfullyVC) as? AmountAddedSuccessfullyVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
     func btnSelectConcurrencyAction() {
         self.txtCountryCUrrency.showList()

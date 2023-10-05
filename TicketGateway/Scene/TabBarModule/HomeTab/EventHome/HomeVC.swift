@@ -52,7 +52,7 @@ class HomeVC: UIViewController {
 extension HomeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 
 }
@@ -505,7 +505,7 @@ extension HomeVC: CustomSearchMethodsDelegate {
         }
         view?.selecetdCountriesModel = CountryInfo.init(countryCode: "", dialCode: "", countryName: view?.selectedCountry ?? "")
         view?.selecetdCountriesModel = self.viewModel.country
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 
@@ -526,7 +526,7 @@ extension HomeVC: EventsOrganizesListTableViewProtocol{
         view?.viewModel.index = index
         view?.viewModel.countryName = self.viewModel.country?.countryName ?? self.getCountry()
         view?.viewModel.arrEventCategory = self.viewModel.arrEventCategory
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 

@@ -50,12 +50,11 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     /// A UIColor value that determines the text color of the editable text
     @IBInspectable
     override dynamic open var textColor: UIColor? {
-        set {
-            cachedTextColor = newValue
-            updateControl(false)
-        }
         get {
             return cachedTextColor
+        } set {
+            cachedTextColor = newValue
+            updateControl(false)
         }
     }
 
@@ -77,7 +76,8 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         if let placeholder = placeholder, let font = placeholderFont ?? font {
                 attributedPlaceholder = NSAttributedString(
                     string: placeholder,
-                    attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: font]
+                    attributes: [NSAttributedString.Key.foregroundColor: placeholderColor,
+                                 NSAttributedString.Key.font: font]
                 )
         }
     }
@@ -165,12 +165,11 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      Identifies whether the text object should hide the text being entered.
      */
     override open var isSecureTextEntry: Bool {
-        set {
-            super.isSecureTextEntry = newValue
-            fixCaretPosition()
-        }
         get {
             return super.isSecureTextEntry
+        } set {
+            super.isSecureTextEntry = newValue
+            fixCaretPosition()
         }
     }
 
@@ -412,10 +411,9 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     // MARK: - Title handling
 
     fileprivate func updateTitleLabel(_ animated: Bool = false) {
-
-        var titleText: String? = nil
+        var titleText: String?
         if hasErrorMessage {
-            titleText = titleFormatter(errorMessage!)
+            titleText = titleFormatter(errorMessage ?? "")
         } else {
             if editingOrSelected {
                 titleText = selectedTitleOrTitlePlaceholder()
@@ -428,7 +426,6 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         }
         titleLabel.text = titleText
         titleLabel.font = titleFont
-
         updateTitleVisibility(animated)
     }
 
@@ -574,7 +571,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      -returns: the calculated height of the textfield. Override to size the textfield with a different height
      */
     open func textHeight() -> CGFloat {
-        return self.font!.lineHeight + 7.0
+        return (self.font?.lineHeight ?? 7.0) + 7.0
     }
 
     // MARK: - Layout

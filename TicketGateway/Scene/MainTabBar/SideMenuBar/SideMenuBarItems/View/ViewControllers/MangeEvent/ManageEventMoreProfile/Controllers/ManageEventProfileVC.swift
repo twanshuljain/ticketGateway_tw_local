@@ -89,7 +89,7 @@ extension ManageEventProfileVC {
 
     func btnEditAction() {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventEditProfileVC) as? ManageEventEditProfileVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 
     func btnSelectAction() {

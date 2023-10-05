@@ -84,7 +84,7 @@ class ManageEventDashboardVC: UIViewController {
 
     @IBAction private func btnSeeMoreTickets(_ sender: Any) {
         let view = self.createView(storyboard: .home, storyboardID: .ManageEventTicketSoldVC) as? ManageEventTicketSoldVC
-    self.navigationController?.pushViewController(view!, animated: true)
+    self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 
     @IBAction private func btnMonths(_ sender: Any) {

@@ -54,7 +54,7 @@ class ManageEventMoreVC: UIViewController {
     }
     @IBAction private func btnArrow(_ sender: Any) {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 

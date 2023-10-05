@@ -124,7 +124,7 @@ extension ViewMoreEventsVC{
                 }
             }
             view?.delegate = self
-            self.navigationController?.pushViewController(view!, animated: true)
+            self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
         } else if viewModel.isComingFrom == .eventDetail {
             if self.viewModel.itemsSuggestedEvents.indices.contains(index.row) {
                 // On Click of cell api should call
@@ -659,7 +659,7 @@ extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
 
     func rightButtonPressed(_ sender: UIButton) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchLocationVC) as? EventSearchLocationVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 }
 
@@ -667,7 +667,7 @@ extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
 extension ViewMoreEventsVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
-        self.navigationController?.pushViewController(view!, animated: true)
+        self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }   
 }
 extension ViewMoreEventsVC: EventDetailVCProtocol {

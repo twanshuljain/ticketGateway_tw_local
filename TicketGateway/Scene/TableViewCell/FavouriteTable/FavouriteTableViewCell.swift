@@ -32,8 +32,8 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBOutlet weak var htLikeUnlikeStackViewFavorite: NSLayoutConstraint!
     @IBOutlet weak var htLblPrice: NSLayoutConstraint!
 
-    var likeButtonPressed: (() -> ()) = {}
-    var shareButtonPressed: (() -> ()) = {}
+    var likeButtonPressed: (() -> Void) = {}
+    var shareButtonPressed: (() -> Void) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()

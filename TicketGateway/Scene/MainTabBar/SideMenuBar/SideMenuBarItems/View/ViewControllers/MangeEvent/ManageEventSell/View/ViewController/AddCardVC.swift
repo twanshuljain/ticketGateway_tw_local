@@ -92,7 +92,7 @@ extension AddCardVC {
 
    func btnContinueAction() {
        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
-   self.navigationController?.pushViewController(view!, animated: true)
+   self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 
     @IBAction private func btnOpenDatePicker(_ sender: Any) {
@@ -332,9 +332,7 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
                     selectedyearName = "\(str)"
                 }
 
-            }
-            else
-            {
+            } else {
 
                 let str = "\(years[row])"
                 if (str.count ) > 2 {

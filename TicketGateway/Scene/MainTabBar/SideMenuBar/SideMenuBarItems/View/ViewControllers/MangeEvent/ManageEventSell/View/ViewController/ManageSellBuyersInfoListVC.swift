@@ -28,7 +28,7 @@ class ManageSellBuyersInfoListVC: UIViewController {
             view?.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
             view?.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.toupleBuyerInfoData.strDialCodeValue = "jhjh"
-           self.navigationController?.pushViewController(view!, animated: true)
+           self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
         }
         self.tblBuyerInfo.tableDidSelectAtIndexEdit = { intval in
@@ -39,7 +39,7 @@ class ManageSellBuyersInfoListVC: UIViewController {
             view?.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
             view?.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
             view?.toupleBuyerInfoData.strDialCodeValue = "jhjh"
-           self.navigationController?.pushViewController(view!, animated: true)
+           self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
 
         }
           self.navigationView.delegateBarAction = self
@@ -70,7 +70,7 @@ extension ManageSellBuyersInfoListVC {
    func btnAddMoreAction() {
        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
        view?.isFromAddInfo = true
-      self.navigationController?.pushViewController(view!, animated: true)
+      self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
 
 }
