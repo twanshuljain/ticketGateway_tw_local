@@ -7,7 +7,11 @@
 import UIKit
 import iOSDropDown
 
+import UIKit
+import iOSDropDown
+
 class AddAmountWalletVC: UIViewController {
+    // MARK: - IBOutlets
     @IBOutlet weak var viewDatePicker: UIView!
     @IBOutlet weak var pickerMonthYear: UIPickerView!
     @IBOutlet weak var vwWalletTop: UIView!
@@ -32,13 +36,15 @@ class AddAmountWalletVC: UIViewController {
     @IBOutlet weak var lblCardNumber: UILabel!
     @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var lblExpiry: UILabel!
-    @IBOutlet weak var lblCvcCvv: UILabel!
+    @IBOutlet weak var lblCVCCVV: UILabel!
     @IBOutlet weak var txtCardNumber: UITextField!
     @IBOutlet weak var txtCardName: UITextField!
-    @IBOutlet weak var txtEnterAmt: setCustomTextField!
+    @IBOutlet weak var txtEnterAmt: SetCustomTextField!
     @IBOutlet weak var txtCountryCUrrency: DropDown!
     @IBOutlet weak var txtCVV: UITextField!
     @IBOutlet weak var txtExpiryDate: UITextField!
+    @IBOutlet weak var lblDollar: UILabel!
+    // MARK: - Variables
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
     var MONTH = 0
@@ -60,8 +66,8 @@ class AddAmountWalletVC: UIViewController {
         self.setup()
         self.setUi()
     }
-
 }
+// MARK: - Functions
 extension AddAmountWalletVC {
     private func setup() {
         self.gradientLayer.colors = [colorTop, colorBottom]
@@ -77,54 +83,75 @@ extension AddAmountWalletVC {
         self.navigationView.btnBack.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
         self.navigationView.delegateBarAction = self
-        self.navigationView.lblTitle.text = "Add amount"
-        self.navigationView.lblDiscripation.text = "in TG wallet"
+        self.navigationView.lblTitle.text = ADD_AMOUNT
+        self.navigationView.lblDiscripation.text = IN_TG_WALLET
         self.navigationView.vwBorder.isHidden = false
-        self.btnContinue.addRightIcon(image: UIImage(named: "rightOnButton"))
-        btnContinue.setTitles(text: "Proceed to add CA$1000.00", font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-        [self.btnContinue,self.btnCard,btnWallet,btnSelectWallet].forEach {
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
+        btnContinue.setTitles(
+            text: "Proceed to add CAD$1000.00",
+            font: UIFont.setFont(fontType: .medium, fontSize: .fourteen),
+            tintColour: UIColor.setColor(colorType: .btnDarkBlue)
+        )
+        [self.btnContinue,self.btnCard, btnWallet, btnSelectWallet].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        self.funcDefoultSet()
-        self.txtCountryCUrrency.optionArray = ["INR", "USD", "EUR","CAD"]
-        self.txtCountryCUrrency.optionIds = [1,23,54,22]
-        self.txtCountryCUrrency.didSelect{(selectedText , index ,id) in
+        self.vwDefaultSet()
+        self.txtCountryCUrrency.optionArray = ["INR", "USD", "EUR", "CAD"]
+        self.txtCountryCUrrency.optionIds = [1, 23, 54, 22]
+        self.txtCountryCUrrency.didSelect{ (selectedText, index, id) in
             self.txtCountryCUrrency.text = "\(selectedText)\(index)"
         }
     }
-
     func setUi() {
-        [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCvcCvv].forEach {
-            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
+        [self.lblCardNumber, self.lblFullName, self.lblExpiry, self.lblCVCCVV].forEach {
+            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
-        [self.lblPayWithCard,lblPayWithDigitalWAllet].forEach {
-            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .seventeen)
-            $0?.textColor = UIColor.setColor(colorType: .TGBlack)
+        [self.lblPayWithCard, lblPayWithDigitalWAllet].forEach {
+            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
+            $0?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
-        [self.lblSelectCountry,lblAddAmount,lblAddAmtDigiWallet,lblMoreWayToPay].forEach {
-            $0?.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
+        [self.lblSelectCountry, self.lblAddAmount, self.lblAddAmtDigiWallet, self.lblMoreWayToPay].forEach {
+            $0?.font = UIFont.setFont(fontType: .medium, fontSize: .twelve)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
-
         }
+        self.lblDollar.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
+        self.lblDollar.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
+        self.lblSelectCountry.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: "Select Currency ",
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
+        self.lblAddAmount.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: "Add Amount ",
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
     }
-
-    func funcDefoultSet() {
+    func vwDefaultSet() {
         self.vwBgCard.backgroundColor = .clear
         self.vwBgWallet.backgroundColor = .clear
+        self.vwBgWallet.borderColor = UIColor.setColor(colorType: .borderLineColour)
+        self.vwBgCard.borderColor = UIColor.setColor(colorType: .borderLineColour)
         self.vwWallet.isHidden = true
         self.vwCard.isHidden = true
         self.vwWalletTop.isHidden = true
         self.vwCardTop.isHidden = true
-        self.imgCard.image = UIImage(named: "unActive")
-        self.imgWallet.image = UIImage(named: "unActive")
-        self.btnCard.setImage(UIImage(named: "arrow-up"), for: .normal)
-        self.btnWallet.setImage(UIImage(named: "arrow-up"), for: .normal)
+        self.imgCard.image = UIImage(named: UNACTIVE_ICON )
+        self.imgWallet.image = UIImage(named: UNACTIVE_ICON )
+        self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
+        self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
         self.setGradientBackground(viewadd: UIView())
     }
-
 }
 
+// MARK: - Actions
 extension AddAmountWalletVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
@@ -140,56 +167,52 @@ extension AddAmountWalletVC {
             break
         }
     }
-
     func btnWalletAction() {
         if self.vwBgWallet.backgroundColor == .clear {
             self.setGradientBackground(viewadd: vwBgWallet)
+            self.vwBgWallet.borderColor = UIColor.setColor(colorType: .tgBlue)
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
             self.vwWallet.isHidden = false
             self.vwCard.isHidden = true
             self.vwWalletTop.isHidden = false
             self.vwCardTop.isHidden = true
-            self.imgWallet.image = UIImage(named: "active")
-            self.imgCard.image = UIImage(named: "unActive")
-            self.btnWallet.setImage(UIImage(named: "arrow-down"), for: .normal)
-            self.btnCard.setImage(UIImage(named: "arrow-up"), for: .normal)
+            self.imgWallet.image = UIImage(named: ACTIVE_ICON )
+            self.imgCard.image = UIImage(named: UNACTIVE_ICON)
+            self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+            self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
         } else {
-            self.funcDefoultSet()
+            self.vwDefaultSet()
         }
     }
-
     func btnCardAction() {
         if self.vwBgCard.backgroundColor == .clear {
             self.setGradientBackground(viewadd: vwBgCard)
+            self.vwBgCard.borderColor = UIColor.setColor(colorType: .tgBlue)
             self.vwBgCard.backgroundColor = .white
             self.vwBgWallet.backgroundColor = .clear
             self.vwWalletTop.isHidden = true
             self.vwCardTop.isHidden = false
             self.vwWallet.isHidden = true
             self.vwCard.isHidden = false
-            self.imgCard.image = UIImage(named: "active")
-            self.imgWallet.image = UIImage(named: "unActive")
-            self.btnCard.setImage(UIImage(named: "arrow-down"), for: .normal)
-            self.btnWallet.setImage(UIImage(named: "arrow-up"), for: .normal)
+            self.imgCard.image = UIImage(named: ACTIVE_ICON)
+            self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
+            self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+            self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
         } else {
-            self.funcDefoultSet()
+            self.vwDefaultSet()
         }
     }
-
     func btnContinueAction() {
         let view = self.createView(storyboard: .wallet, storyboardID: .AmountAddedSuccessfullyVC) as? AmountAddedSuccessfullyVC
         self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
-
     func btnSelectConcurrencyAction() {
         self.txtCountryCUrrency.showList()
     }
-
-    func setGradientBackground( viewadd: UIView) {
-        viewadd.layer.insertSublayer(gradientLayer, at:0)
+    func setGradientBackground(viewadd: UIView) {
+        viewadd.layer.insertSublayer(gradientLayer, at: 0)
     }
-
     @IBAction private func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
@@ -198,67 +221,56 @@ extension AddAmountWalletVC {
         var selectdYear = 0
         selectedMonthName = ""
         selectedyearName = ""
-        if txtExpiryDate.text == ""
-        {
-
-            let  strSelectedmonths = Calendar.current.component(.month, from: Date())
+        if txtExpiryDate.text == "" {
+            let strSelectedmonths = Calendar.current.component(.month, from: Date())
             let selectedMonthIndex = strSelectedmonths-1
             selectedMonth = selectedMonthIndex
             let strSelctedyears = Calendar.current.component(.year, from: Date())
             selectdYear = strSelctedyears
             self.selectedMonthName = String(strSelectedmonths)
-
-            if  self.selectedMonthName.count <= 1
-            {
+            if  self.selectedMonthName.count <= 1 {
                 self.selectedMonthName = "0" + selectedMonthName
             }
-
             self.selectedyearName = String(strSelctedyears)
             if (selectedyearName.count ) > 2 {
-                let strLastTwoDigits: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count) - 2)
+//                let _: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count) - 2)
                 selectedyearName = "\(self.selectedyearName)"
                 selectedMonthName = "\(self.selectedMonthName)"
             }
-        }
-        else
-        {
+        } else {
             let arr = txtExpiryDate.text?.components(separatedBy: "/")
             let strSelectedmonths = arr?[0] ?? ""
             let strSelctedyears = arr?[1] ?? ""
-
-            let selectedMonthIndex = Int(strSelectedmonths)! - 1
+            let selectedMonthIndex = (Int(strSelectedmonths) ?? 0) - 1
             selectedMonth = selectedMonthIndex
-            selectdYear  = Int(strSelctedyears)!
-            // selectdYear = Int("20"+(strSelctedyears))!
+            selectdYear  = Int(strSelctedyears) ?? 0
             self.selectedMonthName = String(strSelectedmonths)
             self.selectedyearName = String(strSelctedyears)
             if (selectedyearName.count ) > 2 {
-                let strLastTwoDigits: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count ) - 2)
+//                let _: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count ) - 2)
                 selectedyearName = "\(strSelctedyears)"
                 selectedMonthName = "\(strSelectedmonths)"
             }
-
         }
-        print(selectedMonth,selectdYear)
-        self.pickerMonthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
+        print(selectedMonth, selectdYear)
+        self.pickerMonthYear.selectRow((selectedMonth), inComponent: 0, animated: false)
         var ind = 0
         var num = 0
-        for obj in self.years{
+        for obj in self.years {
             let yer = String(selectdYear)
-            if obj = yer {
+            if obj == yer {
                 ind = num
                 break
             }
-            num +=  1
+            num += 1
         }
         self.pickerMonthYear.selectRow(ind, inComponent: 1, animated: false)
         self.pickerMonthYear.reloadAllComponents()
     }
-
     @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
-        if selectedMonthName.isEmpty && selectedyearName.isEmpty {
+        if !selectedMonthName.isEmpty && !selectedyearName.isEmpty {
             let str = "\(selectedMonthName)/\(selectedyearName)"
             txtExpiryDate.text = str
             strMonth = selectedMonthName
@@ -270,99 +282,80 @@ extension AddAmountWalletVC {
             selectedyearName = ""
         }
     }
-
     @IBAction private func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }
-
 }
-
-extension AddAmountWalletVC: UITextFieldDelegate{
-    //MARK: TextField Delegate -
+// MARK: - UITextFieldDelegate
+extension AddAmountWalletVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.txtCardNumber{
+        if textField == self.txtCardNumber {
             self.viewDatePicker.isHidden = true
             self.view.endEditing(true)
             self.txtCardName.resignFirstResponder()
             self.txtCardName.becomeFirstResponder()
         }
-
         return true
     }
-
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.viewDatePicker.isHidden = true
     }
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         if string == "" {
             return true
         }
-        if textField == txtCVV{
+        if textField == txtCVV {
             let maxLength = 4
-            let currentString: NSString = textField.text! as NSString
+            let currentString: NSString = textField.text as? NSString ?? ""
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-            if newString.length == 5{
+            if newString.length == 5 {
                 textField.resignFirstResponder()
             }
             return newString.length <= maxLength
-        }else if textField == txtCardNumber{
-            previousTextFieldContent = textField.text;
-            previousSelection = textField.selectedTextRange;
-
+        } else if textField == txtCardNumber {
+            previousTextFieldContent = textField.text
+            previousSelection = textField.selectedTextRange
             return true
-        }else if textField == txtCardName{
-            let currentString: NSString = textField.text! as NSString
+        } else if textField == txtCardName {
+            let currentString: NSString = textField.text as? NSString ?? ""
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
             let maxLength = 30
-
             return newString.length <= maxLength
-        }
-
-        else{
+        } else {
             return true
         }
     }
 }
-//MARK:- pickerview delegate
-extension AddAmountWalletVC:UIPickerViewDelegate,UIPickerViewDataSource{
-
-    // MARK:- Picker View Delegates
+// MARK: - UIPickerViewDelegate,UIPickerViewDataSource
+extension AddAmountWalletVC: UIPickerViewDelegate, UIPickerViewDataSource {
+// MARK: - Picker View Delegates
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
-
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         view.endEditing(true)
-
         if component == MONTH {
             return months.count
-        }
-        else {
+        } else {
             return years.count
         }
     }
-
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-
         if component == MONTH {
-            let monthName = months[row]
-            return monthName
-        }
-        else {
-            let yearName = years[row]
-            let str = "\(yearName)"
+            return months[row]
+        } else {
+//            let yearName: String =
+            let str = "\(years[row])"
             return str
         }
     }
-
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         view.endEditing(true)
-
         if component == self.MONTH {
             let strCurrentYear = String(Calendar.current.component(.year, from: Date()))
             let strCurrentMonth = String(Calendar.current.component(.month, from: Date()))
@@ -399,45 +392,42 @@ extension AddAmountWalletVC:UIPickerViewDelegate,UIPickerViewDataSource{
                 if selectedMonthName.count <= 1 {
                     selectedMonthName = "0" + selectedMonthName
                 }
-                let str = Int(strCurrentMonth)! - 1
+                let str = (Int(strCurrentMonth) ?? 0) - 1
                 if (strCurrentYear.count ) > 2 {
-                    let strLastTwoDigits: String! = (strCurrentYear as? NSString)?.substring(from: (strCurrentYear.count ) - 2)
+//                    let _: String! = (strCurrentYear as? NSString)?.substring(from: (strCurrentYear.count ) - 2)
                     selectedyearName = "\(str)"
                 }
             } else {
                 let str = "\(years[row])"
                 if (str.count ) > 2 {
-                    let strLastTwoDigits: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
+//                    let _: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
                     selectedyearName = "\(str)"
                 }
             }
         }
     }
-
     func loadDefaultsParameters() {
         let components: DateComponents? = Calendar.current.dateComponents([.day, .month, .year], from: Date())
         let year: Int? = components?.year
-        minYear = year!
-        maxYear = year! + 30
+        minYear = year ?? 0
+        maxYear = (year ?? 0) + 30
         rowHeight = 44
         months = nameOfMonths()
         years = nameOfYears()
         pickerMonthYear.delegate = self
         pickerMonthYear.dataSource = self
-        let str = "\(Int(year!))"
+        let str = "\(Int(year ?? 0))"
         if (str.count ) > 2 {
-            let strLastTwoDigits: String = ((str as? NSString)?.substring(from: (str.count ) - 2))!
+//            let _: String = ((str as? NSString)?.substring(from: (str.count ) - 2))
             selectedyearName = "\(str)"
         }
         selectedMonthName = "01"
     }
-
-    func nameOfMonths() -> [Any] {
+    func nameOfMonths() -> [String] {
         return ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     }
-
-    func nameOfYears() -> [Any] {
-        var years = [AnyHashable]()
+    func nameOfYears() -> [String] {
+        var years = [String]()
         for year in minYear...maxYear {
             let yearStr = "\(Int(year))"
             years.append(yearStr)
@@ -446,6 +436,7 @@ extension AddAmountWalletVC:UIPickerViewDelegate,UIPickerViewDataSource{
     }
 }
 
+// MARK: - NavigationBarViewDelegate
 extension AddAmountWalletVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)

@@ -230,7 +230,7 @@ extension AddAmountWalletVC {
             }
             self.selectedyearName = String(strSelctedyears)
             if (selectedyearName.count ) > 2 {
-                let _: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count) - 2)
+//                let _: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count) - 2)
                 selectedyearName = "\(self.selectedyearName)"
                 selectedMonthName = "\(self.selectedMonthName)"
             }
@@ -238,14 +238,13 @@ extension AddAmountWalletVC {
             let arr = txtExpiryDate.text?.components(separatedBy: "/")
             let strSelectedmonths = arr?[0] ?? ""
             let strSelctedyears = arr?[1] ?? ""
-            let selectedMonthIndex = Int(strSelectedmonths)! - 1
+            let selectedMonthIndex = (Int(strSelectedmonths) ?? 0) - 1
             selectedMonth = selectedMonthIndex
-            selectdYear  = Int(strSelctedyears)!
-            // selectdYear = Int("20"+(strSelctedyears))!
+            selectdYear  = Int(strSelctedyears) ?? 0
             self.selectedMonthName = String(strSelectedmonths)
             self.selectedyearName = String(strSelctedyears)
             if (selectedyearName.count ) > 2 {
-                let _: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count ) - 2)
+//                let _: String! = (selectedyearName as? NSString)?.substring(from: (selectedyearName.count ) - 2)
                 selectedyearName = "\(strSelctedyears)"
                 selectedMonthName = "\(strSelectedmonths)"
             }
@@ -299,13 +298,15 @@ extension AddAmountWalletVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.viewDatePicker.isHidden = true
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         if string == "" {
             return true
         }
         if textField == txtCVV {
             let maxLength = 4
-            let currentString: NSString = textField.text! as NSString
+            let currentString: NSString = textField.text as? NSString ?? ""
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
             if newString.length == 5 {
@@ -317,7 +318,7 @@ extension AddAmountWalletVC: UITextFieldDelegate {
             previousSelection = textField.selectedTextRange
             return true
         } else if textField == txtCardName {
-            let currentString: NSString = textField.text! as NSString
+            let currentString: NSString = textField.text as? NSString ?? ""
             let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
             let maxLength = 30
@@ -388,15 +389,15 @@ extension AddAmountWalletVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 if selectedMonthName.count <= 1 {
                     selectedMonthName = "0" + selectedMonthName
                 }
-                let str = Int(strCurrentMonth)! - 1
+                let str = (Int(strCurrentMonth) ?? 0) - 1
                 if (strCurrentYear.count ) > 2 {
-                    let _: String! = (strCurrentYear as? NSString)?.substring(from: (strCurrentYear.count ) - 2)
+//                    let _: String! = (strCurrentYear as? NSString)?.substring(from: (strCurrentYear.count ) - 2)
                     selectedyearName = "\(str)"
                 }
             } else {
                 let str = "\(years[row])"
                 if (str.count ) > 2 {
-                    let _: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
+//                    let _: String! = (str as? NSString)?.substring(from: (str.count ) - 2)
                     selectedyearName = "\(str)"
                 }
             }
@@ -405,16 +406,16 @@ extension AddAmountWalletVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func loadDefaultsParameters() {
         let components: DateComponents? = Calendar.current.dateComponents([.day, .month, .year], from: Date())
         let year: Int? = components?.year
-        minYear = year!
-        maxYear = year! + 30
+        minYear = year ?? 0
+        maxYear = (year ?? 0) + 30
         rowHeight = 44
         months = nameOfMonths()
         years = nameOfYears()
         pickerMonthYear.delegate = self
         pickerMonthYear.dataSource = self
-        let str = "\(Int(year!))"
+        let str = "\(Int(year ?? 0))"
         if (str.count ) > 2 {
-            let _: String = ((str as? NSString)?.substring(from: (str.count ) - 2))!
+//            let _: String = ((str as? NSString)?.substring(from: (str.count ) - 2))
             selectedyearName = "\(str)"
         }
         selectedMonthName = "01"

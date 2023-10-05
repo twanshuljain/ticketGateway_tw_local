@@ -80,7 +80,7 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         }.resume()
 
     }
-    private func createDataBody(withParameters params: [String:Any]?, media: Data?, boundary: String, keyForImage: String, imageName: String, mimeType: MimeType) -> Data {
+    private func createDataBody(withParameters params: [String: Any]?, media: Data?, boundary: String, keyForImage: String, imageName: String, mimeType: MimeType) -> Data {
 
         let lineBreak = "\r\n"
         var body = Data()

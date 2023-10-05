@@ -134,7 +134,7 @@ class AppShareData {
         }
         return nil
     }
-    func getPostString(params: [String:Any]) -> String {
+    func getPostString(params: [String: Any]) -> String {
         var data = [String]()
         for(key, value) in params {
             data.append(key + "=\(value)")

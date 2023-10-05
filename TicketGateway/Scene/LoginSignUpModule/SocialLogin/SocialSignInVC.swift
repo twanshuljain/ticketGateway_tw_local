@@ -62,8 +62,8 @@ final class SocialSignInVC: UIViewController {
                 let strName = dicFbData["name"] as? String ?? ""
                 let userID = dicFbData["id"] as? String ?? ""
                 let email = dicFbData["email"] as? String ?? ""
-                let picture = dicFbData["picture"] as? [String:Any]
-                let data = picture?["data"] as? [String:Any]
+                let picture = dicFbData["picture"] as? [String: Any]
+                let data = picture?["data"] as? [String: Any]
                 let url = data?["url"] as? String ?? ""
                 let accesToken = AccessToken.current?.tokenString ?? ""
 
