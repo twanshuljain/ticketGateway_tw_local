@@ -73,6 +73,8 @@
 		184888B52A31FBF800D36B3E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B42A31FBF800D36B3E /* FirebaseAnalytics */; };
 		184888B72A31FBF800D36B3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B62A31FBF800D36B3E /* FirebaseAuth */; };
 		184888B92A31FBF800D36B3E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 184888B82A31FBF800D36B3E /* FirebaseCrashlytics */; };
+		18498F6A2ACED2D80046E9A5 /* ScanSummaryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18498F692ACED2D80046E9A5 /* ScanSummaryFooterView.swift */; };
+		18498F6E2ACED4170046E9A5 /* ScanSummaryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18498F6D2ACED4170046E9A5 /* ScanSummaryFooterView.xib */; };
 		184B79142A440F9600577B26 /* EventBookingTicketAddOnsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B79132A440F9600577B26 /* EventBookingTicketAddOnsVC.swift */; };
 		184D046129EE7F430008B825 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 184D046029EE7F430008B825 /* CountryPicker.bundle */; };
 		184D046329EE7F500008B825 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 184D046229EE7F500008B825 /* countries.json */; };
@@ -298,10 +300,12 @@
 		18F0FBCF2A4040CA00F9768E /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */; };
 		18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354512A56CB66003597A6 /* EventDetailViewModel.swift */; };
 		18F354542A56D001003597A6 /* EventDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354532A56D001003597A6 /* EventDetailModel.swift */; };
+		18F582D82ACEA46B00DF7B82 /* ScanSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F582D62ACEA46B00DF7B82 /* ScanSummaryTableViewCell.swift */; };
+		18F582D92ACEA46B00DF7B82 /* ScanSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F582D72ACEA46B00DF7B82 /* ScanSummaryTableViewCell.xib */; };
 		18F5A4B72A4EA55900CA18F7 /* ScanEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F5A49D2A4EA55900CA18F7 /* ScanEvents.storyboard */; };
 		18F5A4B82A4EA55900CA18F7 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F5A49E2A4EA55900CA18F7 /* SearchTableViewCell.xib */; };
 		18F5A4B92A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A49F2A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift */; };
-		18F5A4BA2A4EA55900CA18F7 /* ScanSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A4A02A4EA55900CA18F7 /* ScanSummaryTableViewCell.swift */; };
+		18F5A4BA2A4EA55900CA18F7 /* ScanAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A4A02A4EA55900CA18F7 /* ScanAllTableViewCell.swift */; };
 		18F5A4BB2A4EA55900CA18F7 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A4A12A4EA55900CA18F7 /* SearchTableViewCell.swift */; };
 		18F5A4BC2A4EA55900CA18F7 /* EndScanPoPUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A4A32A4EA55900CA18F7 /* EndScanPoPUpVC.swift */; };
 		18F5A4BD2A4EA55900CA18F7 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A4A62A4EA55900CA18F7 /* SearchViewModel.swift */; };
@@ -522,6 +526,8 @@
 		18447DCE2AA9B2FC00DC4A80 /* ScanDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDetailModel.swift; sourceTree = "<group>"; };
 		18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOrganizerListModel.swift; sourceTree = "<group>"; };
 		1848541C2A850D1F0007798B /* AddToCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCalendar.swift; sourceTree = "<group>"; };
+		18498F692ACED2D80046E9A5 /* ScanSummaryFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSummaryFooterView.swift; sourceTree = "<group>"; };
+		18498F6D2ACED4170046E9A5 /* ScanSummaryFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanSummaryFooterView.xib; sourceTree = "<group>"; };
 		184B79132A440F9600577B26 /* EventBookingTicketAddOnsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingTicketAddOnsVC.swift; sourceTree = "<group>"; };
 		184D046029EE7F430008B825 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 		184D046229EE7F500008B825 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
@@ -747,10 +753,12 @@
 		18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		18F354512A56CB66003597A6 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		18F354532A56D001003597A6 /* EventDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailModel.swift; sourceTree = "<group>"; };
+		18F582D62ACEA46B00DF7B82 /* ScanSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		18F582D72ACEA46B00DF7B82 /* ScanSummaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanSummaryTableViewCell.xib; sourceTree = "<group>"; };
 		18F5A49D2A4EA55900CA18F7 /* ScanEvents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScanEvents.storyboard; sourceTree = "<group>"; };
 		18F5A49E2A4EA55900CA18F7 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		18F5A49F2A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeTableviewCell.swift; sourceTree = "<group>"; };
-		18F5A4A02A4EA55900CA18F7 /* ScanSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		18F5A4A02A4EA55900CA18F7 /* ScanAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanAllTableViewCell.swift; sourceTree = "<group>"; };
 		18F5A4A12A4EA55900CA18F7 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		18F5A4A32A4EA55900CA18F7 /* EndScanPoPUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndScanPoPUpVC.swift; sourceTree = "<group>"; };
 		18F5A4A62A4EA55900CA18F7 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -1136,7 +1144,7 @@
 				188A67F92A0CF0D300987BAD /* TicketTypes */,
 				18F5A49E2A4EA55900CA18F7 /* SearchTableViewCell.xib */,
 				18F5A4A12A4EA55900CA18F7 /* SearchTableViewCell.swift */,
-				18F5A4A02A4EA55900CA18F7 /* ScanSummaryTableViewCell.swift */,
+				18F5A4A02A4EA55900CA18F7 /* ScanAllTableViewCell.swift */,
 				18F5A49F2A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift */,
 				18F5A4CA2A4EB01D00CA18F7 /* ContactTableViewCell.swift */,
 				18717F6D2A2A1BE9002F36BC /* TransferTicketTableViewCell.xib */,
@@ -1174,6 +1182,8 @@
 				185062882A553E6700BC3EC5 /* CancelEventTableViewCell.xib */,
 				18277F192AA210A500586683 /* MyTicketListingTableViewCell.swift */,
 				18277F1A2AA210A500586683 /* MyTicketListingTableViewCell.xib */,
+				18F582D62ACEA46B00DF7B82 /* ScanSummaryTableViewCell.swift */,
+				18F582D72ACEA46B00DF7B82 /* ScanSummaryTableViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1312,6 +1322,15 @@
 				18B7D7592A61796F006C39E1 /* EventBookingTicketModel.swift */,
 			);
 			path = EventBooking;
+			sourceTree = "<group>";
+		};
+		18498F682ACED2AE0046E9A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18498F692ACED2D80046E9A5 /* ScanSummaryFooterView.swift */,
+				18498F6D2ACED4170046E9A5 /* ScanSummaryFooterView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		184B79152A440FFD00577B26 /* EventBookingSummary */ = {
@@ -2379,6 +2398,7 @@
 		18F5A4AE2A4EA55900CA18F7 /* ScanSummary */ = {
 			isa = PBXGroup;
 			children = (
+				18498F682ACED2AE0046E9A5 /* View */,
 				18F5A4AF2A4EA55900CA18F7 /* ScanSummaryVC.swift */,
 				18F5A4B02A4EA55900CA18F7 /* ScanSummaryViewModel.swift */,
 				18403DD02AB09BCA00E6F55C /* ScanSummaryModel.swift */,
@@ -2962,6 +2982,7 @@
 				185981322A20840800ABDC51 /* FBProgressView.xib in Resources */,
 				18FBC0E72A309239002CF129 /* AddOnTableViewCell.xib in Resources */,
 				184D046329EE7F500008B825 /* countries.json in Resources */,
+				18498F6E2ACED4170046E9A5 /* ScanSummaryFooterView.xib in Resources */,
 				18A0DC1B29E536E000D5CBDF /* OFL.txt in Resources */,
 				18FBC0ED2A309239002CF129 /* CostumeImageCollectionViewCell.xib in Resources */,
 				18FBC0BE2A309239002CF129 /* Profile.storyboard in Resources */,
@@ -3011,6 +3032,7 @@
 				18FBC0D42A309239002CF129 /* PeopleCollectionCell.xib in Resources */,
 				18A0DC1A29E536E000D5CBDF /* Poppins-BlackItalic.ttf in Resources */,
 				18A0DC1829E536E000D5CBDF /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				18F582D92ACEA46B00DF7B82 /* ScanSummaryTableViewCell.xib in Resources */,
 				187734E929E832FF00E26B65 /* NavigationBarView.xib in Resources */,
 				18A0DC1D29E536E000D5CBDF /* Poppins-LightItalic.ttf in Resources */,
 				18FBC0AD2A309239002CF129 /* TransactionsListCell.xib in Resources */,
@@ -3224,7 +3246,7 @@
 				18A6D0DF29E920D400D6210E /* ValidationConstantStrings.swift in Sources */,
 				18CBE7A42A5EDDC7003CCC11 /* ViewMoreEventsVC.swift in Sources */,
 				18B7D75A2A61796F006C39E1 /* EventBookingTicketModel.swift in Sources */,
-				18F5A4BA2A4EA55900CA18F7 /* ScanSummaryTableViewCell.swift in Sources */,
+				18F5A4BA2A4EA55900CA18F7 /* ScanAllTableViewCell.swift in Sources */,
 				18717F972A2A1BE9002F36BC /* TransferTicketVC.swift in Sources */,
 				187E22902A4075B1003236EC /* EmailVerifyRequest.swift in Sources */,
 				18717F952A2A1BE9002F36BC /* ContinueToTransferVC.swift in Sources */,
@@ -3378,6 +3400,7 @@
 				18A73E0A29EFD5D7007365CB /* UserDefaultManager.swift in Sources */,
 				18F5A4BD2A4EA55900CA18F7 /* SearchViewModel.swift in Sources */,
 				18403DD12AB09BCA00E6F55C /* ScanSummaryModel.swift in Sources */,
+				18498F6A2ACED2D80046E9A5 /* ScanSummaryFooterView.swift in Sources */,
 				18FBC0E32A309239002CF129 /* CostumeListTableView.swift in Sources */,
 				18A8497829EE6B5A00F92BCD /* RSCountryTableViewCell.swift in Sources */,
 				1821FDEA2A30B51A00BD4AB6 /* RequestRefundVC.swift in Sources */,
@@ -3401,6 +3424,7 @@
 				182B9FAD2A73F9D500358311 /* EventBookingOrderSummaryVieModel.swift in Sources */,
 				18717F932A2A1BE9002F36BC /* ChangeNameVC.swift in Sources */,
 				18A73E0229EFB81C007365CB /* SignUpAuthVerifyModel.swift in Sources */,
+				18F582D82ACEA46B00DF7B82 /* ScanSummaryTableViewCell.swift in Sources */,
 				18FBC0C12A309239002CF129 /* ManageEventSettingVC.swift in Sources */,
 				18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */,
 				188CE1BE2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift in Sources */,

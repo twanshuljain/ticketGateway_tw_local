@@ -10,6 +10,7 @@ import Charts
 import SDWebImage
 class ScanSummaryVC: UIViewController, ChartViewDelegate {
     // MARK: - Outlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var chartView: PieChartView!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
     @IBOutlet weak var lblSunburnReload: UILabel!
@@ -17,7 +18,9 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var lblTotalTickets: UILabel!
     @IBOutlet weak var lblTotalTicketValue: UILabel!
-    @IBOutlet weak var tblScanSummaryTableView: UITableView!
+    @IBOutlet weak var tblScanAllTableView: UITableView!
+    @IBOutlet weak var tblScan: UITableView!
+    @IBOutlet weak var scanSummaryView: UIView!
     @IBOutlet weak var btnDownloadReport: CustomButtonNormal!
     @IBOutlet weak var btnUpdateLiveOnServer: UIButton!
     @IBOutlet weak var tblViewHeight: NSLayoutConstraint!
@@ -34,19 +37,43 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
         self.setFont()
         self.setTableView()
         self.chartView.delegate = self
-        self.tblScanSummaryTableView.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
-        self.tblViewHeight.constant = self.tblScanSummaryTableView.contentSize.height
+        self.tblScanAllTableView.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
+       // self.tblScan.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
+        self.tblViewHeight.constant = self.tblScanAllTableView.contentSize.height
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        self.tblViewHeight.constant = tblScanSummaryTableView.contentSize.height
+        self.tblViewHeight.constant = tblScanAllTableView.contentSize.height
     }
 }
 // MARK: -
 extension ScanSummaryVC {
     func setTableView() {
-        self.tblScanSummaryTableView.delegate = self
-        self.tblScanSummaryTableView.dataSource = self
+        self.tblScanAllTableView.separatorColor = UIColor.clear
+        self.tblScanAllTableView.delegate = self
+        self.tblScanAllTableView.dataSource = self
+        
+        self.tblScan.separatorColor = UIColor.clear
+        self.tblScan.delegate = self
+        self.tblScan.dataSource = self
+        self.tblScan.register(UINib(nibName: "ScanSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "ScanSummaryTableViewCell")
+        
+//        let footerNib = UINib(nibName: "ScanSummaryFooterView", bundle: nil)
+//        tblScan.register(footerNib, forHeaderFooterViewReuseIdentifier: "ScanSummaryFooterView")
+       // self.setFooterView()
     }
+    
+    func setFooterView(){
+        // Load the custom footer view from the nib file
+        let customFooterNib = UINib(nibName: "ScanSummaryFooterView", bundle: nil)
+        if let customFooterView = customFooterNib.instantiate(withOwner: nil, options: nil).first as? ScanSummaryFooterView {
+            // Set it as the table view's footer view
+            tblScan.tableFooterView = customFooterView
+            
+            // You can customize the height of the footer view if needed
+            customFooterView.frame = CGRect(x: 0, y: 0, width: tblScan.frame.width, height: 120)
+        }
+    }
+    
     func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
@@ -54,6 +81,8 @@ extension ScanSummaryVC {
         self.vwNavigationView.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.vwNavigationView.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.vwNavigationView.vwBorder.isHidden = false
+        
+        self.scanSummaryView.isHidden = true
     }
     func setChart() {
         var entries = [ChartDataEntry]()
@@ -100,7 +129,7 @@ extension ScanSummaryVC {
                     self.dataSettingAfterScanOverview()
                     self.view.stopLoading()
                     self.setChart()
-                    self.tblScanSummaryTableView.reloadData()
+                    self.tblScanAllTableView.reloadData()
                 } else {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
@@ -121,6 +150,7 @@ extension ScanSummaryVC {
             viewModel.getScanSummary(completion: { isTrue, message in
                 if isTrue {
                     self.view.stopLoading()
+                    self.tblScan.reloadData()
                 } else {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
@@ -155,43 +185,109 @@ extension ScanSummaryVC {
         print("viewModel.arrOfValueChart:-", viewModel.arrOfValueChart)
     }
 }
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension ScanSummaryVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tblData.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ScanSummaryTableViewCell", for: indexPath) as! ScanSummaryTableViewCell
-        let data = tblData[indexPath.row]
-        switch data {
-        case TicketStatusList.tixToScan.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixToScan ?? 0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#CDC8F9")
-        case TicketStatusList.tixScanned.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixScanned ?? 0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#A0CF67")
-        case TicketStatusList.accepted.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixAccepted ?? 0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FB896B")
-        case TicketStatusList.rejected.rawValue:
-            cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixRejected ?? 0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFD467")
-        case TicketStatusList.scannedHardTix.rawValue:
-            cell.lblTitleValue.text = "\(0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#C6E0FF")
-        case TicketStatusList.scannedPdfTix.rawValue:
-            cell.lblTitleValue.text = "\(0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFBDE1")
-        case TicketStatusList.scannedCompsTix.rawValue:
-            cell.lblTitleValue.text = "\(0)"
-            cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFDDC6")
+
+// MARK: - ACTIONS
+extension ScanSummaryVC{
+    @IBAction func actionSegment(_ sender: UISegmentedControl) {
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            print("ALL")
+            self.scrollView.isScrollEnabled = true
+            self.scanSummaryView.isHidden = true
+        case 1, 2, 3:
+            print("Rest")
+            self.scrollView.isScrollEnabled = true
+            self.scanSummaryView.isHidden = false
         default:
             break
         }
-        cell.selectionStyle = .none
-        cell.lblSummaryTitle.text = data
-        return cell
     }
+    
+}
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension ScanSummaryVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.tblScanAllTableView{
+            return tblData.count
+        }else if tableView == self.tblScan{
+            return self.viewModel.getScanSummaryItem.count
+        }
+        return 0
+    }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        if let customFooterView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ScanSummaryFooterView") as? ScanSummaryFooterView{
+//            return customFooterView
+//        }
+//        return nil
+//    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == self.tblScanAllTableView{
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ScanAllTableViewCell", for: indexPath) as? ScanAllTableViewCell{
+                cell.selectionStyle = .none
+                let data = tblData[indexPath.row]
+                switch data {
+                case TicketStatusList.tixToScan.rawValue:
+                    cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixToScan ?? 0)"
+                    cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#CDC8F9")
+                case TicketStatusList.tixScanned.rawValue:
+                    cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixScanned ?? 0)"
+                    cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#A0CF67")
+                case TicketStatusList.accepted.rawValue:
+                    cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixAccepted ?? 0)"
+                    cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FB896B")
+                case TicketStatusList.rejected.rawValue:
+                    cell.lblTitleValue.text = "\(viewModel.getScanOverviewData.tixRejected ?? 0)"
+                    cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFD467")
+                case TicketStatusList.scannedHardTix.rawValue:
+                    cell.lblTitleValue.text = "\(0)"
+                    cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#C6E0FF")
+                case TicketStatusList.scannedPdfTix.rawValue:
+                    cell.lblTitleValue.text = "\(0)"
+                    cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFBDE1")
+                case TicketStatusList.scannedCompsTix.rawValue:
+                    cell.lblTitleValue.text = "\(0)"
+                    cell.vwColorView.backgroundColor = UIColor.hexColor(hex: "#FFDDC6")
+                default:
+                    break
+                }
+                cell.selectionStyle = .none
+                cell.lblSummaryTitle.text = data
+                return cell
+            }
+            return UITableViewCell()
+        }else if tableView == self.tblScan{
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ScanSummaryTableViewCell", for: indexPath) as? ScanSummaryTableViewCell{
+                cell.selectionStyle = .none
+                if self.viewModel.getScanSummaryItem.indices.contains(indexPath.row) {
+                    cell.setData(data: self.viewModel.getScanSummaryItem[indexPath.row])
+                }
+                return cell
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == self.tblScanAllTableView{
+            return UITableView.automaticDimension
+        }else if tableView == self.tblScan{
+            return 60
+        }
+        return UITableView.automaticDimension
+    }
+    
+    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 112
+//    }
 }
 // MARK: - NavigationBarViewDelegate
 extension ScanSummaryVC: NavigationBarViewDelegate {
