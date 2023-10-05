@@ -30,7 +30,7 @@ extension AddCardViewModel {
     func loadDefaultsParameters() {
         let components: DateComponents? = Calendar.current.dateComponents([.day, .month, .year], from: Date())
         let year: Int? = components?.year
-        self.minYear = year!
+        self.minYear = year ?? 0
         self.maxYear = year! + 30
         self.rowHeight = 44
         self.months = nameOfMonths()

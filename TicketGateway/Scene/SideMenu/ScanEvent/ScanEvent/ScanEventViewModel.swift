@@ -12,7 +12,7 @@ class ScanEventViewModel {
     var scanTicketModel = ScanTicketModel()
     var eventId: Int = 0
     var getScanTicketDetails = GetScanTicketDetails()
-    func scanTicketApi(scanTicketModel: ScanTicketModel, complition: @escaping (Bool,String) -> Void ) {
+    func scanTicketApi(scanTicketModel: ScanTicketModel, complition: @escaping (Bool, String) -> Void ) {
         APIHandler.shared.executeRequestWith(apiName: .scanTicket, parameters: scanTicketModel, methodType: .POST, authRequired: true) { (result: Result<ResponseModal<GetScanEventData>, Error>) in
             switch result {
             case .success(let response):
