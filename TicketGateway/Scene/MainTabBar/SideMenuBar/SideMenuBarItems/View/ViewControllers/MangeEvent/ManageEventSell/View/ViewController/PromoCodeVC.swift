@@ -72,10 +72,10 @@ extension PromoCodeVC: UITableViewDelegate, UITableViewDataSource {
 
 }
 
-extension PromoCodeVC : UITextFieldDelegate {
+extension PromoCodeVC: UITextFieldDelegate {
 
 }
-extension PromoCodeVC : NavigationBarViewDelegate {
+extension PromoCodeVC: NavigationBarViewDelegate {
   func navigationBackAction() {
     self.navigationController?.popViewController(animated: false)
   }

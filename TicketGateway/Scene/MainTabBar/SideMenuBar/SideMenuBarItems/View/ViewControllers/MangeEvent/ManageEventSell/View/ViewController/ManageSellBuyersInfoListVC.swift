@@ -75,7 +75,7 @@ extension ManageSellBuyersInfoListVC {
 
 }
 
-extension ManageSellBuyersInfoListVC : NavigationBarViewDelegate ,UITextFieldDelegate{
+extension ManageSellBuyersInfoListVC: NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

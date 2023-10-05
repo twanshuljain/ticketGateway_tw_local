@@ -139,7 +139,7 @@ extension ManageSellTicketVC {
     }
 }
 
-extension ManageSellTicketVC : NavigationBarViewDelegate ,UITextFieldDelegate{
+extension ManageSellTicketVC: NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
 

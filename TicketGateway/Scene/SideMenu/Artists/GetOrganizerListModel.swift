@@ -6,12 +6,12 @@
 //
 
 import Foundation
-struct GetSuggestedOrganizerDataModel : Codable {
-    var items : [GetSuggestedOrganizerItemModel]?
-    var total : Int?
-    var page : Int?
-    var size : Int?
-    var pages : String?
+struct GetSuggestedOrganizerDataModel: Codable {
+    var items: [GetSuggestedOrganizerItemModel]?
+    var total: Int?
+    var page: Int?
+    var size: Int?
+    var pages: String?
     enum CodingKeys: String, CodingKey {
         case items = "items"
         case total = "total"
@@ -20,26 +20,26 @@ struct GetSuggestedOrganizerDataModel : Codable {
         case pages = "pages"
     }
 }
-struct GetSuggestedOrganizerItemModel : Codable {
-    var name : String?
-    var isEmailOptIn : Bool?
-    var isFeatured : Bool?
-    var profileImage : String?
-    var userId : Int?
-    var website : String?
-    var isActive : Bool?
-    var bio : String?
-    var createdAt : String?
-    var eventDescription : String?
-    var updatedAt : String?
-    var facebookId : String?
-    var createdBy : String?
-    var id : Int?
-    var twitterId : String?
-    var updatedBy : String?
-    var instagramId : String?
-    var follower : [Int]?
-    var isFollow : Bool?
+struct GetSuggestedOrganizerItemModel: Codable {
+    var name: String?
+    var isEmailOptIn: Bool?
+    var isFeatured: Bool?
+    var profileImage: String?
+    var userId: Int?
+    var website: String?
+    var isActive: Bool?
+    var bio: String?
+    var createdAt: String?
+    var eventDescription: String?
+    var updatedAt: String?
+    var facebookId: String?
+    var createdBy: String?
+    var id: Int?
+    var twitterId: String?
+    var updatedBy: String?
+    var instagramId: String?
+    var follower: [Int]?
+    var isFollow: Bool?
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case isEmailOptIn = "is_email_opt_in"

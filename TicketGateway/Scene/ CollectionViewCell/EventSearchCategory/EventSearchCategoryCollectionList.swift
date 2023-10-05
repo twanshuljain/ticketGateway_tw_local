@@ -24,7 +24,7 @@ class EventSearchCategoryCollectionList: UICollectionView {
 }
 
 // MARK: - UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
-extension EventSearchCategoryCollectionList : UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+extension EventSearchCategoryCollectionList: UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

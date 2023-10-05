@@ -14,7 +14,7 @@ final class EventDetailViewModel{
     var eventId: Int?
     var suggestedEventCategoryId: Int?
     var selectedArrTicketList = [EventTicket]()
-    var arrEventData : [GetEventModel] = [GetEventModel]()
+    var arrEventData: [GetEventModel] = [GetEventModel]()
     var eventDetailForFavourite: EventDetail?
     var isLiked: Bool = false
     var isLikedAnyEvent: Bool = false
@@ -23,7 +23,7 @@ final class EventDetailViewModel{
     var recurringList: [RecurringList]?
     var dispatchGroup1 = DispatchGroup()
     var dispatchGroup2 = DispatchGroup()
-    var selectedEventLocationId : Int?
+    var selectedEventLocationId: Int?
     var dateLocationSelected = false
 }
 

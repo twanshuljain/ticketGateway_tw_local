@@ -13,7 +13,7 @@ class MyTicketVC: UIViewController {
     //@IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var btnAddAppToWallet: PKPass!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
-    @IBOutlet weak var greyView : UIView!
+    @IBOutlet weak var greyView: UIView!
 
     var viewModel: MyTicketViewModel = MyTicketViewModel()
     var myOrderViewModel: MyOrderViewModel = MyOrderViewModel()
@@ -252,7 +252,7 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             cell.btnSaveTicketAsImage.addTarget(self, action: #selector(saveTicketAsImage), for: .touchUpInside)
             if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
                // self.viewModel.selectedTicket = viewModel.myTicket?.items?[indexPath.row]
-                //self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false : true
+                //self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false: true
                 cell.setData(myTicket: viewModel.myTicket?.items?[indexPath.row])
             }
             return cell
@@ -265,7 +265,7 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
                 cell.setData(myTicket: viewModel.myTicket?.items?[indexPath.row])
                 self.viewModel.selectedTicket = viewModel.myTicket?.items?[indexPath.row]
-                self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false : true
+                self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false: true
             }
         }
     }

@@ -47,7 +47,7 @@ extension ManageEventTicketSoldVC{
 }
 
 // MARK: - NavigationBarViewDelegate,UITextFieldDelegate
-extension ManageEventTicketSoldVC : NavigationBarViewDelegate ,UITextFieldDelegate{
+extension ManageEventTicketSoldVC: NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
   }

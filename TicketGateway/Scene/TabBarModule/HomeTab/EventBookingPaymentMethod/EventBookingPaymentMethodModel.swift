@@ -14,6 +14,13 @@ struct AddCardRequest: Codable {
     var expYear: Int?
     var cvc: String?
     var name: String?
+    enum CodingKeys: String, CodingKey {
+        case cardNumber = "card_number"
+        case expMonth = "exp_month"
+        case expYear = "exp_year"
+        case cvc = "cvc"
+        case name = "name"
+    }
 }
 
 // MARK: - CreateChargeRequest
@@ -81,7 +88,7 @@ struct CheckoutAddonList: Codable {
 
 // MARK: - TicketID
 struct CheckoutTicketID: Codable {
-    var ticketTypeId : Int?
+    var ticketTypeId: Int?
     var ticketType, ticketName: String?
     var baseTicketID, quantity: Int?
     var ticketPrice: Int?

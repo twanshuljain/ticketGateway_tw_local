@@ -35,7 +35,7 @@ import UIKit
         UIGraphicsEndImageContext()
         return UIColor(patternImage: image!)
     }
-    func getGradientLayer(bounds : CGRect) -> CAGradientLayer{
+    func getGradientLayer(bounds: CGRect) -> CAGradientLayer{
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         // gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]

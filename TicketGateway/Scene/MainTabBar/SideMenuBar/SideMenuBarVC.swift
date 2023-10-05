@@ -11,7 +11,7 @@ import SWRevealViewController
 class Side: UIViewController {
 
     /// overlay view
-    lazy var overlayView : UIView = {
+    lazy var overlayView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.6)
         return view
@@ -72,7 +72,7 @@ class Side: UIViewController {
 }
 
 //MARK: - SWRevealController delegates
-extension FrontViewController : SWRevealViewControllerDelegate{
+extension FrontViewController: SWRevealViewControllerDelegate{
 
     //varying alpha of overlayView with progress of panGesture to reveal or hide menu view
     func revealController(_ revealController: SWRevealViewController!, panGestureMovedToLocation location: CGFloat, progress: CGFloat) {

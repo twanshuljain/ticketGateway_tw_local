@@ -191,7 +191,7 @@ extension EventBookingPaymentMethodVC {
 //       self.navigationController?.pushViewController(view!, animated: true)
     }
 
-    func setGradientBackground( viewadd : UIView) {
+    func setGradientBackground( viewadd: UIView) {
             viewadd.layer.insertSublayer(viewModel.gradientLayer, at:0)
     }
 
@@ -287,7 +287,7 @@ extension EventBookingPaymentMethodVC {
 }
 
 // MARK: - UITextFieldDelegate
-extension EventBookingPaymentMethodVC : UITextFieldDelegate{
+extension EventBookingPaymentMethodVC: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.txtCardNumber{
             self.viewDatePicker.isHidden = true
@@ -496,7 +496,7 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
 }
 
 // MARK: - NavigationBarViewDelegate
-extension EventBookingPaymentMethodVC : NavigationBarViewDelegate {
+extension EventBookingPaymentMethodVC: NavigationBarViewDelegate {
     func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)
   }

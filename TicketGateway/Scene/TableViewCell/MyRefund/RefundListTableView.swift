@@ -31,7 +31,7 @@ class RefundListTableView: UITableView {
 
 // MARK: - TableView Delegate
 
-extension RefundListTableView : UITableViewDelegate,UITableViewDataSource{
+extension RefundListTableView: UITableViewDelegate,UITableViewDataSource{
 
     func numberOfSections(in tableView: UITableView) -> Int{
         return 3 // number of section array count

@@ -60,7 +60,7 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell", for: indexPath) as? UpcomingTableViewCell {
             if viewModel.arrMyOrder.indices.contains(indexPath.row) {
-                cell.setData(getTicket: viewModel.arrMyOrder[indexPath.row], isFaded: viewModel.isFromUpcoming == true ? false : true)
+                cell.setData(getTicket: viewModel.arrMyOrder[indexPath.row], isFaded: viewModel.isFromUpcoming == true ? false: true)
             }
             return cell
         }
@@ -78,7 +78,7 @@ extension MyOrderViewController: UITableViewDataSource, UITableViewDelegate {
         if viewModel.arrMyOrder.indices.contains(indexPath.row) {
             viewController?.viewModel.ticketDetails = viewModel.arrMyOrder[indexPath.row]
         }
-        viewController?.viewModel.isFromPast = viewModel.isFromUpcoming == true ? false : true
+        viewController?.viewModel.isFromPast = viewModel.isFromUpcoming == true ? false: true
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
 }
@@ -90,7 +90,7 @@ extension MyOrderViewController {
                 viewModel.myOrdersModel.searchQuery = searchText
                 viewModel.myOrdersModel.page = 1
             }
-            viewModel.myOrdersModel.filterBy = isFromUpcoming ? "upcoming" : "past"
+            viewModel.myOrdersModel.filterBy = isFromUpcoming ? "upcoming": "past"
             parentView.showLoading(centreToView: self.view)
             viewModel.myOrdersApiCall(myOrdersModel: viewModel.myOrdersModel,
                                       isFromSearch: isFromSearch,
@@ -99,11 +99,11 @@ extension MyOrderViewController {
                     if isFromUpcoming {
                         self.viewModel.upcomingCount = self.viewModel.arrMyOrder.count
                         self.btnUpcoming.setTitle("Upcoming (\(self.viewModel.upcomingCount))", for: .normal)
-                        self.pastView.isHidden = self.viewModel.arrMyOrder.isEmpty ? false : true
+                        self.pastView.isHidden = self.viewModel.arrMyOrder.isEmpty ? false: true
                     } else {
                         self.viewModel.pastCount = self.viewModel.arrMyOrder.count
                         self.btnPast.setTitle("Past (\(self.viewModel.pastCount))", for: .normal)
-                        self.pastView.isHidden = self.viewModel.arrMyOrder.isEmpty ? false : true
+                        self.pastView.isHidden = self.viewModel.arrMyOrder.isEmpty ? false: true
                     }
                     self.upComingTableView.reloadData()
                     self.parentView.stopLoading()

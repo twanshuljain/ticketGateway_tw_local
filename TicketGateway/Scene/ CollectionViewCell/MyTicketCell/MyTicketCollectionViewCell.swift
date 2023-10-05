@@ -17,7 +17,7 @@ class MyTicketCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgQRCode: UIImageView!
     @IBOutlet weak var lblTicket: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
-    @IBOutlet weak var greyView : UIView!
+    @IBOutlet weak var greyView: UIView!
     @IBOutlet weak var btnLogo: UIButton!
 
     override func awakeFromNib() {
@@ -44,8 +44,8 @@ class MyTicketCollectionViewCell: UICollectionViewCell {
                 self.imgQRCode.image = UIImage.decodeBase64(toImage: base64String)
             }
         }
-        self.btnLogo.isHidden = myTicket?.isTransfer == true ? false : true
-        self.greyView.isHidden = myTicket?.isTransfer == true ? false : true
+        self.btnLogo.isHidden = myTicket?.isTransfer == true ? false: true
+        self.greyView.isHidden = myTicket?.isTransfer == true ? false: true
     }
 
     func setFont() {

@@ -7,7 +7,7 @@
 import UIKit
 
 class InstallmentInfo {
-    var isExpanded : Bool
+    var isExpanded: Bool
 
     init(isExpanded: Bool) {
         self.isExpanded = isExpanded
@@ -16,7 +16,7 @@ class InstallmentInfo {
 }
 
 class ExpandableCells {
-    var isExpanded : Bool
+    var isExpanded: Bool
     var data: [InstallmentInfo]
     init(data: [InstallmentInfo],isExpanded: Bool) {
         self.isExpanded = isExpanded
@@ -75,7 +75,7 @@ class CostumeCartViewController: UIViewController {
 
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.tbleViewHeight.constant = paymentTableView.contentSize.height
       }
 }
@@ -168,10 +168,10 @@ extension CostumeCartViewController{
             isPartialSelected = true
             let arrExpan = [InstallmentInfo]()
             arrData = [ExpandableCells( data: arrExpan, isExpanded: false),
-                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
 
-                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
-                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
                        ExpandableCells( data: arrExpan, isExpanded: false)]
 
             self.paymentTableView.reloadData()
@@ -277,7 +277,7 @@ extension CostumeCartViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
 
-    @objc func btncontinue(sender:UIButton)
+    @objc func btncontinue(sender: UIButton)
     {
         let view = self.createView(storyboard: .main, storyboardID: .PhoneVerificationViewController) as? PhoneVerificationViewController
         self.navigationController?.pushViewController(view!, animated: true)

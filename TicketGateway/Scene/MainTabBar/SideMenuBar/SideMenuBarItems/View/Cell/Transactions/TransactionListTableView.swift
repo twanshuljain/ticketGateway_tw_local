@@ -32,7 +32,7 @@ class TransactionListTableView: UITableView {
     }
 }
 // MARK: -  UITableViewDelegate,UITableViewDataSource
-extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource {
+extension TransactionListTableView: UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int{
         if isFrom == "MyWallet" {
             return 3 // number of section array count

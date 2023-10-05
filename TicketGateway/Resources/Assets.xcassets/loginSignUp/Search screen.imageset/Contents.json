@@ -1,12 +1,12 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "depositphotos_31468817-stock-photo-coming-soon-sign.jpeg",
-      "idiom" : "universal"
+      "filename": "depositphotos_31468817-stock-photo-coming-soon-sign.jpeg",
+      "idiom": "universal"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }

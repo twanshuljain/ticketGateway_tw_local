@@ -1,23 +1,23 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "flash_ip.svg",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename": "flash_ip.svg",
+      "idiom": "universal",
+      "scale": "1x"
     },
     {
-      "filename" : "flash_ip@2x.svg",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "filename": "flash_ip@2x.svg",
+      "idiom": "universal",
+      "scale": "2x"
     },
     {
-      "filename" : "flash_ip@3x.svg",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename": "flash_ip@3x.svg",
+      "idiom": "universal",
+      "scale": "3x"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }

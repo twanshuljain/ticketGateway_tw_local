@@ -27,7 +27,7 @@ class PhoneVerificationViewController: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var vwNumber: UIView!
-    @IBOutlet weak var btnChangeNumber:UIButton!
+    @IBOutlet weak var btnChangeNumber: UIButton!
     @IBOutlet weak var vwEmail:UIView!
     @IBOutlet weak var vwEmaiLabel:UIView!
     @IBOutlet weak var txtEmail:UITextField!
@@ -171,7 +171,7 @@ extension PhoneVerificationViewController {
         //        }
     }
 
-    @IBAction private func btnChangeNumberAction(_ sender:UIButton) {
+    @IBAction private func btnChangeNumberAction(_ sender: UIButton) {
         self.btnChangeNumber.isHidden = true
         self.isChangeMobileNumberTap = true
         self.txtNumber.text = ""

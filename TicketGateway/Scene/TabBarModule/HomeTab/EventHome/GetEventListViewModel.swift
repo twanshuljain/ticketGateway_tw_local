@@ -23,7 +23,7 @@ final class HomeDashBoardViewModel {
     var dispatchGroup6 = DispatchGroup.init()
 
     let semaphore = DispatchSemaphore(value: 1)
-    var arrOrganizersList : [Organizers]?
+    var arrOrganizersList: [Organizers]?
 
     var arrDataaWeekend = [GetEventModel]()
     var arrDataaVirtual = [GetEventModel]()
@@ -122,7 +122,7 @@ extension HomeDashBoardViewModel {
         }
     }
     func getEventApiForWeekendEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let parameters = viewAll == false ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.weekend.rawValue)
+        let parameters = viewAll == false ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "3", page: "1"): GetEventRequest(eventType: EventType.weekend.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -152,7 +152,7 @@ extension HomeDashBoardViewModel {
     }
 
     func getEventApiForOnlineEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == false ? GetEventRequest(eventType: EventType.virtual.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.virtual.rawValue)
+        let request =  viewAll == false ? GetEventRequest(eventType: EventType.virtual.rawValue, limit: "3", page: "1"): GetEventRequest(eventType: EventType.virtual.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -182,7 +182,7 @@ extension HomeDashBoardViewModel {
     }
 
     func getEventApiForPopularEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == false ? GetEventRequest(eventType: EventType.popular.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.popular.rawValue)
+        let request =  viewAll == false ? GetEventRequest(eventType: EventType.popular.rawValue, limit: "3", page: "1"): GetEventRequest(eventType: EventType.popular.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -211,7 +211,7 @@ extension HomeDashBoardViewModel {
     }
 
     func getEventApiForFreeEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == false ? GetEventRequest(eventType: EventType.free.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.free.rawValue)
+        let request =  viewAll == false ? GetEventRequest(eventType: EventType.free.rawValue, limit: "3", page: "1"): GetEventRequest(eventType: EventType.free.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -240,7 +240,7 @@ extension HomeDashBoardViewModel {
     }
 
     func getEventApiForUpcomingEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == false ? GetEventRequest(eventType: EventType.upcoming.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.upcoming.rawValue)
+        let request =  viewAll == false ? GetEventRequest(eventType: EventType.upcoming.rawValue, limit: "3", page: "1"): GetEventRequest(eventType: EventType.upcoming.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):

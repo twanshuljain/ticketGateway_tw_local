@@ -7,8 +7,8 @@
 
 import UIKit
 struct ContactOrganiserRequestModel: Codable {
-    var name, email, reason, message : String?
-    var organizerId : Int?
+    var name, email, reason, message: String?
+    var organizerId: Int?
 
     enum CodingKeys: String, CodingKey {
         case name, email, reason, message

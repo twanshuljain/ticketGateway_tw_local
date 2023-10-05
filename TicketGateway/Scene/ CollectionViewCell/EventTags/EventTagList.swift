@@ -23,7 +23,7 @@ class EventTagList: UICollectionView {
     }
 
 }
-extension EventTagList : UICollectionViewDataSource ,UICollectionViewDelegate {
+extension EventTagList: UICollectionViewDataSource ,UICollectionViewDelegate {
 
      func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

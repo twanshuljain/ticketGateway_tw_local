@@ -16,7 +16,7 @@ final class EventBookingOrderSummaryVieModel{
     var totalTicketPrice = ""
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var eventId: Int?
-    var discountType : DiscountType?
+    var discountType: DiscountType?
     var selectedCurrencyType = ""
 }
 

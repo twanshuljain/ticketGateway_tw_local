@@ -145,7 +145,7 @@ extension ManageSellAddBuyerVC: UITextFieldDelegate {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageSellAddBuyerVC : NavigationBarViewDelegate {
+extension ManageSellAddBuyerVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -186,7 +186,7 @@ extension ManageSellAddBuyerVC :  RSCountrySelectedDelegate  {
         let data = try? Data(contentsOf: URL(fileURLWithPath: (Bundle.main.path(forResource: "countries", ofType: "json"))!))
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-            countries = parsedObject as! [[String : String]]
+            countries = parsedObject as! [[String: String]]
 
         }catch {
 

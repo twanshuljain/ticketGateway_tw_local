@@ -16,7 +16,7 @@ func configure() {
 }
 
 }
-extension ManageMyEventCateoryList : UICollectionViewDataSource ,UICollectionViewDelegate {
+extension ManageMyEventCateoryList: UICollectionViewDataSource ,UICollectionViewDelegate {
 
  func numberOfSections(in collectionView: UICollectionView) -> Int {
     // #warning Incomplete implementation, return the number of sections

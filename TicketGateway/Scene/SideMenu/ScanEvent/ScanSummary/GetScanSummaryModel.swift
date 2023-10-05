@@ -35,12 +35,12 @@ struct GetScanOverviewData: Codable {
     }
 }
 // MARK: Get Scan Summary Data
-struct GetScanSummaryData : Codable {
-    let items : [GetScanSummaryItem]?
-    let total : Int?
-    let page : Int?
-    let size : Int?
-    let pages : String?
+struct GetScanSummaryData: Codable {
+    let items: [GetScanSummaryItem]?
+    let total: Int?
+    let page: Int?
+    let size: Int?
+    let pages: String?
 
     enum CodingKeys: String, CodingKey {
         case items = "items"

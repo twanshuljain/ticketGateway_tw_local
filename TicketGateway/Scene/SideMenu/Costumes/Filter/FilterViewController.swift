@@ -12,7 +12,7 @@ class FilterViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var tblFilterSection:UITableView!
     @IBOutlet weak var tblFilterSelectedSection:UITableView!
-    @IBOutlet weak var btnCancel:UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var btnApply:CustomButtonGradiant!
 
     // MARK: - Variables

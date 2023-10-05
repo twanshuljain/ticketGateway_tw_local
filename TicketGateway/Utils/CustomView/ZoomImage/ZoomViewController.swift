@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ZoomViewController:UIViewController {
+class ZoomViewController: UIViewController {
 
     var imgProfile: UIImage?
     @IBOutlet weak var navigationView: NavigationBarView!
@@ -14,7 +14,7 @@ class ZoomViewController:UIViewController {
     @IBOutlet private var backgroundView: UIView!
     @IBOutlet private var mainView:UIView!
 
-    var cropView : UIView?
+    var cropView: UIView?
     var imgBackground: UIImageView?
    // var imgVZoomedParcelPhoto: UIImageView?
 

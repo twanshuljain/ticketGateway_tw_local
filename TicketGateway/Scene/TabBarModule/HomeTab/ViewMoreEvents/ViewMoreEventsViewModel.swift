@@ -39,7 +39,7 @@ final class ViewMoreEventsViewModel {
 extension ViewMoreEventsViewModel: FavouriteAction {
     func getEventAsPerLocation(viewAll: Bool, category: String? = "", countryName: String? = "", sortBy: SortBy? = .noneValue, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
-        let parameters =  viewAll == true ? GetEventSearchByCategoryRequest(countryName: countryName, limit: "10", page: "\(self.currentPage)") : GetEventSearchByCategoryRequest(countryName: countryName)
+        let parameters =  viewAll == true ? GetEventSearchByCategoryRequest(countryName: countryName, limit: "10", page: "\(self.currentPage)"): GetEventSearchByCategoryRequest(countryName: countryName)
 
         APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
@@ -87,7 +87,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     }
 
     func getEventApiForWeekendEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let parameters = viewAll == true ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "10", page: "\(self.currentPage)") : GetEventRequest(eventType: EventType.weekend.rawValue)
+        let parameters = viewAll == true ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "10", page: "\(self.currentPage)"): GetEventRequest(eventType: EventType.weekend.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -109,7 +109,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     }
 
     func getEventApiForOnlineEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == true ? GetEventRequest(eventType: EventType.virtual.rawValue, limit: "10", page: "\(self.currentPage)") : GetEventRequest(eventType: EventType.virtual.rawValue)
+        let request =  viewAll == true ? GetEventRequest(eventType: EventType.virtual.rawValue, limit: "10", page: "\(self.currentPage)"): GetEventRequest(eventType: EventType.virtual.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -134,7 +134,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     }
 
     func getEventApiForPopularEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == true ? GetEventRequest(eventType: EventType.popular.rawValue, limit: "10", page: "\(self.currentPage)") : GetEventRequest(eventType: EventType.popular.rawValue)
+        let request =  viewAll == true ? GetEventRequest(eventType: EventType.popular.rawValue, limit: "10", page: "\(self.currentPage)"): GetEventRequest(eventType: EventType.popular.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -161,7 +161,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     }
 
     func getEventApiForFreeEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == true ? GetEventRequest(eventType: EventType.free.rawValue, limit: "10", page: "\(self.currentPage)") : GetEventRequest(eventType: EventType.free.rawValue)
+        let request =  viewAll == true ? GetEventRequest(eventType: EventType.free.rawValue, limit: "10", page: "\(self.currentPage)"): GetEventRequest(eventType: EventType.free.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
@@ -185,7 +185,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
     }
 
     func getEventApiForUpcomingEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
-        let request =  viewAll == true ? GetEventRequest(eventType: EventType.upcoming.rawValue, limit: "10", page: "\(self.currentPage)") : GetEventRequest(eventType: EventType.upcoming.rawValue)
+        let request =  viewAll == true ? GetEventRequest(eventType: EventType.upcoming.rawValue, limit: "10", page: "\(self.currentPage)"): GetEventRequest(eventType: EventType.upcoming.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):

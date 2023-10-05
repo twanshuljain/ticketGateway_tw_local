@@ -16,7 +16,7 @@ class VerifyPopupVC: UIViewController {
     @IBOutlet weak var lblTitleVerified: UILabel!
 
     // MARK: - Variables
-    var closerForBack : ((_ isTrue: Bool) -> Void)?
+    var closerForBack: ((_ isTrue: Bool) -> Void)?
     var strMessage = ""
     var img = ""
     var strMsgForlbl = ""

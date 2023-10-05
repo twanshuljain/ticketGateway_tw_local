@@ -44,9 +44,9 @@ class SeeFullTicketVC: UIViewController {
     @IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var vwSeeLessDottedLine: UIView!
     @IBOutlet weak var vwRefundPolicyDottedLine: UIView!
-    @IBOutlet weak var tblMyTicket : UITableView!
+    @IBOutlet weak var tblMyTicket: UITableView!
     @IBOutlet weak var heightOfMyTicket: NSLayoutConstraint!
-    @IBOutlet weak var imgScanCode : UIImageView!
+    @IBOutlet weak var imgScanCode: UIImageView!
     @IBOutlet weak var imgProfile: UIImageView!
 
     var viewModel: SeeFullTicketViewModel = SeeFullTicketViewModel()

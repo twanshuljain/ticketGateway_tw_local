@@ -13,7 +13,7 @@ class BandLeaderProfileViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var lblMailId: UILabel!
-    @IBOutlet weak var btnFollow:UIButton!
+    @IBOutlet weak var btnFollow: UIButton!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var collectionView:UICollectionView!
@@ -22,9 +22,9 @@ class BandLeaderProfileViewController: UIViewController {
     @IBOutlet weak var imagePageController: AdvancedPageControlView!
     @IBOutlet weak var lblOtherBrandLeader: UILabel!
     @IBOutlet weak var btnSeeAll: UIButton!
-    @IBOutlet weak var htCollectionView:NSLayoutConstraint!
-    @IBOutlet weak var htImageController:NSLayoutConstraint!
-    @IBOutlet weak var htbtnSeeAll:NSLayoutConstraint!
+    @IBOutlet weak var htCollectionView: NSLayoutConstraint!
+    @IBOutlet weak var htImageController: NSLayoutConstraint!
+    @IBOutlet weak var htbtnSeeAll: NSLayoutConstraint!
 
     // MARK: - Variables
     var viewModel  = BandLeaderProfileViewModel()

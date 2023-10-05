@@ -64,7 +64,7 @@ extension AmountAddedSuccessfullyVC {
 
    }
 
-extension AmountAddedSuccessfullyVC : NavigationBarViewDelegate {
+extension AmountAddedSuccessfullyVC: NavigationBarViewDelegate {
     func navigationBackAction() {
 
     self.navigationController?.popViewController(animated: true)

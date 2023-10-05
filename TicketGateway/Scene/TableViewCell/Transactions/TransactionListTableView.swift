@@ -7,8 +7,8 @@
 import UIKit
 
 class ExpandableNames {
-    var isExpanded : Bool
-    var names : [String]
+    var isExpanded: Bool
+    var names: [String]
     init(isExpanded: Bool, names: [String]) {
         self.isExpanded = isExpanded
         self.names = names
@@ -39,7 +39,7 @@ class TransactionListTableView: UITableView {
 
 // MARK: - TableView Delegate
 
-extension TransactionListTableView : UITableViewDelegate,UITableViewDataSource{
+extension TransactionListTableView: UITableViewDelegate,UITableViewDataSource{
 
     func numberOfSections(in tableView: UITableView) -> Int{
         if isFrom == "MyWallet" {

@@ -23,7 +23,7 @@ class EventSearchHomeVC: UIViewController,  UITextFieldDelegate {
     @IBOutlet weak var txtSortByRelevance: DropDown!
     @IBOutlet weak var vwCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var vwSortByRelevanceHeight: NSLayoutConstraint!
-    weak var delegate : EventDetailVCProtocol?
+    weak var delegate: EventDetailVCProtocol?
     // MARK: - Variables
     private let viewModel = GetEventCategoryViewModel()
     override func viewDidLoad() {

@@ -252,7 +252,7 @@ extension OtpNumberVC {
 }
 
 // MARK: - UITextFieldDelegate
-extension OtpNumberVC : UITextFieldDelegate {
+extension OtpNumberVC: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return false
@@ -318,7 +318,7 @@ extension OtpNumberVC : UITextFieldDelegate {
 }
 
 // MARK: - NavigationBarViewDelegate
-extension OtpNumberVC : NavigationBarViewDelegate {
+extension OtpNumberVC: NavigationBarViewDelegate {
   func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)
   }

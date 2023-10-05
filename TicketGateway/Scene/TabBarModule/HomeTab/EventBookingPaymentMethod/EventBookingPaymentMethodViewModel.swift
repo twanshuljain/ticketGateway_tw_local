@@ -37,8 +37,8 @@ final class EventBookingPaymentMethodViewModel{
 
     var stripeUser: StripeCreateUser?
     var addCard:AddCard?
-    var selectedMonth : String?
-    var selectedYear : String?
+    var selectedMonth: String?
+    var selectedYear: String?
     var checkoutId: String?
     var name: String?
     var cardNumber: String?
@@ -48,7 +48,7 @@ final class EventBookingPaymentMethodViewModel{
 }
 
 extension EventBookingPaymentMethodViewModel{
-//    func checkout(vc:UIViewController) {
+//    func checkout(vc: UIViewController) {
 //        let cardParams = STPCardParams()
 //        cardParams.number = "4242424242424242"
 //        cardParams.expMonth = 12

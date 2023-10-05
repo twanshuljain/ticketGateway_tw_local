@@ -8,12 +8,9 @@
 import UIKit
 
 enum UserDefaultKeys: String {
-    case userAuthData                                                   = "userAuthData"
-    case isGuestLogin                                                   = "isGuestLogin"
-
+    case userAuthData
+    case isGuestLogin
 }
-
 enum UserDefaultModelKeys: String {
-case userAuthData                                               = "userAuthData"
-
+    case userAuthData
 }

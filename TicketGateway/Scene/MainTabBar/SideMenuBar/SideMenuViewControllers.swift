@@ -8,7 +8,7 @@
 //class SideMenuViewControllers: UIViewController{
 //
 //    @IBOutlet weak var lblName: UILabel!
-//    @IBOutlet weak var lblProfileview : UILabel!
+//    @IBOutlet weak var lblProfileview: UILabel!
 //    @IBOutlet weak var imgProfile: UIImageView!
 //    @IBOutlet weak var tblList: SideMenuList!
 //

@@ -213,7 +213,7 @@ extension ManageEventEditProfileVC: UITextFieldDelegate {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageEventEditProfileVC : NavigationBarViewDelegate {
+extension ManageEventEditProfileVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

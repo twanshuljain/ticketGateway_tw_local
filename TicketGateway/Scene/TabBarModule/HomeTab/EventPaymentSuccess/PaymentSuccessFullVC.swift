@@ -134,7 +134,7 @@ extension PaymentSuccessFullVC {
     }
 }
 //// MARK: - NavigationBarViewDelegate
-//extension PaymentSuccessFullVC : NavigationBarViewDelegate {
+//extension PaymentSuccessFullVC: NavigationBarViewDelegate {
 //    func navigationBackAction() {
 //        self.navigationController?.popViewController(animated: true)
 //    }

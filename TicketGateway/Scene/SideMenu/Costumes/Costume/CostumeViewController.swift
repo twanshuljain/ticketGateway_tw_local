@@ -51,7 +51,7 @@ class CostumeViewController: UIViewController, UITextFieldDelegate {
 
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.tblViewHeight.constant = costumeTableView.contentSize.height
     }
 }

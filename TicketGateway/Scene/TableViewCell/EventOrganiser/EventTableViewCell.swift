@@ -19,10 +19,10 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var btnShare: UIButton!
-    @IBOutlet weak var viewNoData : UIView!
-    @IBOutlet weak var lblNoData : UILabel!
-    @IBOutlet weak var imgTime : UIImageView!
-    @IBOutlet weak var lblSeperator : UILabel!
+    @IBOutlet weak var viewNoData: UIView!
+    @IBOutlet weak var lblNoData: UILabel!
+    @IBOutlet weak var imgTime: UIImageView!
+    @IBOutlet weak var lblSeperator: UILabel!
 
     var getEvent:GetEventModel?{
         didSet{
@@ -36,7 +36,7 @@ class EventTableViewCell: UITableViewCell {
             }
             self.lblTitle.text = getEvent?.event?.title ?? ""
             self.lblPrice.text = "$ \(getEvent?.ticketOnwards ?? 0) onwards"
-            self.lblAddress.text = getEvent?.locationType == VIRTUAL ? VirtualEvent : getEvent?.locationType == MULTIPLE ? MultipleLocation : (getEvent?.location?.eventAddress ?? "-")
+            self.lblAddress.text = getEvent?.locationType == VIRTUAL ? VirtualEvent: getEvent?.locationType == MULTIPLE ? MultipleLocation: (getEvent?.location?.eventAddress ?? "-")
             //            self.lblAddress.text = getEvent?.location?.eventAddress ?? "-"
 
             if getEvent?.locationType == MULTIPLE{

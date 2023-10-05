@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
-struct GetUserProfileModel : Codable {
-    var userData : UserData?
-    var profileCompletePercentage : Int?
+struct GetUserProfileModel: Codable {
+    var userData: UserData?
+    var profileCompletePercentage: Int?
     init() {
 
     }
@@ -18,35 +18,35 @@ struct GetUserProfileModel : Codable {
         case profileCompletePercentage = "profile_complete_percentage"
     }
 }
-struct UserData : Codable {
-    var createdBy : String?
-    var gender : String?
-    var country : String?
-    var isAdminUser : Bool?
-    var updatedBy : String?
-    var dob : String?
-    var isVerify : Bool?
-    var isAdminTourCompleted : Bool?
-    var title : String?
-    var homePhone : String?
-    var role : String?
-    var image : String?
-    var fullName : String?
-    var cellPhone : String?
-    var username : String?
-    var suffix : String?
-    var status : String?
-    var signature : String?
-    var id : Int?
-    var password : String?
-    var allowToCreateCostume : Bool?
-    var adminType : String?
-    var createdAt : String?
-    var email : String?
-    var allowToReserveSittings : Bool?
-    var allowSuperPromoterLogin : String?
-    var updatedAt : String?
-    var allowAllTypeOfCards : Bool?
+struct UserData: Codable {
+    var createdBy: String?
+    var gender: String?
+    var country: String?
+    var isAdminUser: Bool?
+    var updatedBy: String?
+    var dob: String?
+    var isVerify: Bool?
+    var isAdminTourCompleted: Bool?
+    var title: String?
+    var homePhone: String?
+    var role: String?
+    var image: String?
+    var fullName: String?
+    var cellPhone: String?
+    var username: String?
+    var suffix: String?
+    var status: String?
+    var signature: String?
+    var id: Int?
+    var password: String?
+    var allowToCreateCostume: Bool?
+    var adminType: String?
+    var createdAt: String?
+    var email: String?
+    var allowToReserveSittings: Bool?
+    var allowSuperPromoterLogin: String?
+    var updatedAt: String?
+    var allowAllTypeOfCards: Bool?
 
     enum CodingKeys: String, CodingKey {
 

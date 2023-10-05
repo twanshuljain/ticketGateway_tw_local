@@ -23,7 +23,7 @@ class OrganizersArtistsListCell: UITableViewCell {
         didSet {
             lblName.text = suggestedOrganizerData?.name ?? "-"
             lblFollowers.text = "\(suggestedOrganizerData?.follower?.first ?? 0) followers"
-            btnfollow.setTitle((suggestedOrganizerData?.isFollow ?? false) ? "Following" : "Follow", for: .normal)
+            btnfollow.setTitle((suggestedOrganizerData?.isFollow ?? false) ? "Following": "Follow", for: .normal)
             if let imageUrl = suggestedOrganizerData?.profileImage {
                 if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                     let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""

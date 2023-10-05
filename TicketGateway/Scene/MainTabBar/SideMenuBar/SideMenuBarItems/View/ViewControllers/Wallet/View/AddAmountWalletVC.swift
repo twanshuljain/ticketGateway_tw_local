@@ -186,7 +186,7 @@ extension AddAmountWalletVC {
         self.txtCountryCUrrency.showList()
     }
 
-    func setGradientBackground( viewadd : UIView) {
+    func setGradientBackground( viewadd: UIView) {
         viewadd.layer.insertSublayer(gradientLayer, at:0)
     }
 
@@ -278,7 +278,7 @@ extension AddAmountWalletVC {
 
 }
 
-extension AddAmountWalletVC : UITextFieldDelegate{
+extension AddAmountWalletVC: UITextFieldDelegate{
     //MARK: TextField Delegate -
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.txtCardNumber{
@@ -448,7 +448,7 @@ extension AddAmountWalletVC:UIPickerViewDelegate,UIPickerViewDataSource{
     }
 }
 
-extension AddAmountWalletVC : NavigationBarViewDelegate {
+extension AddAmountWalletVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

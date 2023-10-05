@@ -21,7 +21,7 @@ class ViewMoreEventsVC: UIViewController {
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var parentView:UIView!
     var viewModel = ViewMoreEventsViewModel()
-    weak var delegate : ViewMoreEventsVCProtocol?
+    weak var delegate: ViewMoreEventsVCProtocol?
     weak var updateHomeScreenDelegate: (EventDetailVCProtocol)?
 
     override func viewDidLoad() {
@@ -494,7 +494,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                  self.btnLikeActionTapped(btn: btn, indexPath: indexPath)
             }
             cell.btnShare.mk_addTapHandler { (btn) in
-                 print("You can use here also directly : \(indexPath.row)")
+                 print("You can use here also directly: \(indexPath.row)")
                  self.btnShareActionTapped(btn: btn, indexPath: indexPath)
             }
             if self.viewModel.isComingFrom == .home {
@@ -504,46 +504,46 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
                 case .nearByLocation:
                     if self.viewModel.itemsLocation.indices.contains(indexPath.row) {
                         cell.getEvent =  self.viewModel.itemsLocation[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsLocation[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
                     }
                 case .weekend:
                     if self.viewModel.itemsWeekend.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsWeekend[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsWeekend[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
                     }
                 case .online:
                     if self.viewModel.itemsVirtual.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsVirtual[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsVirtual[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
                     }
                 case .popular:
                     if self.viewModel.itemsPopular.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsPopular[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsPopular[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
                     }
                 case .free:
                     if self.viewModel.itemsFree.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsFree[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsFree[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
                     }
                 case .upcoming:
                     if self.viewModel.itemsUpcoming.indices.contains(indexPath.row) {
                         cell.getEvent = self.viewModel.itemsUpcoming[indexPath.row]
-                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                        cell.btnLike.setImage(UIImage(named: (viewModel.itemsUpcoming[indexPath.row].likeCountData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
                     }
                 }
             } else {
                 if self.viewModel.itemsSuggestedEvents.indices.contains(indexPath.row) {
                     cell.getEvent =  self.viewModel.itemsSuggestedEvents[indexPath.row]
-                    cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+                    cell.btnLike.setImage(UIImage(named: (viewModel.itemsSuggestedEvents[indexPath.row].isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
                 }
             }
             return cell
         }
         return UITableViewCell()
     }
-    func btnShareActionTapped(btn:UIButton, indexPath: IndexPath) {
-        print("IndexPath : \(indexPath.row)")
+    func btnShareActionTapped(btn: UIButton, indexPath: IndexPath) {
+        print("IndexPath: \(indexPath.row)")
         if viewModel.isComingFrom == .home {
             switch viewModel.arrEventCategory[viewModel.index] {
             case .noLocationData:
@@ -580,13 +580,13 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    func btnLikeActionTapped(btn:UIButton, indexPath: IndexPath) {
+    func btnLikeActionTapped(btn: UIButton, indexPath: IndexPath) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if (UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin)) {
             self.showToast(message: Unable_To_Like)
             return
         }
-        print("IndexPath row : \(indexPath.row)")
+        print("IndexPath row: \(indexPath.row)")
         if viewModel.isComingFrom == .home {
             switch viewModel.arrEventCategory[viewModel.index] {
             case .noLocationData:
@@ -634,7 +634,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         self.addLoader(indexPath: indexPath)
     }
 
-    func addLoader(indexPath : IndexPath) {
+    func addLoader(indexPath: IndexPath) {
         let lastSectionIndex = self.tblView.numberOfSections - 1
         let lastRowIndex = tblView.numberOfRows(inSection: lastSectionIndex) - 1
         if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
@@ -664,7 +664,7 @@ extension ViewMoreEventsVC: CustomSearchMethodsDelegate {
 }
 
 // MARK: - UITextFieldDelegate
-extension ViewMoreEventsVC : UITextFieldDelegate {
+extension ViewMoreEventsVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let view = self.createView(storyboard: .home, storyboardID: .EventSearchHomeVC) as? EventSearchHomeVC
         self.navigationController?.pushViewController(view!, animated: true)
@@ -687,7 +687,7 @@ extension ViewMoreEventsVC: EventDetailVCProtocol {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ViewMoreEventsVC : NavigationBarViewDelegate {
+extension ViewMoreEventsVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
         if viewModel.isLikedAnyEvent {

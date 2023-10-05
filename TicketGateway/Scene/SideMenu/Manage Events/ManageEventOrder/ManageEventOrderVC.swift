@@ -7,7 +7,7 @@
 import UIKit
 import SideMenu
 class ExpandableName {
-    var isExpanded : Bool
+    var isExpanded: Bool
     init(isExpanded: Bool) {
         self.isExpanded = isExpanded
     }
@@ -155,7 +155,7 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.isRefundRequest ? 50 : 0
+        return viewModel.isRefundRequest ? 50: 0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var vc = createView(storyboard: .manageventorder, storyboardID: .ManageEventOrderDeatilVC)

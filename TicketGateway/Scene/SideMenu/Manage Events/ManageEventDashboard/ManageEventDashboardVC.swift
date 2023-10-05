@@ -59,7 +59,7 @@ class ManageEventDashboardVC: UIViewController {
         self.navigationView.imgBack.image = UIImage(named: BACK_ARROW_ICON)
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTableView.constant = tblTickets.contentSize.height
 
     }
@@ -110,7 +110,7 @@ extension ManageEventDashboardVC{
 }
 
 // MARK: - NavigationBarViewDelegate
-extension ManageEventDashboardVC : NavigationBarViewDelegate{
+extension ManageEventDashboardVC: NavigationBarViewDelegate{
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
 
@@ -119,5 +119,5 @@ extension ManageEventDashboardVC : NavigationBarViewDelegate{
   }
 }
 // MARK: - UITextFieldDelegate
-extension ManageEventDashboardVC : UITextFieldDelegate{
+extension ManageEventDashboardVC: UITextFieldDelegate{
 }

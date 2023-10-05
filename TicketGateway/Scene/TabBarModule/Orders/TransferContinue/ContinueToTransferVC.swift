@@ -141,13 +141,13 @@ extension ContinueToTransferVC {
         })
     }
 
-    @IBAction private func btnChangeNumberAction(_ sender:UIButton) {
+    @IBAction private func btnChangeNumberAction(_ sender: UIButton) {
         self.viewChangeName.backgroundColor = .clear
         self.viewModel.isChangeName = true
         self.txtNameOnTicket.isUserInteractionEnabled = true
     }
 
-    @IBAction private func btnTransferTicketAction(_ sender:UIButton) {
+    @IBAction private func btnTransferTicketAction(_ sender: UIButton) {
         self.view.endEditing(true)
         self.viewModel.mobileNumber = self.txtPhoneNumber.text ?? ""
         self.viewModel.email = self.txtEmail.text ?? ""
@@ -163,7 +163,7 @@ extension ContinueToTransferVC {
         }
     }
 
-    @IBAction private func btnCheckTCAction(_ sender:UIButton) {
+    @IBAction private func btnCheckTCAction(_ sender: UIButton) {
         self.viewModel.isTCsChecked = !self.viewModel.isTCsChecked
         if self.viewModel.isTCsChecked{
             self.btnCheck.cornerRadius = 2

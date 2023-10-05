@@ -183,7 +183,7 @@ extension AddCardVC {
 
 }
 
-extension AddCardVC : UITextFieldDelegate{
+extension AddCardVC: UITextFieldDelegate{
     //MARK: TextField Delegate -
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.txtCardNumber{
@@ -378,7 +378,7 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
     }
 }
 
-extension AddCardVC : NavigationBarViewDelegate {
+extension AddCardVC: NavigationBarViewDelegate {
     func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)
   }

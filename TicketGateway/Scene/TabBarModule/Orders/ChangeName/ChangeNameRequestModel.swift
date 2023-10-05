@@ -8,9 +8,9 @@
 import Foundation
 
 struct ChangeNameRequestModel:Codable{
-    var ticketId : Int?
-    var firstName, lastName : String?
-    var ticketOrderId : Int?
+    var ticketId: Int?
+    var firstName, lastName: String?
+    var ticketOrderId: Int?
 
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"

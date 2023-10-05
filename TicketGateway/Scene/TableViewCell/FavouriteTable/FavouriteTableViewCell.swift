@@ -77,7 +77,7 @@ class FavouriteTableViewCell: UITableViewCell {
         lblAddress.text = "NA"
         lblDate.text = "NA"
         lblTimeOfVenue.text = "NA"
-//            btnLike.setImage(UIImage(named: (getVenueData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+//            btnLike.setImage(UIImage(named: (getVenueData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
         if let imageUrl = getVenueData?.image {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -105,7 +105,7 @@ class FavouriteTableViewCell: UITableViewCell {
         lblAddress.text = getSuggestionsData?.location?.eventAddress ?? "-"
         lblDate.text = "\(getSuggestionsData?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getSuggestionsData?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
         lblTime.text = "\(getSuggestionsData?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getSuggestionsData?.date?.eventEndTime?.getFormattedTime() ?? "")"
-        btnLike.setImage(UIImage(named: (getSuggestionsData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+        btnLike.setImage(UIImage(named: (getSuggestionsData?.isLiked ?? false) ? "favSele_ip": "favUnSele_ip"), for: .normal)
         if let imageUrl = getSuggestionsData?.coverImage?.eventCoverImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""

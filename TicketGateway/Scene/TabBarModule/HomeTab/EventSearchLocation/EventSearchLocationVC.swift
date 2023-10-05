@@ -30,7 +30,7 @@ class EventSearchLocationVC: UIViewController {
     var countriesModel = [CountryInfo]()
     var searchCountriesModel = [CountryInfo]()
     var selecetdCountriesModel:CountryInfo?
-    var selectedCountry : String?
+    var selectedCountry: String?
     var countries = [[String: String]]()
     override func viewDidLoad() {
         super.viewDidLoad()

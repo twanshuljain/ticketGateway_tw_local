@@ -124,7 +124,7 @@ extension ManageEventEditProfileVC: UITextFieldDelegate {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageEventEditProfileVC : NavigationBarViewDelegate {
+extension ManageEventEditProfileVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -165,7 +165,7 @@ extension ManageEventEditProfileVC :  RSCountrySelectedDelegate  {
         let data = try? Data(contentsOf: URL(fileURLWithPath: (Bundle.main.path(forResource: "countries", ofType: "json"))!))
         do {
             let parsedObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-            countries = parsedObject as! [[String : String]]
+            countries = parsedObject as! [[String: String]]
 
         }catch {
 

@@ -80,8 +80,8 @@ class PlaceholderTextView: UITextView {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = textAlignment
             let attributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue) : font!,
-            NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue) : placeholderColor,
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): font!,
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): placeholderColor,
             NSAttributedString.Key(rawValue: NSAttributedString.Key.paragraphStyle.rawValue)  : paragraphStyle]
 
             placeholderText.draw(in: placeholderRectForBounds(bounds: bounds), withAttributes: attributes)

@@ -81,7 +81,7 @@ extension ManageSellTicketSuccessfully {
 
    }
 
-extension ManageSellTicketSuccessfully : NavigationBarViewDelegate {
+extension ManageSellTicketSuccessfully: NavigationBarViewDelegate {
     func navigationBackAction() {
 
     self.navigationController?.popViewController(animated: true)

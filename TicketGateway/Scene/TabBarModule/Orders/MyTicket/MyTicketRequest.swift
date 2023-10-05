@@ -8,5 +8,5 @@
 import Foundation
 
 struct MyTicketRequest:Codable{
-    var page, limit : Int?
+    var page, limit: Int?
 }

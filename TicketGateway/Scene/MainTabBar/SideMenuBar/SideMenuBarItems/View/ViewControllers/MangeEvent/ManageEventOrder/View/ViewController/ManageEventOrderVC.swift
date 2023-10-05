@@ -152,7 +152,7 @@ extension ManageEventOrderVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return isRefundRequest ? 50 : 0
+        return isRefundRequest ? 50: 0
 
     }
 

@@ -14,9 +14,9 @@ class CostumeListTableView: UITableView {
     var tableDidSelectAtIndex:((Int) ->())?
     var isForDetailVC: String?
     var tapOnFrontLine:((UIButton) ->())?
-    var costumeObj:UIViewController?
+    var costumeObj: UIViewController?
 
-    func configure(vc:UIViewController) {
+    func configure(vc: UIViewController) {
         self.costumeObj = vc
         self.separatorColor = UIColor.clear
         self.delegate = self

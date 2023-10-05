@@ -17,7 +17,7 @@ final class NumberVerifyViewModel {
     var totalTime = 60
     var otpNumVC: OtpNumberVC?
     var eventId: Int?
-    var selectedArrTicketList : [EventTicket]?
+    var selectedArrTicketList: [EventTicket]?
     var eventDetail:EventDetail?
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""
@@ -57,7 +57,7 @@ extension NumberVerifyViewModel {
     }
 
     func checkoutVerifyOTP(isComingFrom: IsComingFrom,complition: @escaping (Bool, String) -> Void) {
-        var param : NumberVerifyRequest?
+        var param: NumberVerifyRequest?
 
         let numberWithoutCode = objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? ""
         let number = "\(objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")" + (objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")

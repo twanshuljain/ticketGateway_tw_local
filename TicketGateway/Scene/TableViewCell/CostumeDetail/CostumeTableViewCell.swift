@@ -9,12 +9,12 @@ import SwiftUI
 import AdvancedPageControl
 
 protocol CostumeTableViewCellProtocol {
-    func didTapOnFrontLine(sender:UIButton)
+    func didTapOnFrontLine(sender: UIButton)
     func didSelect(index: IndexPath)
 }
 
 extension CostumeTableViewCellProtocol {
-    func didTapOnFrontLine(sender:UIButton) {}
+    func didTapOnFrontLine(sender: UIButton) {}
     func didSelect(index: IndexPath) {}
 }
 
@@ -39,7 +39,7 @@ class CostumeTableViewCell: UITableViewCell {
     @IBOutlet weak var imagePageController: AdvancedPageControlView!
     @IBOutlet weak var htImagePageController: NSLayoutConstraint!
 
-    @IBOutlet weak var htRegisterBtn:NSLayoutConstraint!
+    @IBOutlet weak var htRegisterBtn: NSLayoutConstraint!
 
     let imgCollectionData = ["costume_ip", "costume_ip", "costume_ip", "costume_ip"]
     var delegate:CostumeTableViewCellProtocol?
@@ -56,7 +56,7 @@ class CostumeTableViewCell: UITableViewCell {
 
     }
 
-    func setData(costumeObj:UIViewController?, isForDetailVC: String?) {
+    func setData(costumeObj: UIViewController?, isForDetailVC: String?) {
         //cell.imgCostumeImage.image = UIImage(named: data)
         self.lblTitle.text = "  Jouvert Republic 2023"
         self.btnFrontLine.titleLabel?.text = "Frontline | Trini Revellers "

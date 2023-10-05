@@ -10,7 +10,7 @@ class ManageEventSettingVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblProfileview : UILabel!
+    @IBOutlet weak var lblProfileview: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var navitem: UITabBarItem!
@@ -121,7 +121,7 @@ extension ManageEventSettingVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 // MARK: - NavigationBarViewDelegate
-extension ManageEventSettingVC : NavigationBarViewDelegate {
+extension ManageEventSettingVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

@@ -11,7 +11,7 @@ class FilterSelectedTableViewCell: UITableViewCell {
 
     // MARK: - OUTLETS
     @IBOutlet weak var lblFilter:UILabel!
-    @IBOutlet weak var btnSelectedFilter:UIButton!
+    @IBOutlet weak var btnSelectedFilter: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()

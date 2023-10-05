@@ -13,7 +13,7 @@ final class EventBookingTicketViewModel{
     var ticketId = ""
     var eventDetail:EventDetail?
     var eventId: Int?
-    var arrTicketList : [EventTicket]?
+    var arrTicketList: [EventTicket]?
     var selectedArrTicketList = [EventTicket]()
     var feeStructure:FeeStructure?
     var dispatchGroup:DispatchGroup = DispatchGroup()

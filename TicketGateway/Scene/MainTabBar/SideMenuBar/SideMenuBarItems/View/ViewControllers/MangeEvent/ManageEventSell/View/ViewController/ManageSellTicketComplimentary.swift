@@ -64,7 +64,7 @@ extension ManageSellTicketComplimentary {
 
 }
 
-extension ManageSellTicketComplimentary : NavigationBarViewDelegate ,UITextFieldDelegate{
+extension ManageSellTicketComplimentary: NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {
 
         self.navigationController?.popViewController(animated: false)

@@ -10,7 +10,7 @@ import SVProgressHUD
 final class GetEventCategoryViewModel {
 
     // MARK: - Variables
-    var arrCategoryData : [GetEventCategoryModel] = [GetEventCategoryModel]()
+    var arrCategoryData: [GetEventCategoryModel] = [GetEventCategoryModel]()
     var arrSearchCategoryData = [GetEventModel]()
     var arrSearchData = [GetEventModel]()
 }

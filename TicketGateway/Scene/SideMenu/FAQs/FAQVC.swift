@@ -14,7 +14,7 @@ class arrdata {
     var queValue: String
     var ansValue: String
     var isExpand: Bool
-    init(queValue : String, isExpand : Bool, ansValue: String)
+    init(queValue: String, isExpand: Bool, ansValue: String)
     {
         self.queValue = queValue
         self.isExpand = isExpand
@@ -147,7 +147,7 @@ extension FAQVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - NavigationBarViewDelegate
-extension FAQVC : NavigationBarViewDelegate {
+extension FAQVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

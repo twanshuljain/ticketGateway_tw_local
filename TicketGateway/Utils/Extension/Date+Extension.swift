@@ -41,8 +41,6 @@ extension Date {
     func getWeekDay(date: Date) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE"
-        //dateFormatter.timeZone = .current
-        //dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         return dateFormatter.string(from: date).capitalized
     }
     func convertToString() -> String {

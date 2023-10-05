@@ -30,8 +30,8 @@ extension CostumeTypeCollectionView: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CostumeTypeCollectionViewCell", for: indexPath) as! CostumeTypeCollectionViewCell
         let data = costumeType[indexPath.row]
         cell.lblCostumeType.text = data
-        cell.bgView.backgroundColor = selectedIndex == indexPath.row ? UIColor.setColor(colorType: .lblTextPara) : UIColor.setColor(colorType: .BorderLineColour)
-        cell.lblCostumeType.textColor = selectedIndex == indexPath.row ? UIColor.white : UIColor.darkGray
+        cell.bgView.backgroundColor = selectedIndex == indexPath.row ? UIColor.setColor(colorType: .lblTextPara): UIColor.setColor(colorType: .BorderLineColour)
+        cell.lblCostumeType.textColor = selectedIndex == indexPath.row ? UIColor.white: UIColor.darkGray
         return cell
     }
 

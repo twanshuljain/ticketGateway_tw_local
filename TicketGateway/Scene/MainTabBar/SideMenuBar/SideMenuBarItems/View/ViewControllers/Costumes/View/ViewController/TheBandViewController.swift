@@ -7,7 +7,7 @@
 import UIKit
 
 class InstallmentInfo {
-    var isExpanded : Bool
+    var isExpanded: Bool
 
     init(isExpanded: Bool) {
         self.isExpanded = isExpanded
@@ -16,7 +16,7 @@ class InstallmentInfo {
 }
 
 class ExpandableCells {
-    var isExpanded : Bool
+    var isExpanded: Bool
     var data: [InstallmentInfo]
     init(data: [InstallmentInfo],isExpanded: Bool) {
         self.isExpanded = isExpanded
@@ -72,7 +72,7 @@ class TheBandViewController: UIViewController {
 
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.tbleViewHeight.constant = paymentTableView.contentSize.height
       }
 
@@ -144,10 +144,10 @@ class TheBandViewController: UIViewController {
             isPartialSelected = true
             let arrExpan = [InstallmentInfo]()
             arrData = [ExpandableCells( data: arrExpan, isExpanded: false),
-                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
 
-                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
-                       ExpandableCells( data: [InstallmentInfo(isExpanded : false),InstallmentInfo(isExpanded : false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
+                       ExpandableCells( data: [InstallmentInfo(isExpanded: false),InstallmentInfo(isExpanded: false), InstallmentInfo(isExpanded: false)], isExpanded: false),
                        ExpandableCells( data: arrExpan, isExpanded: false)]
 
             self.paymentTableView.reloadData()

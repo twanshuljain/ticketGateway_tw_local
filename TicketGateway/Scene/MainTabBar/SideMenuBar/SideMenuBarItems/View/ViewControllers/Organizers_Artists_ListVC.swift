@@ -125,7 +125,7 @@ extension OrganizerArtistListVC {
         }
 }
 
-extension OrganizerArtistListVC : UITableViewDelegate,UITableViewDataSource {
+extension OrganizerArtistListVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
       //  self.viewModel.arrMail.count
@@ -154,7 +154,7 @@ extension OrganizerArtistListVC : UITableViewDelegate,UITableViewDataSource {
   }
 
 }
-extension OrganizerArtistListVC : UICollectionViewDataSource ,UICollectionViewDelegate {
+extension OrganizerArtistListVC: UICollectionViewDataSource ,UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -173,7 +173,7 @@ extension OrganizerArtistListVC : UICollectionViewDataSource ,UICollectionViewDe
     }
 }
 
-extension OrganizerArtistListVC : NavigationBarViewDelegate {
+extension OrganizerArtistListVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

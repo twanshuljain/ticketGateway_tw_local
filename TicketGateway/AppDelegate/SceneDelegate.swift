@@ -12,25 +12,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Shared object
     private static var sceneDelegateManager: SceneDelegate = {
         let manager = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        return manager!
+        return manager ?? SceneDelegate()
     }()
+
     // MARK: - Accessors
     class func sceneDelegateObject() -> SceneDelegate {
         return sceneDelegateManager
     }
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         self.window?.overrideUserInterfaceStyle = .light
         self.isUserAlreadyLogin()
     }
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
@@ -50,46 +46,58 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     func showTabBar() {
-        let storyboard:UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
-        let navigationController = storyboard.instantiateViewController(withIdentifier: "tabBarNav") as? UINavigationController
-        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarVC") as! TabBarVC
-        navigationController!.viewControllers = [rootViewController]
+        let storyboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let navigationController =
+        storyboard.instantiateViewController(withIdentifier: "tabBarNav") as? UINavigationController
+        let rootViewController: UIViewController =
+        storyboard.instantiateViewController(withIdentifier: "TabBarVC") as? TabBarVC ?? TabBarVC()
+        navigationController?.viewControllers = [rootViewController]
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
     func showLogin() {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController = storyboard.instantiateViewController(withIdentifier: "WelcomeLoginSignupNav") as? UINavigationController
-        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
-        navigationController!.viewControllers = [rootViewController]
+        let navigationController =
+        storyboard.instantiateViewController(withIdentifier: "WelcomeLoginSignupNav") as? UINavigationController
+        let rootViewController: UIViewController =
+        storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC ?? LoginVC()
+        navigationController?.viewControllers = [rootViewController]
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
     func showMangeEventTabBar() {
-        let storyboard:UIStoryboard = UIStoryboard(name: "ManageEvents", bundle: nil)
-        let navigationController = storyboard.instantiateViewController(withIdentifier: "TabBarNavMange") as? UINavigationController
-        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarManageVC") as! TabBarManageVC
-        navigationController!.viewControllers = [rootViewController]
+        let storyboard: UIStoryboard = UIStoryboard(name: "ManageEvents", bundle: nil)
+        let navigationController =
+        storyboard.instantiateViewController(withIdentifier: "TabBarNavMange") as? UINavigationController
+        let rootViewController: UIViewController =
+        storyboard.instantiateViewController(withIdentifier: "TabBarManageVC") as? TabBarManageVC ?? TabBarManageVC()
+        navigationController?.viewControllers = [rootViewController]
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
     func showLogin_Signup() {
-        let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let  navController = sb.instantiateViewController(withIdentifier: "WelcomeLoginSignupNav") as? UINavigationController
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let  navController =
+        storyboard.instantiateViewController(withIdentifier: "WelcomeLoginSignupNav") as? UINavigationController
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
     }
     func showIntroScreen() {
-        let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let  navController = sb.instantiateViewController(withIdentifier: "WelcomeIntroNav") as? UINavigationController
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let navController =
+        storyboard.instantiateViewController(withIdentifier: "WelcomeIntroNav") as? UINavigationController
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
     }
     func isUserAlreadyLogin() {
-        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        let userModelSignUp = UserDefaultManager.share.getModelDataFromUserDefults(userData: UserAccountModel.self, key: .userAuthData)
-        print("Get data",userModel?.email)
-        print("Get data",userModelSignUp?.email)
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(
+            userData: SignInAuthModel.self,
+            key: .userAuthData
+        )
+        let userModelSignUp = UserDefaultManager.share.getModelDataFromUserDefults(
+            userData: UserAccountModel.self,
+            key: .userAuthData
+        )
         if userModel?.email != nil || userModelSignUp?.email != nil {
             showTabBar()
         } else {

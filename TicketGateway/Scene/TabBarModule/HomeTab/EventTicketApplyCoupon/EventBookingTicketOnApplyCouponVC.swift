@@ -22,7 +22,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
 
     //coupon
     @IBOutlet weak var btnCheckTermCondition: UIButton!
-    @IBOutlet weak var txtAccessCode : UITextField!
+    @IBOutlet weak var txtAccessCode: UITextField!
     @IBOutlet weak var viewApplyAccessCode: UIView!
     @IBOutlet weak var btnAppliedCode: CustomButtonGradiant!
     @IBOutlet weak var imgApplyAccessCode: UIImageView!
@@ -38,7 +38,7 @@ class EventBookingTicketOnApplyCouponVC: UIViewController {
     @IBOutlet weak var lblTotalTicketPrice :DropDown!
     @IBOutlet weak var enterAccessCodeBgView: UIView!
     @IBOutlet weak var parentView: UIView!
-    @IBOutlet weak var btnRemoveAccessCode : UIButton!
+    @IBOutlet weak var btnRemoveAccessCode: UIButton!
 
     // MARK: - Variables
     let viewModel = EventBookingTicketOnApplyCouponViewModel()
@@ -75,7 +75,7 @@ extension EventBookingTicketOnApplyCouponVC {
         if let time = viewModel.eventDetail?.eventDateObj?.eventStartTime{
             self.navigationView.lblDiscripation.text! += " • \(time.getFormattedTime())"
         }
-       self.lblRefund.text = "Refund Policy : Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
+       self.lblRefund.text = "Refund Policy: Refund available \(self.viewModel.eventDetail?.eventRefundPolicy?.policyDescription ?? "")"
 
     }
 
@@ -140,7 +140,7 @@ extension EventBookingTicketOnApplyCouponVC {
 
         self.btnAppliedAccessCodeAction()
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         self.tblHeight.constant = tblEventTicketTypes.contentSize.height
 
     }
@@ -407,7 +407,7 @@ extension EventBookingTicketOnApplyCouponVC {
 }
 
 // MARK: - TextField Delegate
-extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
+extension EventBookingTicketOnApplyCouponVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         btnAppliedCode.isUserInteractionEnabled = true
         var copystring  = ""
@@ -450,7 +450,7 @@ extension EventBookingTicketOnApplyCouponVC : UITextFieldDelegate {
 }
 
 // MARK: - NavigationBarViewDelegate
-extension EventBookingTicketOnApplyCouponVC : NavigationBarViewDelegate {
+extension EventBookingTicketOnApplyCouponVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

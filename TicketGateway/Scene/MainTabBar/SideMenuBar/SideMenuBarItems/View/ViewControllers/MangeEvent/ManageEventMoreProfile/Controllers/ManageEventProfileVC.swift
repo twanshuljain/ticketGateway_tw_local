@@ -99,7 +99,7 @@ extension ManageEventProfileVC {
     }
 }
 
-extension ManageEventProfileVC : NavigationBarViewDelegate {
+extension ManageEventProfileVC: NavigationBarViewDelegate {
     func navigationBackAction() {
     self.navigationController?.popViewController(animated: true)
   }

@@ -15,8 +15,8 @@ class UpcomingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var btnSeeTickets: UIButton!
-    @IBOutlet weak var blackWhiteView : UIView!
-    @IBOutlet weak var blackWhiteImgView : UIImageView!
+    @IBOutlet weak var blackWhiteView: UIView!
+    @IBOutlet weak var blackWhiteImgView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,13 +49,13 @@ class UpcomingTableViewCell: UITableViewCell {
                         } else {
                             self.imgImage.image = UIImage(named: "homeDas")
                         }
-                        self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale() : self.imgImage.image
+                        self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale(): self.imgImage.image
                     }
                     //self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                    //imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
+                    //imgImage.image = isFaded ? imgImage.image?.convertToGrayscale(): imgImage.image
                 } else {
                     self.imgImage.image = UIImage(named: "homeDas")
-                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
+                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale(): imgImage.image
                 }
             } else {
                 if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
@@ -65,19 +65,19 @@ class UpcomingTableViewCell: UITableViewCell {
                         } else {
                             self.imgImage.image = UIImage(named: "homeDas")
                         }
-                        self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale() : self.imgImage.image
+                        self.imgImage.image = isFaded ? self.imgImage.image?.convertToGrayscale(): self.imgImage.image
                     }
 
 //                    self.imgImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-//                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
+//                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale(): imgImage.image
                 } else {
                     self.imgImage.image = UIImage(named: "homeDas")
-                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
+                    imgImage.image = isFaded ? imgImage.image?.convertToGrayscale(): imgImage.image
                 }
             }
         } else {
             self.imgImage.image = UIImage(named: "homeDas")
-            imgImage.image = isFaded ? imgImage.image?.convertToGrayscale() : imgImage.image
+            imgImage.image = isFaded ? imgImage.image?.convertToGrayscale(): imgImage.image
         }
     }
 

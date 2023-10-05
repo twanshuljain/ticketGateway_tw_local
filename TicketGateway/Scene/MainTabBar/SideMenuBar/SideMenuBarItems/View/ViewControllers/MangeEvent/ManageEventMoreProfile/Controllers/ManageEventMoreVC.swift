@@ -10,7 +10,7 @@ class ManageEventMoreVC: UIViewController {
 
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblProfileview : UILabel!
+    @IBOutlet weak var lblProfileview: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: SideMenuList!
 
@@ -58,7 +58,7 @@ class ManageEventMoreVC: UIViewController {
     }
 }
 
-extension ManageEventMoreVC : NavigationBarViewDelegate {
+extension ManageEventMoreVC: NavigationBarViewDelegate {
     func navigationBackAction() {
         self.navigationController?.popViewController(animated: true)
     }

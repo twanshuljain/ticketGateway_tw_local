@@ -8,15 +8,15 @@
 import UIKit
 
 protocol CustomSearchMethodsDelegate {
-   func leftButtonPressed(_ sender:UIButton)
-   func rightButtonPressed(_ sender:UIButton)
-   func filterButtonPressed(_ sender:UIButton)
+   func leftButtonPressed(_ sender: UIButton)
+   func rightButtonPressed(_ sender: UIButton)
+   func filterButtonPressed(_ sender: UIButton)
 }
 
 extension CustomSearchMethodsDelegate{
-    func leftButtonPressed(_ sender:UIButton) {}
-    func rightButtonPressed(_ sender:UIButton) {}
-    func filterButtonPressed(_ sender:UIButton) {}
+    func leftButtonPressed(_ sender: UIButton) {}
+    func rightButtonPressed(_ sender: UIButton) {}
+    func filterButtonPressed(_ sender: UIButton) {}
 }
 
 enum CustomSearchBarEnum: Int{
@@ -28,14 +28,14 @@ class CustomSearchBar: UIView {
     var searchTextPlaceholder = "Search event..."
     @IBOutlet weak var vwLocation: UIView!
     @IBOutlet weak var btnMenu: UIButton!
-    @IBOutlet weak var wtBtnMenu:NSLayoutConstraint!
+    @IBOutlet weak var wtBtnMenu: NSLayoutConstraint!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var imgMap: UIImageView!
     @IBOutlet weak var lblAddress: UILabel!
-    @IBOutlet weak var btnLocation:UIButton!
+    @IBOutlet weak var btnLocation: UIButton!
     @IBOutlet weak var locationView:UIView!
-    @IBOutlet weak var btnFilter:UIButton!
-    @IBOutlet weak var wtBtnFilter:NSLayoutConstraint!
+    @IBOutlet weak var btnFilter: UIButton!
+    @IBOutlet weak var wtBtnFilter: NSLayoutConstraint!
 
     var delegate:CustomSearchMethodsDelegate?
     var customSearchBarEnum:CustomSearchBarEnum = .home

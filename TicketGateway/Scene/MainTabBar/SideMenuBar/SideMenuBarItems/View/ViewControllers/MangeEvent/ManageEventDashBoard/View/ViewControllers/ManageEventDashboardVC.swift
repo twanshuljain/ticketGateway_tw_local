@@ -77,7 +77,7 @@ class ManageEventDashboardVC: UIViewController {
         }
 
     }
-        override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
             self.heightOfTableView.constant = tblTickets.contentSize.height
 
         }
@@ -91,7 +91,7 @@ class ManageEventDashboardVC: UIViewController {
         self.txtMonths.showList()
     }
 }
-extension ManageEventDashboardVC : NavigationBarViewDelegate ,UITextFieldDelegate{
+extension ManageEventDashboardVC: NavigationBarViewDelegate ,UITextFieldDelegate{
     func navigationBackAction() {
         let sb = UIStoryboard(name: "Home", bundle: Bundle.main)
 

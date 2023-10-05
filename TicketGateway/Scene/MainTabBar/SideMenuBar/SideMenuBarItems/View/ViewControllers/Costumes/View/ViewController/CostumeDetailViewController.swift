@@ -185,8 +185,8 @@ extension CostumeDetailViewController: UICollectionViewDelegate, UICollectionVie
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailCollectionViewCell", for: indexPath) as! ProductDetailCollectionViewCell
             let data = productCollectionData[indexPath.row]
             cell.lblProduct.text = data
-            cell.bgView.backgroundColor = selectedIndex == indexPath.row ? UIColor.setColor(colorType: .lightBlack) : UIColor.white
-            cell.lblProduct.textColor = selectedIndex == indexPath.row ? UIColor.white : UIColor.setColor(colorType: .lblTextPara)
+            cell.bgView.backgroundColor = selectedIndex == indexPath.row ? UIColor.setColor(colorType: .lightBlack): UIColor.white
+            cell.lblProduct.textColor = selectedIndex == indexPath.row ? UIColor.white: UIColor.setColor(colorType: .lblTextPara)
             return cell
         } else if collectionView == videoCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as! VideoCollectionViewCell

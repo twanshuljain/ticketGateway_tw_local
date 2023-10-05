@@ -137,7 +137,7 @@ class APIHandler: NSObject {
               //  if #available(iOS 16.0, *) {
                     let param = try? JSONEncoder().encode(parameters!)
                     do {
-                        let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String : Any]
+                        let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String: Any]
                        // print("---------------", json ?? "")
 //                        requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: json?.keys.first ?? "", value: (json?.values.first as? String) ?? "")])
                         var queryItems = [URLQueryItem]()

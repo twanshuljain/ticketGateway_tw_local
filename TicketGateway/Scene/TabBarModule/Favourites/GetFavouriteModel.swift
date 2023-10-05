@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct GetFavouriteData : Codable {
-    let items : [GetFavouriteItem]?
-    let total : Int?
-    let page : Int?
-    let size : Int?
-    let pages : String?
+struct GetFavouriteData: Codable {
+    let items: [GetFavouriteItem]?
+    let total: Int?
+    let page: Int?
+    let size: Int?
+    let pages: String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -23,13 +23,13 @@ struct GetFavouriteData : Codable {
         case pages = "pages"
     }
 }
-struct GetFavouriteItem : Codable {
-    let eventTitle : String?
-    let coverImage : GetFavouriteCoverImage?
-    let totalLike : Int?
-    let location : String?
-    let eventCountry : String?
-    let eventId : Int?
+struct GetFavouriteItem: Codable {
+    let eventTitle: String?
+    let coverImage: GetFavouriteCoverImage?
+    let totalLike: Int?
+    let location: String?
+    let eventCountry: String?
+    let eventId: Int?
 
     enum CodingKeys: String, CodingKey {
 
@@ -42,11 +42,11 @@ struct GetFavouriteItem : Codable {
     }
 }
 
-struct GetFavouriteCoverImage : Codable {
-    let eventAdditionalCoverImages : [String]?
-    let eventCoverImage : String?
-    let id : Int?
-    let eventId : Int?
+struct GetFavouriteCoverImage: Codable {
+    let eventAdditionalCoverImages: [String]?
+    let eventCoverImage: String?
+    let id: Int?
+    let eventId: Int?
 
     enum CodingKeys: String, CodingKey {
 
@@ -57,12 +57,12 @@ struct GetFavouriteCoverImage : Codable {
     }
 }
 // MARK: Get Venue Data
-struct GetVenueData : Codable {
-    let items : [GetVenueItem]?
-    let total : Int?
-    let page : Int?
-    let size : Int?
-    let pages : String?
+struct GetVenueData: Codable {
+    let items: [GetVenueItem]?
+    let total: Int?
+    let page: Int?
+    let size: Int?
+    let pages: String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -74,39 +74,39 @@ struct GetVenueData : Codable {
     }
 }
 struct GetVenueItem: Codable {
-    let website : String?
-    let isApproved : Bool?
-    let userId : String?
-    let minimumAge : String?
-    let id : Int?
-    let address : String?
-    let isVerified : Bool?
-    let isActive : Bool?
-    let createdAt : String?
-    let state : String?
-    let facebookId : String?
-    let crowd : String?
-    let updatedAt : String?
-    let city : String?
-    let linkedinId : String?
-    let dressCode : String?
-    let createdBy : String?
-    let zipCode : String?
-    let instagramId : String?
-    let music : String?
-    let updatedBy : String?
-    let image : String?
-    let youtubeId : String?
-    let description : String?
-    let venueName : String?
-    let eventId : String?
-    let cellPhone : String?
-    let price : String?
-    let venueTypeId : Int?
-    let ratio : String?
-    let venueTypeName : String?
-    let isLike : Bool?
-    let totalLike : Int?
+    let website: String?
+    let isApproved: Bool?
+    let userId: String?
+    let minimumAge: String?
+    let id: Int?
+    let address: String?
+    let isVerified: Bool?
+    let isActive: Bool?
+    let createdAt: String?
+    let state: String?
+    let facebookId: String?
+    let crowd: String?
+    let updatedAt: String?
+    let city: String?
+    let linkedinId: String?
+    let dressCode: String?
+    let createdBy: String?
+    let zipCode: String?
+    let instagramId: String?
+    let music: String?
+    let updatedBy: String?
+    let image: String?
+    let youtubeId: String?
+    let description: String?
+    let venueName: String?
+    let eventId: String?
+    let cellPhone: String?
+    let price: String?
+    let venueTypeId: Int?
+    let ratio: String?
+    let venueTypeName: String?
+    let isLike: Bool?
+    let totalLike: Int?
     enum CodingKeys: String, CodingKey {
         case website = "website"
         case isApproved = "is_approved"

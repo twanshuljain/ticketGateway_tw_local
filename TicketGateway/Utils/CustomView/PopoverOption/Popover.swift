@@ -242,7 +242,7 @@ open class Popover: UIView {
             arrow.addLine(
                 to: CGPoint(
                     x: arrowPoint.x - self.arrowSize.width * 0.5,
-                    y: self.isCornerLeftArrow ? self.arrowSize.height : self.bounds.height - self.arrowSize.height
+                    y: self.isCornerLeftArrow ? self.arrowSize.height: self.bounds.height - self.arrowSize.height
                 )
             )
 
@@ -293,7 +293,7 @@ open class Popover: UIView {
             arrow.addLine(
                 to: CGPoint(
                     x: arrowPoint.x + self.arrowSize.width * 0.5,
-                    y: self.isCornerRightArrow ? self.arrowSize.height : self.bounds.height - self.arrowSize.height
+                    y: self.isCornerRightArrow ? self.arrowSize.height: self.bounds.height - self.arrowSize.height
                 )
             )
 
@@ -316,8 +316,8 @@ open class Popover: UIView {
             } else {
                 arrow.addLine(
                     to: CGPoint(
-                        x: self.isBehindCornerLeftArrow ? self.frame.minX - self.arrowSize.width * 0.5 : arrowPoint.x + self.arrowSize.width * 0.5,
-                        y: self.isCornerRightArrow ? self.arrowSize.height + self.bounds.height : self.arrowSize.height
+                        x: self.isBehindCornerLeftArrow ? self.frame.minX - self.arrowSize.width * 0.5: arrowPoint.x + self.arrowSize.width * 0.5,
+                        y: self.isCornerRightArrow ? self.arrowSize.height + self.bounds.height: self.arrowSize.height
                     )
                 )
                 arrow.addLine(to: CGPoint(x: self.bounds.width - self.popoverCornerRadius, y: self.arrowSize.height))
@@ -371,12 +371,12 @@ open class Popover: UIView {
             if isBehindCornerRightArrow {
                 arrow.addLine(to: CGPoint(
                     x: self.bounds.width - self.arrowSize.width * 0.5,
-                    y: self.isCornerLeftArrow ? self.arrowSize.height + self.bounds.height : self.arrowSize.height))
+                    y: self.isCornerLeftArrow ? self.arrowSize.height + self.bounds.height: self.arrowSize.height))
             } else if isCloseToCornerLeftArrow && !isCornerLeftArrow {
                 () // skipping this line in that case
             } else {
                 arrow.addLine(to: CGPoint(x: arrowPoint.x - self.arrowSize.width * 0.5,
-                                          y: self.isCornerLeftArrow ? self.arrowSize.height + self.bounds.height : self.arrowSize.height))
+                                          y: self.isCornerLeftArrow ? self.arrowSize.height + self.bounds.height: self.arrowSize.height))
             }
 
         case .left:
