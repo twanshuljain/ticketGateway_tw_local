@@ -3,8 +3,6 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 31/05/23.
-// swiftlint: disable force_cast
-// swiftlint: disable line_length
 
 import UIKit
 class ExpandableTicketCell {

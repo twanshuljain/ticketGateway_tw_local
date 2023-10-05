@@ -44,7 +44,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
         APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data, let items = data.items{
                             //self.arrData = data
                             self.totalPage = response.data?.total ?? 0
@@ -68,7 +68,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
             APIHandler.shared.executeRequestWith(apiName: .getEventSuggestedCategoryList, parameters: parameters, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
                 switch result {
                 case .success(let response):
-                    if response.status_code == 200 {
+                    if response.statusCode == 200 {
                         if let data = response.data, let items = data.items{
                                 //self.arrData = data
                                 self.totalPage = response.data?.total ?? 0
@@ -91,7 +91,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data, let items = data.items{
                             //self.arrData = data
                             self.totalPage = response.data?.total ?? 0
@@ -113,7 +113,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
 
                     DispatchQueue.main.async {
                         if let data = response.data, let items = data.items{
@@ -138,7 +138,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data, let items = data.items{
                            // self.arrData = data
@@ -165,7 +165,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data, let items = data.items{
                           //  self.arrData = data
@@ -189,7 +189,7 @@ extension ViewMoreEventsViewModel: FavouriteAction {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data, let items = data.items{
                            // self.arrData = data

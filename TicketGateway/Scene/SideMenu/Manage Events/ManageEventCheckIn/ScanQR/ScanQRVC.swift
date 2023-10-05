@@ -3,8 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple on 28/06/23.
-// swiftlint: disable force_cast
-// swiftlint: disable line_length
+
 import UIKit
 import AVFoundation
 class ScanQRVC: UIViewController {

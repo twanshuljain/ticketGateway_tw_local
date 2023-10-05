@@ -43,7 +43,7 @@ extension NumberVerifyViewModel {
         APIHandler.shared.executeRequestWith(apiName: .verifyNumberOtp, parameters: param, methodType: .POST) { (result: Result<ResponseModal<[EmailListUser]>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     self.arrMail = response.data!
                     print(self.arrMail)
                     complition(true, response.message ?? "")
@@ -65,7 +65,7 @@ extension NumberVerifyViewModel {
         APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyNumberOtp, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if isComingFrom == .orderSummary && UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
                         UserDefaultManager.share.clearAllUserDataAndModel()
                         self.objUserModel = SignInAuthModel(id: response.data?.id, number: numberWithoutCode, fullName: response.data?.fullName, email:  response.data?.email, accessToken:  response.data?.accessToken, refreshToken: response.data?.refreshToken, strDialCountryCode: objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")

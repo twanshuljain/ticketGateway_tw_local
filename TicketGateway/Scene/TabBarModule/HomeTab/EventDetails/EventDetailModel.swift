@@ -17,19 +17,6 @@ enum FollowUnfollow:String{
 }
 
 // MARK: - Welcome
-struct GetEventDetail: Codable {
-    var data: EventDetail?
-    var statusCode: Int?
-    var message: String?
-   // var error: JSONNull?
-
-    enum CodingKeys: String, CodingKey {
-        case data
-        case statusCode = "status_code"
-        case message
-    //    case error
-    }
-}
 
 // MARK: - EventDetail
 struct EventDetail: Codable {

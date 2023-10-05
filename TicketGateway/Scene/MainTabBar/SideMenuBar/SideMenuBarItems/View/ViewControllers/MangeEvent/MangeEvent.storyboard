@@ -2675,13 +2675,13 @@
                     <size key="freeformSize" width="408" height="797"/>
                     <connections>
                         <outlet property="btnContinue" destination="Qkq-dh-VN7" id="nuP-1h-9lz"/>
-                        <outlet property="lblCVC_CVV" destination="bD4-qc-v3e" id="1QU-eo-po7"/>
                         <outlet property="lblCardNumber" destination="LJ2-tq-XFO" id="cf5-O2-cfj"/>
+                        <outlet property="lblCvcCvv" destination="bD4-qc-v3e" id="1QU-eo-po7"/>
                         <outlet property="lblExpiry" destination="QtF-XY-PYD" id="dD1-Fn-gAT"/>
                         <outlet property="lblFullName" destination="T5e-x3-WAY" id="wGd-m8-Ncz"/>
                         <outlet property="lblPrice" destination="Ol3-bH-4Sd" id="4Yi-bo-CmP"/>
                         <outlet property="navigationView" destination="6zO-IH-Iei" id="OZB-lL-PQn"/>
-                        <outlet property="picker_monthYear" destination="AYa-wb-75Y" id="9Sj-Jx-BwT"/>
+                        <outlet property="pickerMonthYear" destination="AYa-wb-75Y" id="9Sj-Jx-BwT"/>
                         <outlet property="txtCVV" destination="so7-QB-1Cv" id="EHY-zq-JB7"/>
                         <outlet property="txtCardName" destination="ZV9-Ib-glf" id="eLa-9u-391"/>
                         <outlet property="txtCardNumber" destination="j8B-q6-GXZ" id="Lai-A3-q30"/>

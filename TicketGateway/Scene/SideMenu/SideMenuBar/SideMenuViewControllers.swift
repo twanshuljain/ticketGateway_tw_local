@@ -12,7 +12,7 @@ class SideMenuViewControllers: UIViewController{
     // MARK: - IBOutlets
     @IBOutlet weak var btnChangeProfile: UIButton!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblProfileview : UILabel!
+    @IBOutlet weak var lblProfileview: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var tblList: SideMenuList!
 

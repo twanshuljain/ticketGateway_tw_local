@@ -21,7 +21,7 @@ class ScanSummaryViewModel {
             switch result {
             case .success(let response):
                 print("success scan overview api")
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
                             self.getScanOverviewData = data
@@ -41,7 +41,7 @@ class ScanSummaryViewModel {
             switch result {
             case .success(let response):
                 print("success scan summary api")
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
                             self.getScanSummaryItem = data.items ?? []

@@ -22,7 +22,7 @@ final class MyOrderViewModel {
             switch result {
             case .success(let response):
                 print("success my order api")
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
                             if isFromSearch {

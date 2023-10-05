@@ -37,7 +37,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup1.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.arrDataForAccessCode?.removeAll()
                         self.arrDataForAccessCode = []
@@ -68,7 +68,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.arrTicketList = data
                         print("---------------ARRTICKETDATA", self.arrTicketList ?? [])
@@ -93,7 +93,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup2.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.feeStructure = data
                         complition(true, response.message ?? "")
@@ -115,7 +115,7 @@ extension EventBookingTicketOnApplyCouponViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getAddOnList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicketAddOnResponseModel]>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.arrAddOnTicketList = data
                         complition(true, response.message ?? "")

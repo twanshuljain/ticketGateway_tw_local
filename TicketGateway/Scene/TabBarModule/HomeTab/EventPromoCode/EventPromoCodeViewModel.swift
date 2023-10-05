@@ -30,7 +30,7 @@ extension EventPromoCodeViewModel{
         APIHandler.shared.executeRequestWith(apiName: .applyPromoCode, parameters: param, methodType: .POST, getURL: APIName.applyPromoCode.rawValue, authRequired: true) { (result: Result<ResponseModal<PromoCode>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.promoCodeData = data
                         self.discountType = DiscountType(rawValue: data.discountType ?? "")

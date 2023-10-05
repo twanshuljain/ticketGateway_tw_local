@@ -44,7 +44,7 @@ extension EmailVerifyViewModel {
             switch result {
             case .success(let response):
                 print(response.message)
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     complition(true, response.message ?? "")
                 } else {
                     if response.message == ""{

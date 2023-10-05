@@ -33,7 +33,7 @@ extension EventDetailViewModel{
         APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                     DispatchQueue.main.async {
                         self.eventDetail = response.data ?? EventDetail()
@@ -57,7 +57,7 @@ extension EventDetailViewModel{
             APIHandler.shared.executeRequestWith(apiName: .getEventSuggestedCategoryList, parameters: parameters, methodType: .GET, getURL: url,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
                 switch result {
                 case .success(let response):
-                    if response.status_code == 200 {
+                    if response.statusCode == 200 {
                         print("response....",response)
                             self.arrEventData = response.data?.items ?? [GetEventModel]()
                             print(self.arrEventData)
@@ -78,7 +78,7 @@ extension EventDetailViewModel{
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup1.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                         self.multilocation = response.data
                         complition(true, response.message ?? "")
@@ -98,7 +98,7 @@ extension EventDetailViewModel{
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup2.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                         self.recurringList = response.data
                         complition(true, response.message ?? "")

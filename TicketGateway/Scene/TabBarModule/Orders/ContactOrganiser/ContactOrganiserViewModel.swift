@@ -48,7 +48,7 @@ extension ContactOrganiserViewModel{
             ) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
                 switch result {
                 case .success(let response):
-                    if response.status_code == 200 {
+                    if response.statusCode == 200 {
                         if let data = response.data{
                             self.contactOranizer = data
                         }

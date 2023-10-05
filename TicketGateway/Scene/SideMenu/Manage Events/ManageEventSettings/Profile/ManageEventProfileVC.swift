@@ -3,7 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 24/05/23.
-// swiftlint: disable line_length
 
 import UIKit
 import SDWebImage

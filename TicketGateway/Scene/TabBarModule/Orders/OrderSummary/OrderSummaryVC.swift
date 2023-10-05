@@ -3,7 +3,7 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-// swiftlint: disable line_length
+
 import UIKit
 
 class OrderSummaryVC: UIViewController {

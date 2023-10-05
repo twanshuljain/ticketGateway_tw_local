@@ -45,7 +45,7 @@ extension HomeDashBoardViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
 
                     DispatchQueue.main.async {
                         //self.arrEventData = response.data ?? [GetEventModel]()
@@ -74,7 +74,7 @@ extension HomeDashBoardViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getOrganizersList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[Organizers]>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let organizersList = response.data{
                         self.arrOrganizersList = organizersList
                     }
@@ -96,7 +96,7 @@ extension HomeDashBoardViewModel {
 
             case .success(let response):
                 defer { self.dispatchGroup.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if var data = response.data, let items = data.items{
                             //data.unique{$0.event!.id! == $1.event!.id! }
@@ -127,7 +127,7 @@ extension HomeDashBoardViewModel {
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup1.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if var data = response.data, let items = data.items{
                             //data.unique{$0.event!.id! == $1.event!.id! }
@@ -157,7 +157,7 @@ extension HomeDashBoardViewModel {
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup2.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
 
                     DispatchQueue.main.async {
                         if var data = response.data, let items = data.items{
@@ -186,7 +186,7 @@ extension HomeDashBoardViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     defer { self.dispatchGroup3.leave() }
                     DispatchQueue.main.async {
                         if var data = response.data, let items = data.items{
@@ -215,7 +215,7 @@ extension HomeDashBoardViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     defer { self.dispatchGroup4.leave() }
                     DispatchQueue.main.async {
                         if var data = response.data, let items = data.items{
@@ -244,7 +244,7 @@ extension HomeDashBoardViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     defer { self.dispatchGroup5.leave() }
                     DispatchQueue.main.async {
                         if let data = response.data, let items = data.items{
@@ -272,7 +272,7 @@ extension HomeDashBoardViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     defer { self.dispatchGroup6.leave() }
                     print("response....",response)
                     DispatchQueue.main.async {

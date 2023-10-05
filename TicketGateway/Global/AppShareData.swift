@@ -152,7 +152,7 @@ class AppShareData {
         APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         // Setting "true" to userDefault object for knowing on HomeTab to refresh event list.
                         UserDefaultManager.share.setIsLikedAnyEvent(isLikedAnyEvent: true)
@@ -175,7 +175,7 @@ class AppShareData {
         APIHandler.shared.executeRequestWith(apiName: .followUnfollow, parameters: EmptyModel?.none, methodType: .POST, getURL: api, authRequired: true, authTokenString: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("Follow api success")
                     complition(true, response.message ?? "")
                 } else {

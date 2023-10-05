@@ -44,7 +44,7 @@ extension LoginNmberWithEmailViewModel {
         APIHandler.shared.executeRequestWith(apiName: .signInUserByNumberEmail, parameters: paramForEmail, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         self.objUserModel = response.data
                         UserDefaultManager.share.storeModelToUserDefault(userData: self.objUserModel, key: .userAuthData)

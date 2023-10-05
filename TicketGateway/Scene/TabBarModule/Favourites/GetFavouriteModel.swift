@@ -6,20 +6,6 @@
 //
 
 import Foundation
-struct GetFavouriteResponse : Codable {
-    let data : GetFavouriteData?
-    let statusCode : Int?
-    let message : String?
-    let error : String?
-
-    enum CodingKeys: String, CodingKey {
-
-        case data = "data"
-        case statusCode = "status_code"
-        case message = "message"
-        case error = "error"
-    }
-}
 
 struct GetFavouriteData : Codable {
     let items : [GetFavouriteItem]?

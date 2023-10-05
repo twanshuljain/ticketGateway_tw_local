@@ -21,7 +21,7 @@ extension MyTicketViewModel{
         APIHandler.shared.executeRequestWith(apiName: .getMyTicketList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<MyTicketList>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     defer { self.dispatchGroup1.leave() }
                     if let data = response.data{
                         self.myTicket = data
@@ -42,7 +42,7 @@ extension MyTicketViewModel{
         APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                         self.eventDetail = response.data ?? EventDetail()
                         print("--------------------",self.eventDetail)

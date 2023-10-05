@@ -231,7 +231,6 @@ open class Popover: UIView {
             }
         }
     }
-
     override open func draw(_ rect: CGRect) {
         super.draw(rect)
         let arrow = UIBezierPath()
@@ -683,3 +682,6 @@ private extension Popover {
         return CGFloat.pi * degrees / 180
     }
 }
+// swiftlint: enable cyclomatic_complexity
+// swiftlint: enable type_body_length
+// swiftlint: enable function_body_length

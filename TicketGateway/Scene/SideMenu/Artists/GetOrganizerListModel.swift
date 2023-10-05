@@ -6,18 +6,6 @@
 //
 
 import Foundation
-struct GetSuggestedOrganizerModel : Codable {
-    var data : GetSuggestedOrganizerDataModel?
-    var statusCode : Int?
-    var message : String?
-    var error : String?
-    enum CodingKeys: String, CodingKey {
-        case data = "data"
-        case statusCode = "status_code"
-        case message = "message"
-        case error = "error"
-    }
-}
 struct GetSuggestedOrganizerDataModel : Codable {
     var items : [GetSuggestedOrganizerItemModel]?
     var total : Int?

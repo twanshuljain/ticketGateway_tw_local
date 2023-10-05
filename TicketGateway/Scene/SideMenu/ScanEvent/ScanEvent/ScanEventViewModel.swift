@@ -16,7 +16,7 @@ class ScanEventViewModel {
         APIHandler.shared.executeRequestWith(apiName: .scanTicket, parameters: scanTicketModel, methodType: .POST, authRequired: true) { (result: Result<ResponseModal<GetScanEventData>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                     self.getScanTicketDetails = GetScanTicketDetails(
                         eventId: response.data?.eventId ?? 0,

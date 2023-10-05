@@ -4,7 +4,6 @@
 //
 //  Created by Apple  on 15/05/23.
 
-// swiftlint: disable shorthand_operator
 
 import UIKit
 import iOSDropDown
@@ -189,7 +188,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
         let value =  cell.vwStepper.lblCount.text ?? ""
         self.viewModel.lblNumberOfCount = Int(value) ?? 0
-        self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount + 1
+        self.viewModel.lblNumberOfCount += 1
         if viewModel.lblNumberOfCount <= viewModel.arrAddOnTicketList?[sender.tag].addOnMaximumQuantity ?? 0 {
             self.viewModel.eventDetail?.event?.eventTicketFinalPrice += Double(data?.addOnTicketPrice ?? 0)
             self.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
@@ -247,7 +246,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
      let cell = tblAddOn.cellForRow(at: indexPath) as! AddOnTableViewCell
      let value =  cell.vwStepper.lblCount.text ?? ""
         self.viewModel.lblNumberOfCount = Int(value) ?? 0
-        self.viewModel.lblNumberOfCount = self.viewModel.lblNumberOfCount - 1
+        self.viewModel.lblNumberOfCount -= 1
      if self.viewModel.lblNumberOfCount > 0 {
          self.viewModel.eventDetail?.event?.eventTicketFinalPrice -= Double(data?.addOnTicketPrice ?? 0)
          self.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0

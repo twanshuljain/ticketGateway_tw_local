@@ -4,7 +4,6 @@
 //
 //  Created by Apple  on 12/05/23.
 
-// swiftlint: disable trailing_whitespace
 import UIKit
 import iOSDropDown
 

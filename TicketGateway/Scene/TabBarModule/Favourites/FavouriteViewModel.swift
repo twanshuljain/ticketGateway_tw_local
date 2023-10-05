@@ -32,7 +32,7 @@ class FavouriteViewModel {
             switch result {
             case .success(let response):
                 print("success my favourite api")
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
                             self.arrFavouriteList.append(contentsOf: data.items ?? [])
@@ -58,7 +58,7 @@ class FavouriteViewModel {
             switch result {
             case .success(let response):
                 print("success my Venue api")
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
                             self.arrVenueList.append(contentsOf: data.items ?? [])
@@ -79,7 +79,7 @@ class FavouriteViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     defer { self.dispatchGroup.leave() }
                     print("response....",response)
                     DispatchQueue.main.async {

@@ -3,9 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 13/04/23.
-// swiftlint: disable file_length
-// swiftlint: disable force_cast
-// swiftlint: disable line_length
 
 import UIKit
 class WelComeVC: UIViewController {

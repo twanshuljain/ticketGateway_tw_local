@@ -2658,13 +2658,13 @@
                     <size key="freeformSize" width="408" height="797"/>
                     <connections>
                         <outlet property="btnContinue" destination="hdX-x6-wa6" id="Hzh-ee-vOS"/>
-                        <outlet property="lblCVC_CVV" destination="Dtl-aF-wvV" id="0XM-hp-rPr"/>
                         <outlet property="lblCardNumber" destination="ud6-tb-jJY" id="CzZ-SR-h4S"/>
+                        <outlet property="lblCvcCvv" destination="Dtl-aF-wvV" id="0XM-hp-rPr"/>
                         <outlet property="lblExpiry" destination="uTp-zM-I9g" id="dSf-NV-R5P"/>
                         <outlet property="lblFullName" destination="QFa-2T-W9J" id="BAB-YN-1qH"/>
                         <outlet property="lblPrice" destination="7Ng-JD-CJ7" id="zbE-mC-mda"/>
                         <outlet property="navigationView" destination="UTO-mK-jgh" id="V5g-Rg-dUB"/>
-                        <outlet property="picker_monthYear" destination="xq1-BW-ZZT" id="bV0-ra-W4X"/>
+                        <outlet property="pickerMonthYear" destination="xq1-BW-ZZT" id="bV0-ra-W4X"/>
                         <outlet property="txtCVV" destination="5s4-hJ-CKr" id="TYm-VU-v4E"/>
                         <outlet property="txtCardName" destination="QYv-Zg-Q95" id="Tp0-TF-xW7"/>
                         <outlet property="txtCardNumber" destination="X7o-Wf-Gl8" id="wCb-xa-Bbk"/>

@@ -3,7 +3,7 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-// swiftlint: disable line_length
+
 import UIKit
 
 class ContactOrganiserVC: UIViewController {
@@ -63,10 +63,38 @@ extension ContactOrganiserVC {
         self.btnSendMessage.addRightIcon(image: UIImage(named: LEFT_ARROW))
         self.btnSendMessage.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnSendMessage.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.lblName.attributedText = getAttributedTextAction(attributedText: "*", firstString: NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        self.lblEmailAddress.attributedText = getAttributedTextAction(attributedText: "*", firstString: ORGANIZERS_EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        self.lblOrganizersName.attributedText = getAttributedTextAction(attributedText: "*", firstString: ORGANIZERS_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        self.lblReason.attributedText = getAttributedTextAction(attributedText: "*", firstString: REASON, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblName.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: NAME,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
+        self.lblEmailAddress.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: ORGANIZERS_EMAIL_ADDRESS,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
+        self.lblOrganizersName.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: ORGANIZERS_NAME,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
+        self.lblReason.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: REASON,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
         [btnSendMessage].forEach {
             $0?.addTarget(self, action: #selector(btnSendAction(sender:)), for: .touchUpInside)
         }

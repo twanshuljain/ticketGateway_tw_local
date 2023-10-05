@@ -3,7 +3,6 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-// swiftlint: disable line_length
 
 import UIKit
 
@@ -60,9 +59,22 @@ extension ChangeNameVC {
         self.btnSaveChanges.addRightIcon(image: UIImage(named: SAVE_ICON))
         self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.lblFirstName.attributedText = getAttributedTextAction(attributedText: "*", firstString: FIRST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        self.lblLastName.attributedText = getAttributedTextAction(attributedText: "*", firstString: LAST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-
+        self.lblFirstName.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: FIRST_NAME,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
+        self.lblLastName.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: LAST_NAME,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
         self.txtFirstName.text = viewModel.firstName
         self.txtLastName.text = viewModel.lastName
         txtSelectTickte.delegate = self

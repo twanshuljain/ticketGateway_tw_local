@@ -3,8 +3,7 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 15/05/23.
-// swiftlint: disable force_cast
-// swiftlint: disable line_length
+
 import UIKit
 import SideMenu
 

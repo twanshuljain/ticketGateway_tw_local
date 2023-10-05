@@ -27,7 +27,7 @@ class EventTiclketAddOnViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getAddOnList, parameters: EmptyModel?.none, methodType: .GET, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<[EventTicketAddOnResponseModel]>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.arrAddOnTicketList = data
                         complition(true, response.message ?? "")

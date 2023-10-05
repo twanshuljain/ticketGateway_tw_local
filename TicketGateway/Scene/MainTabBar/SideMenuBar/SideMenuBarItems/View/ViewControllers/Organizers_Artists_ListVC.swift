@@ -1,29 +1,21 @@
 //
-//  Organizers_Artists_ListVC.swift
+//  OrganizerArtistListVC.swift
 //  TicketGateway
 //
 //  Created by Apple  on 04/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 import SideMenu
 
-class Organizers_Artists_ListVC: UIViewController {
+class OrganizerArtistListVC: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var lblSuggested: UILabel!
     @IBOutlet weak var btnSeeAllForSuggested: CustomButtonNormal!
     @IBOutlet weak var lblTittle: UILabel!
     @IBOutlet weak var btnSeeAll: CustomButtonNormal!
-    @IBOutlet weak var collVwTrending_Artists: suggestedOrganizerList!
-     @IBOutlet weak var tblSuggestedOrag_Art: UITableView!
+    @IBOutlet weak var collVwTrendingArtists: suggestedOrganizerList!
+    @IBOutlet weak var tblSuggestedOragArt: UITableView!
     @IBOutlet weak var navigationView: NavigationBarView!
 
     // MARK: - Variable
@@ -39,16 +31,16 @@ class Organizers_Artists_ListVC: UIViewController {
 }
 
 // MARK: - Functions
-extension Organizers_Artists_ListVC {
+extension OrganizerArtistListVC {
     private func setup() {
         [self.btnSeeAll,btnSeeAllForSuggested].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.setUi()
-        self.tblSuggestedOrag_Art.dataSource = self
-        self.tblSuggestedOrag_Art.delegate = self
-        self.tblSuggestedOrag_Art.reloadData()
-        self.collVwTrending_Artists.configure()
+        self.tblSuggestedOragArt.dataSource = self
+        self.tblSuggestedOragArt.delegate = self
+        self.tblSuggestedOragArt.reloadData()
+        self.collVwTrendingArtists.configure()
         self.navigationView.delegateBarAction = self
         if self.isFrom == "Organizers" {
             self.navigationView.lblTitle.text = "Organizers"
@@ -76,7 +68,7 @@ extension Organizers_Artists_ListVC {
 }
 
 // MARK: - Actions
-extension Organizers_Artists_ListVC {
+extension OrganizerArtistListVC {
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnSeeAll:
@@ -133,7 +125,7 @@ extension Organizers_Artists_ListVC {
         }
 }
 
-extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource {
+extension OrganizerArtistListVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
       //  self.viewModel.arrMail.count
@@ -158,11 +150,11 @@ extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // let obj = self.viewModel.arrMail[indexPath.row]
      //   self.viewModel.strSelectedEmail = obj.email ?? ""
-        self.tblSuggestedOrag_Art.reloadData()
+        self.tblSuggestedOragArt.reloadData()
   }
 
 }
-extension Organizers_Artists_ListVC : UICollectionViewDataSource ,UICollectionViewDelegate {
+extension OrganizerArtistListVC : UICollectionViewDataSource ,UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -181,7 +173,7 @@ extension Organizers_Artists_ListVC : UICollectionViewDataSource ,UICollectionVi
     }
 }
 
-extension Organizers_Artists_ListVC : NavigationBarViewDelegate {
+extension OrganizerArtistListVC : NavigationBarViewDelegate {
     func navigationBackAction() {
         let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
         let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController

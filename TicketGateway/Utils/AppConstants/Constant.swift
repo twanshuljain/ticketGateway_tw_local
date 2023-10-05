@@ -36,7 +36,7 @@ enum StoryboardIdentifier: String {
     case VerifyPopupVC
     case LoginNmberWithEmailVC
 
-    //Home
+    // Home
     case HomeVC
     case EventSearchHomeVC
     case EventSearchLocationVC
@@ -51,7 +51,7 @@ enum StoryboardIdentifier: String {
     case PaymentSuccessFullVC
     case PhoneVerificationViewController
     case EmailSentVC
-    //SideMenuBar
+    // SideMenuBar
     case AddAmountWalletVC
     case AmountAddedSuccessfullyVC
     case OrganizersArtistsListVC
@@ -65,7 +65,7 @@ enum StoryboardIdentifier: String {
     case RewardLoyaltyPointsVC
     case NotificationVC
     case FAQVC
-    //order
+    // Order
     case MyOrderViewController
     case SegmentCostumeVC
     case MyTicketVC
@@ -80,8 +80,8 @@ enum StoryboardIdentifier: String {
     case EventDetailStatusVC
     case FeedbackViewController
 
-    //ManageEvent
-    //DashBoard
+    // ManageEvent
+    // DashBoard
     case ManageEventVC
     case ManageEventDashboardVC
     case ManageEventTicketSoldVC
@@ -89,38 +89,37 @@ enum StoryboardIdentifier: String {
     case ManageSellTicketSuccessfully
     case ManageSellTicketComplimentary
     case AddCardVC
-    //sell
+    // sell
     case ManageSellAddBuyerVC
     case ManageSellBuyersInfoListVC
 
-    //Check In
-      case ManageEventCheckInVC
-      case AttendeeDetailsVC
-      case ScanQRVC
+    // Check In
+    case ManageEventCheckInVC
+    case AttendeeDetailsVC
+    case ScanQRVC
 
-    //Profile/Settings
+    // Profile/Settings
     case ManageEventSettingVC
     case ManageEventProfileVC
     case SoldOutTicketVC
     case CancelThisEventVC
     case ZoomViewController
     case ManageEventEditProfileVC
-    //order
+    // Order
     case ManageEventOrderDeatilVC
     case RefundOptionsVC
     case ReviewRefundVC
-    //Favourites
+    // Favourites
     case FavouriteVC
 
-    //ScanEvents
-      case ScanEventVC
-      case SelectTicketTypeVC
-      case ScannerVC
-      case SearchVC
-      case ScanSummaryVC
-      case FindRFIDVC
-      case EndScanPoPUpVC
-
+    // ScanEvents
+    case ScanEventVC
+    case SelectTicketTypeVC
+    case ScannerVC
+    case SearchVC
+    case ScanSummaryVC
+    case FindRFIDVC
+    case EndScanPoPUpVC
 }
 
 enum PaymentError {
@@ -134,7 +133,7 @@ enum PaymentError {
     case cvvMin
     case cardNumberMaxLength
 
-    var value:String {
+    var value: String {
         switch self {
         case .cardholderName:
             return "Please enter cardholder name."
@@ -168,7 +167,9 @@ let TITLE_LOGIN = "Login"
 let TITLE_CONTINUE = "Continue"
 
 let STRIPE_PUBLISH_KEY = "pk_test_WUFLfpw1GDQk1k14iO90JbAx00ujBjHe6m"
+// swiftlint: disable line_length
 let STRIPE_SECRET_KEY = "sk_test_51FlbBdAzj89HkZFlgU9eCHTk9rWlyfu0Y9Q4Nxz8QPE5kirWckckTTK7ZRuBDp4CWMlypBwenC7lMzHZrZKa8aSw00OWLIFgLZ"
+// swiftlint: enable line_length
 
 let FINISH = "Finish"
 let NEXT = "Next"
@@ -340,7 +341,9 @@ let LBL_SIGN_IN = "Sign In"
 let LBL_OR_SIGNIN_WITH = "or sign in with"
 let EMAIL = "Email"
 let MOBILE_NUMBER = "Mobile Number"
+// swiftlint: disable line_length
 let PLEASE_ENTER_YOUR_MOBILE_NUMBER_DDESCRIPTION = "Please enter your mobile number, We will send you a One Time Password on this number"
+// swiftlint: enable line_length
 let DONT_HAVE_AN_ACCOUNT = "Don’t have an account?"
 let SIGN_UP = "Sign Up"
 let OR_SIGN_UP_WITH = "or sign up with"

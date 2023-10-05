@@ -3,8 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 18/05/23.
-// swiftlint: disable line_length
-// swiftlint: disable file_length
+
 import UIKit
 import iOSDropDown
 
@@ -111,8 +110,22 @@ extension AddAmountWalletVC {
         }
         self.lblDollar.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblDollar.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.lblSelectCountry.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Select Currency ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        self.lblAddAmount.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Add Amount ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblSelectCountry.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: "Select Currency ",
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
+        self.lblAddAmount.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: "Add Amount ",
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
     }
     func vwDefaultSet() {
         self.vwBgCard.backgroundColor = .clear

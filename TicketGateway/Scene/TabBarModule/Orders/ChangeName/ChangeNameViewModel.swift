@@ -32,7 +32,7 @@ extension ChangeNameViewModel{
         APIHandler.shared.executeRequestWith(apiName: .changeTicketName, parameters: param, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<ContactOrganiserResponseModel>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     complition(true, response.message ?? "")
                 } else {
                     complition(false,response.message ?? "error message")

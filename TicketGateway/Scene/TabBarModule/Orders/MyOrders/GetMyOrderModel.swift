@@ -7,18 +7,6 @@
 
 import Foundation
 import UIKit
-struct GetMyOrderResponse: Codable {
-    var data: GetMyOrderData?
-    var statusCode: Int?
-    var message: String?
-    var error: String?
-    enum CodingKeys: String, CodingKey {
-        case data = "data"
-        case statusCode = "status_code"
-        case message = "message"
-        case error = "error"
-    }
-}
 struct GetMyOrderData: Codable {
     var items: [GetMyOrderItem]?
     var total: Int?

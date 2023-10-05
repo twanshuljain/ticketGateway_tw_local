@@ -28,7 +28,7 @@ extension EventBookingTicketViewModel{
             switch result {
             case .success(let response):
                 defer { self.dispatchGroup.leave() }
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.arrTicketList = data
                         print("---------------ARRTICKETDATA", self.arrTicketList ?? [])
@@ -52,7 +52,7 @@ extension EventBookingTicketViewModel{
         APIHandler.shared.executeRequestWith(apiName: .getFeeStructure, parameters: EmptyModel?.none, methodType: .POST, getURL: getURL, authRequired: true) { (result: Result<ResponseModal<FeeStructure>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     if let data = response.data{
                         self.feeStructure = data
                         complition(true, response.message ?? "")

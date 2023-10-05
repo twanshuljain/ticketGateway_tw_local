@@ -49,7 +49,7 @@ extension GetEventCategoryViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventCategoryList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[GetEventCategoryModel]>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                     DispatchQueue.main.async {
                         if let categoryData = response.data {
@@ -74,7 +74,7 @@ extension GetEventCategoryViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<[GetEventModel]>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     DispatchQueue.main.async {
                         if let categorySearchData = response.data {
                             self.arrSearchCategoryData = categorySearchData
@@ -98,7 +98,7 @@ extension GetEventCategoryViewModel {
         APIHandler.shared.executeRequestWith(apiName: .getEventSearch, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<SearchModel>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                   //  DispatchQueue.main.async {
                     if let searchData = response.data?.items {
                             self.arrSearchData = searchData

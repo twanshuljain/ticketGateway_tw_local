@@ -3,7 +3,6 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 01/06/23.
-// swiftlint: disable line_length
 
 import UIKit
 
@@ -67,8 +66,22 @@ extension ContinueToTransferVC {
         self.btnTransferTicket.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
         self.btnCancel.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnCancel.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
-        self.lblEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-        self.lblConfirmEmail.attributedText = getAttributedTextAction(attributedText: "*", firstString: CONFIRM_EMAIL_ADDRESS, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
+        self.lblEmail.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: EMAIL_ADDRESS,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
+        self.lblConfirmEmail.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: CONFIRM_EMAIL_ADDRESS,
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
         self.viewModel.isTCsChecked = false
         self.btnCheck.setBackgroundImage(UIImage.init(named: "uncheck_ip"), for: .normal)
         self.btnTransferTicket.isUserInteractionEnabled = false

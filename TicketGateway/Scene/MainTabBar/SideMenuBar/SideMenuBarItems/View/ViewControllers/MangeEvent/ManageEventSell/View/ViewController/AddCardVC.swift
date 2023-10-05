@@ -3,7 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 24/05/23.
-// swiftlint: disable identifier_name
 
 import UIKit
 
@@ -11,13 +10,13 @@ class AddCardVC: UIViewController {
 
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var viewDatePicker: UIView!
-    @IBOutlet weak var picker_monthYear: UIPickerView!
+    @IBOutlet weak var pickerMonthYear: UIPickerView!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var lblCardNumber: UILabel!
     @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var lblExpiry: UILabel!
-    @IBOutlet weak var lblCVC_CVV: UILabel!
+    @IBOutlet weak var lblCvcCvv: UILabel!
     @IBOutlet weak var txtCardNumber: UITextField!
     @IBOutlet weak var txtCardName: UITextField!
     @IBOutlet weak var txtCVV: UITextField!
@@ -57,8 +56,8 @@ extension AddCardVC {
         self.txtCardNumber.delegate = self
         self.txtExpiryDate.delegate = self
         self.txtCVV.delegate = self
-        self.picker_monthYear.delegate = self
-        self.picker_monthYear.dataSource = self
+        self.pickerMonthYear.delegate = self
+        self.pickerMonthYear.dataSource = self
         self.loadDefaultsParameters()
         self.navigationView.btnBack.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
@@ -74,7 +73,7 @@ extension AddCardVC {
      }
 
     func setUi() {
-        [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCVC_CVV].forEach {
+        [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCvcCvv].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
@@ -99,7 +98,7 @@ extension AddCardVC {
     @IBAction private func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
-        self.picker_monthYear.reloadAllComponents()
+        self.pickerMonthYear.reloadAllComponents()
         var selectedMonth = 0
         var selectdYear = 0
         selectedMonthName = ""
@@ -146,7 +145,7 @@ extension AddCardVC {
 
         }
         print(selectedMonth,selectdYear)
-        self.picker_monthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
+        self.pickerMonthYear.selectRow((selectedMonth) , inComponent: 0, animated: false)
         var ind = 0
         var num = 0
         for obj in self.years{
@@ -157,8 +156,8 @@ extension AddCardVC {
             }
             num += 1
         }
-        self.picker_monthYear.selectRow(ind, inComponent: 1, animated: false)
-        self.picker_monthYear.reloadAllComponents()
+        self.pickerMonthYear.selectRow(ind, inComponent: 1, animated: false)
+        self.pickerMonthYear.reloadAllComponents()
     }
 
     @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
@@ -282,7 +281,7 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
 
                     let index = (Int(strCurrentMonth) ?? 0) - 1
 
-                    self.picker_monthYear.selectRow(index, inComponent: 0, animated: false)
+                    self.pickerMonthYear.selectRow(index, inComponent: 0, animated: false)
 
                     selectedMonthName = strCurrentMonth
                     if selectedMonthName.count <= 1
@@ -319,7 +318,7 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
             if strCurrentYear == str
             {
                 let index = (Int(strCurrentMonth) ?? 0) - 1
-                self.picker_monthYear.selectRow(index, inComponent: 0, animated: false)
+                self.pickerMonthYear.selectRow(index, inComponent: 0, animated: false)
                 selectedMonthName = strCurrentMonth
                 //25/03/2022
                 if selectedMonthName.count <= 1
@@ -355,8 +354,8 @@ extension AddCardVC:UIPickerViewDelegate,UIPickerViewDataSource{
         rowHeight = 44
         months = nameOfMonths()
         years = nameOfYears()
-        picker_monthYear.delegate = self
-        picker_monthYear.dataSource = self
+        pickerMonthYear.delegate = self
+        pickerMonthYear.dataSource = self
         let str = "\(Int(year!))"
         if (str.count ) > 2 {
             let strLastTwoDigits: String = ((str as? NSString)?.substring(from: (str.count ) - 2))!

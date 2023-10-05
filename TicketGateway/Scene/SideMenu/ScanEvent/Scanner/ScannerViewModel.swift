@@ -22,7 +22,7 @@ class ScannerViewModel {
         APIHandler.shared.executeRequestWith(apiName: .scanDetail, parameters: parameters, methodType: .GET, authRequired: true) { (result: Result<ResponseModal<GetScanDetailData>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                     if let getScanDetailData = response.data {
                         self.getScanDetailData = getScanDetailData
@@ -41,7 +41,7 @@ class ScannerViewModel {
         APIHandler.shared.executeRequestWith(apiName: .scanBarCode, parameters: scanBarCodeModel, methodType: .POST, authRequired: true) { (result: Result<ResponseModal<GetScanDetailData>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     print("response....",response)
                     complition(true, response.message ?? "")
                 } else {

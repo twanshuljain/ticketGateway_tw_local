@@ -16,7 +16,7 @@ class LogoutViewModel {
         APIHandler.shared.executeRequestWith(apiName: .logoutUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<EmptyModel>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     complition(true, response.message ?? "")
                 } else {
                     complition(false, response.message ?? "Error Message")

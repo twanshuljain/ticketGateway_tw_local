@@ -3,8 +3,6 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 05/06/23.
-// swiftlint: disable line_length
-// swiftlint: disable force_cast
 
 import UIKit
 class ExpandableRefundRequest {
@@ -29,7 +27,10 @@ class RequestRefundVC: UIViewController {
     @IBOutlet weak var btnCancel: UIButton!
     // MARK: - Variables
     var isRefundAll: Bool = false
-    var arrData = [ExpandableRefundRequest(isExpanded: false, isSlected: true), ExpandableRefundRequest(isExpanded: false, isSlected: false), ExpandableRefundRequest(isExpanded: false, isSlected: false), ExpandableRefundRequest(isExpanded: false, isSlected: false)]
+    var arrData = [ExpandableRefundRequest(isExpanded: false, isSlected: true),
+                   ExpandableRefundRequest(isExpanded: false, isSlected: false),
+                   ExpandableRefundRequest(isExpanded: false, isSlected: false),
+                   ExpandableRefundRequest(isExpanded: false, isSlected: false)]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()

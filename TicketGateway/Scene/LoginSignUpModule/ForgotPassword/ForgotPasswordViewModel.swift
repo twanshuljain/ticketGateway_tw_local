@@ -32,7 +32,7 @@ extension ForgotPasswordViewModel {
         APIHandler.shared.executeRequestWith(apiName: .forgotPassword, parameters: param, methodType: .POST) { (result: Result<ResponseModal<ForgotPasswordModel>, Error>) in
           switch result {
           case .success(let response):
-            if response.status_code == 200 {
+            if response.statusCode == 200 {
                 complition(true, response.message ?? "")
             } else {
                 complition(false, response.message ?? "Error message")

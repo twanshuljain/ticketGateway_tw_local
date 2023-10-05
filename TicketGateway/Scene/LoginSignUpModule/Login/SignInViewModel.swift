@@ -56,7 +56,7 @@ extension SignInViewModel {
             APIHandler.shared.executeRequestWith(apiName: .signInUser, parameters: paramForEmail, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
                 case .success(let response):
-                    if response.status_code == 200 {
+                    if response.statusCode == 200 {
                         DispatchQueue.main.async {
                             if self.isForEmail == true {
                                 self.objUserModel = response.data
@@ -78,7 +78,7 @@ extension SignInViewModel {
             APIHandler.shared.executeRequestWith(apiName: .signInNumber, parameters: paramForNumber, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
                 case .success(let response):
-                    if response.status_code == 200 {
+                    if response.statusCode == 200 {
                         DispatchQueue.main.async {
                             self.objUserModel = response.data
                             print(self.objUserModel as Any)
@@ -108,7 +108,7 @@ extension SignInViewModel {
         APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyResendOtp, parameters: paramForNumber, methodType: .POST, authTokenString: authTokenString) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
                 case .success(let response):
-                    if response.status_code == 200 {
+                    if response.statusCode == 200 {
                         complition(true, response.message ?? "")
                     } else {
                         complition(false,response.message ?? "error message")
@@ -124,7 +124,7 @@ extension SignInViewModel {
         APIHandler.shared.executeRequestWith(apiName: .checkoutValidateUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
                 case .success(let response):
-                    if response.status_code == 200 {
+                    if response.statusCode == 200 {
                         complition(true, response.message ?? "")
                     } else {
                         complition(false,response.message ?? "error message")

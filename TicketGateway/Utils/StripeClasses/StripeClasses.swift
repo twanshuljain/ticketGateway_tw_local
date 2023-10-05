@@ -45,7 +45,7 @@ class StripeClasses: NSObject {
         APIHandler.shared.executeRequestWith(apiName: .createStripeCustomer, parameters: EmptyModel?.none, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<StripeCreateUser>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     complition(response.data, true, response.message ?? "")
                 } else {
                     complition(response.data, false,response.message ?? "error message")
@@ -61,7 +61,7 @@ class StripeClasses: NSObject {
         APIHandler.shared.executeRequestWith(apiName: .addCardForUser, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<AddCard>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     complition(response.data, true, response.message ?? "")
                 } else {
                     complition(response.data, false,response.message ?? "error message")
@@ -81,7 +81,7 @@ class StripeClasses: NSObject {
         APIHandler.shared.executeRequestWith(apiName: .createCheckout, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<CheckoutId>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     complition(response.data, true, response.message ?? "")
                 } else {
                     complition(response.data, false,response.message ?? "error message")
@@ -97,7 +97,7 @@ class StripeClasses: NSObject {
         APIHandler.shared.executeRequestWith(apiName: .createCharge, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<CreateCharge>, Error>) in
             switch result {
             case .success(let response):
-                if response.status_code == 200 {
+                if response.statusCode == 200 {
                     complition(response.data, true, response.message ?? "")
                 } else {
                     complition(response.data, false,response.message ?? "error message")

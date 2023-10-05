@@ -10,12 +10,11 @@ import AdvancedPageControl
 import SVProgressHUD
 import SDWebImage
 import EventKitUI
-// swiftlint: disable file_length
 protocol EventDetailVCProtocol: class {
     func updateData()
 }
 
-class EventDetailVC: UIViewController, UITextFieldDelegate{
+class EventDetailVC: UIViewController, UITextFieldDelegate {
 
     // MARK: IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
