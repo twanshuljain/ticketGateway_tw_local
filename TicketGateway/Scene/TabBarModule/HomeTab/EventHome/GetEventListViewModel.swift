@@ -30,11 +30,11 @@ final class HomeDashBoardViewModel {
     var arrDataaPopular = [GetEventModel]()
     var arrDataaFree = [GetEventModel]()
     var arrDataaUpcoming = [GetEventModel]()
-    var eventId:Int?
+    var eventId: Int?
     var eventDetail: EventDetail?
     var followUnfollow: EventDetail?
     var country: CountryInfo?
-    var selectedCountryName:String?
+    var selectedCountryName: String?
     var currentRegionCountry = Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
 }
 
@@ -88,7 +88,7 @@ extension HomeDashBoardViewModel {
         }
     }
 
-    func getEventAsPerLocation(category:String? = "", countryName:String? = "", sortBy:SortBy? = .noneValue, complition: @escaping (Bool,String) -> Void ) {
+    func getEventAsPerLocation(category: String? = "", countryName: String? = "", sortBy: SortBy? = .noneValue, complition: @escaping (Bool,String) -> Void ) {
        // sortBy = ['POPULAR', 'RECENT', 'PRICE_LOW_TO_HIGH', 'PRICE_HIGH_TO_LOW']
         let parameters =  GetEventSearchByCategoryRequest(countryName: countryName, limit: "3", page: "1")
         APIHandler.shared.executeRequestWith(apiName: .getEventSearchByCategory, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
@@ -121,7 +121,7 @@ extension HomeDashBoardViewModel {
             }
         }
     }
-    func getEventApiForWeekendEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
+    func getEventApiForWeekendEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
         let parameters = viewAll == false ? GetEventRequest(eventType: EventType.weekend.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.weekend.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: parameters, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
@@ -151,7 +151,7 @@ extension HomeDashBoardViewModel {
         }
     }
 
-    func getEventApiForOnlineEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
+    func getEventApiForOnlineEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.virtual.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.virtual.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
@@ -181,7 +181,7 @@ extension HomeDashBoardViewModel {
         }
     }
 
-    func getEventApiForPopularEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
+    func getEventApiForPopularEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.popular.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.popular.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
@@ -210,7 +210,7 @@ extension HomeDashBoardViewModel {
         }
     }
 
-    func getEventApiForFreeEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
+    func getEventApiForFreeEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.free.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.free.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
@@ -239,7 +239,7 @@ extension HomeDashBoardViewModel {
         }
     }
 
-    func getEventApiForUpcomingEvents(viewAll:Bool,complition: @escaping (Bool,String) -> Void ) {
+    func getEventApiForUpcomingEvents(viewAll: Bool,complition: @escaping (Bool,String) -> Void ) {
         let request =  viewAll == false ? GetEventRequest(eventType: EventType.upcoming.rawValue, limit: "3", page: "1") : GetEventRequest(eventType: EventType.upcoming.rawValue)
         APIHandler.shared.executeRequestWith(apiName: .getEventListCategoryWise, parameters: request, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<GetEvent>, Error>) in
             switch result {
@@ -267,7 +267,7 @@ extension HomeDashBoardViewModel {
             }
         }
     }
-    func getEventDetailApi(eventId:Int, complition: @escaping (Bool,String) -> Void ) {
+    func getEventDetailApi(eventId: Int, complition: @escaping (Bool,String) -> Void ) {
         let url = APIName.getEventDetail.rawValue + "\(eventId)"  + "/"
         APIHandler.shared.executeRequestWith(apiName: .getEventDetail, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {

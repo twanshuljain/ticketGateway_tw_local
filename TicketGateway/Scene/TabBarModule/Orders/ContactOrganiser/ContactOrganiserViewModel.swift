@@ -15,7 +15,7 @@ final class ContactOrganiserViewModel{
     var name = ""
     var email = ""
     var message = ""
-    var oranizerId:Int?
+    var oranizerId: Int?
     var eventDetail: EventDetail?
     var ticketDetails: GetMyOrderItem?
 

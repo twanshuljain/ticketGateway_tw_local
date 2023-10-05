@@ -19,8 +19,8 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         keyForFile: String,
         parameters: [String: Any]?,
         mimeType: MimeType = .image,
-        onSuccess: @escaping(_ httpStatus:Int, _ response: Data?) -> (),
-        onFailure: @escaping(_ httpStatus:Int, _ response: NSDictionary?) -> ()) {
+        onSuccess: @escaping(_ httpStatus: Int, _ response: Data?) -> (),
+        onFailure: @escaping(_ httpStatus: Int, _ response: NSDictionary?) -> ()) {
         let finalURL = baseURL + apiName.rawValue
         guard let requestURL = URL(string: finalURL) else {
             let tmpResponse = ["message": "Incorrect request URL"] as NSDictionary
@@ -75,7 +75,7 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         }.resume()
 
     }
-    private func createDataBody(withParameters params: [String:Any]?, media: Data?, boundary: String, keyForImage:String, imageName:String, mimeType: MimeType) -> Data {
+    private func createDataBody(withParameters params: [String:Any]?, media: Data?, boundary: String, keyForImage: String, imageName: String, mimeType: MimeType) -> Data {
 
         let lineBreak = "\r\n"
         var body = Data()

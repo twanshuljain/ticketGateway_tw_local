@@ -16,7 +16,7 @@ class EventImageCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func setData(index:Int, eventDetail:EventDetail?) {
+    func setData(index: Int, eventDetail:EventDetail?) {
         var images: [String]?
         if eventDetail?.eventCoverImageObj?.eventCoverImage != nil || eventDetail?.eventCoverImageObj?.eventCoverImage != ""{
             images = [eventDetail?.eventCoverImageObj?.eventCoverImage ?? ""]

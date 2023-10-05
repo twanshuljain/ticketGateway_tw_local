@@ -16,7 +16,7 @@ protocol SuggestedOrganizerListProtocol: class {
 class SuggestedOrganizerList: UICollectionView {
     var arrOrganizersList: [Organizers]?
     var delegateOrgansierToProfile: NavigateToProfile?
-    weak var followUnfollowDelegate:SuggestedOrganizerListProtocol?
+    weak var followUnfollowDelegate: SuggestedOrganizerListProtocol?
     func configure() {
         self.register(UINib(nibName: "SuggestedOrganizerCell", bundle: nil), forCellWithReuseIdentifier: "SuggestedOrganizerCell")
         self.delegate = self

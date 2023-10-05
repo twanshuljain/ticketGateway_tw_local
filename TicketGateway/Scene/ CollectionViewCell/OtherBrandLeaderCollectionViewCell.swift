@@ -16,7 +16,7 @@ class OtherBrandLeaderCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func setData(imgName:String) {
+    func setData(imgName: String) {
         self.imgBrandLeader.image = UIImage.init(named: imgName)
     }
 

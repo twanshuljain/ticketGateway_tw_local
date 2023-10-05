@@ -11,9 +11,9 @@ import UIKit
 import SideMenu
 
 class arrdata {
-    var queValue:String
+    var queValue: String
     var ansValue: String
-    var isExpand:Bool
+    var isExpand: Bool
     init(queValue : String, isExpand : Bool, ansValue: String)
     {
         self.queValue = queValue

@@ -22,7 +22,7 @@ class TicketAddInOrderCell: UITableViewCell {
         self.setUi()
     }
 
-    func setData(ticketData:EventTicket?, selectedCurrencyType:String) {
+    func setData(ticketData:EventTicket?, selectedCurrencyType: String) {
         if let ticketData = ticketData {
             if let selectedTicketQuantity = ticketData.selectedTicketQuantity{
                 //lblTittle.text = " + " + "\(ticketData.ticketName ?? "")" + "*" + " \(selectedTicketQuantity) "

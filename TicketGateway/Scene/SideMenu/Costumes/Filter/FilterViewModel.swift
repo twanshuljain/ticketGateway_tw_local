@@ -13,5 +13,5 @@ final class FilterViewModel{
     var arrFilterSection = ["By Price","By Gender","By types","Flexipay","Refundable"]
     var arrFilter = ["Last Week","Last Month","Specific Date range"]
     var selectedFilterSectionIndex = 0
-    var selectedFilterIndex:Int? = nil
+    var selectedFilterIndex: Int? = nil
 }

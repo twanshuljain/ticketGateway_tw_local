@@ -19,7 +19,7 @@ extension CustomSearchMethodsDelegate{
     func filterButtonPressed(_ sender:UIButton) {}
 }
 
-enum CustomSearchBarEnum:Int{
+enum CustomSearchBarEnum: Int{
     case home = 0
     case costume = 1
 }
@@ -45,7 +45,7 @@ class CustomSearchBar: UIView {
         required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
             commonInit()
-            txtSearch.attributedPlaceholder = NSAttributedString(string:searchTextPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .placeHolder)])
+            txtSearch.attributedPlaceholder = NSAttributedString(string: searchTextPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.setColor(colorType: .placeHolder)])
             txtSearch.autocorrectionType = .no
             self.setUpView()
         }

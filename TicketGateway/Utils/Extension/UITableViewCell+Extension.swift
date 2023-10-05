@@ -12,7 +12,7 @@ extension UITableViewCell {
     func timeStampToDateTimeString(timeStamp: Double) -> String {
            let date = NSDate(timeIntervalSince1970: timeStamp / 1000)
            let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "dd.MM.yy HH:mm:ss a"
+           dateFormatter.dateFormat = "dd.MM.yy HH:mm: Ss a"
         //dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
            let dateString = dateFormatter.string(from: date as Date)
            return dateString
@@ -20,7 +20,7 @@ extension UITableViewCell {
   public func convertDateFormater(date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss+00:00"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss+00:00"
         let dateFromInputString = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "dd-MM-yyyy"
         if(dateFromInputString != nil) {
@@ -33,7 +33,7 @@ extension UITableViewCell {
     public func convertTimeFormater(date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss+00:00"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss+00:00"
         let dateFromInputString = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "HH:mm"
         if(dateFromInputString != nil) {
@@ -46,7 +46,7 @@ extension UITableViewCell {
     public func convertOnlyMinutesFormater(date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.dateFormat = "HH:mm: Ss"
         let dateFromInputString = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "mm"
         if(dateFromInputString != nil) {

@@ -126,7 +126,7 @@ class FavouriteTableViewCell: UITableViewCell {
         }
     }
 
-    func setupUI(isFavorites:Bool) {
+    func setupUI(isFavorites: Bool) {
         if isFavorites{
             self.numberOfVenueStack.isHidden = true
             self.timeOfVenueStack.isHidden = true

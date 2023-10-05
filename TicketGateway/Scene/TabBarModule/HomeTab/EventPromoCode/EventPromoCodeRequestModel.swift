@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DiscountType:String {
+enum DiscountType: String {
     case AMOUNT = "AMOUNT"
     case PERCENTAGE = "PERCENTAGE"
 }

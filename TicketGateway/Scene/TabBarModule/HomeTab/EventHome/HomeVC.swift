@@ -79,7 +79,7 @@ extension HomeVC {
         self.vwSearchBar.txtSearch.delegate = self
     }
 
-    func navigateToDetailVc(index:IndexPath) {
+    func navigateToDetailVc(index: IndexPath) {
         if let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC{
             if self.viewModel.arrEventCategory.indices.contains(index.section) {
                 switch self.viewModel.arrEventCategory[index.section] {
@@ -193,7 +193,7 @@ extension HomeVC {
         }
     }
 
-    func funcCallApiForWeekendEvents(viewAll:Bool) {
+    func funcCallApiForWeekendEvents(viewAll: Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -235,7 +235,7 @@ extension HomeVC {
         }
     }
 
-    func funcCallApiForOnlineEvents(viewAll:Bool) {
+    func funcCallApiForOnlineEvents(viewAll: Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -306,7 +306,7 @@ extension HomeVC {
         }
     }
 
-    func funcCallApiForFreeEvents(viewAll:Bool) {
+    func funcCallApiForFreeEvents(viewAll: Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -342,7 +342,7 @@ extension HomeVC {
         }
     }
 
-    func funcCallApiForUpcomingEvents(viewAll:Bool) {
+    func funcCallApiForUpcomingEvents(viewAll: Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -385,7 +385,7 @@ extension HomeVC {
 
     }
 
-    func funcCallApiForOrganizersList(viewAll:Bool) {
+    func funcCallApiForOrganizersList(viewAll: Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             if !UserDefaultManager.share.getIsLikedAnyEvent() {
@@ -414,7 +414,7 @@ extension HomeVC {
         }
     }
 
-    func funcCallApiForEventDetail(eventId:Int?, view: EventDetailVC) {
+    func funcCallApiForEventDetail(eventId: Int?, view: EventDetailVC) {
         if let eventId = eventId{
           if Reachability.isConnectedToNetwork() //check internet connectivity
           {

@@ -13,5 +13,5 @@ final class BandLeaderProfileViewModel{
     var arrCostumeItems = ["costume_ip", "costume_ip", "costume_ip", "costume_ip"]
     var arrBrandLeader = [BRAND_LEADER_ICON,BRAND_LEADER_ICON,BRAND_LEADER_ICON]
     var costumeObj:UIViewController?
-    var isForDetailVC:String?
+    var isForDetailVC: String?
 }

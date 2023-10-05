@@ -57,7 +57,7 @@ class Side: UIViewController {
        //adding tap gesture to hide menu controller
         view.addGestureRecognizer((self.revealViewController()?.tapGestureRecognizer())!)
 
-        //setting reveal width of menu controller manually
+        // setting reveal width of menu controller manually
         self.revealViewController()?.rearViewRevealWidth = UIScreen.main.bounds.width * (2/3)
 
         self.revealViewController()?.delegate = self

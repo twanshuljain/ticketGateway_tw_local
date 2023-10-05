@@ -13,7 +13,7 @@ class VenueVC: UIViewController{
     @IBOutlet weak var lblNearOrganisedEvent: UILabel!
     @IBOutlet weak var tblEvents: EventsOrganizesListTableView!
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
-    var isMenuOpened:Bool = false
+    var isMenuOpened: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

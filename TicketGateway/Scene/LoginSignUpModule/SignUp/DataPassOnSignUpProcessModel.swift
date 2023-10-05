@@ -14,7 +14,7 @@ class DataHoldOnSignUpProcessModel: Codable {
     var strDialCountryCode: String?
     var strCountryCode: String?
     var strStatus: String?
-    init(strEmail: String? = nil, strNumber: String? = nil, strStatus: String? = nil,strDialCountryCode: String? = nil, strCountryCode:String? = nil) {
+    init(strEmail: String? = nil, strNumber: String? = nil, strStatus: String? = nil,strDialCountryCode: String? = nil, strCountryCode: String? = nil) {
         self.strEmail = strEmail
         self.strNumber = strNumber
         self.strStatus = strStatus
@@ -23,7 +23,7 @@ class DataHoldOnSignUpProcessModel: Codable {
     }
 }
 class DataHoldOnSocialSignUpProcessModel: Codable {
-    var strProfile:String?
+    var strProfile: String?
     var strName: String?
     var strEmail: String?
     var strNumber: String?
@@ -31,7 +31,7 @@ class DataHoldOnSocialSignUpProcessModel: Codable {
     var strCountryCode: String?
     var strStatus: String?
     var strSocialID: String?
-    init(strEmail: String? = nil, strNumber: String? = nil, strStatus: String? = nil,strDialCountryCode: String? = nil, strCountryCode:String? = nil,strName:String? = nil, strProfile:String? = nil) {
+    init(strEmail: String? = nil, strNumber: String? = nil, strStatus: String? = nil,strDialCountryCode: String? = nil, strCountryCode: String? = nil,strName: String? = nil, strProfile: String? = nil) {
         self.strEmail = strEmail
         self.strNumber = strNumber
         self.strStatus = strStatus

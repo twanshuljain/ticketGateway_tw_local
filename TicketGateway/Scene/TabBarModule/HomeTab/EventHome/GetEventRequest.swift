@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum EventType:String {
+enum EventType: String {
     case free = "free"
     case popular = "popular"
     case virtual = "virtual"

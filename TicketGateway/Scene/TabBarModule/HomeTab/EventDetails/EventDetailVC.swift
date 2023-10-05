@@ -287,7 +287,7 @@ extension EventDetailVC {
             }
           }
     }
-    func funcCallApiForEventCategory(categoryId:Int) {
+    func funcCallApiForEventCategory(categoryId: Int) {
         if Reachability.isConnectedToNetwork() { // check internet connectivity
             DispatchQueue.main.async { [self] in
                 self.tblSuggestedEvent.isHidden = true
@@ -573,7 +573,7 @@ extension EventDetailVC {
 //            self.viewModel.recurringList?.forEach({ data in
 //                if data.eventLocationID == self.viewModel.selectedEventLocationId{
 //                    print(data)
-//                    //yyyy-MM-dd'T'HH:mm:ssZ
+//                    //yyyy-MM-dd'T'HH:mm: SsZ
 //                    "2023-09-18T18:30:00+00:00"
 //                    if let range = data.startDate?.range(of: "T") {
 //                        let substring = data.startDate?[..<range.lowerBound]
@@ -599,7 +599,7 @@ extension EventDetailVC {
             self.viewModel.recurringList?.forEach({ data in
                 if data.eventLocationID == self.viewModel.selectedEventLocationId{
                     print(data)
-                    //yyyy-MM-dd'T'HH:mm:ssZ
+                    //yyyy-MM-dd'T'HH:mm: SsZ
                     "2023-09-18T18:30:00+00:00"
                     startDate = data.startDate ?? ""
                     endDate = data.endDate ?? ""

@@ -9,7 +9,7 @@ import UIKit
 class InstallmentInfo {
     var isExpanded : Bool
 
-    init(isExpanded:Bool) {
+    init(isExpanded: Bool) {
         self.isExpanded = isExpanded
 
     }
@@ -18,7 +18,7 @@ class InstallmentInfo {
 class ExpandableCells {
     var isExpanded : Bool
     var data: [InstallmentInfo]
-    init(data: [InstallmentInfo],isExpanded:Bool) {
+    init(data: [InstallmentInfo],isExpanded: Bool) {
         self.isExpanded = isExpanded
         self.data = data
     }

@@ -12,7 +12,7 @@ final class EventBookingTicketViewModel{
     var isCheckedTermCondition = false
     var ticketId = ""
     var eventDetail:EventDetail?
-    var eventId:Int?
+    var eventId: Int?
     var arrTicketList : [EventTicket]?
     var selectedArrTicketList = [EventTicket]()
     var feeStructure:FeeStructure?

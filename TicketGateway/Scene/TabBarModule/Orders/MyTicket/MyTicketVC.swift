@@ -151,7 +151,7 @@ extension MyTicketVC {
         }
     }
 
-    func funcCallApiForEventDetail(eventId:Int?) {
+    func funcCallApiForEventDetail(eventId: Int?) {
         if let eventId = eventId{
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {

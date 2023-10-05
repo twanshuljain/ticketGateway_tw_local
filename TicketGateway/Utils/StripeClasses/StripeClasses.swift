@@ -10,9 +10,9 @@ import Stripe
 
 class StripeClasses: NSObject {
     static let sharedInstance = StripeClasses()
-    private var jsonStrings:String?
+    private var jsonStrings: String?
 
-    func createStripeSourceToken(name:String,cardNumber:String,expMonth:UInt,expYear:UInt,cvv:String,controller:UIViewController?,callback:@escaping (_ response:String?,_ taskError:Error?)->Void) {
+    func createStripeSourceToken(name: String,cardNumber: String,expMonth:UInt,expYear:UInt,cvv: String,controller:UIViewController?,callback:@escaping (_ response: String?,_ taskError:Error?)->Void) {
 
         if !Reachability.isConnectedToNetwork() {
             //controller?.view.showLoading(centreToView: (controller?.view)!)
@@ -56,7 +56,7 @@ class StripeClasses: NSObject {
         }
     }
 
-    func addCardForUser(name:String,cardNumber:String,expMonth:Int,expYear:Int,cvv:String,controller:UIViewController?,complition: @escaping (AddCard?,Bool,String) -> Void ) {
+    func addCardForUser(name: String,cardNumber: String,expMonth: Int,expYear: Int,cvv: String,controller:UIViewController?,complition: @escaping (AddCard?,Bool,String) -> Void ) {
         let req = AddCardRequest.init(cardNumber: cardNumber, expMonth: expMonth, expYear: expYear, cvc: cvv , name: name)
         APIHandler.shared.executeRequestWith(apiName: .addCardForUser, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<AddCard>, Error>) in
             switch result {
@@ -72,8 +72,8 @@ class StripeClasses: NSObject {
         }
     }
     func createCheckout(
-        eventId: Int?, orderType:String?,
-        totalUserLoyaltyPoint: String?, totalUserSpentAmount:String?,
+        eventId: Int?, orderType: String?,
+        totalUserLoyaltyPoint: String?, totalUserSpentAmount: String?,
         ticketIDs: [CheckoutTicketID]?, addOnList: [CheckoutAddonList]?,
         controller:UIViewController?, complition: @escaping (CheckoutId?,Bool,String) -> Void
     ) {
@@ -92,7 +92,7 @@ class StripeClasses: NSObject {
         }
     }
 
-    func createCharge(amount:Double,cardId:Int,checkoutId:String,controller:UIViewController?,currency:String,complition: @escaping (CreateCharge?,Bool,String) -> Void ) {
+    func createCharge(amount:Double,cardId: Int,checkoutId: String,controller:UIViewController?,currency: String,complition: @escaping (CreateCharge?,Bool,String) -> Void ) {
         let req = CreateChargeRequest.init(amount: amount, cardId: cardId, checkoutId: checkoutId, currency: currency)
         APIHandler.shared.executeRequestWith(apiName: .createCharge, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<CreateCharge>, Error>) in
             switch result {

@@ -27,7 +27,7 @@ final class EventBookingPaymentMethodViewModel{
     let colorBottom = UIColor(red: 0/255.0, green: 201.0/255.0, blue: 255.0/255.0, alpha: 0.2).cgColor
     let gradientLayer = CAGradientLayer()
     var selectedCurrencyType = ""
-    var eventId:Int?
+    var eventId: Int?
     var selectedArrTicketList = [EventTicket]()
     var eventDetail:EventDetail?
     var feeStructure :FeeStructure?
@@ -35,14 +35,14 @@ final class EventBookingPaymentMethodViewModel{
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var createCharge:CreateCharge?
 
-    var stripeUser:StripeCreateUser?
+    var stripeUser: StripeCreateUser?
     var addCard:AddCard?
     var selectedMonth : String?
     var selectedYear : String?
-    var checkoutId:String?
-    var name:String?
-    var cardNumber:String?
-    var cvv:String?
+    var checkoutId: String?
+    var name: String?
+    var cardNumber: String?
+    var cvv: String?
     var dispatchGroup = DispatchGroup.init()
 
 }
@@ -226,7 +226,7 @@ extension EventBookingPaymentMethodViewModel{
     }
 
     // MARK:- func validateCreditCard
-    func validateCreditCard(_ cardholderName:String?,_ cardNumber:String?,_ expiryDate:String?,_ cvv:String? ,_ vc:EventBookingPaymentMethodVC)-> Bool{
+    func validateCreditCard(_ cardholderName: String?,_ cardNumber: String?,_ expiryDate: String?,_ cvv: String? ,_ vc:EventBookingPaymentMethodVC)-> Bool{
         if cardNumber == nil || cardNumber?.isEmpty ?? false {
             vc.showAlertController(message: PaymentError.cardNumber.value)
             return false

@@ -10,7 +10,7 @@ import SideMenu
 import SVProgressHUD
 
 protocol ViewMoreEventsVCProtocol: class {
-    func reloadView(eventId:Int?, isEventDetailApiCall: Bool?)
+    func reloadView(eventId: Int?, isEventDetailApiCall: Bool?)
 }
 
 class ViewMoreEventsVC: UIViewController {
@@ -91,7 +91,7 @@ extension ViewMoreEventsVC{
 
     }
 
-    func navigateToDetail(index:IndexPath) {
+    func navigateToDetail(index: IndexPath) {
         let view = self.createView(storyboard: .home, storyboardID: .EventDetailVC) as? EventDetailVC
 
         if self.viewModel.isComingFrom == .home{
@@ -542,7 +542,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
+    func btnShareActionTapped(btn:UIButton, indexPath: IndexPath) {
         print("IndexPath : \(indexPath.row)")
         if viewModel.isComingFrom == .home {
             switch viewModel.arrEventCategory[viewModel.index] {
@@ -634,7 +634,7 @@ extension ViewMoreEventsVC: UITableViewDelegate, UITableViewDataSource {
         self.addLoader(indexPath: indexPath)
     }
 
-    func addLoader(indexPath :IndexPath) {
+    func addLoader(indexPath : IndexPath) {
         let lastSectionIndex = self.tblView.numberOfSections - 1
         let lastRowIndex = tblView.numberOfRows(inSection: lastSectionIndex) - 1
         if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {

@@ -51,7 +51,7 @@ class OrganizersArtistsListVC: UIViewController {
 // MARK: - Functions
 extension OrganizersArtistsListVC {
 
-    func callApiForOrganizersList(viewAll:Bool) {
+    func callApiForOrganizersList(viewAll: Bool) {
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
             self.view.showLoading(centreToView: self.view)

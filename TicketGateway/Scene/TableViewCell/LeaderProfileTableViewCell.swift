@@ -20,7 +20,7 @@ class LeaderProfileTableViewCell: UITableViewCell {
 
     }
 
-    func setData(indexPath:IndexPath) {
+    func setData(indexPath: IndexPath) {
         if indexPath.row == 0{
             self.lblTitle.text = "Name"
             self.lblTitleValue.text = "Karen Jones"

@@ -20,7 +20,7 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var defaultTicket = [EventTicket]()
     var arrTicketList : [EventTicket]?
     var ticketId = ""
-    var eventId:Int?
+    var eventId: Int?
     var dispatchGroup:DispatchGroup = DispatchGroup()
     let semaphore = DispatchSemaphore(value: 1)
     var dispatchGroup1 = DispatchGroup.init()
@@ -30,7 +30,7 @@ final class EventBookingTicketOnApplyCouponViewModel{
 }
 
 extension EventBookingTicketOnApplyCouponViewModel {
-    func applyAccessCode(accessCode:String,complition: @escaping (Bool,String) -> Void ) {
+    func applyAccessCode(accessCode: String,complition: @escaping (Bool,String) -> Void ) {
         //let accessCode = "MOON"
         let param = AccessCodeRequestModel(eventId: eventId, accessCode: accessCode)
         APIHandler.shared.executeRequestWith(apiName: .applyAccessCode, parameters: param, methodType: .POST, getURL: APIName.applyAccessCode.rawValue, authRequired: true) { (result: Result<ResponseModal<[EventTicket]>, Error>) in

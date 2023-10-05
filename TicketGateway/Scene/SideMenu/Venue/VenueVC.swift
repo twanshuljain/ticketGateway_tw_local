@@ -17,7 +17,7 @@ class VenueVC: UIViewController{
     @IBOutlet weak var vwNavigationView: NavigationBarView!
 
     // MARK: - Variables
-    var isMenuOpened:Bool = false
+    var isMenuOpened: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

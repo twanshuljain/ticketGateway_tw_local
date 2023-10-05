@@ -12,7 +12,7 @@ public enum MethodType: String {
     case POST, GET, PUT, DELETE
 }
 public enum APIName: String {
-    //******SignUp*******//
+    // ******SignUp*******
     case signUpEmail = "auth/signup-email/"
     case signInNumber = "auth/user/login/mobile/"
     case verifyEmailOtp = "auth/verify-otp/"
@@ -24,7 +24,7 @@ public enum APIName: String {
     case signInUserByNumberEmail = "auth/user/mobile-linked/email/login/"
     case forgotPassword = "auth/user/forget-password/"
     case logoutUser = ""
-    //******HOME*******//
+    // ******HOME*******
     case getEventList = "events/list/"
     case getEventListCategoryWise = "events/filter-types/list/"
     case getEventDetail = "events/detail/"
@@ -46,7 +46,7 @@ public enum APIName: String {
     case favoriteEvents = "events/like/unlike/"
     case followUnfollow = "organizer/follow-unfollow/"
 
-    //STRIPE
+    // STRIPE
     case createStripeCustomer = "payment/stripe/create-customer/"
     case addCardForUser = "payment/add-card/"
     case createCheckout = "payment/checkout/"
@@ -79,9 +79,6 @@ public enum APIName: String {
     case scanOverview = "tgscan/overview"
     case scanSummary = "tgscan/scan/summary/"
 }
-public enum GroupApiName: String {
-    case auth = "auth"
-}
 struct ResponseCode {
     static let success = 200
     static let sessionExpire = 401
@@ -92,7 +89,7 @@ class APIHandler: NSObject {
     private override init() {}
     private let session = URLSession.shared
     let baseURL = "http://3.21.114.70/"
-    //let baseURL = "http://3.19.250.147/"
+    // let baseURL = "http://3.19.250.147/"
     let previousBaseURL = "http://18.224.21.11/"
     let s3URL = "https://tw-staging-media.s3.us-east-2.amazonaws.com/"
     private let boundary = "Boundary-\(NSUUID().uuidString)"
@@ -101,10 +98,9 @@ class APIHandler: NSObject {
         of type: T.Type = T.self,
         apiName: APIName, parameters: U?,
         methodType: MethodType, getURL: String? = "",
-        authRequired: Bool = true, authTokenString:Bool? = false,
+        authRequired: Bool = true, authTokenString: Bool? = false,
         complition: @escaping(Result<ResponseModal<T>, Error>
         ) -> Void) {
-
         var finalURL = baseURL + apiName.rawValue
 
         if methodType == .GET{
@@ -375,11 +371,10 @@ class APIHandler: NSObject {
             request.httpBody = param
         }
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            sem.signal()//When task complete then signal will call
+            sem.signal() // When task complete then signal will call
         })
         task.resume()
-        // sem.signal()
-        sem.wait()//waiting until task complete
+        sem.wait() // waiting until task complete
     }
     func nsdataToJSON(data: NSData) -> AnyObject? {
         do {
@@ -401,3 +396,4 @@ extension Data {
         }
     }
 }
+// swiftlint: enable cyclomatic_complexity

@@ -11,7 +11,7 @@
 
 import Foundation
 
-enum FollowUnfollow:String{
+enum FollowUnfollow: String{
     case follow = "Successfully followed"
     case unfollow = "Successfully unfollowed"
 }
@@ -205,7 +205,7 @@ struct DataEventType: Codable {
 
 // MARK: - Organizer
 struct Organizer: Codable {
-    var id:Int?
+    var id: Int?
     var bio: String?
     var isActive: Bool?
     var eventDescription, createdAt, updatedAt, facebookID: String?

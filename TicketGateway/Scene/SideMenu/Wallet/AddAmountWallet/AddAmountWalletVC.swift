@@ -84,7 +84,11 @@ extension AddAmountWalletVC {
         self.navigationView.lblDiscripation.text = IN_TG_WALLET
         self.navigationView.vwBorder.isHidden = false
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
-        btnContinue.setTitles(text: "Proceed to add CAD$1000.00", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen), tintColour: UIColor.setColor(colorType: .btnDarkBlue))
+        btnContinue.setTitles(
+            text: "Proceed to add CAD$1000.00",
+            font: UIFont.setFont(fontType: .medium, fontSize: .fourteen),
+            tintColour: UIColor.setColor(colorType: .btnDarkBlue)
+        )
         [self.btnContinue,self.btnCard, btnWallet, btnSelectWallet].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }

@@ -29,7 +29,7 @@ class AddOnAddInOrderCell: UITableViewCell {
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
     }
-    func setData(addOnData:EventTicketAddOnResponseModel?, selectedCurrencyType:String) {
+    func setData(addOnData:EventTicketAddOnResponseModel?, selectedCurrencyType: String) {
         if let addOnData = addOnData{
             if let selectedTicketQuantity = addOnData.selectedTicketQuantity{
                 lblTittle.text = " + " + "\(addOnData.addOnName ?? "")" + "*" + " \(selectedTicketQuantity) "

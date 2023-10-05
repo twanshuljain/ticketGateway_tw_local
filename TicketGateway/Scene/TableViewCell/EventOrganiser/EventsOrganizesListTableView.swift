@@ -18,7 +18,7 @@ enum IsComingFromForEventsOrganizesListTableView{
 }
 
 protocol EventsOrganizesListTableViewProtocol{
-    func tapActionOfViewMoreEvents(index:Int)
+    func tapActionOfViewMoreEvents(index: Int)
 }
 
 protocol ActivityController {
@@ -44,7 +44,7 @@ class EventsOrganizesListTableView: UITableView {
     var tableDidSelectAtIndex: ((IndexPath) -> Void)?
     var selectedDevice = ""
     var isFromDeselected = false
-    var isComingFrom:IsComingFromForEventsOrganizesListTableView? = .home
+    var isComingFrom: IsComingFromForEventsOrganizesListTableView? = .home
     var delegateViewMore: EventsOrganizesListTableViewProtocol?
     var delegateShareAction: ActivityController?
     var delegateLikeAction: FavouriteAction?
@@ -53,14 +53,14 @@ class EventsOrganizesListTableView: UITableView {
     var shareEvent:GetEventModel?
     var countryName = Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
 
-    func configure(isComingFrom:IsComingFromForEventsOrganizesListTableView?) {
+    func configure(isComingFrom: IsComingFromForEventsOrganizesListTableView?) {
         self.isComingFrom = isComingFrom
         self.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         self.delegate = self
         self.dataSource = self
     }
 
-    func btnShareActionTapped(btn:UIButton, indexPath:IndexPath) {
+    func btnShareActionTapped(btn:UIButton, indexPath: IndexPath) {
         print("IndexPath : \(indexPath.row)")
         if self.isComingFrom == .home{
             switch self.arrEventCategory[indexPath.section] {
@@ -103,7 +103,7 @@ class EventsOrganizesListTableView: UITableView {
             }
         }
     }
-    func btnLikeActionTapped(btn:UIButton, indexPath:IndexPath) {
+    func btnLikeActionTapped(btn:UIButton, indexPath: IndexPath) {
         print("IndexPath : \(indexPath.row)")
         if self.isComingFrom == .home {
             switch self.arrEventCategory[indexPath.section] {

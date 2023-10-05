@@ -10,12 +10,12 @@ import AdvancedPageControl
 
 protocol CostumeTableViewCellProtocol {
     func didTapOnFrontLine(sender:UIButton)
-    func didSelect(index:IndexPath)
+    func didSelect(index: IndexPath)
 }
 
 extension CostumeTableViewCellProtocol {
     func didTapOnFrontLine(sender:UIButton) {}
-    func didSelect(index:IndexPath) {}
+    func didSelect(index: IndexPath) {}
 }
 
 class CostumeTableViewCell: UITableViewCell {
@@ -56,7 +56,7 @@ class CostumeTableViewCell: UITableViewCell {
 
     }
 
-    func setData(costumeObj:UIViewController?, isForDetailVC:String?) {
+    func setData(costumeObj:UIViewController?, isForDetailVC: String?) {
         //cell.imgCostumeImage.image = UIImage(named: data)
         self.lblTitle.text = "  Jouvert Republic 2023"
         self.btnFrontLine.titleLabel?.text = "Frontline | Trini Revellers "

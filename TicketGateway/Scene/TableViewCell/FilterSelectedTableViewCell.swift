@@ -19,7 +19,7 @@ class FilterSelectedTableViewCell: UITableViewCell {
         self.setUI()
     }
 
-    func setData(str:String, selectedIndex:Int, index:Int) {
+    func setData(str: String, selectedIndex: Int, index: Int) {
         self.selectionStyle = .none
         self.lblFilter.text = str
        if selectedIndex==index{

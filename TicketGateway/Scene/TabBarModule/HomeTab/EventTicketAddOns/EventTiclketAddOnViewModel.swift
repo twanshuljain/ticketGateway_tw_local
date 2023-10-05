@@ -18,7 +18,7 @@ class EventTiclketAddOnViewModel {
     var arrAddOnTicketList: [EventTicketAddOnResponseModel]?
     var selectedArrTicketList = [EventTicket]()
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
-    var eventId:Int?
+    var eventId: Int?
     var selectedCurrencyType = ""
 
     func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {

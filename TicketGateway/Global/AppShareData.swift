@@ -187,7 +187,7 @@ class AppShareData {
         }
     }
 
-    func getTicketCurrency(currencyType:String) -> String{
+    func getTicketCurrency(currencyType: String) -> String{
         if currencyType == "EUR"{
             return currencyType
         } else if currencyType == "CAD"{

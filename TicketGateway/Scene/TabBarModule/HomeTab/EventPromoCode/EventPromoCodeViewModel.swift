@@ -13,7 +13,7 @@ final class EventPromoCodeViewModel{
     var eventDetail:EventDetail?
     var feeStructure:FeeStructure?
     var selectedArrTicketList = [EventTicket]()
-    var eventId:Int?
+    var eventId: Int?
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var finalPrice = 0.0
     var lblNumberOfCount = 0
@@ -24,7 +24,7 @@ final class EventPromoCodeViewModel{
 
 extension EventPromoCodeViewModel{
 
-    func applyPromoCode(promoCode:String,complition: @escaping (Bool,String) -> Void ) {
+    func applyPromoCode(promoCode: String,complition: @escaping (Bool,String) -> Void ) {
         //let prmoCode = "1234"
         let param = EventPromoCodeRequestModel(eventId: eventId, promoCode: promoCode)
         APIHandler.shared.executeRequestWith(apiName: .applyPromoCode, parameters: param, methodType: .POST, getURL: APIName.applyPromoCode.rawValue, authRequired: true) { (result: Result<ResponseModal<PromoCode>, Error>) in

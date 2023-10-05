@@ -21,7 +21,7 @@ extension String {
         //dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
         let dateString = dateFormatter.string(from: date as Date)
         let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm:ss a"
+        timeFormatter.dateFormat = "HH:mm: Ss a"
        // timeFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
         let timeString = timeFormatter.string(from: date as Date)
         return (dateString, timeString)
@@ -39,9 +39,9 @@ extension String {
 //        let dateFormatter = DateFormatter()
 //        let tempLocale = dateFormatter.locale // save locale temporarily
 //        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: SsZ"
 //        if dateFormatter.date(from: self) == nil{
-//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss"
 //            let date = dateFormatter.date(from: self) ?? Date.init()
 //            dateFormatter.dateFormat = dateFormate
 //            dateFormatter.locale = tempLocale // reset the locale
@@ -62,10 +62,10 @@ extension String {
         //dateFormatter.timeZone = .current
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: SsZ"
         //dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         if dateFormatter.date(from: self) == nil {
-          dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+          dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss"
           let date = dateFormatter.date(from: self) ?? Date.init()
           dateFormatter.dateFormat = dateFormate
           dateFormatter.locale = tempLocale // reset the locale
@@ -84,10 +84,10 @@ extension String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: SsZ"
         //dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         if dateFormatter.date(from: self) == nil{
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss"
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "MMM d, yyyy"
             dateFormatter.locale = tempLocale // reset the locale
@@ -107,10 +107,10 @@ extension String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: SsZ"
         // dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         if dateFormatter.date(from: self) == nil{
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss"
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "MMM d, yyyy"
             dateFormatter.locale = tempLocale // reset the locale
@@ -130,10 +130,10 @@ extension String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: SsZ"
         // dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         if dateFormatter.date(from: self) == nil{
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss"
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "EEE"
             dateFormatter.locale = tempLocale // reset the locale
@@ -153,10 +153,10 @@ extension String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss.SSSSSSXXX"
         //dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         if dateFormatter.date(from: self) == nil{
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss"
             let date = dateFormatter.date(from: self) ?? Date.init()
             dateFormatter.dateFormat = "MMM d, yyyy"
             dateFormatter.locale = tempLocale // reset the locale
@@ -176,7 +176,7 @@ extension String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss.SSSSSSZZZZZ"
         // dateFormatter.timeZone = .current //TimeZone(identifier: "UTC")
         let date = dateFormatter.date(from: self) ?? Date.init()
         dateFormatter.dateFormat = "MMM d, yyyy"
@@ -187,7 +187,7 @@ extension String {
 
     func convertToDate() -> Date {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm: SsZ"
         formatter.locale = Locale(identifier: "en_US_POSIX")
         //formatter.timeZone = .current
         //formatter.timeZone = TimeZone(abbreviation: "GMT")
@@ -196,7 +196,7 @@ extension String {
       }
       func convertStringToDateForTime() -> Date {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "HH:mm: Ss"
         formatter.locale = Locale(identifier: "en_US_POSIX")
         let result = formatter.date(from: self) ?? Date()
         return result
@@ -206,7 +206,7 @@ extension String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.dateFormat = "HH:mm: Ss"
         let date = dateFormatter.date(from: self) ?? Date.init()
         dateFormatter.dateFormat = "hh:mm a"
         dateFormatter.locale = tempLocale // reset the locale
@@ -230,14 +230,14 @@ extension String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: SsZ"
         var date = dateFormatter.date(from: date) ?? Date()
         return date
     }
     func convertStringToDateForProfile(date: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm: Ss.SSSSSSZZZZZ"
         let date = dateFormatter.date(from: date) ?? Date()
         return date
     }

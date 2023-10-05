@@ -8,7 +8,7 @@ import UIKit
 import SDWebImage
 
 protocol SuggestedOrganizerCellProtocol:class {
-    func followUnfollowAction(tag:Int)
+    func followUnfollowAction(tag: Int)
 }
 
 class SuggestedOrganizerCell: UICollectionViewCell {

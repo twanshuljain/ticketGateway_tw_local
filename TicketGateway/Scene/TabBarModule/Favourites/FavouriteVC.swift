@@ -282,7 +282,7 @@ extension FavouriteVC {
             }
         }
     }
-    func funcCallApiForEventDetail(eventId:Int?, view: EventDetailVC) {
+    func funcCallApiForEventDetail(eventId: Int?, view: EventDetailVC) {
         if let eventId = eventId {
             if Reachability.isConnectedToNetwork() //check internet connectivity
             {

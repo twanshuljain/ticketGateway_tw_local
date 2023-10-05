@@ -27,7 +27,7 @@ class UpcomingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func setData(getTicket: GetMyOrderItem?, isFaded:Bool) {
+    func setData(getTicket: GetMyOrderItem?, isFaded: Bool) {
         self.lblTitle.text = getTicket?.eventTitle ?? ""
         if let startDate = getTicket?.eventStartDate {
             self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"

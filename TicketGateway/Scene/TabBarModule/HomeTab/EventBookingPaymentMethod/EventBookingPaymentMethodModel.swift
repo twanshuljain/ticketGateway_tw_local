@@ -84,8 +84,8 @@ struct CheckoutTicketID: Codable {
     var ticketTypeId : Int?
     var ticketType, ticketName: String?
     var baseTicketID, quantity: Int?
-    var ticketPrice:Int?
-    var ticketCurrency:String?
+    var ticketPrice: Int?
+    var ticketCurrency: String?
 
     enum CodingKeys: String, CodingKey {
         case ticketTypeId = "ticket_type_id"

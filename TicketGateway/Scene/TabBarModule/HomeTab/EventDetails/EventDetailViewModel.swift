@@ -11,8 +11,8 @@ final class EventDetailViewModel{
 
     // MARK: - Variables
     var eventDetail: EventDetail?
-    var eventId:Int?
-    var suggestedEventCategoryId:Int?
+    var eventId: Int?
+    var suggestedEventCategoryId: Int?
     var selectedArrTicketList = [EventTicket]()
     var arrEventData : [GetEventModel] = [GetEventModel]()
     var eventDetailForFavourite: EventDetail?
@@ -50,7 +50,7 @@ extension EventDetailViewModel{
         }
     }
 
-    func getEventSuggestedCategory(categoryId:Int?, complition: @escaping (Bool,String) -> Void ) {
+    func getEventSuggestedCategory(categoryId: Int?, complition: @escaping (Bool,String) -> Void ) {
         let parameters = GetEventRequest(limit: "3", page: "1")
         if let suggestedEventCategoryId = categoryId{
             let url = APIName.getEventSuggestedCategoryList.rawValue + "\(suggestedEventCategoryId)"  + "/"

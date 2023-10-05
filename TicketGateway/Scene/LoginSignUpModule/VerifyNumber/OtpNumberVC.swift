@@ -329,7 +329,7 @@ extension OtpNumberVC {
         self.viewModel.countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
 
-    func getAttributedOtpStr(str:String) -> NSAttributedString{
+    func getAttributedOtpStr(str: String) -> NSAttributedString{
 
         let attributedString = NSMutableAttributedString(string: str)
 

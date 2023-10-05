@@ -16,7 +16,7 @@ final class NumberVerifyViewModel {
     var countdownTimer: Timer!
     var totalTime = 60
     var otpNumVC: OtpNumberVC?
-    var eventId:Int?
+    var eventId: Int?
     var selectedArrTicketList : [EventTicket]?
     var eventDetail:EventDetail?
     var feeStructure :FeeStructure?

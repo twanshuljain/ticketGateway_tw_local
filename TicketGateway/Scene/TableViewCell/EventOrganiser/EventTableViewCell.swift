@@ -71,7 +71,7 @@ class EventTableViewCell: UITableViewCell {
         }
     }
 
-    func setNoDataFound(countryName:String) {
+    func setNoDataFound(countryName: String) {
         self.viewNoData.isHidden = false
         lblNoData.text = "No Events Found near \(countryName)"
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum EventCategories:String{
+enum EventCategories: String{
     case noLocationData = "Events Not Found"
     case nearByLocation = "Events Near Toronto"
     case weekend = "This Weekend"

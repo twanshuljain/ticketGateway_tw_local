@@ -18,7 +18,7 @@ class EventTagCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func setData(tagName:String?) {
+    func setData(tagName: String?) {
         self.lblName.text = tagName ?? ""
     }
 
