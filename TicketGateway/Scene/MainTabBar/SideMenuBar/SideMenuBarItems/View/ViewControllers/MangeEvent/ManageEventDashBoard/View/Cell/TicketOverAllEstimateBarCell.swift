@@ -24,7 +24,7 @@ class TicketOverAllEstimateBarCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setUi(){
+    func setUi() {
 
         self.lbltittle.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
         self.lbltittle.textColor = UIColor.setColor(colorType: .lblTextPara)

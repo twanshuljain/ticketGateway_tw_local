@@ -3,13 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple  on 02/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
+
 
 import UIKit
 import SideMenu
@@ -57,7 +51,7 @@ class DeviceSettingVC: UIViewController {
             self.setUi()
         }
 
-        func setUi(){
+        func setUi() {
             self.lblPushNotificationsOn.font = UIFont.setFont(fontType: .regular, fontSize: .eighteen)
             self.lblPushNotificationsOn.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
 
@@ -97,22 +91,22 @@ extension DeviceSettingVC {
             }
         }
 
-        func btnRateUsAction(){
+        func btnRateUsAction() {
 
         }
-    func btnFeedbackAction(){
+    func btnFeedbackAction() {
 
     }
-    func btnfaceIdAction(){
+    func btnfaceIdAction() {
 
     }
-    func btnEmailIdAction(){
+    func btnEmailIdAction() {
 
     }
-    func btnhowToUseAppAction(){
+    func btnhowToUseAppAction() {
 
     }
-    func btnchageAvtarImageAction(){
+    func btnchageAvtarImageAction() {
 
     }
     }

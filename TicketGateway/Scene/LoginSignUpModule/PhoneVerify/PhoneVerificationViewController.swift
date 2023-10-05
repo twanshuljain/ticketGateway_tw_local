@@ -72,7 +72,7 @@ extension PhoneVerificationViewController {
 
 // MARK: - Actions
 extension PhoneVerificationViewController {
-    @IBAction func btnSelectCountryAction(_ sender: UIButton) {
+    @IBAction private func btnSelectCountryAction(_ sender: UIButton) {
         self.view.endEditing(true)
         let storyBoard = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as? RSCountryPickerController
         storyBoard?.RScountryDelegate = self
@@ -80,7 +80,7 @@ extension PhoneVerificationViewController {
         storyBoard?.modalPresentationStyle = .fullScreen
         self.navigationController?.present(storyBoard ?? UIViewController(), animated: true, completion: nil)
     }
-    @IBAction func btnContinueAction(_ sender: UIButton) {
+    @IBAction private func btnContinueAction(_ sender: UIButton) {
         if (self.userType == .new) || (userType == .existing && self.isChangeMobileNumberTap == true) {
             viewModel.emailAddress = self.txtEmail.text ?? ""
             viewModel.mobileNumber = self.txtNumber.text ?? ""
@@ -171,7 +171,7 @@ extension PhoneVerificationViewController {
         //        }
     }
 
-    @IBAction func btnChangeNumberAction(_ sender:UIButton) {
+    @IBAction private func btnChangeNumberAction(_ sender:UIButton) {
         self.btnChangeNumber.isHidden = true
         self.isChangeMobileNumberTap = true
         self.txtNumber.text = ""

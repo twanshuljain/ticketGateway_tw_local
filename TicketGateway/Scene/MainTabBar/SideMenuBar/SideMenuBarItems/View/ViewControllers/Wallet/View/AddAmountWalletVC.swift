@@ -191,7 +191,7 @@ extension AddAmountWalletVC {
         viewadd.layer.insertSublayer(gradientLayer, at:0)
     }
 
-    @IBAction func btnOpenDatePicker(_ sender: Any) {
+    @IBAction private func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
         self.picker_monthYear.reloadAllComponents()
@@ -256,7 +256,7 @@ extension AddAmountWalletVC {
         self.picker_monthYear.reloadAllComponents()
     }
 
-    @IBAction func btnPickerDoneAction(_ sender: UIButton) {
+    @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
         if selectedMonthName.isEmpty && selectedyearName.isEmpty {
@@ -272,7 +272,7 @@ extension AddAmountWalletVC {
         }
     }
 
-    @IBAction func btnPickerCancelAction(_ sender: UIButton) {
+    @IBAction private func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }

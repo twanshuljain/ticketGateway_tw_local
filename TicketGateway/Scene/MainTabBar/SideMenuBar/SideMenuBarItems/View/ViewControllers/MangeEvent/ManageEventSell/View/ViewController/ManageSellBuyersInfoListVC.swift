@@ -18,27 +18,27 @@ class ManageSellBuyersInfoListVC: UIViewController {
         self.setUp()
         // Do any additional setup after loading the view.
     }
-    func setUp(){
+    func setUp() {
           self.tblBuyerInfo.configure()
         self.tblBuyerInfo.tableDidSelectAtIndex = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
             view?.isFromAddInfo = false
-            view?.ToupleBuyerInfoData.strNameValue = "Rebecca young"
-            view?.ToupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
-            view?.ToupleBuyerInfoData.strNumberValue = "+91 9876 543210"
-            view?.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
-            view?.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
+            view?.toupleBuyerInfoData.strNameValue = "Rebecca young"
+            view?.toupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
+            view?.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
+            view?.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
+            view?.toupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
 
         }
         self.tblBuyerInfo.tableDidSelectAtIndexEdit = { intval in
             let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellAddBuyerVC) as? ManageSellAddBuyerVC
             view?.isFromAddInfo = false
-            view?.ToupleBuyerInfoData.strNameValue = "Rebecca young"
-            view?.ToupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
-            view?.ToupleBuyerInfoData.strNumberValue = "+91 9876 543210"
-            view?.ToupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
-            view?.ToupleBuyerInfoData.strDialCodeValue = "jhjh"
+            view?.toupleBuyerInfoData.strNameValue = "Rebecca young"
+            view?.toupleBuyerInfoData.strEmailValue = "rebecca.young@yahoo.com"
+            view?.toupleBuyerInfoData.strNumberValue = "+91 9876 543210"
+            view?.toupleBuyerInfoData.strCountryCodeValue = "fbfdfdgffggfhg"
+            view?.toupleBuyerInfoData.strDialCodeValue = "jhjh"
            self.navigationController?.pushViewController(view!, animated: true)
 
         }

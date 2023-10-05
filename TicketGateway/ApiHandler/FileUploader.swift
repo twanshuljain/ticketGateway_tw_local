@@ -1,10 +1,4 @@
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
+
 
 import UIKit
 
@@ -18,7 +12,15 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
     private let boundary = "Boundary-\(NSUUID().uuidString)"
     private let baseURL = ""
     // Upload Image Method
-    func uploadFileOnServerWith(apiName: APIName, imageName: String, fileData: Data, keyForFile: String, parameters: [String:Any]?, mimeType: MimeType = .image, onSuccess:@escaping(_ httpStatus:Int,_ response:Data?)->(), onFailure:@escaping(_ httpStatus:Int,_ response:NSDictionary?)->()) {
+    func uploadFileOnServerWith(
+        apiName: APIName,
+        imageName: String,
+        fileData: Data,
+        keyForFile: String,
+        parameters: [String: Any]?,
+        mimeType: MimeType = .image,
+        onSuccess: @escaping(_ httpStatus:Int, _ response: Data?) -> (),
+        onFailure: @escaping(_ httpStatus:Int, _ response: NSDictionary?) -> ()) {
         let finalURL = baseURL + apiName.rawValue
         guard let requestURL = URL(string: finalURL) else {
             let tmpResponse = ["message": "Incorrect request URL"] as NSDictionary
@@ -34,11 +36,15 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         if let token = UserDefaults.standard.token {
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         }
-
-        let data = self.createDataBody(withParameters: parameters, media: fileData, boundary: self.boundary, keyForImage: keyForFile, imageName: imageName, mimeType: mimeType)
-
+        let data = self.createDataBody(
+            withParameters: parameters,
+            media: fileData,
+            boundary: self.boundary,
+            keyForImage: keyForFile,
+            imageName: imageName,
+            mimeType: mimeType
+        )
         session.uploadTask(with: urlRequest, from: data) { (tmpdata, response, error) in
-
             var httpStatusCode = 0
             if let httpResponse = response as? HTTPURLResponse {
                 httpStatusCode = httpResponse.statusCode
@@ -69,7 +75,6 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         }.resume()
 
     }
-
     private func createDataBody(withParameters params: [String:Any]?, media: Data?, boundary: String, keyForImage:String, imageName:String, mimeType: MimeType) -> Data {
 
         let lineBreak = "\r\n"

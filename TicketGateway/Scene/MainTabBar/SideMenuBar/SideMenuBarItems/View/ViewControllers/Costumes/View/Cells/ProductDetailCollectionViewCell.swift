@@ -18,7 +18,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
 
     }
 
-    func setFont(){
+    func setFont() {
     lblProduct.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         lblProduct.textColor = UIColor.setColor(colorType: .lblTextPara)
     }

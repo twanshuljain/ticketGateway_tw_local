@@ -8,7 +8,7 @@ import UIKit
 import iOSDropDown
 import SideMenu
 
-class RewardLoyaltyPointsVC: UIViewController,UITextFieldDelegate {
+class RewardLoyaltyPointsVC: UIViewController, UITextFieldDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet weak var collvwCalender: EventCalenderList!

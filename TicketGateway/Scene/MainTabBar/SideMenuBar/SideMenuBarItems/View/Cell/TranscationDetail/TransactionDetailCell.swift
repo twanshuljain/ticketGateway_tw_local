@@ -29,7 +29,7 @@ class TransactionDetailCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func setUi(){
+    func setUi() {
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblDate.textColor = UIColor.setColor(colorType: .TGGrey)
         self.lblTicketID.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

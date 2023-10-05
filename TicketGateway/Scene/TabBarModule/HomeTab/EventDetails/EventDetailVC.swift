@@ -176,7 +176,7 @@ extension EventDetailVC {
         {
             vwEventName.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup1.enter()
-            viewModel.GetMultiLocationList { isTrue, messageShowToast in
+            viewModel.getMultiLocationList { isTrue, messageShowToast in
                 if isTrue == true {
                     self.vwEventName.stopLoading()
                 } else {
@@ -201,7 +201,7 @@ extension EventDetailVC {
         {
             vwEventName.showLoading(centreToView: self.view)
             self.viewModel.dispatchGroup2.enter()
-            viewModel.GetRecurringList { isTrue, messageShowToast in
+            viewModel.getRecurringList { isTrue, messageShowToast in
                 if isTrue == true {
                     self.vwEventName.stopLoading()
                 } else {

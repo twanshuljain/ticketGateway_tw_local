@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 10/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 import iOSDropDown
@@ -20,11 +12,11 @@ class ManageEventVC: UIViewController, UITextFieldDelegate {
 
     var isShow = false
     @IBOutlet weak var vwSearchBar: CustomSearchBar!
-   @IBOutlet weak var txtAllorganiser: DropDown!
-    @IBOutlet weak var TblManageEvent: ManageMyEventListTableView!
+    @IBOutlet weak var txtAllorganiser: DropDown!
+    @IBOutlet weak var tblManageEvent: ManageMyEventListTableView!
     @IBOutlet weak var collVwCategory: ManageMyEventCateoryList!
     @IBOutlet weak var btnAllorganiser: UIButton!
-     @IBOutlet weak var btnCreateEvent: CustomButtonGradiant!
+    @IBOutlet weak var btnCreateEvent: CustomButtonGradiant!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -40,7 +32,7 @@ extension ManageEventVC {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.setUi()
-        self.TblManageEvent.configure()
+        self.tblManageEvent.configure()
         self.collVwCategory.configure()
         self.txtAllorganiser.optionArray = ["Rebecca young", "Feb", "Rebecca young","Rebecca young","Rebecca young"]
         self.txtAllorganiser.optionIds = [1,23,54,22]
@@ -48,12 +40,12 @@ extension ManageEventVC {
             self.txtAllorganiser.text = "Selected String: \(selectedText) \n index: \(index)"
         }
 
-        self.TblManageEvent.tableDidSelectAtIndex = { _ in
+        self.tblManageEvent.tableDidSelectAtIndex = { _ in
             objSceneDelegate.showMangeEventTabBar()
         }
 
     }
-    func setUi(){
+    func setUi() {
         self.txtAllorganiser.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.txtAllorganiser.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         btnCreateEvent.setTitles(text: "Create Event", font: UIFont.boldSystemFont(ofSize: 20), tintColour: UIColor.setColor(colorType: .TGBlack))
@@ -71,7 +63,7 @@ extension ManageEventVC {
         }
     }
 
-    func btnAllorganiserAction(){
+    func btnAllorganiserAction() {
         txtAllorganiser.showList()
 //        if self.isShow == false{
 //            self.isShow = true
@@ -92,7 +84,7 @@ extension ManageEventVC: CustomSearchMethodsDelegate {
         present(menu, animated: true, completion: nil)
     }
 
-    func RightButtonPressed(_ sender: UIButton) {
+    func rightButtonPressed(_ sender: UIButton) {
         print("hello")
     }
 

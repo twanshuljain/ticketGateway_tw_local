@@ -73,7 +73,7 @@ extension AddCardVC {
         }
      }
 
-    func setUi(){
+    func setUi() {
         [self.lblCardNumber,lblFullName,self.lblExpiry,self.lblCVC_CVV].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -96,7 +96,7 @@ extension AddCardVC {
    self.navigationController?.pushViewController(view!, animated: true)
     }
 
-    @IBAction func btnOpenDatePicker(_ sender: Any) {
+    @IBAction private func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
         self.picker_monthYear.reloadAllComponents()
@@ -161,7 +161,7 @@ extension AddCardVC {
         self.picker_monthYear.reloadAllComponents()
     }
 
-    @IBAction func btnPickerDoneAction(_ sender: UIButton) {
+    @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
         if selectedMonthName.isEmpty && selectedyearName.isEmpty {
@@ -177,7 +177,7 @@ extension AddCardVC {
         }
     }
 
-    @IBAction func btnPickerCancelAction(_ sender: UIButton) {
+    @IBAction private func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }

@@ -196,11 +196,11 @@ extension ZoomViewController{
 
 // MARK: - Actions
 extension ZoomViewController{
-    @IBAction func btnCancelPressed(_ sender: UIButton) {
+    @IBAction private func btnCancelPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func btnChoosePressed(_ sender: UIButton) {
+    @IBAction private func btnChoosePressed(_ sender: UIButton) {
         print(cropView?.frame)
     }
 }

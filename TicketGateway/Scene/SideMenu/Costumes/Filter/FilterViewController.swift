@@ -119,11 +119,11 @@ extension FilterViewController:UITableViewDelegate,UITableViewDataSource{
 }
 // MARK: - Actions
 extension FilterViewController{
-    @IBAction func btnCancelPressed(_ sender: UIButton) {
+    @IBAction private func btnCancelPressed(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
 
-    @IBAction func btnApplyPressed(_ sender: UIButton) {
+    @IBAction private func btnApplyPressed(_ sender: UIButton) {
 
     }
 }

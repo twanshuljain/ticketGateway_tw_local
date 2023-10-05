@@ -3,19 +3,11 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 23/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
 class ExpandableName {
-    var isExpanded : Bool
+    var isExpanded: Bool
     init(isExpanded: Bool) {
         self.isExpanded = isExpanded
 
@@ -23,21 +15,24 @@ class ExpandableName {
 }
 
 class ManageEventOrderVC: UIViewController {
-
     @IBOutlet weak var vwNavigationBar: NavigationBarView!
-    @IBOutlet weak var OrderTableView: UITableView!
-
+    @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
-
-    @IBOutlet weak var BgNoOrderView: UIView!
+    @IBOutlet weak var bgNoOrderView: UIView!
     @IBOutlet weak var lblSorry: UILabel!
     @IBOutlet weak var lblYourSearch: UILabel!
     var isRefundRequest = false
-
     let orderTableData = ["David Taylor", "David Taylor", "David Taylor"]
-
-    var arrData = [ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false), ExpandableName(isExpanded: false)]
-
+    var arrData = [
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false),
+        ExpandableName(isExpanded: false)
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTableView()
@@ -57,12 +52,12 @@ class ManageEventOrderVC: UIViewController {
     }
 
     func setTableView() {
-        self.OrderTableView.delegate = self
-        self.OrderTableView.dataSource = self
-        self.OrderTableView.separatorColor = UIColor.clear
-        self.OrderTableView.register(UINib(nibName: "ManageOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ManageOrderTableViewCell")
-        self.OrderTableView.register(UINib(nibName: "RefundRequestTableViewCell", bundle: nil), forCellReuseIdentifier: "RefundRequestTableViewCell")
-        self.OrderTableView.register(UINib(nibName: "RequestRefundHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RequestRefundHeaderView")
+        self.orderTableView.delegate = self
+        self.orderTableView.dataSource = self
+        self.orderTableView.separatorColor = UIColor.clear
+        self.orderTableView.register(UINib(nibName: "ManageOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "ManageOrderTableViewCell")
+        self.orderTableView.register(UINib(nibName: "RefundRequestTableViewCell", bundle: nil), forCellReuseIdentifier: "RefundRequestTableViewCell")
+        self.orderTableView.register(UINib(nibName: "RequestRefundHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RequestRefundHeaderView")
 
     }
 
@@ -73,7 +68,7 @@ class ManageEventOrderVC: UIViewController {
         self.lblYourSearch.textColor = UIColor.setColor(colorType: .lblTextPara)
     }
 
-    @objc func nextBtn(sender: UIButton){
+    @objc func nextBtn(sender: UIButton) {
         var obj = arrData[sender.tag]
         print(arrData[sender.tag])
         if obj.isExpanded == false
@@ -83,18 +78,18 @@ class ManageEventOrderVC: UIViewController {
             obj.isExpanded = false
         }
         print("value",arrData)
-        self.OrderTableView.reloadData()
+        self.orderTableView.reloadData()
     }
 
-    @IBAction func actionSegmentControl(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegmentControl(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             isRefundRequest = false
-            self.OrderTableView.reloadData()
+            self.orderTableView.reloadData()
 
         case 1:
             isRefundRequest = true
-            self.OrderTableView.reloadData()
+            self.orderTableView.reloadData()
         default:
             break
         }

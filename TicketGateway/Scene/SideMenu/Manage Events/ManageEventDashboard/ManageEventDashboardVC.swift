@@ -99,12 +99,12 @@ extension ManageEventDashboardVC{
 
 // MARK: - Actions
 extension ManageEventDashboardVC{
-    @IBAction func btnSeeMoreTickets(_ sender: Any) {
+    @IBAction private func btnSeeMoreTickets(_ sender: Any) {
         let view = self.createView(storyboard: .manageevent, storyboardID: .ManageEventTicketSoldVC) as? ManageEventTicketSoldVC
         self.navigationController?.pushViewController(view!, animated: true)
     }
 
-    @IBAction func btnMonths(_ sender: Any) {
+    @IBAction private func btnMonths(_ sender: Any) {
         self.txtMonths.showList()
     }
 }

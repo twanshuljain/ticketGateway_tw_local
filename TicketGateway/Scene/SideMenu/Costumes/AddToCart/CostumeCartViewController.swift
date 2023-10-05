@@ -3,13 +3,6 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 08/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disbale identifier_name
-// swiftlint: disbalefunction_parameter_count
 
 import UIKit
 
@@ -149,7 +142,7 @@ extension CostumeCartViewController{
 
     }
 
-    @IBAction func actionSegmentControl(_ sender: Any) {
+    @IBAction private func actionSegmentControl(_ sender: Any) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)

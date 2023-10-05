@@ -69,7 +69,7 @@ extension SegmentCostumeVC {
 }
 // MARK: - Actions
 extension SegmentCostumeVC {
-    @IBAction func actionSegment(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegment(_ sender: UISegmentedControl) {
         switch segmentcontrol.selectedSegmentIndex {
         case 0:
             self.navigationController?.popViewController(animated: false)

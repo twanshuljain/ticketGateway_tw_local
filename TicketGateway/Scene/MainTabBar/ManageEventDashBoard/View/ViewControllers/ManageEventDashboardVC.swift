@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 19/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 import SideMenu
@@ -37,7 +29,7 @@ class ManageEventDashboardVC: UIViewController {
 
     }
 
-    func setup(){
+    func setup() {
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
         self.navigationView.lblDiscripation.text = "Wed, Dec 7, 2023  at 05:00 PM"
@@ -63,7 +55,7 @@ class ManageEventDashboardVC: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationView.imgBack.image = UIImage(named: "backArrow")
     }
-    func setUi(){
+    func setUi() {
         [self.lblNetTicketSold,self.lblTotalAddCheck].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
@@ -90,12 +82,12 @@ class ManageEventDashboardVC: UIViewController {
 
         }
 
-    @IBAction func btnSeeMoreTickets(_ sender: Any) {
+    @IBAction private func btnSeeMoreTickets(_ sender: Any) {
         let view = self.createView(storyboard: .home, storyboardID: .ManageEventTicketSoldVC) as? ManageEventTicketSoldVC
     self.navigationController?.pushViewController(view!, animated: true)
     }
 
-    @IBAction func btnMonths(_ sender: Any) {
+    @IBAction private func btnMonths(_ sender: Any) {
         self.txtMonths.showList()
     }
 }

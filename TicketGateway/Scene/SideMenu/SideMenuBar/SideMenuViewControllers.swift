@@ -176,7 +176,7 @@ extension SideMenuViewControllers{
 
 // MARK: - Actions
 extension SideMenuViewControllers{
-    @IBAction func changeProfile(_ sender: Any) {
+    @IBAction private func changeProfile(_ sender: Any) {
         if self.tblList.isFromManageEvent == false
         {
             self.btnChangeProfile.setTitle("CHANGE INTO USER", for: .normal)

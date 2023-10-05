@@ -143,7 +143,7 @@ extension RequestRefundVC {
         arrData[sender.tag].isSelected = true
         self.tblRefundTableView.reloadData()
     }
-    @IBAction func actionSegmentControl(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegmentControl(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize: .twelve)], for: .normal)

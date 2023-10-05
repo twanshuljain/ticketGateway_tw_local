@@ -26,7 +26,7 @@ class SelectTicketTypeTableviewCell: UITableViewCell {
     func selectAllSwitchOn() {
         self.swTicketTypeSwitch.setOn(true, animated: false)
     }
-    @IBAction func switchButtonAction(_ sender: UISwitch) {
+    @IBAction private func switchButtonAction(_ sender: UISwitch) {
         switchButtonDidTap(sender)
     }
 }

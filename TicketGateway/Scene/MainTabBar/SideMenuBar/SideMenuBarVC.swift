@@ -26,7 +26,7 @@ class Side: UIViewController {
     }
 
     /// adds overlay view
-    func setupView(){
+    func setupView() {
 
         view.addSubview(overlayView)
         overlayView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class Side: UIViewController {
     }
 
     /// setup navigation bar
-    func setupNavBar(){
+    func setupNavBar() {
         navigationController?.navigationBar.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "hamburger"), style: .plain, target: self, action: #selector(hamburgerClicked))
         navigationController?.navigationBar.tintColor = .black
@@ -50,7 +50,7 @@ class Side: UIViewController {
     }
 
     /// setup swreveal controller
-    func setupSWReveal(){
+    func setupSWReveal() {
        //adding panGesture to reveal menu controller
         view.addGestureRecognizer((self.revealViewController()?.panGestureRecognizer())!)
 
@@ -65,7 +65,7 @@ class Side: UIViewController {
     }
 
     //MARK: - action
-    @objc func hamburgerClicked(){
+    @objc func hamburgerClicked() {
         //toggle frontVC on clicking hamburger menu
         self.revealViewController()?.revealToggle(animated: true)
     }

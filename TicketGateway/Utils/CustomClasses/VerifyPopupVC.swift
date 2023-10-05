@@ -39,7 +39,7 @@ class VerifyPopupVC: UIViewController {
     }
 
     // MARK: - Actions
-     @IBAction func btnGreat(_ sender: Any) {
+     @IBAction private func btnGreat(_ sender: Any) {
          DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
              print("the value here work:----")
              self.closerForBack!(true)

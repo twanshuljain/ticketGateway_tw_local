@@ -25,7 +25,7 @@ class BuyersInfoCell: UITableViewCell {
         // Initialization code
     }
 
-    func setUi(){
+    func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblEmail.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)

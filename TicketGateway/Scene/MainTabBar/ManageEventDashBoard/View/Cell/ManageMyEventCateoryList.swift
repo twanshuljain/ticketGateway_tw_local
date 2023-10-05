@@ -3,20 +3,12 @@
 //  TicketGateway
 //
 //  Created by Apple  on 10/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
 class ManageMyEventCateoryList: UICollectionView {
 
-var SelectedIndex = 0
+var selectedIndex = 0
 func configure() {
     self.register(UINib(nibName: "ManageMyEventCategoryCell", bundle: nil), forCellWithReuseIdentifier: "ManageMyEventCategoryCell")
     self.delegate = self
@@ -38,7 +30,7 @@ extension ManageMyEventCateoryList : UICollectionViewDataSource ,UICollectionVie
 
  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ManageMyEventCategoryCell", for: indexPath) as! ManageMyEventCategoryCell
-     if indexPath.row == SelectedIndex {
+     if indexPath.row == selectedIndex {
          cell.vwbg.backgroundColor = .white
      } else {
          cell.vwbg.backgroundColor = .clear
@@ -47,7 +39,7 @@ extension ManageMyEventCateoryList : UICollectionViewDataSource ,UICollectionVie
 }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.SelectedIndex = indexPath.row
+        self.selectedIndex = indexPath.row
         self.reloadData()
     }
 

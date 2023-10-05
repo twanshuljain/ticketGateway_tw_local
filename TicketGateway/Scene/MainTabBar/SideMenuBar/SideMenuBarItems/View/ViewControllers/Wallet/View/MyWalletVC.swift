@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 08/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 import iOSDropDown
@@ -60,7 +52,7 @@ extension MyWalletVC {
         self.navigationView.vwBorder.isHidden = false
 
     }
-    func setUi(){
+    func setUi() {
         self.lblBalance.font = UIFont.setFont(fontType: .medium, fontSize: .twenty)
         self.lblBalance.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblTotalBalance.font = UIFont.setFont(fontType: .semiBold, fontSize: .fourteen)
@@ -85,12 +77,12 @@ extension MyWalletVC {
         }
     }
 
-    func btnAddAmtWalletAction(){
+    func btnAddAmtWalletAction() {
         let view = self.createView(storyboard: .wallet, storyboardID: .AddAmountWalletVC) as! AddAmountWalletVC
         self.navigationController?.pushViewController(view, animated: true)
     }
 
-    func btnDrpoDownAction(){
+    func btnDrpoDownAction() {
         self.txtmonths.showList()
     }
 }

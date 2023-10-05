@@ -9,12 +9,12 @@ import SDWebImage
 
 class OrganizersArtistsListCell: UITableViewCell {
 
-// MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var btnfollow: CustomButtonGradiant!
     @IBOutlet weak var lblFollowers: UILabel!
     @IBOutlet weak var lblName: UILabel!
-    var followButtonDidTap: ((_ sender: UIButton) -> Void) = {sender in }
+    var followButtonDidTap: ((_ sender: UIButton) -> Void) = { sender in }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUi()
@@ -44,7 +44,7 @@ class OrganizersArtistsListCell: UITableViewCell {
             }
         }
     }
-    @IBAction func followButtonAction(_ sender: UIButton) {
+    @IBAction private func followButtonAction(_ sender: UIButton) {
         followButtonDidTap(sender)
     }
     func setUi() {

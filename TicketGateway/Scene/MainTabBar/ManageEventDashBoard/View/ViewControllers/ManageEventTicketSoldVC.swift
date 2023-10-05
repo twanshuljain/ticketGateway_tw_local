@@ -21,7 +21,7 @@ class ManageEventTicketSoldVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    func setup(){
+    func setup() {
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = "Sunburn reload NYE - toronto"
 
@@ -30,7 +30,7 @@ class ManageEventTicketSoldVC: UIViewController {
         self.navigationView.vwBorder.isHidden = false
         self.navigationView.lblDiscripation.isHidden = false
     }
-    func setUi(){
+    func setUi() {
 
          [self.lblAddmissionSold].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)

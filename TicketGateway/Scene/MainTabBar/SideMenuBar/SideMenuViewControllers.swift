@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 02/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 // swiftlint: disable cyclomatic_complexity
 // swiftlint: disable shorthand_operator
 // swiftlint: disable type_name
@@ -35,13 +27,13 @@ class SideMenuViewControllers: UIViewController{
                 objSceneDelegate.showTabBar()
 
             } else if obj.title == "Organizers" {
-                let view = self.createView(storyboard: .sidemenu, storyboardID: .Organizers_Artists_ListVC) as! Organizers_Artists_ListVC
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as! OrganizersArtistsListVC
                 view.isFrom = "Organizers"
 
                 self.navigationController?.pushViewController(view, animated: true)
 
             } else if obj.title == "Artists" {
-                let view = self.createView(storyboard: .sidemenu, storyboardID: .Organizers_Artists_ListVC) as? Organizers_Artists_ListVC
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as? OrganizersArtistsListVC
                 view?.isFrom = "Artists"
                 self.navigationController?.pushViewController(view!, animated: true)
 
@@ -94,7 +86,7 @@ class SideMenuViewControllers: UIViewController{
             self.navigationController?.pushViewController(view!, animated: true)
             }
             else if obj.title == "Rewords & Loyality Points" {
-                let view = self.createView(storyboard: .sidemenu, storyboardID: .Reward_LoyaltyPointsVC) as? Reward_LoyaltyPointsVC
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .RewardLoyaltyPointsVC) as? RewardLoyaltyPointsVC
             self.navigationController?.pushViewController(view!, animated: true)
             }
 
@@ -104,14 +96,14 @@ class SideMenuViewControllers: UIViewController{
 
     }
 
-    func setUi(){
+    func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblProfileview.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblProfileview.textColor = UIColor.setColor(colorType: .Headinglbl)
     }
 
-    func funcSetProfile(){
+    func funcSetProfile() {
         self.lblName.text = objAppShareData.userAuth?.fullName
     }
 

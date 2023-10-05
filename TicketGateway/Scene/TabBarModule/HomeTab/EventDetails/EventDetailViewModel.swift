@@ -3,13 +3,7 @@
 //  TicketGateway
 //
 //  Created by Apple on 06/07/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
+
 
 import Foundation
 
@@ -78,7 +72,7 @@ extension EventDetailViewModel{
         }
     }
 
-    func GetMultiLocationList(complition: @escaping (Bool,String) -> Void ) {
+    func getMultiLocationList(complition: @escaping (Bool,String) -> Void ) {
         let url = APIName.getMultiLocationList.rawValue + "\(eventId ?? 0)"  + "/"
         APIHandler.shared.executeRequestWith(apiName: .getMultiLocationList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[MultiLocation]>, Error>) in
             switch result {
@@ -98,7 +92,7 @@ extension EventDetailViewModel{
         }
     }
 
-    func GetRecurringList(complition: @escaping (Bool,String) -> Void ) {
+    func getRecurringList(complition: @escaping (Bool,String) -> Void ) {
         let url = APIName.getRecurringList.rawValue + "\(eventId ?? 0)"  + "/"
         APIHandler.shared.executeRequestWith(apiName: .getRecurringList, parameters: EmptyModel?.none, methodType: .GET, getURL: url, authRequired: true) { (result: Result<ResponseModal<[RecurringList]>, Error>) in
             switch result {

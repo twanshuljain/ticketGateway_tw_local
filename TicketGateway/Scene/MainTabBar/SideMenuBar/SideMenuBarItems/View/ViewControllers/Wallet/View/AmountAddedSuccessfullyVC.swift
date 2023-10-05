@@ -23,7 +23,7 @@ class AmountAddedSuccessfullyVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    func setUp(){
+    func setUp() {
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = "Successful Added"

@@ -38,7 +38,7 @@ class AddOnTableViewCell: UITableViewCell {
 
     }
 
-    @IBAction func actionSwitch(_ sender: UISwitch) {
+    @IBAction private func actionSwitch(_ sender: UISwitch) {
         if sender.isOn {
 
             bgTextView.isHidden = false

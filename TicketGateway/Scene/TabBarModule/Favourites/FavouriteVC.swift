@@ -126,7 +126,7 @@ extension FavouriteVC {
 }
 // MARK: - Actions
 extension FavouriteVC {
-    @IBAction func actionSegmentController(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegmentController(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             viewModel.isForVenue = false

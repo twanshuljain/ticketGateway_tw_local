@@ -65,7 +65,7 @@ class SuggestedOrganizerCell: UICollectionViewCell {
 
     }
 
-    @IBAction func btnFollowUnfollowAction(_ sender:UIButton) {
+    @IBAction private func btnFollowUnfollowAction(_ sender:UIButton) {
         if isFromOrganizationSection {
             followButtonDidTap(sender)
         }

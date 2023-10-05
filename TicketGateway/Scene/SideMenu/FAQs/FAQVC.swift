@@ -3,13 +3,7 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 30/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
+
 // swiftlint: disable cyclomatic_complexity
 // swiftlint: disable shorthand_operator
 // swiftlint: disable type_name
@@ -38,11 +32,23 @@ class FAQVC: UIViewController {
     @IBOutlet weak var segmentControl: UISegmentedControl!
 
     // MARK: -  Variables
-    let arrDataValues = [arrdata(queValue: "What’s needed to get started on TicketGetway?", isExpand: false, ansValue: "Lorem ipsum dolor sit amet consectetur. Egestas sit fringilla faucibus cursus nunc. Ut sit dis proin nullam mi viverra vel euismod. Ultrices nunc nec porttitor amet velit turpis facilisis nunc. Pellentesque sed vitae ut purus semper cras eu mauris integer. Faucibus enim vitae interdum est tortor purus eu porta. Nunc aliquet eu purus gravida aliquet lacinia enim nec hendrerit. Eget tortor non sed ullamcorper eleifend lorem nulla velit quisque. Viverra sed non et tellus placerat. Vitae ornare et mattis et."),
-                         arrdata(queValue: "How do I find my tickets?", isExpand: false, ansValue: "ghdfuhguhgjdgbhjgg"),
-                         arrdata(queValue: "Can I get a refund?", isExpand: false, ansValue: "fggughghghbvgyeruerer"),
-                         arrdata(queValue: "Is this event I’m attending cancelled", isExpand: false, ansValue: "bfytertyvdfhgjg"),
-                         arrdata(queValue: "Can I change the name on my ticket?", isExpand: false, ansValue: "jghgrtgujnnb")]
+    let arrDataValues = [
+        arrdata(queValue: "What’s needed to get started on TicketGetway?",
+                isExpand: false,
+                ansValue: "Lorem ipsum dolor. Egestas sit fringilla  Vitae ornare et mattis et."),
+        arrdata(queValue: "How do I find my tickets?",
+                isExpand: false,
+                ansValue: "ghdfuhguhgjdgbhjgg"),
+        arrdata(queValue: "Can I get a refund?",
+                isExpand: false,
+                ansValue: "fggughghghbvgyeruerer"),
+        arrdata(queValue: "Is this event I’m attending cancelled",
+                isExpand: false,
+                ansValue: "bfytertyvdfhgjg"),
+        arrdata(queValue: "Can I change the name on my ticket?",
+                isExpand: false,
+                ansValue: "jghgrtgujnnb")
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +80,7 @@ extension FAQVC{
 
 // MARK: - Actions
 extension FAQVC{
-    @IBAction func actionSegment(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegment(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0 :
             self.faqTableView.reloadData()

@@ -22,7 +22,7 @@ class ManageSellTicketComplimentary: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    func setUp(){
+    func setUp() {
         self.vwMore.isHidden = true
         self.tblEventTicketTypes.isFromSellTab = false
         self.tblEventTicketTypes.configure()
@@ -53,7 +53,7 @@ extension ManageSellTicketComplimentary {
         }
     }
 
-    func btnContinueAction(){
+    func btnContinueAction() {
         DispatchQueue.main.async {
             self.showToast(message: "Complimentary applied successfully")
         }

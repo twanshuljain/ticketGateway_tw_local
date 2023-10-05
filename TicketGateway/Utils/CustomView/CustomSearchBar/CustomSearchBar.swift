@@ -3,13 +3,7 @@
 //  TicketGateway
 //
 //  Created by Dr.Mac on 26/04/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
+
 
 import UIKit
 
@@ -88,15 +82,15 @@ class CustomSearchBar: UIView {
         }
     }
 
-    @IBAction func btnFilter(_ sender: UIButton) {
+    @IBAction private func btnFilter(_ sender: UIButton) {
         self.delegate?.filterButtonPressed(sender)
     }
 
-    @IBAction func btnLeft(_ sender: UIButton) {
+    @IBAction private func btnLeft(_ sender: UIButton) {
         self.delegate?.leftButtonPressed(sender )
     }
 
-    @IBAction func btnRight(_ sender: UIButton) {
+    @IBAction private func btnRight(_ sender: UIButton) {
         self.delegate?.rightButtonPressed(sender )
     }
 

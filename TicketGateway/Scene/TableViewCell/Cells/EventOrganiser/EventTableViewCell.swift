@@ -32,7 +32,7 @@ class EventTableViewCell: UITableViewCell {
 
     }
 
-    func setUi(){
+    func setUi() {
         self.lblTitle.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblTitle.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
          self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

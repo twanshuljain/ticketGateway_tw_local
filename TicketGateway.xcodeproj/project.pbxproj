@@ -298,6 +298,9 @@
 		18F0FBCF2A4040CA00F9768E /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */; };
 		18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354512A56CB66003597A6 /* EventDetailViewModel.swift */; };
 		18F354542A56D001003597A6 /* EventDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F354532A56D001003597A6 /* EventDetailModel.swift */; };
+		18F459DC2ACE93830053EFD9 /* OrganizersArtistsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F459DB2ACE93820053EFD9 /* OrganizersArtistsListCell.swift */; };
+		18F459DE2ACE93CD0053EFD9 /* RewardLoyaltyPointsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F459DD2ACE93CC0053EFD9 /* RewardLoyaltyPointsVC.swift */; };
+		18F459E02ACE93EB0053EFD9 /* OrganizersArtistsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F459DF2ACE93EB0053EFD9 /* OrganizersArtistsListVC.swift */; };
 		18F5A4B72A4EA55900CA18F7 /* ScanEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F5A49D2A4EA55900CA18F7 /* ScanEvents.storyboard */; };
 		18F5A4B82A4EA55900CA18F7 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F5A49E2A4EA55900CA18F7 /* SearchTableViewCell.xib */; };
 		18F5A4B92A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A49F2A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift */; };
@@ -346,11 +349,9 @@
 		18FBC0AB2A309239002CF129 /* TransactionsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC0132A309237002CF129 /* TransactionsListCell.swift */; };
 		18FBC0AC2A309239002CF129 /* TransactionListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC0142A309237002CF129 /* TransactionListTableView.swift */; };
 		18FBC0AD2A309239002CF129 /* TransactionsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FBC0152A309237002CF129 /* TransactionsListCell.xib */; };
-		18FBC0AE2A309239002CF129 /* Organizers_Artists_ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC0172A309237002CF129 /* Organizers_Artists_ListCell.swift */; };
 		18FBC0AF2A309239002CF129 /* RefundListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC0192A309237002CF129 /* RefundListTableView.swift */; };
 		18FBC0B02A309239002CF129 /* MyRefundTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC01A2A309237002CF129 /* MyRefundTransactionCell.swift */; };
 		18FBC0B12A309239002CF129 /* MyRefundTransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FBC01B2A309237002CF129 /* MyRefundTransactionCell.xib */; };
-		18FBC0B22A309239002CF129 /* Reward_LoyaltyPointsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC01D2A309237002CF129 /* Reward_LoyaltyPointsVC.swift */; };
 		18FBC0B32A309239002CF129 /* MyRefundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC01E2A309237002CF129 /* MyRefundVC.swift */; };
 		18FBC0B42A309239002CF129 /* VenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC01F2A309237002CF129 /* VenueVC.swift */; };
 		18FBC0B52A309239002CF129 /* ManageEventOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FBC0242A309237002CF129 /* ManageEventOrder.storyboard */; };
@@ -429,7 +430,6 @@
 		18FBC1012A309239002CF129 /* MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC09A2A309238002CF129 /* MyWalletVC.swift */; };
 		18FBC1022A309239002CF129 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC09B2A309238002CF129 /* NotificationVC.swift */; };
 		18FBC1032A309239002CF129 /* DeviceSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC09C2A309238002CF129 /* DeviceSettingVC.swift */; };
-		18FBC1042A309239002CF129 /* Organizers_Artists_ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC09D2A309238002CF129 /* Organizers_Artists_ListVC.swift */; };
 		18FBC1052A309239002CF129 /* SideMenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC09E2A309238002CF129 /* SideMenuList.swift */; };
 		18FBC1062A309239002CF129 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FBC09F2A309238002CF129 /* SideMenuCell.xib */; };
 		18FBC1072A309239002CF129 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBC0A02A309238002CF129 /* SideMenuModel.swift */; };
@@ -747,6 +747,9 @@
 		18F0FBCE2A4040CA00F9768E /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		18F354512A56CB66003597A6 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		18F354532A56D001003597A6 /* EventDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailModel.swift; sourceTree = "<group>"; };
+		18F459DB2ACE93820053EFD9 /* OrganizersArtistsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizersArtistsListCell.swift; sourceTree = "<group>"; };
+		18F459DD2ACE93CC0053EFD9 /* RewardLoyaltyPointsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardLoyaltyPointsVC.swift; sourceTree = "<group>"; };
+		18F459DF2ACE93EB0053EFD9 /* OrganizersArtistsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizersArtistsListVC.swift; sourceTree = "<group>"; };
 		18F5A49D2A4EA55900CA18F7 /* ScanEvents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScanEvents.storyboard; sourceTree = "<group>"; };
 		18F5A49E2A4EA55900CA18F7 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		18F5A49F2A4EA55900CA18F7 /* SelectTicketTypeTableviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeTableviewCell.swift; sourceTree = "<group>"; };
@@ -795,11 +798,9 @@
 		18FBC0132A309237002CF129 /* TransactionsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsListCell.swift; sourceTree = "<group>"; };
 		18FBC0142A309237002CF129 /* TransactionListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionListTableView.swift; sourceTree = "<group>"; };
 		18FBC0152A309237002CF129 /* TransactionsListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsListCell.xib; sourceTree = "<group>"; };
-		18FBC0172A309237002CF129 /* Organizers_Artists_ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organizers_Artists_ListCell.swift; sourceTree = "<group>"; };
 		18FBC0192A309237002CF129 /* RefundListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundListTableView.swift; sourceTree = "<group>"; };
 		18FBC01A2A309237002CF129 /* MyRefundTransactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRefundTransactionCell.swift; sourceTree = "<group>"; };
 		18FBC01B2A309237002CF129 /* MyRefundTransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRefundTransactionCell.xib; sourceTree = "<group>"; };
-		18FBC01D2A309237002CF129 /* Reward_LoyaltyPointsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward_LoyaltyPointsVC.swift; sourceTree = "<group>"; };
 		18FBC01E2A309237002CF129 /* MyRefundVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRefundVC.swift; sourceTree = "<group>"; };
 		18FBC01F2A309237002CF129 /* VenueVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueVC.swift; sourceTree = "<group>"; };
 		18FBC0242A309237002CF129 /* ManageEventOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageEventOrder.storyboard; sourceTree = "<group>"; };
@@ -878,7 +879,6 @@
 		18FBC09A2A309238002CF129 /* MyWalletVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWalletVC.swift; sourceTree = "<group>"; };
 		18FBC09B2A309238002CF129 /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		18FBC09C2A309238002CF129 /* DeviceSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSettingVC.swift; sourceTree = "<group>"; };
-		18FBC09D2A309238002CF129 /* Organizers_Artists_ListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organizers_Artists_ListVC.swift; sourceTree = "<group>"; };
 		18FBC09E2A309238002CF129 /* SideMenuList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuList.swift; sourceTree = "<group>"; };
 		18FBC09F2A309238002CF129 /* SideMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		18FBC0A02A309238002CF129 /* SideMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
@@ -1734,8 +1734,8 @@
 		1861A2C32A442AB900E13A5D /* Artists */ = {
 			isa = PBXGroup;
 			children = (
+				18F459DF2ACE93EB0053EFD9 /* OrganizersArtistsListVC.swift */,
 				1861A2C92A44302600E13A5D /* MyFollowers */,
-				18FBC09D2A309238002CF129 /* Organizers_Artists_ListVC.swift */,
 				188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */,
 				18463E072AA1F9160074B1C6 /* GetOrganizerListModel.swift */,
 			);
@@ -1745,7 +1745,7 @@
 		1861A2C42A442BC900E13A5D /* Rewards&Loyalty */ = {
 			isa = PBXGroup;
 			children = (
-				18FBC01D2A309237002CF129 /* Reward_LoyaltyPointsVC.swift */,
+				18F459DD2ACE93CC0053EFD9 /* RewardLoyaltyPointsVC.swift */,
 			);
 			path = "Rewards&Loyalty";
 			sourceTree = "<group>";
@@ -2526,7 +2526,7 @@
 		18FBC0162A309237002CF129 /* Organizers_Artists */ = {
 			isa = PBXGroup;
 			children = (
-				18FBC0172A309237002CF129 /* Organizers_Artists_ListCell.swift */,
+				18F459DB2ACE93820053EFD9 /* OrganizersArtistsListCell.swift */,
 				1821FDF52A31AC4F00BD4AB6 /* MyFollowerTableViewCell.swift */,
 			);
 			path = Organizers_Artists;
@@ -3193,6 +3193,7 @@
 				18AF9B9629E3E65800E4C70E /* ViewController.swift in Sources */,
 				1830586E2A41D917007A3931 /* UIImageView+Extension.swift in Sources */,
 				18FBC1032A309239002CF129 /* DeviceSettingVC.swift in Sources */,
+				18F459DC2ACE93830053EFD9 /* OrganizersArtistsListCell.swift in Sources */,
 				18FBC0DC2A309239002CF129 /* TicketOverAllEstimateBarTableViewList.swift in Sources */,
 				18FBC0DE2A309239002CF129 /* ManageEventVC.swift in Sources */,
 				18EA6CD62A9C8AF1009C7E93 /* ChangeNameRequestModel.swift in Sources */,
@@ -3249,6 +3250,7 @@
 				18F354542A56D001003597A6 /* EventDetailModel.swift in Sources */,
 				18F6F74929E9832C007B9513 /* ForgotPasswordVC.swift in Sources */,
 				1850627F2A553DB200BC3EC5 /* SoldOutTicketVC.swift in Sources */,
+				18F459DE2ACE93CD0053EFD9 /* RewardLoyaltyPointsVC.swift in Sources */,
 				18B636AB29F7B70000DC14B8 /* LoginNmberWithEmailViewModel.swift in Sources */,
 				18A6D0DD29E91CE700D6210E /* Validation.swift in Sources */,
 				18FBC0B02A309239002CF129 /* MyRefundTransactionCell.swift in Sources */,
@@ -3333,7 +3335,6 @@
 				18FBC0BC2A309239002CF129 /* ManageEventOrderVC.swift in Sources */,
 				1821FDE22A30A80800BD4AB6 /* RefundOptionsVC.swift in Sources */,
 				186FB9482A4026AA002B0E5C /* Date+Extension.swift in Sources */,
-				18FBC0AE2A309239002CF129 /* Organizers_Artists_ListCell.swift in Sources */,
 				1861A2E72A447D7100E13A5D /* UIImage+Extension.swift in Sources */,
 				188B4D232A2878330048C3DB /* EventImageCell.swift in Sources */,
 				18717F902A2A1BE9002F36BC /* ExchangeTicketVC.swift in Sources */,
@@ -3403,7 +3404,6 @@
 				18F354522A56CB66003597A6 /* EventDetailViewModel.swift in Sources */,
 				188CE1BE2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift in Sources */,
 				18A338CD2A4D56B400D7C194 /* BandLeaderProfileViewController.swift in Sources */,
-				18FBC1042A309239002CF129 /* Organizers_Artists_ListVC.swift in Sources */,
 				18F6F74729E98322007B9513 /* OtpNumberVC.swift in Sources */,
 				18FBC0C62A309239002CF129 /* BuyersInfoTableViewList.swift in Sources */,
 				18F5A4C72A4EA55900CA18F7 /* ScannerViewModel.swift in Sources */,
@@ -3419,8 +3419,8 @@
 				18CDDDBC2A810F5F002C58FB /* EventBookingPaymentMethodModel.swift in Sources */,
 				18FBC0CB2A309239002CF129 /* ManageSellAddBuyerVC.swift in Sources */,
 				1859813B2A2085A800ABDC51 /* MKRingProgressLayer.swift in Sources */,
-				18FBC0B22A309239002CF129 /* Reward_LoyaltyPointsVC.swift in Sources */,
 				18FBC0B32A309239002CF129 /* MyRefundVC.swift in Sources */,
+				18F459E02ACE93EB0053EFD9 /* OrganizersArtistsListVC.swift in Sources */,
 				186D49C62A374FCA008CBB4B /* FAQTableviewCell.swift in Sources */,
 				18717F962A2A1BE9002F36BC /* MyTicketVC.swift in Sources */,
 				18DC6C282ACC270A0041C7E6 /* UIAlertController+Extension.swift in Sources */,

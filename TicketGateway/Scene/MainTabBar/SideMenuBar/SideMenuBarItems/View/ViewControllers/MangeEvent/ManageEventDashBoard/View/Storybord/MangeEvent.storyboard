@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -21,7 +19,7 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -238,10 +236,10 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
-                        <outlet property="TblManageEvent" destination="eqc-Ph-jj1" id="TEz-LI-H96"/>
                         <outlet property="btnAllorganiser" destination="biE-zL-hO1" id="kmm-Xn-26t"/>
                         <outlet property="btnCreateEvent" destination="yDr-XI-CvG" id="AyJ-ZJ-9gs"/>
                         <outlet property="collVwCategory" destination="brs-jO-d7Q" id="CjL-0W-wmd"/>
+                        <outlet property="tblManageEvent" destination="eqc-Ph-jj1" id="TEz-LI-H96"/>
                         <outlet property="txtAllorganiser" destination="D6F-ZL-If9" id="Xa2-mD-NtG"/>
                         <outlet property="vwSearchBar" destination="oAb-Hi-j0n" id="UCN-xf-tMl"/>
                     </connections>
@@ -255,7 +253,7 @@
             <objects>
                 <viewController id="NP2-LS-ONo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcs-LC-Ej6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="BRb-yO-SIT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -270,7 +268,7 @@
             <objects>
                 <viewController id="k89-O9-sq4" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8WC-SV-Q8z">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="s6Q-Fb-JdP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -286,7 +284,7 @@
             <objects>
                 <viewController id="oPm-IW-ieF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pPQ-PE-kcV">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="4Tz-pm-dPb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -302,7 +300,7 @@
             <objects>
                 <viewController id="Wwd-lL-1ph" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6po-g6-aDt">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ca2-kr-o89"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -318,7 +316,7 @@
             <objects>
                 <viewController id="NHB-VW-quw" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wRz-rn-1Z9">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7m-Ia-jgQ" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
@@ -399,6 +397,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TabBarNavMange" navigationBarHidden="YES" id="Ct4-3g-wi3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zBR-lv-yKb">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1095,7 +1094,7 @@
             <objects>
                 <viewController storyboardIdentifier="ManageEventTicketSoldVC" id="rQB-Or-b5t" customClass="ManageEventTicketSoldVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="45X-kh-7Pw">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgt-gt-9p5">

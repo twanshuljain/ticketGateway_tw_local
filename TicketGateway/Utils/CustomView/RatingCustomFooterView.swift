@@ -14,7 +14,7 @@ class RatingCustomFooterView: UITableViewHeaderFooterView {
     @IBOutlet weak var btnFeedback: CustomButtonGradiant!
     @IBOutlet weak var txtView:UITextView!
 
-    @IBAction func btnFeedbackPressed(_ sender: UIButton) {
+    @IBAction private func btnFeedbackPressed(_ sender: UIButton) {
 
     }
 

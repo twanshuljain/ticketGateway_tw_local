@@ -33,7 +33,7 @@ class Organizers_Artists_ListCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setUi(){
+    func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .semiBold, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)

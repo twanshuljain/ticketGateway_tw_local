@@ -210,7 +210,7 @@ extension MyOrderViewController {
 }
 // MARK: - Actions
 extension MyOrderViewController {
-    @IBAction func actionSegment(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegment(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             print("TICKETS")

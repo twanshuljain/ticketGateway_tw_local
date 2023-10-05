@@ -97,7 +97,7 @@ extension BandLeaderProfileViewController{
 // MARK: - Actions
 extension BandLeaderProfileViewController{
 
-    @IBAction func actionSegmentControl(_ sender: Any) {
+    @IBAction private func actionSegmentControl(_ sender: Any) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             self.segmentControl.setTitleTextAttributes([.font: UIFont.setFont(fontType: .regular, fontSize:.twelve)], for: .normal)

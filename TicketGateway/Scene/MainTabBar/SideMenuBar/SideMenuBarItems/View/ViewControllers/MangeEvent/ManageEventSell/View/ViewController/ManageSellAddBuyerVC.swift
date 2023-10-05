@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 23/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
@@ -43,7 +35,7 @@ class ManageSellAddBuyerVC: UIViewController {
     var RScountriesModel = [CountryInfo]()
     var isFromAddInfo = false
 
-    var ToupleBuyerInfoData = (strNameValue:"",strEmailValue:"",strNumberValue:"",strCountryCodeValue:"",strDialCodeValue:"")
+    var toupleBuyerInfoData = (strNameValue:"",strEmailValue:"",strNumberValue:"",strCountryCodeValue:"",strDialCodeValue:"")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +55,9 @@ extension ManageSellAddBuyerVC {
         self.txtMobileNumber.delegate = self
         self.txtEmailAddress.delegate = self
         self.txtLastName.delegate = self
-        self.txtFullName.text = ToupleBuyerInfoData.strNameValue
-        self.txtMobileNumber.text = ToupleBuyerInfoData.strNumberValue
-        self.txtEmailAddress.text = ToupleBuyerInfoData.strEmailValue
+        self.txtFullName.text = toupleBuyerInfoData.strNameValue
+        self.txtMobileNumber.text = toupleBuyerInfoData.strNumberValue
+        self.txtEmailAddress.text = toupleBuyerInfoData.strEmailValue
         if self.isFromAddInfo == true{
             self.btnCancel.setTitles(text: "Cancel", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .white), textColour: UIColor.setColor(colorType: .PlaceHolder))
             self.btnCancel.addLeftIcon(image: UIImage(named: "x"))
@@ -114,7 +106,7 @@ extension ManageSellAddBuyerVC {
         self.navigationController?.pushViewController(view!, animated: true)
         }
     }
-    func btnSelectCountryAction(){
+    func btnSelectCountryAction() {
         self.view.endEditing(true)
         let sb = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as! RSCountryPickerController
         sb.RScountryDelegate = self

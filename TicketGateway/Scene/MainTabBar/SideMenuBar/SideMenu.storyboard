@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,7 +21,7 @@
         <!--Reward Loyalty PointsVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="Reward_LoyaltyPointsVC" id="Y6W-OH-hqX" customClass="Reward_LoyaltyPointsVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RewardLoyaltyPointsVC" id="Y6W-OH-hqX" customClass="RewardLoyaltyPointsVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -318,7 +317,7 @@
         <!--Organizers Artists ListVC-->
         <scene sceneID="ulc-0M-SYP">
             <objects>
-                <viewController storyboardIdentifier="Organizers_Artists_ListVC" id="TLl-7l-Kzy" customClass="Organizers_Artists_ListVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrganizersArtistsListVC" id="TLl-7l-Kzy" customClass="OrganizersArtistsListVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qea-Ne-snB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,7 +428,7 @@
                                         <rect key="frame" x="0.0" y="450" width="393" height="309"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Organizers_Artists_ListCell" rowHeight="108" id="Vg3-Du-zqC" customClass="Organizers_Artists_ListCell" customModule="TicketGateway" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizersArtistsListCell" rowHeight="108" id="Vg3-Du-zqC" customClass="OrganizersArtistsListCell" customModule="TicketGateway" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="393" height="108"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vg3-Du-zqC" id="Fk9-zv-UuD">
@@ -564,11 +563,11 @@
                     <connections>
                         <outlet property="btnSeeAll" destination="H78-iw-f7a" id="tEs-nu-KsA"/>
                         <outlet property="btnSeeAllForSuggested" destination="LI6-6p-I6f" id="X8Q-O2-6WL"/>
-                        <outlet property="collVwTrending_Artists" destination="X14-rj-V17" id="cff-vY-Ht8"/>
+                        <outlet property="collVwTrendingArtists" destination="X14-rj-V17" id="cff-vY-Ht8"/>
                         <outlet property="lblSuggested" destination="4fz-4G-vtz" id="Oh9-Zu-tdf"/>
                         <outlet property="lblTittle" destination="GcP-oT-Ek1" id="roB-Mz-Jh7"/>
                         <outlet property="navigationView" destination="ORw-o1-TV6" id="taK-Uc-PIY"/>
-                        <outlet property="tblSuggestedOrag_Art" destination="kjo-dz-2JP" id="C3O-F4-xmG"/>
+                        <outlet property="tblSuggestedOragArt" destination="kjo-dz-2JP" id="C3O-F4-xmG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhO-hU-yx9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

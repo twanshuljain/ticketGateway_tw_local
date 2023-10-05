@@ -4,13 +4,7 @@
 //
 //  Created by Apple  on 13/04/23.
 
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
 // swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
 
 import Foundation
 import UIKit
@@ -480,3 +474,5 @@ let Allow_Camera_Permission = "Please allow the camera permission from the setti
 let Right = "Right"
 let Wrong = "Wrong"
 let SelectTicketMessage = "You need to select atleast one Ticket Type."
+
+// swiftlint: disable identifier_name

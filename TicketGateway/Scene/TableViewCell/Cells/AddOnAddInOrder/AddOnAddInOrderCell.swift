@@ -23,7 +23,7 @@ class AddOnAddInOrderCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)}
 
-    func setUi(){
+    func setUi() {
         [self.lblTittle,lblTittleValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)

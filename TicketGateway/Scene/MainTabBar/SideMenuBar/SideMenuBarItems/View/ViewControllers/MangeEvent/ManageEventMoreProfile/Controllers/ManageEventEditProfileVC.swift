@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 24/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
@@ -70,7 +62,7 @@ extension ManageEventEditProfileVC {
         self.funcSetProfile()
     }
 
-    func funcSetProfile(){
+    func funcSetProfile() {
         self.txtFullName.text = objAppShareData.userAuth?.fullName
         self.txtEmailAddress.text = objAppShareData.userAuth?.email
         self.txtMobileNumber.text = objAppShareData.userAuth?.number
@@ -97,7 +89,7 @@ extension ManageEventEditProfileVC {
     func btnContinueAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    func btnSelectCountryAction(){
+    func btnSelectCountryAction() {
         self.view.endEditing(true)
         let sb = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as! RSCountryPickerController
         sb.RScountryDelegate = self

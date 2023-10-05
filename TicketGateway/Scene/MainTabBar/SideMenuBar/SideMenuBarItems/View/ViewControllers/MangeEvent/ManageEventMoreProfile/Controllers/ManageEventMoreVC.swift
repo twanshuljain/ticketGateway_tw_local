@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 24/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 
@@ -33,7 +25,7 @@ class ManageEventMoreVC: UIViewController {
             if  obj.title == "All Events" {
                 objSceneDelegate.showTabBar()
             } else if obj.title == "Organizers" {
-                let view = self.createView(storyboard: .sidemenu, storyboardID: .Organizers_Artists_ListVC) as! Organizers_Artists_ListVC
+                let view = self.createView(storyboard: .sidemenu, storyboardID: .OrganizersArtistsListVC) as! OrganizersArtistsListVC
                 view.isFrom = "Organizers"
                 self.navigationController?.pushViewController(view, animated: true)
             }
@@ -42,7 +34,7 @@ class ManageEventMoreVC: UIViewController {
         self.tblList.reloadData()
     }
 
-    func setUi(){
+    func setUi() {
         self.lblName.font = UIFont.setFont(fontType: .regular, fontSize: .sixteen)
         self.lblName.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         self.lblProfileview.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
@@ -60,7 +52,7 @@ class ManageEventMoreVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func btnArrow(_ sender: Any) {
+    @IBAction private func btnArrow(_ sender: Any) {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as? ManageEventProfileVC
         self.navigationController?.pushViewController(view!, animated: true)
     }

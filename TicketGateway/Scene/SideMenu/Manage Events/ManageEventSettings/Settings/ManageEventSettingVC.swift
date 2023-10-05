@@ -79,7 +79,7 @@ extension ManageEventSettingVC {
 }
 // MARK: - Actions
 extension ManageEventSettingVC {
-    @IBAction func btnArrow(_ sender: Any) {
+    @IBAction private func btnArrow(_ sender: Any) {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventProfileVC) as! ManageEventProfileVC
         view.isComingFromOranizer = false
         view.isForSideMenuOrSetting = true

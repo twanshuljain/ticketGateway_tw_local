@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 04/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 import SideMenu
@@ -29,7 +21,7 @@ class VenueVC: UIViewController{
         self.vwSearchBar.delegate = self
      }
 
-    func setUp(){
+    func setUp() {
         self.setUi()
         self.tblEvents.configure()
         self.tblEvents.tableDidSelectAtIndex = { _ in
@@ -37,7 +29,7 @@ class VenueVC: UIViewController{
         }
     }
 
-        func setUi(){
+        func setUi() {
             self.lblNearOrganisedEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
             self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
             self.btnViewAllMoreForNearOrganisedEvent.setTitles(text: "View more events", font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .TGBlue))
@@ -51,7 +43,7 @@ extension VenueVC: CustomSearchMethodsDelegate {
         present(menu, animated: true, completion: nil)
     }
 
-    func RightButtonPressed(_ sender: UIButton) {
+    func rightButtonPressed(_ sender: UIButton) {
         print("hello")
     }
 

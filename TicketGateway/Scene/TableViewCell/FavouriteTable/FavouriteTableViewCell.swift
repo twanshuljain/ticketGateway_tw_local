@@ -152,10 +152,10 @@ class FavouriteTableViewCell: UITableViewCell {
         }
     }
 
-    @IBAction func likeButtonAction(_ sender: UIButton) {
+    @IBAction private func likeButtonAction(_ sender: UIButton) {
         likeButtonPressed()
     }
-    @IBAction func shareButtonAction(_ sender: UIButton) {
+    @IBAction private func shareButtonAction(_ sender: UIButton) {
         shareButtonPressed()
     }
     func setUi() {

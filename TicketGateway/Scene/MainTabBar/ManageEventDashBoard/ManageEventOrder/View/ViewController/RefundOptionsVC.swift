@@ -3,14 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple on 07/06/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
-// swiftlint: disable type_name
 
 import UIKit
 import iOSDropDown
@@ -55,7 +47,7 @@ class RefundOptionsVC: UIViewController {
 
     }
 
-    func setNavigationView(){
+    func setNavigationView() {
         self.vwNavigationView.delegateBarAction = self
         self.vwNavigationView.btnBack.isHidden = false
         self.vwNavigationView.lblTitle.text = "Review Options"
@@ -102,8 +94,14 @@ class RefundOptionsVC: UIViewController {
         self.swTGWalletSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
         self.swFullRefundSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
         self.swPartialRefundSwitch.onTintColor = UIColor.setColor(colorType: .TGBlue)
-        self.lblSelectTicket.attributedText = getAttributedTextAction(attributedText: "*", firstString: "Select Tickets ", lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve) , attributedColor: UIColor.red, isToUnderLineAttributeText: false)
-
+        self.lblSelectTicket.attributedText = getAttributedTextAction(
+            attributedText: "*",
+            firstString: "Select Tickets ",
+            lastString: "",
+            attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve),
+            attributedColor: UIColor.red,
+            isToUnderLineAttributeText: false
+        )
         self.txtReasonForRefund.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.txtReasonForRefund.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
 
@@ -144,7 +142,7 @@ extension RefundOptionsVC {
 
     }
 
-    func partialRefundAction(){
+    func partialRefundAction() {
         if swPartialRefundSwitch.isOn {
             partialrefundStackView.isHidden = false
         }else {

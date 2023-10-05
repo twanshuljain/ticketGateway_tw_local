@@ -96,7 +96,7 @@ extension ManageEventOrderVC{
         print("value",viewModel.arrData)
         self.orderTableView.reloadData()
     }
-    @IBAction func actionSegmentControl(_ sender: UISegmentedControl) {
+    @IBAction private func actionSegmentControl(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             viewModel.isRefundRequest = false

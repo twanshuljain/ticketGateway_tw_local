@@ -31,7 +31,7 @@ class MyRefundTransactionCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func setUi(){
+    func setUi() {
 
         [self.lblDate,self.lblStatus,self.lblSpent,self.lblPoint].forEach {
             $0.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)

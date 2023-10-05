@@ -49,7 +49,7 @@ class ExchangeTableViewCell: UITableViewCell {
 
     }
 
-    @IBAction func actionSwitch(_ sender: UISwitch) {
+    @IBAction private func actionSwitch(_ sender: UISwitch) {
 
         if sender.isOn {
             self.vwTxtView.isHidden = false

@@ -3,13 +3,7 @@
 //  Costumes_TG
 //
 //  Created by Dr.Mac on 05/05/23.
-// swiftlint: disable file_length
-// swiftlint: disable type_body_length
-// swiftlint: disable force_cast
-// swiftlint: disable function_body_length
-// swiftlint: disable line_length
-// swiftlint: disable identifier_name
-// swiftlint: disable function_parameter_count
+
 
 import UIKit
 import iOSDropDown
@@ -192,7 +186,7 @@ extension CostumeFrontLineViewController {
 // MARK: - Actions
 extension CostumeFrontLineViewController {
 
-    @IBAction func actionGoToCart(_ sender: CustomButtonGradiant) {
+    @IBAction private func actionGoToCart(_ sender: CustomButtonGradiant) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CostumeCartViewController") as! CostumeCartViewController
         self.navigationController?.pushViewController(vc, animated: true)
 
@@ -207,7 +201,7 @@ extension CostumeFrontLineViewController {
         case btnWaistSize:
             self.waistDropDwonAction()
         case btnBottomSize:
-            self.BottomDropDwonAction()
+            self.bottomDropDwonAction()
         case btnHipSize:
             self.hipDropDwonAction()
         case btnPantySize:
@@ -232,7 +226,7 @@ extension CostumeFrontLineViewController {
         self.txtWaistSize.showList()
     }
 
-    func BottomDropDwonAction() {
+    func bottomDropDwonAction() {
         self.txtBottomSize.showList()
     }
 

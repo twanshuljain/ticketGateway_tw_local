@@ -67,7 +67,7 @@ struct GetScanSummaryItem: Codable {
     var updatedAt: String?
     var updatedBy: String?
     enum CodingKeys: String, CodingKey {
-        case eventId = "event_id"  
+        case eventId = "event_id"
         case orderTicketsId = "order_tickets_id"
         case order = "order"
         case operatorName = "operator_name"

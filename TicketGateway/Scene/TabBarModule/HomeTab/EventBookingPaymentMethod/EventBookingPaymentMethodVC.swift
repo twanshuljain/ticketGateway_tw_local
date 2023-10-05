@@ -195,7 +195,7 @@ extension EventBookingPaymentMethodVC {
             viewadd.layer.insertSublayer(viewModel.gradientLayer, at:0)
     }
 
-    @IBAction func btnOpenDatePicker(_ sender: Any) {
+    @IBAction private func btnOpenDatePicker(_ sender: Any) {
         self.view.endEditing(true)
         self.viewDatePicker.isHidden = false
         self.pickerMonthYear.reloadAllComponents()
@@ -258,7 +258,7 @@ extension EventBookingPaymentMethodVC {
         self.pickerMonthYear.reloadAllComponents()
     }
 
-    @IBAction func btnPickerDoneAction(_ sender: UIButton) {
+    @IBAction private func btnPickerDoneAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
         if !viewModel.selectedMonthName.isEmpty && !viewModel.selectedyearName.isEmpty {
@@ -274,7 +274,7 @@ extension EventBookingPaymentMethodVC {
         }
     }
 
-    @IBAction func btnPickerCancelAction(_ sender: UIButton) {
+    @IBAction private func btnPickerCancelAction(_ sender: UIButton) {
         view.endEditing(true)
         self.viewDatePicker.isHidden = true
     }
