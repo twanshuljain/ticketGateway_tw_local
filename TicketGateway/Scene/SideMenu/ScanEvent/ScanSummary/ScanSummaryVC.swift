@@ -24,6 +24,7 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
     @IBOutlet weak var btnDownloadReport: CustomButtonNormal!
     @IBOutlet weak var btnUpdateLiveOnServer: UIButton!
     @IBOutlet weak var tblViewHeight: NSLayoutConstraint!
+    //@IBOutlet weak var tblScanViewHt: NSLayoutConstraint!
     @IBOutlet weak var btnDownloadReportWidth: NSLayoutConstraint!
     @IBOutlet weak var imgProfile: UIImageView!
     // MARK: - Variables
@@ -32,7 +33,7 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getScanOverview()
-        getScanSummary()
+        //getScanSummary()
         self.setNavigationView()
         self.setFont()
         self.setTableView()
@@ -40,9 +41,11 @@ class ScanSummaryVC: UIViewController, ChartViewDelegate {
         self.tblScanAllTableView.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
        // self.tblScan.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.tblViewHeight.constant = self.tblScanAllTableView.contentSize.height
+        //self.tblScanViewHt.constant = self.tblScan.contentSize.height
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.tblViewHeight.constant = tblScanAllTableView.contentSize.height
+        //self.tblScanViewHt.constant = tblScan.contentSize.height
     }
 }
 // MARK: -
@@ -194,10 +197,25 @@ extension ScanSummaryVC{
             print("ALL")
             self.scrollView.isScrollEnabled = true
             self.scanSummaryView.isHidden = true
-        case 1, 2, 3:
-            print("Rest")
+        case 1:
+            print("SCANNED")
+            self.viewModel.scanSummaryModel.tab = "SCANNED"
             self.scrollView.isScrollEnabled = true
             self.scanSummaryView.isHidden = false
+            self.getScanSummary()
+        case 2:
+            print("ACCEPTED")
+            self.viewModel.scanSummaryModel.tab = "ACCEPTED"
+            self.scrollView.isScrollEnabled = true
+            self.scanSummaryView.isHidden = false
+            self.getScanSummary()
+        case 3:
+            print("Rest")
+            self.viewModel.scanSummaryModel.tab = "REJECTED"
+            self.scrollView.isScrollEnabled = true
+            self.scanSummaryView.isHidden = false
+            self.getScanSummary()
+            
         default:
             break
         }
