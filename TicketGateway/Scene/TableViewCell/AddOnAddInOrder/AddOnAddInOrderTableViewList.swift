@@ -57,7 +57,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
 
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let _ = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as? TicketTypesCell {
+        if tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as? TicketTypesCell != nil {
             self.tableDidSelectAtIndex?(indexPath.row)
             self.reloadData()
         }
