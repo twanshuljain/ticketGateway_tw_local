@@ -253,7 +253,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Re1-HO-q3a" customClass="LoginVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6mO-Mi-TGR">
-                        <rect key="frame" x="0.0" y="0.0" width="355" height="1100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="CST-WK-uqk">
@@ -882,7 +882,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ihQ-SU-K7A" customClass="SignUpVC" customModule="TicketGateway" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IL2-k4-yN4">
-                        <rect key="frame" x="0.0" y="0.0" width="355" height="1100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="4x0-a9-zvB">
@@ -3483,7 +3483,7 @@ with a link to reset your password</string>
         <image name="background" width="500" height="1082.6666259765625"/>
         <image name="checkRi8" width="80" height="80"/>
         <image name="dropDown" width="8.6666669845581055" height="5.3333334922790527"/>
-        <image name="eye" catalog="system" width="128" height="79"/>
+        <image name="eye" catalog="system" width="32" height="32"/>
         <image name="facebooklogin" width="30" height="30"/>
         <image name="googlelogin" width="21.333333969116211" height="21.333333969116211"/>
         <image name="hello" width="18.333333969116211" height="18"/>
@@ -3491,7 +3491,7 @@ with a link to reset your password</string>
         <image name="lblTg_ip" width="247.66667175292969" height="26.333333969116211"/>
         <image name="leaveOrange" width="28" height="28"/>
         <image name="logoOnLoginSignup" width="67.333335876464844" height="67"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="magnifyingglass" catalog="system" width="32" height="32"/>
         <image name="ri8arrow" width="34" height="14.333333015441895"/>
         <image name="splashlogo" width="284" height="117.66666412353516"/>
         <namedColor name="BorderLineColour">

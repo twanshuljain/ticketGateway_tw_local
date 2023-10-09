@@ -273,6 +273,8 @@ extension CreateAccountVC: RSCountrySelectedDelegate  {
         self.viewModel.strCountryCode = country.country_code
         self.viewModel.strCountryName = country.country_name
         self.txtMobileNumber.becomeFirstResponder()
+        self.viewModel.mobileNumber = ""
+        self.txtMobileNumber.text = ""
     }
 }
 // MARK: -

@@ -15,6 +15,7 @@ class MyTicketVC: UIViewController {
     //@IBOutlet weak var btnAddAppToWallet: CustomButtonNormal!
     @IBOutlet weak var btnAddAppToWallet: PKPass!
     @IBOutlet weak var vwNavigationView: NavigationBarView!
+    @IBOutlet weak var greyView : UIView!
     
     var viewModel: MyTicketViewModel = MyTicketViewModel()
     var myOrderViewModel: MyOrderViewModel = MyOrderViewModel()
@@ -28,7 +29,8 @@ class MyTicketVC: UIViewController {
     }
     @objc func addActionSheet() {
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        actionsheet.addAction(UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+        
+        let alertTransferTicket = UIAlertAction(title: "Transfer this ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let transferTicketVC = self.createView(storyboard: .order, storyboardID: .TransferTicketVC) as? TransferTicketVC{
                 transferTicketVC.viewModel.ticketDetails = self.viewModel.ticketDetails
                 transferTicketVC.viewModel.eventDetail = self.viewModel.eventDetail
@@ -36,29 +38,52 @@ class MyTicketVC: UIViewController {
                 self.navigationController?.pushViewController(transferTicketVC, animated: true)
             }
             
-        }))
-        actionsheet.addAction(UIAlertAction(title: "Exchange ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+        })
+        
+        let alertExchangeTicket = UIAlertAction(title: "Exchange ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             let exchangeTicketVC = self.createView(storyboard: .order, storyboardID: .ExchangeTicketVC)
             self.navigationController?.pushViewController(exchangeTicketVC, animated: true)
-        }))
-        actionsheet.addAction(UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+        })
+        
+        let alertChangeNameTicket = UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC{
                 changeNameVC.viewModel.myTicket = self.viewModel.myTicket
                 self.navigationController?.pushViewController(changeNameVC, animated: true)
             }
-        }))
-        actionsheet.addAction(UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+        })
+        
+        let alertShareEvent = UIAlertAction(title: "Share this event", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let eventDetail = self.viewModel.eventDetail {
                 self.shareEventDetailData(eventDetail: eventDetail)
             }
-        }))
-        actionsheet.addAction(UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+        })
+        
+        
+        
+        let alertContactOrganizer = UIAlertAction(title: "Contact organiser", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let contactOrganiserVC = self.createView(storyboard: .order, storyboardID: .ContactOrganiserVC) as? ContactOrganiserVC{
+                contactOrganiserVC.viewModel.ticketDetails = self.viewModel.ticketDetails
                 contactOrganiserVC.viewModel.eventDetail = self.viewModel.eventDetail
                 contactOrganiserVC.viewModel.oranizerId = self.viewModel.eventDetail?.organizer?.id ?? 0
                 self.navigationController?.pushViewController(contactOrganiserVC, animated: true)
             }
-        }))
+        })
+        
+        
+        if self.viewModel.selectedTicket?.isTransfer ?? false == true{
+            alertTransferTicket.titleTextColor = .gray
+            alertTransferTicket.isEnabled = false
+            alertExchangeTicket.titleTextColor = .gray
+            alertExchangeTicket.isEnabled = false
+            alertChangeNameTicket.titleTextColor = .gray
+            alertChangeNameTicket.isEnabled = false
+        }
+        
+        actionsheet.addAction(alertTransferTicket)
+        actionsheet.addAction(alertExchangeTicket)
+        actionsheet.addAction(alertChangeNameTicket)
+        actionsheet.addAction(alertShareEvent)
+        actionsheet.addAction(alertContactOrganizer)
         actionsheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (action) -> Void in
         }))
         self.present(actionsheet, animated: true, completion: nil)
@@ -231,11 +256,23 @@ extension MyTicketVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             cell.btnSaveTicketAsImage.tag = indexPath.row
             cell.btnSaveTicketAsImage.addTarget(self, action: #selector(saveTicketAsImage), for: .touchUpInside)
             if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
+               // self.viewModel.selectedTicket = viewModel.myTicket?.items?[indexPath.row]
+                //self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false : true
                 cell.setData(myTicket: viewModel.myTicket?.items?[indexPath.row])
             }
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? MyTicketCollectionViewCell{
+            if viewModel.myTicket?.items?.indices.contains(indexPath.row) ?? false{
+                cell.setData(myTicket: viewModel.myTicket?.items?[indexPath.row])
+                self.viewModel.selectedTicket = viewModel.myTicket?.items?[indexPath.row]
+                self.greyView.isHidden = viewModel.myTicket?.items?[indexPath.row].isTransfer == true ? false : true
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

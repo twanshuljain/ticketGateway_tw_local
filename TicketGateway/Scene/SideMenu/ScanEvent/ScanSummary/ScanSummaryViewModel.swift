@@ -44,6 +44,7 @@ class ScanSummaryViewModel {
                 if response.status_code == 200 {
                     DispatchQueue.main.async {
                         if let data = response.data {
+                            self.getScanSummaryItem.removeAll()
                             self.getScanSummaryItem = data.items ?? []
                             completion(true, response.message ?? "")
                         }
