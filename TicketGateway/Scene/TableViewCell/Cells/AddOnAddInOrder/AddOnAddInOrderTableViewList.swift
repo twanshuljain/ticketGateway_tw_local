@@ -3,7 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 16/05/23.
-// swiftlint: disable force_cast
 
 import UIKit
 
@@ -27,14 +26,12 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as! AddOnAddInOrderCell
-        if indexPath.row == 3-1
-        {
+        if indexPath.row == 3-1 {
             cell.vwDottedLine.isHidden = false
         } else {
             cell.vwDottedLine.isHidden = true
         }
           return cell
-
     }
 
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

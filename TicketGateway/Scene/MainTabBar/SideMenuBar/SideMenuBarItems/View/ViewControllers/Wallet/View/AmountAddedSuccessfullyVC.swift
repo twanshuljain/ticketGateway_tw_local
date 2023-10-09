@@ -32,7 +32,8 @@ class AmountAddedSuccessfullyVC: UIViewController {
         [self.btnOkey].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        btnOkey.setTitles(text: "Okay", textColour: UIColor.setColor(colorType: .TGBlue), borderColour: UIColor.setColor(colorType: .PlaceHolder))
+        btnOkey.setTitles(text: "Okay", textColour: UIColor.setColor(colorType: .TGBlue),
+                          borderColour: UIColor.setColor(colorType: .PlaceHolder))
         lblThanku.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFive)
         lblThanku.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
 

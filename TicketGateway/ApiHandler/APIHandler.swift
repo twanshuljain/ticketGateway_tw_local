@@ -32,7 +32,7 @@ public enum APIName: String {
     case getRecurringList = "events/recurring/list/"
     case getEventCategoryList = "events/category/list/"
     case getEventSubCategoryList =  "events/sub/category/list/"
-    case getEventSuggestedCategoryList = "events/suggestion/" //"events/category/"
+    case getEventSuggestedCategoryList = "events/suggestion/"
     case getOrganizersList = "organizer/featured-organizer/list/"
     case organizerSuggestedList = "organizer/suggested/list/"
 
@@ -103,64 +103,46 @@ class APIHandler: NSObject {
         ) -> Void) {
         var finalURL = baseURL + apiName.rawValue
 
-        if methodType == .GET{
-            if let URL = getURL, URL != ""  {
+        if methodType == .GET {
+            if let URL = getURL, URL != "" {
                 finalURL = baseURL + URL
             }
-        } else if methodType == .POST && (apiName == .followUnfollow || apiName == .changeTicketName || apiName == .transferTicket) {
-            if let URL = getURL, URL != ""  {
+        } else if methodType == .POST &&
+                    (apiName == .followUnfollow || apiName == .changeTicketName || apiName == .transferTicket) {
+            if let URL = getURL, URL != "" {
                 finalURL = baseURL + URL
             }
-        } else if methodType == .POST && parameters == nil{
-            if let URL = getURL, URL != ""  {
+        } else if methodType == .POST && parameters == nil {
+            if let URL = getURL, URL != "" {
                 finalURL = baseURL + URL
             }
         }
-
         guard var requestURL = URL(string: finalURL) else {
             complition(.failure("Incorrect request URL"))
             return
         }
-      finalURL = finalURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-//        if methodType == .GET{
-//            if let URL = getURL, URL != ""  {
-//                if #available(iOS 16.0, *) {
-//                    requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: "", value: "39")])
-//                } else {
-//                    // Fallback on earlier versions
-//                }
-//            }
-//        }
-
-        if methodType == .GET{
+      finalURL = finalURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        if methodType == .GET {
             if parameters != nil {
               //  if #available(iOS 16.0, *) {
-                    let param = try? JSONEncoder().encode(parameters!)
+                    let param = try? JSONEncoder().encode(parameters)
                     do {
-                        let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String: Any]
-                       // print("---------------", json ?? "")
-//                        requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: json?.keys.first ?? "", value: (json?.values.first as? String) ?? "")])
+                        let json = try JSONSerialization.jsonObject(with: param ?? Data(),
+                                                                    options: []) as? [String: Any]
                         var queryItems = [URLQueryItem]()
-                        for (key, value) in json! {
+                        for (key, value) in json ?? [:] {
                             let queryItem = URLQueryItem(name: key, value: "\(value)")
                             queryItems.append(queryItem)
                         }
                         requestURL =  requestURL.appending(queryItems) ?? requestURL
-
                     } catch {
                         print("errorMsg")
                     }
-                    //requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: param, value: "39")])
-//                } else {
-//                    // Fallback on earlier versions
-//                }
             }
         }
-
         var request = URLRequest(url: requestURL)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
         /*
          if authTokenString == true{
             if let token = userModel?.accessToken {
@@ -174,27 +156,26 @@ class APIHandler: NSObject {
          }
          */
 
-        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(
+            userData: SignInAuthModel.self,
+            key: .userAuthData
+        )
         if authRequired, let token = userModel?.accessToken {
-            print("userModel?.accessToken........ ",userModel!.accessToken! )
+            print("userModel?.accessToken........ ", userModel?.accessToken ?? "")
             request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
         }
         debugPrint("finalURL is \(finalURL)")
         debugPrint("parameters is \(String(describing: parameters))")
-
-        if methodType == .POST{
+        if methodType == .POST {
             if parameters != nil {
-                let param = try? JSONEncoder().encode(parameters!)
+                let param = try? JSONEncoder().encode(parameters)
                 request.httpBody = param
             }
         }
-
-        print("\(request.httpMethod ?? "") \(request.url)")
+        print("\(request.httpMethod ?? "") \(String(describing: request.url))")
         let str = String(decoding: request.httpBody ?? Data(), as: UTF8.self)
         print("BODY \n \(str)")
-        print("HEADERS \n \(request.allHTTPHeaderFields)")
-
+        print("HEADERS \n \(String(describing: request.allHTTPHeaderFields))")
         session.dataTask(with: request) { data, response, error in
             var httpStatusCode = 0
             if let httpResponse = response as? HTTPURLResponse {
@@ -213,23 +194,18 @@ class APIHandler: NSObject {
                         complition(.failure("API \(message ?? "") Invalid Response."))
                     }
                 } else if httpStatusCode == 200, let data = data {
+                    let JSON = self.nsdataToJSON(data: data as NSData)
+                    print("----------------JSON in APIClient", JSON as Any)
                     do {
-                        let JSON = self.nsdataToJSON(data: data as NSData)
-                 print("----------------JSON in APIClient",JSON)
-                        do {
-                            let responseModel = try JSONDecoder().decode(ResponseModal<T>.self, from: data)
-                            complition(.success(responseModel))
-                        }
-                        catch {
-                            print(error)
-                        }
+                        let responseModel = try JSONDecoder().decode(ResponseModal<T>.self, from: data)
+                        complition(.success(responseModel))
                     } catch {
-                        debugPrint(data)
-                        complition(.failure("Something went wrong"))
+                        print(error)
                     }
                 } else {
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                        let json = try JSONSerialization.jsonObject(with: data ?? Data(),
+                                                                    options: []) as? NSDictionary ?? [:]
                         complition(.failure(json["message"] as? String ?? "something went wrong"))
                     } catch {
                         complition(.failure("Unable to get json."))
@@ -247,9 +223,10 @@ class APIHandler: NSObject {
         var request = URLRequest(url: requestURL)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(
+            userData: SignInAuthModel.self, key: .userAuthData
+        )
         if let token = userModel?.accessToken {
-            print("userModel?.accessToken........ ",userModel!.accessToken! )
             request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
         }
         session.dataTask(with: request) { data, response, error in
@@ -271,7 +248,7 @@ class APIHandler: NSObject {
                     }
                 } else if httpStatusCode == 200, let data = data {
                     let JSON = self.nsdataToJSON(data: data as NSData)
-                    print("----------------JSON in APIClient",JSON as Any)
+                    print("----------------JSON in APIClient", JSON as Any)
                     do {
                         let responseModel = try JSONDecoder().decode(GetUserProfileModel.self, from: data)
                         completion(.success(responseModel))
@@ -280,7 +257,8 @@ class APIHandler: NSObject {
                     }
                 } else {
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                        let json = try JSONSerialization.jsonObject(with: data ?? Data(),
+                                                                    options: []) as? NSDictionary ?? [:]
                         completion(.failure(json["message"] as? String ?? "something went wrong"))
                     } catch {
                         completion(.failure("Unable to get json."))
@@ -290,7 +268,9 @@ class APIHandler: NSObject {
         }.resume()
     }
     // Api Calling//etc called
-    func executeClientRequestWith<U: Encodable>(apiName: String, parameters: U?, methodType: MethodType, authRequired: Bool = true, complition: @escaping(Data?, Error?) -> Void) {
+    func executeClientRequestWith<U: Encodable>(apiName: String, parameters: U?,
+                                                methodType: MethodType, authRequired: Bool = true,
+                                                complition: @escaping(Data?, Error?) -> Void) {
         SVProgressHUD.show()
         let finalURL = baseURL + apiName
         guard let requestURL = URL(string: finalURL) else {
@@ -306,7 +286,7 @@ class APIHandler: NSObject {
         debugPrint("finalURL is \(finalURL)")
         debugPrint("parameters is \(String(describing: parameters))")
         if parameters != nil {
-            let param = try? JSONEncoder().encode(parameters!)
+            let param = try? JSONEncoder().encode(parameters)
             request.httpBody = param
         }
         session.dataTask(with: request) { data, response, error in
@@ -331,22 +311,18 @@ class APIHandler: NSObject {
                     }
                 } else if httpStatusCode == 200, let data = data {
                     do {
-                        complition(data, nil)
+                        let json = try JSONSerialization.jsonObject(
+                            with: data,
+                            options: []
+                        ) as? NSDictionary ?? [:]
+                        complition(nil, (json["message"] as? String ?? "something went wrong"))
                         SVProgressHUD.dismiss()
                     } catch {
-                        debugPrint(data)
                         complition(nil, "Something went wrong")
                         SVProgressHUD.dismiss()
                     }
                 } else {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
-                        complition(nil , (json["message"] as? String ?? "something went wrong"))
-                        SVProgressHUD.dismiss()
-                    } catch {
-                        complition(nil, "Something went wrong")
-                        SVProgressHUD.dismiss()
-                    }
+                    print("error", error as Any)
                 }
             }
         }.resume()
@@ -366,11 +342,11 @@ class APIHandler: NSObject {
             request.setValue(token, forHTTPHeaderField: "Authorization")
         }
         let params = ["status_id": strWorkoutId]
-        if params != nil {
+        if !params.isEmpty {
             let param = try? JSONEncoder().encode(params)
             request.httpBody = param
         }
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { ( _, _, _) in
             sem.signal() // When task complete then signal will call
         })
         task.resume()

@@ -89,13 +89,13 @@ extension AddAmountWalletVC {
             font: UIFont.setFont(fontType: .medium, fontSize: .fourteen),
             tintColour: UIColor.setColor(colorType: .btnDarkBlue)
         )
-        [self.btnContinue,self.btnCard, btnWallet, btnSelectWallet].forEach {
+        [self.btnContinue, self.btnCard, btnWallet, btnSelectWallet].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.vwDefaultSet()
         self.txtCountryCUrrency.optionArray = ["INR", "USD", "EUR", "CAD"]
         self.txtCountryCUrrency.optionIds = [1, 23, 54, 22]
-        self.txtCountryCUrrency.didSelect{ (selectedText, index, id) in
+        self.txtCountryCUrrency.didSelect { (selectedText, index, _) in
             self.txtCountryCUrrency.text = "\(selectedText)\(index)"
         }
     }
@@ -201,7 +201,8 @@ extension AddAmountWalletVC {
         }
     }
     func btnContinueAction() {
-        let view = self.createView(storyboard: .wallet, storyboardID: .AmountAddedSuccessfullyVC) as? AmountAddedSuccessfullyVC
+        let view = self.createView(storyboard: .wallet,
+                                   storyboardID: .AmountAddedSuccessfullyVC) as? AmountAddedSuccessfullyVC
         self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
     func btnSelectConcurrencyAction() {

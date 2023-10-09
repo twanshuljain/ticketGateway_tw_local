@@ -15,7 +15,7 @@ class AddOnAddInOrderCell: UITableViewCell {
 
     override func awakeFromNib() {
         self.setUi()
-        vwDottedLine.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
+        vwDottedLine.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2, 4])
         super.awakeFromNib()
         // Initialization code
     }
@@ -24,7 +24,7 @@ class AddOnAddInOrderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)}
 
     func setUi() {
-        [self.lblTittle,lblTittleValue].forEach {
+        [self.lblTittle, lblTittleValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
             $0?.textColor = UIColor.setColor(colorType: .TiitleColourDarkBlue)
         }

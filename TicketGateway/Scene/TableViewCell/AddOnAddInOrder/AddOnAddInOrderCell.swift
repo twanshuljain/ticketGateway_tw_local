@@ -15,7 +15,7 @@ class AddOnAddInOrderCell: UITableViewCell {
 
     override func awakeFromNib() {
         self.setUi()
-        vwDottedLine.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
+        vwDottedLine.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2, 4])
         super.awakeFromNib()
         // Initialization code
     }
@@ -24,27 +24,22 @@ class AddOnAddInOrderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)}
 
     func setUi() {
-        [self.lblTittle,lblTittleValue].forEach {
+        [self.lblTittle, lblTittleValue].forEach {
             $0?.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         }
     }
-    func setData(addOnData:EventTicketAddOnResponseModel?, selectedCurrencyType: String) {
-        if let addOnData = addOnData{
-            if let selectedTicketQuantity = addOnData.selectedTicketQuantity{
+    func setData(addOnData: EventTicketAddOnResponseModel?, selectedCurrencyType: String) {
+        if let addOnData = addOnData {
+            if let selectedTicketQuantity = addOnData.selectedTicketQuantity {
                 lblTittle.text = " + " + "\(addOnData.addOnName ?? "")" + "*" + " \(selectedTicketQuantity) "
-                //lblTittleValue.text = "CAD$ \(Double(addOnData.addOnTicketPrice ?? 0) * Double(selectedTicketQuantity))"
-
                 var price = Double(addOnData.addOnTicketPrice ?? 0) * Double(selectedTicketQuantity)
                 lblTittleValue.text = "\(selectedCurrencyType)\(price.convertToTwoDecimalPlaces() ?? "0.00")"
             } else {
                 lblTittle.text = " + " + "\(addOnData.ticketName ?? "")"
-                //lblTittleValue.text = "CAD$ \(Double(addOnData.addOnTicketPrice ?? 0))"
-
                 var price = Double(addOnData.addOnTicketPrice ?? 0)
                 lblTittleValue.text = "\(selectedCurrencyType)\(price.convertToTwoDecimalPlaces() ?? "0.00")"
             }
-
         }
     }
 }

@@ -25,28 +25,35 @@ class AppShareData {
     }
     // NewVariable
     var dicToHoldDataOnSignUpModule: DataHoldOnSignUpProcessModel?
-    var userAuth = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-
+    var userAuth = UserDefaultManager.share.getModelDataFromUserDefults(
+        userData: SignInAuthModel.self, key: .userAuthData
+    )
     func saveNumOfPage(numOfPage: Int) {
         UserDefaults.standard.set(numOfPage, forKey: numOfPageKey)
     }
-
     func setRootToHomeVCAndMoveToFAQ() {
-        guard let objHomeViewController = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {
+        guard let objHomeViewController = UIStoryboard.init(
+            name: "Home", bundle: nil
+        ).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {
             return
         }
        let navigationController = UINavigationController(rootViewController: objHomeViewController)
        navigationController.isNavigationBarHidden = true
-       //selectedTabBarIndex = selectedIndex
        UIApplication.shared.windows.first?.rootViewController = navigationController
        UIApplication.shared.windows.first?.makeKeyAndVisible()
-
-        guard let objFAQController = UIStoryboard.init(name: "SideMenu", bundle: nil).instantiateViewController(withIdentifier: "FAQVC") as? FAQVC else {
+        guard let objFAQController = UIStoryboard.init(
+            name: "SideMenu", bundle: nil
+        ).instantiateViewController(withIdentifier: "FAQVC") as? FAQVC else {
             return
         }
         navigationController.pushViewController(objFAQController, animated: false)
     }
-    func updateUserProfile(isForImage: Bool = false, methodType: MethodType, parameters: UpdateUserModel, completion: @escaping (Result<GetUserProfileModel, Error>) -> Void) {
+    // swiftlint: disable cyclomatic_complexity
+    func updateUserProfile(
+        isForImage: Bool = false, methodType: MethodType,
+        parameters: UpdateUserModel,
+        completion: @escaping (Result<GetUserProfileModel, Error>) -> Void
+    ) {
         let boundary = "Boundary-\(NSUUID().uuidString)"
         guard let requestURL = URL(string: "http://3.21.114.70/auth/user/update/profile/") else {
             completion(.failure("invalid url"))
@@ -56,17 +63,18 @@ class AppShareData {
         var request = URLRequest(url: requestURL)
         request.httpMethod = methodType.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-
+        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(
+            userData: SignInAuthModel.self, key: .userAuthData
+        )
         if let token = userModel?.accessToken {
-            print("userModel?.accessToken........ ",userModel!.accessToken! )
+            print("userModel?.accessToken........ ", userModel?.accessToken ?? "")
             request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
         }
         if isForImage {
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         } else {
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
-            request.setValue(NSLocalizedString("lang", comment: ""), forHTTPHeaderField:"Accept-Language")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.setValue(NSLocalizedString("lang", comment: ""), forHTTPHeaderField: "Accept-Language")
         }
         var body = Data()
         if !isForImage {
@@ -108,7 +116,7 @@ class AppShareData {
                     }
                 } else if httpStatusCode == 200, let data = data {
                     let JSON = self.nsdataToJSON(data: data as NSData)
-                    print("----------------JSON in APIClient",JSON as Any)
+                    print("----------------JSON in APIClient", JSON as Any)
                     do {
                         let responseModel = try JSONDecoder().decode(GetUserProfileModel.self, from: data)
                         completion(.success(responseModel))
@@ -117,7 +125,9 @@ class AppShareData {
                     }
                 } else {
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                        let json = try JSONSerialization.jsonObject(
+                            with: data ?? Data(), options: []
+                        ) as? NSDictionary ?? [:]
                         completion(.failure(json["message"] as? String ?? "something went wrong"))
                     } catch {
                         completion(.failure("Unable to get json."))
@@ -126,6 +136,7 @@ class AppShareData {
             }
         }.resume()
     }
+    // swiftlint: enable cyclomatic_complexity
     func nsdataToJSON(data: NSData) -> AnyObject? {
         do {
             return try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as AnyObject
@@ -149,7 +160,11 @@ class AppShareData {
     ) {
         print("eventId:- \(eventId), likeStatus:- \(likeStatus)")
         let param = FavoriteRequestModel(eventId: eventId, likeStatus: likeStatus)
-        APIHandler.shared.executeRequestWith(apiName: .favoriteEvents, parameters: param, methodType: .POST) { (result: Result<ResponseModal<GetEventModel>, Error>) in
+        APIHandler.shared.executeRequestWith(
+            apiName: .favoriteEvents,
+            parameters: param,
+            methodType: .POST
+        ) { (result: Result<ResponseModal<GetEventModel>, Error>) in
             switch result {
             case .success(let response):
                 if response.statusCode == 200 {
@@ -172,7 +187,14 @@ class AppShareData {
     func commanFollowUnfollowApi(organizerId: Int, complition: @escaping (Bool, String) -> Void) {
         let api = APIName.followUnfollow.rawValue + "\(organizerId)/"
         print("organizerId:- \(organizerId)")
-        APIHandler.shared.executeRequestWith(apiName: .followUnfollow, parameters: EmptyModel?.none, methodType: .POST, getURL: api, authRequired: true, authTokenString: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+        APIHandler.shared.executeRequestWith(
+            apiName: .followUnfollow,
+            parameters: EmptyModel?.none,
+            methodType: .POST,
+            getURL: api,
+            authRequired: true,
+            authTokenString: true
+        ) { (result: Result<ResponseModal<EventDetail>, Error>) in
             switch result {
             case .success(let response):
                 if response.statusCode == 200 {
@@ -186,8 +208,7 @@ class AppShareData {
             }
         }
     }
-
-    func getTicketCurrency(currencyType: String) -> String{
+    func getTicketCurrency(currencyType: String) -> String {
         if currencyType == "EUR"{
             return currencyType
         } else if currencyType == "CAD"{

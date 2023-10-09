@@ -46,12 +46,15 @@ extension CancelThisEventVC {
         cancelEventTableViewCell.separatorColor = UIColor.clear
         cancelEventTableViewCell.delegate = self
         cancelEventTableViewCell.dataSource = self
-        cancelEventTableViewCell.register(UINib(nibName: "CancelEventTableViewCell", bundle: nil), forCellReuseIdentifier:  "CancelEventTableViewCell")
+        cancelEventTableViewCell.register(
+            UINib(nibName: "CancelEventTableViewCell", bundle: nil),
+            forCellReuseIdentifier: "CancelEventTableViewCell"
+        )
     }
 
     func setFont() {
         lblCancelThisevent.font = UIFont.setFont(fontType: .semiBold, fontSize: .eighteen)
-        btnContinue.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize:  .fourteen)
+        btnContinue.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnContinue.titleLabel?.textColor = UIColor.setColor(colorType: .btnDarkBlue)
     }
 
@@ -68,13 +71,16 @@ extension CancelThisEventVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CancelEventTableViewCell", for:  indexPath) as! CancelEventTableViewCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "CancelEventTableViewCell",
+            for: indexPath
+        ) as? CancelEventTableViewCell
         let data = viewModel.arrData[indexPath.row]
-        cell.lblTitle.text = data
-            cell.btnSelect.setImage(UIImage(named: RADIO_SELECTION_ICON), for: .selected)
-            cell.btnSelect.setImage(UIImage(named: FILTER_RADIO_INACTIVE), for: .normal)
-        cell.btnSelect.addTarget(self, action: #selector(actionBtn(_ :)), for: .touchUpInside)
-        return cell
+        cell?.lblTitle.text = data
+            cell?.btnSelect.setImage(UIImage(named: RADIO_SELECTION_ICON), for: .selected)
+            cell?.btnSelect.setImage(UIImage(named: FILTER_RADIO_INACTIVE), for: .normal)
+        cell?.btnSelect.addTarget(self, action: #selector(actionBtn(_ :)), for: .touchUpInside)
+        return cell ?? UITableViewCell()
 
     }
 
@@ -98,28 +104,20 @@ extension CancelThisEventVC {
     }
 
     func btnContinueAction() {
-        let vc = self.createView(storyboard: .scanevent, storyboardID: .EndScanPoPUpVC) as! EndScanPoPUpVC
-        vc.delegate = self
-        vc.strMsgForTitle = CANCEL_EVENT
-        vc.strMsgForDescription = ARE_YOU_SURE_CANCEL_EVENT
-        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
-        self.present(vc, animated: true)
-
+        var vc = self.createView(storyboard: .scanevent,
+                                 storyboardID: .EndScanPoPUpVC) as? EndScanPoPUpVC
+        vc?.delegate = self
+        vc?.strMsgForTitle = CANCEL_EVENT
+        vc?.strMsgForDescription = ARE_YOU_SURE_CANCEL_EVENT
+        vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        self.present(vc ?? UIViewController(), animated: true)
     }
 
 }
 // MARK: - NavigationBarViewDelegate
 extension CancelThisEventVC: AlertAction {
     func alertYesaction() {
-//        let vc = self.createView(storyboard: .scanevent, storyboardID: .EndScanPoPUpVC) as! EndScanPoPUpVC
-//        vc.delegate = self
-//        vc.strMsgForTitle = "Order Refunded?"
-//        vc.strMsgForDescription = "Are you sure your all orders are refunded?"
-//        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
-//        self.present(vc, animated: true)
-
     }
-
 }
 
 // MARK: - NavigationBarViewDelegate

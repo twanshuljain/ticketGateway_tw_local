@@ -3,7 +3,6 @@
 //  TicketGateway
 //
 //  Created by Apple  on 16/05/23.
-// swiftlint: disable force_cast
 
 import UIKit
 class AddOnAddInOrderTableViewList: UITableView {
@@ -45,7 +44,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as? AddOnAddInOrderCell{
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnAddInOrderCell") as? AddOnAddInOrderCell {
             cell.setData(addOnData: self.selectedAddOnList[indexPath.row], selectedCurrencyType: selectedCurrencyType)
             if indexPath.row == 3-1 {
                 cell.vwDottedLine.isHidden = false
@@ -58,7 +57,7 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
 
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as? TicketTypesCell{
+        if let _ = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as? TicketTypesCell {
             self.tableDidSelectAtIndex?(indexPath.row)
             self.reloadData()
         }
@@ -72,22 +71,22 @@ extension AddOnAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSour
     @objc func plusButtonPressed(_ sender: UIButton) {
         print(sender.tag)
         let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
-        let value =  cell.vwStepper.lblCount.text ?? ""
+        let cell = self.cellForRow(at: indexPath) as? TicketTypesCell
+        let value =  cell?.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
         self.lblNumberOfCount += 1
-        cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+        cell?.vwStepper.lblCount.text = String(lblNumberOfCount)
     }
     @objc func minustButtonPressed(_ sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = self.cellForRow(at: indexPath) as! TicketTypesCell
-        let value =  cell.vwStepper.lblCount.text ?? ""
+        let cell = self.cellForRow(at: indexPath) as? TicketTypesCell
+        let value =  cell?.vwStepper.lblCount.text ?? ""
         self.lblNumberOfCount = Int(value) ?? 0
         if self.lblNumberOfCount > 0 {
             self.lblNumberOfCount -= 1
-            cell.vwStepper.lblCount.text = String(lblNumberOfCount)
+            cell?.vwStepper.lblCount.text = String(lblNumberOfCount)
         } else {
-            cell.vwStepper.lblCount.text = "0"
+            cell?.vwStepper.lblCount.text = "0"
         }
     }
 }

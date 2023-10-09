@@ -31,13 +31,12 @@ extension AddCardViewModel {
         let components: DateComponents? = Calendar.current.dateComponents([.day, .month, .year], from: Date())
         let year: Int? = components?.year
         self.minYear = year ?? 0
-        self.maxYear = year! + 30
+        self.maxYear = (year ?? 0) + 30
         self.rowHeight = 44
         self.months = nameOfMonths()
         self.years = nameOfYears()
-        let str = "\(Int(year!))"
+        let str = "\(Int(year ?? 0))"
         if (str.count ) > 2 {
-            let _: String = ((str as? NSString)?.substring(from: (str.count ) - 2))!
             selectedyearName = "\(str)"
         }
         selectedMonthName = "01"

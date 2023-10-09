@@ -77,7 +77,8 @@ extension AddCardVC {
         }
     }
     func btnContinueAction() {
-        let view = self.createView(storyboard: .manageevent, storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
+        let view = self.createView(storyboard: .manageevent,
+                                   storyboardID: .ManageSellTicketSuccessfully) as? ManageSellTicketSuccessfully
         self.navigationController?.pushViewController(view ?? UIViewController(), animated: true)
     }
     @IBAction private func btnOpenDatePicker(_ sender: Any) {
@@ -100,7 +101,6 @@ extension AddCardVC {
             }
             self.viewModel.selectedyearName = String(strSelctedyears)
             if (viewModel.selectedyearName.count ) > 2 {
-                let _: String! = ((viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count) - 2))
                 viewModel.selectedyearName = "\(self.viewModel.selectedyearName)"
                 viewModel.selectedMonthName = "\(self.viewModel.selectedMonthName)"
             }
@@ -115,7 +115,6 @@ extension AddCardVC {
             self.viewModel.selectedMonthName = String(strSelectedmonths)
             self.viewModel.selectedyearName = String(strSelctedyears)
             if (viewModel.selectedyearName.count ) > 2 {
-//                let _: String! = (viewModel.selectedyearName as? NSString)?.substring(from: (viewModel.selectedyearName.count ) - 2)
                 viewModel.selectedyearName = "\(strSelctedyears)"
                 viewModel.selectedMonthName = "\(strSelectedmonths)"
             }
@@ -189,9 +188,9 @@ extension AddCardVC: UITextFieldDelegate {
             previousSelection = textField.selectedTextRange
             return true
         } else if textField == txtCardName {
-            let currentString: NSString = textField.text! as NSString
+            let currentString = textField.text as? NSString
             let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
+            currentString?.replacingCharacters(in: range, with: string) as? NSString ?? ""
             let maxLength = 30
             return newString.length <= maxLength
         } else {
@@ -264,7 +263,6 @@ extension AddCardVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 }
                 let str = (Int(strCurrentMonth) ?? 0) - 1
                 if (strCurrentYear.count ) > 2 {
-//                    let strLastTwoDigits: String! = (strCurrentYear as? NSString)?.substring(from: (strCurrentYear.count ) - 2)
                     viewModel.selectedyearName = "\(str)"
                 }
             } else {

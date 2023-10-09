@@ -32,8 +32,7 @@ class UpcomingTableViewCell: UITableViewCell {
         if let startDate = getTicket?.eventStartDate {
             self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
         }
-
-        if isFaded{
+        if isFaded {
             self.btnSeeTickets.setTitle("Completed", for: .normal)
         } else {
             self.btnSeeTickets.setTitle("See Tickets", for: .normal)
@@ -44,7 +43,7 @@ class UpcomingTableViewCell: UITableViewCell {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
                     self.imgImage.sd_setImage(with: url) { image, error, cacheType, url in
-                        if error == nil{
+                        if error == nil {
                             self.imgImage.image = image
                         } else {
                             self.imgImage.image = UIImage(named: "homeDas")
