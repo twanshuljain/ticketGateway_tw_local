@@ -6,20 +6,6 @@
 //
 
 import Foundation
-struct GetFavouriteResponse : Codable {
-    let data : GetFavouriteData?
-    let status_code : Int?
-    let message : String?
-    let error : String?
-    
-    enum CodingKeys: String, CodingKey {
-        
-        case data = "data"
-        case status_code = "status_code"
-        case message = "message"
-        case error = "error"
-    }
-}
 
 struct GetFavouriteData : Codable {
     let items : [GetFavouriteItem]?
@@ -38,21 +24,31 @@ struct GetFavouriteData : Codable {
     }
 }
 struct GetFavouriteItem : Codable {
-    let eventTitle : String?
-    let coverImage : GetFavouriteCoverImage?
-    let totalLike : Int?
-    let location : String?
-    let eventCountry : String?
-    let eventId : Int?
-    
+    let eventTitle: String?
+    let coverImage: GetFavouriteCoverImage?
+    let totalLike: Int?
+    let location: String?
+    let eventCountry: String?
+    let eventId: Int?
+    let eventStartDate: String?
+    let eventEndDate: String?
+    let eventStartTime: String?
+    let eventEndTime: String?
+    let locationType: String?
+    let isMultiLocation: Bool?
     enum CodingKeys: String, CodingKey {
-        
         case eventTitle = "event_title"
         case coverImage = "cover_image"
         case totalLike = "total_like"
         case location = "location"
         case eventCountry = "event_country"
         case eventId = "event_id"
+        case eventStartDate = "event_start_date"
+        case eventEndDate = "event_end_date"
+        case eventStartTime = "event_start_time"
+        case eventEndTime = "event_end_time"
+        case locationType = "location_type"
+        case isMultiLocation = "is_multi_location"
     }
 }
 

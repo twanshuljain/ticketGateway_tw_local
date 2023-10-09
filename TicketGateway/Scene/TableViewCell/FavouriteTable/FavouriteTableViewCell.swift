@@ -46,9 +46,10 @@ class FavouriteTableViewCell: UITableViewCell {
         lblTitle.text = getFavouriteData?.eventTitle ?? "-"
         lblAddress.text = getFavouriteData?.location ?? "-"
         btnLike.setImage(UIImage(named: "favSele_ip"), for: .normal)
-//            if let startDate = getFavouriteData?.eventStartDate {
-//                self.lblTime.text = "\(getWeekDay(strDate: startDate)), \(startDate.getDateFormattedFrom()) • \(getTime(strDate: startDate))"
-//            }
+        lblDate.text = "\(getFavouriteData?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " "
+        + "\(getFavouriteData?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+        lblTime.text = "\(getFavouriteData?.eventStartTime?.getFormattedTime() ?? "")" +
+        " " + "-" + " " + "\(getFavouriteData?.eventEndTime?.getFormattedTime() ?? "")"
         if let imageUrl = getFavouriteData?.coverImage?.eventCoverImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -69,15 +70,13 @@ class FavouriteTableViewCell: UITableViewCell {
         }
     }
     
-    func setDataForFavoritesVenue(getVenueData: GetVenueItem?){
+    func setDataForFavoritesVenue(getVenueData: GetVenueItem?) {
         self.setupUI(isFavorites: false)
-        
         lblNumberOfVenue.text = "10+ events"
         lblTitle.text = getVenueData?.venueName ?? "-"
-        lblAddress.text = "NA"
-        lblDate.text = "NA"
+        lblAddress.text = getVenueData?.address ?? "-"
         lblTimeOfVenue.text = "NA"
-//            btnLike.setImage(UIImage(named: (getVenueData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+        btnLike.setImage(UIImage(named: (getVenueData?.isLike ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
         if let imageUrl = getVenueData?.image {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -100,23 +99,29 @@ class FavouriteTableViewCell: UITableViewCell {
     
     func setDataForSuggestions(getSuggestionsData: GetEventModel?){
         self.setupUI(isFavorites: true)
-        
         lblTitle.text = getSuggestionsData?.event?.title ?? "-"
         lblAddress.text = getSuggestionsData?.location?.eventAddress ?? "-"
-        lblDate.text = "\(getSuggestionsData?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " " + "\(getSuggestionsData?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        lblTime.text = "\(getSuggestionsData?.date?.eventStartTime?.getFormattedTime() ?? "")" +  " " + "-" + " " + "\(getSuggestionsData?.date?.eventEndTime?.getFormattedTime() ?? "")"
-        btnLike.setImage(UIImage(named: (getSuggestionsData?.isLiked ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
+        lblDate.text = "\(getSuggestionsData?.date?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " "
+        + "\(getSuggestionsData?.date?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+        lblTime.text = "\(getSuggestionsData?.date?.eventStartTime?.getFormattedTime() ?? "")" +
+        " " + "-" + " " + "\(getSuggestionsData?.date?.eventEndTime?.getFormattedTime() ?? "")"
+        btnLike.setImage(UIImage(named: (getSuggestionsData?.isLiked ?? false) ?
+                                 "favSele_ip" : "favUnSele_ip"), for: .normal)
         if let imageUrl = getSuggestionsData?.coverImage?.eventCoverImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                 if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    self.imgImages.sd_setImage(with: url,
+                                               placeholderImage: UIImage(named: "homeDas"),
+                                               options: SDWebImageOptions.continueInBackground)
                 } else {
                     self.imgImages.image = UIImage(named: "homeDas")
                 }
             } else {
                 if let url = (APIHandler.shared.s3URL + imageUrl).getCleanedURL() {
-                    self.imgImages.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    self.imgImages.sd_setImage(with: url,
+                                               placeholderImage: UIImage(named: "homeDas"),
+                                               options: SDWebImageOptions.continueInBackground)
                 } else {
                     self.imgImages.image = UIImage(named: "homeDas")
                 }
@@ -125,7 +130,6 @@ class FavouriteTableViewCell: UITableViewCell {
             self.imgImages.image = UIImage(named: "homeDas")
         }
     }
-    
     func setupUI(isFavorites:Bool){
         if isFavorites{
             self.numberOfVenueStack.isHidden = true
@@ -138,7 +142,7 @@ class FavouriteTableViewCell: UITableViewCell {
             self.likeUnlikeStackViewFavorite.isHidden = false
             self.htLikeUnlikeStackViewFavorite.constant = 40
             self.htLblPrice.constant = 40
-        }else{
+        } else {
             self.numberOfVenueStack.isHidden = false
             self.timeOfVenueStack.isHidden = false
             self.timeOfFavoriteEventStack.isHidden = true
@@ -163,18 +167,14 @@ class FavouriteTableViewCell: UITableViewCell {
         self.lblTitle.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.lblAddress.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblAddress.textColor = UIColor.setColor(colorType: .headinglbl)
-        
         self.lblDate.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblDate.textColor = UIColor.setColor(colorType: .headinglbl)
         self.lblTime.font = UIFont.setFont(fontType: .regular, fontSize: .twelve)
         self.lblTime.textColor = UIColor.setColor(colorType: .headinglbl)
         self.lblPrice.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblPrice.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        
         self.lblFavoriteDate.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.lblFavoriteDate.textColor = UIColor.setColor(colorType: .lblTextPara)
-        
-        
     }
     func getTime(strDate: String) -> String {
         let date = strDate.convertStringToDate(date: strDate)

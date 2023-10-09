@@ -205,6 +205,11 @@
                     <constraint firstItem="9wi-79-tSi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tMO-dd-ezQ"/>
                     <constraint firstAttribute="bottom" secondItem="GhK-TD-C8I" secondAttribute="bottom" id="xid-vX-L2X"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="subviews">
+                        <exclude reference="GhK-TD-C8I"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
