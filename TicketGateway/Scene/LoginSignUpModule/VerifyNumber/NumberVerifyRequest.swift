@@ -8,4 +8,5 @@ import Foundation
 struct NumberVerifyRequest: Codable {
     var otp: String?
     var cell_phone: String?
+    var email: String?
 }

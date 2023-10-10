@@ -301,7 +301,7 @@ extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionVie
             cell.setData(organizerDetail: data)
         }
         cell.followButtonDidTap = { sender in
-            var organizerId = self.viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row].userID ?? 0
+            var organizerId = self.viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row].id ?? 0
             self.suggestedFollowButtonAction(organizerId: organizerId, isSuccess: { message in
                 print("message from api:-", message)
                 let record = self.viewModelForOrganniser.arrOrganizersListSideMenu?[indexPath.row]

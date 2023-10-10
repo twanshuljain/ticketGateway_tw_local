@@ -66,7 +66,6 @@ extension ScannerVC {
         } else {
             self.imgScanStatus.isHidden = false
             self.imgScanStatus.image = UIImage(named: Wrong)
-            self.vibrateDevice()
             showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
             return
         }
@@ -78,7 +77,6 @@ extension ScannerVC {
         } else {
             self.imgScanStatus.isHidden = false
             self.imgScanStatus.image = UIImage(named: Wrong)
-            self.vibrateDevice()
             showAlertController(message: SCANNING_DOES_NOT_SUPPORT)
             return
         }

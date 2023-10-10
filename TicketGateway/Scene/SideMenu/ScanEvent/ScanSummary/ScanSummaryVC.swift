@@ -204,18 +204,21 @@ extension ScanSummaryVC{
         case 1:
             print("SCANNED")
             self.viewModel.scanSummaryModel.tab = "SCANNED"
+            self.viewModel.scanSummaryModel.event_id = "\(self.viewModel.getScanOverviewData.eventId ?? 0)"
             self.scrollView.isScrollEnabled = true
             self.scanSummaryView.isHidden = false
             self.getScanSummary()
         case 2:
             print("ACCEPTED")
             self.viewModel.scanSummaryModel.tab = "ACCEPTED"
+            self.viewModel.scanSummaryModel.event_id = "\(self.viewModel.getScanOverviewData.eventId ?? 0)"
             self.scrollView.isScrollEnabled = true
             self.scanSummaryView.isHidden = false
             self.getScanSummary()
         case 3:
             print("Rest")
             self.viewModel.scanSummaryModel.tab = "REJECTED"
+            self.viewModel.scanSummaryModel.event_id = "\(self.viewModel.getScanOverviewData.eventId ?? 0)"
             self.scrollView.isScrollEnabled = true
             self.scanSummaryView.isHidden = false
             self.getScanSummary()

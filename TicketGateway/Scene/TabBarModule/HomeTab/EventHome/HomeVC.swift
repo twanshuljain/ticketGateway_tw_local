@@ -581,7 +581,7 @@ extension HomeVC: NavigateToProfile, suggestedOrganizerListProtocol {
         }
         if let cell = self.collvwSuggestedOrganisation.cellForItem(at: IndexPath.init(row: tag, section: 0)) as? suggestedOrganizerCell {
             if Reachability.isConnectedToNetwork() { //check internet connectivity
-                if let organizerId = self.collvwSuggestedOrganisation.arrOrganizersList?[tag].userID {
+                if let organizerId = self.collvwSuggestedOrganisation.arrOrganizersList?[tag].id {
                     parentView.showLoading(centreToView: self.view)
                     AppShareData().commanFollowUnfollowApi(organizerId: organizerId, complition: { isTrue, messageShowToast in
                         if isTrue {

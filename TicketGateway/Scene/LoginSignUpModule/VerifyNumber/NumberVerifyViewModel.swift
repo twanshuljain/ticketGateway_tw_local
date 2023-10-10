@@ -62,7 +62,8 @@ extension NumberVerifyViewModel {
         
         let numberWithoutCode = objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? ""
         let number = "\(objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")" + (objAppShareData.dicToHoldDataOnSignUpModule?.strNumber ?? "")
-        param = NumberVerifyRequest(otp: otp, cell_phone: number)
+        let email = objAppShareData.dicToHoldDataOnSignUpModule?.strEmail ?? ""
+        param = NumberVerifyRequest(otp: otp, cell_phone: number, email: email)
         APIHandler.shared.executeRequestWith(apiName: .checkoutVerifyNumberOtp, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
             switch result {
             case .success(let response):
