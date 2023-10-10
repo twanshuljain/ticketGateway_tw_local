@@ -344,7 +344,7 @@ struct LikeCountData: Codable {
 struct Organizers: Codable {
     var isActive: Bool?
     var createdAt, updatedAt, name, profileImage: String?
-    var userID, followers: Int?
+    var userID, followers, id: Int?
     var isFollow: Bool?
     
     enum CodingKeys: String, CodingKey {
@@ -354,7 +354,7 @@ struct Organizers: Codable {
         case name
         case profileImage = "profile_image"
         case userID = "user_id"
-        case followers
+        case followers, id
         case isFollow = "is_follow"
     }
     mutating func changeIsFollow(isFollow: Bool) {

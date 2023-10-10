@@ -54,7 +54,7 @@ struct GetScanSummaryItem: Codable {
     init() {}
     var eventId: Int?
     var orderTicketsId: Int?
-    var order: Int?
+    var order: String?
     var operatorName: String?
     var status: Bool?
     var createdAt: String?

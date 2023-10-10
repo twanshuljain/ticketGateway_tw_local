@@ -13,6 +13,7 @@ struct ScanSummaryModel: Encodable {
     var tab: String = "ACCEPTED"
     var page: Int = 1
     var limit: Int = 10
+    var event_id: String?
 }
 enum TicketStatusList: String {
     case tixToScan = "Tix to scan"
