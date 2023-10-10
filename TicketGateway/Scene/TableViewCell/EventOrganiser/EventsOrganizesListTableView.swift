@@ -267,7 +267,6 @@ extension EventsOrganizesListTableView: UITableViewDelegate, UITableViewDataSour
             }
             //cell.btnShare.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
             if self.isComingFrom == .Home{
-                
                 switch self.arrEventCategory[indexPath.section] {
                 case .noLocationData:
                     cell.setNoDataFound(countryName: self.countryName)

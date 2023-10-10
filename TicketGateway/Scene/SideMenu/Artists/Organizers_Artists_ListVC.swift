@@ -25,14 +25,14 @@ class Organizers_Artists_ListVC: UIViewController {
     @IBOutlet weak var collVwTrending_Artists: UICollectionView!
     @IBOutlet weak var tblSuggestedOrag_Art: UITableView!
     @IBOutlet weak var navigationView: NavigationBarView!
-
+    
     // MARK: - Variable
     let viewModel = LoginNmberWithEmailViewModel()
     let viewModelForOrganniser = OrganizersandArtistViewModel()
     var organiserData = [Organizers]()
     let nameFormatter = PersonNameComponentsFormatter()
     var isFrom = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -42,8 +42,7 @@ class Organizers_Artists_ListVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        getOrganizersSuggestedList()
-        callApiForOrganizersList(viewAll: false)
+        apiCallAndDataReset()
         if self.isFrom == "Organizers" {
             self.navigationView.lblTitle.text = ORGANISER
             self.lblTittle.text = TRENDING_ORGANISER
@@ -58,7 +57,12 @@ class Organizers_Artists_ListVC: UIViewController {
 
 // MARK: - Functions
 extension Organizers_Artists_ListVC {
-    
+    func apiCallAndDataReset() {
+        viewModelForOrganniser.venueModel.page = 1
+        viewModelForOrganniser.arrSuggestedOrganizers.removeAll()
+        getOrganizersSuggestedList()
+        callApiForOrganizersList(viewAll: false)
+    }
     func callApiForOrganizersList(viewAll:Bool){
         if Reachability.isConnectedToNetwork() //check internet connectivity
         {
@@ -115,9 +119,7 @@ extension Organizers_Artists_ListVC {
         self.tblSuggestedOrag_Art.dataSource = self
         self.tblSuggestedOrag_Art.delegate = self
         self.tblSuggestedOrag_Art.reloadData()
-       // self.collVwTrending_Artists.configure()
         self.navigationView.delegateBarAction = self
-      //  self.navigationView.imgBack.image = UIImage(named: MENU_ICON)
         self.navigationView.btnBack.isHidden = false
         self.navigationView.delegateBarAction = self
         self.navigationView.vwBorder.isHidden = false
@@ -130,7 +132,6 @@ extension Organizers_Artists_ListVC {
         self.lblSuggested.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
         self.btnSeeAll.setTitles(text: SEE_ALL , font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
         self.btnSeeAllForSuggested.setTitles(text: SEE_ALL , font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
-      
     }
 }
 
@@ -146,54 +147,49 @@ extension Organizers_Artists_ListVC {
             break
         }
     }
-
+    
     func btnSeeAllAction() {
         if Reachability.isConnectedToNetwork(){
-           // SVProgressHUD.show()
-            viewModel.signInAPI { isTrue , messageShowToast in
-                if isTrue == true {
-                    DispatchQueue.main.async {
-                   //     SVProgressHUD.dismiss()
-                        objSceneDelegate.showTabBar()
-                    }
-                }
-                else {
-                    DispatchQueue.main.async {
-                     //   SVProgressHUD.dismiss()
-                        self.showToast(message: messageShowToast)
-                    }
-                }
-            }
+            //            viewModel.signInAPI { isTrue , messageShowToast in
+            //                if isTrue == true {
+            //                    DispatchQueue.main.async {
+            //                        //     SVProgressHUD.dismiss()
+            //                        objSceneDelegate.showTabBar()
+            //                    }
+            //                }
+            //                else {
+            //                    DispatchQueue.main.async {
+            //                        //   SVProgressHUD.dismiss()
+            //                        self.showToast(message: messageShowToast)
+            //                    }
+            //                }
+            //            }
         } else {
             self.showToast(message: ValidationConstantStrings.networkLost)
         }
-        }
+    }
     
     func btnSeeAllSuggestedAction() {
-//        let vc = createView(storyboard: .sidemenu, storyboardID: .MyFollowersVC)
-//        self.navigationController?.pushViewController(vc, animated:     true)
-//
-        
         if Reachability.isConnectedToNetwork(){
-        //    SVProgressHUD.show()
-            viewModel.signInAPI { isTrue , messageShowToast in
-                if isTrue == true {
-                    DispatchQueue.main.async {
-                      //  SVProgressHUD.dismiss()
-                        objSceneDelegate.showTabBar()
-                    }
-                }
-                else {
-                    DispatchQueue.main.async {
-                      //  SVProgressHUD.dismiss()
-                        self.showToast(message: messageShowToast)
-                    }
-                }
-            }
+            //    SVProgressHUD.show()
+            //            viewModel.signInAPI { isTrue , messageShowToast in
+            //                if isTrue == true {
+            //                    DispatchQueue.main.async {
+            //                        //  SVProgressHUD.dismiss()
+            //                        objSceneDelegate.showTabBar()
+            //                    }
+            //                }
+            //                else {
+            //                    DispatchQueue.main.async {
+            //                        //  SVProgressHUD.dismiss()
+            //                        self.showToast(message: messageShowToast)
+            //                    }
+            //                }
+            //            }
         } else {
             self.showToast(message: ValidationConstantStrings.networkLost)
         }
-        }
+    }
     func suggestedFollowButtonAction(organizerId: Int, isSuccess: (@escaping (String) -> Void)) {
         // Condition for -> If user with guest login then like/unlike feature should not work.
         if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
@@ -226,20 +222,26 @@ extension Organizers_Artists_ListVC {
             }
         }
     }
+    func loadMoreData() {
+        if viewModelForOrganniser.arrSuggestedOrganizers.count < viewModelForOrganniser.totalPage {
+            print("venue load more data")
+            viewModelForOrganniser.venueModel.page += 1
+            getOrganizersSuggestedList()
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate,UITableViewDataSource
 extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModelForOrganniser.arrSuggestedOrganizers.count
-      //  self.viewModel.arrMail.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "Organizers_Artists_ListCell", for: indexPath) as! Organizers_Artists_ListCell)
         cell.suggestedOrganizerData = viewModelForOrganniser.arrSuggestedOrganizers[indexPath.row]
         cell.followButtonDidTap = { sender in
-            var organizerId = self.viewModelForOrganniser.arrSuggestedOrganizers[indexPath.row].id ?? 0
+            let organizerId = self.viewModelForOrganniser.arrSuggestedOrganizers[indexPath.row].id ?? 0
             self.suggestedFollowButtonAction(organizerId: organizerId, isSuccess: { message in
                 print("message from api:-", message)
                 let record = self.viewModelForOrganniser.arrSuggestedOrganizers[indexPath.row]
@@ -266,26 +268,32 @@ extension Organizers_Artists_ListVC : UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // let obj = self.viewModel.arrMail[indexPath.row]
-     //   self.viewModel.strSelectedEmail = obj.email ?? ""
+        // let obj = self.viewModel.arrMail[indexPath.row]
+        //   self.viewModel.strSelectedEmail = obj.email ?? ""
         self.tblSuggestedOrag_Art.reloadData()
-  }
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("in \(indexPath.row)")
+        let lastSectionIndex = tblSuggestedOrag_Art.numberOfSections - 1
+        let lastRowIndex = tblSuggestedOrag_Art.numberOfRows(inSection: lastSectionIndex) - 1
+        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            self.loadMoreData()
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource,UICollectionViewDelegate
 extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return viewModelForOrganniser.arrOrganizersListSideMenu?.count ?? 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestedOrganizerCell", for: indexPath) as! suggestedOrganizerCell
         cell.isFromOrganizationSection = true
@@ -341,9 +349,6 @@ extension Organizers_Artists_ListVC: UICollectionViewDataSource ,UICollectionVie
 // MARK: - NavigationBarViewDelegate
 extension Organizers_Artists_ListVC: NavigationBarViewDelegate {
     func navigationBackAction() {
-//        let sb = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
-//        let menu = sb.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
-//        present(menu, animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
-  }
+    }
 }
