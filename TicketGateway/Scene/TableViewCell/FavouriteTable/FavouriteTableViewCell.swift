@@ -133,7 +133,7 @@ class FavouriteTableViewCell: UITableViewCell {
     func setupUI(isFavorites:Bool){
         if isFavorites{
             self.numberOfVenueStack.isHidden = true
-            self.timeOfVenueStack.isHidden = true
+//            self.timeOfVenueStack.isHidden = true
             self.timeOfFavoriteEventStack.isHidden = false
             self.lblSeparator.isHidden = false
             self.lblPrice.isHidden = false
@@ -144,7 +144,7 @@ class FavouriteTableViewCell: UITableViewCell {
             self.htLblPrice.constant = 40
         } else {
             self.numberOfVenueStack.isHidden = false
-            self.timeOfVenueStack.isHidden = false
+//            self.timeOfVenueStack.isHidden = false
             self.timeOfFavoriteEventStack.isHidden = true
             self.lblSeparator.isHidden = true
             self.lblPrice.isHidden = true

@@ -82,7 +82,7 @@
                         </constraints>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="srN-ko-Zbh">
-                        <rect key="frame" x="20" y="321" width="461" height="117"/>
+                        <rect key="frame" x="20" y="354" width="461" height="84"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Sjo-cQ-rUq">
                                 <rect key="frame" x="0.0" y="0.0" width="461" height="18"/>
@@ -180,8 +180,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Wky-7B-e7O">
-                                <rect key="frame" x="0.0" y="99" width="135.5" height="18"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Wky-7B-e7O">
+                                <rect key="frame" x="0.0" y="84" width="135.5" height="18"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9JB-gh-9d5">
                                         <rect key="frame" x="0.0" y="0.0" width="135.5" height="18"/>
@@ -272,10 +272,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zci-kh-u8I">
-                        <rect key="frame" x="16" y="5" width="479" height="20.5"/>
+                        <rect key="frame" x="16" y="5" width="479" height="53.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="WED, JAN 20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWS-sk-44Z">
-                                <rect key="frame" x="0.0" y="0.0" width="479" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="479" height="53.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
