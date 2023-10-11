@@ -12,6 +12,7 @@
 // swiftlint: disable function_parameter_count
 // swiftlint: disable type_name
 import UIKit
+import SDWebImage
 class TabBar_VC: UITabBarController {
     //MARK: - Variables
     let yourImage = UIImage(named: "image")
@@ -19,6 +20,18 @@ class TabBar_VC: UITabBarController {
         super.viewDidLoad()
         self.delegate = self
         UserDefaults.standard.set(false, forKey: "isComingFromManageEvent")
+        var userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
+        SDWebImageDownloader.shared.downloadImage(
+            with: (APIHandler.shared.baseURL + (userModel?.image ?? "")).getCleanedURL(),
+            options: [],
+            progress: nil
+        ) { (image, _, _, _) in
+//            DispatchQueue.main.async {
+//                let tabImage = UIImage(named: "activeTerm")
+////                tabImage?.withRenderingMode(.automatic)
+//                self.viewControllers?[3].tabBarItem.image = image
+//            }
+        }
 //        let selectedindex = tabBarController?.selectedIndex
 //        print("----------", selectedindex)
         

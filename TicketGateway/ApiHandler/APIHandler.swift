@@ -221,19 +221,14 @@ class APIHandler: NSObject {
                         complition(.failure("API \(message ?? "") Invalid Response."))
                     }
                 } else if httpStatusCode == 200, let data = data {
+                    let JSON = self.nsdataToJSON(data: data as NSData)
+                    print("----------------JSON in APIClient", JSON)
                     do {
-                        let JSON = self.nsdataToJSON(data: data as NSData)
-                 print("----------------JSON in APIClient",JSON)
-                        do {
-                            let responseModel = try JSONDecoder().decode(ResponseModal<T>.self, from: data)
-                            complition(.success(responseModel))
-                        }
-                        catch{
-                            print(error)
-                        }
-                    } catch {
-                        debugPrint(data)
-                        complition(.failure("Something went wrong"))
+                        let responseModel = try JSONDecoder().decode(ResponseModal<T>.self, from: data)
+                        complition(.success(responseModel))
+                    }
+                    catch {
+                        print(error)
                     }
                 } else {
                     do {
@@ -241,58 +236,6 @@ class APIHandler: NSObject {
                         complition(.failure(json["message"] as? String ?? "something went wrong"))
                     } catch {
                         complition(.failure("Unable to get json."))
-                    }
-                }
-            }
-        }.resume()
-    }
-    func getUserProfile(methodType: MethodType, completion: @escaping (Result<GetUserProfileModel, Error>) -> Void) {
-        guard let requestURL = URL(string: "http://3.21.114.70/auth/me/") else {
-            completion(.failure("invalid url"))
-            return
-        }
-        print("requestURL", requestURL)
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = methodType.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        if let token = userModel?.accessToken {
-            print("userModel?.accessToken........ ",userModel!.accessToken! )
-            request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
-        }
-        session.dataTask(with: request) { data, response, error in
-            var httpStatusCode = 0
-            if let httpResponse = response as? HTTPURLResponse {
-                httpStatusCode = httpResponse.statusCode
-            }
-            if error != nil {
-                completion(.failure(error?.localizedDescription ?? "Something went wrong"))
-            } else {
-                if httpStatusCode == 401 {
-                    // Refresh Token
-                    if let fbData = data {
-                        let message = String(decoding: fbData, as: UTF8.self)
-                        completion(.failure(message))
-                    } else {
-                        let message = response?.url?.lastPathComponent
-                        completion(.failure("API \(message ?? "") Invalid Response."))
-                    }
-                } else if httpStatusCode == 200, let data = data {
-                    let JSON = self.nsdataToJSON(data: data as NSData)
-                    print("----------------JSON in APIClient",JSON as Any)
-                    do {
-                        let responseModel = try JSONDecoder().decode(GetUserProfileModel.self, from: data)
-                        completion(.success(responseModel))
-                    }
-                    catch{
-                        print(error)
-                    }
-                } else {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
-                        completion(.failure(json["message"] as? String ?? "something went wrong"))
-                    } catch {
-                        completion(.failure("Unable to get json."))
                     }
                 }
             }
@@ -407,14 +350,3 @@ extension Data {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -12,14 +12,15 @@ final class ManageEventProfileViewModel {
     var updateUserModel = UpdateUserModel()
     // MARK: Custom Functions
     func getUserProfileData(complition: @escaping (Bool, String) -> Void ) {
-        APIHandler.shared.getUserProfile(methodType: .GET) { (result: Result<GetUserProfileModel, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .getUserProfileData, parameters: EmptyModel?.none, methodType: .GET) { (result: Result<ResponseModal<GetUserProfileModel>, Error>) in
             switch result {
             case .success(let response):
                 print("response....",response)
                 DispatchQueue.main.async {
-                    self.getUserProfileData = response
+                    if let data = response.data {
+                        self.getUserProfileData = data
+                    }
                     self.updateProfile()
-                    print("response.data", response as Any)
                     complition(true, "success")
                 }
             case .failure(let error):

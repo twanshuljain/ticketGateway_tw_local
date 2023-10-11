@@ -10,9 +10,7 @@ import UIKit
 struct GetUserProfileModel : Codable {
     var userData : UserData?
     var profileCompletePercentage : Int?
-    init() {
-        
-    }
+    init() {}
     enum CodingKeys: String, CodingKey {
         case userData = "user_data"
         case profileCompletePercentage = "profile_complete_percentage"
