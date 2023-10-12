@@ -129,11 +129,12 @@ extension HomeVC {
     }
     
     func setUi(){
+        self.btnViewAllForSuggestedOrganised.isHidden = true
         self.lblNearOrganisedEvent.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
         self.lblNearOrganisedEvent.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.lblSuggestedOrganised.font = UIFont.setFont(fontType: .bold, fontSize: .twenty)
+        self.lblSuggestedOrganised.font = UIFont.setFont(fontType: .medium, fontSize: .eighteen)
         self.lblSuggestedOrganised.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)
-        self.btnViewAllForSuggestedOrganised.setTitles(text: SEE_ALL, font: .systemFont(ofSize: 20), tintColour: .blue, textColour: UIColor.setColor(colorType: .tgBlue))
+        self.btnViewAllForSuggestedOrganised.setTitles(text: SEE_ALL, font: .systemFont(ofSize: 20), tintColour: UIColor.setColor(colorType: .tgBlue), textColour: UIColor.setColor(colorType: .tgBlue))
       }
      override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfNearOrganisedEvent.constant = tblEvents.contentSize.height
@@ -410,6 +411,7 @@ extension HomeVC {
                 if isTrue == true {
                     self.parentView.stopLoading()
                     DispatchQueue.main.async {
+                        self.btnViewAllForSuggestedOrganised.isHidden = false
                         self.lblSuggestedOrganised.text = "Organizers to follow"
                         self.collvwSuggestedOrganisation.arrOrganizersList = self.viewModel.arrOrganizersList
                         self.collvwSuggestedOrganisation.reloadData()

@@ -395,7 +395,7 @@ extension EventDetailVC {
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
-        self.lblPrice.text = "CAD$\(eventDetail?.ticketOnwards ?? 0) onwards"
+        self.lblPrice.text = "CAD $\(eventDetail?.ticketOnwards ?? 0) onwards"
         print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
         if let isFollow = eventDetail?.isFollow {
             if isFollow {
@@ -441,7 +441,7 @@ extension EventDetailVC {
         //ABOUt US
         if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
             self.aboutView.isHidden = false
-            self.lblAboutDiscripation.text = eventDetail?.organizer?.eventDescription ?? ""
+            self.lblAboutDiscripation.text = eventDetail?.eventTagsObj?.tagsDescription ?? ""
             
         }else{
             self.aboutView.isHidden = true
