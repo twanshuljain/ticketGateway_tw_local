@@ -48,8 +48,8 @@ public enum APIName: String {
     
     case GetTicketList = "events/show-ticket/"
     case getAddOnList = "events/ticket-add-on-list/"
-    
-    case GetFeeStructure = "default/data/fee/structure/get/"
+    case GetFeeStructure = "events/charges/"
+    //case GetFeeStructure = "default/data/fee/structure/get/"
     case favoriteEvents = "events/like/unlike/"
     case followUnfollow = "organizer/follow-unfollow/"
     

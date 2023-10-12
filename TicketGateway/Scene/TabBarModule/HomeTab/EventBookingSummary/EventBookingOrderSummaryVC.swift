@@ -112,9 +112,9 @@ extension EventBookingOrderSummaryVC {
         
     }
     func setData() {
-        let serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees ?? 0)
-        let processingCharge = Double((self.viewModel.feeStructure?.processingFees ?? "0")) ?? 0.0
-        let facilityCharge = Double(self.viewModel.feeStructure?.facilityFees ?? 0)
+        var serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees?.charge ?? 0)
+        var processingCharge = Double((self.viewModel.feeStructure?.processingFees?.charge ?? 0))
+        var facilityCharge = Double(self.viewModel.feeStructure?.facilityFees?.charge ?? 0)
         let subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
         let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
         let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
@@ -126,7 +126,7 @@ extension EventBookingOrderSummaryVC {
         
         let convertedSubTotal = self.convertToTwoDecimalPlaces(subTotal)
         let convertedDiscountValue = self.convertToTwoDecimalPlaces(discountValue)
-        let convertedDiscountedFinalPrice = self.convertToTwoDecimalPlaces(discountedFinalPrice)
+        _ = self.convertToTwoDecimalPlaces(discountedFinalPrice)
         
         
         self.lblServiceChargeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedServiceCharge ?? "")"
@@ -135,6 +135,28 @@ extension EventBookingOrderSummaryVC {
         self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
         var total = 0.0
         
+        
+        if self.viewModel.feeStructure?.serviceFees?.chargeType == "PERCENTAGE"{
+            serviceCharge = (subTotal / 100) * serviceCharge
+        }
+        
+        if self.viewModel.feeStructure?.processingFees?.chargeType == "PERCENTAGE"{
+            processingCharge = (subTotal / 100) * processingCharge
+        }
+        
+        if self.viewModel.feeStructure?.facilityFees?.chargeType == "PERCENTAGE"{
+            facilityCharge = (subTotal / 100) * facilityCharge
+        }
+        
+//        if isPercentage{
+//            serviceCharge = (serviceCharge / 100) * subTotal
+//            processingCharge = (serviceCharge / 100) * subTotal
+//            facilityCharge = (facilityCharge / 100) * subTotal
+//            discountedFinalPrice = (discountedFinalPrice / 100) * subTotal
+//            total = serviceCharge + processingCharge + facilityCharge + discountedFinalPrice
+//        }else{
+//            total = serviceCharge + processingCharge + facilityCharge + discountedFinalPrice
+//        }
         
         if discountValue != 0.0 && self.viewModel.discountType != nil{
             total = serviceCharge + processingCharge + facilityCharge + discountedFinalPrice
