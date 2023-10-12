@@ -117,6 +117,7 @@ struct GetVenueItem: Codable {
     let venueTypeName : String?
     let isLike : Bool?
     let totalLike : Int?
+    let matchingEventCount: Int?
     enum CodingKeys: String, CodingKey {
         case website = "website"
         case isApproved = "is_approved"
@@ -151,5 +152,6 @@ struct GetVenueItem: Codable {
         case venueTypeName = "venue_type_name"
         case isLike = "is_like"
         case totalLike = "total_like"
+        case matchingEventCount = "matching_event_count"
     }
 }

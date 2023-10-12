@@ -42,7 +42,6 @@ class FavouriteTableViewCell: UITableViewCell {
     
     func setDataForFavoritesEvents(getFavouriteData: GetFavouriteItem?){
         self.setupUI(isFavorites: true)
-        
         lblTitle.text = getFavouriteData?.eventTitle ?? "-"
         lblAddress.text = getFavouriteData?.location ?? "-"
         btnLike.setImage(UIImage(named: "favSele_ip"), for: .normal)
@@ -72,10 +71,9 @@ class FavouriteTableViewCell: UITableViewCell {
     
     func setDataForFavoritesVenue(getVenueData: GetVenueItem?) {
         self.setupUI(isFavorites: false)
-        lblNumberOfVenue.text = "10+ events"
+        lblNumberOfVenue.text = "\(getVenueData?.matchingEventCount ?? 0) events"
         lblTitle.text = getVenueData?.venueName ?? "-"
         lblAddress.text = getVenueData?.address ?? "-"
-        lblTimeOfVenue.text = "NA"
         btnLike.setImage(UIImage(named: (getVenueData?.isLike ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
         if let imageUrl = getVenueData?.image {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
