@@ -208,13 +208,13 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
             self.viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = viewModel.lblNumberOfCount
             if let data = self.viewModel.arrAddOnTicketList?[sender.tag]{
                 let contains = self.viewModel.selectedAddOnList.contains { ticket in
-                    return ticket.ticketID == data.ticketID
+                    return ticket.id == data.id
                 }
                 if !contains{
                     self.viewModel.selectedAddOnList.append(data)
                 }else{
                     let index = self.viewModel.selectedAddOnList.firstIndex { ticket in
-                        return ticket.ticketID == data.ticketID
+                        return ticket.id == data.id
                     }
                     
                     if let index = index, self.viewModel.selectedAddOnList.indices.contains(index){
@@ -270,12 +270,12 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
          
          if let data = viewModel.arrAddOnTicketList?[sender.tag]{
              let contains = self.viewModel.selectedAddOnList.contains { ticket in
-                 return ticket.ticketID == data.ticketID
+                 return ticket.id == data.id
              }
              
              if contains{
                  let index = self.viewModel.selectedAddOnList.firstIndex { ticket in
-                     return ticket.ticketID == data.ticketID
+                     return ticket.id == data.id
                  }
                  if let index = index, self.viewModel.selectedAddOnList.indices.contains(index){
                      self.viewModel.selectedAddOnList[index].selectedTicketQuantity = self.viewModel.lblNumberOfCount
@@ -289,7 +289,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
          self.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
          viewModel.arrAddOnTicketList?[sender.tag].selectedTicketQuantity = 0
          self.viewModel.selectedAddOnList.removeAll { ticket in
-                 return ticket.ticketID == viewModel.arrAddOnTicketList?[sender.tag].ticketID
+                 return ticket.id == viewModel.arrAddOnTicketList?[sender.tag].id
              }
          self.setData()
      }else{

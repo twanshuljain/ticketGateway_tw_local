@@ -66,15 +66,37 @@ struct EventTicket: Codable {
 }
 
 
+//// MARK: - FeeStructure
+//struct FeeStructure: Codable {
+//    var serviceFees: Int?
+//    var processingFees: String?
+//    var facilityFees: Int?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case serviceFees = "service_fees"
+//        case processingFees = "processing_fees"
+//        case facilityFees = "facility_fees"
+//    }
+//}
+
 // MARK: - FeeStructure
 struct FeeStructure: Codable {
-    var serviceFees: Int?
-    var processingFees: String?
-    var facilityFees: Int?
+    var serviceFees, facilityFees, processingFees: Charge?
 
     enum CodingKeys: String, CodingKey {
-        case serviceFees = "service_fees"
-        case processingFees = "processing_fees"
-        case facilityFees = "facility_fees"
+        case serviceFees = "service_charge"
+        case facilityFees = "facility_charge"
+        case processingFees = "processing_charge"
+    }
+}
+
+// MARK: - Charge
+struct Charge: Codable {
+    var charge: Int?
+    var chargeType: String?
+
+    enum CodingKeys: String, CodingKey {
+        case charge
+        case chargeType = "charge_type"
     }
 }
