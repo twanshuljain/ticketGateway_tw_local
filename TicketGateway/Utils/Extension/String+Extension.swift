@@ -309,7 +309,12 @@ extension String {
     func getCountry() -> String{
         return Locale.current.localizedString(forRegionCode: Locale.current.regionCode ?? "") ?? "Toronto"
     }
-    
+    // Passwords Validations
+    func isValidPasswords(password: String) -> Bool {
+        let passRegEx = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-={};:',.<>?/\\|]).{8,}$"
+        let passPred = NSPredicate(format: "SELF MATCHES %@", passRegEx)
+        return passPred.evaluate(with: password)
+    }
     
 }
 

@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navigationController : UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Thread.sleep(forTimeInterval: 8.0)
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)

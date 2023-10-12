@@ -39,11 +39,11 @@ extension CreateAccountViewModel {
         } else if Validation.shared.textValidation(text: emailAddress, validationType: .email).0 {
             let errMsg = Validation.shared.textValidation(text: emailAddress, validationType: .email).1
             return (errMsg, false)
-        } else if Validation.shared.textValidation(text: password, validationType: .password).0 {
-            let errMsg = Validation.shared.textValidation(text: password, validationType: .password).1
+        } else if Validation.shared.textValidation(text: password, validationType: .signUpPassword).0 {
+            let errMsg = Validation.shared.textValidation(text: password, validationType: .signUpPassword).1
             return (errMsg, false)
-        } else if Validation.shared.textValidation(text: confimePassword, validationType: .confirmPassword).0 {
-            let errMsg = Validation.shared.textValidation(text: confimePassword, validationType: .confirmPassword).1
+        } else if Validation.shared.textValidation(text: confimePassword, validationType: .signUpConfirmPassword).0 {
+            let errMsg = Validation.shared.textValidation(text: confimePassword, validationType: .signUpConfirmPassword).1
             return (errMsg, false)
         }
         else if Validation.shared.textComparisonValidation(firstText: password, secondText: confimePassword, validationType: .password).0 {

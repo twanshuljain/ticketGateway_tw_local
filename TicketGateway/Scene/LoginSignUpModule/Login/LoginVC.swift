@@ -219,7 +219,7 @@ extension LoginVC {
       }
 
     func btnSignUpAction() {
-        if  self.viewModel.isFromWelcomeScreen == true {
+        if  self.viewModel.isFromWelcomeScreen {
             let view = self.createView(storyboard: .main, storyboardID: .SignUpVC)
             let viewC = view as? SignUpVC
             viewC?.viewModel.isFromWelcomeScreen = false

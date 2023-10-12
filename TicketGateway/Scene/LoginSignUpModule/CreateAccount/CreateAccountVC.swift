@@ -168,7 +168,12 @@ extension CreateAccountVC: UITextFieldDelegate {
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         let mobileNoLimit = 11
         if textField == txtFullName {
+            // FullName TF should accept characters and space only
+            let acceptableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
             viewModel.fullName = text.replacingCharacters(in: textRange, with: string)
+            let cs = NSCharacterSet(charactersIn: acceptableCharacters).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            return (string == filtered)
         } else if textField == txtMobileNumber {
             // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
             let startingLength = textField.text?.count ?? 0

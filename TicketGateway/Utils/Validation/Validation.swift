@@ -24,8 +24,8 @@ enum InputValidation: String {
     case number
     case password
     case description
-    case newPassword
-    case currentPassword
+    case signUpPassword
+    case signUpConfirmPassword
     case confirmPassword
 }
 enum ValidationType: String {
@@ -72,16 +72,18 @@ class Validation {
                 text.isEmpty ? true :
                     text.count < 4 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.invalidPassword)
-        case .newPassword:
+        case .signUpPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true : false,
-                text.isEmpty ? ValidationConstantStrings.emptyNewPassword : ValidationConstantStrings.invalidNewPassword)
-        case .currentPassword:
+                    text.isValidPasswords(password: text) ? false : true,
+                text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.passwordValidationMessage
+            )
+        case .signUpConfirmPassword:
             return(
                 text.isEmpty ? true :
-                    text.count < 8 ? true : false,
-                text.isEmpty ? ValidationConstantStrings.emptyCurrentPassword : ValidationConstantStrings.invalidCurrentPassword)
+                    text.isValidPasswords(password: text) ? false : true,
+                text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.confirmPasswordValidationMessage
+            )
         case .confirmPassword:
             return(
                 text.isEmpty ? true :
@@ -118,12 +120,12 @@ class Validation {
                 text.isEmpty ? true :
                     text.count < 4 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyPassword : ValidationConstantStrings.invalidPassword)
-        case .newPassword:
+        case .signUpPassword:
             return(
                 text.isEmpty ? true :
                     text.count < 8 ? true : false,
                 text.isEmpty ? ValidationConstantStrings.emptyNewPassword : ValidationConstantStrings.invalidNewPassword)
-        case .currentPassword:
+        case .signUpConfirmPassword:
             return(
                 text.isEmpty ? true :
                     text.count < 8 ? true : false,
@@ -254,13 +256,6 @@ class Validation {
         let emailRegEx = NSPredicate(format: "SELF MATCHES %@",
                                      "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$")
         return emailRegEx.evaluate(with: emaiId)
-    }
-    // Passwords Validations
-    func isValidPassword(password: String) -> Bool {
-        let passwordRegEx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
-        // "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
-        return passwordTest.evaluate(with: password)
     }
     func isValidname(name: String) -> Bool {
         let nameRegEx = NSPredicate(format: "SELF MATCHES %@",

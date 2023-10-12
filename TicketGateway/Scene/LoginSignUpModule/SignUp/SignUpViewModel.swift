@@ -10,13 +10,7 @@ final class SignUpViewModel {
     // MARK: - Variable
     var email: String = ""
     let viewModelSocialSignIN = SocialSignInVC()
-    var isFromWelcomeScreen = false
-    var signUpVC: SignUpVC?
-    init() {
-    }
-    init(signUpVC: SignUpVC) {
-        self.signUpVC = signUpVC
-    }
+    var isFromWelcomeScreen: Bool = false
 }
 
 // MARK: - Functions

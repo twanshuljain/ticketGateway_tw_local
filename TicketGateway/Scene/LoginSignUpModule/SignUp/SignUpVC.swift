@@ -23,10 +23,9 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var lblVerifyYourEmail: UILabel!
     @IBOutlet weak var lblAlreadHaveAccount: UILabel!
     // MARK: - Variable
-    var viewModel = SignUpViewModel()
+    var viewModel: SignUpViewModel = SignUpViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = SignUpViewModel(signUpVC: self)
         self.setup()
         self.setText()
     }
@@ -100,7 +99,7 @@ extension SignUpVC {
         objSceneDelegate.showTabBar()
     }
     func btnLoginAction() {
-        if viewModel.isFromWelcomeScreen == true {
+        if viewModel.isFromWelcomeScreen {
             let view = self.createView(storyboard: .main, storyboardID: .LoginVC)
             let viewC = view as? LoginVC
             viewC?.viewModel.isFromWelcomeScreen = false
