@@ -53,6 +53,8 @@ public enum APIName: String {
     case favoriteEvents = "events/like/unlike/"
     case followUnfollow = "organizer/follow-unfollow/"
     
+    case checkEmail = "payment/check-email/checkout-user"
+    
     //STRIPE
     case CreateStripeCustomer = "payment/stripe/create-customer/"
     case AddCardForUser = "payment/add-card/"

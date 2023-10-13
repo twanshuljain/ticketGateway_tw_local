@@ -27,4 +27,6 @@ struct ValidateForNumberRequest: Codable {
     var cell_phone: String?
     var email: String?
     var country_code: String?
+    var first_name: String?
+    var last_name: String?
 }

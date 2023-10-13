@@ -57,6 +57,8 @@ enum StoryboardIdentifier: String {
     case PaymentSuccessFullVC
     case PhoneVerificationViewController
     case EmailSentVC
+    case EventCheckoutVerifyVC
+    
     //SideMenuBar
     case AddAmountWalletVC
     case AmountAddedSuccessfullyVC
@@ -224,6 +226,7 @@ let TRANSFER_TICKET_ALERT = "Are you sure to transfer ticket to "
 let TRANSFER_TICKET_ALERT1 = "Your transferred ticket won't be visible"
 let NUMBERS = "#3246431341"
 let TICKET_TRANSFERRED = "Ticket Transferred"
+let ENTER_DETAIL_TITLE = "Enter Details"
 let EMAIL_ADDRESS = "Email Address "
 let ORGANIZERS_EMAIL_ADDRESS = "Organizer’s Email "
 let ORGANIZERS_NAME = "Organizer’s Email "

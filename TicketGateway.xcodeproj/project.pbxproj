@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180010CA2AD7D7E400BD23B1 /* EventCheckoutVerifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180010C92AD7D7E400BD23B1 /* EventCheckoutVerifyViewModel.swift */; };
+		180010CC2AD80AEC00BD23B1 /* EventCheckoutVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180010CB2AD80AEC00BD23B1 /* EventCheckoutVerifyModel.swift */; };
 		1801874D2A1B41AE003308AE /* EventSearchHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801874C2A1B41AE003308AE /* EventSearchHomeVC.swift */; };
 		1801874F2A1B4428003308AE /* EventSearchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801874E2A1B4428003308AE /* EventSearchLocationVC.swift */; };
 		180187522A1B4486003308AE /* EventSearchCategoryCollectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180187512A1B4486003308AE /* EventSearchCategoryCollectionList.swift */; };
@@ -466,6 +468,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180010C92AD7D7E400BD23B1 /* EventCheckoutVerifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCheckoutVerifyViewModel.swift; sourceTree = "<group>"; };
+		180010CB2AD80AEC00BD23B1 /* EventCheckoutVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCheckoutVerifyModel.swift; sourceTree = "<group>"; };
 		1801874C2A1B41AE003308AE /* EventSearchHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchHomeVC.swift; sourceTree = "<group>"; };
 		1801874E2A1B4428003308AE /* EventSearchLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchLocationVC.swift; sourceTree = "<group>"; };
 		180187512A1B4486003308AE /* EventSearchCategoryCollectionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchCategoryCollectionList.swift; sourceTree = "<group>"; };
@@ -2066,6 +2070,8 @@
 			isa = PBXGroup;
 			children = (
 				187C5AFE2AD6C164004D0188 /* EventCheckoutVerifyVC.swift */,
+				180010C92AD7D7E400BD23B1 /* EventCheckoutVerifyViewModel.swift */,
+				180010CB2AD80AEC00BD23B1 /* EventCheckoutVerifyModel.swift */,
 			);
 			path = EventCheckoutVerify;
 			sourceTree = "<group>";
@@ -3268,6 +3274,7 @@
 				189DD62829FBD3C9000804EB /* suggestedOrganizerList.swift in Sources */,
 				18233FB729E7C72500255BB7 /* WelComeCell.swift in Sources */,
 				18C952862A94E1FB00C9C02B /* MyOrderViewModel.swift in Sources */,
+				180010CA2AD7D7E400BD23B1 /* EventCheckoutVerifyViewModel.swift in Sources */,
 				18447DCD2AA9AFAB00DC4A80 /* GetScanDetailModel.swift in Sources */,
 				184B79142A440F9600577B26 /* EventBookingTicketAddOnsVC.swift in Sources */,
 				188CE1AE2A13678E00BCEC76 /* EventBookingOrderSummaryVC.swift in Sources */,
@@ -3304,6 +3311,7 @@
 				186076862AA079F9002B1035 /* GetUserProfileModel.swift in Sources */,
 				1859812E2A1F9F3700ABDC51 /* ImagePickerManager.swift in Sources */,
 				1821FDED2A30B59700BD4AB6 /* ReqRefundHeaderView.swift in Sources */,
+				180010CC2AD80AEC00BD23B1 /* EventCheckoutVerifyModel.swift in Sources */,
 				18FBC0EF2A309239002CF129 /* CostumeTypeCollectionView.swift in Sources */,
 				1850627B2A553D0E00BC3EC5 /* SoldOutTicketTableViewCell.swift in Sources */,
 				188CE1B32A1367EA00BCEC76 /* TicketAddInOrderCell.swift in Sources */,

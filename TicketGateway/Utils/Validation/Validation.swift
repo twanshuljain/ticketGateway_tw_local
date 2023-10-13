@@ -20,6 +20,8 @@ import UIKit
 enum InputValidation: String {
     case email
     case otp
+    case firstname
+    case lastname
     case name
     case number
     case password
@@ -101,6 +103,14 @@ class Validation {
             return(text.isEmpty ? true :
                     text.count < 4 ? true : false,
                    text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
+        case .firstname:
+            return( text.isEmpty ? true :
+                        text.count < 2 ? true : false,
+                    text.isEmpty ? ValidationConstantStrings.emptyFirstName : ValidationConstantStrings.invalidFirstName)
+        case .lastname:
+            return( text.isEmpty ? true :
+                        text.count < 2 ? true : false,
+                    text.isEmpty ? ValidationConstantStrings.emptyLastName : ValidationConstantStrings.invalidLastName)
         }
     }
     
@@ -146,6 +156,14 @@ class Validation {
             return(text.isEmpty ? true :
                     text.count < 4 ? true : false,
                    text.isEmpty ? ValidationConstantStrings.emptyOtp : ValidationConstantStrings.invalidOtp)
+        case .firstname:
+            return( text.isEmpty ? true :
+                        text.count < 2 ? true : false,
+                    text.isEmpty ? ValidationConstantStrings.emptyFirstName : ValidationConstantStrings.invalidFirstName)
+        case .lastname:
+            return( text.isEmpty ? true :
+                        text.count < 2 ? true : false,
+                    text.isEmpty ? ValidationConstantStrings.emptyLastName : ValidationConstantStrings.invalidLastName)
         }
     }
     
