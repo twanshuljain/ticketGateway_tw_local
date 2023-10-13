@@ -15,13 +15,15 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var btnEyePassword: UIButton!
     @IBOutlet weak var btnEyeCPassword: UIButton!
     @IBOutlet weak var navigationView: NavigationBarView!
-    @IBOutlet weak var txtFullName: UITextField!
+    @IBOutlet weak var lblFirstName: UILabel!
+    @IBOutlet weak var txtFirstName: UITextField!
+    @IBOutlet weak var txtLastName: UITextField!
+    @IBOutlet weak var lblLastName: UILabel!
     @IBOutlet weak var txtMobileNumber: UITextField!
     @IBOutlet weak var vwNumber: UIView!
     @IBOutlet weak var txtEmailAddress: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
-    @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var lblMobileNumber: UILabel!
     @IBOutlet weak var lblEmailAddress: UILabel!
     @IBOutlet weak var lblPassword: UILabel!
@@ -29,10 +31,11 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var imgCountry: UIImageView!
     @IBOutlet weak var lblDialCountryCode: UILabel!
     @IBOutlet weak var btnSelectCountry: UIButton!
-    @IBOutlet weak var lblErrFullName: UILabel!
     @IBOutlet weak var lblErrMobileNumber: UILabel!
     @IBOutlet weak var lblErrPassword: UILabel!
     @IBOutlet weak var lblErrConfirmPassword: UILabel!
+    @IBOutlet weak var lblErrFirstName: UILabel!
+    @IBOutlet weak var lblErrLastName: UILabel!
     // MARK: - Variable
     let viewModel = CreateAccountViewModel()
     override func viewDidLoad() {
@@ -52,7 +55,9 @@ extension CreateAccountVC {
         [self.btnContinue, self.btnSelectCountry, self.btnEyePassword, self.btnEyeCPassword].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        self.txtFullName.delegate = self
+        
+        self.txtFirstName.delegate = self
+        self.txtLastName.delegate = self
         self.txtMobileNumber.delegate = self
         self.txtEmailAddress.delegate = self
         self.txtPassword.delegate = self
@@ -67,7 +72,8 @@ extension CreateAccountVC {
         self.btnEyeCPassword.setImage(UIImage(named: EYE_CLOSE), for: .normal)
         self.txtPassword.isSecureTextEntry = true
         self.txtConfirmPassword.isSecureTextEntry = true
-        self.lblFullName.text = Full_Name
+        self.lblFirstName.text = First_Name
+        self.lblLastName.text = Last_Name
         self.lblMobileNumber.text = MOBILE_NUMBER
         self.lblEmailAddress.text = EMAIL_ADDRESS
         self.lblPassword.text = PASSWORD
@@ -151,9 +157,11 @@ extension CreateAccountVC {
 // MARK: - UITextFieldDelegate
 extension CreateAccountVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.txtFullName {
+        if textField == self.txtFirstName {
+            self.txtLastName.becomeFirstResponder()
+        } else if textField == self.txtLastName {
             self.txtMobileNumber.becomeFirstResponder()
-        } else if textField == self.txtMobileNumber {
+        }else if textField == self.txtMobileNumber {
             self.txtPassword.becomeFirstResponder()
         } else if textField == self.txtEmailAddress {
             self.txtPassword.becomeFirstResponder()
@@ -167,14 +175,19 @@ extension CreateAccountVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         let mobileNoLimit = 11
-        if textField == txtFullName {
-            // FullName TF should accept characters and space only
-            let acceptableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
-            viewModel.fullName = text.replacingCharacters(in: textRange, with: string)
+        let acceptableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+        
+        if textField == txtFirstName {
+            viewModel.firstName = text.replacingCharacters(in: textRange, with: string)
             let cs = NSCharacterSet(charactersIn: acceptableCharacters).inverted
             let filtered = string.components(separatedBy: cs).joined(separator: "")
             return (string == filtered)
-        } else if textField == txtMobileNumber {
+         }else if textField == txtLastName {
+             viewModel.lastName = text.replacingCharacters(in: textRange, with: string)
+             let cs = NSCharacterSet(charactersIn: acceptableCharacters).inverted
+             let filtered = string.components(separatedBy: cs).joined(separator: "")
+             return (string == filtered)
+         }else if textField == txtMobileNumber {
             // viewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
             let startingLength = textField.text?.count ?? 0
             let lengthToAdd = string.count
@@ -287,8 +300,10 @@ extension CreateAccountVC {
     
     @objc func textFieldErrorMsg(_ sender: UITextField) {
         switch sender {
-        case txtFullName:
-            self.fullNameErrorMsg()
+        case txtFirstName:
+            self.firstNameErrorMsg()
+        case txtLastName:
+            self.lastNameErrorMsg()
         case txtPassword:
             self.passwordErrorMsg()
         case txtConfirmPassword:
@@ -301,11 +316,19 @@ extension CreateAccountVC {
      
     }
     
-    func fullNameErrorMsg() {
-         if txtFullName.text == "" {
-             lblErrFullName.isHidden = false
+    func firstNameErrorMsg() {
+         if txtFirstName.text == "" {
+             lblErrFirstName.isHidden = false
         } else {
-            lblErrFullName.isHidden = true
+            lblErrFirstName.isHidden = true
+        }
+    }
+
+    func lastNameErrorMsg() {
+         if txtLastName.text == "" {
+             lblErrLastName.isHidden = false
+        } else {
+            lblErrLastName.isHidden = true
         }
     }
    

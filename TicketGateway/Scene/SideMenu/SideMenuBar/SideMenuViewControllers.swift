@@ -57,7 +57,7 @@ extension SideMenuViewControllers{
             
         } else {
             var userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-            lblName.text = userModel?.fullName ?? ""
+            lblName.text = (userModel?.firstName ?? "") + " " + (userModel?.lastName ?? "")
             lblProfileview.text = "Profile View"
             self.imgProfile.sd_setImage(with: (APIHandler.shared.baseURL + (userModel?.image ?? "")).getCleanedURL(), placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
         }
@@ -201,7 +201,7 @@ extension SideMenuViewControllers{
     }
     
     func funcSetProfile(){
-        self.lblName.text = objAppShareData.userAuth?.fullName
+        self.lblName.text = (objAppShareData.userAuth?.firstName ?? "") + " " + (objAppShareData.userAuth?.lastName ?? "")
     }
 }
 

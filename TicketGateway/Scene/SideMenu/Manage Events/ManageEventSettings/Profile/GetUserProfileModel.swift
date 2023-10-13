@@ -29,7 +29,8 @@ struct UserData : Codable {
     var homePhone : String?
     var role : String?
     var image : String?
-    var fullName : String?
+    var firstName : String?
+    var lastName : String?
     var cellPhone : String?
     var username : String?
     var suffix : String?
@@ -60,7 +61,8 @@ struct UserData : Codable {
         case homePhone = "home_phone"
         case role = "role"
         case image = "image"
-        case fullName = "full_name"
+        case firstName = "first_name"
+        case lastName = "last_name"
         case cellPhone = "cell_phone"
         case username = "username"
         case suffix = "suffix"

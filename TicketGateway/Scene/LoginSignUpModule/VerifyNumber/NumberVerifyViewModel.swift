@@ -70,7 +70,7 @@ extension NumberVerifyViewModel {
                 if response.status_code == 200 {
                     if isComingFrom == .OrderSummary && UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin){
                         UserDefaultManager.share.clearAllUserDataAndModel()
-                        self.objUserModel = SignInAuthModel(id: response.data?.id, number: numberWithoutCode, fullName: response.data?.fullName, email:  response.data?.email, accessToken:  response.data?.accessToken, refreshToken: response.data?.refreshToken, strDialCountryCode: objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")
+                        self.objUserModel = SignInAuthModel(id: response.data?.id, number: numberWithoutCode, firstName: response.data?.firstName, lastName: response.data?.lastName, email:  response.data?.email, accessToken:  response.data?.accessToken, refreshToken: response.data?.refreshToken, strDialCountryCode: objAppShareData.dicToHoldDataOnSignUpModule?.strDialCountryCode ?? "")
                         UserDefaultManager.share.storeModelToUserDefault(userData: self.objUserModel, key: .userAuthData)
                         UserDefaultManager.share.guestUserLogin(value: false, key: .isGuestLogin)
                     }

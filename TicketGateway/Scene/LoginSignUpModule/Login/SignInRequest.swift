@@ -23,10 +23,18 @@ struct SignInNumberWithEmailRequest: Codable {
 }
 
 
-struct ValidateForNumberRequest: Codable {
-    var cell_phone: String?
+struct ValidateForNumberRequest: Encodable {
+    var cellPhone: String?
     var email: String?
-    var country_code: String?
-    var first_name: String?
-    var last_name: String?
+    var countryCode: String?
+    var firstName: String?
+    var lastName: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case cellPhone = "cell_phone"
+        case email
+        case countryCode = "country_code"
+        case firstName = "first_name"
+        case lastName = "last_name"
+    }
 }
