@@ -3206,16 +3206,16 @@ TicketGateway Balance  </string>
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
                                                                                 <subviews>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-YM-kGc">
-                                                                                        <rect key="frame" x="51.999999999999986" y="10" width="158.66666666666663" height="50"/>
+                                                                                        <rect key="frame" x="51.999999999999986" y="10" width="158.66666666666663" height="55"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9sM-kc-r73">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="150.66666666666666" height="50"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="150.66666666666666" height="55"/>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBP-kN-9fb">
-                                                                                                <rect key="frame" x="158.66666666666666" y="0.0" width="0.0" height="50"/>
+                                                                                                <rect key="frame" x="158.66666666666666" y="0.0" width="0.0" height="55"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" name="Headinglbl"/>
@@ -3227,7 +3227,7 @@ TicketGateway Balance  </string>
                                                                                         </constraints>
                                                                                     </stackView>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="tGs-e1-pPJ">
-                                                                                        <rect key="frame" x="20" y="-50" width="22" height="170"/>
+                                                                                        <rect key="frame" x="20" y="-45" width="22" height="165"/>
                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3235,11 +3235,11 @@ TicketGateway Balance  </string>
                                                                                             </userDefinedRuntimeAttribute>
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </imageView>
-                                                                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bS-oh-f6l" customClass="CustomButtonNormalWithBorder" customModule="TicketGateway" customModuleProvider="target">
-                                                                                        <rect key="frame" x="52" y="70" width="185" height="40"/>
+                                                                                    <button contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bS-oh-f6l" customClass="CustomButtonNormalWithBorder" customModule="TicketGateway" customModuleProvider="target">
+                                                                                        <rect key="frame" x="22" y="75" width="80" height="35"/>
                                                                                         <constraints>
-                                                                                            <constraint firstAttribute="height" constant="40" id="Qy4-bT-ue3"/>
-                                                                                            <constraint firstAttribute="width" constant="185" id="ZZP-7j-y9q"/>
+                                                                                            <constraint firstAttribute="height" constant="35" id="Qy4-bT-ue3"/>
+                                                                                            <constraint firstAttribute="width" constant="80" id="ZZP-7j-y9q"/>
                                                                                         </constraints>
                                                                                         <state key="normal" title="Button"/>
                                                                                         <buttonConfiguration key="configuration" style="plain" title="Add " titleAlignment="center"/>
@@ -3251,7 +3251,7 @@ TicketGateway Balance  </string>
                                                                                     <constraint firstItem="0dh-YM-kGc" firstAttribute="leading" secondItem="tGs-e1-pPJ" secondAttribute="trailing" constant="10" id="4zD-0a-OGA"/>
                                                                                     <constraint firstItem="tGs-e1-pPJ" firstAttribute="centerY" secondItem="0dh-YM-kGc" secondAttribute="centerY" id="IC5-8n-0jj"/>
                                                                                     <constraint firstItem="2bS-oh-f6l" firstAttribute="top" secondItem="0dh-YM-kGc" secondAttribute="bottom" constant="10" id="LXE-ii-o0T"/>
-                                                                                    <constraint firstItem="2bS-oh-f6l" firstAttribute="leading" secondItem="tGs-e1-pPJ" secondAttribute="trailing" constant="10" id="Zxp-M1-8xF"/>
+                                                                                    <constraint firstItem="2bS-oh-f6l" firstAttribute="leading" secondItem="tGs-e1-pPJ" secondAttribute="trailing" constant="-20" id="Zxp-M1-8xF"/>
                                                                                     <constraint firstItem="0dh-YM-kGc" firstAttribute="top" secondItem="GND-al-NiG" secondAttribute="top" constant="10" id="gde-c8-TtD"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="tGs-e1-pPJ" secondAttribute="bottom" id="itm-G5-W6R"/>
                                                                                     <constraint firstItem="tGs-e1-pPJ" firstAttribute="leading" secondItem="GND-al-NiG" secondAttribute="leading" constant="20" id="tFH-I5-nkQ"/>
@@ -3262,19 +3262,19 @@ TicketGateway Balance  </string>
                                                                                 <rect key="frame" x="0.0" y="122.66666666666674" width="393" height="110"/>
                                                                                 <subviews>
                                                                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-bK-2cI" customClass="CustomButtonNormalWithBorder" customModule="TicketGateway" customModuleProvider="target">
-                                                                                        <rect key="frame" x="50" y="60" width="185" height="40"/>
+                                                                                        <rect key="frame" x="20" y="65" width="165" height="35"/>
                                                                                         <constraints>
-                                                                                            <constraint firstAttribute="height" constant="40" id="Upy-v5-hNV"/>
-                                                                                            <constraint firstAttribute="width" constant="185" id="vhg-ib-lIY"/>
+                                                                                            <constraint firstAttribute="height" constant="35" id="Upy-v5-hNV"/>
+                                                                                            <constraint firstAttribute="width" constant="165" id="vhg-ib-lIY"/>
                                                                                         </constraints>
                                                                                         <state key="normal" title="Button"/>
                                                                                         <buttonConfiguration key="configuration" style="plain" title="Show Map" titleAlignment="center"/>
                                                                                     </button>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-Vl-0CG">
-                                                                                        <rect key="frame" x="50" y="10" width="343" height="40"/>
+                                                                                        <rect key="frame" x="50" y="10" width="343" height="45"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-uy-axF">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22.670000000000002" id="l6v-KX-1W5"/>
                                                                                                 </constraints>
@@ -3283,7 +3283,7 @@ TicketGateway Balance  </string>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmq-Bm-Iac">
-                                                                                                <rect key="frame" x="0.0" y="40" width="343" height="0.0"/>
+                                                                                                <rect key="frame" x="0.0" y="45" width="343" height="0.0"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" name="Headinglbl"/>
@@ -3292,7 +3292,7 @@ TicketGateway Balance  </string>
                                                                                         </subviews>
                                                                                     </stackView>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-pin" translatesAutoresizingMaskIntoConstraints="NO" id="rnR-nq-T5F">
-                                                                                        <rect key="frame" x="20" y="-50" width="22" height="160"/>
+                                                                                        <rect key="frame" x="20" y="-45" width="22" height="155"/>
                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3309,7 +3309,7 @@ TicketGateway Balance  </string>
                                                                                     <constraint firstAttribute="bottom" secondItem="rnR-nq-T5F" secondAttribute="bottom" id="U2C-zn-gO7"/>
                                                                                     <constraint firstItem="Eea-bK-2cI" firstAttribute="top" secondItem="BiS-Vl-0CG" secondAttribute="bottom" constant="10" id="vO9-aJ-q88"/>
                                                                                     <constraint firstItem="BiS-Vl-0CG" firstAttribute="leading" secondItem="jz9-KS-JFD" secondAttribute="leading" constant="50" id="vxA-am-qeI"/>
-                                                                                    <constraint firstItem="Eea-bK-2cI" firstAttribute="leading" secondItem="BiS-Vl-0CG" secondAttribute="leading" id="wFC-jJ-V7k"/>
+                                                                                    <constraint firstItem="Eea-bK-2cI" firstAttribute="leading" secondItem="BiS-Vl-0CG" secondAttribute="leading" constant="-30" id="wFC-jJ-V7k"/>
                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="wTS-KB-KQZ"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="BiS-Vl-0CG" secondAttribute="trailing" id="yIZ-2J-qge"/>
                                                                                     <constraint firstItem="rnR-nq-T5F" firstAttribute="centerY" secondItem="BiS-Vl-0CG" secondAttribute="centerY" id="z7S-do-TYE"/>
