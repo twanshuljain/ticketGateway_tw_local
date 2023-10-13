@@ -149,8 +149,8 @@ extension EventBookingPaymentMethodViewModel{
                         vc.parentView.stopLoading()
                     }
                     self.checkoutId = response?.checkoutID ?? ""
-                    self.otpVerify(vc: vc)
-                    //self.createCharge(vc: vc)
+                    //self.otpVerify(vc: vc)  //OLD FLOW
+                    self.createCharge(vc: vc)  //NEW FLOW
                 }else{
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()

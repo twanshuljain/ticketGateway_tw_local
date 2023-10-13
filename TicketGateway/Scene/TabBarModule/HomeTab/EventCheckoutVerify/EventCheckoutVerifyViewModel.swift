@@ -71,7 +71,7 @@ extension EventCheckoutVerifyViewModel{
     }
     
     func checkoutValidateUser(param: ValidateForNumberRequest,complition: @escaping (Bool,String) -> Void ) {
-        APIHandler.shared.executeRequestWith(apiName: .checkoutValidateUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
+        APIHandler.shared.executeRequestWith(apiName: .checkoutValidateUser, parameters: param, methodType: .POST, authRequired: false) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
                 case .success(let response):
                     if response.status_code == 200 {
