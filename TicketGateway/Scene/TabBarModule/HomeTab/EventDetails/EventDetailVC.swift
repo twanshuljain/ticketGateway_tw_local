@@ -439,9 +439,9 @@ extension EventDetailVC {
         self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
         
         //ABOUt US
-        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
+        if (eventDetail?.eventTagsObj?.tagsDescription != "") && (eventDetail?.eventTagsObj?.tagsDescription != nil){
             self.aboutView.isHidden = false
-            self.lblAboutDiscripation.text = eventDetail?.eventTagsObj?.tagsDescription ?? ""
+            self.lblAboutDiscripation.text = eventDetail?.eventTagsObj?.tagsDescription?.htmlToString ?? ""
             
         }else{
             self.aboutView.isHidden = true
