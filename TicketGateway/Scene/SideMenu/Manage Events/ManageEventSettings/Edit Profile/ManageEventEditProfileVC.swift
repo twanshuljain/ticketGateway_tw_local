@@ -212,7 +212,7 @@ extension ManageEventEditProfileVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text, let textRange = Range(range, in: text) else { return false }
         if textField == txtFullName {
-            createAccountViewModel.fullName = text.replacingCharacters(in: textRange, with: string)
+            createAccountViewModel.firstName = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtMobileNumber {
             createAccountViewModel.mobileNumber = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
         }else if textField == txtEmailAddress {

@@ -35,6 +35,32 @@ class UserDefaultManager {
         
     }
     
+    func getFirstNameFromFullName(fullName: String) -> (String) {
+        let components = fullName.components(separatedBy: " ")
+        
+        if components.count == 2 {
+            let firstName = components[0]
+            let lastName = components[1]
+            return (firstName)
+        } else {
+            // Handle cases where the full name does not consist of exactly two parts
+            return ("")
+        }
+    }
+    
+    func getLastNameFromFullName(fullName: String) -> (String) {
+        let components = fullName.components(separatedBy: " ")
+        
+        if components.count == 2 {
+            let firstName = components[0]
+            let lastName = components[1]
+            return (lastName)
+        } else {
+            // Handle cases where the full name does not consist of exactly two parts
+            return ("")
+        }
+    }
+    
     func clearAllUserDataAndModel() {
         removeUserdefultsKey(key: .userAuthData)
         

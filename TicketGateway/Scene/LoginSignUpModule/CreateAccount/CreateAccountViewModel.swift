@@ -8,7 +8,8 @@ import UIKit
 import Foundation
 final class CreateAccountViewModel {
     // MARK: - Variable
-    var fullName: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
     var mobileNumber: String = ""
     var emailAddress: String = ""
     var password: String = ""
@@ -30,10 +31,13 @@ final class CreateAccountViewModel {
 // MARK: - Functions
 extension CreateAccountViewModel {
     var validateUserInput: (errorMessage: String, isValid: Bool) {
-        if Validation.shared.textValidation(text: fullName, validationType: .name).0 {
-            let errMsg = Validation.shared.textValidation(text: fullName, validationType: .name).1
+        if Validation.shared.textValidation(text: firstName, validationType: .firstname).0 {
+            let errMsg = Validation.shared.textValidation(text: firstName, validationType: .firstname).1
             return (errMsg, false)
-        } else if Validation.shared.textValidation(text: mobileNumber, validationType: .number).0 {
+        }else if Validation.shared.textValidation(text: lastName, validationType: .lastname).0 {
+            let errMsg = Validation.shared.textValidation(text: lastName, validationType: .lastname).1
+            return (errMsg, false)
+        }else if Validation.shared.textValidation(text: mobileNumber, validationType: .number).0 {
             let errMsg = Validation.shared.textValidation(text: mobileNumber, validationType: .number).1
             return (errMsg, false)
         } else if Validation.shared.textValidation(text: emailAddress, validationType: .email).0 {
@@ -54,7 +58,7 @@ extension CreateAccountViewModel {
     }
   
     func createAccountAPI(complition: @escaping (Bool, String) -> Void) {
-        let param = CreateAccountRequest(firstName: fullName, lastName: "", mobileNumber: mobileNumber, emailAddress: emailAddress, password: password, confimePassword: confimePassword, role: "user", isVerify: true, countryCode: self.strCountryDialCode)
+        let param = CreateAccountRequest(firstName: firstName, lastName: lastName, mobileNumber: mobileNumber, emailAddress: emailAddress, password: password, confimePassword: confimePassword, role: "user", isVerify: true, countryCode: self.strCountryDialCode)
         APIHandler.shared.executeRequestWith(apiName: .registerUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<UserAccountModel>, Error>) in
             switch result {
             case .success(let response):

@@ -10,7 +10,7 @@ import UIKit
 // MARK: - DataClass
 struct UserAccountModel: Codable {
     var title, homePhone: String?
-    var role, fullName, cellPhone: String?
+    var role, firstName, lastName, cellPhone: String?
     var username, suffix, status, signature: String?
     var id: Int?
     var password: String?
@@ -31,7 +31,8 @@ struct UserAccountModel: Codable {
         case title
         case homePhone = "home_phone"
         case role
-        case fullName = "full_name"
+        case firstName = "first_name"
+        case lastName = "last_name"
         case cellPhone = "cell_phone"
         case username, suffix, status, signature, id, password
         case allowToCreateCostume = "allow_to_create_costume"

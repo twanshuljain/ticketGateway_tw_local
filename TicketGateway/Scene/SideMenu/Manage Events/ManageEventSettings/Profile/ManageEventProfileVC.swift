@@ -105,7 +105,7 @@ extension ManageEventProfileVC {
     }
     func funcSetProfile() {
         let userData = viewModel.getUserProfileData.userData
-        self.lblName.text = userData?.fullName ?? "-"
+        self.lblName.text = (userData?.firstName ?? "-") + " " + (userData?.lastName ?? "-")
         self.lblEmail.text = userData?.email ?? "-"
         self.imageUrl = userData?.image ?? "-"
         self.lblAddress.text = userData?.country ?? "NA"
@@ -181,7 +181,7 @@ extension ManageEventProfileVC {
     }
     func btnEditAction() {
         let view = self.createView(storyboard: .profile, storyboardID: .ManageEventEditProfileVC) as? ManageEventEditProfileVC
-        view?.name = viewModel.getUserProfileData.userData?.fullName ?? "-"
+        view?.name = (viewModel.getUserProfileData.userData?.firstName ?? "-") + " " +  (viewModel.getUserProfileData.userData?.lastName ?? "-")
         view?.number = viewModel.getUserProfileData.userData?.cellPhone ?? "-"
         view?.email = viewModel.getUserProfileData.userData?.email ?? "-"
         self.navigationController?.pushViewController(view!, animated: true)

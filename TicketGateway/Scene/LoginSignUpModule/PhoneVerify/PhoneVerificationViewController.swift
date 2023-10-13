@@ -103,14 +103,14 @@ extension PhoneVerificationViewController {
                     self.view.showLoading(centreToView: self.view)
                     let number = "\(lblDialCountryCode.text ?? "")" + (self.txtNumber.text ?? "")
                     let numberWithoutCode = self.txtNumber.text ?? ""
-                    let param = ValidateForNumberRequest(cell_phone: numberWithoutCode, email: self.txtEmail.text ?? "", country_code: lblDialCountryCode.text ?? "")
+                    let param = ValidateForNumberRequest(cellPhone: numberWithoutCode, email: self.txtEmail.text ?? "", countryCode: lblDialCountryCode.text ?? "")
                     signInViewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
                         if isTrue == true {
                             DispatchQueue.main.async { [self] in
                                 self.view.stopLoading()
                                 let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
                                 UserDefaultManager.share.clearAllUserDataAndModel()
-                                let objUserModel = SignInAuthModel(id: userModel?.id, number: numberWithoutCode, fullName: userModel?.fullName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
+                                let objUserModel = SignInAuthModel(id: userModel?.id, number: numberWithoutCode, firstName: userModel?.firstName, lastName: userModel?.lastName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
                                 UserDefaultManager.share.storeModelToUserDefault(userData: objUserModel, key: .userAuthData)
                                 
                                 if let view = self.createView(storyboard: .main, storyboardID: .OtpNumberVC) as? OtpNumberVC{

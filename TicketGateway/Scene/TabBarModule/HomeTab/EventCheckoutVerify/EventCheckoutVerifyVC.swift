@@ -43,6 +43,8 @@ class EventCheckoutVerifyVC: UIViewController {
 // MARK: - Functions
 extension EventCheckoutVerifyVC {
     private func setup() {
+        self.viewModel.countries = self.jsonSerial()
+        self.collectCountries()
         self.txtFirstName.delegate = self
         self.txtLastName.delegate = self
         self.txtMobileNumber.delegate = self
@@ -182,14 +184,14 @@ extension EventCheckoutVerifyVC {
     func apiCallForValidateUser(){
         if Reachability.isConnectedToNetwork() {
             self.view.showLoading(centreToView: self.view)
-            let param = ValidateForNumberRequest(cell_phone: self.txtMobileNumber.text ?? "", email: self.txtEmailAddress.text ?? "", country_code: self.lblDialCountryCode.text ?? "" , first_name: self.txtFirstName.text ?? "", last_name: self.txtLastName.text ?? "")
+            let param = ValidateForNumberRequest(cellPhone: self.txtMobileNumber.text ?? "", email: self.txtEmailAddress.text ?? "", countryCode: self.lblDialCountryCode.text ?? "" , firstName: self.txtFirstName.text ?? "", lastName: self.txtLastName.text ?? "")
             viewModel.checkoutValidateUser(param: param) { isTrue , messageShowToast in
                 if isTrue == true {
                     DispatchQueue.main.async { [self] in
                         self.view.stopLoading()
                         let userModel = self.viewModel.authModel
                         UserDefaultManager.share.clearAllUserDataAndModel()
-                        let objUserModel = SignInAuthModel(id: userModel?.id, number: userModel?.number, fullName: userModel?.fullName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
+                        let objUserModel = SignInAuthModel(id: userModel?.id, number: userModel?.number, firstName: userModel?.firstName, lastName: userModel?.lastName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
                         UserDefaultManager.share.storeModelToUserDefault(userData: objUserModel, key: .userAuthData)
                         
                         self.navigateToPaymentVc()
@@ -231,8 +233,8 @@ extension EventCheckoutVerifyVC: RSCountrySelectedDelegate  {
     func setIntialUiDesign() {
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
         self.txtEmailAddress.text =  userModel?.email ?? ""
-        self.txtFirstName.text = userModel?.fullName ?? ""
-        self.txtLastName.text = userModel?.fullName ?? ""
+        self.txtFirstName.text = userModel?.firstName ?? ""
+        self.txtLastName.text = userModel?.lastName ?? ""
         
         let number = userModel?.number
         if number?.contains("+91") ?? false{
