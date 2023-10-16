@@ -15,6 +15,7 @@ class EventCheckoutVerifyViewModel{
     var lastName: String = ""
     var mobileNumber: String = ""
     var emailAddress: String = ""
+    var confirmEmailAddress: String = ""
     var strCountryDialCode: String = "+91"
     var strCountryCode: String = "IN"
     var strCountryName: String = "India"
@@ -22,7 +23,6 @@ class EventCheckoutVerifyViewModel{
     var RScountriesModel = [CountryInfo]()
     var emailVerifyResponse:CheckEmailResponse?
     var authModel: SignInAuthModel?
-
     var eventId:Int?
     var selectedArrTicketList : [EventTicket]?
     var eventDetail:EventDetail?
@@ -35,20 +35,39 @@ class EventCheckoutVerifyViewModel{
 
 extension EventCheckoutVerifyViewModel{
     var validateUserInput: (errorMessage: String, isValid: Bool) {
-        if Validation.shared.textValidation(text: emailAddress, validationType: .email).0 {
-            let errMsg = Validation.shared.textValidation(text: emailAddress, validationType: .email).1
-            return (errMsg, false)
-        }else if Validation.shared.textValidation(text: firstName, validationType: .firstname).0 {
-            let errMsg = Validation.shared.textValidation(text: firstName, validationType: .firstname).1
-            return (errMsg, false)
-        }else if Validation.shared.textValidation(text: lastName, validationType: .lastname).0 {
-            let errMsg = Validation.shared.textValidation(text: lastName, validationType: .lastname).1
-            return (errMsg, false)
-        } else if Validation.shared.textValidation(text: mobileNumber, validationType: .number).0 {
-            let errMsg = Validation.shared.textValidation(text: mobileNumber, validationType: .number).1
-            return (errMsg, false)
+        if UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin){
+            if Validation.shared.textValidation(text: emailAddress, validationType: .email).0 {
+                let errMsg = Validation.shared.textValidation(text: emailAddress, validationType: .email).1
+                return (errMsg, false)
+            }else if emailAddress != confirmEmailAddress{
+                return (CONFIRM_EMAIL_ALERT, false)
+            }else if Validation.shared.textValidation(text: firstName, validationType: .firstname).0 {
+                let errMsg = Validation.shared.textValidation(text: firstName, validationType: .firstname).1
+                return (errMsg, false)
+            }else if Validation.shared.textValidation(text: lastName, validationType: .lastname).0 {
+                let errMsg = Validation.shared.textValidation(text: lastName, validationType: .lastname).1
+                return (errMsg, false)
+            } else if Validation.shared.textValidation(text: mobileNumber, validationType: .number).0 {
+                let errMsg = Validation.shared.textValidation(text: mobileNumber, validationType: .number).1
+                return (errMsg, false)
+            }
+            return("", true)
+        }else{
+            if Validation.shared.textValidation(text: emailAddress, validationType: .email).0 {
+                let errMsg = Validation.shared.textValidation(text: emailAddress, validationType: .email).1
+                return (errMsg, false)
+            }else if Validation.shared.textValidation(text: firstName, validationType: .firstname).0 {
+                let errMsg = Validation.shared.textValidation(text: firstName, validationType: .firstname).1
+                return (errMsg, false)
+            }else if Validation.shared.textValidation(text: lastName, validationType: .lastname).0 {
+                let errMsg = Validation.shared.textValidation(text: lastName, validationType: .lastname).1
+                return (errMsg, false)
+            } else if Validation.shared.textValidation(text: mobileNumber, validationType: .number).0 {
+                let errMsg = Validation.shared.textValidation(text: mobileNumber, validationType: .number).1
+                return (errMsg, false)
+            }
+            return("", true)
         }
-        return("", true)
     }
     
     

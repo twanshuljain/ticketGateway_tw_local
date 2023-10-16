@@ -3236,10 +3236,10 @@ TicketGateway Balance  </string>
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </imageView>
                                                                                     <button contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bS-oh-f6l" customClass="CustomButtonNormalWithBorder" customModule="TicketGateway" customModuleProvider="target">
-                                                                                        <rect key="frame" x="22" y="75" width="80" height="35"/>
+                                                                                        <rect key="frame" x="22" y="75" width="100" height="35"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="35" id="Qy4-bT-ue3"/>
-                                                                                            <constraint firstAttribute="width" constant="80" id="ZZP-7j-y9q"/>
+                                                                                            <constraint firstAttribute="width" constant="100" id="ZZP-7j-y9q"/>
                                                                                         </constraints>
                                                                                         <state key="normal" title="Button"/>
                                                                                         <buttonConfiguration key="configuration" style="plain" title="Add " titleAlignment="center"/>
@@ -4998,6 +4998,39 @@ TicketGateway fee is non refundable.</string>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="E3P-9u-Gy6">
+                                                <rect key="frame" x="0.0" y="89" width="353" height="58"/>
+                                                <subviews>
+                                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Email" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gz7-iM-cl1">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="0.0"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
+                                                        <color key="textColor" name="Headinglbl"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HH4-3k-oGu" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="8" width="353" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="XDw-ap-Tgm"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="EnterTxtFiled"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" name="BorderLineColour"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DMX-U1-C7d">
                                                 <rect key="frame" x="0.0" y="99" width="353" height="79"/>
                                                 <subviews>
@@ -5264,6 +5297,7 @@ TicketGateway fee is non refundable.</string>
                                 <color key="backgroundColor" name="white"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="e8y-Mk-tyf" secondAttribute="trailing" constant="20" id="5BE-Bd-As2"/>
+                                    <constraint firstItem="Asr-lL-oqF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e8y-Mk-tyf" secondAttribute="bottom" constant="64" id="AtD-8G-Ilw"/>
                                     <constraint firstItem="Asr-lL-oqF" firstAttribute="leading" secondItem="oiK-CD-Tar" secondAttribute="leading" constant="20" id="BBW-8A-YXT"/>
                                     <constraint firstAttribute="trailing" secondItem="Asr-lL-oqF" secondAttribute="trailing" constant="20" id="D5m-RD-KIM"/>
                                     <constraint firstAttribute="bottom" secondItem="Asr-lL-oqF" secondAttribute="bottom" constant="20" id="JMF-sq-GHb"/>
@@ -5272,7 +5306,6 @@ TicketGateway fee is non refundable.</string>
                                     <constraint firstItem="PzR-20-3bd" firstAttribute="top" secondItem="Xhz-aa-tUy" secondAttribute="top" id="N7D-8Y-Xel"/>
                                     <constraint firstItem="PzR-20-3bd" firstAttribute="bottom" secondItem="Xhz-aa-tUy" secondAttribute="bottom" id="Nqv-g9-VQ5"/>
                                     <constraint firstItem="PzR-20-3bd" firstAttribute="trailing" secondItem="Kbc-eR-6MM" secondAttribute="trailing" constant="-5" id="Srd-xU-9wX"/>
-                                    <constraint firstItem="Asr-lL-oqF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e8y-Mk-tyf" secondAttribute="bottom" constant="163" id="mnJ-Da-mWk"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -5293,7 +5326,9 @@ TicketGateway fee is non refundable.</string>
                         <outlet property="btnContinue" destination="M72-Yv-mjU" id="B5L-SV-MY4"/>
                         <outlet property="btnGoBack" destination="F0I-dP-T6s" id="fz3-KV-o6a"/>
                         <outlet property="btnSelectCountry" destination="bRS-Ut-7Gh" id="DhF-mr-isK"/>
+                        <outlet property="confirmEmailView" destination="E3P-9u-Gy6" id="iJU-WL-uiL"/>
                         <outlet property="imgCountry" destination="WMq-1h-kda" id="5sP-of-DSh"/>
+                        <outlet property="lblConfirmEmailAddress" destination="Gz7-iM-cl1" id="nSv-Yh-B8Y"/>
                         <outlet property="lblDialCountryCode" destination="pc7-Ye-MMn" id="a9j-Wg-FGW"/>
                         <outlet property="lblEmailAddress" destination="aEu-Qd-eTr" id="6Tz-vY-v61"/>
                         <outlet property="lblErrFirstName" destination="4RA-lv-sFo" id="X4T-OL-zLR"/>
@@ -5304,6 +5339,7 @@ TicketGateway fee is non refundable.</string>
                         <outlet property="lblMobileNumber" destination="DGh-xq-7kM" id="42m-7r-jPp"/>
                         <outlet property="lblVerified" destination="PzR-20-3bd" id="hxg-ya-hgP"/>
                         <outlet property="navigationView" destination="k8a-Wu-dwF" id="upa-i4-5hN"/>
+                        <outlet property="txtConfirmEmailAddress" destination="HH4-3k-oGu" id="HPL-qL-qRP"/>
                         <outlet property="txtEmailAddress" destination="Xhz-aa-tUy" id="IRx-DT-RLM"/>
                         <outlet property="txtFirstName" destination="dEG-N1-B90" id="tD8-FF-p9O"/>
                         <outlet property="txtLastName" destination="ypB-XI-m6o" id="Kdt-Rq-fHr"/>

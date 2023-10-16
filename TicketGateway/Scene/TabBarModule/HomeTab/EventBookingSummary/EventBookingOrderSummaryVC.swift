@@ -119,6 +119,18 @@ extension EventBookingOrderSummaryVC {
         let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
         let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
         
+        if self.viewModel.feeStructure?.serviceFees?.chargeType == "PERCENTAGE"{
+            serviceCharge = (subTotal / 100) * serviceCharge
+        }
+        
+        if self.viewModel.feeStructure?.processingFees?.chargeType == "PERCENTAGE"{
+            processingCharge = (subTotal / 100) * processingCharge
+        }
+        
+        if self.viewModel.feeStructure?.facilityFees?.chargeType == "PERCENTAGE"{
+            facilityCharge = (subTotal / 100) * facilityCharge
+        }
+        
         
         let convertedServiceCharge = self.convertToTwoDecimalPlaces(serviceCharge)
         let convertedProcessingCharge = self.convertToTwoDecimalPlaces(processingCharge)
@@ -134,19 +146,6 @@ extension EventBookingOrderSummaryVC {
         self.lblfacilityFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedFacilityCharge ?? "")"
         self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
         var total = 0.0
-        
-        
-        if self.viewModel.feeStructure?.serviceFees?.chargeType == "PERCENTAGE"{
-            serviceCharge = (subTotal / 100) * serviceCharge
-        }
-        
-        if self.viewModel.feeStructure?.processingFees?.chargeType == "PERCENTAGE"{
-            processingCharge = (subTotal / 100) * processingCharge
-        }
-        
-        if self.viewModel.feeStructure?.facilityFees?.chargeType == "PERCENTAGE"{
-            facilityCharge = (subTotal / 100) * facilityCharge
-        }
         
 //        if isPercentage{
 //            serviceCharge = (serviceCharge / 100) * subTotal

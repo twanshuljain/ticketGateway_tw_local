@@ -11,8 +11,11 @@ class EventCheckoutVerifyVC: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var navigationView: NavigationBarView!
+    @IBOutlet weak var confirmEmailView: UIStackView!
+    @IBOutlet weak var lblConfirmEmailAddress: UILabel!
     @IBOutlet weak var lblEmailAddress: UILabel!
     @IBOutlet weak var txtEmailAddress: UITextField!
+    @IBOutlet weak var txtConfirmEmailAddress: UITextField!
     @IBOutlet weak var lblFirstName: UILabel!
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtLastName: UITextField!
@@ -35,7 +38,6 @@ class EventCheckoutVerifyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        
     }
 
 }
@@ -49,6 +51,7 @@ extension EventCheckoutVerifyVC {
         self.txtLastName.delegate = self
         self.txtMobileNumber.delegate = self
         self.txtEmailAddress.delegate = self
+        self.txtConfirmEmailAddress.delegate = self
         
         self.lblVerified.isHidden = true
         self.navigationView.delegateBarAction = self
@@ -70,9 +73,13 @@ extension EventCheckoutVerifyVC {
         self.lblLastName.text = Last_Name
         self.lblMobileNumber.text = MOBILE_NUMBER
         self.lblEmailAddress.text = EMAIL_ADDRESS
+        self.lblConfirmEmailAddress.text = CONFIRM_EMAIL
         self.setIntialUiDesign()
         if !UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            self.confirmEmailView.isHidden = true
             self.apiCallForEmailVerification()
+        }else{
+            self.confirmEmailView.isHidden = false
         }
     }
 
@@ -215,6 +222,7 @@ extension EventCheckoutVerifyVC {
     
     func btnContinueAction() {
         viewModel.emailAddress = self.txtEmailAddress.text ?? ""
+        viewModel.confirmEmailAddress = self.txtConfirmEmailAddress.text ?? ""
         viewModel.firstName = self.txtFirstName.text ?? ""
         viewModel.lastName = self.txtLastName.text ?? ""
         viewModel.mobileNumber = self.txtMobileNumber.text ?? ""
@@ -235,6 +243,7 @@ extension EventCheckoutVerifyVC: RSCountrySelectedDelegate  {
         self.txtEmailAddress.text =  userModel?.email ?? ""
         self.txtFirstName.text = userModel?.firstName ?? ""
         self.txtLastName.text = userModel?.lastName ?? ""
+        self.txtConfirmEmailAddress.text = self.txtEmailAddress.text ?? ""
         
         let number = userModel?.number
         if number?.contains("+91") ?? false{
