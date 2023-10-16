@@ -34,7 +34,7 @@ extension ForgotPasswordVC {
         // Error message label not required as we are showing toast on continue button
 //        txtEmail.addTarget(self, action: #selector(textFldErrorMsg(_:)), for: .allEditingEvents)
        self.btnContinue.setTitles(text: TITLE_CONTINUE, font: .systemFont(ofSize: 14), tintColour: .black)
-        self.btnContinue.setImage(UIImage(named: RIGHT_ARROW_ICON), for: .normal)
+        self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         self.navigationView.lblTitle.text = FORGOT_PASSWORD
         self.navigationView.btnBack.isHidden = false
         self.navigationView.vwBorder.isHidden = false
@@ -69,7 +69,7 @@ extension ForgotPasswordVC {
                             self.navigationController?.pushViewController(vc, animated: true)
                             
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                                 for controller in self.navigationController!.viewControllers as Array {
                                     if controller.isKind(of: LoginVC.self) {
                                         self.navigationController!.popToViewController(controller, animated: true)
