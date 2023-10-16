@@ -141,7 +141,6 @@ extension EventDetailVC {
         self.navigationView.btnRight.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        btnAddToCalender.addRightIcon(image: UIImage.init(named: "calendar_blue"))
         btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
@@ -395,6 +394,7 @@ extension EventDetailVC {
         btnShowMap.setTitles(text: "Show Map", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen),
                              textColour: UIColor.setColor(colorType: .tgBlue),
                              borderColour: UIColor.setColor(colorType: .tgBlue))
+        btnAddToCalender.addRightIcon(image: UIImage.init(named: "calendar_blue"))
     }
     
     func setData(){
