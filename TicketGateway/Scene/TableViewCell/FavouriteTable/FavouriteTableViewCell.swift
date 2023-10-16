@@ -43,6 +43,7 @@ class FavouriteTableViewCell: UITableViewCell {
     func setDataForFavoritesEvents(getFavouriteData: GetFavouriteItem?){
         self.setupUI(isFavorites: true)
         lblTitle.text = getFavouriteData?.eventTitle ?? "-"
+//        lblPrice.text = ""
         lblAddress.text = getFavouriteData?.locationType == VIRTUAL ?
         VirtualEvent : getFavouriteData?.locationType == MULTIPLE ?
         MultipleLocation : (getFavouriteData?.location ?? "-")

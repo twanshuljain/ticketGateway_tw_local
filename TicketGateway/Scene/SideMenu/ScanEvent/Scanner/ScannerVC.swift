@@ -272,6 +272,7 @@ extension ScannerVC {
                     } else {
                         DispatchQueue.main.async {
                             self.view.stopLoading()
+                            self.vibrateDevice()
                             self.setUIAfterScanTicket(isSuccess: false, message: showMessage)
                             self.showToast(message: showMessage)
                         }

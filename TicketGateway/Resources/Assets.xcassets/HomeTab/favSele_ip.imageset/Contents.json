@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Frame 14492.png",
+      "filename" : "favSele_ip@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Frame 14492@3x 1.png",
+      "filename" : "favSele_ip@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Frame 14492@3x.png",
+      "filename" : "favSele_ip@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
