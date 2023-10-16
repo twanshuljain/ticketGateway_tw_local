@@ -25,6 +25,7 @@ class PaymentSuccessFullVC: UIViewController {
     var createCharge:CreateCharge?
     var selectedArrTicketList = [EventTicket]()
     var selectedCurrencyType = ""
+    var totalTicketPrice = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,21 +69,26 @@ extension PaymentSuccessFullVC {
             self.lbl1Ticket.text = "\(selectedArrTicketList.count) Ticket(S) with amount"
         }
        
-        self.lblCADPrice.text = " \(self.selectedCurrencyType) \(self.createCharge?.amountTotal ?? 0)"
-        self.lblTicketForOrder.text = "Transaction Id for Order is #\(self.createCharge?.transactionID ?? "") has been sent to \(userModel?.email ?? "")"
+        self.lblCADPrice.text = " \(self.selectedCurrencyType) \(self.createCharge?.amountTotal ?? (self.totalTicketPrice  as NSString).integerValue).00"
+        if let transactionId = self.createCharge?.transactionID {
+            self.lblTicketForOrder.text = "Transaction Id for Order is #\(transactionId) has been sent to \(userModel?.email ?? "")"
+        } else {
+            self.lblTicketForOrder.text = "Ticket has been sent to \(userModel?.email ?? "")"
+        }
+        
     }
     
     func setUi() {
         if isTransactionFailed {
-            lblThankYou.text = "Transaction Failed"
+            lblThankYou.text = Transaction_Failed
             imgThankYou.image = UIImage(named: "x-circle")
             btnViewMyTicket.isHidden = true
-            btnBrowseMorwEvents.setTitle("Retry Payment", for: .normal)
+            btnBrowseMorwEvents.setTitle(Retry_Payment, for: .normal)
         } else {
-            lblThankYou.text = "Thank You!"
-           // imgThankYou.image = UIImage(named: "Done_ip")
+            lblThankYou.text = Thank_You
+            imgThankYou.image = UIImage(named: "Done_ip")
             btnViewMyTicket.isHidden = false
-            btnBrowseMorwEvents.setTitle("Go to my tickets", for: .normal)
+            btnBrowseMorwEvents.setTitle(Go_To_My_Tickets, for: .normal)
         }
         lblThankYou.font = UIFont.setFont(fontType: .medium, fontSize: .twentyFour)
         lblThankYou.textColor = UIColor.setColor(colorType: .tgBlack)
@@ -122,7 +128,12 @@ extension PaymentSuccessFullVC {
         self.navigationController?.popToRootViewController(animated: false)
     }
     func btnBrowseMorwEventsAction() {
-        self.navigationController?.popToRootViewController(animated: false)
+        if btnBrowseMorwEvents.titleLabel?.text == Retry_Payment{
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            self.navigationController?.popToRootViewController(animated: false)
+        }
+        
     }
     func btnNeedHelpAction() {
         AppShareData.sharedObject().setRootToHomeVCAndMoveToFAQ()

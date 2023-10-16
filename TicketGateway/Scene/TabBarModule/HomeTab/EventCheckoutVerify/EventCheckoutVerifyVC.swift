@@ -319,12 +319,14 @@ extension EventCheckoutVerifyVC {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
                         self.lblVerified.isHidden =  false
+                        self.txtEmailAddress.isUserInteractionEnabled = false
                         self.txtEmailAddress.borderColor = UIColor.setColor(colorType: .tgGreen)
                     }
                 } else {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
                         self.lblVerified.isHidden =  true
+                        self.txtEmailAddress.isUserInteractionEnabled = true
                         self.txtEmailAddress.borderColor = UIColor.setColor(colorType: .borderLineColour)
                         self.showToast(message: messageShowToast)
                     }

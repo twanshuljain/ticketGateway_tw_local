@@ -14,14 +14,17 @@ struct AddCardRequest: Codable {
     var exp_year : Int?
     var cvc : String?
     var name : String?
+    var is_save: Bool?
 }
 
 // MARK: - CreateChargeRequest
 struct CreateChargeRequest: Codable {
-    var amount : Double?
+    var card:AddCardRequest?
+    var amount : Int?
     var card_id : Int?
     var checkout_id : String?
     var currency : String?
+    var is_save: Bool?
 }
 
 // MARK: - CheckoutId
@@ -416,5 +419,37 @@ struct PaymentMethodOptionsCard: Codable {
         case mandateOptions = "mandate_options"
         case network
         case requestThreeDSecure = "request_three_d_secure"
+    }
+}
+
+// MARK: - CardList
+struct CardList: Codable {
+    var name: String?
+    var id: Int?
+    var expMonth, brand, funding, cardToken: String?
+    var cardSource: String?
+    var userID: Int?
+    var createdAt: String?
+    var last4: Int?
+    var paymentMethod, expYear, fingerprint, type: String?
+    var cardID: String?
+    var stripeCustomerID: Int?
+    var updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case name, id
+        case expMonth = "exp_month"
+        case brand, funding
+        case cardToken = "card_token"
+        case cardSource = "card_source"
+        case userID = "user_id"
+        case createdAt = "created_at"
+        case last4
+        case paymentMethod = "payment_method"
+        case expYear = "exp_year"
+        case fingerprint, type
+        case cardID = "card_id"
+        case stripeCustomerID = "stripe_customer_id"
+        case updatedAt = "updated_at"
     }
 }

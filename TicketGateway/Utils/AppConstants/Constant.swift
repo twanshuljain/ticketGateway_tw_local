@@ -406,6 +406,10 @@ let VIRTUAL = "VIRTUAL"
 let MULTIPLE = "MULTIPLE"
 let MultipleLocation = "Multi Location"
 let VirtualEvent = "Virtual Event"
+let Retry_Payment = "Retry Payment"
+let Transaction_Failed = "Transaction Failed"
+let Thank_You = "Thank You!"
+let Go_To_My_Tickets = "Go to my tickets"
 
 //MARK: - IMAGE Constant
 let RIGHT_BUTTON_ICON = "rightOnButton"

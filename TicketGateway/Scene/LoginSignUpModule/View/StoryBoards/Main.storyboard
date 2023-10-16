@@ -3445,7 +3445,7 @@ Sit sagittis ullamcorper ante.</string>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KhK-f4-65k">
-                                        <rect key="frame" x="79.333333333333329" y="314" width="255.33333333333343" height="88"/>
+                                        <rect key="frame" x="79.333333333333329" y="314" width="255.33333333333337" height="88"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Sent" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="159-H4-i4f">
                                                 <rect key="frame" x="0.0" y="0.0" width="255.33333333333334" height="20"/>

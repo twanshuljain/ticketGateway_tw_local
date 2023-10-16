@@ -59,8 +59,8 @@ class StripeClasses: NSObject {
         }
     }
     
-    func addCardForUser(name:String,cardNumber:String,expMonth:Int,expYear:Int,cvv:String,controller:UIViewController?,complition: @escaping (AddCard?,Bool,String) -> Void ) {
-        let req = AddCardRequest.init(card_number: cardNumber, exp_month: expMonth, exp_year: expYear, cvc: cvv , name: name)
+    func addCardForUser(name:String,cardNumber:String,expMonth:Int,expYear:Int,cvv:String,isSave:Bool,controller:UIViewController?,complition: @escaping (AddCard?,Bool,String) -> Void ) {
+        let req = AddCardRequest.init(card_number: cardNumber, exp_month: expMonth, exp_year: expYear, cvc: cvv , name: name, is_save: isSave)
         APIHandler.shared.executeRequestWith(apiName: .AddCardForUser, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<AddCard>, Error>) in
             switch result {
             case .success(let response):
@@ -91,9 +91,29 @@ class StripeClasses: NSObject {
         }
     }
     
-    func createCharge(amount:Double,cardId:Int,checkoutId:String,controller:UIViewController?,currency:String,complition: @escaping (CreateCharge?,Bool,String) -> Void ) {
-        let req = CreateChargeRequest.init(amount: amount, card_id: cardId, checkout_id: checkoutId, currency: currency)
+    func createCharge(saveCardData: AddCardRequest? = nil,amount:Int,cardId:Int,checkoutId:String,controller:UIViewController?,currency:String,isSave:Bool,complition: @escaping (CreateCharge?,Bool,String) -> Void ) {
+        var req:CreateChargeRequest?
+        if saveCardData != nil{
+            req = CreateChargeRequest.init(card: saveCardData,amount: amount, checkout_id: checkoutId, currency: currency, is_save: isSave)
+        }else{
+            req = CreateChargeRequest.init(card: saveCardData,amount: amount, card_id: cardId, checkout_id: checkoutId, currency: currency, is_save: isSave)
+        }
         APIHandler.shared.executeRequestWith(apiName: .CreateCharge, parameters: req, methodType: .POST,authRequired: true) { (result: Result<ResponseModal<CreateCharge>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    complition(response.data, true, response.message ?? "")
+                }else{
+                    complition(response.data, false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                complition(nil, false,"\(error)")
+            }
+        }
+    }
+    
+    func getCardList(complition: @escaping ([CardList]?,Bool,String) -> Void ) {
+        APIHandler.shared.executeRequestWith(apiName: .cardList, parameters: EmptyModel?.none, methodType: .GET,authRequired: true) { (result: Result<ResponseModal<[CardList]>, Error>) in
             switch result {
             case .success(let response):
                 if response.status_code == 200 {
