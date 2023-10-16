@@ -31,7 +31,7 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBOutlet weak var widthLikeUnlikeStackView: NSLayoutConstraint!
     @IBOutlet weak var htLikeUnlikeStackViewFavorite: NSLayoutConstraint!
     @IBOutlet weak var htLblPrice: NSLayoutConstraint!
-    
+    @IBOutlet weak var imgTime: UIImageView!
     var likeButtonPressed: (() -> ()) = {}
     var shareButtonPressed: (() -> ()) = {}
     override func awakeFromNib() {
@@ -43,12 +43,21 @@ class FavouriteTableViewCell: UITableViewCell {
     func setDataForFavoritesEvents(getFavouriteData: GetFavouriteItem?){
         self.setupUI(isFavorites: true)
         lblTitle.text = getFavouriteData?.eventTitle ?? "-"
-        lblAddress.text = getFavouriteData?.location ?? "-"
+        lblAddress.text = getFavouriteData?.locationType == VIRTUAL ?
+        VirtualEvent : getFavouriteData?.locationType == MULTIPLE ?
+        MultipleLocation : (getFavouriteData?.location ?? "-")
+        if getFavouriteData?.locationType == MULTIPLE {
+            self.imgTime.isHidden = true
+            self.lblSeparator.isHidden = true
+            self.lblDate.text = " \(RecurringDates)"
+            self.lblTime.text = ""
+        }else{
+            lblDate.text = "\(getFavouriteData?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " "
+            + "\(getFavouriteData?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+            lblTime.text = "\(getFavouriteData?.eventStartTime?.getFormattedTime() ?? "")" +
+            " " + "-" + " " + "\(getFavouriteData?.eventEndTime?.getFormattedTime() ?? "")"
+        }
         btnLike.setImage(UIImage(named: "favSele_ip"), for: .normal)
-        lblDate.text = "\(getFavouriteData?.eventStartDate?.getDateFormattedFrom() ?? "")" +  " " + "to" + " "
-        + "\(getFavouriteData?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        lblTime.text = "\(getFavouriteData?.eventStartTime?.getFormattedTime() ?? "")" +
-        " " + "-" + " " + "\(getFavouriteData?.eventEndTime?.getFormattedTime() ?? "")"
         if let imageUrl = getFavouriteData?.coverImage?.eventCoverImage {
             if imageUrl.contains(APIHandler.shared.previousBaseURL) {
                 let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""

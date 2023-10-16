@@ -97,6 +97,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
         // Imp line to set drawer at initial
         pageConrtrolEventImages.drawer = ScaleDrawer()
         self.getMultiLocation()
+        setUi()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -140,11 +141,8 @@ extension EventDetailVC {
         self.navigationView.btnRight.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
         self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
-        btnAddToCalender.setTitles(text: "Add ", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnAddToCalender.addRightIcon(image: UIImage.init(named: "calendar_blue"))
-        btnShowMap.setTitles(text: "Show Map", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
-        
         navigationView.lblTitle.text = "Event"
         navigationView.btnBack.isHidden = false
         navigationView.btnRight.setImage(UIImage(named: "upload_ip"), for: .normal)
@@ -391,11 +389,17 @@ extension EventDetailVC {
         self.lblPrice.textColor = UIColor.setColor(colorType: .tgBlack)
         self.lblOnTicketGateway.font = UIFont.setFont(fontType: .regular, fontSize: .fourteen)
         self.lblOnTicketGateway.textColor = UIColor.setColor(colorType: .lblTextPara)
+        btnAddToCalender.setTitles(text: "  Add", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen),
+                                   textColour: UIColor.setColor(colorType: .tgBlue),
+                                   borderColour: UIColor.setColor(colorType: .tgBlue))
+        btnShowMap.setTitles(text: "Show Map", font: UIFont.setFont(fontType: .medium, fontSize: .fourteen),
+                             textColour: UIColor.setColor(colorType: .tgBlue),
+                             borderColour: UIColor.setColor(colorType: .tgBlue))
     }
     
     func setData(){
         let eventDetail = self.viewModel.eventDetail
-        self.lblPrice.text = "CAD $\(eventDetail?.ticketOnwards ?? 0) onwards"
+        self.lblPrice.text = "CAD $\(eventDetail?.eventTicketOnwardsPrice ?? 0) onwards"
         print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
         if let isFollow = eventDetail?.isFollow {
             if isFollow {

@@ -57,7 +57,7 @@ struct EventDetail: Codable {
     var paymentMode: PaymentMode?
     var isLike, isFollow: Bool?
     var totalFollower: Int?
-
+    var eventTicketOnwardsPrice: Int?
     enum CodingKeys: String, CodingKey {
         case event
         case ticketOnwards = "ticket_onwards"
@@ -75,6 +75,7 @@ struct EventDetail: Codable {
         case isLike = "is_like"
         case isFollow = "is_follow"
         case totalFollower = "total_follower"
+        case eventTicketOnwardsPrice = "event_ticket_onwards_price"
     }
 }
 

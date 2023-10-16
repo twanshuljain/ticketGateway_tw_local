@@ -271,7 +271,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zci-kh-u8I">
+                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zci-kh-u8I">
                         <rect key="frame" x="16" y="5" width="479" height="53.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="WED, JAN 20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWS-sk-44Z">
@@ -315,6 +315,7 @@
                 <outlet property="htLblPrice" destination="8zP-YT-FlC" id="ndJ-tK-gM1"/>
                 <outlet property="htLikeUnlikeStackViewFavorite" destination="6eM-9g-xKJ" id="jd8-mS-hbL"/>
                 <outlet property="imgImages" destination="9wi-79-tSi" id="Q7N-ug-QCq"/>
+                <outlet property="imgTime" destination="nnV-vm-lNl" id="eSo-ZC-wgz"/>
                 <outlet property="lblAddress" destination="6SV-Oi-BHW" id="KCZ-l7-rt6"/>
                 <outlet property="lblDate" destination="paI-oJ-FUD" id="Cgd-XK-Kp3"/>
                 <outlet property="lblFavoriteDate" destination="GWS-sk-44Z" id="XM7-3i-I0M"/>

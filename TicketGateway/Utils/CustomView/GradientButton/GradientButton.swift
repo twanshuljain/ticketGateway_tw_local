@@ -115,7 +115,13 @@ class CustomButtonNormalWithBorder: UIButton {
         self.borderColor = borderColour
         self.setTitle(text, for: .normal)
     }
-    
+    func setTitles(text: String, font: UIFont,
+                   textColour: UIColor, borderColour : UIColor) {
+        self.setTitle(text, for: .normal)
+        self.setTitleColor(textColour, for: .normal)
+        self.borderColor = borderColour
+        self.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .sixteen)
+    }
     func addRightIcon(image: UIImage?) {
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
