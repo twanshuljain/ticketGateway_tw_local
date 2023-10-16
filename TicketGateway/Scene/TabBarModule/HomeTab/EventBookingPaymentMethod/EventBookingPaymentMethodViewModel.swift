@@ -34,6 +34,8 @@ final class EventBookingPaymentMethodViewModel{
     var totalTicketPrice = ""
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var createCharge:CreateCharge?
+    var isCardSave = false
+    var saveCardList:[CardList]?
     
     var stripeUser:StripeCreateUser?
     var addCard:AddCard?
@@ -103,26 +105,29 @@ extension EventBookingPaymentMethodViewModel{
 
     
     func addCardForUser(vc:EventBookingPaymentMethodVC){
-        if let name = self.name, let cardNumber = self.cardNumber,let cvv = self.cvv, let expMonth = Int(strMonth), let expYear = Int(strYear){
-            DispatchQueue.main.async {
-                vc.parentView.showLoading(centreToView: vc.view)
-            }
-            StripeClasses().addCardForUser(name: name, cardNumber: cardNumber, expMonth: expMonth, expYear: expYear, cvv: cvv, controller: vc) { addCardResponse, isTrue, message in
-                if isTrue == true  && addCardResponse != nil{
-                    DispatchQueue.main.async {
-                        vc.parentView.stopLoading()
-                    }
-                    self.addCard = addCardResponse
-                    self.createCheckout(vc: vc)
-                }else{
-                    DispatchQueue.main.async {
-                        vc.parentView.stopLoading()
-                        vc.showAlertController(message: message)
+        if isCardSave{
+            if let name = self.name, let cardNumber = self.cardNumber,let cvv = self.cvv, let expMonth = Int(strMonth), let expYear = Int(strYear){
+                DispatchQueue.main.async {
+                    vc.parentView.showLoading(centreToView: vc.view)
+                }
+                StripeClasses().addCardForUser(name: name, cardNumber: cardNumber, expMonth: expMonth, expYear: expYear, cvv: cvv, isSave: self.isCardSave, controller: vc) { addCardResponse, isTrue, message in
+                    if isTrue == true  && addCardResponse != nil{
+                        DispatchQueue.main.async {
+                            vc.parentView.stopLoading()
+                        }
+                        self.addCard = addCardResponse
+                        self.createCheckout(vc: vc)
+                    }else{
+                        DispatchQueue.main.async {
+                            vc.parentView.stopLoading()
+                            vc.showAlertController(message: message)
+                        }
                     }
                 }
             }
+        }else{
+            self.createCheckout(vc: vc)
         }
-        
     }
     
     func createCheckout(vc:EventBookingPaymentMethodVC){
@@ -187,21 +192,33 @@ extension EventBookingPaymentMethodViewModel{
     }
     
     func createCharge(vc:EventBookingPaymentMethodVC){
-        if let amount = Double(self.totalTicketPrice), let cardId = self.addCard?.id, let checkOutId = self.checkoutId, let currency = self.selectedArrTicketList.compactMap({ $0.ticketCurrencyType ?? "" }).first{
+        let cardId = self.addCard?.id ?? 0
+        let amount = (self.totalTicketPrice as NSString).integerValue
+        if let checkOutId = self.checkoutId, let currency = self.selectedArrTicketList.compactMap({ $0.ticketCurrencyType ?? "" }).first{
+            var saveCardData:AddCardRequest?
+            if self.isCardSave{
+                saveCardData = nil
+            }else{
+                if let name = self.name, let cardNumber = self.cardNumber,let cvv = self.cvv, let expMonth = Int(strMonth), let expYear = Int(strYear){
+                    saveCardData = AddCardRequest.init(card_number: cardNumber, exp_month: expMonth, exp_year: expYear, cvc: cvv , name: name)
+                    
+                }
+            }
             DispatchQueue.main.async {
                 vc.parentView.showLoading(centreToView: vc.view)
             }
-            StripeClasses().createCharge(amount: amount, cardId: Int(cardId) , checkoutId: checkOutId, controller: vc, currency: currency) { response, isTrue, message in
+            StripeClasses().createCharge(saveCardData: saveCardData,amount: amount, cardId: Int(cardId) , checkoutId: checkOutId, controller: vc, currency: currency, isSave: isCardSave) { response, isTrue, message in
                 if isTrue == true  && response != nil{
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()
                         self.createCharge = response
-                        self.navigateToPaymentSuccess(vc: vc)
+                        self.navigateToPaymentSuccess(success: true, vc: vc)
                     }
                 }else{
                     DispatchQueue.main.async {
                         vc.parentView.stopLoading()
-                        vc.showAlertController(message: message)
+                        self.navigateToPaymentSuccess(success: false, vc: vc)
+                       // vc.showAlertController(message: message)
                     }
                 }
             }
@@ -209,13 +226,37 @@ extension EventBookingPaymentMethodViewModel{
         
     }
     
-    func navigateToPaymentSuccess(vc:EventBookingPaymentMethodVC){
+    func getCardList(vc:EventBookingPaymentMethodVC){
+        DispatchQueue.main.async {
+            vc.parentView.showLoading(centreToView: vc.view)
+        }
+        self.dispatchGroup.enter()
+        StripeClasses().getCardList { cardListResponse, isTrue, message in
+            defer { self.dispatchGroup.leave() }
+            if isTrue == true  && cardListResponse != nil{
+                DispatchQueue.main.async {
+                    vc.parentView.stopLoading()
+                    self.saveCardList = cardListResponse
+                }
+            }else{
+                DispatchQueue.main.async {
+                    vc.parentView.stopLoading()
+                    vc.showAlertController(message: message)
+                }
+            }
+        }
+    }
+    
+    func navigateToPaymentSuccess(success:Bool,vc:EventBookingPaymentMethodVC){
         if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC{
             view.createCharge = self.createCharge
+            view.totalTicketPrice = self.totalTicketPrice
+            view.isTransactionFailed = success == true ? false : true
             view.selectedCurrencyType = self.selectedCurrencyType
             vc.navigationController?.pushViewController(view, animated: true)
         }
     }
+    
     
     //MARK:- func validateCreditCard
     func validateCreditCard(_ cardholderName:String?,_ cardNumber:String?,_ expiryDate:String?,_ cvv:String? ,_ vc:EventBookingPaymentMethodVC)-> Bool{
