@@ -357,7 +357,7 @@ extension FavouriteVC {
         viewModel.favouriteModel.page = 1
         getFavouriteList()
         getVenueList()
-        getSuggestionsList(categoryId: 3)
+        getSuggestionsList(categoryId: 1)
     }
 }
 

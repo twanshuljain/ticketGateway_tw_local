@@ -440,7 +440,7 @@ extension EventDetailVC {
             
         }
       //  self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
-        self.lblRefundpolicyDisc.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
+        self.lblRefundpolicyDisc.text = (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
         
         //ABOUt US
         if (eventDetail?.eventTagsObj?.tagsDescription != "") && (eventDetail?.eventTagsObj?.tagsDescription != nil){
