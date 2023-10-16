@@ -4981,7 +4981,7 @@ TicketGateway fee is non refundable.</string>
                                                                         <color key="textColor" name="Headinglbl"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Szh-Ei-rDb" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Szh-Ei-rDb" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="29" width="361" height="50"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -5014,7 +5014,7 @@ TicketGateway fee is non refundable.</string>
                                                                         <color key="textColor" name="Headinglbl"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ay3-SH-Sdb" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Confirm Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ay3-SH-Sdb" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="8" width="361" height="50"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -5047,7 +5047,7 @@ TicketGateway fee is non refundable.</string>
                                                                         <color key="textColor" name="Headinglbl"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exi-HP-0dU" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter First Name" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exi-HP-0dU" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="29" width="361" height="50"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -5087,7 +5087,7 @@ TicketGateway fee is non refundable.</string>
                                                                         <color key="textColor" name="Headinglbl"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2q1-eA-hTw" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Last Name" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2q1-eA-hTw" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="29" width="361" height="50"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
