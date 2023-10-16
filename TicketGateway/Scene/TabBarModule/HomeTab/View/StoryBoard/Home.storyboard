@@ -4819,13 +4819,13 @@ TicketGateway fee is non refundable.</string>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-RF-Ikr">
                                                                                             <rect key="frame" x="0.0" y="15.333333333333332" width="325" height="44.666666666666671"/>
                                                                                             <subviews>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="20.333333333333332"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
                                                                                                     <rect key="frame" x="0.0" y="24.333333333333336" width="325" height="20.333333333333336"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
@@ -5007,7 +5007,7 @@ TicketGateway fee is non refundable.</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1337"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KZi-MX-g0Q">
-                                                        <rect key="frame" x="16" y="10" width="361" height="400"/>
+                                                        <rect key="frame" x="16" y="10" width="361" height="380"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XkH-py-oKQ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="79"/>
@@ -5076,7 +5076,7 @@ TicketGateway fee is non refundable.</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jsE-5N-Lg9">
-                                                                <rect key="frame" x="0.0" y="107" width="361" height="79"/>
+                                                                <rect key="frame" x="0.0" y="100.33333333333334" width="361" height="79"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYY-ka-CK4">
                                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="21"/>
@@ -5086,7 +5086,7 @@ TicketGateway fee is non refundable.</string>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter First Name" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exi-HP-0dU" customClass="setCustomTextField" customModule="TicketGateway" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="29" width="361" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="28.999999999999972" width="361" height="50"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="HGU-cb-sxq"/>
@@ -5107,7 +5107,7 @@ TicketGateway fee is non refundable.</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                     <label hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter First Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rld-fo-AgY">
-                                                                        <rect key="frame" x="0.0" y="79" width="361" height="0.0"/>
+                                                                        <rect key="frame" x="0.0" y="78.999999999999972" width="361" height="0.0"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <color key="textColor" systemColor="systemRedColor"/>
@@ -5116,7 +5116,7 @@ TicketGateway fee is non refundable.</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8eu-nf-Myy">
-                                                                <rect key="frame" x="0.0" y="214" width="361" height="79"/>
+                                                                <rect key="frame" x="0.0" y="200.66666666666669" width="361" height="79"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEk-He-v2f">
                                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="21"/>
@@ -5156,7 +5156,7 @@ TicketGateway fee is non refundable.</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HJP-tn-NIE">
-                                                                <rect key="frame" x="0.0" y="321" width="361" height="79"/>
+                                                                <rect key="frame" x="0.0" y="301" width="361" height="79"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Mobile Number" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITt-AT-vka">
                                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="21"/>
@@ -5292,18 +5292,18 @@ TicketGateway fee is non refundable.</string>
                                                             </stackView>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="400" id="REt-lo-1TK"/>
+                                                            <constraint firstAttribute="height" constant="380" id="JrJ-4X-Ol1"/>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaT-7u-e0L">
-                                                        <rect key="frame" x="16" y="425" width="361" height="2"/>
+                                                        <rect key="frame" x="16" y="405" width="361" height="2"/>
                                                         <color key="backgroundColor" name="BorderColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="2" id="vRb-zI-SjN"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order summary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NI-Vw-l4Z">
-                                                        <rect key="frame" x="16" y="440" width="361" height="30"/>
+                                                        <rect key="frame" x="16" y="420" width="361" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="qrT-Zs-37o"/>
                                                         </constraints>
@@ -5312,21 +5312,21 @@ TicketGateway fee is non refundable.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S57-ae-fSh" customClass="TicketAddInOrderTableViewList" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="480" width="363" height="100"/>
+                                                        <rect key="frame" x="15" y="460" width="363" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="100" id="Ku7-PY-Qzu"/>
                                                         </constraints>
                                                     </tableView>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YAD-Wp-CLm" customClass="AddOnAddInOrderTableViewList" customModule="TicketGateway" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="646" width="353" height="100"/>
+                                                        <rect key="frame" x="20" y="626" width="353" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="100" id="qrF-Lk-9St"/>
                                                         </constraints>
                                                     </tableView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQM-vn-PVG">
-                                                        <rect key="frame" x="0.0" y="761" width="393" height="356"/>
+                                                        <rect key="frame" x="0.0" y="741" width="393" height="356"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="4zu-0b-bna">
                                                                 <rect key="frame" x="20" y="1" width="353" height="340"/>
@@ -5536,7 +5536,7 @@ TicketGateway fee is non refundable.</string>
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cR-i1-aki">
-                                                        <rect key="frame" x="18" y="588" width="357" height="1"/>
+                                                        <rect key="frame" x="18" y="568" width="357" height="1"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="byn-RZ-GVU"/>
@@ -5544,7 +5544,7 @@ TicketGateway fee is non refundable.</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ef-ow-kBf">
-                                                        <rect key="frame" x="18" y="596" width="357" height="40"/>
+                                                        <rect key="frame" x="18" y="576" width="357" height="40"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discounted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trk-eN-esU">
                                                                 <rect key="frame" x="0.0" y="9.9999999999999982" width="87" height="20.333333333333329"/>
@@ -5696,6 +5696,7 @@ TicketGateway fee is non refundable.</string>
                         <outlet property="discountViewHt" destination="19U-dC-NXb" id="CEK-Rh-p3X"/>
                         <outlet property="heightOfAddOn" destination="qrF-Lk-9St" id="Bso-DE-yX5"/>
                         <outlet property="heightOfTickets" destination="Ku7-PY-Qzu" id="cIr-di-PY2"/>
+                        <outlet property="htStackView" destination="JrJ-4X-Ol1" id="BV1-F5-OfL"/>
                         <outlet property="imgCountry" destination="TSA-Cs-X8g" id="4Rp-ja-GyZ"/>
                         <outlet property="lblConfirmEmailAddress" destination="LNC-1J-rWl" id="5WS-eY-IqJ"/>
                         <outlet property="lblContractOrganiser" destination="DBn-s2-uNI" id="A3w-vp-kc8"/>

@@ -57,6 +57,7 @@ class EventCheckoutVerifyVC: UIViewController {
     @IBOutlet weak var lblDiscouted: UILabel!
     @IBOutlet weak var lblDiscoutedValue: UILabel!
     @IBOutlet weak var discountViewHt : NSLayoutConstraint!
+    @IBOutlet weak var htStackView: NSLayoutConstraint!
     
     var viewModel = EventCheckoutVerifyViewModel()
 
@@ -127,9 +128,11 @@ extension EventCheckoutVerifyVC {
         self.lblConfirmEmailAddress.text = CONFIRM_EMAIL
         self.setIntialUiDesign()
         if !UserDefaultManager.share.getUserBoolValue(key: .isGuestLogin) {
+            htStackView.constant = 380
             self.confirmEmailView.isHidden = true
             self.apiCallForEmailVerification()
         }else{
+            htStackView.constant = 480
             self.confirmEmailView.isHidden = false
         }
     }
