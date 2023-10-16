@@ -236,6 +236,7 @@ extension EventBookingOrderSummaryVC {
                 view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
                 view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
                 view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+                view.viewModel.discountType = self.viewModel.discountType
                 self.navigationController?.pushViewController(view, animated: true)
             }
     }

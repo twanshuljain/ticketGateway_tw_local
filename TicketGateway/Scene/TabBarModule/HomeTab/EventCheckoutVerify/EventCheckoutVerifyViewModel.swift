@@ -24,12 +24,13 @@ class EventCheckoutVerifyViewModel{
     var emailVerifyResponse:CheckEmailResponse?
     var authModel: SignInAuthModel?
     var eventId:Int?
-    var selectedArrTicketList : [EventTicket]?
+    var selectedArrTicketList = [EventTicket]()
     var eventDetail:EventDetail?
     var feeStructure :FeeStructure?
     var totalTicketPrice = ""
-    var selectedAddOnList:[EventTicketAddOnResponseModel]?
+    var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var selectedCurrencyType = ""
+    var discountType : DiscountType?
     
 }
 
