@@ -3236,10 +3236,10 @@ TicketGateway Balance  </string>
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </imageView>
                                                                                     <button contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bS-oh-f6l" customClass="CustomButtonNormalWithBorder" customModule="TicketGateway" customModuleProvider="target">
-                                                                                        <rect key="frame" x="22" y="75" width="80" height="35"/>
+                                                                                        <rect key="frame" x="22" y="75" width="100" height="35"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="35" id="Qy4-bT-ue3"/>
-                                                                                            <constraint firstAttribute="width" constant="80" id="ZZP-7j-y9q"/>
+                                                                                            <constraint firstAttribute="width" constant="100" id="ZZP-7j-y9q"/>
                                                                                         </constraints>
                                                                                         <state key="normal" title="Button"/>
                                                                                         <buttonConfiguration key="configuration" style="plain" title="Add " titleAlignment="center"/>
