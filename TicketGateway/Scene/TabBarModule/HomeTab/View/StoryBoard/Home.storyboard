@@ -1519,7 +1519,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LnK-33-ImH">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1116"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MnM-Ag-epO">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MnM-Ag-epO">
                                                         <rect key="frame" x="15" y="15" width="363" height="117"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activeTerm" translatesAutoresizingMaskIntoConstraints="NO" id="buT-J5-hof">
@@ -1592,7 +1592,7 @@ TicketGateway Balance  </string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Dj-Mr-RiF">
-                                                        <rect key="frame" x="15" y="152" width="363" height="60"/>
+                                                        <rect key="frame" x="15" y="20" width="363" height="60"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="active" translatesAutoresizingMaskIntoConstraints="NO" id="XQB-Jn-JH0">
                                                                 <rect key="frame" x="10" y="15" width="25" height="30"/>
@@ -1696,13 +1696,13 @@ TicketGateway Balance  </string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Ways To Pay" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLF-Yu-IIJ">
-                                                        <rect key="frame" x="15" y="232" width="139" height="20.333333333333343"/>
+                                                        <rect key="frame" x="15" y="100" width="139" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jN-Zf-c9a">
-                                                        <rect key="frame" x="15" y="272.33333333333331" width="363" height="60"/>
+                                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jN-Zf-c9a">
+                                                        <rect key="frame" x="15" y="140.33333333333331" width="363" height="60"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="active" translatesAutoresizingMaskIntoConstraints="NO" id="LVa-6N-Z6e">
                                                                 <rect key="frame" x="10" y="15" width="25" height="30"/>
@@ -1788,6 +1788,7 @@ TicketGateway Balance  </string>
                                                             <constraint firstItem="mSE-8H-yDf" firstAttribute="leading" secondItem="LVa-6N-Z6e" secondAttribute="trailing" constant="15" id="Xgr-UG-XwE"/>
                                                             <constraint firstItem="j3u-OM-gwv" firstAttribute="leading" secondItem="2jN-Zf-c9a" secondAttribute="leading" id="nlu-Uc-mwS"/>
                                                             <constraint firstItem="j3u-OM-gwv" firstAttribute="top" secondItem="2jN-Zf-c9a" secondAttribute="top" id="oCC-sH-a3V"/>
+                                                            <constraint firstAttribute="height" constant="60" id="qSy-uq-PE0"/>
                                                             <constraint firstItem="C2A-bs-kX0" firstAttribute="top" secondItem="LVa-6N-Z6e" secondAttribute="bottom" id="sGp-dl-9M9"/>
                                                             <constraint firstItem="mSE-8H-yDf" firstAttribute="centerY" secondItem="LVa-6N-Z6e" secondAttribute="centerY" id="tgq-pk-Ffi"/>
                                                             <constraint firstItem="C2A-bs-kX0" firstAttribute="leading" secondItem="2jN-Zf-c9a" secondAttribute="leading" constant="15" id="vg3-ha-uRr"/>
@@ -1806,7 +1807,7 @@ TicketGateway Balance  </string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsM-JJ-WrK">
-                                                        <rect key="frame" x="15" y="352.33333333333331" width="363" height="281.99999999999994"/>
+                                                        <rect key="frame" x="15" y="140.33333333333331" width="363" height="282"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0U-s7-gaG">
                                                                 <rect key="frame" x="10" y="15" width="25" height="30"/>
@@ -1829,7 +1830,7 @@ TicketGateway Balance  </string>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="7FK-JL-EZ1">
-                                                                <rect key="frame" x="15" y="45.000000000000057" width="333" height="222"/>
+                                                                <rect key="frame" x="15" y="45" width="333" height="222"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1q-s7-h7E">
                                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="15"/>
@@ -1974,17 +1975,17 @@ TicketGateway Balance  </string>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49r-gq-kkS">
-                                                                        <rect key="frame" x="0.0" y="222" width="333" height="0.0"/>
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49r-gq-kkS">
+                                                                        <rect key="frame" x="0.0" y="222.00000000000006" width="333" height="0.0"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unactiveTerm" translatesAutoresizingMaskIntoConstraints="NO" id="6e5-fy-pR6">
-                                                                                <rect key="frame" x="0.0" y="14.666666666666629" width="25" height="30"/>
+                                                                                <rect key="frame" x="0.0" y="11.333333333333258" width="25" height="30"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="25" id="176-HZ-0Sa"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to save the card details for future transactions?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2y-uA-SJL">
-                                                                                <rect key="frame" x="35" y="10" width="278" height="39.333333333333336"/>
+                                                                                <rect key="frame" x="35" y="10" width="278" height="32.666666666666664"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                                 <color key="textColor" name="Headinglbl"/>
                                                                                 <nil key="highlightedColor"/>
@@ -2043,16 +2044,16 @@ TicketGateway Balance  </string>
                                                 <constraints>
                                                     <constraint firstItem="2jN-Zf-c9a" firstAttribute="top" secondItem="TLF-Yu-IIJ" secondAttribute="bottom" constant="20" id="2kP-1e-1Vb"/>
                                                     <constraint firstAttribute="trailing" secondItem="2jN-Zf-c9a" secondAttribute="trailing" constant="15" id="8xY-zd-EhG"/>
+                                                    <constraint firstItem="XsM-JJ-WrK" firstAttribute="top" secondItem="TLF-Yu-IIJ" secondAttribute="bottom" constant="20" id="9D6-5P-6S6"/>
                                                     <constraint firstItem="MnM-Ag-epO" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="DfM-hp-n5x"/>
                                                     <constraint firstAttribute="trailing" secondItem="MnM-Ag-epO" secondAttribute="trailing" constant="15" id="LIA-Ur-i8c"/>
                                                     <constraint firstItem="2jN-Zf-c9a" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="LnL-SL-eu9"/>
                                                     <constraint firstItem="TLF-Yu-IIJ" firstAttribute="top" secondItem="2Dj-Mr-RiF" secondAttribute="bottom" constant="20" id="SOU-Iq-NTJ"/>
                                                     <constraint firstItem="TLF-Yu-IIJ" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="e0g-lF-s8g"/>
                                                     <constraint firstAttribute="trailing" secondItem="XsM-JJ-WrK" secondAttribute="trailing" constant="15" id="grJ-vF-b0p"/>
+                                                    <constraint firstItem="2Dj-Mr-RiF" firstAttribute="top" secondItem="LnK-33-ImH" secondAttribute="top" constant="20" id="hHL-bD-BsU"/>
                                                     <constraint firstItem="MnM-Ag-epO" firstAttribute="top" secondItem="LnK-33-ImH" secondAttribute="top" constant="15" id="jKu-LR-LhL"/>
-                                                    <constraint firstItem="2Dj-Mr-RiF" firstAttribute="top" secondItem="MnM-Ag-epO" secondAttribute="bottom" constant="20" id="nXr-tb-ycr"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XsM-JJ-WrK" secondAttribute="bottom" constant="20" id="q2L-4e-Ajp"/>
-                                                    <constraint firstItem="XsM-JJ-WrK" firstAttribute="top" secondItem="2jN-Zf-c9a" secondAttribute="bottom" constant="20" id="tmD-mZ-uof"/>
                                                     <constraint firstItem="2Dj-Mr-RiF" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="uhU-4n-Iko"/>
                                                     <constraint firstAttribute="trailing" secondItem="2Dj-Mr-RiF" secondAttribute="trailing" constant="15" id="wcj-S6-uhG"/>
                                                     <constraint firstItem="XsM-JJ-WrK" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="zc5-mz-OMX"/>
@@ -2142,7 +2143,7 @@ TicketGateway Balance  </string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Few Tickets Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bR7-2l-eZ4">
-                                                <rect key="frame" x="42.66666666666665" y="7.6666666666667442" width="117.33333333333331" height="19.666666666666671"/>
+                                                <rect key="frame" x="42.66666666666665" y="9.3333333333332558" width="117.33333333333331" height="16.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2296,7 +2297,7 @@ TicketGateway Balance  </string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-Dp-dvM">
-                                                <rect key="frame" x="145.33333333333334" y="14" width="102.33333333333334" height="22"/>
+                                                <rect key="frame" x="150.33333333333334" y="14" width="92.666666666666657" height="22"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <nil key="highlightedColor"/>

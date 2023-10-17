@@ -43,7 +43,7 @@ final class EventBookingPaymentMethodViewModel{
     var totalTicketPrice = ""
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var createCharge:CreateCharge?
-    var isCardSave = false
+    var isCardSave = true //var isCardSave = false  ---For SavedCard
     var saveCardList:[CardList]?
     var paymentModeSelected:SelectedPaymentMode = .none
     

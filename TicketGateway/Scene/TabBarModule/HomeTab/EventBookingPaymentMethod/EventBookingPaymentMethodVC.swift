@@ -116,7 +116,7 @@ extension EventBookingPaymentMethodVC {
     }
     
     func apiCall(){
-        self.viewModel.getCardList(vc: self)
+        //self.viewModel.getCardList(vc: self) ---For SavedCard
     }
     
     func funcDefoultSet(){
@@ -265,7 +265,7 @@ extension EventBookingPaymentMethodVC {
             self.vwCardTop.isHidden = false
             self.vwWallet.isHidden = true
             self.vwCard.isHidden = false
-            htSaveCardView.constant = 60
+            htSaveCardView.constant = 0 //htSaveCardView.constant = 60 ---For SavedCard
             self.imgCard.image = UIImage(named: ACTIVE_ICON)
             self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
             self.imgWalletSavedCard.image = UIImage(named: UNACTIVE_ICON)
