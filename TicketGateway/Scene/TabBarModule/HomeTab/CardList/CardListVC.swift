@@ -16,6 +16,7 @@ protocol CardListVCProtocol {
 class CardListVC: UIViewController {
     
     // MARK: IBOutlet
+    
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var navigationView: NavigationBarView!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
