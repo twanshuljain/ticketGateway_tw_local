@@ -1695,74 +1695,80 @@ TicketGateway Balance  </string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWF-CI-LmM">
-                                                        <rect key="frame" x="15" y="232" width="363" height="60"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Ways To Pay" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLF-Yu-IIJ">
+                                                        <rect key="frame" x="15" y="232" width="139" height="20.333333333333343"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jN-Zf-c9a">
+                                                        <rect key="frame" x="15" y="272.33333333333331" width="363" height="60"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="active" translatesAutoresizingMaskIntoConstraints="NO" id="8rn-Dn-2ts">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="active" translatesAutoresizingMaskIntoConstraints="NO" id="LVa-6N-Z6e">
                                                                 <rect key="frame" x="10" y="15" width="25" height="30"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="30" id="FMs-Wk-j6Z"/>
-                                                                    <constraint firstAttribute="width" constant="25" id="nJf-JF-qV6"/>
+                                                                    <constraint firstAttribute="height" constant="30" id="kks-eX-EkY"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="t2G-RU-oFd"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay with Saved Cards" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vX4-Kt-PLS">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay with Saved Cards" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSE-8H-yDf">
                                                                 <rect key="frame" x="50.000000000000014" y="20" width="164.33333333333337" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlE-Cs-siw">
+                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3u-OM-gwv">
                                                                 <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" id="NXM-fm-JDq"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="dmH-So-J3I"/>
                                                                 </constraints>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                             </button>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="596-VK-7tA">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C2A-bs-kX0">
                                                                 <rect key="frame" x="15" y="45" width="333" height="0.0"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enD-XD-oIg">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmQ-ji-H8h">
                                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="0.0"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" id="oaH-dT-Mnb"/>
+                                                                            <constraint firstAttribute="height" id="xbD-tR-AFM"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZO-Su-41a">
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c3A-Hh-1YM">
                                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="0.0"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Pay" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aST-Pa-5jo">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Pay" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhh-ww-ggw">
                                                                                 <rect key="frame" x="40" y="-10" width="76" height="20.333333333333332"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUb-Ec-OCc">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DI5-Tj-EKf">
                                                                                 <rect key="frame" x="283" y="0.0" width="50" height="0.0"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="50" id="KgG-QG-7va"/>
+                                                                                    <constraint firstAttribute="width" constant="50" id="5k1-Su-m9m"/>
                                                                                 </constraints>
                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             </button>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplePay_ip" translatesAutoresizingMaskIntoConstraints="NO" id="HDN-Gw-OK6">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplePay_ip" translatesAutoresizingMaskIntoConstraints="NO" id="9AK-g4-zTA">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="0.0"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="30" id="QFZ-9P-7du"/>
+                                                                                    <constraint firstAttribute="width" constant="30" id="V7x-70-2il"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="HDN-Gw-OK6" firstAttribute="centerY" secondItem="CZO-Su-41a" secondAttribute="centerY" id="8ZY-6F-cu0"/>
-                                                                            <constraint firstItem="aST-Pa-5jo" firstAttribute="leading" secondItem="HDN-Gw-OK6" secondAttribute="trailing" constant="10" id="CFQ-H0-36T"/>
-                                                                            <constraint firstItem="HDN-Gw-OK6" firstAttribute="top" secondItem="CZO-Su-41a" secondAttribute="top" id="FwS-OO-bZ0"/>
-                                                                            <constraint firstItem="HDN-Gw-OK6" firstAttribute="leading" secondItem="CZO-Su-41a" secondAttribute="leading" id="PYh-wQ-Cnx"/>
-                                                                            <constraint firstItem="VUb-Ec-OCc" firstAttribute="top" secondItem="CZO-Su-41a" secondAttribute="top" id="UGj-Yu-9s3"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="VUb-Ec-OCc" secondAttribute="bottom" id="Udh-FS-9sJ"/>
-                                                                            <constraint firstItem="aST-Pa-5jo" firstAttribute="centerY" secondItem="HDN-Gw-OK6" secondAttribute="centerY" id="htN-ER-zji"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="HDN-Gw-OK6" secondAttribute="bottom" id="k72-vx-VHv"/>
-                                                                            <constraint firstAttribute="height" id="sTt-Yq-8RS"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="VUb-Ec-OCc" secondAttribute="trailing" id="yd9-in-gcP"/>
+                                                                            <constraint firstItem="9AK-g4-zTA" firstAttribute="centerY" secondItem="c3A-Hh-1YM" secondAttribute="centerY" id="390-jW-Ctb"/>
+                                                                            <constraint firstAttribute="height" id="FBa-71-7da"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="DI5-Tj-EKf" secondAttribute="bottom" id="FWK-35-fFN"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="DI5-Tj-EKf" secondAttribute="trailing" id="JZP-G5-x8p"/>
+                                                                            <constraint firstItem="DI5-Tj-EKf" firstAttribute="top" secondItem="c3A-Hh-1YM" secondAttribute="top" id="K7Y-J6-XBf"/>
+                                                                            <constraint firstItem="jhh-ww-ggw" firstAttribute="centerY" secondItem="9AK-g4-zTA" secondAttribute="centerY" id="X9e-Kk-KTp"/>
+                                                                            <constraint firstItem="9AK-g4-zTA" firstAttribute="leading" secondItem="c3A-Hh-1YM" secondAttribute="leading" id="e6o-df-qAe"/>
+                                                                            <constraint firstItem="9AK-g4-zTA" firstAttribute="top" secondItem="c3A-Hh-1YM" secondAttribute="top" id="fnx-tt-wCB"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="9AK-g4-zTA" secondAttribute="bottom" id="jiP-0k-Rx9"/>
+                                                                            <constraint firstItem="jhh-ww-ggw" firstAttribute="leading" secondItem="9AK-g4-zTA" secondAttribute="trailing" constant="10" id="vvd-vy-WQJ"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1775,17 +1781,17 @@ TicketGateway Balance  </string>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstItem="MlE-Cs-siw" firstAttribute="leading" secondItem="qWF-CI-LmM" secondAttribute="leading" id="6BL-x2-Qba"/>
-                                                            <constraint firstItem="8rn-Dn-2ts" firstAttribute="leading" secondItem="qWF-CI-LmM" secondAttribute="leading" constant="10" id="Dhy-Mu-JQ0"/>
-                                                            <constraint firstItem="596-VK-7tA" firstAttribute="leading" secondItem="qWF-CI-LmM" secondAttribute="leading" constant="15" id="F4K-Ok-sms"/>
-                                                            <constraint firstAttribute="trailing" secondItem="MlE-Cs-siw" secondAttribute="trailing" id="Gli-jt-ich"/>
-                                                            <constraint firstAttribute="trailing" secondItem="596-VK-7tA" secondAttribute="trailing" constant="15" id="JkE-W4-UJa"/>
-                                                            <constraint firstItem="8rn-Dn-2ts" firstAttribute="top" secondItem="qWF-CI-LmM" secondAttribute="top" constant="15" id="PWV-X1-D5A"/>
-                                                            <constraint firstItem="vX4-Kt-PLS" firstAttribute="centerY" secondItem="8rn-Dn-2ts" secondAttribute="centerY" id="VIt-9b-4JS"/>
-                                                            <constraint firstItem="596-VK-7tA" firstAttribute="top" secondItem="8rn-Dn-2ts" secondAttribute="bottom" id="ZHM-bu-qmR"/>
-                                                            <constraint firstAttribute="bottom" secondItem="596-VK-7tA" secondAttribute="bottom" constant="15" id="m2A-fQ-ewY"/>
-                                                            <constraint firstItem="MlE-Cs-siw" firstAttribute="top" secondItem="qWF-CI-LmM" secondAttribute="top" id="nBz-j8-IGy"/>
-                                                            <constraint firstItem="vX4-Kt-PLS" firstAttribute="leading" secondItem="8rn-Dn-2ts" secondAttribute="trailing" constant="15" id="ofJ-aA-IhZ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="C2A-bs-kX0" secondAttribute="bottom" constant="15" id="2tt-7q-AdY"/>
+                                                            <constraint firstItem="LVa-6N-Z6e" firstAttribute="top" secondItem="2jN-Zf-c9a" secondAttribute="top" constant="15" id="Ou8-Fg-z20"/>
+                                                            <constraint firstItem="LVa-6N-Z6e" firstAttribute="leading" secondItem="2jN-Zf-c9a" secondAttribute="leading" constant="10" id="P6b-F6-rmY"/>
+                                                            <constraint firstAttribute="trailing" secondItem="j3u-OM-gwv" secondAttribute="trailing" id="S4S-Jz-UN5"/>
+                                                            <constraint firstItem="mSE-8H-yDf" firstAttribute="leading" secondItem="LVa-6N-Z6e" secondAttribute="trailing" constant="15" id="Xgr-UG-XwE"/>
+                                                            <constraint firstItem="j3u-OM-gwv" firstAttribute="leading" secondItem="2jN-Zf-c9a" secondAttribute="leading" id="nlu-Uc-mwS"/>
+                                                            <constraint firstItem="j3u-OM-gwv" firstAttribute="top" secondItem="2jN-Zf-c9a" secondAttribute="top" id="oCC-sH-a3V"/>
+                                                            <constraint firstItem="C2A-bs-kX0" firstAttribute="top" secondItem="LVa-6N-Z6e" secondAttribute="bottom" id="sGp-dl-9M9"/>
+                                                            <constraint firstItem="mSE-8H-yDf" firstAttribute="centerY" secondItem="LVa-6N-Z6e" secondAttribute="centerY" id="tgq-pk-Ffi"/>
+                                                            <constraint firstItem="C2A-bs-kX0" firstAttribute="leading" secondItem="2jN-Zf-c9a" secondAttribute="leading" constant="15" id="vg3-ha-uRr"/>
+                                                            <constraint firstAttribute="trailing" secondItem="C2A-bs-kX0" secondAttribute="trailing" constant="15" id="wv9-Va-oSP"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1800,7 +1806,7 @@ TicketGateway Balance  </string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsM-JJ-WrK">
-                                                        <rect key="frame" x="15" y="347.33333333333331" width="363" height="281.99999999999994"/>
+                                                        <rect key="frame" x="15" y="352.33333333333331" width="363" height="281.99999999999994"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0U-s7-gaG">
                                                                 <rect key="frame" x="10" y="15" width="25" height="30"/>
@@ -1823,7 +1829,7 @@ TicketGateway Balance  </string>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="7FK-JL-EZ1">
-                                                                <rect key="frame" x="15" y="45" width="333" height="222"/>
+                                                                <rect key="frame" x="15" y="45.000000000000057" width="333" height="222"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1q-s7-h7E">
                                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="15"/>
@@ -1833,7 +1839,7 @@ TicketGateway Balance  </string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfe-sW-VAU">
-                                                                        <rect key="frame" x="0.0" y="15.000000000000057" width="333" height="207"/>
+                                                                        <rect key="frame" x="0.0" y="15" width="333" height="207"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dZU-t3-J0N">
                                                                                 <rect key="frame" x="10" y="15" width="313" height="50"/>
@@ -1969,7 +1975,7 @@ TicketGateway Balance  </string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49r-gq-kkS">
-                                                                        <rect key="frame" x="0.0" y="222.00000000000006" width="333" height="0.0"/>
+                                                                        <rect key="frame" x="0.0" y="222" width="333" height="0.0"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unactiveTerm" translatesAutoresizingMaskIntoConstraints="NO" id="6e5-fy-pR6">
                                                                                 <rect key="frame" x="0.0" y="14.666666666666629" width="25" height="30"/>
@@ -2032,29 +2038,23 @@ TicketGateway Balance  </string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Ways To Pay" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLF-Yu-IIJ">
-                                                        <rect key="frame" x="15" y="312" width="139" height="20.333333333333314"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="XsM-JJ-WrK" firstAttribute="top" secondItem="TLF-Yu-IIJ" secondAttribute="bottom" constant="15" id="2CE-qh-Mfv"/>
-                                                    <constraint firstItem="qWF-CI-LmM" firstAttribute="trailing" secondItem="2Dj-Mr-RiF" secondAttribute="trailing" id="DFu-1u-TQ3"/>
+                                                    <constraint firstItem="2jN-Zf-c9a" firstAttribute="top" secondItem="TLF-Yu-IIJ" secondAttribute="bottom" constant="20" id="2kP-1e-1Vb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2jN-Zf-c9a" secondAttribute="trailing" constant="15" id="8xY-zd-EhG"/>
                                                     <constraint firstItem="MnM-Ag-epO" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="DfM-hp-n5x"/>
                                                     <constraint firstAttribute="trailing" secondItem="MnM-Ag-epO" secondAttribute="trailing" constant="15" id="LIA-Ur-i8c"/>
-                                                    <constraint firstItem="qWF-CI-LmM" firstAttribute="leading" secondItem="2Dj-Mr-RiF" secondAttribute="leading" id="O7n-9Q-qNK"/>
-                                                    <constraint firstItem="qWF-CI-LmM" firstAttribute="top" secondItem="2Dj-Mr-RiF" secondAttribute="bottom" constant="20" id="csM-Gp-Ey8"/>
+                                                    <constraint firstItem="2jN-Zf-c9a" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="LnL-SL-eu9"/>
+                                                    <constraint firstItem="TLF-Yu-IIJ" firstAttribute="top" secondItem="2Dj-Mr-RiF" secondAttribute="bottom" constant="20" id="SOU-Iq-NTJ"/>
                                                     <constraint firstItem="TLF-Yu-IIJ" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="e0g-lF-s8g"/>
                                                     <constraint firstAttribute="trailing" secondItem="XsM-JJ-WrK" secondAttribute="trailing" constant="15" id="grJ-vF-b0p"/>
                                                     <constraint firstItem="MnM-Ag-epO" firstAttribute="top" secondItem="LnK-33-ImH" secondAttribute="top" constant="15" id="jKu-LR-LhL"/>
                                                     <constraint firstItem="2Dj-Mr-RiF" firstAttribute="top" secondItem="MnM-Ag-epO" secondAttribute="bottom" constant="20" id="nXr-tb-ycr"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XsM-JJ-WrK" secondAttribute="bottom" constant="20" id="q2L-4e-Ajp"/>
+                                                    <constraint firstItem="XsM-JJ-WrK" firstAttribute="top" secondItem="2jN-Zf-c9a" secondAttribute="bottom" constant="20" id="tmD-mZ-uof"/>
                                                     <constraint firstItem="2Dj-Mr-RiF" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="uhU-4n-Iko"/>
                                                     <constraint firstAttribute="trailing" secondItem="2Dj-Mr-RiF" secondAttribute="trailing" constant="15" id="wcj-S6-uhG"/>
-                                                    <constraint firstItem="TLF-Yu-IIJ" firstAttribute="top" secondItem="qWF-CI-LmM" secondAttribute="bottom" constant="20" id="xXi-ep-Hdp"/>
                                                     <constraint firstItem="XsM-JJ-WrK" firstAttribute="leading" secondItem="LnK-33-ImH" secondAttribute="leading" constant="15" id="zc5-mz-OMX"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -2420,14 +2420,14 @@ TicketGateway Balance  </string>
                     <connections>
                         <outlet property="btnCard" destination="wn4-zX-YUW" id="nYj-oc-klS"/>
                         <outlet property="btnContinue" destination="rBl-yt-hIn" id="MUx-Zj-Ump"/>
-                        <outlet property="btnPayWithSavedCards" destination="MlE-Cs-siw" id="sr4-xE-B4B"/>
+                        <outlet property="btnPayWithSavedCards" destination="j3u-OM-gwv" id="jrf-LH-8lJ"/>
                         <outlet property="btnSaveCard" destination="u4p-oq-J0z" id="sMe-kq-T6A"/>
                         <outlet property="btnWallet" destination="9Tz-wJ-K9j" id="XfU-F8-zjk"/>
                         <outlet property="htSaveCardView" destination="kzR-TH-lIJ" id="Ke1-li-l5k"/>
                         <outlet property="imgCard" destination="D0U-s7-gaG" id="8DX-HP-Y30"/>
                         <outlet property="imgCardSave" destination="6e5-fy-pR6" id="F2x-tN-w6U"/>
                         <outlet property="imgWallet" destination="XQB-Jn-JH0" id="5Ud-y3-Xlp"/>
-                        <outlet property="imgWalletSavedCard" destination="8rn-Dn-2ts" id="xdY-7s-0dx"/>
+                        <outlet property="imgWalletSavedCard" destination="LVa-6N-Z6e" id="ueh-VN-Q8G"/>
                         <outlet property="lblAddAmount" destination="pe1-bh-rDU" id="Aog-qd-gzW"/>
                         <outlet property="lblCVC_CVV" destination="qfh-sr-leK" id="weO-2X-rWn"/>
                         <outlet property="lblCardNumber" destination="VMa-dS-r6j" id="nLi-aO-QyH"/>
@@ -2436,7 +2436,7 @@ TicketGateway Balance  </string>
                         <outlet property="lblMoreWayToPay" destination="TLF-Yu-IIJ" id="s7w-5G-V8j"/>
                         <outlet property="lblPayWithCard" destination="wba-Ih-3s1" id="cmN-EE-sC9"/>
                         <outlet property="lblPayWithDigitalWAllet" destination="c1M-5F-exS" id="hqn-pu-Vm7"/>
-                        <outlet property="lblPayWithSavedCards" destination="vX4-Kt-PLS" id="GRM-qJ-rLb"/>
+                        <outlet property="lblPayWithSavedCards" destination="mSE-8H-yDf" id="2U3-A7-4ya"/>
                         <outlet property="lblTittleBalance" destination="0gV-eD-Hk2" id="kRs-Xu-Bm8"/>
                         <outlet property="lblTotalTicketPrice" destination="Xh2-y2-Wyj" id="QPY-BC-1iu"/>
                         <outlet property="navigationView" destination="wOa-ll-zcD" id="9Ph-AR-MeC"/>
@@ -2447,7 +2447,7 @@ TicketGateway Balance  </string>
                         <outlet property="txtCardNumber" destination="ZeU-Vd-fkK" id="Tdg-ZN-E87"/>
                         <outlet property="txtExpiryDate" destination="HhR-8S-i5f" id="43t-Wf-cjN"/>
                         <outlet property="viewDatePicker" destination="TJT-OB-81r" id="8uN-A7-eSc"/>
-                        <outlet property="viewSavedCards" destination="qWF-CI-LmM" id="ODy-WF-fth"/>
+                        <outlet property="viewSavedCards" destination="2jN-Zf-c9a" id="Fsp-lx-J9v"/>
                         <outlet property="vwBgCard" destination="XsM-JJ-WrK" id="kbF-E3-eY8"/>
                         <outlet property="vwBgWallet" destination="2Dj-Mr-RiF" id="dFQ-g8-QCC"/>
                         <outlet property="vwCard" destination="bfe-sW-VAU" id="9zQ-k4-oIG"/>
@@ -4930,13 +4930,13 @@ TicketGateway fee is non refundable.</string>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-RF-Ikr">
                                                                                             <rect key="frame" x="0.0" y="15.333333333333332" width="325" height="44.666666666666671"/>
                                                                                             <subviews>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toronto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-Dq-Jiq">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="20.333333333333332"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-uk-jDB">
                                                                                                     <rect key="frame" x="0.0" y="24.333333333333336" width="325" height="20.333333333333336"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
@@ -5860,23 +5860,23 @@ TicketGateway fee is non refundable.</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pe-iA-Tz1" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MI4-Rg-PfA"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4Hb-aB-vbb">
-                                <rect key="frame" x="0.0" y="60" width="393" height="610"/>
+                                <rect key="frame" x="0.0" y="119" width="393" height="517"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="ZNo-aa-AaB" id="F2T-G1-wP7"/>
                                     <outlet property="delegate" destination="ZNo-aa-AaB" id="cec-eN-xYh"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pe-iA-Tz1" customClass="NavigationBarView" customModule="TicketGateway" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="MI4-Rg-PfA"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KwD-QJ-wh3">
-                                <rect key="frame" x="0.0" y="670" width="393" height="182"/>
+                                <rect key="frame" x="0.0" y="636" width="393" height="182"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8J1-ps-2OF">
                                         <rect key="frame" x="193" y="15" width="180" height="35"/>
@@ -5984,7 +5984,7 @@ TicketGateway fee is non refundable.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMI-jH-zFi">
                                         <rect key="frame" x="20" y="15" width="353" height="47"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-down" translatesAutoresizingMaskIntoConstraints="NO" id="rr5-V5-RTC">
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-down" translatesAutoresizingMaskIntoConstraints="NO" id="rr5-V5-RTC">
                                                 <rect key="frame" x="5" y="13.666666666666629" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="L9k-K0-WJT"/>
@@ -5992,7 +5992,7 @@ TicketGateway fee is non refundable.</string>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CAD$0" placeholder="CAD$0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oq8-6D-YPd" customClass="DropDown">
-                                                <rect key="frame" x="40" y="0.0" width="313" height="47"/>
+                                                <rect key="frame" x="10" y="0.0" width="343" height="47"/>
                                                 <color key="textColor" name="TGBlack"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -6028,7 +6028,7 @@ TicketGateway fee is non refundable.</string>
                                             <constraint firstAttribute="height" constant="47" id="ef4-Q7-TTh"/>
                                             <constraint firstItem="Oq8-6D-YPd" firstAttribute="top" secondItem="IMI-jH-zFi" secondAttribute="top" id="gbV-yf-lr8"/>
                                             <constraint firstAttribute="bottom" secondItem="Oq8-6D-YPd" secondAttribute="bottom" id="gvB-84-y1Y"/>
-                                            <constraint firstItem="Oq8-6D-YPd" firstAttribute="leading" secondItem="IMI-jH-zFi" secondAttribute="leading" constant="40" id="iMT-dJ-Y5x"/>
+                                            <constraint firstItem="Oq8-6D-YPd" firstAttribute="leading" secondItem="IMI-jH-zFi" secondAttribute="leading" constant="10" id="iMT-dJ-Y5x"/>
                                             <constraint firstItem="rr5-V5-RTC" firstAttribute="leading" secondItem="IMI-jH-zFi" secondAttribute="leading" constant="5" id="jqo-iC-9WW"/>
                                             <constraint firstAttribute="trailing" secondItem="Oq8-6D-YPd" secondAttribute="trailing" id="tb3-pN-Ci7"/>
                                             <constraint firstItem="rr5-V5-RTC" firstAttribute="centerY" secondItem="IMI-jH-zFi" secondAttribute="centerY" id="yEn-a5-wPT"/>
@@ -6066,20 +6066,23 @@ TicketGateway fee is non refundable.</string>
                         <viewLayoutGuide key="safeArea" id="ITR-yQ-dSn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="4Hb-aB-vbb" firstAttribute="top" secondItem="5pe-iA-Tz1" secondAttribute="bottom" id="1Xf-BV-zN4"/>
                             <constraint firstItem="4Hb-aB-vbb" firstAttribute="leading" secondItem="ITR-yQ-dSn" secondAttribute="leading" id="4DW-X6-TaP"/>
                             <constraint firstItem="ITR-yQ-dSn" firstAttribute="trailing" secondItem="KwD-QJ-wh3" secondAttribute="trailing" id="IY6-aw-2ah"/>
                             <constraint firstItem="4Hb-aB-vbb" firstAttribute="trailing" secondItem="ITR-yQ-dSn" secondAttribute="trailing" id="K1O-fl-LWi"/>
-                            <constraint firstAttribute="bottom" secondItem="KwD-QJ-wh3" secondAttribute="bottom" id="K8N-Ry-q5R"/>
+                            <constraint firstItem="ITR-yQ-dSn" firstAttribute="bottom" secondItem="KwD-QJ-wh3" secondAttribute="bottom" id="K8N-Ry-q5R"/>
                             <constraint firstItem="5pe-iA-Tz1" firstAttribute="leading" secondItem="ITR-yQ-dSn" secondAttribute="leading" id="W8Y-8l-c4J"/>
-                            <constraint firstItem="5pe-iA-Tz1" firstAttribute="top" secondItem="SmR-As-0N3" secondAttribute="top" id="aHU-tE-4e0"/>
+                            <constraint firstItem="5pe-iA-Tz1" firstAttribute="top" secondItem="ITR-yQ-dSn" secondAttribute="top" id="aHU-tE-4e0"/>
                             <constraint firstItem="KwD-QJ-wh3" firstAttribute="leading" secondItem="SmR-As-0N3" secondAttribute="leading" id="iDF-ZD-iiO"/>
                             <constraint firstItem="5pe-iA-Tz1" firstAttribute="trailing" secondItem="ITR-yQ-dSn" secondAttribute="trailing" id="q1v-gO-KbM"/>
-                            <constraint firstItem="4Hb-aB-vbb" firstAttribute="top" secondItem="5pe-iA-Tz1" secondAttribute="bottom" id="qeb-7m-aoT"/>
                             <constraint firstItem="KwD-QJ-wh3" firstAttribute="top" secondItem="4Hb-aB-vbb" secondAttribute="bottom" id="vya-Cz-6Za"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="btnContinue" destination="KHC-Ng-gms" id="Rv7-a8-TrW"/>
+                        <outlet property="lblTotalTicketPrice" destination="Oq8-6D-YPd" id="LfS-3M-q7N"/>
+                        <outlet property="navigationView" destination="5pe-iA-Tz1" id="nuP-s6-DIP"/>
                         <outlet property="tblView" destination="4Hb-aB-vbb" id="PWp-14-aHG"/>
                     </connections>
                 </viewController>
@@ -6101,7 +6104,7 @@ TicketGateway fee is non refundable.</string>
         <image name="arrow-down" width="24" height="24"/>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
-        <image name="chevron-down_ip" width="16" height="16"/>
+        <image name="chevron-down_ip" width="24.333333969116211" height="24"/>
         <image name="circleChevron-down_ip" width="24" height="24"/>
         <image name="cross_ip" width="24.333333969116211" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>

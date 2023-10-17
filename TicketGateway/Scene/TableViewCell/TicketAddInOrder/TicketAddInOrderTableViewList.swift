@@ -48,9 +48,10 @@ extension TicketAddInOrderTableViewList: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as! TicketTypesCell
-        self.tableDidSelectAtIndex?(indexPath.row)
-        self.reloadData()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTypesCell") as? TicketTypesCell{
+            self.tableDidSelectAtIndex?(indexPath.row)
+            self.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

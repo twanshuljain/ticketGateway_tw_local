@@ -424,6 +424,7 @@ struct PaymentMethodOptionsCard: Codable {
 
 // MARK: - CardList
 struct CardList: Codable {
+    var isSelected = false
     var name: String?
     var id: Int?
     var expMonth, brand, funding, cardToken: String?

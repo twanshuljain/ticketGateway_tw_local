@@ -8,6 +8,15 @@
 import UIKit
 import Stripe
 
+
+enum SelectedPaymentMode {
+    case wallet
+    case applePay
+    case savedCards
+    case debitCreditCard
+    case none
+}
+
 final class EventBookingPaymentMethodViewModel{
     // MARK: - Variables
     var previousTextFieldContent: String?
@@ -36,6 +45,7 @@ final class EventBookingPaymentMethodViewModel{
     var createCharge:CreateCharge?
     var isCardSave = false
     var saveCardList:[CardList]?
+    var paymentModeSelected:SelectedPaymentMode = .none
     
     var stripeUser:StripeCreateUser?
     var addCard:AddCard?
