@@ -58,6 +58,7 @@ enum StoryboardIdentifier: String {
     case PhoneVerificationViewController
     case EmailSentVC
     case EventCheckoutVerifyVC
+    case CardListVC
     
     //SideMenuBar
     case AddAmountWalletVC

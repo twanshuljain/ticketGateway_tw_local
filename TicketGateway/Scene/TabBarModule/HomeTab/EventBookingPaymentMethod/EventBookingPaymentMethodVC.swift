@@ -52,7 +52,10 @@ class EventBookingPaymentMethodVC: UIViewController {
     @IBOutlet weak var htSaveCardView: NSLayoutConstraint!
     @IBOutlet weak var btnSaveCard: UIButton!
     @IBOutlet weak var imgCardSave: UIImageView!
-    
+    @IBOutlet weak var imgWalletSavedCard: UIImageView!
+    @IBOutlet weak var lblPayWithSavedCards: UILabel!
+    @IBOutlet weak var btnPayWithSavedCards: UIButton!
+    @IBOutlet weak var viewSavedCards: UIView!
     //MARK: - Variables
     
     var viewModel = EventBookingPaymentMethodViewModel()
@@ -86,7 +89,7 @@ extension EventBookingPaymentMethodVC {
         self.navigationView.vwBorder.isHidden = false
         self.btnContinue.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
         btnContinue.setTitles(text: TITLE_CONTINUE, font: UIFont.boldSystemFont(ofSize: 15), tintColour: .black)
-        [self.btnContinue,self.btnCard,btnWallet,btnRightArrow,btnSaveCard].forEach {
+        [self.btnContinue,self.btnCard,btnWallet,btnRightArrow,btnSaveCard, btnPayWithSavedCards].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.funcDefoultSet()
@@ -100,7 +103,7 @@ extension EventBookingPaymentMethodVC {
             $0?.textColor = UIColor.setColor(colorType: .lblTextPara)
         }
         
-        [self.lblPayWithCard,lblPayWithDigitalWAllet].forEach {
+        [self.lblPayWithCard,lblPayWithDigitalWAllet, lblPayWithSavedCards].forEach {
             $0?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
             $0?.textColor = UIColor.setColor(colorType: .tgBlack)
         }
@@ -113,22 +116,26 @@ extension EventBookingPaymentMethodVC {
     }
     
     func apiCall(){
-       // self.viewModel.getCardList(vc: self)
+        self.viewModel.getCardList(vc: self)
     }
     
     func funcDefoultSet(){
         self.viewModel.isCardSave = false
         self.vwBgCard.backgroundColor = .clear
         self.vwBgWallet.backgroundColor = .clear
+        self.viewSavedCards.backgroundColor = .clear
+        
         self.vwWallet.isHidden = true
         self.vwCard.isHidden = true
         htSaveCardView.constant = 0
         self.vwBgWallet.borderColor = UIColor.setColor(colorType: .borderColor)
         self.vwBgCard.borderColor = UIColor.setColor(colorType: .borderColor)
-
+        self.viewSavedCards.borderColor = UIColor.setColor(colorType: .borderColor)
+        
         self.vwWalletTop.isHidden = true
         self.vwCardTop.isHidden = true
         self.imgCard.image = UIImage(named: UNACTIVE_ICON)
+        self.imgWalletSavedCard.image = UIImage(named: UNACTIVE_ICON)
         self.imgCardSave.image = UIImage(named: IMAGE_UNACTIVE_TERM_ICON)
         self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
         self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
@@ -143,6 +150,17 @@ extension EventBookingPaymentMethodVC {
 //        self.txtCVV.text = "123"
 //        self.viewModel.selectedMonth = "12"
 //        self.viewModel.selectedYear = "2025"
+    }
+    
+    func navigateToCardList() {
+        if let view = self.createView(storyboard: .home, storyboardID: .CardListVC) as? CardListVC{
+            view.viewModel.arrCardList = self.viewModel.saveCardList
+            view.viewModel.createCharge = self.viewModel.createCharge
+            view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+           // view.viewModel.isTransactionFailed = self.viewModel.success == true ? false : true
+            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+            self.navigationController?.pushViewController(view, animated: true)
+        }
     }
     
 }
@@ -161,6 +179,8 @@ extension EventBookingPaymentMethodVC {
             self.btnRightArrowAction()
         case btnSaveCard:
             self.btnSaveCardAction()
+        case btnPayWithSavedCards:
+            self.btnPayWithSavedCardsAction()
         default:
             break
         }
@@ -182,15 +202,45 @@ extension EventBookingPaymentMethodVC {
             self.setGradientBackground(viewadd: vwBgWallet)
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
+            self.viewSavedCards.backgroundColor = .clear
             self.vwBgWallet.borderColor = UIColor.setColor(colorType: .tgBlue)
+            self.viewSavedCards.borderColor = UIColor.setColor(colorType: .borderColor)
+            self.vwBgCard.borderColor = UIColor.setColor(colorType: .borderColor)
            // self.vwWallet.isHidden = false
             self.vwCard.isHidden = true
+            htSaveCardView.constant = 0
            // self.vwWalletTop.isHidden = false
             self.vwCardTop.isHidden = true
             self.imgWallet.image = UIImage(named: ACTIVE_ICON)
             self.imgCard.image = UIImage(named: UNACTIVE_ICON)
+            self.imgWalletSavedCard.image = UIImage(named: UNACTIVE_ICON)
            // self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
             self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+         } else {
+            self.funcDefoultSet()
+        }
+    }
+    func btnPayWithSavedCardsAction() {
+        if self.viewSavedCards.backgroundColor == .clear {
+           
+            self.setGradientBackground(viewadd: viewSavedCards)
+            self.viewSavedCards.backgroundColor = .white
+            self.vwBgCard.backgroundColor = .clear
+            self.vwBgWallet.backgroundColor = .clear
+            self.viewSavedCards.borderColor = UIColor.setColor(colorType: .tgBlue)
+            self.vwBgWallet.borderColor = UIColor.setColor(colorType: .borderColor)
+            self.vwBgCard.borderColor = UIColor.setColor(colorType: .borderColor)
+           // self.vwWallet.isHidden = false
+            self.vwCard.isHidden = true
+            htSaveCardView.constant = 0
+           // self.vwWalletTop.isHidden = false
+            self.vwCardTop.isHidden = true
+            self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
+            self.imgCard.image = UIImage(named: UNACTIVE_ICON)
+            self.imgWalletSavedCard.image = UIImage(named: ACTIVE_ICON)
+           // self.btnWallet.setImage(UIImage(named: ARROW_UP), for: .normal)
+            self.btnCard.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
+            navigateToCardList()
          } else {
             self.funcDefoultSet()
         }
@@ -202,8 +252,11 @@ extension EventBookingPaymentMethodVC {
             self.setGradientBackground(viewadd: vwBgCard)
             self.vwBgCard.backgroundColor = .white
             self.vwBgWallet.backgroundColor = .clear
+            self.viewSavedCards.backgroundColor = .clear
             self.vwBgCard.borderColor = UIColor.setColor(colorType: .tgBlue)
-
+            self.vwBgWallet.borderColor = UIColor.setColor(colorType: .borderColor)
+            self.viewSavedCards.borderColor = UIColor.setColor(colorType: .borderColor)
+            
             self.vwWalletTop.isHidden = true
             self.vwCardTop.isHidden = false
             self.vwWallet.isHidden = true
@@ -211,6 +264,7 @@ extension EventBookingPaymentMethodVC {
             htSaveCardView.constant = 60
             self.imgCard.image = UIImage(named: ACTIVE_ICON)
             self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
+            self.imgWalletSavedCard.image = UIImage(named: UNACTIVE_ICON)
             self.btnCard.setImage(UIImage(named: ARROW_UP), for: .normal)
          //   self.btnWallet.setImage(UIImage(named: ARROW_DOWN_ICON), for: .normal)
         } else {
