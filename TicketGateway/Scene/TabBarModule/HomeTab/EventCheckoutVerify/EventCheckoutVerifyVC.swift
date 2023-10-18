@@ -313,6 +313,71 @@ extension EventCheckoutVerifyVC {
         }
     }
     
+    func setDefaultData(email:String,firstName:String,lastName:String,countryCode:String,mobileNumber:String) {
+        self.txtEmailAddress.text =  email
+        self.txtFirstName.text = firstName
+        self.txtLastName.text = lastName
+        
+        let number = mobileNumber
+        if number.contains("+91") {
+            self.txtMobileNumber.text = number.replacingOccurrences(of: "+91", with: "")
+        }else{
+            self.txtMobileNumber.text = number
+        }
+        // Defoult Country
+        // UI Changes---
+        self.imgCountry.image = nil
+        if self.imgCountry.image == nil {
+            var str = ""
+            var arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+            
+            if countryCode != nil && countryCode != ""{
+                str = countryCode
+                arr = viewModel.RScountriesModel.filter({$0.dial_code == str})
+                
+                if !arr.indices.contains(0){
+                    str = NSLocale.current.regionCode ?? ""
+                    arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+                }
+            }else{
+                str = NSLocale.current.regionCode ?? ""
+                arr = viewModel.RScountriesModel.filter({$0.country_code == str})
+            }
+           
+            self.lblDialCountryCode.text = "+91"
+            var imagePath = "CountryPicker.bundle/\(str).png"
+            
+            if arr.count == 2{
+                arr.removeAll { country in
+                    country.country_code != (NSLocale.current.regionCode ?? "")
+                }
+            }
+            
+            if let flagImg = UIImage(named: imagePath){
+                self.imgCountry.image = flagImg
+            }else{
+                if arr.indices.contains(0){
+                    str = arr[0].country_code
+                    imagePath = "CountryPicker.bundle/\(str).png"
+                    self.imgCountry.image = UIImage(named: imagePath)
+                }
+            }
+            if arr.count>0 {
+                let country = arr[0]
+                self.viewModel.strCountryDialCode = country.dial_code
+                self.lblDialCountryCode.text = country.dial_code
+                self.viewModel.strCountryCode = country.country_code
+                self.viewModel.strCountryName = country.country_name
+                self.lblDialCountryCode.text = country.dial_code
+                self.viewModel.strCountryCode = country.country_code
+                let imagePath = "CountryPicker.bundle/\( country.country_code).png"
+                self.imgCountry.image = UIImage(named: imagePath)
+            }
+        } else {
+            // noting to do
+        }
+    }
+    
     func apiCallForEmailVerification(){
         if Reachability.isConnectedToNetwork() {
             let param = CheckEmail(emailAddress: self.txtEmailAddress.text ?? "")
@@ -324,10 +389,15 @@ extension EventCheckoutVerifyVC {
                         self.lblVerified.isHidden =  false
                         self.txtEmailAddress.isUserInteractionEnabled = false
                         self.txtEmailAddress.borderColor = UIColor.setColor(colorType: .tgGreen)
+                        self.setDefaultData(email: self.viewModel.emailVerifyResponse?.email ?? "", firstName: self.viewModel.emailVerifyResponse?.firstName ?? "", lastName: self.viewModel.emailVerifyResponse?.lastName ?? "", countryCode: self.viewModel.emailVerifyResponse?.countryCode ?? "", mobileNumber: self.viewModel.emailVerifyResponse?.cellPhone ?? "")
+                        self.htStackView.constant = 380
+                        self.confirmEmailView.isHidden = true
                     }
                 } else {
                     DispatchQueue.main.async {
                         self.view.stopLoading()
+                        self.htStackView.constant = 480
+                        self.confirmEmailView.isHidden = false
                         self.lblVerified.isHidden =  true
                         self.txtEmailAddress.isUserInteractionEnabled = true
                         self.txtEmailAddress.borderColor = UIColor.setColor(colorType: .borderLineColour)

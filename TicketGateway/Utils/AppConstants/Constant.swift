@@ -147,7 +147,7 @@ enum PaymentError {
     var value:String {
         switch self {
         case .noPaymentModelSelected:
-            return "Please select payment mode"
+            return "Please select payment method"
         case .cardholderName:
             return "Please enter cardholder name."
         case .cardNumber:
