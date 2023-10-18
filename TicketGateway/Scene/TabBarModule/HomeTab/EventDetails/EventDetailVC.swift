@@ -117,6 +117,11 @@ extension EventDetailVC {
         self.tblSuggestedEvent.delegateShareAction = self
         self.tblSuggestedEvent.delegateLikeAction = self
         self.tblSuggestedEvent.delegateViewMore = self
+        if #available(iOS 15.0, *) {
+            self.tblSuggestedEvent.sectionHeaderTopPadding = .zero
+        } else {
+            // Fallback on earlier versions
+        }
         self.collvwEventImages.reloadData()
         self.txtDate.delegate = self
         self.txtLocation.delegate = self

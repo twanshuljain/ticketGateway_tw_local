@@ -16,6 +16,8 @@ import UIKit
 class EventBookingOrderSummaryVC: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var vwDottedDIscount: UIView!
+    @IBOutlet weak var vwDottedAddOns: UIView!
+    @IBOutlet weak var summaryDottedView: UIView!
     @IBOutlet weak var vwDotteds: UIView!
     @IBOutlet weak var vwDotted: UIView!
     @IBOutlet weak var heightOfTickets: NSLayoutConstraint!
@@ -60,6 +62,12 @@ extension EventBookingOrderSummaryVC {
         self.tblAddedTickets.configure()
         self.tblAddedTickets.selectedCurrencyType = self.viewModel.selectedCurrencyType
         self.tblAddOnEtcThings.configure()
+        if #available(iOS 15.0, *) {
+            self.tblAddedTickets.sectionHeaderTopPadding = .zero
+            self.tblAddOnEtcThings.sectionHeaderTopPadding = .zero
+        } else {
+            // Fallback on earlier versions
+        }
         self.tblAddOnEtcThings.selectedCurrencyType = self.viewModel.selectedCurrencyType
         self.navigationView.delegateBarAction = self
         self.navigationView.lblTitle.text = ORDER_SUMMARY
@@ -101,6 +109,8 @@ extension EventBookingOrderSummaryVC {
         vwDotted.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDotteds.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDottedDIscount.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
+        summaryDottedView.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
+        vwDottedAddOns.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height
@@ -115,7 +125,7 @@ extension EventBookingOrderSummaryVC {
         var serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees?.charge ?? 0)
         var processingCharge = Double((self.viewModel.feeStructure?.processingFees?.charge ?? 0))
         var facilityCharge = Double(self.viewModel.feeStructure?.facilityFees?.charge ?? 0)
-        let subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
+        var subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
         let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
         let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
         
@@ -136,7 +146,7 @@ extension EventBookingOrderSummaryVC {
         let convertedProcessingCharge = self.convertToTwoDecimalPlaces(processingCharge)
         let convertedFacilityCharge = self.convertToTwoDecimalPlaces(facilityCharge)
         
-        let convertedSubTotal = self.convertToTwoDecimalPlaces(subTotal)
+        
         let convertedDiscountValue = self.convertToTwoDecimalPlaces(discountValue)
         _ = self.convertToTwoDecimalPlaces(discountedFinalPrice)
         
@@ -144,7 +154,7 @@ extension EventBookingOrderSummaryVC {
         self.lblServiceChargeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedServiceCharge ?? "")"
         self.lblProcessingFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedProcessingCharge ?? "")"
         self.lblfacilityFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedFacilityCharge ?? "")"
-        self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
+        
         var total = 0.0
         
 //        if isPercentage{
@@ -159,6 +169,7 @@ extension EventBookingOrderSummaryVC {
         
         if discountValue != 0.0 && self.viewModel.discountType != nil{
             total = serviceCharge + processingCharge + facilityCharge + discountedFinalPrice
+            subTotal = subTotal - discountValue
             self.lblDiscouted.isHidden = false
             self.lblDiscoutedValue.isHidden = false
             self.discountViewHt.constant = 40
@@ -170,8 +181,8 @@ extension EventBookingOrderSummaryVC {
             self.discountViewHt.constant = 0
         }
         
-        
-        
+        let convertedSubTotal = self.convertToTwoDecimalPlaces(subTotal)
+        self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
         self.lblTotalAmtValue.text = "\(self.viewModel.selectedCurrencyType)\(convertToTwoDecimalPlaces(total) ?? "")"
         self.viewModel.totalTicketPrice = "\(convertToTwoDecimalPlaces(total) ?? "")"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
