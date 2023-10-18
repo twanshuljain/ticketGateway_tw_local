@@ -2521,7 +2521,7 @@ TicketGateway Balance  </string>
                                                             <constraint firstAttribute="height" constant="48" id="M3e-Rp-UC6"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="View my Ticket">
+                                                        <state key="normal" title="Download my Ticket">
                                                             <color key="titleColor" name="TGBlue"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>

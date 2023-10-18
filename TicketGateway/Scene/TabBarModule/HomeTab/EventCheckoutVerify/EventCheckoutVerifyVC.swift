@@ -326,6 +326,7 @@ extension EventCheckoutVerifyVC {
     
     func setDefaultData(email:String,firstName:String,lastName:String,countryCode:String,mobileNumber:String) {
         self.txtEmailAddress.text =  email
+        self.txtConfirmEmailAddress.text =  email
         self.txtFirstName.text = firstName
         self.txtLastName.text = lastName
         
@@ -436,7 +437,7 @@ extension EventCheckoutVerifyVC {
                         UserDefaultManager.share.clearAllUserDataAndModel()
                         let objUserModel = SignInAuthModel(id: userModel?.id, number: userModel?.number, firstName: userModel?.firstName, lastName: userModel?.lastName, email:  userModel?.email, accessToken:  userModel?.accessToken, refreshToken: userModel?.refreshToken, strDialCountryCode: "\(lblDialCountryCode.text ?? "")")
                         UserDefaultManager.share.storeModelToUserDefault(userData: objUserModel, key: .userAuthData)
-                        
+                        UserDefaultManager.share.setUserBoolValue(value: false, key: .isGuestLogin)
                         self.navigateToPaymentVc()
                     }
                 }

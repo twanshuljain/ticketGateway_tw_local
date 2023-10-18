@@ -47,7 +47,7 @@ extension PaymentSuccessFullVC {
         [self.btnBrowseMorwEvents,self.btnViewMyTicket,btnBrowseMorwEvents,btnGoTopMyAccount,btnNeedHelp].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
-        self.btnViewMyTicket.titleLabel?.text = VIEW_MY_TICKETS
+        self.btnViewMyTicket.titleLabel?.text = DOWNLOAD_MY_TICKETS
         self.btnViewMyTicket.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         self.btnViewMyTicket.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlue)
         self.btnGoTopMyAccount.setTitle(BROWSE_EVENTS, for: .normal)
@@ -131,7 +131,8 @@ extension PaymentSuccessFullVC {
         if btnBrowseMorwEvents.titleLabel?.text == Retry_Payment{
             self.navigationController?.popViewController(animated: true)
         }else{
-            self.navigationController?.popToRootViewController(animated: false)
+            self.tabBarController?.selectedIndex = 1
+            self.navigationController?.popToRootViewController(animated: true)
         }
         
     }
@@ -139,9 +140,8 @@ extension PaymentSuccessFullVC {
         AppShareData.sharedObject().setRootToHomeVCAndMoveToFAQ()
     }
     func btnViewMyTicketAction() {
-        self.tabBarController?.selectedIndex = 1
-        self.navigationController?.popToRootViewController(animated: false)
-        //self.navigationController?.popToRootViewController(animated: false)
+        //self.tabBarController?.selectedIndex = 1
+       // self.navigationController?.popToRootViewController(animated: false)
     }
 }
 ////MARK: - NavigationBarViewDelegate
