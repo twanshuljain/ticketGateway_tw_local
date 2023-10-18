@@ -34,7 +34,9 @@ class TicketTypesCell: UITableViewCell {
             self.lblAmount.isHidden = true
             self.vwForGroup.isHidden = true
             self.lblNoOfInGroup.text = ""
-            self.lblSecAmount.text = "\(event.ticketCurrencyType ?? "") "+"$"+"\(self.convertToTwoDecimalPlaces(event.ticketPrice ?? 0) ?? "0.00")"
+            
+            //self.lblSecAmount.text = "\(event.ticketCurrencyType ?? "") "+"$"+"\(self.convertToTwoDecimalPlaces(event.ticketPrice ?? 0) ?? "0.00")"
+            self.lblSecAmount.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: event.ticketCurrencyType ?? ""))\(self.convertToTwoDecimalPlaces(event.ticketPrice ?? 0) ?? "0.00")"
             //self.lblAmountWithAdditionCharge.text = "Incl. CAD$10.00 Facility Fee"
             self.lblAmountWithAdditionCharge.text = "(Incl. fees)"
             
