@@ -37,7 +37,7 @@ class suggestedOrganizerCell: UICollectionViewCell {
     }
     
     func setData(organizerDetail: Organizers){
-        self.lblName.text = organizerDetail.name ?? ""
+        self.lblName.text = organizerDetail.name?.firstUppercased ?? ""
         self.lblFollowers.text = "\(organizerDetail.followers ?? 0) followers "
         if organizerDetail.isFollow == true {
             self.btnFollerwers.setTitle("Following", for: .normal)

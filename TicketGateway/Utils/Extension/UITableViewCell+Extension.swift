@@ -56,6 +56,18 @@ extension UITableViewCell {
            return "-"
         }
     }
+    func convertToTwoDecimalPlaces(_ value: Any) -> String? {
+        if let numericValue = value as? Double {
+            return String(format: "%.2f", numericValue)
+        } else if let numericValue = value as? Float {
+            return String(format: "%.2f", numericValue)
+        } else if let numericValue = value as? Int {
+            return String(format: "%.2f", Double(numericValue))
+        }
+        
+        // Handle other types or unsupported types here
+        return nil
+    }
 }
 extension UITableView {
     func setEmptyMessage(_ message: String) {

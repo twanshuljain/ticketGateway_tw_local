@@ -95,7 +95,7 @@ extension EventBookingTicketOnApplyCouponVC {
             self.viewModel.arrTicketList?.removeAll()
             self.viewModel.arrTicketList = self.tblEventTicketTypes.arrTicketList
             self.viewModel.eventDetail?.event?.eventTicketFinalPrice = price
-            self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")) \(price)"
+            self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? ""))\(self.convertToTwoDecimalPlaces(price) ?? "0.00")"
             self.viewModel.selectedCurrencyType = AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")
         }
         self.navigationView.delegateBarAction = self
@@ -122,7 +122,7 @@ extension EventBookingTicketOnApplyCouponVC {
     
     func setData(){
         self.viewModel.selectedCurrencyType = AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")
-        self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? "")) \(Double(self.viewModel.totalTicketPrice) ?? 0.0)"
+        self.lblTotalTicketPrice.text = "\(AppShareData.sharedObject().getTicketCurrency(currencyType: self.tblEventTicketTypes.arrTicketList?.last?.ticketCurrencyType ?? ""))\(self.convertToTwoDecimalPlaces(self.viewModel.totalTicketPrice) ?? "0.00")"
     }
     
     func setUi(){

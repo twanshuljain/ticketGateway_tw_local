@@ -95,7 +95,7 @@ extension EventBookingTicketAddOnsVC {
     }
     
     func setData(){
-        self.lblTotalTicketPrice.text = "\(self.viewModel.selectedCurrencyType)\(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0)"
+        self.lblTotalTicketPrice.text = "\(self.viewModel.selectedCurrencyType)\(self.convertToTwoDecimalPlaces(self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.00) ?? "0.00")"
         if self.viewModel.arrAddOnTicketList?.count == 0{
             self.noDataFoundView.isHidden = false
         }else{
