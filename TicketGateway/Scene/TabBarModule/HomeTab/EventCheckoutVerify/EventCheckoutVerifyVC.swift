@@ -33,7 +33,8 @@ class EventCheckoutVerifyVC: UIViewController {
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var lblVerified: UILabel!
     
-    
+    @IBOutlet weak var vwDottedAddOns: UIView!
+    @IBOutlet weak var summaryDottedView: UIView!
     @IBOutlet weak var vwDottedDIscount: UIView!
     @IBOutlet weak var vwDotteds: UIView!
     @IBOutlet weak var vwDotted: UIView!
@@ -86,6 +87,12 @@ extension EventCheckoutVerifyVC {
         self.tblAddedTickets.configure()
         self.tblAddedTickets.selectedCurrencyType = self.viewModel.selectedCurrencyType
         self.tblAddOnEtcThings.configure()
+        if #available(iOS 15.0, *) {
+            self.tblAddedTickets.sectionHeaderTopPadding = .zero
+            self.tblAddOnEtcThings.sectionHeaderTopPadding = .zero
+        } else {
+            // Fallback on earlier versions
+        }
         self.tblAddOnEtcThings.selectedCurrencyType = self.viewModel.selectedCurrencyType
         self.tblAddedTickets.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
         self.heightOfTickets.constant = self.tblAddedTickets.contentSize.height
@@ -161,6 +168,8 @@ extension EventCheckoutVerifyVC {
         vwDotted.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDotteds.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDottedDIscount.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
+        summaryDottedView.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
+        vwDottedAddOns.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
 //        self.btnContinue.alpha = 0.5
 //        self.btnContinue.isUserInteractionEnabled = false
     }
@@ -169,7 +178,7 @@ extension EventCheckoutVerifyVC {
         var serviceCharge =  Double(self.viewModel.feeStructure?.serviceFees?.charge ?? 0)
         var processingCharge = Double((self.viewModel.feeStructure?.processingFees?.charge ?? 0))
         var facilityCharge = Double(self.viewModel.feeStructure?.facilityFees?.charge ?? 0)
-        let subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
+        var subTotal = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
         let discountValue = self.viewModel.eventDetail?.event?.discountValue ?? 0.0
         let discountedFinalPrice = self.viewModel.eventDetail?.event?.discountedFinalPrice ?? 0.0
         
@@ -190,7 +199,7 @@ extension EventCheckoutVerifyVC {
         let convertedProcessingCharge = self.convertToTwoDecimalPlaces(processingCharge)
         let convertedFacilityCharge = self.convertToTwoDecimalPlaces(facilityCharge)
         
-        let convertedSubTotal = self.convertToTwoDecimalPlaces(subTotal)
+        
         let convertedDiscountValue = self.convertToTwoDecimalPlaces(discountValue)
         _ = self.convertToTwoDecimalPlaces(discountedFinalPrice)
         
@@ -198,7 +207,7 @@ extension EventCheckoutVerifyVC {
         self.lblServiceChargeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedServiceCharge ?? "")"
         self.lblProcessingFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedProcessingCharge ?? "")"
         self.lblfacilityFeeValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedFacilityCharge ?? "")"
-        self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
+        
         var total = 0.0
         
 //        if isPercentage{
@@ -213,6 +222,7 @@ extension EventCheckoutVerifyVC {
         
         if discountValue != 0.0 && self.viewModel.discountType != nil{
             total = serviceCharge + processingCharge + facilityCharge + discountedFinalPrice
+            subTotal = subTotal - discountValue
             self.lblDiscouted.isHidden = false
             self.lblDiscoutedValue.isHidden = false
             self.discountViewHt.constant = 40
@@ -225,7 +235,8 @@ extension EventCheckoutVerifyVC {
         }
         
         
-        
+        let convertedSubTotal = self.convertToTwoDecimalPlaces(subTotal)
+        self.lblSubTotalValue.text = "\(self.viewModel.selectedCurrencyType)\(convertedSubTotal ?? "")"
         self.lblTotalAmtValue.text = "\(self.viewModel.selectedCurrencyType)\(convertToTwoDecimalPlaces(total) ?? "")"
         self.viewModel.totalTicketPrice = "\(convertToTwoDecimalPlaces(total) ?? "")"
         self.tblAddedTickets.selectedArrTicketList = self.viewModel.selectedArrTicketList
