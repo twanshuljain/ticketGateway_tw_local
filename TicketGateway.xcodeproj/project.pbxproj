@@ -186,6 +186,7 @@
 		188CE1B42A1367EA00BCEC76 /* TicketAddInOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188CE1B22A1367EA00BCEC76 /* TicketAddInOrderCell.xib */; };
 		188CE1BE2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */; };
 		188D48192A73A86500ED2D5E /* OrganizersandArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */; };
+		188E9C3B2ADEB2A20080D9C8 /* CustomGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E9C3A2ADEB2A20080D9C8 /* CustomGradientView.swift */; };
 		1890EA022AB1976800B5CB3E /* TicketTransferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890EA012AB1976800B5CB3E /* TicketTransferModel.swift */; };
 		1892EE1C29E5492300AD7CC7 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1B29E5492300AD7CC7 /* UIView+Extension.swift */; };
 		1892EE1E29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892EE1D29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift */; };
@@ -642,6 +643,7 @@
 		188CE1B22A1367EA00BCEC76 /* TicketAddInOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketAddInOrderCell.xib; sourceTree = "<group>"; };
 		188CE1BD2A136D7300BCEC76 /* EventBookingPaymentMethodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBookingPaymentMethodVC.swift; sourceTree = "<group>"; };
 		188D48182A73A86500ED2D5E /* OrganizersandArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizersandArtistViewModel.swift; sourceTree = "<group>"; };
+		188E9C3A2ADEB2A20080D9C8 /* CustomGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradientView.swift; sourceTree = "<group>"; };
 		1890EA012AB1976800B5CB3E /* TicketTransferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTransferModel.swift; sourceTree = "<group>"; };
 		1892EE1B29E5492300AD7CC7 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1892EE1D29E54A2A00AD7CC7 /* WelcomeLoginSignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeLoginSignupVC.swift; sourceTree = "<group>"; };
@@ -1098,6 +1100,7 @@
 				1801CD5A2A4EF894007DA967 /* RatingCustomFooterView.xib */,
 				1801CD5C2A4EFAF6007DA967 /* RatingCustomFooterView.swift */,
 				18BC2EE42A52978500FB427E /* PlaceholderTextView.swift */,
+				188E9C3A2ADEB2A20080D9C8 /* CustomGradientView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -1277,7 +1280,6 @@
 		183A262E2A431FE900DC97E3 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
-				18377E272ADE77C50031A8E0 /* CardList */,
 				18506D072A4412C200C3C64B /* View */,
 				1836838C2A82727E00D238FA /* EventPromoCode */,
 				180A07F129ED758C0088C03A /* EventTicketAddOns */,
@@ -1285,6 +1287,7 @@
 				184B79182A4410B800577B26 /* EventPaymentSuccess */,
 				184B79172A44108B00577B26 /* EventTicketApplyCoupon */,
 				184B79162A44104800577B26 /* EventBookingPaymentMethod */,
+				18377E272ADE77C50031A8E0 /* CardList */,
 				184B79152A440FFD00577B26 /* EventBookingSummary */,
 				187C5AFD2AD6C127004D0188 /* EventCheckoutVerify */,
 				183A26422A4339D000DC97E3 /* EventBooking */,
@@ -3357,6 +3360,7 @@
 				18F9E7EC2A6F957A003C84C2 /* EventTicketAddOnResponseModel.swift in Sources */,
 				189FAEC929F12A7100B8325A /* CommonFunctions.swift in Sources */,
 				18FBC0FF2A309239002CF129 /* AmountAddedSuccessfullyVC.swift in Sources */,
+				188E9C3B2ADEB2A20080D9C8 /* CustomGradientView.swift in Sources */,
 				18F6AEF02A42C7E600500678 /* UIFont+Extension.swift in Sources */,
 				18F5A4C62A4EA55900CA18F7 /* SelectTicketTypeViewModel.swift in Sources */,
 				18A84DA52A9891F3005DB31C /* FavouriteModel.swift in Sources */,

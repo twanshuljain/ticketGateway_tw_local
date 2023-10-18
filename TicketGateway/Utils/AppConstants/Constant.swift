@@ -133,7 +133,7 @@ enum StoryboardIdentifier: String {
 }
 
 enum PaymentError {
-   
+    case noPaymentModelSelected
     case cardholderName
     case cardNumber
     case expiryDate
@@ -146,6 +146,8 @@ enum PaymentError {
 
     var value:String {
         switch self {
+        case .noPaymentModelSelected:
+            return "Please select payment mode"
         case .cardholderName:
             return "Please enter cardholder name."
         case .cardNumber:
@@ -210,6 +212,7 @@ let POP_DESCRIPTION = "Pepsi cans and bottles available, In the sizes of Large &
 let OKAY = "Okay"
 let ORDER_SUMMARY = "Order Summary"
 let SELECT_PAYMENT_METHOD =  "Select a Payment Method"
+let CARD_LIST =  "Card list"
 let PAYMENT_SUCCESSFULL = "Payment Successful"
 let BROWSE_MORE_EVENT = "Browse more events"
 let BROWSE_EVENTS = "Browse events"

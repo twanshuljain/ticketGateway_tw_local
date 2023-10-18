@@ -4,10 +4,19 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,43 +28,43 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuP-zE-HUy">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="111"/>
+                        <rect key="frame" x="10" y="10" width="320" height="91"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="active" translatesAutoresizingMaskIntoConstraints="NO" id="s9V-57-2gb">
-                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unActive" translatesAutoresizingMaskIntoConstraints="NO" id="s9V-57-2gb">
+                                <rect key="frame" x="20" y="16" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="O0z-XA-Zor"/>
                                     <constraint firstAttribute="height" constant="24" id="mpJ-4C-3bi"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cz9-6K-bzX">
-                                <rect key="frame" x="40" y="0.0" width="300" height="111"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cz9-6K-bzX" customClass="CustomGradientView" customModule="TicketGateway" customModuleProvider="target">
+                                <rect key="frame" x="60" y="0.0" width="244" height="91"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="I04-u3-s25">
-                                        <rect key="frame" x="16" y="16" width="197" height="79"/>
+                                        <rect key="frame" x="16" y="16" width="141" height="59"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ble-Ws-JM4">
-                                                <rect key="frame" x="0.0" y="0.0" width="197" height="26.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="141" height="19.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                <color key="textColor" name="white"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Master Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2P-iE-Y9k">
-                                                <rect key="frame" x="0.0" y="26.333333333333336" width="197" height="26.333333333333336"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="0.0" y="19.666666666666664" width="141" height="19.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                <color key="textColor" name="white"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5300 **** **** 2125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssK-Ir-y4D">
-                                                <rect key="frame" x="0.0" y="52.666666666666679" width="197" height="26.333333333333336"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="0.0" y="39.333333333333329" width="141" height="19.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
+                                                <color key="textColor" name="white"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CardImage" translatesAutoresizingMaskIntoConstraints="NO" id="s1s-QU-2aD">
-                                        <rect key="frame" x="215" y="21" width="69" height="69"/>
+                                        <rect key="frame" x="159" y="21" width="69" height="69"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="69" id="JAp-zR-EUB"/>
                                             <constraint firstAttribute="width" constant="69" id="ocw-zi-acO"/>
@@ -77,23 +86,25 @@
                         <constraints>
                             <constraint firstItem="Cz9-6K-bzX" firstAttribute="leading" secondItem="s9V-57-2gb" secondAttribute="trailing" constant="16" id="3f1-GK-d38"/>
                             <constraint firstAttribute="bottom" secondItem="Cz9-6K-bzX" secondAttribute="bottom" id="82C-5J-dct"/>
-                            <constraint firstAttribute="trailing" secondItem="Cz9-6K-bzX" secondAttribute="trailing" id="AQe-Xi-xOe"/>
+                            <constraint firstAttribute="trailing" secondItem="Cz9-6K-bzX" secondAttribute="trailing" constant="16" id="AQe-Xi-xOe"/>
                             <constraint firstItem="Cz9-6K-bzX" firstAttribute="top" secondItem="QuP-zE-HUy" secondAttribute="top" id="dxa-dV-0K6"/>
-                            <constraint firstItem="s9V-57-2gb" firstAttribute="top" secondItem="QuP-zE-HUy" secondAttribute="top" id="m44-4d-5gQ"/>
-                            <constraint firstItem="s9V-57-2gb" firstAttribute="leading" secondItem="QuP-zE-HUy" secondAttribute="leading" id="xVQ-Zb-3EZ"/>
+                            <constraint firstItem="s9V-57-2gb" firstAttribute="top" secondItem="ble-Ws-JM4" secondAttribute="top" id="hLU-va-PJb"/>
+                            <constraint firstItem="s9V-57-2gb" firstAttribute="leading" secondItem="QuP-zE-HUy" secondAttribute="leading" constant="20" id="xVQ-Zb-3EZ"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="QuP-zE-HUy" secondAttribute="trailing" id="EjP-6x-J1I"/>
-                    <constraint firstItem="QuP-zE-HUy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hY9-Wh-Pcc"/>
-                    <constraint firstAttribute="bottom" secondItem="QuP-zE-HUy" secondAttribute="bottom" id="jX2-4X-AUp"/>
-                    <constraint firstItem="QuP-zE-HUy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mSh-0x-IqU"/>
+                    <constraint firstAttribute="trailing" secondItem="QuP-zE-HUy" secondAttribute="trailing" constant="10" id="EjP-6x-J1I"/>
+                    <constraint firstItem="QuP-zE-HUy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hY9-Wh-Pcc"/>
+                    <constraint firstAttribute="bottom" secondItem="QuP-zE-HUy" secondAttribute="bottom" constant="10" id="jX2-4X-AUp"/>
+                    <constraint firstItem="QuP-zE-HUy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="mSh-0x-IqU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cardView" destination="Cz9-6K-bzX" id="Wki-JB-6tk"/>
                 <outlet property="imgCardSelect" destination="s9V-57-2gb" id="d6P-Ve-A0T"/>
+                <outlet property="imgSelected" destination="s9V-57-2gb" id="XN5-g6-krK"/>
                 <outlet property="lblCardHolderName" destination="ble-Ws-JM4" id="PMF-T7-aeB"/>
                 <outlet property="lblCardNumber" destination="ssK-Ir-y4D" id="Ycp-2F-l7o"/>
                 <outlet property="lblCardType" destination="s2P-iE-Y9k" id="R8I-dB-Ha8"/>
@@ -103,7 +114,10 @@
     </objects>
     <resources>
         <image name="CardImage" width="69" height="69"/>
-        <image name="active" width="24" height="24"/>
+        <image name="unActive" width="24" height="24"/>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

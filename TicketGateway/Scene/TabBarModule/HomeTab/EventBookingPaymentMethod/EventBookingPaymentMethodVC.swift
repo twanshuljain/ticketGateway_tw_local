@@ -116,10 +116,11 @@ extension EventBookingPaymentMethodVC {
     }
     
     func apiCall(){
-        self.viewModel.getCardList(vc: self)
+        //self.viewModel.getCardList(vc: self) ---For SavedCard
     }
     
     func funcDefoultSet(){
+        self.viewModel.paymentModeSelected = .none
         self.viewModel.isCardSave = false
         self.vwBgCard.backgroundColor = .clear
         self.vwBgWallet.backgroundColor = .clear
@@ -154,11 +155,13 @@ extension EventBookingPaymentMethodVC {
     
     func navigateToCardList() {
         if let view = self.createView(storyboard: .home, storyboardID: .CardListVC) as? CardListVC{
+            view.delegate = self
             view.viewModel.arrCardList = self.viewModel.saveCardList
-            view.viewModel.createCharge = self.viewModel.createCharge
             view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
-           // view.viewModel.isTransactionFailed = self.viewModel.success == true ? false : true
             view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+            view.viewModel.eventId = self.viewModel.eventId
+            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
             self.navigationController?.pushViewController(view, animated: true)
         }
     }
@@ -198,7 +201,7 @@ extension EventBookingPaymentMethodVC {
     func btnWalletAction() {
         
         if self.vwBgWallet.backgroundColor == .clear {
-           
+            self.viewModel.paymentModeSelected = .applePay
             self.setGradientBackground(viewadd: vwBgWallet)
             self.vwBgWallet.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
@@ -222,7 +225,7 @@ extension EventBookingPaymentMethodVC {
     }
     func btnPayWithSavedCardsAction() {
         if self.viewSavedCards.backgroundColor == .clear {
-           
+            self.viewModel.paymentModeSelected = .savedCards
             self.setGradientBackground(viewadd: viewSavedCards)
             self.viewSavedCards.backgroundColor = .white
             self.vwBgCard.backgroundColor = .clear
@@ -249,6 +252,7 @@ extension EventBookingPaymentMethodVC {
     func btnCardAction() {
         self.vwBgWallet.backgroundColor = .clear
         if self.vwBgCard.backgroundColor == .clear {
+            self.viewModel.paymentModeSelected = .debitCreditCard
             self.setGradientBackground(viewadd: vwBgCard)
             self.vwBgCard.backgroundColor = .white
             self.vwBgWallet.backgroundColor = .clear
@@ -261,7 +265,7 @@ extension EventBookingPaymentMethodVC {
             self.vwCardTop.isHidden = false
             self.vwWallet.isHidden = true
             self.vwCard.isHidden = false
-            htSaveCardView.constant = 60
+            htSaveCardView.constant = 0 //htSaveCardView.constant = 60 ---For SavedCard
             self.imgCard.image = UIImage(named: ACTIVE_ICON)
             self.imgWallet.image = UIImage(named: UNACTIVE_ICON)
             self.imgWalletSavedCard.image = UIImage(named: UNACTIVE_ICON)
@@ -273,9 +277,13 @@ extension EventBookingPaymentMethodVC {
     }
     
    func btnContinueAction() {
-       let validate = self.viewModel.checkValidations(vc: self)
-       if validate{
-           self.viewModel.createCustomer(vc: self)
+       if self.viewModel.paymentModeSelected == .debitCreditCard{
+           let validate = self.viewModel.checkValidations(vc: self)
+           if validate{
+               self.viewModel.createCustomer(vc: self)
+           }
+       }else if self.viewModel.paymentModeSelected == .none{
+           self.showAlertController(message: PaymentError.noPaymentModelSelected.value)
        }
 //       let view = self.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC
 //       self.navigationController?.pushViewController(view!, animated: true)
@@ -592,6 +600,12 @@ extension EventBookingPaymentMethodVC:UIPickerViewDelegate,UIPickerViewDataSourc
             years.append(yearStr)
         }
         return years
+    }
+}
+
+extension EventBookingPaymentMethodVC : CardListVCProtocol {
+    func refreshSelection() {
+        self.funcDefoultSet()
     }
 }
 

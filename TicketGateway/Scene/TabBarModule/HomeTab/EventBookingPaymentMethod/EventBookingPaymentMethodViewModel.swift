@@ -8,6 +8,15 @@
 import UIKit
 import Stripe
 
+
+enum SelectedPaymentMode {
+    case wallet
+    case applePay
+    case savedCards
+    case debitCreditCard
+    case none
+}
+
 final class EventBookingPaymentMethodViewModel{
     // MARK: - Variables
     var previousTextFieldContent: String?
@@ -34,8 +43,9 @@ final class EventBookingPaymentMethodViewModel{
     var totalTicketPrice = ""
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var createCharge:CreateCharge?
-    var isCardSave = false
+    var isCardSave = true //var isCardSave = false  ---For SavedCard
     var saveCardList:[CardList]?
+    var paymentModeSelected:SelectedPaymentMode = .none
     
     var stripeUser:StripeCreateUser?
     var addCard:AddCard?
