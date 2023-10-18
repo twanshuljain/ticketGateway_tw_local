@@ -14,8 +14,10 @@ struct SignInRequest: Codable {
 }
 struct SignInForNumberRequest: Codable {
     let cellphone: String?
+    let countryCode: String?
     enum CodingKeys: String, CodingKey {
         case cellphone = "cell_phone"
+        case countryCode = "country_code"
     }
 }
 struct SignInNumberWithEmailRequest: Codable {

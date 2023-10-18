@@ -284,7 +284,8 @@ extension LoginVC: UITextFieldDelegate {
         } else if textField == txtPassword {
             viewModel.password = text.replacingCharacters(in: textRange, with: string)
         } else if textField == txtNumber {
-            viewModel.number = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            //viewModel.number = "\(self.lblDialCountryCode.text ?? "" )\(text.replacingCharacters(in: textRange, with: string))"
+            viewModel.number = text.replacingCharacters(in: textRange, with: string)
         }
         return true
     }

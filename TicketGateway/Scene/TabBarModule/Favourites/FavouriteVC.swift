@@ -201,7 +201,7 @@ extension FavouriteVC {
                             self.view.stopLoading()
                             if self.viewModel.isForVenue && self.viewModel.arrVenueList.isEmpty {
                                 self.viewModel.arrSuggestionsList.removeAll()
-                                self.getSuggestionsList(categoryId: 3)
+                                self.getSuggestionsList(categoryId: 1)
                             } else if self.viewModel.isForVenue {
                                 self.viewModel.arrVenueList.removeAll()
                                 self.getVenueList()

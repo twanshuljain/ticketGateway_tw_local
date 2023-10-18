@@ -96,4 +96,19 @@ class FavouriteViewModel {
             }
         }
     }
+    func unlikeVenue(venueId: Int, complition: @escaping (Bool,String) -> Void ) {
+        var venueLikeDislikeModel = VenueLikeDislikeModel(venueId: venueId, likeStatus: false)
+        APIHandler.shared.executeRequestWith(apiName: .GetEventDetail, parameters: venueLikeDislikeModel, methodType: .POST, authRequired: true) { (result: Result<ResponseModal<EventDetail>, Error>) in
+            switch result {
+            case .success(let response):
+                if response.status_code == 200 {
+                    complition(true, response.message ?? "")
+                }else{
+                    complition(false,response.message ?? "error message")
+                }
+            case .failure(let error):
+                complition(false,"\(error)")
+            }
+        }
+    }
 }

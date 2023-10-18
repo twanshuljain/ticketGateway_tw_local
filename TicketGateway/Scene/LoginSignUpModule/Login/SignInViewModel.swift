@@ -51,7 +51,7 @@ extension SignInViewModel {
     }
     func signInAPI(complition: @escaping (Bool,String) -> Void ) {
         let paramForEmail = SignInRequest(emailPhone: email, password: password)
-        let paramForNumber = SignInForNumberRequest(cellphone: number)
+        let paramForNumber = SignInForNumberRequest(cellphone: number, countryCode: self.strCountryDialCode)
         if isForEmail == true {
             APIHandler.shared.executeRequestWith(apiName: .signInUser, parameters: paramForEmail, methodType: .POST) { (result: Result<ResponseModal<SignInAuthModel>, Error>) in
                 switch result {
