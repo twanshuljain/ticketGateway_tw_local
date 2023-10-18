@@ -3030,10 +3030,10 @@ TicketGateway Balance  </string>
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1701"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojc-VJ-iJT">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1799.6666666666667"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1789.3333333333333"/>
                                                 <subviews>
                                                     <stackView clipsSubviews="YES" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="4tp-ey-4xO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1779.6666666666667"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1769.3333333333333"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="P0c-n1-Qnt">
                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="384.66666666666669"/>
@@ -3209,7 +3209,7 @@ TicketGateway Balance  </string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBQ-3r-OV2">
-                                                                <rect key="frame" x="0.0" y="384.66666666666674" width="393" height="488.33333333333326"/>
+                                                                <rect key="frame" x="0.0" y="384.66666666666674" width="393" height="478.33333333333326"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Dv5-Fq-0B9">
                                                                         <rect key="frame" x="20" y="0.0" width="353" height="155"/>
@@ -3344,14 +3344,14 @@ TicketGateway Balance  </string>
                                                                         </constraints>
                                                                     </stackView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVp-ih-Qgf">
-                                                                        <rect key="frame" x="20" y="487.33333333333331" width="353" height="1"/>
+                                                                        <rect key="frame" x="20" y="477.33333333333331" width="353" height="1"/>
                                                                         <color key="backgroundColor" name="PlaceHolder"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="1" id="mOA-Py-fIy"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="LCx-QB-zB4">
-                                                                        <rect key="frame" x="0.0" y="154.99999999999997" width="393" height="332.33333333333326"/>
+                                                                        <rect key="frame" x="0.0" y="154.99999999999997" width="393" height="322.33333333333326"/>
                                                                         <subviews>
                                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GND-al-NiG">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
@@ -3422,28 +3422,34 @@ TicketGateway Balance  </string>
                                                                                         <buttonConfiguration key="configuration" style="plain" title="Show Map" titleAlignment="center"/>
                                                                                     </button>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-Vl-0CG">
-                                                                                        <rect key="frame" x="50" y="10" width="343" height="45"/>
+                                                                                        <rect key="frame" x="50" y="10" width="343" height="65"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-uy-axF">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="65"/>
                                                                                                 <constraints>
-                                                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22.670000000000002" id="l6v-KX-1W5"/>
+                                                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18.670000000000002" id="l6v-KX-1W5"/>
                                                                                                 </constraints>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmq-Bm-Iac">
-                                                                                                <rect key="frame" x="0.0" y="45" width="343" height="0.0"/>
+                                                                                                <rect key="frame" x="0.0" y="55" width="343" height="0.0"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                                                                 <color key="textColor" name="Headinglbl"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                         </subviews>
+                                                                                        <variation key="default">
+                                                                                            <mask key="subviews">
+                                                                                                <exclude reference="Rmq-Bm-Iac"/>
+                                                                                            </mask>
+                                                                                        </variation>
                                                                                     </stackView>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-pin" translatesAutoresizingMaskIntoConstraints="NO" id="rnR-nq-T5F">
-                                                                                        <rect key="frame" x="20" y="-45" width="22" height="155"/>
+                                                                                        <rect key="frame" x="20" y="-25" width="22" height="135"/>
                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3458,7 +3464,7 @@ TicketGateway Balance  </string>
                                                                                     <constraint firstItem="BiS-Vl-0CG" firstAttribute="top" secondItem="jz9-KS-JFD" secondAttribute="top" constant="10" id="A0Z-31-PHM"/>
                                                                                     <constraint firstItem="rnR-nq-T5F" firstAttribute="leading" secondItem="jz9-KS-JFD" secondAttribute="leading" constant="20" id="Rzp-om-ci3"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="rnR-nq-T5F" secondAttribute="bottom" id="U2C-zn-gO7"/>
-                                                                                    <constraint firstItem="Eea-bK-2cI" firstAttribute="top" secondItem="BiS-Vl-0CG" secondAttribute="bottom" constant="10" id="vO9-aJ-q88"/>
+                                                                                    <constraint firstItem="Eea-bK-2cI" firstAttribute="top" secondItem="BiS-Vl-0CG" secondAttribute="bottom" constant="-10" id="vO9-aJ-q88"/>
                                                                                     <constraint firstItem="BiS-Vl-0CG" firstAttribute="leading" secondItem="jz9-KS-JFD" secondAttribute="leading" constant="50" id="vxA-am-qeI"/>
                                                                                     <constraint firstItem="Eea-bK-2cI" firstAttribute="leading" secondItem="BiS-Vl-0CG" secondAttribute="leading" constant="-30" id="wFC-jJ-V7k"/>
                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="wTS-KB-KQZ"/>
@@ -3467,10 +3473,10 @@ TicketGateway Balance  </string>
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kx0-ZA-GRq">
-                                                                                <rect key="frame" x="0.0" y="235.33333333333337" width="393" height="97"/>
+                                                                                <rect key="frame" x="0.0" y="235.33333333333337" width="393" height="87"/>
                                                                                 <subviews>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CsV-EO-iKv">
-                                                                                        <rect key="frame" x="50" y="15" width="260.33333333333331" height="67"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="CsV-EO-iKv">
+                                                                                        <rect key="frame" x="50" y="15" width="260.33333333333331" height="57"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refund policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8q6-E2-8pb">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="260.33333333333331" height="22.666666666666668"/>
@@ -3482,7 +3488,7 @@ TicketGateway Balance  </string>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu0-Jq-9ik">
-                                                                                                <rect key="frame" x="0.0" y="27.666666666666632" width="260.33333333333331" height="39.333333333333343"/>
+                                                                                                <rect key="frame" x="0.0" y="17.666666666666632" width="260.33333333333331" height="39.333333333333343"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="39.329999999999998" id="BBW-Gp-c8G"/>
@@ -3541,7 +3547,7 @@ TG fee is non-refundable.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pev-ER-e4t">
-                                                                <rect key="frame" x="0.0" y="873" width="393" height="108"/>
+                                                                <rect key="frame" x="0.0" y="863" width="393" height="108"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFz-OR-aVI">
                                                                         <rect key="frame" x="20" y="10" width="46" height="35"/>
@@ -3597,7 +3603,7 @@ TG fee is non-refundable.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7J-nC-HJ8">
-                                                                <rect key="frame" x="0.0" y="981" width="393" height="368"/>
+                                                                <rect key="frame" x="0.0" y="971" width="393" height="368"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organizer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vil-4B-bvn">
                                                                         <rect key="frame" x="20" y="20" width="74.666666666666671" height="35"/>
@@ -3716,7 +3722,7 @@ TG fee is non-refundable.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEO-NF-RG6">
-                                                                <rect key="frame" x="0.0" y="1349" width="393" height="161"/>
+                                                                <rect key="frame" x="0.0" y="1339" width="393" height="161"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FV-id-z52">
                                                                         <rect key="frame" x="20" y="20" width="36" height="35"/>
@@ -3775,7 +3781,7 @@ TG fee is non-refundable.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adc-Vu-jyz">
-                                                                <rect key="frame" x="0.0" y="1510" width="393" height="269.66666666666674"/>
+                                                                <rect key="frame" x="0.0" y="1500" width="393" height="269.66666666666674"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggestions for you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyg-hv-5Ck">
                                                                         <rect key="frame" x="20" y="20" width="357" height="31.333333333333329"/>
@@ -6107,7 +6113,7 @@ TicketGateway fee is non refundable.</string>
         <image name="arrow-down" width="24" height="24"/>
         <image name="blue-right" width="24" height="24"/>
         <image name="calendar" width="22" height="22"/>
-        <image name="chevron-down_ip" width="16" height="16"/>
+        <image name="chevron-down_ip" width="24.333333969116211" height="24"/>
         <image name="circleChevron-down_ip" width="24" height="24"/>
         <image name="cross_ip" width="24.333333969116211" height="24"/>
         <image name="dollar-sign_ip" width="22" height="22"/>
