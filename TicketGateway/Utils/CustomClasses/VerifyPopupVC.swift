@@ -37,6 +37,8 @@ class VerifyPopupVC: UIViewController {
     func setFont() {
         btnGreat.titleLabel?.font = UIFont.setFont(fontType: .medium, fontSize: .fourteen)
         btnGreat.titleLabel?.textColor = UIColor.setColor(colorType: .tgBlack)
+        lblVerifyMsg.font = UIFont.setFont(fontType: .regular, fontSize: .thirteen)
+        lblVerifyMsg.textColor = UIColor.setColor(colorType: .tgGrey)
     }
 
     // MARK: - Actions

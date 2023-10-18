@@ -2527,14 +2527,14 @@
                                 <rect key="frame" x="47" y="188" width="320" height="360"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkRi8" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-b3-4Sb">
-                                        <rect key="frame" x="120" y="45" width="80" height="80"/>
+                                        <rect key="frame" x="120" y="40" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="70Q-3h-KhX"/>
                                             <constraint firstAttribute="width" constant="80" id="V6A-iW-N3z"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="x0Q-Be-wY2">
-                                        <rect key="frame" x="20" y="149" width="280" height="83.333333333333314"/>
+                                        <rect key="frame" x="20" y="140" width="280" height="83.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verified!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqM-ll-b4T">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="41.666666666666664"/>
@@ -2552,7 +2552,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jj6-98-GSz">
-                                        <rect key="frame" x="90" y="272.33333333333331" width="140" height="50"/>
+                                        <rect key="frame" x="90" y="243.33333333333331" width="140" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="1ec-Ej-COY"/>
                                             <constraint firstAttribute="width" constant="140" id="uHm-D5-COg"/>
@@ -2581,18 +2581,18 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="x0Q-Be-wY2" secondAttribute="trailing" constant="20" id="AYs-9u-FKx"/>
                                     <constraint firstAttribute="height" constant="360" id="BiJ-hN-aqY"/>
-                                    <constraint firstItem="x0Q-Be-wY2" firstAttribute="top" secondItem="BRa-b3-4Sb" secondAttribute="bottom" constant="24" id="Oqp-G6-nhY"/>
+                                    <constraint firstItem="x0Q-Be-wY2" firstAttribute="top" secondItem="BRa-b3-4Sb" secondAttribute="bottom" constant="20" id="Oqp-G6-nhY"/>
                                     <constraint firstItem="BRa-b3-4Sb" firstAttribute="centerX" secondItem="3uj-Dp-tZS" secondAttribute="centerX" id="Qtn-hf-9fg"/>
-                                    <constraint firstItem="jj6-98-GSz" firstAttribute="top" secondItem="x0Q-Be-wY2" secondAttribute="bottom" constant="40" id="b88-ds-ycl"/>
+                                    <constraint firstItem="jj6-98-GSz" firstAttribute="top" secondItem="x0Q-Be-wY2" secondAttribute="bottom" constant="20" id="b88-ds-ycl"/>
                                     <constraint firstItem="jj6-98-GSz" firstAttribute="centerX" secondItem="3uj-Dp-tZS" secondAttribute="centerX" id="cIW-29-Uyp"/>
                                     <constraint firstItem="x0Q-Be-wY2" firstAttribute="leading" secondItem="3uj-Dp-tZS" secondAttribute="leading" constant="20" id="car-jt-Ql3"/>
-                                    <constraint firstItem="BRa-b3-4Sb" firstAttribute="top" secondItem="3uj-Dp-tZS" secondAttribute="top" constant="45" id="gBC-nN-yWR"/>
+                                    <constraint firstItem="BRa-b3-4Sb" firstAttribute="top" secondItem="3uj-Dp-tZS" secondAttribute="top" constant="40" id="gBC-nN-yWR"/>
                                     <constraint firstAttribute="width" constant="320" id="gzZ-9W-nIg"/>
                                     <constraint firstItem="x0Q-Be-wY2" firstAttribute="centerX" secondItem="3uj-Dp-tZS" secondAttribute="centerX" id="vgm-d0-CBN"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
+                                        <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>

@@ -15,7 +15,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddOnTableViewCell" rowHeight="150" id="KGk-i7-Jjw" customClass="AddOnTableViewCell" customModule="TicketGateway" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="449" height="125"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="449" height="125"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -55,10 +55,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h34-4c-vtf">
-                                <rect key="frame" x="132" y="92" width="24" height="24"/>
+                                <rect key="frame" x="132" y="73" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="2v1-Ig-tPR"/>
-                                    <constraint firstAttribute="height" constant="24" id="Ttx-oI-GxA"/>
+                                    <constraint firstAttribute="height" constant="24" id="oos-2v-R1T"/>
+                                    <constraint firstAttribute="width" constant="24" id="tBu-zy-Cwh"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -67,14 +67,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="h34-4c-vtf" firstAttribute="leading" secondItem="f2T-zp-LoG" secondAttribute="leading" id="0c8-TJ-asx"/>
                             <constraint firstItem="1jb-Ks-pH9" firstAttribute="leading" secondItem="f2T-zp-LoG" secondAttribute="trailing" constant="10" id="6MN-vm-fV8"/>
                             <constraint firstItem="1jb-Ks-pH9" firstAttribute="top" secondItem="N2d-Ce-yT3" secondAttribute="top" constant="16" id="6yu-Np-tVs"/>
-                            <constraint firstItem="h34-4c-vtf" firstAttribute="bottom" secondItem="ZhR-q9-K7d" secondAttribute="bottom" id="Ec7-Z4-vkw"/>
+                            <constraint firstItem="h34-4c-vtf" firstAttribute="leading" secondItem="ZhR-q9-K7d" secondAttribute="trailing" constant="16" id="Cc6-Jq-QBK"/>
+                            <constraint firstItem="h34-4c-vtf" firstAttribute="top" secondItem="f2T-zp-LoG" secondAttribute="bottom" constant="8" id="POs-g8-vo3"/>
                             <constraint firstItem="f2T-zp-LoG" firstAttribute="leading" secondItem="ZhR-q9-K7d" secondAttribute="trailing" constant="16" id="QT7-HI-spP"/>
                             <constraint firstItem="f2T-zp-LoG" firstAttribute="top" secondItem="ZhR-q9-K7d" secondAttribute="top" id="Xaf-dS-ugt"/>
                             <constraint firstItem="ZhR-q9-K7d" firstAttribute="leading" secondItem="N2d-Ce-yT3" secondAttribute="leading" constant="16" id="Zl0-aT-v25"/>
-                            <constraint firstAttribute="bottom" secondItem="h34-4c-vtf" secondAttribute="bottom" constant="10" id="hpm-H7-Ppe"/>
                             <constraint firstAttribute="trailing" secondItem="1jb-Ks-pH9" secondAttribute="trailing" constant="16" id="q6e-2a-bwS"/>
                             <constraint firstAttribute="bottom" secondItem="ZhR-q9-K7d" secondAttribute="bottom" constant="10" id="s9E-BM-Ufs"/>
                             <constraint firstItem="ZhR-q9-K7d" firstAttribute="top" secondItem="N2d-Ce-yT3" secondAttribute="top" constant="16" id="y7A-zP-Icv"/>
