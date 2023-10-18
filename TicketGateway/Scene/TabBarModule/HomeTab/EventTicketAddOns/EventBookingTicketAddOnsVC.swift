@@ -305,7 +305,7 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
         view.strMsgForlbl = data?.addOnName ?? ""
         view.img = POP_ICON
-        view.strMessage = POP_DESCRIPTION
+        view.strMessage = data?.addOnDescription ?? ""
         view.strMsgBtn = OKAY
         view.closerForBack = { istrue in
             if istrue ==  true {

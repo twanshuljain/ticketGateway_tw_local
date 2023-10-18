@@ -148,8 +148,6 @@ extension EventDetailVC {
         self.navigationView.btnSecRight.setImage(UIImage(named: (viewModel.eventDetail?.isLike ?? false) ? "favSele_ip" : "favUnSele_ip"), for: .normal)
         navigationView.btnSecRight.addTarget(self, action: #selector(btnLikeAction(_:)), for: .touchUpInside)
         navigationView.delegateBarAction = self
-        btnBookTickets.setTitles(text: "Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
-        btnBookTickets.addLeftIcon(image: UIImage(named: "ticketBlack"))
         [self.btnFollowing, self.btnReadMore, self.btnAddToCalender, self.btnShowMap,
          self.btnBookTickets, self.btnSelectDate, self.btnSelectLocationAccordingToDate].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -356,6 +354,8 @@ extension EventDetailVC {
     }
     
     func setUi(){
+        btnBookTickets.setTitles(text: "Grab Tickets", font: UIFont.setFont(fontType: .medium, fontSize: .seventeen), tintColour: UIColor.setColor(colorType: .titleColourDarkBlue))
+        btnBookTickets.addLeftIcon(image: UIImage(named: "ticketBlack"))
         self.lblFollowers.font = UIFont.setFont(fontType: .regular, fontSize: .fifteen)
         self.lblFollowers.textColor = UIColor.setColor(colorType: .lblTextPara)
         self.lblEventName.font = UIFont.setFont(fontType: .bold, fontSize: .twentyFour)
