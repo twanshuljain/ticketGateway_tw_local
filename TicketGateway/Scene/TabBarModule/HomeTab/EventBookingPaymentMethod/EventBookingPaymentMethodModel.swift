@@ -149,6 +149,7 @@ struct CreateCharge: Codable {
     var amountTotal, stripeCustomerID: Int?
     var cardChargeDetails: CardChargeDetails?
     var updatedAt: String?
+    var orderId: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -165,6 +166,7 @@ struct CreateCharge: Codable {
         case stripeCustomerID = "stripe_customer_id"
         case cardChargeDetails = "json_data"
         case updatedAt = "updated_at"
+        case orderId = "order_id"
     }
 }
 

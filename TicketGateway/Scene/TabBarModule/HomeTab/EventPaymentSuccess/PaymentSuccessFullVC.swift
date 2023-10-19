@@ -20,12 +20,9 @@ class PaymentSuccessFullVC: UIViewController {
     @IBOutlet weak var lblRefundDescription: UILabel!
     @IBOutlet weak var btnNeedHelp: CustomButtonNormal!
     @IBOutlet weak var navigationView: NavigationBarView!
-    //MARK: - Varibales
-    var isTransactionFailed: Bool = false
-    var createCharge:CreateCharge?
-    var selectedArrTicketList = [EventTicket]()
-    var selectedCurrencyType = ""
-    var totalTicketPrice = ""
+    
+    // MARK: All Properties
+    var viewModel: PaymentSuccessFullViewModel = PaymentSuccessFullViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,25 +58,24 @@ extension PaymentSuccessFullVC {
     
     func setData(){
         let userModel = UserDefaultManager.share.getModelDataFromUserDefults(userData: SignInAuthModel.self, key: .userAuthData)
-        if selectedArrTicketList.count == 0{
+        if viewModel.selectedArrTicketList.count == 0{
             self.lbl1Ticket.text = "Ticket with amount"
-        }else if selectedArrTicketList.count == 1{
+        }else if viewModel.selectedArrTicketList.count == 1{
             self.lbl1Ticket.text = "1 Ticket(S) with amount "
         }else{
-            self.lbl1Ticket.text = "\(selectedArrTicketList.count) Ticket(S) with amount"
+            self.lbl1Ticket.text = "\(viewModel.selectedArrTicketList.count) Ticket(S) with amount"
         }
        
-        self.lblCADPrice.text = " \(self.selectedCurrencyType) \(self.createCharge?.amountTotal ?? (self.totalTicketPrice  as NSString).integerValue).00"
-        if let transactionId = self.createCharge?.transactionID {
+        self.lblCADPrice.text = " \(viewModel.selectedCurrencyType) \(viewModel.createCharge?.amountTotal ?? (viewModel.totalTicketPrice  as NSString).integerValue).00"
+        if let transactionId = viewModel.createCharge?.transactionID {
             self.lblTicketForOrder.text = "Transaction Id for Order is #\(transactionId) has been sent to \(userModel?.email ?? "")"
         } else {
             self.lblTicketForOrder.text = "Ticket has been sent to \(userModel?.email ?? "")"
         }
-        
     }
     
     func setUi() {
-        if isTransactionFailed {
+        if viewModel.isTransactionFailed {
             lblThankYou.text = Transaction_Failed
             imgThankYou.image = UIImage(named: "x-circle")
             btnViewMyTicket.isHidden = true
@@ -134,7 +130,22 @@ extension PaymentSuccessFullVC {
             self.tabBarController?.selectedIndex = 1
             self.navigationController?.popToRootViewController(animated: true)
         }
-        
+    }
+    
+    func downloadTicket() {
+        self.view.showLoading(centreToView: self.view)
+        viewModel.downloadTicket(complition: { isTrue, messageShowToast in
+            if isTrue == true {
+                DispatchQueue.main.async {
+                    self.view.stopLoading()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.view.stopLoading()
+                    self.showToast(message: messageShowToast)
+                }
+            }
+        })
     }
     func btnNeedHelpAction() {
         AppShareData.sharedObject().setRootToHomeVCAndMoveToFAQ()
@@ -142,6 +153,7 @@ extension PaymentSuccessFullVC {
     func btnViewMyTicketAction() {
         //self.tabBarController?.selectedIndex = 1
        // self.navigationController?.popToRootViewController(animated: false)
+        self.downloadTicket()
     }
 }
 ////MARK: - NavigationBarViewDelegate
