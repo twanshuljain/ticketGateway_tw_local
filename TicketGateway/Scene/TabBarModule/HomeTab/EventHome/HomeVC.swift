@@ -14,6 +14,7 @@
 import UIKit
 import SideMenu
 import SVProgressHUD
+import PullToRefresh
 
 
 
@@ -30,6 +31,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var tableParentView: UIView!
     @IBOutlet weak var collectionParentView: UIView!
     @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //MARK: - Variables
     var isMenuOpened: Bool = false
@@ -38,14 +40,14 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.funcCallApi()
-        self.setUp()
+       // self.funcCallApi()
+        //self.setUp()
         self.tblEvents.delegateShareAction = self
         self.tblEvents.delegateLikeAction = self
         self.collvwSuggestedOrganisation.delegateOrgansierToProfile = self
         self.collvwSuggestedOrganisation.followUnfollowDelegate = self
         
-        // self.apiCall()
+        self.setUpPullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -499,6 +501,26 @@ extension HomeVC {
         self.funcCallApi()
         self.setUp()
     }
+    
+    func setUpPullToRefresh(){
+        setupPullToRefresh(on: scrollView)
+        scrollView.startRefreshing(at: .top)
+      }
+      func setupPullToRefresh(on scrollView: UIScrollView) {
+        scrollView.addPullToRefresh(PullToRefresh()) {
+          DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self, weak scrollView] in
+            print("Scroll first end")
+            self?.refreshData()
+            scrollView?.endRefreshing(at: .top)
+          }
+        }
+        scrollView.addPullToRefresh(PullToRefresh(position: .bottom)) {
+          DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self, weak scrollView] in
+            print("Scroll second end")
+            scrollView?.endRefreshing(at: .bottom)
+          }
+        }
+      }
 }
 
 //MARK: - CustomSearchMethodsDelegate

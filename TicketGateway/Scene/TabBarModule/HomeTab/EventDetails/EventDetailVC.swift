@@ -141,10 +141,11 @@ extension EventDetailVC {
         self.heightOfSuggestedOrganisedEvent.constant = self.tblSuggestedEvent.contentSize.height
         self.tblSuggestedEvent.layoutIfNeeded()
         self.navigationView.delegateBarAction = self
+        self.navigationView.lblSeprator.isHidden = true
+        self.navigationView.lblSeprator1.isHidden = false
         self.navigationView.btnRight.isHidden = false
         self.navigationView.btnSecRight.isHidden = false
         self.navigationView.btnRight.addTarget(self, action: #selector(btnShareAction(_:)), for: .touchUpInside)
-        self.navigationView.lblSeprator.isHidden = false
         self.navigationView.vwBorder.isHidden = false
         btnReadMore.setTitles(text: "Read More", textColour: UIColor.setColor(colorType: .tgBlue), borderColour: UIColor.setColor(colorType: .tgBlue))
         navigationView.lblTitle.text = "Event"

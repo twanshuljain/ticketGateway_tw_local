@@ -40,6 +40,8 @@ class NavigationBarView: UIView {
     @IBOutlet weak var lblDiscripation: UILabel!
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var vwBorder: UIView!
+    @IBOutlet weak var lblSeprator1: UILabel!
+    
     let XIB_NAME = "NavigationBarView"
     var delegateBarAction: NavigationBarViewDelegate!
     var navViewbackgroundColor: UIColor?
