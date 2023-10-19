@@ -63,10 +63,12 @@ extension ChangeNameVC {
         self.lblFirstName.attributedText = getAttributedTextAction(attributedText: "*", firstString: FIRST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         self.lblLastName.attributedText = getAttributedTextAction(attributedText: "*", firstString: LAST_NAME, lastString: "", attributedFont: UIFont.setFont(fontType: .medium, fontSize: .twelve), attributedColor: UIColor.red, isToUnderLineAttributeText: false)
         
-        self.txtFirstName.text = viewModel.firstName
-        self.txtLastName.text = viewModel.lastName
         txtSelectTickte.delegate = self
-        txtSelectTickte.text = ""
+        if let ticket = viewModel.selectedTicket {
+            self.txtSelectTickte.text = ticket.ticketName
+            self.txtFirstName.text = ticket.nameOnTicket?.getSeparatedFirstName()
+            self.txtLastName.text = ticket.nameOnTicket?.getSeparatedLastName()
+        }
     }
     
     func createPickerView() {

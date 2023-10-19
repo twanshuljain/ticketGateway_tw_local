@@ -49,6 +49,7 @@ class SeeFullTicketVC: UIViewController {
     @IBOutlet weak var heightOfMyTicket: NSLayoutConstraint!
     @IBOutlet weak var imgScanCode : UIImageView!
     @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var fullTicketView: UIView!
     
     var viewModel: SeeFullTicketViewModel = SeeFullTicketViewModel()
     override func viewDidLoad() {
@@ -70,7 +71,7 @@ extension SeeFullTicketVC {
     }
     
     func setUI() {
-        [self.btnGetARefund,self.btnSeeLessView,self.btnSaveTicketAsImage,self.btnAddAppToWallet,self.btnViewEventList].forEach {
+        [self.btnGetARefund,self.btnSeeLessView,self.btnSaveTicketAsImage,self.btnAddAppToWallet,self.btnViewEventList, self.btnViewMap].forEach {
             $0?.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         }
         self.tblMyTicket.addObserver(self, forKeyPath: "contentSize", options: [], context: nil)
@@ -192,69 +193,75 @@ extension SeeFullTicketVC {
     
     func setData(){
         self.setProfile()
-        let eventDetail = self.viewModel.eventDetail
-      //  lblEventName.text = viewModel.ticketDetails?.eventTitle ?? "-"
-      //  lblAddress.text = viewModel.ticketDetails?.location ?? "-"
-        
-        
-        if let base64String = self.viewModel.myTicketList?.qrcodeBase64Data{
-//            if let qrCode = base64String.generateQRCode(qrCodeImageView: imgScanCode) {
-//                imgScanCode.image = qrCode
-//            }
+        if let eventDetail = self.viewModel.eventDetail {
             
-           // if let qrCodeImage = base64String.base64ToImage(){
+            
+            //  lblEventName.text = viewModel.ticketDetails?.eventTitle ?? "-"
+            //  lblAddress.text = viewModel.ticketDetails?.location ?? "-"
+            
+            
+            if let base64String = self.viewModel.myTicketList?.qrcodeBase64Data{
+                //            if let qrCode = base64String.generateQRCode(qrCodeImageView: imgScanCode) {
+                //                imgScanCode.image = qrCode
+                //            }
+                
+                // if let qrCodeImage = base64String.base64ToImage(){
                 imgScanCode.image = UIImage.decodeBase64(toImage: base64String)
-           // }
-        }
-        
-        self.lblName.text = self.viewModel.myTicketList?.nameOnTicket ?? ""
-        
-        self.lblEventName.text = eventDetail?.event?.title ?? ""
-        //((eventDetail?.event?.title ?? "") + " - " + "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFromTo() ?? "")")
-        //self.lblGeneralAdmission.text = viewModel.myTicketList?.ticketName ?? ""
-        
-        if let startDate = eventDetail?.eventDateObj?.eventStartDate, let startTime =  eventDetail?.eventDateObj?.eventStartTime {
-            lblDateValue.text = "\(startDate.getDayFormattedFromTo()), \(startDate.getDateFormattedFromTo()) / \(startTime.getFormattedTime())"
-        }
-       
-        self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
-        lblOrderNumberValue.text = "#\(viewModel.myTicketList?.orderNumber ?? "")"
-        
-        //ABOUt US
-        if (eventDetail?.organizer?.eventDescription != "") && (eventDetail?.organizer?.eventDescription != nil){
-            self.lblEventSummary.isHidden = false
-            self.lblSummary.text = eventDetail?.organizer?.eventDescription ?? ""
-            
-        }else{
-            self.lblEventSummary.isHidden  = true
-            self.lblSummary.text = ""
-        }
-        
-        //ORGANIZER
-        self.lblOrganizerName.text = eventDetail?.organizer?.name ?? ""
-        
-        //FOLLOW/UNFOLLOW
-        print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
-        if let isFollow = eventDetail?.isFollow {
-            if isFollow {
-                self.btnFollowing.setTitles(
-                    text: "Following",
-                    font: UIFont.boldSystemFont(ofSize: 15),
-                    tintColour: .black
-                )
-            } else {
-                self.btnFollowing.setTitles(
-                    text: "Follow",
-                    font: UIFont.boldSystemFont(ofSize: 15),
-                    tintColour: .black
-                )
+                // }
             }
+            
+            self.lblName.text = self.viewModel.myTicketList?.nameOnTicket ?? ""
+            
+            self.lblEventName.text = eventDetail.event?.title ?? ""
+            //((eventDetail?.event?.title ?? "") + " - " + "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFromTo() ?? "")")
+            //self.lblGeneralAdmission.text = viewModel.myTicketList?.ticketName ?? ""
+            
+            if let startDate = eventDetail.eventDateObj?.eventStartDate, let startTime =  eventDetail.eventDateObj?.eventStartTime {
+                lblDateValue.text = "\(startDate.getDayFormattedFromTo()), \(startDate.getDateFormattedFromTo()) / \(startTime.getFormattedTime())"
+            }
+            
+            self.lblAddress.text = eventDetail.eventLocation?.eventAddress ?? ""
+            lblOrderNumberValue.text = "#\(viewModel.myTicketList?.orderNumber ?? "")"
+            
+            //ABOUt US
+            if let organizer = eventDetail.organizer, let eventDescription = organizer.eventDescription {
+                self.lblEventSummary.isHidden = false
+                self.lblSummary.text = eventDescription
+            } else {
+                self.lblEventSummary.isHidden  = true
+                self.lblSummary.text = ""
+            }
+            
+            //ORGANIZER
+            self.lblOrganizerName.text = eventDetail.organizer?.name ?? ""
+            
+            //FOLLOW / UNFOLLOW
+            print("eventDetail?.isFollow", eventDetail.isFollow as Any)
+            if let isFollow = eventDetail.isFollow {
+                if isFollow {
+                    self.btnFollowing.setTitles(
+                        text: "Following",
+                        font: UIFont.boldSystemFont(ofSize: 15),
+                        tintColour: .black
+                    )
+                } else {
+                    self.btnFollowing.setTitles(
+                        text: "Follow",
+                        font: UIFont.boldSystemFont(ofSize: 15),
+                        tintColour: .black
+                    )
+                }
+            }
+            
+            //REFUND
+            if let refund = eventDetail.eventRefundPolicy?.policyDescription {
+                if refund.uppercased() != "NO REFUNDS" {
+                    self.btnGetARefund.isHidden = false
+                }
+                self.lblRefundPolicyDays.text = "Refunds" + " " + refund
+            }
+            tblMyTicket.reloadData()
         }
-        
-        //REFUND
-        self.lblRefundPolicyDays.text = "Refunds" + " " + (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
-        
-        tblMyTicket.reloadData()
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -276,11 +283,14 @@ extension SeeFullTicketVC {
         case btnSeeLessView:
             self.seeLessViewAction()
         case btnSaveTicketAsImage:
+            self.saveTicketAsImage()
             break
         case btnAddAppToWallet:
             break
         case btnViewEventList:
             self.viewEventListAction()
+        case btnViewMap:
+            self.goToMapView()
         default:
             break
         }
@@ -294,8 +304,36 @@ extension SeeFullTicketVC {
         self.navigationController?.popViewController(animated: false)
     }
     func saveTicketAsImage() {
+        let image = self.fullTicketView.asImage()
+        print("Image:-",image)
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAlertController(title: "Error", message: error.localizedDescription)
+        } else {
+            showAlertController(title: "Saved!", message: "Your ticket has been saved to your photos.")
+        }
+    }
+    
     func addAppToWalletAction() {
+    }
+    
+    func goToMapView(){
+        if let view = createView(storyboard: .home, storyboardID: .EventMapVC) as? EventMapVC{
+            if let eventDetails = self.viewModel.eventDetail {
+                let eventLocation = eventDetails.eventLocation
+                if eventDetails.locationType == MULTIPLE {
+                    print("No Multiple Location Found")
+                } else {
+                    view.latitude = eventLocation?.latitude ?? 00.00
+                    view.longitude = eventLocation?.longitude ?? 00.00
+                    view.location = eventLocation?.eventAddress ?? ""
+                    self.navigationController?.pushViewController(view, animated: true)
+                }
+            }
+        }
     }
     
     func viewEventListAction() {

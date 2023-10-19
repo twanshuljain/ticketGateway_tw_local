@@ -48,6 +48,7 @@ class MyTicketVC: UIViewController {
         let alertChangeNameTicket = UIAlertAction(title: "Change name on ticket", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             if let changeNameVC = self.createView(storyboard: .order, storyboardID: .ChangeNameVC) as? ChangeNameVC{
                 changeNameVC.viewModel.myTicket = self.viewModel.myTicket
+                changeNameVC.viewModel.selectedTicket = self.viewModel.selectedTicket
                 self.navigationController?.pushViewController(changeNameVC, animated: true)
             }
         })
@@ -207,6 +208,7 @@ extension MyTicketVC {
         seeFullTicketVC?.viewModel.isFromPast = self.viewModel.isFromPast
         self.navigationController?.pushViewController(seeFullTicketVC!, animated: false)
     }
+    
    @objc func saveTicketAsImage(_ sender: UIButton) {
        if let cell = self.collectionView.cellForItem(at: IndexPath.init(row: sender.tag, section: 0)) as? MyTicketCollectionViewCell{
            if let imageToSave =  cell.imgQRCode.image{
