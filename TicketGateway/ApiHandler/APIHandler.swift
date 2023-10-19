@@ -55,6 +55,8 @@ public enum APIName: String {
     
     case checkEmail = "payment/check-email/checkout-user"
     
+    case downloadTicket = "ticket/myticket/download/"
+    
     //STRIPE
     case CreateStripeCustomer = "payment/stripe/create-customer/"
     case AddCardForUser = "payment/add-card/"

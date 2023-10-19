@@ -266,18 +266,30 @@ extension EventBookingPaymentMethodViewModel{
     func navigateToPaymentSuccess(success:Bool,vc:UIViewController){
         if let vc = vc as? EventCheckoutVerifyVC{
             if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC{
-                view.createCharge = self.createCharge
-                view.totalTicketPrice = self.totalTicketPrice
-                view.isTransactionFailed = success == true ? false : true
-                view.selectedCurrencyType = self.selectedCurrencyType
+                view.viewModel.createCharge = self.createCharge
+                view.viewModel.paymentSuccessFullModel = PaymentSuccessFullModel(
+                    userId: createCharge?.userID ?? 0,
+                    eventId: eventId ?? 0,
+                    checkoutId: checkoutId ?? "",
+                    orderId: createCharge?.orderId ?? 0
+                )
+                view.viewModel.totalTicketPrice = self.totalTicketPrice
+                view.viewModel.isTransactionFailed = success == true ? false : true
+                view.viewModel.selectedCurrencyType = self.selectedCurrencyType
                 vc.navigationController?.pushViewController(view, animated: true)
             }
         }else if let vc = vc as? EventBookingPaymentMethodVC{
             if let view = vc.createView(storyboard: .home, storyboardID: .PaymentSuccessFullVC) as? PaymentSuccessFullVC{
-                view.createCharge = self.createCharge
-                view.totalTicketPrice = self.totalTicketPrice
-                view.isTransactionFailed = success == true ? false : true
-                view.selectedCurrencyType = self.selectedCurrencyType
+                view.viewModel.createCharge = self.createCharge
+                view.viewModel.paymentSuccessFullModel = PaymentSuccessFullModel(
+                    userId: createCharge?.userID ?? 0,
+                    eventId: eventId ?? 0,
+                    checkoutId: checkoutId ?? "",
+                    orderId: createCharge?.orderId ?? 0
+                )
+                view.viewModel.totalTicketPrice = self.totalTicketPrice
+                view.viewModel.isTransactionFailed = success == true ? false : true
+                view.viewModel.selectedCurrencyType = self.selectedCurrencyType
                 vc.navigationController?.pushViewController(view, animated: true)
             }
         }

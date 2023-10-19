@@ -133,19 +133,30 @@ extension PaymentSuccessFullVC {
     }
     
     func downloadTicket() {
-        self.view.showLoading(centreToView: self.view)
-        viewModel.downloadTicket(complition: { isTrue, messageShowToast in
-            if isTrue == true {
+        viewModel.downloadPdf { isTrue, messageShowToast in
+            if isTrue == true{
                 DispatchQueue.main.async {
-                    self.view.stopLoading()
+                    self.showToast(message: messageShowToast)
                 }
-            } else {
+            }else{
                 DispatchQueue.main.async {
-                    self.view.stopLoading()
                     self.showToast(message: messageShowToast)
                 }
             }
-        })
+        }
+//        self.view.showLoading(centreToView: self.view)
+//        viewModel.downloadTicket(complition: { isTrue, messageShowToast in
+//            if isTrue == true {
+//                DispatchQueue.main.async {
+//                    self.view.stopLoading()
+//                }
+//            } else {
+//                DispatchQueue.main.async {
+//                    self.view.stopLoading()
+//                    self.showToast(message: messageShowToast)
+//                }
+//            }
+//        })
     }
     func btnNeedHelpAction() {
         AppShareData.sharedObject().setRootToHomeVCAndMoveToFAQ()
