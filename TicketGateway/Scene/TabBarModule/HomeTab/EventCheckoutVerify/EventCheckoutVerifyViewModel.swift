@@ -31,6 +31,7 @@ class EventCheckoutVerifyViewModel{
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var selectedCurrencyType = ""
     var discountType : DiscountType?
+    var isFreeTicketAdded:Bool = false
     
 }
 

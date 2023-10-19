@@ -61,6 +61,7 @@ class EventCheckoutVerifyVC: UIViewController {
     @IBOutlet weak var htStackView: NSLayoutConstraint!
     
     var viewModel = EventCheckoutVerifyViewModel()
+    var paymentViewModel = EventBookingPaymentMethodViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -312,15 +313,38 @@ extension EventCheckoutVerifyVC {
     }
     
     func navigateToPaymentVc(){
-        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
-            view.viewModel.eventId = self.viewModel.eventId
-            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
-            view.viewModel.eventDetail = self.viewModel.eventDetail
-            view.viewModel.feeStructure = self.viewModel.feeStructure
-            view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
-            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
-            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
-            self.navigationController?.pushViewController(view, animated: true)
+        self.viewModel.isFreeTicketAdded = true
+        
+        self.viewModel.selectedArrTicketList.forEach { ticket in
+            print("ticket.ticketType", ticket.ticketType)
+            if ticket.ticketType != "FREE"{
+                self.viewModel.isFreeTicketAdded = false
+            }
+        }
+        
+        if self.viewModel.isFreeTicketAdded == true{
+            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+                self.paymentViewModel.eventId = self.viewModel.eventId
+                self.paymentViewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
+                self.paymentViewModel.eventDetail = self.viewModel.eventDetail
+                self.paymentViewModel.feeStructure = self.viewModel.feeStructure
+                self.paymentViewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+                self.paymentViewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+                self.paymentViewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+                self.paymentViewModel.isFreeTicket = self.viewModel.isFreeTicketAdded
+                self.bookFreeTickets()
+            }
+        }else{
+            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
+                view.viewModel.eventId = self.viewModel.eventId
+                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList ?? [EventTicket]()
+                view.viewModel.eventDetail = self.viewModel.eventDetail
+                view.viewModel.feeStructure = self.viewModel.feeStructure
+                view.viewModel.totalTicketPrice = self.viewModel.totalTicketPrice
+                view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList ?? [EventTicketAddOnResponseModel]()
+                view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+                self.navigationController?.pushViewController(view, animated: true)
+            }
         }
     }
     
@@ -470,6 +494,10 @@ extension EventCheckoutVerifyVC {
             self.view.stopLoading()
             self.showToast(message: isValidate.errorMessage)
         }
+    }
+    
+    func bookFreeTickets(){
+        self.paymentViewModel.createCustomer(vc: self)
     }
 }
 

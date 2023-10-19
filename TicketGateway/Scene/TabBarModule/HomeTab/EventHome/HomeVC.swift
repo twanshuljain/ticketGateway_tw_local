@@ -41,13 +41,14 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.funcCallApi()
-        //self.setUp()
+        self.setUp()
+        self.setUpPullToRefresh()
         self.tblEvents.delegateShareAction = self
         self.tblEvents.delegateLikeAction = self
         self.collvwSuggestedOrganisation.delegateOrgansierToProfile = self
         self.collvwSuggestedOrganisation.followUnfollowDelegate = self
         
-        self.setUpPullToRefresh()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
