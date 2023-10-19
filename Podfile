@@ -12,6 +12,7 @@ target 'TicketGateway' do
  # pod 'SwiftLint'
   pod 'Stripe'
   pod 'TweeTextField'
+  pod 'PullToRefresher'
   
 # Pods for TicketGateway
 

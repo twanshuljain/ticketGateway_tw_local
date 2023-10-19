@@ -6,6 +6,7 @@ PODS:
     - SwiftAlgorithms (~> 1.0)
   - Cosmos (23.0.0)
   - iOSDropDown (0.4.0)
+  - PullToRefresher (3.3)
   - SideMenu (6.5.0)
   - Stripe (23.12.0):
     - StripeApplePay (= 23.12.0)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - Charts
   - Cosmos
   - iOSDropDown
+  - PullToRefresher
   - SideMenu
   - Stripe
   - TweeTextField
@@ -45,6 +47,7 @@ SPEC REPOS:
     - Charts
     - Cosmos
     - iOSDropDown
+    - PullToRefresher
     - SideMenu
     - Stripe
     - StripeApplePay
@@ -60,6 +63,7 @@ SPEC CHECKSUMS:
   Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   iOSDropDown: ce9daa584eaa5567cafc1b633e3cc7eb6d9cea42
+  PullToRefresher: 6fc2ab6494caf949bcf6f0223ffd23f9d21a06f6
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   Stripe: 15fad81ffb8d553d77ff504a6d50d47b9028bed0
   StripeApplePay: 871274acfa7a96650ea8a697c288c54b8288fb6e
@@ -70,6 +74,6 @@ SPEC CHECKSUMS:
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   TweeTextField: 726de695eead9784f7ed02e22f6944bfcfcca07a
 
-PODFILE CHECKSUM: ab298535b9f1fdd7787898f345e8861c3f06b5dc
+PODFILE CHECKSUM: 2628c7a5711442cdbe4677019e632a514b2208c5
 
 COCOAPODS: 1.12.1
