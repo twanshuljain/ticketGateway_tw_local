@@ -86,7 +86,7 @@ class EventDetailVC: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var pageConrtrolEventTop:NSLayoutConstraint!
     @IBOutlet weak var bottomView:UIView!
     @IBOutlet weak var htBottomView:NSLayoutConstraint!
-    
+    @IBOutlet weak var readMoreConstraint: NSLayoutConstraint!
     // MARK: - Variables
     var viewModel = EventDetailViewModel()
     weak var delegate : EventDetailVCProtocol?
@@ -404,93 +404,94 @@ extension EventDetailVC {
     }
     
     func setData(){
-        let eventDetail = self.viewModel.eventDetail
-        self.lblPrice.text = "CAD $\(eventDetail?.eventTicketOnwardsPrice ?? 0) onwards"
-        print("eventDetail?.isFollow", eventDetail?.isFollow as Any)
-        if let isFollow = eventDetail?.isFollow {
-            if isFollow {
-                self.btnFollowing.setTitles(
-                    text: "Following",
-                    font: UIFont.boldSystemFont(ofSize: 15),
-                    tintColour: .black
-                )
-            } else {
-                self.btnFollowing.setTitles(
-                    text: "Follow",
-                    font: UIFont.boldSystemFont(ofSize: 15),
-                    tintColour: .black
-                )
-            }
-        }
-        self.lblEventName.text = eventDetail?.event?.title ?? ""
-        let startDate = "\(eventDetail?.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")"
-        let endDate = "\(eventDetail?.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
-        let startTime = "\(eventDetail?.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
-        let endTime = "\(eventDetail?.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")"
-        
-        self.lblEventDate.text = startDate +  " " + "-" + " " + endDate
-        self.lblDate.text = startDate +  " " + "to" + " " + endDate
-        self.lblTime.text = startTime +  " " + "-" + " " + endTime
-        self.lblAddress.text = eventDetail?.eventLocation?.eventAddress ?? ""
-        
-        if self.viewModel.eventDetail?.locationType == MULTIPLE {
-            self.lblEventDate.isHidden = true
-            self.lblDate.isHidden = true
-            self.lblTime.isHidden = true
-            self.lblAddress.isHidden = true
-        }else{
-            self.lblEventDate.isHidden = false
-            self.lblDate.isHidden = false
-            self.lblTime.isHidden = false
-            self.lblAddress.isHidden = false
-            
-        }
-      //  self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
-        self.lblRefundpolicyDisc.text = (eventDetail?.eventRefundPolicy?.policyDescription ?? "")
-        
-        //ABOUt US
-        if (eventDetail?.eventTagsObj?.tagsDescription != "") && (eventDetail?.eventTagsObj?.tagsDescription != nil){
-            self.aboutView.isHidden = false
-            self.lblAboutDiscripation.text = eventDetail?.eventTagsObj?.tagsDescription?.htmlToString ?? ""
-            
-        }else{
-            self.aboutView.isHidden = true
-            self.lblAboutDiscripation.text = ""
-        }
-        
-        //ORGANIZER
-        self.lblOrganiserName_Company.text = eventDetail?.organizer?.name?.firstUppercased ?? ""
-        self.lblFollowers.text = "\(eventDetail?.totalFollower ?? 0)  followers"
-        if let imageUrl = eventDetail?.organizer?.profileImage {
-            if imageUrl.contains(APIHandler.shared.previousBaseURL){
-                let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
-                    self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                }else{
-                    self.imgOrganiser.image = UIImage(named: "profile")
+        if let eventDetail = self.viewModel.eventDetail {
+            self.lblPrice.text = "CAD $\(eventDetail.eventTicketOnwardsPrice ?? 0) onwards"
+            print("eventDetail?.isFollow", eventDetail.isFollow as Any)
+            if let isFollow = eventDetail.isFollow {
+                if isFollow {
+                    self.btnFollowing.setTitles(
+                        text: "Following",
+                        font: UIFont.boldSystemFont(ofSize: 15),
+                        tintColour: .black
+                    )
+                } else {
+                    self.btnFollowing.setTitles(
+                        text: "Follow",
+                        font: UIFont.boldSystemFont(ofSize: 15),
+                        tintColour: .black
+                    )
                 }
+            }
+            self.lblEventName.text = eventDetail.event?.title ?? ""
+            let startDate = "\(eventDetail.eventDateObj?.eventStartDate?.getDateFormattedFrom() ?? "")"
+            let endDate = "\(eventDetail.eventDateObj?.eventEndDate?.getDateFormattedFromTo() ?? "")"
+            let startTime = "\(eventDetail.eventDateObj?.eventStartTime?.getFormattedTime() ?? "")"
+            let endTime = "\(eventDetail.eventDateObj?.eventEndTime?.getFormattedTime() ?? "")"
+            
+            self.lblEventDate.text = startDate +  " " + "-" + " " + endDate
+            self.lblDate.text = startDate +  " " + "to" + " " + endDate
+            self.lblTime.text = startTime +  " " + "-" + " " + endTime
+            self.lblAddress.text = eventDetail.eventLocation?.eventAddress ?? ""
+            
+            if self.viewModel.eventDetail?.locationType == MULTIPLE {
+                self.lblEventDate.isHidden = true
+                self.lblDate.isHidden = true
+                self.lblTime.isHidden = true
+                self.lblAddress.isHidden = true
             }else{
-                if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
-                    self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
-                }else{
-                    self.imgOrganiser.image = UIImage(named: "profile")
-                }
+                self.lblEventDate.isHidden = false
+                self.lblDate.isHidden = false
+                self.lblTime.isHidden = false
+                self.lblAddress.isHidden = false
+                
             }
-        } else {
-            self.imgOrganiser.image = UIImage(named: "profile")
+            //  self.lblFullAddress.text = (eventDetail?.eventLocation?.eventState ?? "") + " " + (eventDetail?.eventLocation?.eventAddress ?? "")
+            self.lblRefundpolicyDisc.text = (eventDetail.eventRefundPolicy?.policyDescription ?? "")
+            
+            //ABOUt US
+            if let eventTagsObj = eventDetail.eventTagsObj, let tagsDescription = eventTagsObj.tagsDescription {
+                self.aboutView.isHidden = false
+                self.lblAboutDiscripation.text = tagsDescription.htmlToString
+                let numberOfLine = self.lblAboutDiscripation.calculateMaxLines()
+                if numberOfLine > 3 {
+                    self.readMoreConstraint.constant = 35
+                    self.lblAboutDiscripation.numberOfLines = 3
+                    self.btnReadMore.isHidden = false
+                }
+            } else { self.aboutView.isHidden = true }
+            
+            //ORGANIZER
+            self.lblOrganiserName_Company.text = eventDetail.organizer?.name?.firstUppercased ?? ""
+            self.lblFollowers.text = "\(eventDetail.totalFollower ?? 0)  followers"
+            if let imageUrl = eventDetail.organizer?.profileImage {
+                if imageUrl.contains(APIHandler.shared.previousBaseURL){
+                    let imageUrl = imageUrl.replacingOccurrences(of: APIHandler.shared.previousBaseURL, with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                    if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
+                        self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    }else{
+                        self.imgOrganiser.image = UIImage(named: "profile")
+                    }
+                }else{
+                    if let url = (APIHandler.shared.baseURL + imageUrl).getCleanedURL() {
+                        self.imgOrganiser.sd_setImage(with: url, placeholderImage: UIImage(named: "homeDas"), options: SDWebImageOptions.continueInBackground)
+                    }else{
+                        self.imgOrganiser.image = UIImage(named: "profile")
+                    }
+                }
+            } else {
+                self.imgOrganiser.image = UIImage(named: "profile")
+            }
+            
+            //TAGS
+            if let eventTagsObj = eventDetail.eventTagsObj, let eventTags = eventTagsObj.eventTags {
+                self.tagsView.isHidden = false
+                self.collVwTags.setData(eventDetail: eventDetail)
+            } else { self.tagsView.isHidden = true }
+            
+            if eventDetail.locationType == MULTIPLE {
+                self.dropDown()
+            }
         }
-        
-        //TAGS
-        if eventDetail?.eventTagsObj?.eventTags?.count != 0 && eventDetail?.eventTagsObj?.eventTags != nil{
-            self.tagsView.isHidden = false
-            self.collVwTags.setData(eventDetail: eventDetail)
-        }else{
-            self.tagsView.isHidden = true
-        }
-        if self.viewModel.eventDetail?.locationType == MULTIPLE {
-            self.dropDown()
-        }
-        
     }
     
     func dropDown(){
@@ -598,7 +599,7 @@ extension EventDetailVC {
         case btnBookTickets:
             self.btnBookTicket()
         case btnReadMore:
-            self.addToCalenAction()
+            self.readMoreAction()
         case btnFollowing:
             self.addFollowingAction()
         case btnShowMap:
@@ -699,6 +700,11 @@ extension EventDetailVC {
         return eventObject
     }
     
+    func readMoreAction() {
+        self.readMoreConstraint.constant = 0
+        self.lblAboutDiscripation.numberOfLines = 0
+        self.btnReadMore.isHidden = true
+    }
     
     func addToCalenAction() {
         DispatchQueue.main.async {
