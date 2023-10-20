@@ -181,6 +181,9 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
         
         
      //   cell.imgImage.image = data?.addOnLogo
+        if let desc = data?.addOnDescription{
+            cell.btnInfo.isHidden = desc == "" ? true : false
+        }
         cell.btnInfo.tag = indexPath.row
         cell.btnInfo.addTarget(self, action: #selector(btnInfoAction(sender:)), for: .touchUpInside)
         cell.vwStepper.btnPlus.tag = indexPath.row
@@ -317,18 +320,19 @@ extension EventBookingTicketAddOnsVC: UITableViewDelegate, UITableViewDataSource
     }
     @objc func btnInfoAction(sender: UIButton){
         let data = viewModel.arrAddOnTicketList?[sender.tag]
-        let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as! VerifyPopupVC
-        view.strMsgForlbl = data?.addOnName ?? ""
-        view.img = POP_ICON
-        view.strMessage = data?.addOnDescription ?? ""
-        view.strMsgBtn = OKAY
-        view.closerForBack = { istrue in
-            if istrue ==  true {
-                print("cancel")
+        if let view = self.createView(storyboard: .main, storyboardID: .VerifyPopupVC) as? VerifyPopupVC{
+            view.strMsgForlbl = data?.addOnName ?? ""
+            view.img = POP_ICON
+            view.strMessage = data?.addOnDescription ?? "No description found"
+            view.strMsgBtn = OKAY
+            view.closerForBack = { istrue in
+                if istrue ==  true {
+                    print("cancel")
+                }
             }
+            view.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
+            self.present(view, animated: true)
         }
-        view.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
-        self.present(view, animated: true)
     }
     
     
