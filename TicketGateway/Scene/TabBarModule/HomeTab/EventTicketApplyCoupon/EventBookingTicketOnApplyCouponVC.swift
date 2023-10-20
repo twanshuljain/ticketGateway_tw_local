@@ -292,31 +292,31 @@ extension EventBookingTicketOnApplyCouponVC {
 
    func btnContinueAction() {
        if viewModel.isCheckedTerm_COndition == true {
-           /*
-           let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as! EventPromoCodeVC
-           view.selectedArrTicketList = self.viewModel.selectedArrTicketList
-           view.eventId = self.viewModel.eventId
-           view.eventDetail = self.viewModel.eventDetail
-           view.feeStructure = self.viewModel.feeStructure
-           self.navigationController?.pushViewController(view, animated: true)
-            */
            if self.tblEventTicketTypes.selectedArrTicketList.count == 0{
                self.showToast(message: "Please select ticket")
            }else{
                if (self.viewModel.arrAddOnTicketList?.count == 0) || (self.viewModel.arrAddOnTicketList == nil){
-                   self.navigateToEventPromoCode()
+                   self.viewModel.selectedArrTicketList.forEach { ticket in
+                       print("ticket.ticketType", ticket.ticketType)
+                       if ticket.ticketType != "FREE"{
+                           self.viewModel.isFreeTicketAdded = false
+                       }
+                   }
+                   if !self.viewModel.isFreeTicketAdded{
+                       self.navigateToEventPromoCode()
+                   }else{
+                       if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+                           view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+                           view.viewModel.eventDetail = self.viewModel.eventDetail
+                           view.viewModel.feeStructure = self.viewModel.feeStructure
+                           view.viewModel.eventId = self.viewModel.eventId
+                           view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+                           self.navigationController?.pushViewController(view, animated: true)
+                       }
+                   }
                }else{
                    self.navigateToPaymentEventBookingTicketAddOns()
                }
-//               if let view = self.createView(storyboard: .home, storyboardID: .EventBookingTicketAddOnsVC) as? EventBookingTicketAddOnsVC{
-//                   view.viewModel.eventDetail = self.viewModel.eventDetail
-//                   view.viewModel.totalTicketPriceWithAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
-//                   view.viewModel.totalTicketPriceWithoutAddOn = self.viewModel.eventDetail?.event?.eventTicketFinalPrice ?? 0.0
-//                   view.viewModel.feeStructure = self.viewModel.feeStructure
-//                   view.viewModel.selectedArrTicketList = self.tblEventTicketTypes.selectedArrTicketList
-//                   view.viewModel.eventId = self.viewModel.eventId
-//                   self.navigationController?.pushViewController(view, animated: true)
-//               }
            }
        } else {
            self.showToast(message: "Please Accept Terms and Condition")

@@ -28,6 +28,7 @@ class EventTiclketAddOnViewModel {
     var selectedAddOnList = [EventTicketAddOnResponseModel]()
     var eventId:Int?
     var selectedCurrencyType = ""
+    var isFreeTicketAdded:Bool = false
     
     func getAddOnTicketList(complition: @escaping (Bool,String) -> Void ) {
         // var getURL = APIName.GetTicketList.rawValue + self.ticketId + "/"

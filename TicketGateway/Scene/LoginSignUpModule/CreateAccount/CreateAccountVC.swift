@@ -38,6 +38,7 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var lblErrLastName: UILabel!
     // MARK: - Variable
     let viewModel = CreateAccountViewModel()
+    var profileViewModel: ManageEventProfileViewModel = ManageEventProfileViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -131,9 +132,9 @@ extension CreateAccountVC {
                 viewModel.createAccountAPI(complition: { isTrue, messageShowToast in
                     if isTrue == true {
                         DispatchQueue.main.async {
-                            //objSceneDelegate.showTabBar()
-                            self.view.stopLoading()
-                            objSceneDelegate.showLogin()
+//                            self.view.stopLoading()
+//                            objSceneDelegate.showLogin()
+                            self.getUserProfileData()
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -151,6 +152,21 @@ extension CreateAccountVC {
         } else {
             self.view.stopLoading()
             self.showToast(message: isValidate.errorMessage)
+        }
+    }
+    
+    // Get User Profile API Calling
+    func getUserProfileData() {
+        if Reachability.isConnectedToNetwork() {
+            self.profileViewModel.getUserProfileData(complition: { isTrue, message in
+                DispatchQueue.main.async {
+                    objSceneDelegate.showTabBar()
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                self.showToast(message: ValidationConstantStrings.networkLost)
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ final class EventBookingTicketOnApplyCouponViewModel{
     var dispatchGroup2 = DispatchGroup.init()
     var arrAddOnTicketList: [EventTicketAddOnResponseModel]?
     var selectedCurrencyType = ""
+    var isFreeTicketAdded:Bool = false
 }
  
 extension EventBookingTicketOnApplyCouponViewModel {

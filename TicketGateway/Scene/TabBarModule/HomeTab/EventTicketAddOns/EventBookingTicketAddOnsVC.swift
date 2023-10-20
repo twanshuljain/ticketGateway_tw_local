@@ -115,23 +115,38 @@ extension EventBookingTicketAddOnsVC {
         }
     }
     func btnContinueAction() {
-//        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
-//            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
-//            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
-//            view.viewModel.eventDetail = self.viewModel.eventDetail
-//            view.viewModel.feeStructure = self.viewModel.feeStructure
-//            view.viewModel.eventId = self.viewModel.eventId
-//            self.navigationController?.pushViewController(view, animated: true)
-//        }
+        self.viewModel.isFreeTicketAdded = true
+        self.viewModel.selectedArrTicketList.forEach { ticket in
+            print("ticket.ticketType", ticket.ticketType)
+            if ticket.ticketType != "FREE"{
+                self.viewModel.isFreeTicketAdded = false
+            }
+        }
         
-        if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
-            view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
-            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
-            view.viewModel.eventDetail = self.viewModel.eventDetail
-            view.viewModel.feeStructure = self.viewModel.feeStructure
-            view.viewModel.eventId = self.viewModel.eventId
-            view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
-            self.navigationController?.pushViewController(view, animated: true)
+        if self.viewModel.selectedAddOnList.count != 0 {
+            self.viewModel.isFreeTicketAdded = false
+        }
+        
+        if !self.viewModel.isFreeTicketAdded{
+            if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
+                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+                view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+                view.viewModel.eventDetail = self.viewModel.eventDetail
+                view.viewModel.feeStructure = self.viewModel.feeStructure
+                view.viewModel.eventId = self.viewModel.eventId
+                view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+                self.navigationController?.pushViewController(view, animated: true)
+            }
+        }else{
+            if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
+                view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
+                view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
+                view.viewModel.eventDetail = self.viewModel.eventDetail
+                view.viewModel.feeStructure = self.viewModel.feeStructure
+                view.viewModel.eventId = self.viewModel.eventId
+                view.viewModel.selectedCurrencyType = self.viewModel.selectedCurrencyType
+                self.navigationController?.pushViewController(view, animated: true)
+            }
         }
         
     }
@@ -328,13 +343,6 @@ extension EventBookingTicketAddOnsVC : NavigationBarViewDelegate {
     }
     
     func navigationRightButtonAction() {
-//        if let view = self.createView(storyboard: .home, storyboardID: .EventBookingOrderSummaryVC) as? EventBookingOrderSummaryVC {
-//            view.viewModel.eventDetail = self.viewModel.eventDetail
-//            view.viewModel.feeStructure = self.viewModel.feeStructure
-//            view.viewModel.selectedAddOnList = self.viewModel.selectedAddOnList
-//            self.navigationController?.pushViewController(view, animated: true)
-//        }
-        
         if let view = self.createView(storyboard: .home, storyboardID: .EventPromoCodeVC) as? EventPromoCodeVC {
             view.viewModel.selectedArrTicketList = self.viewModel.selectedArrTicketList
             view.viewModel.selectedAddOnList = []
