@@ -454,7 +454,7 @@ extension UIView {
         label.font = font
         label.text = text
         label.sizeToFit()
-        return label.frame.height
+        return (label.frame.height + 5.0)
     }
     static let loadingViewTag = 1938123987
     static let loadingViewTag1 = 1938123986
