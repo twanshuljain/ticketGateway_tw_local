@@ -322,6 +322,10 @@ extension EventCheckoutVerifyVC {
             }
         }
         
+        if self.viewModel.selectedAddOnList.count != 0 {
+            self.viewModel.isFreeTicketAdded = false
+        }
+        
         if self.viewModel.isFreeTicketAdded == true{
             if let view = self.createView(storyboard: .home, storyboardID: .EventBookingPaymentMethodVC) as? EventBookingPaymentMethodVC{
                 self.paymentViewModel.eventId = self.viewModel.eventId

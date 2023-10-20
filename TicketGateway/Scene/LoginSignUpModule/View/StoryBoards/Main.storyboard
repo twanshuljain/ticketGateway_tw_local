@@ -617,7 +617,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Avl-bP-QkT">
                                                                         <rect key="frame" x="25" y="87.666666666666686" width="305" height="70"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-h3-mev" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-h3-mev" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebooklogin" translatesAutoresizingMaskIntoConstraints="NO" id="aZM-nc-2i0">
@@ -641,20 +641,19 @@
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R66-I6-6jM" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                                                                <rect key="frame" x="105" y="0.0" width="95" height="70"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="305" height="70"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googlelogin" translatesAutoresizingMaskIntoConstraints="NO" id="MxS-nb-O68">
-                                                                                        <rect key="frame" x="37" y="24.333333333333314" width="21.333333333333329" height="21.333333333333329"/>
+                                                                                        <rect key="frame" x="142" y="24.333333333333314" width="21.333333333333343" height="21.333333333333329"/>
                                                                                     </imageView>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KnG-od-Pgu">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="70"/>
                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     </button>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="MxS-nb-O68" firstAttribute="centerX" secondItem="R66-I6-6jM" secondAttribute="centerX" id="BYX-2d-EGN"/>
-                                                                                    <constraint firstAttribute="width" constant="95" id="MSa-qB-zq0"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="KnG-od-Pgu" secondAttribute="bottom" id="fT9-5U-BmZ"/>
                                                                                     <constraint firstItem="KnG-od-Pgu" firstAttribute="top" secondItem="R66-I6-6jM" secondAttribute="top" id="mPl-Ni-Uc6"/>
                                                                                     <constraint firstItem="MxS-nb-O68" firstAttribute="centerY" secondItem="R66-I6-6jM" secondAttribute="centerY" id="pDQ-9L-SFH"/>
@@ -662,11 +661,11 @@
                                                                                     <constraint firstItem="KnG-od-Pgu" firstAttribute="leading" secondItem="R66-I6-6jM" secondAttribute="leading" id="wzk-em-LlK"/>
                                                                                 </constraints>
                                                                             </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w82-70-uvv" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                                                                <rect key="frame" x="210" y="0.0" width="95" height="70"/>
+                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w82-70-uvv" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applelogin1" translatesAutoresizingMaskIntoConstraints="NO" id="xYe-BO-aJR">
-                                                                                        <rect key="frame" x="32.666666666666686" y="20" width="30" height="30"/>
+                                                                                        <rect key="frame" x="32.666666666666664" y="20" width="30" height="30"/>
                                                                                     </imageView>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rca-kA-GNo">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
@@ -709,7 +708,6 @@
                                                                     <constraint firstItem="UYM-0U-gCP" firstAttribute="top" secondItem="Avl-bP-QkT" secondAttribute="bottom" constant="17" id="Y34-7I-lgb"/>
                                                                     <constraint firstItem="Tt8-wO-XlW" firstAttribute="top" secondItem="UYM-0U-gCP" secondAttribute="bottom" constant="7.5" id="Ziu-o7-aP3"/>
                                                                     <constraint firstItem="Avl-bP-QkT" firstAttribute="leading" secondItem="vvQ-EJ-3IG" secondAttribute="leading" constant="25" id="aXP-px-Siv"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Avl-bP-QkT" secondAttribute="trailing" constant="25" id="dO9-lB-Pmd"/>
                                                                     <constraint firstItem="RNc-xd-9Hu" firstAttribute="top" secondItem="T9Z-Pe-jk1" secondAttribute="bottom" constant="22.5" id="fdv-OZ-zgb"/>
                                                                     <constraint firstItem="FnF-na-f0b" firstAttribute="top" secondItem="vvQ-EJ-3IG" secondAttribute="top" constant="30" id="gzq-1m-ghM"/>
                                                                     <constraint firstItem="qhG-2L-eqM" firstAttribute="leading" secondItem="WRN-R0-cia" secondAttribute="trailing" id="iDV-N8-slw"/>
@@ -717,6 +715,7 @@
                                                                     <constraint firstAttribute="trailing" secondItem="RNc-xd-9Hu" secondAttribute="trailing" constant="25" id="n4R-yz-nzF"/>
                                                                     <constraint firstItem="UYM-0U-gCP" firstAttribute="leading" secondItem="vvQ-EJ-3IG" secondAttribute="leading" constant="25" id="t6D-hM-jVJ"/>
                                                                     <constraint firstAttribute="trailing" secondItem="T9Z-Pe-jk1" secondAttribute="trailing" constant="25" id="tWU-k5-gTi"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Avl-bP-QkT" secondAttribute="trailing" constant="25" id="v6m-pA-k4x"/>
                                                                     <constraint firstItem="Tt8-wO-XlW" firstAttribute="leading" secondItem="vvQ-EJ-3IG" secondAttribute="leading" constant="25" id="vp3-U3-f9D"/>
                                                                 </constraints>
                                                             </view>
@@ -1030,7 +1029,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3d1-3p-YH3">
                                                                 <rect key="frame" x="25" y="90" width="305" height="70"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4X-0T-eSz" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4X-0T-eSz" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebooklogin" translatesAutoresizingMaskIntoConstraints="NO" id="J9o-V4-Byz">
@@ -1053,13 +1052,13 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhj-Sl-dHK" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                                                        <rect key="frame" x="105" y="0.0" width="95" height="70"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="70"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googlelogin" translatesAutoresizingMaskIntoConstraints="NO" id="55C-Y6-uig">
-                                                                                <rect key="frame" x="37" y="24.333333333333314" width="21.333333333333329" height="21.333333333333329"/>
+                                                                                <rect key="frame" x="142" y="24.333333333333314" width="21.333333333333343" height="21.333333333333329"/>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A27-Uc-nc7">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="305" height="70"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </button>
                                                                         </subviews>
@@ -1068,17 +1067,16 @@
                                                                             <constraint firstItem="55C-Y6-uig" firstAttribute="centerX" secondItem="mhj-Sl-dHK" secondAttribute="centerX" id="0mg-Es-oT2"/>
                                                                             <constraint firstItem="55C-Y6-uig" firstAttribute="centerY" secondItem="mhj-Sl-dHK" secondAttribute="centerY" id="7NF-hT-L6c"/>
                                                                             <constraint firstAttribute="bottom" secondItem="A27-Uc-nc7" secondAttribute="bottom" id="QxZ-kL-c9D"/>
-                                                                            <constraint firstAttribute="width" constant="95" id="V0g-CD-8Cq"/>
                                                                             <constraint firstItem="A27-Uc-nc7" firstAttribute="top" secondItem="mhj-Sl-dHK" secondAttribute="top" id="veF-Iy-qAx"/>
                                                                             <constraint firstAttribute="trailing" secondItem="A27-Uc-nc7" secondAttribute="trailing" id="wsJ-g7-3au"/>
                                                                             <constraint firstItem="A27-Uc-nc7" firstAttribute="leading" secondItem="mhj-Sl-dHK" secondAttribute="leading" id="zF5-Sn-yaq"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f63-hP-XQ9" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
-                                                                        <rect key="frame" x="210" y="0.0" width="95" height="70"/>
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f63-hP-XQ9" customClass="customSocialLoginView" customModule="TicketGateway" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applelogin1" translatesAutoresizingMaskIntoConstraints="NO" id="xlN-G3-ZW1">
-                                                                                <rect key="frame" x="32.666666666666686" y="20" width="30" height="30"/>
+                                                                                <rect key="frame" x="32.666666666666664" y="20" width="30" height="30"/>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSV-25-uwP">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="95" height="70"/>
@@ -1115,7 +1113,6 @@
                                                             <constraint firstItem="aXY-hp-ucm" firstAttribute="leading" secondItem="mg0-d9-91L" secondAttribute="trailing" id="LQX-Hc-VAw"/>
                                                             <constraint firstItem="ZTR-69-chW" firstAttribute="centerX" secondItem="Glj-pz-pjU" secondAttribute="centerX" id="NqA-Qj-7Ga"/>
                                                             <constraint firstItem="ZTR-69-chW" firstAttribute="top" secondItem="3d1-3p-YH3" secondAttribute="bottom" constant="20" id="QYY-7d-ZCW"/>
-                                                            <constraint firstAttribute="trailing" secondItem="3d1-3p-YH3" secondAttribute="trailing" constant="25" id="RUJ-N0-rEb"/>
                                                             <constraint firstAttribute="trailing" secondItem="etD-4p-Wvy" secondAttribute="trailing" constant="25" id="UEy-Ir-UlY"/>
                                                             <constraint firstItem="fa4-cV-1pp" firstAttribute="top" secondItem="Glj-pz-pjU" secondAttribute="top" constant="20" id="fTX-rv-W9X"/>
                                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mg0-d9-91L" secondAttribute="bottom" constant="60" id="huf-tr-ulD"/>
@@ -1126,6 +1123,7 @@
                                                             <constraint firstItem="3d1-3p-YH3" firstAttribute="centerX" secondItem="Glj-pz-pjU" secondAttribute="centerX" id="rE8-pA-yxM"/>
                                                             <constraint firstItem="mg0-d9-91L" firstAttribute="top" secondItem="OPq-Fx-leK" secondAttribute="bottom" constant="15" id="sTO-dy-brW"/>
                                                             <constraint firstItem="etD-4p-Wvy" firstAttribute="top" secondItem="ZTR-69-chW" secondAttribute="bottom" constant="20" id="sk7-HI-3P3"/>
+                                                            <constraint firstAttribute="trailing" secondItem="3d1-3p-YH3" secondAttribute="trailing" constant="25" id="tgX-sG-0P7"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSI-Mx-u7d">
@@ -2854,13 +2852,13 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-Cu-r5b">
                                                                     <rect key="frame" x="124" y="20.666666666666671" width="240" height="67"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7h2-Ws-znK">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Mobile number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7h2-Ws-znK">
                                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="22.666666666666668"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                                             <color key="textColor" red="0.0" green="0.1960784314" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the email account you want to login" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-e2-KnD">
+                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select the email account you want to login" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-e2-KnD">
                                                                             <rect key="frame" x="0.0" y="27.666666666666668" width="240" height="39.333333333333329"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
