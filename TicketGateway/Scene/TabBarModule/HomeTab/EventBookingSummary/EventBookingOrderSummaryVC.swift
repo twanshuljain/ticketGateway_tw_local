@@ -22,6 +22,8 @@ class EventBookingOrderSummaryVC: UIViewController {
     @IBOutlet weak var vwDotted: UIView!
     @IBOutlet weak var heightOfTickets: NSLayoutConstraint!
     @IBOutlet weak var heightOfAddOn: NSLayoutConstraint!
+    @IBOutlet weak var topOfAddOn: NSLayoutConstraint!
+    @IBOutlet weak var bottomOfAddOn: NSLayoutConstraint!
     @IBOutlet weak var btnGoBack: UIButton!
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var navigationView: NavigationBarView!
@@ -111,6 +113,14 @@ extension EventBookingOrderSummaryVC {
         vwDottedDIscount.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         summaryDottedView.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDottedAddOns.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
+        vwDottedAddOns.isHidden = false
+        self.topOfAddOn.constant = 10
+        self.bottomOfAddOn.constant = 10
+        if self.viewModel.selectedAddOnList.count == 0{
+            vwDottedAddOns.isHidden = true
+            self.topOfAddOn.constant = 0
+            self.bottomOfAddOn.constant = 0
+        }
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.heightOfTickets.constant = tblAddedTickets.contentSize.height

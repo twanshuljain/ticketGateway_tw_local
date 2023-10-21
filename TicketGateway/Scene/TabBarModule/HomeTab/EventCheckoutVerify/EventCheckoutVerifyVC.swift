@@ -33,6 +33,8 @@ class EventCheckoutVerifyVC: UIViewController {
     @IBOutlet weak var btnContinue: CustomButtonGradiant!
     @IBOutlet weak var lblVerified: UILabel!
     
+    @IBOutlet weak var topOfAddOn: NSLayoutConstraint!
+    @IBOutlet weak var bottomOfAddOn: NSLayoutConstraint!
     @IBOutlet weak var vwDottedAddOns: UIView!
     @IBOutlet weak var summaryDottedView: UIView!
     @IBOutlet weak var vwDottedDIscount: UIView!
@@ -171,8 +173,14 @@ extension EventCheckoutVerifyVC {
         vwDottedDIscount.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         summaryDottedView.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
         vwDottedAddOns.createDottedLine(width: 1, color: UIColor.lightGray.cgColor, dashPattern: [2,4])
-//        self.btnContinue.alpha = 0.5
-//        self.btnContinue.isUserInteractionEnabled = false
+        vwDottedAddOns.isHidden = false
+        self.topOfAddOn.constant = 10
+        self.bottomOfAddOn.constant = 10
+        if self.viewModel.selectedAddOnList.count == 0{
+            vwDottedAddOns.isHidden = true
+            self.topOfAddOn.constant = 0
+            self.bottomOfAddOn.constant = 0
+        }
     }
     
     func setData() {

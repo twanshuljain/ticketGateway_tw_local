@@ -4513,6 +4513,7 @@ TicketGateway fee is non refundable.</string>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
+                        <outlet property="bottomOfAddOn" destination="M8w-48-jm8" id="seC-5N-nJy"/>
                         <outlet property="btnContinue" destination="Kdr-bg-LAB" id="YHx-zW-QaM"/>
                         <outlet property="btnGoBack" destination="8Oa-Pl-GJw" id="Khb-Lx-33b"/>
                         <outlet property="discountViewHt" destination="I3E-i8-oy2" id="3nv-pL-xdk"/>
@@ -4537,6 +4538,7 @@ TicketGateway fee is non refundable.</string>
                         <outlet property="summaryDottedView" destination="41Z-lE-Tgi" id="FQD-gk-qp6"/>
                         <outlet property="tblAddOnEtcThings" destination="Q0t-9q-wPF" id="ug6-Hg-YVv"/>
                         <outlet property="tblAddedTickets" destination="rPI-zK-8Wo" id="sdN-BZ-jfL"/>
+                        <outlet property="topOfAddOn" destination="lBZ-Lo-ZSO" id="QUg-5a-zEt"/>
                         <outlet property="vwDotted" destination="jxt-T2-mqq" id="8kP-kk-6lZ"/>
                         <outlet property="vwDottedAddOns" destination="ho1-Si-GtR" id="4X9-iS-EWh"/>
                         <outlet property="vwDottedDIscount" destination="NSP-2e-XpK" id="1Ff-m6-AwO"/>
@@ -5914,6 +5916,7 @@ TicketGateway fee is non refundable.</string>
                     </view>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
+                        <outlet property="bottomOfAddOn" destination="hua-iL-f7O" id="QUf-Az-6J9"/>
                         <outlet property="btnContinue" destination="TPY-45-Zt8" id="PQX-EV-Z0p"/>
                         <outlet property="btnGoBack" destination="zRv-WR-LIN" id="vZP-Sa-P1u"/>
                         <outlet property="btnSelectCountry" destination="o5Y-rZ-Kfj" id="mPR-uK-bFj"/>
@@ -5952,6 +5955,7 @@ TicketGateway fee is non refundable.</string>
                         <outlet property="summaryDottedView" destination="5kD-k2-gtt" id="pTW-zh-RHh"/>
                         <outlet property="tblAddOnEtcThings" destination="YAD-Wp-CLm" id="Q6s-4k-hxm"/>
                         <outlet property="tblAddedTickets" destination="S57-ae-fSh" id="dzh-oY-HdD"/>
+                        <outlet property="topOfAddOn" destination="kbw-pb-HL1" id="Dz8-2d-ek3"/>
                         <outlet property="txtConfirmEmailAddress" destination="Ay3-SH-Sdb" id="O0E-B3-MrE"/>
                         <outlet property="txtEmailAddress" destination="Szh-Ei-rDb" id="e7a-zo-dbh"/>
                         <outlet property="txtFirstName" destination="exi-HP-0dU" id="Q3a-9g-H1A"/>
