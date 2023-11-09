@@ -195,6 +195,7 @@ extension ScanSummaryVC {
 
 // MARK: - ACTIONS
 extension ScanSummaryVC{
+    
     @IBAction func actionSegment(_ sender: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
