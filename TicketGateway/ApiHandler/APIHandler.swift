@@ -104,8 +104,10 @@ class APIHandler: NSObject {
     static var shared = APIHandler()
     private override init() {}
     private let session = URLSession.shared
-    let baseURL = "http://3.21.114.70/"
+    //let baseURL = "http://3.21.114.70/"
+    let baseURL = "https://api.tg-dev2.com/"
     //let baseURL = "http://3.19.250.147/"
+    
     let previousBaseURL = "http://18.224.21.11/"
     let s3URL = "https://tw-staging-media.s3.us-east-2.amazonaws.com/"
     private let boundary = "Boundary-\(NSUUID().uuidString)"

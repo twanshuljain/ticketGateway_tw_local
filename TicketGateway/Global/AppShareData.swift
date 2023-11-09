@@ -48,7 +48,7 @@ class AppShareData {
     }
     func updateUserProfile(isForImage: Bool = false, methodType: MethodType, parameters: UpdateUserModel, completion: @escaping (Result<GetUserProfileModel, Error>) -> Void) {
         let boundary = "Boundary-\(NSUUID().uuidString)"
-        guard let requestURL = URL(string: "http://3.21.114.70/auth/user/update/profile/") else {
+        guard let requestURL = URL(string: "\(APIHandler.shared.baseURL)auth/user/update/profile/") else {
             completion(.failure("invalid url"))
             return
         }
