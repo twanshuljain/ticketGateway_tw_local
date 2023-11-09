@@ -43,21 +43,21 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
-    <key>UIFileSharingEnabled</key>
-    <true/>
-    <key>LSSupportsOpeningDocumentsInPlace</key>
-    <true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-    <key>NSCameraUsageDescription</key>
-    <string>To access camera</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>To access photo library.</string>
-    <key>NSCalendarsUsageDescription</key>
-    <string>Use calendar to remind events.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To access camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To access photo library.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Use calendar to remind events.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Bold.ttf</string>
@@ -80,7 +80,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>ScanEvents</string>
 				</dict>
 			</array>
 		</dict>
