@@ -15,6 +15,8 @@
 import Foundation
 import UIKit
 
+// Constant FILE for String used in UI.
+
 enum Storyboard: String {
     case main = "Main"
     case home = "Home"

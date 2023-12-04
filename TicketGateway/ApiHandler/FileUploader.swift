@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Class for Upload Files
 class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
     enum MimeType: String {
         case image = "image/png"
@@ -98,11 +99,3 @@ class FileUploader: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         print(percent)
     }
 }
-
-//extension Data {
-//    mutating func append(_ string: String) {
-//        if let data = string.data(using: .utf8) {
-//            append(data)
-//        }
-//    }
-//}

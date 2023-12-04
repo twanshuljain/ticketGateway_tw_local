@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Constant files for Validations String
 class ValidationConstantStrings: NSObject {
     // MARK: - Validation Alert messages
     static let emptyEmail = Bundle.main.localizedString(forKey: "Please enter your email address", value: "", table: nil)

@@ -20,6 +20,7 @@ import AudioToolbox
 extension UIViewController {
 
     // MARK: - Alert Extension
+    // Custom functions for native Alert
     func showAlertController(title: String = "", message: String) {
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction.init(title: "Ok", style: .default) { _ in

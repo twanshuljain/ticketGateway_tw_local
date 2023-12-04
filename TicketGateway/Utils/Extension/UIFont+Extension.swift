@@ -5,7 +5,9 @@
 // Created by Apple on 14/04/23.
 //
 import UIKit
+
 // FontFamily Setups
+
 enum CustomFontSize: CGFloat {
   case eight = 8
   case nine = 9

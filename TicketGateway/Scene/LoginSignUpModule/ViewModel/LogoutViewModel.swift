@@ -11,6 +11,7 @@ struct LogoutRequestModel: Codable {
     var email: String?
 }
 class LogoutViewModel {
+    // Get Login API response
     func logoutAPI(complition: @escaping (Bool, String) -> Void) {
         let param = LogoutRequestModel(email: "email")
         APIHandler.shared.executeRequestWith(apiName: .logoutUser, parameters: param, methodType: .POST) { (result: Result<ResponseModal<EmptyModel>, Error>) in

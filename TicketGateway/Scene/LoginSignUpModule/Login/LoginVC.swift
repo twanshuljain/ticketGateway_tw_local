@@ -64,6 +64,7 @@ class LoginVC: UIViewController{
 }
 // MARK: - Functions
 extension LoginVC {
+    // Set UI for label and buttons
     func setUI() {
         self.vwBtnSkipView.isHidden = true
         self.lblSignIn.text = LBL_SIGN_IN
@@ -75,6 +76,7 @@ extension LoginVC {
         
         
     }
+    // Set up for buttons actions
     private func setup() {
         self.viewModel.countries = self.jsonSerial()
         self.collectCountries()
@@ -94,6 +96,7 @@ extension LoginVC {
         self.txtPassword.isSecureTextEntry = true
         self.btnLogin.addRightIcon(image: UIImage(named: RIGHT_ARROW_ICON))
     }
+    // Apply validations for email and phone number fields
     func isFromNumberOrEmailUI() {
         if viewModel.isFromNumberOrEmail == true {
             self.vwEmail.isHidden = false
@@ -134,6 +137,7 @@ extension LoginVC {
 }
 // MARK: - Actions
 extension LoginVC {
+    // Actions for UIButton
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnLogin:
@@ -162,6 +166,7 @@ extension LoginVC {
             break
         }
     }
+    // Handling password hide and show from eye button
     func btnEyeAction() {
         if self.txtPassword.isSecureTextEntry == false {
             self.btnEye.setImage(UIImage(named: EYE_CLOSE), for: .normal)
@@ -175,10 +180,8 @@ extension LoginVC {
         UserDefaultManager.share.guestUserLogin(value: true, key: .isGuestLogin)
         objSceneDelegate.showTabBar()
     }
+    // Checking login button validation and called Login API 
     func btnLoginAction() {
-//        [txtEmail, txtPassword, txtNumber].forEach {
-//            $0?.addTarget(self, action: #selector(textFieldErrorMsg(_:)), for: .allEditingEvents)
-//        }
         print("Login Tapped")
         let isValidate = viewModel.validateUserInput
         if isValidate.isValid {

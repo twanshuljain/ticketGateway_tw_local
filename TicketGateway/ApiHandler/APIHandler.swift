@@ -52,9 +52,7 @@ public enum APIName: String {
     //case GetFeeStructure = "default/data/fee/structure/get/"
     case favoriteEvents = "events/like/unlike/"
     case followUnfollow = "organizer/follow-unfollow/"
-    
     case checkEmail = "payment/check-email/checkout-user"
-    
     case downloadTicket = "ticket/myticket/download/"
     
     //STRIPE
@@ -104,10 +102,7 @@ class APIHandler: NSObject {
     static var shared = APIHandler()
     private override init() {}
     private let session = URLSession.shared
-    //let baseURL = "http://3.21.114.70/"
     let baseURL = "https://api.tg-dev2.com/"
-    //let baseURL = "http://3.19.250.147/"
-    
     let previousBaseURL = "http://18.224.21.11/"
     let s3URL = "https://tw-staging-media.s3.us-east-2.amazonaws.com/"
     private let boundary = "Boundary-\(NSUUID().uuidString)"
@@ -136,38 +131,22 @@ class APIHandler: NSObject {
             return
         }
       finalURL = finalURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-//        if methodType == .GET{
-//            if let URL = getURL, URL != ""  {
-//                if #available(iOS 16.0, *) {
-//                    requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: "", value: "39")])
-//                } else {
-//                    // Fallback on earlier versions
-//                }
-//            }
-//        }
         
         if methodType == .GET{
             if parameters != nil {
-              //  if #available(iOS 16.0, *) {
-                    let param = try? JSONEncoder().encode(parameters!)
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String : Any]
-                       // print("---------------", json ?? "")
-//                        requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: json?.keys.first ?? "", value: (json?.values.first as? String) ?? "")])
-                        var queryItems = [URLQueryItem]()
-                        for (key, value) in json! {
-                            let queryItem = URLQueryItem(name: key, value: "\(value)")
-                            queryItems.append(queryItem)
-                        }
-                        requestURL =  requestURL.appending(queryItems) ?? requestURL
-                        
-                    } catch {
-                        print("errorMsg")
+                let param = try? JSONEncoder().encode(parameters!)
+                do {
+                    let json = try JSONSerialization.jsonObject(with: param!, options: []) as? [String : Any]
+                    var queryItems = [URLQueryItem]()
+                    for (key, value) in json! {
+                        let queryItem = URLQueryItem(name: key, value: "\(value)")
+                        queryItems.append(queryItem)
                     }
-                    //requestURL = requestURL.appending(queryItems: [URLQueryItem.init(name: param, value: "39")])
-//                } else {
-//                    // Fallback on earlier versions
-//                }
+                    requestURL =  requestURL.appending(queryItems) ?? requestURL
+                    
+                } catch {
+                    print("errorMsg")
+                }
             }
         }
         

@@ -28,7 +28,7 @@ class EmailSentVC: UIViewController {
      
        
     }
-    
+    // Setting fonts for labels and buttons
     func setFont() {
         lblEmail.font = UIFont.setFont(fontType: .semiBold, fontSize: .twentyFour)
         lblEmail.textColor = UIColor.setColor(colorType: .titleColourDarkBlue)

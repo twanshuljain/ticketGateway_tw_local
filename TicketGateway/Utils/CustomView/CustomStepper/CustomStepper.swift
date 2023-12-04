@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+// Custom Stepper used in across the App.
 
 class CustomStepper: UIView {
     

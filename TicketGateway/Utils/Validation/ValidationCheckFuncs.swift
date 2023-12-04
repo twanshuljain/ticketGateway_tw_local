@@ -8,7 +8,8 @@
 import UIKit
 import Foundation
 
-class ValidationCheckFuncs{
+// Methods for Validations checking email, names, numbers etc.
+class ValidationCheckFuncs {
     // -------------------------
     // MARK: - Check DeviceType -
     // -------------------------

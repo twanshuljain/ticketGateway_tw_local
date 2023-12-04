@@ -7,6 +7,8 @@
 import EventKit
 import UIKit
 
+// For add events in Local Calendar.
+ 
 final class AddToCalendar {
     static let shared: AddToCalendar = AddToCalendar()
     let eventStore: EKEventStore = EKEventStore()
@@ -50,6 +52,7 @@ final class AddToCalendar {
             }
         )
     }
+    // Function for navigate to Settings
     func navigateToSettings() {
         let alert = UIAlertController(title: "Calendar",
                                       message: "Please enable calendar permission from the settings.",

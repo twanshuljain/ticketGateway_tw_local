@@ -16,6 +16,9 @@
 // swiftlint: disable type_name
 // swiftlint: disable duplicate_conditions
 import UIKit
+
+// Comman enums and Class for Validations 
+
 //MARK: - InputValidation
 enum InputValidation: String {
     case email

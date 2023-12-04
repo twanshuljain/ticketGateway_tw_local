@@ -3,9 +3,10 @@
 //  TicketGateway
 //
 //  Created by Apple  on 10/04/23.
-// swiftlint: disable identifier_name
-// swiftlint: disable force_try
+
 import Foundation
+
+// Comman/Generic Response Modal for all the APIs
 struct ResponseModal<T: Codable>: Codable {
     var message, status: String?
     var status_code: Int?

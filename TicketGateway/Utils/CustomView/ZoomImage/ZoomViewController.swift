@@ -14,7 +14,7 @@
 
 import UIKit
 
-class ZoomViewController:UIViewController {
+class ZoomViewController: UIViewController {
     
     var imgProfile: UIImage?
     @IBOutlet weak var navigationView: NavigationBarView!

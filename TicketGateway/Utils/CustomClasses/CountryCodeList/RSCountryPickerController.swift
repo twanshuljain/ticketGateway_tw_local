@@ -14,7 +14,6 @@
 
 import UIKit
 
-import UIKit
 
 struct CountryInfo {
     let country_code : String
@@ -112,7 +111,7 @@ extension RSCountryPickerController{
         }
     }
     
-//--------------------------XXXX--------------------------
+    // Get Dial Code for Contry Code
     class func getDialCode(countryCode: String) -> String? {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
         do {
@@ -131,7 +130,7 @@ extension RSCountryPickerController{
         }
     }
     
-    
+    // Get Country Code for Dial Code
     class func getCountryCode(dialCode: String) -> String {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
         do {
@@ -150,7 +149,7 @@ extension RSCountryPickerController{
         }
     }
     
-    
+    // Get Country Name for Contry Code
     class func getCountryName(countryCode: String) -> String? {
         let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "countries", ofType: "json")!))
         do {
