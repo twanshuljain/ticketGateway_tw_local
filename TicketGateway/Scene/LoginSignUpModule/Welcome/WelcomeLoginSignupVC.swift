@@ -13,11 +13,15 @@ class WelcomeLoginSignupVC: UIViewController {
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var lblTicketgatewayCom: UILabel!
     @IBOutlet weak var lblJoinTheMillon: UILabel!
+    
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setUI()
     }
+    
+    // MARK: - Custom Functions
     func setUI() {
         lblTicketgatewayCom.text = WELCOME_TITLE
         lblJoinTheMillon.text = WELCOME_DESCRIPTION

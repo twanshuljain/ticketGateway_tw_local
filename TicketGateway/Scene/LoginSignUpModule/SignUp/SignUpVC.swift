@@ -22,14 +22,16 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var lblSignUnWith: UILabel!
     @IBOutlet weak var lblVerifyYourEmail: UILabel!
     @IBOutlet weak var lblAlreadHaveAccount: UILabel!
+    
     // MARK: - Variable
     var viewModel: SignUpViewModel = SignUpViewModel()
+    
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setText()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setText()
@@ -37,6 +39,7 @@ class SignUpVC: UIViewController {
 }
 // MARK: - Functions
 extension SignUpVC {
+    // MARK: - Custom Functions
     func setText() {
         self.viewModel.email = ""
         self.txtEmail.text = ""
@@ -76,6 +79,7 @@ extension SignUpVC {
 }
 // MARK: - Actions
 extension SignUpVC {
+    // MARK: - Actions
     @objc func buttonPressed(_ sender: UIButton) {
         switch sender {
         case btnLogin:

@@ -9,10 +9,14 @@
 
 import UIKit
 class WelComeVC: UIViewController {
+    
     // MARK: - @IBOutlets
     @IBOutlet var cvSlider: UICollectionView!
+    
     // MARK: - Variable
     var viewModel = WelcomeViewModel()
+    
+    // MARK: View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = WelcomeViewModel(wlcmVC: self)
@@ -21,17 +25,16 @@ class WelComeVC: UIViewController {
         super.viewDidAppear(animated)
     }
     @objc func skipBtn(sender: UIButton) {
-        // ...
         let view = self.createView(storyboard: .main, storyboardID: .WelcomeLoginSignupVC)
         self.navigationController?.pushViewController(view, animated: true)
     }
     @objc func nextBtn(sender: UIButton) {
-        // ...
         self.viewModel.setPageController()
     }
 }
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 extension WelComeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // Collection view delegates and data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.arrSliderImages.count
     }
