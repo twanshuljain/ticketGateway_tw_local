@@ -45,8 +45,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         self.window?.overrideUserInterfaceStyle = .light
-        self.IsUserAlreadyLogin()
-        
+//        self.IsUserAlreadyLogin()
+        showScanLogin()
         
     }
     
@@ -101,6 +101,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         
+    }
+    func showScanLogin() {
+        let storyboard:UIStoryboard = UIStoryboard(name: "ScanEvents", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "ScanNavigation") as? UINavigationController
+        let rootViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "ScanEventVC") as! ScanEventVC
+        navigationController!.viewControllers = [rootViewController]
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
     }
     
     func showMangeEventTabBar(){

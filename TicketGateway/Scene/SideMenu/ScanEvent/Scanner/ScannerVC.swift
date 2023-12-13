@@ -39,6 +39,9 @@ class ScannerVC: UIViewController {
     @IBOutlet weak var lblQrid: UILabel!
     // MARK: - Variables
     let viewModel = ScannerViewModel()
+    var dispatchGroup = DispatchGroup()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUI()
@@ -260,19 +263,24 @@ extension ScannerVC {
         }
     }
     func scanBarCode() {
+        var success = false
+        var msg = ""
         if Reachability.isConnectedToNetwork() { // check internet connectivity
+            dispatchGroup.enter()
             self.view.showLoading(centreToView: self.view)
             viewModel.scanBarCodeApi(
                 complition: { isTrue, showMessage in
                     if isTrue {
+                        self.dispatchGroup.leave()
                         DispatchQueue.main.async {
                             self.view.stopLoading()
-                            self.setUIAfterScanTicket(isSuccess: true, message: showMessage)
                         }
                     } else {
+                        success = false
+                        msg = showMessage
+                        self.dispatchGroup.leave()
                         DispatchQueue.main.async {
                             self.view.stopLoading()
-                            self.vibrateDevice()
                             self.setUIAfterScanTicket(isSuccess: false, message: showMessage)
                             self.showToast(message: showMessage)
                         }
@@ -284,6 +292,10 @@ extension ScannerVC {
                 self.view.stopLoading()
                 self.showToast(message: ValidationConstantStrings.networkLost)
             }
+        }
+        
+        self.dispatchGroup.notify(queue: .main) {
+            self.setUIAfterScanTicket(isSuccess: success, message: msg)
         }
     }
     func setUIAfterScanTicket(isSuccess: Bool, message: String) {
